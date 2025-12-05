@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Architecture – Robot Skill Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .lang-cn { display: none; }
+    .lang-en { display: block; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-50">
+<header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-10">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="index.html" class="flex items-center space-x-3">
+      <div class="w-9 h-9 rounded-xl bg-cyan-500 flex items-center justify-center">
+        <div class="w-5 h-5 border-2 border-slate-950 rounded-md flex items-center justify-center">
+          <div class="w-2 h-2 bg-slate-950 rounded-sm"></div>
+        </div>
+      </div>
+      <div>
+        <div class="font-semibold text-lg">Robot Skill Store</div>
+        <div class="text-xs text-slate-400 lang-en">App Store for Robot Skills</div>
+        <div class="text-xs text-slate-400 lang-cn">面向机器人的技能应用商店</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center space-x-6 text-sm text-slate-300">
+      <a href="index.html" class="hover:text-cyan-400">Home</a>
+      <a href="platform.html" class="hover:text-cyan-400">Platform</a>
+      <a href="architecture.html" class="text-cyan-400">Architecture</a>
+      <a href="developers.html" class="hover:text-cyan-400">Developers</a>
+      <a href="index.html#contact" class="hover:text-cyan-400">Contact</a>
+    </nav>
+    <div class="flex items-center space-x-3">
+      <button id="btn-en" class="px-3 py-1 rounded-full text-xs border border-slate-500 bg-slate-800">EN</button>
+      <button id="btn-cn" class="px-3 py-1 rounded-full text-xs border border-slate-500">中文</button>
+    </div>
+  </div>
+</header>
+
+<section class="max-w-6xl mx-auto px-4 pt-10 pb-10">
+  <h1 class="text-3xl md:text-4xl font-semibold mb-4 lang-en">Architecture & RSP Protocol</h1>
+  <h1 class="text-3xl md:text-4xl font-semibold mb-4 lang-cn">体系结构与 RSP 协议</h1>
+  <p class="text-slate-300 text-sm mb-6 lang-en">
+    Robot Skill Store is built on the Robot Skill Protocol (RSP) – a schema-driven, middleware-agnostic skill API,
+    semantically aligned with RCP&apos;s READ/WRITE/EXECUTE/SUBSCRIBE model.
+  </p>
+  <p class="text-slate-300 text-sm mb-6 lang-cn">
+    Robot Skill Store 底层采用 Robot Skill Protocol（RSP）作为统一协议，
+    使用 Schema 驱动的方式对技能进行定义，并在语义上对齐 RCP 的 READ/WRITE/EXECUTE/SUBSCRIBE 模型。
+  </p>
+</section>
+
+<section class="max-w-6xl mx-auto px-4 pb-12">
+  <h2 class="text-2xl font-semibold mb-4 lang-en">Layered architecture</h2>
+  <h2 class="text-2xl font-semibold mb-4 lang-cn">分层架构</h2>
+  <div class="border border-slate-800 rounded-2xl p-6 bg-slate-900/40 text-xs md:text-sm mb-6">
+<pre class="whitespace-pre-wrap text-slate-200">
+Cloud Skill Store
+  ├─ Skill Marketplace
+  ├─ Developer Portal
+  └─ Model & Version Registry
+         │  RSP (Robot Skill Protocol)
+         ▼
+RSP Gateway
+  ├─ REST / WebSocket API
+  ├─ JSON Schema Validation
+  └─ Capability Matching
+         │
+         ▼
+Robot Runtime (Edge)
+  ├─ Skill Orchestrator
+  ├─ Retargeting Engine
+  └─ Safety Proxy
+         │
+         ▼
+Robot + Sensors
+  ├─ ROS2 Control / OEM SDK
+  └─ Perception / Force / Tactile
+</pre>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-4 pb-12">
+  <h2 class="text-2xl font-semibold mb-4 lang-en">RSP API surface</h2>
+  <h2 class="text-2xl font-semibold mb-4 lang-cn">RSP 接口概览</h2>
+  <div class="grid md:grid-cols-2 gap-6 text-sm">
+    <div class="border border-slate-800 rounded-2xl p-4 bg-slate-900/40">
+      <h3 class="font-semibold mb-2 lang-en">Management APIs</h3>
+      <h3 class="font-semibold mb-2 lang-cn">管理接口</h3>
+      <ul class="list-disc list-inside text-slate-300 lang-en">
+        <li>Skill.register</li>
+        <li>Skill.update</li>
+        <li>Skill.list</li>
+        <li>Skill.describe</li>
+      </ul>
+      <ul class="list-disc list-inside text-slate-300 lang-cn">
+        <li>技能注册：Skill.register</li>
+        <li>技能更新：Skill.update</li>
+        <li>技能列表：Skill.list</li>
+        <li>技能描述：Skill.describe</li>
+      </ul>
+    </div>
+    <div class="border border-slate-800 rounded-2xl p-4 bg-slate-900/40">
+      <h3 class="font-semibold mb-2 lang-en">Execution APIs</h3>
+      <h3 class="font-semibold mb-2 lang-cn">执行接口</h3>
+      <ul class="list-disc list-inside text-slate-300 lang-en">
+        <li>Skill.call (EXECUTE)</li>
+        <li>Skill.monitor (READ)</li>
+        <li>Skill.cancel (EXECUTE/WRITE)</li>
+        <li>Skill.subscribeEvents (SUBSCRIBE)</li>
+      </ul>
+      <ul class="list-disc list-inside text-slate-300 lang-cn">
+        <li>技能调用：Skill.call（执行）</li>
+        <li>状态查询：Skill.monitor（读取）</li>
+        <li>取消任务：Skill.cancel（执行/写入）</li>
+        <li>事件订阅：Skill.subscribeEvents（订阅）</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+  <span class="lang-en">Robot Skill Store – Architecture & RSP</span>
+  <span class="lang-cn">Robot Skill Store – 体系结构与 RSP 协议</span>
+</footer>
+
+<script>
+  const btnEn = document.getElementById('btn-en');
+  const btnCn = document.getElementById('btn-cn');
+  const switchLang = (lang) => {
+    const cn = document.querySelectorAll('.lang-cn');
+    const en = document.querySelectorAll('.lang-en');
+    if (lang === 'cn') {
+      cn.forEach(el => el.style.display = 'block');
+      en.forEach(el => el.style.display = 'none');
+      btnCn.classList.add('bg-slate-800');
+      btnEn.classList.remove('bg-slate-800');
+    } else {
+      cn.forEach(el => el.style.display = 'none');
+      en.forEach(el => el.style.display = 'block');
+      btnEn.classList.add('bg-slate-800');
+      btnCn.classList.remove('bg-slate-800');
+    }
+  };
+  btnEn.addEventListener('click', () => switchLang('en'));
+  btnCn.addEventListener('click', () => switchLang('cn'));
+</script>
+</body>
+</html>
