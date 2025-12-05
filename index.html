@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Robot Skill Store – App Store for Robot Skills</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .lang-cn { display: none; }
+    .lang-en { display: block; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-50">
+  <!-- Top Navigation -->
+  <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur z-10 sticky top-0">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-cyan-500 flex items-center justify-center">
+          <!-- Simple logomark -->
+          <div class="w-5 h-5 border-2 border-slate-950 rounded-md flex items-center justify-center">
+            <div class="w-2 h-2 bg-slate-950 rounded-sm"></div>
+          </div>
+        </div>
+        <div>
+          <div class="font-semibold text-lg">Robot Skill Store</div>
+          <div class="text-xs text-slate-400 lang-en">App Store for Robot Skills</div>
+          <div class="text-xs text-slate-400 lang-cn">面向机器人的技能应用商店</div>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center space-x-6 text-sm text-slate-300">
+        <a href="#problem" class="hover:text-cyan-400">Problem</a>
+        <a href="#solution" class="hover:text-cyan-400">Solution</a>
+        <a href="#architecture" class="hover:text-cyan-400">Architecture</a>
+        <a href="#who" class="hover:text-cyan-400">Who we serve</a>
+        <a href="#contact" class="hover:text-cyan-400">Contact</a>
+      </nav>
+      <div class="flex items-center space-x-3">
+        <button id="btn-en" class="px-3 py-1 rounded-full text-xs border border-slate-500 bg-slate-800">
+          EN
+        </button>
+        <button id="btn-cn" class="px-3 py-1 rounded-full text-xs border border-slate-500">
+          中文
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="max-w-6xl mx-auto px-4 pt-12 pb-16">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="lang-en text-4xl md:text-5xl font-semibold leading-tight mb-4">
+          Robots shouldn’t be programmed.<br />
+          They should <span class="text-cyan-400">download skills</span>.
+        </h1>
+        <h1 class="lang-cn text-4xl md:text-5xl font-semibold leading-tight mb-4">
+          机器人不应该再被“编程”。<br />
+          它们应该可以<span class="text-cyan-400">下载技能</span>。
+        </h1>
+
+        <p class="lang-en text-slate-300 mb-6">
+          Robot Skill Store is the App Store for robot skills – powered by a unified
+          Robot Skill Protocol (RSP), cross-hardware skill generalization, and built-in safety validation.
+        </p>
+        <p class="lang-cn text-slate-300 mb-6">
+          Robot Skill Store 是面向机器人的“技能应用商店”，基于统一的 RSP 协议、
+          跨硬件技能泛化引擎以及安全验证体系，让机器人获取新能力像安装 App 一样简单。
+        </p>
+
+        <div class="flex flex-wrap gap-3 mb-6">
+          <a href="#solution" class="px-5 py-2 rounded-full bg-cyan-500 text-slate-950 text-sm font-semibold">
+            <span class="lang-en">Learn the platform</span>
+            <span class="lang-cn">了解平台</span>
+          </a>
+          <a href="#contact" class="px-5 py-2 rounded-full border border-slate-600 text-sm">
+            <span class="lang-en">Apply as Partner</span>
+            <span class="lang-cn">申请合作伙伴</span>
+          </a>
+        </div>
+
+        <div class="text-xs text-slate-400">
+          <span class="lang-en">
+            For robot OEMs, skill developers, and enterprises building robot fleets.
+          </span>
+          <span class="lang-cn">
+            面向机器人厂商、技能开发者，以及部署大规模机器人的企业用户。
+          </span>
+        </div>
+      </div>
+
+      <!-- Hero Illustration (conceptual cards) -->
+      <div class="relative">
+        <div class="absolute -top-6 -left-6 w-36 h-36 bg-cyan-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-10 -right-6 w-40 h-40 bg-indigo-500/20 rounded-full blur-3xl"></div>
+        <div class="relative border border-slate-800 rounded-3xl bg-gradient-to-br from-slate-900 to-slate-950 p-6 shadow-xl">
+          <div class="text-xs text-slate-400 mb-3 lang-en">Concept</div>
+          <div class="text-xs text-slate-400 mb-3 lang-cn">概念示意</div>
+
+          <div class="grid grid-cols-3 gap-3 mb-6">
+            <div class="rounded-xl border border-slate-700 bg-slate-900 p-3">
+              <div class="text-[10px] text-slate-400 mb-1 lang-en">Skill</div>
+              <div class="text-[10px] text-slate-400 mb-1 lang-cn">技能</div>
+              <div class="font-semibold text-sm">Pick & Place</div>
+              <div class="text-[10px] text-cyan-400 mt-1">Manipulation</div>
+            </div>
+            <div class="rounded-xl border border-slate-700 bg-slate-900 p-3">
+              <div class="text-[10px] text-slate-400 mb-1 lang-en">Skill</div>
+              <div class="text-[10px] text-slate-400 mb-1 lang-cn">技能</div>
+              <div class="font-semibold text-sm">Screw Tightening</div>
+              <div class="text-[10px] text-cyan-400 mt-1">Assembly</div>
+            </div>
+            <div class="rounded-xl border border-slate-700 bg-slate-900 p-3">
+              <div class="text-[10px] text-slate-400 mb-1 lang-en">Skill</div>
+              <div class="text-[10px] text-slate-400 mb-1 lang-cn">技能</div>
+              <div class="font-semibold text-sm">Connector Insert</div>
+              <div class="text-[10px] text-cyan-400 mt-1">Insertion</div>
+            </div>
+          </div>
+
+          <div class="border border-slate-700 rounded-2xl p-3 flex items-center justify-between">
+            <div>
+              <div class="text-xs text-slate-400 lang-en">Robot Runtime</div>
+              <div class="text-xs text-slate-400 lang-cn">机器人运行时</div>
+              <div class="text-sm font-semibold mt-1">RSP + ROS2 + Safety</div>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-cyan-500 flex items-center justify-center text-slate-950 text-xs font-bold">
+              🤖
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section id="problem" class="border-t border-slate-800 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-2xl font-semibold mb-4 lang-en">Why robots need a Skill Store</h2>
+      <h2 class="text-2xl font-semibold mb-4 lang-cn">为什么机器人需要技能商店？</h2>
+
+      <div class="grid md:grid-cols-3 gap-6 text-sm text-slate-200">
+        <div class="border border-slate-800 rounded-2xl p-4 bg-slate-900/40">
+          <h3 class="font-semibold mb-2 lang-en">Fragmented software</h3>
+          <h3 class="font-semibold mb-2 lang-cn">软件生态高度碎片化</h3>
+          <p class="lang-en text-slate-300">
+            Every robot brand uses different SDKs and interfaces. Skills are not portable across platforms.
+          </p>
+          <p class="lang-cn text-slate-300">
+            不同品牌机器人使用各自封闭的 SDK 和接口，技能无法跨平台复用。
+          </p>
+        </div>
+        <div class="border border-slate-800 rounded-2xl p-4 bg-slate-900/40">
+          <h3 class="font-semibold mb-2 lang-en">High integration cost</h3>
+          <h3 class="font-semibold mb-2 lang-cn">集成成本高、周期长</h3>
+          <p class="lang-en text-slate-300">
+            Each new task requires custom integration, from perception to motion to safety.
+          </p>
+          <p class="lang-cn text-slate-300">
+            每新增一个任务都要从感知、规划到控制、安全重复集成，周期长、成本高。
+          </p>
+        </div>
+        <div class="border border-slate-800 rounded-2xl p-4 bg-slate-900/40">
+          <h3 class="font-semibold mb-2 lang-en">No App Store for robots</h3>
+          <h3 class="font-semibold mb-2 lang-cn">缺乏类似手机的应用生态</h3>
+          <p class="lang-en text-slate-300">
+            There is no App Store-like ecosystem for robots where developers can publish reusable skills.
+          </p>
+          <p class="lang-cn text-slate-300">
+            目前还没有类似手机 App Store 的机器人技能生态，开发者无法以模块化方式发布与变现技能。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section id="solution" class="bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-2xl font-semibold mb-4 lang-en">Our solution</h2>
+      <h2 class="text-2xl font-semibold mb-4 lang-cn">我们的解决方案</h2>
+
+      <div class="grid md:grid-cols-2 gap-8 text-sm">
+        <div class="space-y-4">
+          <h3 class="font-semibold lang-en">Robot Skill Store Platform</h3>
+          <h3 class="font-semibold lang-cn">Robot Skill Store 平台</h3>
+          <ul class="list-disc list-inside text-slate-300 lang-en">
+            <li>Skill Store: download skills like apps</li>
+            <li>RSP protocol: unified Skill API across robots</li>
+            <li>Retargeting engine: cross-hardware skill generalization</li>
+            <li>Safety validation and simulation sandbox</li>
+          </ul>
+          <ul class="list-disc list-inside text-slate-300 lang-cn">
+            <li>技能商店：像安装 App 一样为机器人安装技能</li>
+            <li>RSP 协议：跨机器人平台统一 Skill 接口</li>
+            <li>跨硬件泛化引擎：同一技能泛化到不同机器人</li>
+            <li>安全验证与仿真沙盒：上架前自动测试与审核</li>
+          </ul>
+        </div>
+        <div class="space-y-4">
+          <h3 class="font-semibold lang-en">Three roles, one ecosystem</h3>
+          <h3 class="font-semibold lang-cn">三类角色，共同构建一个生态</h3>
+          <ul class="list-disc list-inside text-slate-300 lang-en">
+            <li>Robot OEMs: make your robots Skill-Store ready</li>
+            <li>Developers: publish skills and earn revenue</li>
+            <li>End-users: deploy robots faster with off-the-shelf skills</li>
+          </ul>
+          <ul class="list-disc list-inside text-slate-300 lang-cn">
+            <li>机器人厂商：让您的机器人具备 Skill Store 兼容能力</li>
+            <li>技能开发者：像开发 App 一样发布并变现机器人技能</li>
+            <li>最终用户：通过现成技能快速部署机器人业务场景</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Section -->
+  <section id="architecture" class="border-t border-slate-800 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-2xl font-semibold mb-4 lang-en">Architecture at a glance</h2>
+      <h2 class="text-2xl font-semibold mb-4 lang-cn">体系结构概览</h2>
+
+      <div class="text-sm text-slate-200 mb-4 lang-en">
+        Cloud Skill Store + RSP Gateway + Edge Runtime + Robot Adapters.
+      </div>
+      <div class="text-sm text-slate-200 mb-4 lang-cn">
+        云端技能商店 + RSP 网关 + 边缘运行时 + 机器人适配层。
+      </div>
+
+      <div class="border border-slate-800 rounded-2xl p-6 bg-slate-900/40 text-xs md:text-sm">
+        <pre class="whitespace-pre-wrap text-slate-200">
+Cloud Skill Store
+  ├─ Skill Marketplace
+  ├─ Developer Portal
+  └─ Model & Version Registry
+         │  RSP (Robot Skill Protocol)
+         ▼
+RSP Gateway
+  ├─ REST / WebSocket API
+  ├─ Schema Validation
+  └─ Capability Matching
+         │
+         ▼
+Robot Runtime (Edge)
+  ├─ Skill Orchestrator
+  ├─ Retargeting Engine
+  └─ Safety Proxy
+         │
+         ▼
+Robot + Sensors (ROS2 / OEM SDK)
+        </pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who we serve -->
+  <section id="who" class="bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-2xl font-semibold mb-4 lang-en">Who is Robot Skill Store for?</h2>
+      <h2 class="text-2xl font-semibold mb-4 lang-cn">Robot Skill Store 面向谁？</h2>
+
+      <div class="grid md:grid-cols-3 gap-6 text-sm">
+        <div class="border border-slate-800 rounded-2xl p-4 bg-slate-900/40">
+          <h3 class="font-semibold mb-2 lang-en">Robot OEMs</h3>
+          <h3 class="font-semibold mb-2 lang-cn">机器人厂商</h3>
+          <p class="text-slate-300 lang-en">
+            Turn your robots into platforms with a growing skill ecosystem.
+          </p>
+          <p class="text-slate-300 lang-cn">
+            让机器人从“产品”升级为“平台”，拥有不断增长的技能生态。
+          </p>
+        </div>
+        <div class="border border-slate-800 rounded-2xl p-4 bg-slate-900/40">
+          <h3 class="font-semibold mb-2 lang-en">Skill Developers</h3>
+          <h3 class="font-semibold mb-2 lang-cn">技能开发者</h3>
+          <p class="text-slate-300 lang-en">
+            Build once, deploy across multiple robot brands and scenarios.
+          </p>
+          <p class="text-slate-300 lang-cn">
+            一次开发，多机器人复用，在工业与服务机器人场景中实现规模化部署。
+          </p>
+        </div>
+        <div class="border border-slate-800 rounded-2xl p-4 bg-slate-900/40">
+          <h3 class="font-semibold mb-2 lang-en">Enterprises & Integrators</h3>
+          <h3 class="font-semibold mb-2 lang-cn">企业用户与系统集成商</h3>
+          <p class="text-slate-300 lang-en">
+            Reduce integration cost and time-to-value with ready-made skills.
+          </p>
+          <p class="text-slate-300 lang-cn">
+            通过现成的标准化技能，降低集成成本，加速机器人项目落地与回报。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="border-t border-slate-800 bg-slate-950">
+    <div class="max-w-6xl mx-auto px-4 py-12">
+      <h2 class="text-2xl font-semibold mb-4 lang-en">Get in touch</h2>
+      <h2 class="text-2xl font-semibold mb-4 lang-cn">联系我们</h2>
+
+      <p class="text-slate-300 text-sm mb-4 lang-en">
+        Interested in partnering as a robot OEM, skill developer, or early enterprise adopter?
+      </p>
+      <p class="text-slate-300 text-sm mb-4 lang-cn">
+        如果您是机器人厂商、技能开发者或希望尝试新一代机器人能力平台的企业用户，欢迎与我们联系。
+      </p>
+
+      <p class="text-sm text-slate-200">
+        Email: <a href="mailto:contact@robotskill.store" class="text-cyan-400">contact@robotskill.store</a>
+      </p>
+    </div>
+  </section>
+
+  <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+    <span class="lang-en">Robot Skill Store – App Store for Robot Skills</span>
+    <span class="lang-cn">Robot Skill Store – 面向未来机器人的技能应用商店</span>
+  </footer>
+
+  <script>
+    const btnEn = document.getElementById('btn-en');
+    const btnCn = document.getElementById('btn-cn');
+    const switchLang = (lang) => {
+      const cn = document.querySelectorAll('.lang-cn');
+      const en = document.querySelectorAll('.lang-en');
+      if (lang === 'cn') {
+        cn.forEach(el => el.style.display = 'block');
+        en.forEach(el => el.style.display = 'none');
+        btnCn.classList.add('bg-slate-800');
+        btnEn.classList.remove('bg-slate-800');
+      } else {
+        cn.forEach(el => el.style.display = 'none');
+        en.forEach(el => el.style.display = 'block');
+        btnEn.classList.add('bg-slate-800');
+        btnCn.classList.remove('bg-slate-800');
+      }
+    };
+    btnEn.addEventListener('click', () => switchLang('en'));
+    btnCn.addEventListener('click', () => switchLang('cn'));
+  </script>
+</body>
+</html>
