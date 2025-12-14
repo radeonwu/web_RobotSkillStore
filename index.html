@@ -1,20 +1,22 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>RobotSkillStore</title>
-  <meta http-equiv="refresh" content="0; url=./en/"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Robot Skill Store</title>
+  <meta http-equiv="refresh" content="0; url=./en/index.html" />
   <script>
-    // Prefer JS redirect for browsers that ignore meta refresh
-    window.location.replace("./en/");
+    // Prefer last selected locale if present, else default to /en
+    (function(){
+      try{
+        var saved = localStorage.getItem("rss_locale");
+        if(saved === "zh"){ location.replace("./zh/index.html"); return; }
+      }catch(e){}
+      location.replace("./en/index.html");
+    })();
   </script>
 </head>
-<body style="font-family:system-ui; background:#0b1020; color:#e8ecff; display:flex; align-items:center; justify-content:center; height:100vh; margin:0">
-  <div style="text-align:center; padding:18px">
-    <div style="font-weight:800; font-size:18px; margin-bottom:8px">RobotSkillStore</div>
-    <div style="color:#aab3d6">Redirecting to <b>/en</b>…</div>
-    <div style="margin-top:10px"><a href="./en/" style="color:#7c5cff">Click here if not redirected</a></div>
-  </div>
+<body>
+  <p>Redirecting to <a href="./en/index.html">English</a>…</p>
 </body>
 </html>
