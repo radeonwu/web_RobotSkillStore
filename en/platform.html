@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Platform · RobotSkillStore</title>
+  <meta name="description" content="RobotSkillStore: Agent*Skill platform, Robot Skill Protocol (RSP), and a skill store for agentic robots."/>
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+</head>
+<body>
+  <div class="navbar">
+    <div class="container navinner">
+      <a class="brand" href="index.html" aria-label="RobotSkillStore">
+        <span class="logo" aria-hidden="true"></span>
+        <span>RobotSkillStore</span>
+      </a>
+      <nav class="navlinks" aria-label="Primary">
+        <a data-nav href="index.html">Home</a>
+<a data-nav href="platform.html">Platform</a>
+<a data-nav href="architecture.html">Architecture</a>
+<a data-nav href="safety.html">Safety</a>
+<a data-nav href="developers.html">Developers</a>
+<a data-nav href="contact.html">Contact</a>
+<a data-nav href="rsp-v0.3.html">RSP v0.3</a>
+      </nav>
+      <div class="langswitch">
+        <span class="pill small"><strong>Agent*Skill</strong></span>
+        <a class="pill small" href="../zh/platform.html" aria-label="Switch language">中文</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    
+<section class="hero">
+  <div class="container heroGrid">
+    <div class="card pad">
+      <div class="kicker">Platform</div>
+      <h1>Agent*Skill platform,<br/>not another robot stack.</h1>
+      <p class="lead">
+        RobotSkillStore connects agents to skills through a standardized protocol and a safe runtime.
+        Developers ship skills as products; operators deploy them across robots with confidence.
+      </p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+        <a class="btn" href="developers.html">Developer workflow</a>
+        <a class="btn secondary" href="architecture.html">See architecture</a>
+      </div>
+      <div class="badges">
+        <span class="badge"><b>Skill SDK</b></span>
+        <span class="badge"><b>Skill Runtime</b></span>
+        <span class="badge"><b>Skill Store</b></span>
+        <span class="badge"><b>Agent Orchestration</b></span>
+      </div>
+    </div>
+    <div class="card pad">
+      <div class="kicker">Core loop</div>
+      <div class="codeblock">
+Author → Validate (Sim-first) → Publish → Discover → Invoke → Monitor → Improve
+      </div>
+      <p class="lead" style="margin-top:12px">
+        The protocol (RSP v0.3) defines how skills are described and called; the platform implements the lifecycle and marketplace.
+      </p>
+      <a class="pill small" href="rsp-v0.3.html">RSP v0.3 index →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>What makes a “skill” in RSP</h2>
+    <p>Skills are bounded, contract-defined, agent-callable capabilities — portable across robots that match capability constraints.</p>
+    <div class="grid3">
+      <div class="feature">
+        <h3>Manifest</h3>
+        <p>Machine-readable metadata: IO schema, preconditions, constraints, version, licensing, telemetry hooks.</p>
+      </div>
+      <div class="feature">
+        <h3>Runtime</h3>
+        <p>Execution sandbox with safety guards, resource limits, monitoring, and standardized error semantics.</p>
+      </div>
+      <div class="feature">
+        <h3>Store</h3>
+        <p>Discovery, trust signals, verification reports, licensing, distribution, and updates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card pad">
+      <h2>Typical deployment patterns</h2>
+      <div class="grid3">
+        <div class="feature">
+          <h3>On-robot</h3>
+          <p>Skills run on edge controllers for low latency and robust operation.</p>
+        </div>
+        <div class="feature">
+          <h3>Edge cluster</h3>
+          <p>Fleet-level orchestration and monitoring in a local cluster near production.</p>
+        </div>
+        <div class="feature">
+          <h3>Cloud</h3>
+          <p>Central store, CI/CD, evaluation, simulation at scale, and analytics.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footergrid">
+      <div class="small">
+        <div><b>RobotSkillStore</b> — Agent*Skill Platform & Robot Skill Store</div>
+        <div>Protocol-native, safety-first, marketplace-ready.</div>
+      </div>
+      <div class="small">© 2025 RobotSkillStore. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

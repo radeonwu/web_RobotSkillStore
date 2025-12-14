@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>RSP v0.3 · RobotSkillStore</title>
+  <meta name="description" content="RobotSkillStore: Agent*Skill platform, Robot Skill Protocol (RSP), and a skill store for agentic robots."/>
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+</head>
+<body>
+  <div class="navbar">
+    <div class="container navinner">
+      <a class="brand" href="index.html" aria-label="RobotSkillStore">
+        <span class="logo" aria-hidden="true"></span>
+        <span>RobotSkillStore</span>
+      </a>
+      <nav class="navlinks" aria-label="Primary">
+        <a data-nav href="index.html">Home</a>
+<a data-nav href="platform.html">Platform</a>
+<a data-nav href="architecture.html">Architecture</a>
+<a data-nav href="safety.html">Safety</a>
+<a data-nav href="developers.html">Developers</a>
+<a data-nav href="contact.html">Contact</a>
+<a data-nav href="rsp-v0.3.html">RSP v0.3</a>
+      </nav>
+      <div class="langswitch">
+        <span class="pill small"><strong>Agent*Skill</strong></span>
+        <a class="pill small" href="../zh/rsp-v0.3.html" aria-label="Switch language">中文</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    
+<section class="hero" id="top">
+  <div class="container heroGrid">
+    <div class="card pad">
+      <div class="kicker">Protocol</div>
+      <h1>Robot Skill Protocol<br/>RSP v0.3</h1>
+      <p class="lead">
+        RSP v0.3 standardizes how agents discover, invoke, compose, and trust robot skills.
+        It is designed for <b>Agent*Skill</b> systems and marketplace-ready skill delivery.
+      </p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+        <a class="btn" href="#canonical">Canonical TOC</a>
+        <a class="btn secondary" href="#hooks">Protocol hooks</a>
+      </div>
+      <div class="badges">
+        <span class="badge"><b>Portable</b> skills</span>
+        <span class="badge"><b>Safety</b> by design</span>
+        <span class="badge"><b>Trust</b> & verification</span>
+      </div>
+    </div>
+    <div class="card pad">
+      <div class="kicker">One-page pitch</div>
+      <div class="codeblock">
+Problem: robot software doesn't scale
+Insight: skills must be portable & verifiable
+Solution: RSP standardizes Agent*Skill execution
+Platform: SDK + Runtime + Store + Orchestration
+Vision: global robot skill economy
+      </div>
+      <p class="small" style="margin-top:10px;color:var(--muted)">For platform overview, see <a href="platform.html">Platform</a> and <a href="architecture.html">Architecture</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="canonical">
+  <div class="container">
+    <h2>Whitepaper — Canonical Table of Contents (v0.3)</h2>
+    <p>This is the single source of truth. Website pages map to these chapters for consistent narrative and implementation.</p>
+
+    <div class="card pad">
+      <div class="toc">
+        <a href="#c0">0. Front Matter</a>
+        <a href="#c1">1. Executive Summary</a>
+        <a href="#c2">2. Background & Problem Definition</a>
+        <a href="#c3">3. Design Principles</a>
+        <a href="#c4">4. Core Concepts & Terminology</a>
+        <a href="#c5">5. RSP Architecture Overview</a>
+        <a href="#c6">6. Robot Skill Lifecycle</a>
+        <a href="#c7">7. Skill Interface Specification</a>
+        <a href="#c8">8. Safety & Trust Model</a>
+        <a href="#c9">9. Agentic Orchestration Model</a>
+        <a href="#c10">10. Robot Skill Store & Marketplace</a>
+        <a href="#c11">11. Reference Implementations</a>
+        <a href="#c12">12. Developer Experience</a>
+        <a href="#c13">13. Comparison & Positioning</a>
+        <a href="#c14">14. Business & Ecosystem Implications</a>
+        <a href="#c15">15. Roadmap & Future Directions</a>
+        <a href="#c16">16. Conclusion</a>
+        <a href="#app">Appendix</a>
+      </div>
+      <div class="hr"></div>
+
+      <div class="split">
+        <div>
+          <h3 id="c0">0. Front Matter</h3>
+          <p class="small">Document control, changelog, scope, and a shared glossary to avoid ambiguity across teams and partners.</p>
+
+          <h3 id="c1">1. Executive Summary</h3>
+          <p class="small">What RSP is, why it matters now, v0.3 advances, and who should adopt it. Sets the Agent*Skill thesis.</p>
+
+          <h3 id="c2">2. Background & Problem Definition</h3>
+          <p class="small">Why robot software is fragmented, why traditional APIs don’t scale, and why “skills” are the right unit of reuse.</p>
+
+          <h3 id="c3">3. Design Principles</h3>
+          <p class="small">Skill-first, agent-native, model-agnostic, capability-bound, safety-by-design, and cloud–edge–robot co-design.</p>
+
+          <h3 id="c4">4. Core Concepts & Terminology</h3>
+          <p class="small">Defines Skill, Agent, Capability Profile, Manifest, Runtime, and Contract semantics (pre/post/invariants).</p>
+
+          <h3 id="c5">5. RSP Architecture Overview</h3>
+          <p class="small">Layered architecture and the Agent*Skill interaction model; deployment patterns and coexistence with ROS2/Isaac/MoveIt.</p>
+          <p class="small">Website mapping: <a href="architecture.html">Architecture</a> · <a href="platform.html">Platform</a></p>
+
+          <h3 id="c6">6. Robot Skill Lifecycle</h3>
+          <p class="small">Author → register → discover/match → call → monitor → evaluate/version → retire. Makes skills operationally shippable.</p>
+          <p class="small">Website mapping: <a href="platform.html">Platform</a> · <a href="developers.html">Developers</a></p>
+        </div>
+
+        <div>
+          <h3 id="c7">7. Skill Interface Specification</h3>
+          <p class="small">Manifest schema, IO, constraints, execution modes (sync/async/stream), error model, and observability hooks.</p>
+          <p class="small">Website mapping: <a href="architecture.html">Architecture</a> · <a href="developers.html">Developers</a></p>
+
+          <h3 id="c8">8. Safety & Trust Model</h3>
+          <p class="small">Safety as a protocol primitive: capability-bound execution, runtime guards, sim-first validation, certification artifacts, HITL.</p>
+          <p class="small">Website mapping: <a href="safety.html">Safety</a></p>
+
+          <h3 id="c9">9. Agentic Orchestration Model</h3>
+          <p class="small">Composition, chaining, retries, fallback, recovery, context injection, and integration with LLM/VLA/policy models.</p>
+          <p class="small">Website mapping: <a href="platform.html">Platform</a></p>
+
+          <h3 id="c10">10. Robot Skill Store & Marketplace</h3>
+          <p class="small">Discovery/search, licensing, pricing, trust signals, verification, and enterprise private stores vs public store.</p>
+          <p class="small">Website mapping: <a href="platform.html">Platform</a> · <a href="contact.html">Contact</a></p>
+
+          <h3 id="c11">11. Reference Implementations</h3>
+          <p class="small">Industrial manipulation, navigation, AOI/inspection, sim-only skills, and cross-robot reuse case studies.</p>
+
+          <h3 id="c12">12. Developer Experience</h3>
+          <p class="small">SDK, local dev + simulation, CI/CD, publish to store, debugging & profiling — turning skills into products.</p>
+          <p class="small">Website mapping: <a href="developers.html">Developers</a></p>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="split">
+        <div>
+          <h3 id="c13">13. Comparison & Positioning</h3>
+          <p class="small">How RSP relates to ROS services/actions, behavior trees, proprietary robot APIs, and cloud robotics APIs.</p>
+
+          <h3 id="c14">14. Business & Ecosystem Implications</h3>
+          <p class="small">Enables long-tail robotics, lowers adoption barriers, and supports OEM×SI×Developer collaboration toward a skill economy.</p>
+        </div>
+        <div>
+          <h3 id="c15">15. Roadmap & Future Directions</h3>
+          <p class="small">v0.4+ roadmap: verification/benchmarking, interoperability & certification, and pathways to autonomous skill learning.</p>
+
+          <h3 id="c16">16. Conclusion</h3>
+          <p class="small">Summarizes protocol value and provides a clear call-to-action for developers, partners, and early adopters.</p>
+
+          <h3 id="app">Appendix</h3>
+          <p class="small">Manifest examples (YAML/JSON), invocation examples (Python/REST/gRPC), optional security considerations, and references.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="hooks">
+  <div class="container">
+    <div class="card pad">
+      <h2>Protocol hooks (illustrative)</h2>
+      <p>Concrete schemas can evolve, but these hooks define stable integration points for implementations and the store.</p>
+      <div class="hr"></div>
+      <div class="codeblock">
+Skill.register(manifest, endpoint, verification_artifacts)
+
+Skill.discover(query={capability, constraints, domain, trust_level})
+
+Skill.call(name, inputs, mode="sync|async|stream", timeout_s, policy={safety,resources})
+
+Telemetry.subscribe(skill_run_id)
+      </div>
+      <div class="hr"></div>
+      <p class="small">Next: see <a href="developers.html">Developers</a> for workflow and <a href="safety.html">Safety</a> for trust model details.</p>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footergrid">
+      <div class="small">
+        <div><b>RobotSkillStore</b> — Agent*Skill Platform & Robot Skill Store</div>
+        <div>Protocol-native, safety-first, marketplace-ready.</div>
+      </div>
+      <div class="small">© 2025 RobotSkillStore. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

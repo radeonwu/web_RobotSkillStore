@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>RSP v0.3 · RobotSkillStore</title>
+  <meta name="description" content="RobotSkillStore: Agent*Skill platform, Robot Skill Protocol (RSP), and a skill store for agentic robots."/>
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+</head>
+<body>
+  <div class="navbar">
+    <div class="container navinner">
+      <a class="brand" href="index.html" aria-label="RobotSkillStore">
+        <span class="logo" aria-hidden="true"></span>
+        <span>RobotSkillStore</span>
+      </a>
+      <nav class="navlinks" aria-label="Primary">
+        <a data-nav href="index.html">首页</a>
+<a data-nav href="platform.html">平台</a>
+<a data-nav href="architecture.html">架构</a>
+<a data-nav href="safety.html">安全</a>
+<a data-nav href="developers.html">开发者</a>
+<a data-nav href="contact.html">联系</a>
+<a data-nav href="rsp-v0.3.html">RSP v0.3</a>
+      </nav>
+      <div class="langswitch">
+        <span class="pill small"><strong>Agent*Skill</strong></span>
+        <a class="pill small" href="../en/rsp-v0.3.html" aria-label="Switch language">EN</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    
+<section class="hero" id="top">
+  <div class="container heroGrid">
+    <div class="card pad">
+      <div class="kicker">协议</div>
+      <h1>Robot Skill Protocol<br/>RSP v0.3</h1>
+      <p class="lead">
+        RSP v0.3 定义技能如何被描述、发现、调用、监控与建立信任。
+        面向 <b>Agent*Skill</b> 系统与可商业化的技能生命周期。
+      </p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+        <a class="btn" href="#index">目录</a>
+        <a class="btn secondary" href="#sdk">开发者接口</a>
+      </div>
+      <div class="badges">
+        <span class="badge"><b>Manifest</b> + 契约</span>
+        <span class="badge"><b>生命周期</b> + 版本</span>
+        <span class="badge"><b>安全</b> + 验证</span>
+      </div>
+    </div>
+    <div class="card pad">
+      <div class="kicker">一页 Pitch 逻辑</div>
+      <div class="codeblock">
+痛点：机器人软件不具备规模化复用
+洞察：技能必须可迁移、可验证
+方案：RSP 统一 Agent*Skill 执行契约
+平台：SDK + Runtime + Store + 编排
+愿景：全球机器人技能经济
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="index">
+  <div class="container">
+    <h2>白皮书目录（推荐）</h2>
+    <p>该目录与 RobotSkillStore 官网结构一致，叙事更利于对外沟通与生态扩展。</p>
+
+    <div class="card pad">
+      <div class="toc">
+        <a href="#s1">1. 摘要</a>
+        <a href="#s2">2. 背景与问题定义</a>
+        <a href="#s3">3. 设计原则</a>
+        <a href="#s4">4. 核心概念与术语</a>
+        <a href="#s5">5. 架构概览</a>
+        <a href="#s6">6. 技能生命周期</a>
+        <a href="#s7">7. 技能接口规范</a>
+        <a href="#s8">8. 安全与信任模型</a>
+        <a href="#s9">9. Agent 编排模型</a>
+        <a href="#s10">10. 技能商店与市场机制</a>
+        <a href="#s11">11. 参考实现</a>
+        <a href="#s12">12. 开发者体验</a>
+        <a href="#s13">13. 对比与定位</a>
+        <a href="#s14">14. 商业与生态意义</a>
+        <a href="#s15">15. 路线图</a>
+        <a href="#s16">16. 结论</a>
+        <a href="#app">附录</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card pad">
+      <h2 id="sdk">协议接口（示意）</h2>
+      <p>具体 schema 可以迭代，但这些 hook 定义了稳定的集成点。</p>
+      <div class="hr"></div>
+      <div class="codeblock">
+Skill.register(manifest, endpoint, verification_artifacts)
+
+Skill.discover(query={capability, constraints, domain, trust_level})
+
+Skill.call(name, inputs, mode="sync|async|stream", timeout_s, policy={safety,resources})
+
+Telemetry.subscribe(skill_run_id)
+      </div>
+      <div class="hr"></div>
+      <p class="small">说明：此处不绑定特定传输层（REST/gRPC/DDS）；协议聚焦契约与语义。</p>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footergrid">
+      <div class="small">
+        <div><b>RobotSkillStore</b> — Agent*Skill 平台与机器人技能商店</div>
+        <div>协议原生，安全优先，面向生态与商业化。</div>
+      </div>
+      <div class="small">© 2025 RobotSkillStore. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

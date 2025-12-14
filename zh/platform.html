@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>平台 · RobotSkillStore</title>
+  <meta name="description" content="RobotSkillStore: Agent*Skill platform, Robot Skill Protocol (RSP), and a skill store for agentic robots."/>
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+</head>
+<body>
+  <div class="navbar">
+    <div class="container navinner">
+      <a class="brand" href="index.html" aria-label="RobotSkillStore">
+        <span class="logo" aria-hidden="true"></span>
+        <span>RobotSkillStore</span>
+      </a>
+      <nav class="navlinks" aria-label="Primary">
+        <a data-nav href="index.html">首页</a>
+<a data-nav href="platform.html">平台</a>
+<a data-nav href="architecture.html">架构</a>
+<a data-nav href="safety.html">安全</a>
+<a data-nav href="developers.html">开发者</a>
+<a data-nav href="contact.html">联系</a>
+<a data-nav href="rsp-v0.3.html">RSP v0.3</a>
+      </nav>
+      <div class="langswitch">
+        <span class="pill small"><strong>Agent*Skill</strong></span>
+        <a class="pill small" href="../en/platform.html" aria-label="Switch language">EN</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    
+<section class="hero">
+  <div class="container heroGrid">
+    <div class="card pad">
+      <div class="kicker">平台</div>
+      <h1>Agent*Skill 平台，<br/>不是又一个机器人软件栈。</h1>
+      <p class="lead">
+        RobotSkillStore 通过标准协议 + 安全运行时，把 Agent 与技能连接起来。
+        开发者交付技能产品，运营者可跨机器人/跨站点规模化部署。
+      </p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+        <a class="btn" href="developers.html">开发者流程</a>
+        <a class="btn secondary" href="architecture.html">查看架构</a>
+      </div>
+      <div class="badges">
+        <span class="badge"><b>Skill SDK</b></span>
+        <span class="badge"><b>Skill Runtime</b></span>
+        <span class="badge"><b>Skill Store</b></span>
+        <span class="badge"><b>Agent 编排</b></span>
+      </div>
+    </div>
+    <div class="card pad">
+      <div class="kicker">核心闭环</div>
+      <div class="codeblock">
+开发 →（仿真优先验证）→ 发布 → 发现 → 调用 → 监控 → 迭代
+      </div>
+      <p class="lead" style="margin-top:12px">
+        RSP v0.3 定义“技能如何被描述与调用”；平台实现生命周期与商业化分发。
+      </p>
+      <a class="pill small" href="rsp-v0.3.html">查看 RSP v0.3 目录 →</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>什么是“技能”</h2>
+    <p>技能是边界清晰、契约定义、可被 Agent 调用的能力单元，可在满足能力约束的不同机器人上迁移。</p>
+    <div class="grid3">
+      <div class="feature">
+        <h3>Manifest（描述）</h3>
+        <p>机器可读：IO schema、前置条件、约束、版本、许可、遥测挂钩等。</p>
+      </div>
+      <div class="feature">
+        <h3>Runtime（执行）</h3>
+        <p>安全沙箱：安全守护、资源限制、监控、统一错误语义。</p>
+      </div>
+      <div class="feature">
+        <h3>Store（分发）</h3>
+        <p>搜索发现、信任与验证、许可授权、分发更新与回滚。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card pad">
+      <h2>典型部署形态</h2>
+      <div class="grid3">
+        <div class="feature">
+          <h3>本体部署（On-robot）</h3>
+          <p>低延迟，强鲁棒，适合关键闭环控制与现场稳定运行。</p>
+        </div>
+        <div class="feature">
+          <h3>边缘集群（Edge）</h3>
+          <p>面向车队/产线级编排与监控，靠近现场但具备更强算力。</p>
+        </div>
+        <div class="feature">
+          <h3>云端（Cloud）</h3>
+          <p>集中式技能商店、CI/CD、评测、海量仿真与数据分析。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footergrid">
+      <div class="small">
+        <div><b>RobotSkillStore</b> — Agent*Skill 平台与机器人技能商店</div>
+        <div>协议原生，安全优先，面向生态与商业化。</div>
+      </div>
+      <div class="small">© 2025 RobotSkillStore. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
