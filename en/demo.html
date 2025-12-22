@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Demo · Robot Skill Store</title>
+<link href="../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">Home</a>
+<a class="toplink" href="platform.html">Platform</a>
+<a class="toplink" href="architecture.html">Architecture</a>
+<a class="toplink" href="safety.html">Safety</a>
+<a class="toplink" href="developers.html">Developers</a>
+<a class="toplink active" href="demo.html">Demo</a>
+<a class="toplink" href="docs/index.html">Docs</a>
+</nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+
+<main class="content" id="content">
+<section class="section">
+<h1>Demo</h1>
+<p class="lead">Reference Execution Model — UR5 Example</p>
+  <div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
+  <div class="card-title">Reference Execution Model (Swimlane SVG)</div>
+  <div class="note">Emphasis: explicit spec + runtime binding + constraint enforcement + auditable outcomes (sim/real consistent).</div>
+  <svg viewBox="0 0 1040 360" width="100%" height="auto" role="img" aria-label="Reference Execution Model Swimlane">
+    <defs>
+      <style>
+        .lane{fill:rgba(59,130,246,.06);stroke:rgba(27,31,36,.18);stroke-width:1.8;rx:16;ry:16}
+        .step{fill:rgba(255,255,255,.06);stroke:rgba(27,31,36,.25);stroke-width:2;rx:16;ry:16}
+        .t{font:700 14px ui-sans-serif,system-ui; fill: currentColor}
+        .s{font:13px ui-sans-serif,system-ui; fill: currentColor; opacity:.82}
+        .a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
+      </style>
+      <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
+      </marker>
+    </defs>
+
+    <rect class="lane" x="28" y="36" width="984" height="70"></rect>
+    <text class="t" x="50" y="78">Agent</text>
+
+    <rect class="lane" x="28" y="124" width="984" height="70"></rect>
+    <text class="t" x="50" y="166">Runtime</text>
+
+    <rect class="lane" x="28" y="212" width="984" height="70"></rect>
+    <text class="t" x="50" y="254">Robot / Simulator</text>
+
+    <rect class="step" x="180" y="52" width="180" height="40"></rect>
+    <text class="s" x="196" y="78">Select skill (Goal→Skill)</text>
+
+    <rect class="step" x="380" y="140" width="200" height="40"></rect>
+    <text class="s" x="396" y="166">Validate context (constraints)</text>
+
+    <rect class="step" x="610" y="140" width="200" height="40"></rect>
+    <text class="s" x="626" y="166">Bind params (Base/TCP/Env)</text>
+
+    <rect class="step" x="380" y="228" width="200" height="40"></rect>
+    <text class="s" x="396" y="254">Execute (UR5 / sim)</text>
+
+    <rect class="step" x="610" y="228" width="200" height="40"></rect>
+    <text class="s" x="626" y="254">Monitor & enforce</text>
+
+    <rect class="step" x="830" y="52" width="160" height="40"></rect>
+    <text class="s" x="846" y="78">Record feedback</text>
+
+    <line class="a" x1="360" y1="72" x2="380" y2="160"></line>
+    <line class="a" x1="580" y1="160" x2="610" y2="160"></line>
+    <line class="a" x1="480" y1="180" x2="480" y2="228"></line>
+    <line class="a" x1="710" y1="180" x2="710" y2="228"></line>
+    <line class="a" x1="810" y1="248" x2="862" y2="92"></line>
+
+    <text class="s" x="180" y="320">Output: success/fail + evidence (logs/metrics) + reproducible run config</text>
+  </svg>
+</div>
+
+<p>
+    This demo is not a showcase. It is a <strong>reference execution model</strong> demonstrating how RSP governs skill execution
+    across simulation and real robots — with reproducible bindings, constraint enforcement, and auditable outcomes.
+  </p>
+</section>
+<section class="section">
+<h2 id="why-reference">Why a Reference Execution Model</h2>
+<p>
+    Traditional robot demos optimize for visual results. Robot Skill Store demos optimize for
+    <strong>correctness, reproducibility, and trust</strong>.
+  </p>
+<p>This UR5 example shows:</p>
+<ul class="checklist">
+<li>how a skill is specified (intent, constraints, outcomes)</li>
+<li>how execution context is bound (robot base, TCP, environment)</li>
+<li>how constraints are enforced during runtime</li>
+<li>how outcomes are evaluated and recorded</li>
+</ul>
+</section>
+<section class="section">
+<h2 id="system-setup">System Setup</h2>
+<p>The reference setup includes:</p>
+<ul>
+<li>a UR5 robot model</li>
+<li>an explicit end-effector definition</li>
+<li>a simulator or real robot runtime</li>
+<li>a skill defined using RSP</li>
+</ul>
+<p>
+    The same skill definition is used across environments. Parameter changes are handled by runtime bindings,
+    not by modifying the skill semantics.
+  </p>
+</section>
+<section class="section">
+<h2 id="skill-spec">Skill Specification</h2>
+<p>The UR5 demo skill explicitly defines:</p>
+<ul>
+<li>task intent (e.g., pick, place, move)</li>
+<li>motion and safety constraints</li>
+<li>tool and kinematic assumptions</li>
+<li>success and failure conditions</li>
+</ul>
+<p class="note">Nothing is implicit. Explicitness enables validation, comparison across runs, and safe reuse.</p>
+</section>
+<section class="section">
+<h2 id="runtime-binding">Runtime Parameter Binding</h2>
+<p>At execution time, the runtime binds:</p>
+<ul class="checklist">
+<li>robot base pose (e.g., base XYZ offset)</li>
+<li>tool center point (TCP)</li>
+<li>environment-specific parameters</li>
+</ul>
+<p>
+    These bindings can vary without changing the skill definition. This separation is critical for
+    simulation-to-real transfer, reproducible experiments, and controlled deployment.
+  </p>
+</section>
+<section class="section">
+<h2 id="execution-flow">Execution Flow</h2>
+<ol class="steps">
+<li>Skill is selected by an agent</li>
+<li>Runtime validates context and constraints</li>
+<li>Skill is executed on the UR5</li>
+<li>Outcomes are monitored and recorded</li>
+<li>Feedback is returned to the system</li>
+</ol>
+<p>Each step is observable and auditable.</p>
+</section>
+<section class="section">
+<h2 id="sim-real">Simulation and Reality</h2>
+<p>
+    The UR5 reference model treats simulation, testing, and real-world execution as part of the same semantic pipeline.
+    A skill that fails in simulation should not be trusted in reality. This principle reduces risk and accelerates iteration.
+  </p>
+</section>
+<section class="section">
+<h2 id="reuse">Reuse and Extension</h2>
+<p>
+    You are encouraged to reuse this reference model, adapt it to your own robots, and extend it with new skills.
+    As long as the protocol is respected, the system remains interoperable.
+  </p>
+<div class="callout">
+<div class="callout-title">Key takeaway</div>
+<p class="tight">A robot demo becomes valuable only when it can be repeated, trusted, and extended.</p>
+</div>
+</section>
+<footer class="footer">
+<div class="footer-inner">
+<div>Robot Skill Store · build v6.15.0</div>
+<div class="muted">UI: VitePress-like (no search, no version selector)</div>
+</div>
+</footer>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">On this page</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/js/site.js?v=6.15.0"></script>
+</body>
+</html>

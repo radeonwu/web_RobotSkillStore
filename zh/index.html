@@ -1,146 +1,170 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>首页 · RobotSkillStore</title>
-  <meta name="description" content="RobotSkillStore: Agent*Skill platform, Robot Skill Protocol (RSP), and a skill store for agentic robots."/>
-  <link rel="stylesheet" href="../assets/css/styles.css"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>首页 · RobotSkillStore</title>
+<link href="../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
 </head>
 <body>
-  <div class="navbar">
-    <div class="container navinner">
-      <a class="brand" href="index.html" aria-label="RobotSkillStore">
-        <span class="logo" aria-hidden="true"></span>
-        <span>RobotSkillStore</span>
-      </a>
-      <nav class="navlinks" aria-label="Primary">
-        <a data-nav href="index.html">首页</a>
-<a data-nav href="platform.html">平台</a>
-<a data-nav href="architecture.html">架构</a>
-<a data-nav href="safety.html">安全</a>
-<a data-nav href="developers.html">开发者</a>
-<a data-nav href="contact.html">联系</a>
-<a data-nav href="rsp-v0.3.html">RSP v0.3</a>
-      </nav>
-      <div class="langswitch">
-        <span class="pill small"><strong>Agent*Skill</strong></span>
-        <a class="pill small" href="../en/index.html" aria-label="Switch language">EN</a>
-      </div>
-    </div>
-  </div>
-
-  <main>
-    
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink active" href="index.html">首页</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink" href="architecture.html">架构</a>
+<a class="toplink" href="safety.html">安全</a>
+<a class="toplink" href="developers.html">开发者</a>
+<a class="toplink" href="demo.html">示例</a>
+<a class="toplink" href="docs/index.html">文档</a>
+</nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+<main class="content" id="content">
 <section class="hero">
-  <div class="container heroGrid">
-    <div class="card pad">
-      <div class="kicker">机器人技能经济</div>
-      <h1>让机器人软件可规模化，<br/>从“技能可迁移”开始。</h1>
-      <p class="lead">
-        RobotSkillStore 是一个创业公司风格的 <b>Agent*Skill</b> 平台：把机器人能力封装为<b>可验证、可复用</b>的技能。
-        我们通过 <b>Robot Skill Protocol（RSP）v0.3</b> 统一“发现、调用、组合、监控”技能的方式，让部署像交付软件一样简单。
-      </p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-        <a class="btn" href="platform.html">了解平台</a>
-        <a class="btn secondary" href="rsp-v0.3.html">阅读 RSP v0.3</a>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="badge">以协议为中心 · Agent 驱动 · 技能级安全</div>
+      <h1>Robot Skill Store</h1>
+      <p class="lead">面向机器人的 Agentic 技能市场</p>
+      <p class="sublead"><strong>在 Agent、仿真器与真实机器人之间</strong>，定义、发现、验证并执行机器人技能。</p>
+      <p class="sublead">Robot Skill Store 是一个<strong>以协议为中心的平台</strong>：将机器人技能视为<strong>一等公民、可组合、可验证且安全</strong>的能力单元——而不只是零散代码、函数调用或一次性 Demo。</p>
+      <div class="cta-row">
+        <a class="btn primary" href="developers.html">快速开始</a>
+        <a class="btn secondary" href="demo.html">查看 Demo</a>
+        <a class="btn ghost" href="architecture.html#rsp-backbone">阅读 RSP v0.3（概览）</a>
       </div>
-      <div class="badges">
-        <span class="badge"><b>Agent*Skill</b> 执行模型</span>
-        <span class="badge"><b>安全</b> 作为协议原语</span>
-        <span class="badge"><b>面向商业化</b> 的技能交付</span>
+      <div class="meta-row">
+        <span>build v6.15.0</span><span class="dot">•</span><span>无搜索</span><span class="dot">•</span><span>无版本选择器</span><span class="dot">•</span><span>无左侧栏</span>
       </div>
     </div>
-
-    <div class="card pad">
-      <div class="kicker">RSP 带来哪些变化</div>
-      <div class="hr"></div>
-      <div class="feature">
-        <h3>从“机器人 API”到“技能契约”</h3>
-        <p>技能声明输入/输出、前置条件、约束与遥测，使其可被 Agent 推理、可测试、可复用。</p>
-      </div>
-      <div class="hr"></div>
-      <div class="feature">
-        <h3>从“集成项目”到“可交付资产”</h3>
-        <p>技能可版本化、可评测、可认证，并能在不同机器人与不同工厂/站点复用。</p>
-      </div>
-      <div class="hr"></div>
-      <div class="feature">
-        <h3>从“单次 Demo”到“可重复运营”</h3>
-        <p>仿真优先验证 + 运行时安全守护，让规模化部署更现实。</p>
+    <div class="hero-right">
+      <div class="card hero-card">
+        <div class="card-title">技能生命周期（RSP）</div>
+        <ol class="steps">
+          <li><strong>注册</strong> —— 发布意图、约束、上下文与可观测结果</li>
+          <li><strong>发现</strong> —— 按目标与环境检索技能</li>
+          <li><strong>匹配与排序</strong> —— Agent 在策略/约束下选择最优技能</li>
+          <li><strong>执行</strong> —— 运行时绑定参数并强制约束</li>
+          <li><strong>反馈</strong> —— 记录结果，提升选择与鲁棒性</li>
+        </ol>
       </div>
     </div>
   </div>
 </section>
 
 <section class="section">
-  <div class="container">
-    <h2>网站导航</h2>
-    <p>快速理解平台、协议、安全机制与开发者流程。</p>
-    <div class="grid3">
-      <div class="feature">
-        <h3>平台</h3>
-        <p>Agent*Skill 编排、运行时与技能商店如何协同。</p>
-        <div class="hr"></div>
-        <a class="pill small" href="platform.html">进入 平台 →</a>
-      </div>
-      <div class="feature">
-        <h3>架构</h3>
-        <p>分层架构：Agent → 编排 → 运行时 → 机器人/仿真。</p>
-        <div class="hr"></div>
-        <a class="pill small" href="architecture.html">进入 架构 →</a>
-      </div>
-      <div class="feature">
-        <h3>RSP v0.3</h3>
-        <p>让技能可迁移、可验证、可交易的协议。</p>
-        <div class="hr"></div>
-        <a class="pill small" href="rsp-v0.3.html">进入 RSP v0.3 →</a>
-      </div>
+  <h2 id="why">为什么需要 Robot Skill Store</h2>
+  <p>当今的机器人能力高度碎片化：技能往往深埋在代码里，与特定机器人/环境强耦合，为单一场景定制，难以在团队或系统之间复用。</p>
+  <p>我们口中的“技能”，很多时候只是一个函数调用、一个 ROS 节点，或一个只能跑一次的 demo 脚本。</p>
+  <p>这种碎片化直接导致：</p>
+  <ul>
+    <li>能力难以跨机器人、跨团队共享</li>
+    <li>安全与约束缺少结构化表达，难以系统性推理</li>
+    <li>仿真到真实部署难以规模化迁移</li>
+    <li>行为编排依赖硬编码拼接，Agent 难以组合与决策</li>
+  </ul>
+  <p><strong>Robot Skill Store 正是为解决这一根本性问题而设计。</strong></p>
+</section>
+
+<section class="section">
+  <h2 id="what-is-skill">什么是机器人技能</h2>
+  <p>在 Robot Skill Store 中，技能不仅仅是可执行代码。一个机器人技能，是最小的、<strong>有意义且安全</strong>的能力单元，其定义远不止于“怎么实现”。</p>
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">一个技能明确包含</div>
+      <ul class="checklist">
+        <li><strong>意图（Intent）</strong>——机器人要达成什么目标</li>
+        <li><strong>约束（Constraints）</strong>——安全边界、限制与前提假设</li>
+        <li><strong>执行上下文（Context）</strong>——仿真或真实世界运行条件</li>
+        <li><strong>可观测结果（Outcomes）</strong>——成功/失败标准与反馈信号</li>
+      </ul>
     </div>
+    <div class="card">
+      <div class="card-title">因此技能可以被</div>
+      <ul class="checklist">
+        <li><strong>发现</strong>与<strong>比较</strong></li>
+        <li><strong>执行前验证</strong></li>
+        <li>由 Agent <strong>组合与决策</strong></li>
+        <li>跨机器人/环境<strong>复用</strong></li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">技能不再是私有实现细节，而是由协议定义的共享能力对象。</p>
+</section>
+
+<section class="section">
+  <h2 id="rsp">RSP：Robot Skill Protocol</h2>
+  <p>要让技能可移植、可比较且安全，必须被<strong>协议化</strong>。Robot Skill Protocol（RSP）定义：</p>
+  <ul>
+    <li>技能如何注册与描述</li>
+    <li>Agent 如何发现、匹配与选择技能</li>
+    <li>执行过程中如何约束与监控</li>
+    <li>结果如何记录并反馈复用</li>
+  </ul>
+  <p>RSP 不是 SDK，也不是框架；它是技能提供方、Agent/编排系统、仿真器与真实机器人之间的<strong>共同语言</strong>。</p>
+</section>
+
+<section class="section">
+  <h2 id="demo-not-demo">Demo ≠ Demo</h2>
+  <p>Robot Skill Store 的 demo 不是展示效果，而是<strong>参考执行模型（Reference Execution Model）</strong>：强调可复现的绑定、约束强制与可审计结果，在仿真与真实之间保持一致。</p>
+  <div class="callout">
+    <div class="callout-title">参考模型聚焦</div>
+    <ul>
+      <li>显式技能规格</li>
+      <li>运行时参数覆盖（Base/TCP/环境）</li>
+      <li>环境感知的执行行为</li>
+      <li>仿真↔真实的一致性评估</li>
+    </ul>
   </div>
 </section>
 
 <section class="section">
-  <div class="container">
-    <div class="card pad">
-      <div class="split">
-        <div>
-          <h2>我们在构建什么</h2>
-          <p>
-            一条完整闭环：<b>开发 → 验证 → 发布 → 发现 → 调用 → 监控 → 迭代</b>。
-            让技能库随着业务规模持续增长，并跨机器人/跨站点复用。
-          </p>
-          <ul class="list">
-            <li><b>Skill SDK</b>：开发与测试</li>
-            <li><b>Skill Runtime</b>：安全执行</li>
-            <li><b>Skill Store</b>：发现与分发</li>
-            <li><b>Agent Orchestration</b>：组合与容错</li>
-          </ul>
-        </div>
-        <div class="callout">
-          <b>为什么是 Agent*Skill？</b><br/>
-          Agent 不直接“开机器人”，而是调用被约束、可监控、可安全守护的技能。
-          这让规模化交付更可控。
-          <div class="hr"></div>
-          <a class="btn small" href="contact.html">联系我们</a>
-        </div>
-      </div>
-    </div>
+  <h2 id="who-for">面向新一代机器人生态</h2>
+  <p>Robot Skill Store 面向正在构建未来机器人的团队：中小规模机器人研发团队、工业自动化开发者、具身智能/Agent 研究者，以及平台与生态构建者。</p>
+  <p>如果你相信机器人智能应当<strong>模块化</strong>而非单体、由<strong>Agent 驱动</strong>而非硬编码、安全应当<strong>内生于能力定义</strong>——Robot Skill Store 正是为你而生。</p>
+  <div class="cta-row">
+    <a class="btn primary" href="developers.html">快速开始</a>
+    <a class="btn secondary" href="platform.html">理解平台</a>
+    <a class="btn ghost" href="safety.html">阅读安全</a>
   </div>
 </section>
 
-  </main>
-
-  <footer class="footer">
-    <div class="container footergrid">
-      <div class="small">
-        <div><b>RobotSkillStore</b> — Agent*Skill 平台与机器人技能商店</div>
-        <div>协议原生，安全优先，面向生态与商业化。</div>
-      </div>
-      <div class="small">© 2025 RobotSkillStore. All rights reserved.</div>
-    </div>
-  </footer>
-
-  <script src="../assets/js/site.js"></script>
+<section class="section">
+  <h2 id="featured">推荐页面</h2>
+  <div class="grid grid-3">
+    <a class="card link-card" href="platform.html"><div class="card-title">平台</div><div class="card-desc">Skill · Agent · Runtime 三位一体的统一执行平台。</div></a>
+    <a class="card link-card" href="architecture.html"><div class="card-title">架构</div><div class="card-desc">以协议为中心：工具接入 RSP，而不是反过来。</div></a>
+    <a class="card link-card" href="safety.html"><div class="card-title">安全</div><div class="card-desc">技能级安全：在控制与模型之间补上关键一层。</div></a>
+    <a class="card link-card" href="developers.html"><div class="card-title">开发者</div><div class="card-desc">Quick Start：定义→注册→选择→执行→反馈。</div></a>
+    <a class="card link-card" href="demo.html"><div class="card-title">Demo（UR5）</div><div class="card-desc">参考执行模型：绑定、约束强制、审计与反馈。</div></a>
+    <a class="card link-card" href="architecture.html#sim2real-loop"><div class="card-title">仿真↔真实闭环</div><div class="card-desc">验证一致性，加速迭代与部署。</div></a>
+  </div>
+</section>
+<footer class="footer">
+<div class="footer-inner">
+<div>Robot Skill Store · build v6.15.0</div>
+<div class="muted">UI: VitePress-like (no search, no version selector)</div>
+</div>
+</footer>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/js/site.js?v=6.15.0"></script>
 </body>
 </html>

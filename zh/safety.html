@@ -1,107 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>安全 · RobotSkillStore</title>
-  <meta name="description" content="RobotSkillStore: Agent*Skill platform, Robot Skill Protocol (RSP), and a skill store for agentic robots."/>
-  <link rel="stylesheet" href="../assets/css/styles.css"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>安全 · RobotSkillStore</title>
+<link href="../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
 </head>
 <body>
-  <div class="navbar">
-    <div class="container navinner">
-      <a class="brand" href="index.html" aria-label="RobotSkillStore">
-        <span class="logo" aria-hidden="true"></span>
-        <span>RobotSkillStore</span>
-      </a>
-      <nav class="navlinks" aria-label="Primary">
-        <a data-nav href="index.html">首页</a>
-<a data-nav href="platform.html">平台</a>
-<a data-nav href="architecture.html">架构</a>
-<a data-nav href="safety.html">安全</a>
-<a data-nav href="developers.html">开发者</a>
-<a data-nav href="contact.html">联系</a>
-<a data-nav href="rsp-v0.3.html">RSP v0.3</a>
-      </nav>
-      <div class="langswitch">
-        <span class="pill small"><strong>Agent*Skill</strong></span>
-        <a class="pill small" href="../en/safety.html" aria-label="Switch language">EN</a>
-      </div>
-    </div>
-  </div>
-
-  <main>
-    
-<section class="hero">
-  <div class="container heroGrid">
-    <div class="card pad">
-      <div class="kicker">安全</div>
-      <h1>安全是协议原语，<br/>不是事后补丁。</h1>
-      <p class="lead">
-        RSP v0.3 把安全与信任当作一等公民：技能按能力约束执行、仿真优先验证、运行时安全守护，并具备可审计遥测。
-      </p>
-      <div class="badges">
-        <span class="badge"><b>能力约束</b></span>
-        <span class="badge"><b>运行时守护</b></span>
-        <span class="badge"><b>仿真优先</b></span>
-        <span class="badge"><b>可审计</b></span>
-      </div>
-    </div>
-    <div class="card pad">
-      <div class="kicker">信任模型</div>
-      <div class="codeblock">
-Skill = Manifest + 实现 + 验证产物 + 遥测
-信任信号：测试、仿真报告、运行时策略、版本历史
-      </div>
-      <p class="lead" style="margin-top:12px">不同部署环境可选择不同信任等级（开发/预发/生产）。</p>
-    </div>
-  </div>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">首页</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink" href="architecture.html">架构</a>
+<a class="toplink active" href="safety.html">安全</a>
+<a class="toplink" href="developers.html">开发者</a>
+<a class="toplink" href="demo.html">示例</a>
+<a class="toplink" href="docs/index.html">文档</a>
+</nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+<main class="content" id="content">
+<section class="section">
+  <h1>安全</h1>
+  <p class="lead">技能级安全：缺失但关键的一层</p>
+  <p>Robot Skill Store 的安全立场非常明确：<strong>安全必须在技能层面被强制</strong>。</p>
 </section>
 
 <section class="section">
-  <div class="container">
-    <h2>关键机制</h2>
-    <div class="grid3">
-      <div class="feature">
-        <h3>前置条件与约束</h3>
-        <p>技能声明执行前必须满足的条件与安全边界。</p>
-      </div>
-      <div class="feature">
-        <h3>运行时安全守护</h3>
-        <p>对速度、力、区域、资源等进行限制，支持自动中止与回滚。</p>
-      </div>
-      <div class="feature">
-        <h3>仿真优先验证</h3>
-        <p>技能随附测试与仿真场景，降低真实环境风险，提高可复现性。</p>
-      </div>
-      <div class="feature">
-        <h3>人机协同升级</h3>
-        <p>不确定条件下的明确升级路径：人工审批、远程接管等。</p>
-      </div>
-      <div class="feature">
-        <h3>可审计遥测</h3>
-        <p>统一日志/指标/链路追踪，支持事故复盘与持续改进。</p>
-      </div>
-      <div class="feature">
-        <h3>认证友好</h3>
-        <p>可选的验证/认证报告可作为技能附件，并由策略强制执行。</p>
-      </div>
-    </div>
-  </div>
+  <h2 id="why-skill-safety">为什么是技能级安全</h2>
+  <p>控制层/硬件极限/模型输出约束都很重要，但大量风险来自技能被用于错误上下文、隐含假设被打破、约束仅存在于文档而非系统。技能级安全正是为了解决这一缺口。</p>
 </section>
 
-  </main>
+<section class="section">
+  <h2 id="boundaries">技能自描述其安全边界</h2>
+  <p>每个技能显式声明操作边界，约束是可执行规范的一部分而不是注释。系统因此可以：</p>
+  <ul class="checklist">
+    <li>执行前拒绝不合法调用</li>
+    <li>运行中在约束下自适应</li>
+    <li>行动前评估风险</li>
+  </ul>
+</section>
 
-  <footer class="footer">
-    <div class="container footergrid">
-      <div class="small">
-        <div><b>RobotSkillStore</b> — Agent*Skill 平台与机器人技能商店</div>
-        <div>协议原生，安全优先，面向生态与商业化。</div>
-      </div>
-      <div class="small">© 2025 RobotSkillStore. All rights reserved.</div>
-    </div>
-  </footer>
+<section class="section">
+  <h2 id="policies">策略与验证</h2>
+  <p>安全通过多层机制实现：技能约束、Agent 选择策略，以及执行前/执行中的验证。安全从被动响应转变为主动预防。</p>
+</section>
 
-  <script src="../assets/js/site.js"></script>
+<section class="section">
+  <h2 id="consistency">跨仿真与现实的一致性</h2>
+  <p>同一套约束贯穿仿真、测试与真实部署，使系统行为更可预测、可审计，并支持规模化部署。</p>
+</section>
+
+<section class="section">
+  <h2 id="safety-as-enabler">安全是规模化的前提</h2>
+  <div class="callout">
+    <div class="callout-title">结论</div>
+    <p class="tight">当安全被显式建模，技能才能被复用，Agent 才能理性决策，系统才能获得信任。技能级安全不是限制能力，而是让能力得以规模化的前提。</p>
+  </div>
+</section>
+<footer class="footer">
+<div class="footer-inner">
+<div>Robot Skill Store · build v6.15.0</div>
+<div class="muted">UI: VitePress-like (no search, no version selector)</div>
+</div>
+</footer>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/js/site.js?v=6.15.0"></script>
 </body>
 </html>

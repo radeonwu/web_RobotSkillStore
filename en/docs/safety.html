@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Safety · RSP Docs</title>
+<link href="../../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="../index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="../index.html">Home</a>
+<a class="toplink" href="../platform.html">Platform</a>
+<a class="toplink" href="../architecture.html">Architecture</a>
+<a class="toplink" href="../safety.html">Safety</a>
+<a class="toplink" href="../developers.html">Developers</a>
+<a class="toplink" href="../demo.html">Demo</a>
+<a class="toplink active" href="../docs/index.html">Docs</a>
+</nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+
+<main class="content" id="content">
+<section class="section">
+  <h1>Skill-level Safety</h1>
+  <p class="lead">Safety is enforced at the skill boundary</p>
+  <div class="pill-row"><a class="pill-link" href="index.html">Overview</a>
+<a class="pill-link" href="concepts.html">Concepts</a>
+<a class="pill-link" href="skill-spec.html">Skill Spec</a>
+<a class="pill-link" href="skill-schema.html">Schema</a>
+<a class="pill-link" href="execution.html">Execution</a>
+<a class="pill-link active" href="safety.html">Safety</a>
+<a class="pill-link" href="demo-mapping.html">Demo Mapping</a></div>
+</section>
+
+<section class="section">
+  <h2>Safety layers</h2>
+  <ol class="steps">
+    <li><strong>Declared boundaries</strong>: constraints in the skill spec</li>
+    <li><strong>Runtime enforcement</strong>: monitor and stop when violated</li>
+    <li><strong>Agent policies</strong>: selection-time risk controls</li>
+    <li><strong>Evidence & audit</strong>: post-run review and accountability</li>
+  </ol>
+</section>
+
+<section class="section">
+  <h2>Fail-fast, evidence-first</h2>
+  <p>If safety constraints cannot be enforced, execution must not proceed. Fail fast and produce evidence.</p>
+</section>
+
+<section class="section">
+  <h2>Relation to the website Safety page</h2>
+  <p>The website explains the stance. This page defines enforceable mechanisms and expected artifacts.</p>
+</section>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">On this page</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../../assets/js/site.js?v=6.15.0"></script>
+</body>
+</html>

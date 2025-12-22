@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>执行语义 · RSP 文档</title>
+<link href="../../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="../index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="../index.html">首页</a>
+<a class="toplink" href="../platform.html">平台</a>
+<a class="toplink" href="../architecture.html">架构</a>
+<a class="toplink" href="../safety.html">安全</a>
+<a class="toplink" href="../developers.html">开发者</a>
+<a class="toplink" href="../demo.html">示例</a>
+<a class="toplink active" href="../docs/index.html">文档</a>
+</nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+<main class="content" id="content">
+<section class="section">
+  <h1>执行语义</h1>
+  <p class="lead">从规格到可复现、可审计的执行</p>
+  <div class="pill-row"><a class="pill-link" href="index.html">总览</a>
+<a class="pill-link" href="concepts.html">概念</a>
+<a class="pill-link" href="skill-spec.html">技能规格</a>
+<a class="pill-link" href="skill-schema.html">Schema</a>
+<a class="pill-link active" href="execution.html">执行语义</a>
+<a class="pill-link" href="safety.html">安全模型</a>
+<a class="pill-link" href="demo-mapping.html">Demo 映射</a></div>
+</section>
+
+<section class="section">
+  <h2>执行前验证</h2>
+  <p>执行前，运行时需要验证上下文是否齐备、约束是否可强制；否则应快速失败并输出证据。</p>
+</section>
+
+<section class="section">
+  <h2>运行时绑定</h2>
+  <p>绑定将抽象规格映射到具体系统参数，例如：</p>
+  <ul>
+    <li>机器人基座位姿</li>
+    <li>TCP / 工具坐标系</li>
+    <li>环境坐标、夹具与标定</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2>约束强制</h2>
+  <p>约束必须在执行过程中被强制（例如力/速度/工作空间）。强制机制属于运行时职责，而非实现“承诺”。</p>
+</section>
+
+<section class="section">
+  <h2>结果与证据</h2>
+  <p>每次执行输出（1）结果（成功/失败）以及（2）证据（日志/指标/轨迹）。证据让执行可审计、可比较、可复现。</p>
+</section>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../../assets/js/site.js?v=6.15.0"></script>
+</body>
+</html>

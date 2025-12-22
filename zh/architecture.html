@@ -1,128 +1,155 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>架构 · RobotSkillStore</title>
-  <meta name="description" content="RobotSkillStore: Agent*Skill platform, Robot Skill Protocol (RSP), and a skill store for agentic robots."/>
-  <link rel="stylesheet" href="../assets/css/styles.css"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>架构 · RobotSkillStore</title>
+<link href="../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
 </head>
 <body>
-  <div class="navbar">
-    <div class="container navinner">
-      <a class="brand" href="index.html" aria-label="RobotSkillStore">
-        <span class="logo" aria-hidden="true"></span>
-        <span>RobotSkillStore</span>
-      </a>
-      <nav class="navlinks" aria-label="Primary">
-        <a data-nav href="index.html">首页</a>
-<a data-nav href="platform.html">平台</a>
-<a data-nav href="architecture.html">架构</a>
-<a data-nav href="safety.html">安全</a>
-<a data-nav href="developers.html">开发者</a>
-<a data-nav href="contact.html">联系</a>
-<a data-nav href="rsp-v0.3.html">RSP v0.3</a>
-      </nav>
-      <div class="langswitch">
-        <span class="pill small"><strong>Agent*Skill</strong></span>
-        <a class="pill small" href="../en/architecture.html" aria-label="Switch language">EN</a>
-      </div>
-    </div>
-  </div>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">首页</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink active" href="architecture.html">架构</a>
+<a class="toplink" href="safety.html">安全</a>
+<a class="toplink" href="developers.html">开发者</a>
+<a class="toplink" href="demo.html">示例</a>
+<a class="toplink" href="docs/index.html">文档</a>
+</nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+<main class="content" id="content">
+<section class="section">
+  <h1>架构</h1>
+  <p class="lead">以协议为中心，而非以工具为中心</p>
+  <p>Robot Skill Store 的架构基于一个明确选择：<strong>协议是系统的中心</strong>。工具、仿真器、机器人、Agent 都应当接入协议，而不是围绕某个具体工具构建系统。</p>
+  <div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
+  <div class="card-title">协议中心架构图（SVG）</div>
+  <div class="note">可直接用于官网与白皮书；后续仅需替换此 SVG 即可升级为品牌版视觉。</div>
+  <svg viewBox="0 0 1040 420" width="100%" height="auto" role="img" aria-label="Robot Skill Store Protocol-Centered Architecture">
+    <defs>
+      <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0" stop-color="rgba(59,130,246,.20)"/>
+        <stop offset="1" stop-color="rgba(59,130,246,.06)"/>
+      </linearGradient>
+      <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0" stop-color="rgba(34,197,94,.18)"/>
+        <stop offset="1" stop-color="rgba(34,197,94,.06)"/>
+      </linearGradient>
+      <style>
+        .box{fill:url(#g1);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
+        .boxG{fill:url(#g2);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
+        .pill{fill:rgba(59,130,246,.10);stroke:rgba(27,31,36,.20);stroke-width:1.5;rx:999;ry:999}
+        .t{font:700 18px ui-sans-serif,system-ui; fill: currentColor}
+        .s{font:14px ui-sans-serif,system-ui; fill: currentColor; opacity:.82}
+        .xs{font:12px ui-sans-serif,system-ui; fill: currentColor; opacity:.72}
+        .a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
+      </style>
+      <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
+      </marker>
+    </defs>
 
-  <main>
-    
-<section class="hero">
-  <div class="container heroGrid">
-    <div class="card pad">
-      <div class="kicker">架构</div>
-      <h1>分层解耦，<br/>面向互操作与规模化。</h1>
-      <p class="lead">
-        RSP 通过技能接口、编排层与安全运行时，把 Agent 推理与机器人控制解耦。
-        支持组合、回退、可验证运营，并兼容异构机器人与软件生态。
-      </p>
-      <div class="badges">
-        <span class="badge"><b>Agent</b> 负责决策</span>
-        <span class="badge"><b>编排</b> 负责组合</span>
-        <span class="badge"><b>运行时</b> 负责执行</span>
-        <span class="badge"><b>机器人/仿真</b> 负责动作</span>
-      </div>
-    </div>
-    <div class="card pad">
-      <div class="kicker">调用路径</div>
-      <div class="codeblock">
-Agent  →  Skill.call()
-      →  编排器选择实现
-      →  运行时安全守护 + 监控
-      →  机器人/仿真执行
-      </div>
-      <p class="lead" style="margin-top:12px">
-        技能选择基于机器人能力画像（Capability Profile）与技能约束（Constraints）。
-      </p>
-    </div>
+    <rect class="box" x="30" y="40" width="300" height="130"></rect>
+    <text class="t" x="56" y="78">Skill Store</text>
+    <text class="s" x="56" y="106">注册表 · 元数据 · 版本/签名</text>
+    <text class="s" x="56" y="132">约束 · 依赖 · 评测/证据</text>
+
+    <rect class="box" x="370" y="40" width="300" height="130"></rect>
+    <text class="t" x="396" y="78">Agent / Orchestrator</text>
+    <text class="s" x="396" y="106">发现 · 匹配/排序 · 组合</text>
+    <text class="s" x="396" y="132">策略 · 风险权衡 · 计划</text>
+
+    <rect class="boxG" x="710" y="40" width="300" height="130"></rect>
+    <text class="t" x="736" y="78">Runtime</text>
+    <text class="s" x="736" y="106">绑定参数 · 强制约束 · 监控</text>
+    <text class="s" x="736" y="132">结果审计 · 反馈采集</text>
+
+    <rect class="pill" x="250" y="190" width="540" height="46"></rect>
+    <text class="t" x="278" y="220">RSP（Robot Skill Protocol）— 共享契约 / 语义主干</text>
+
+    <rect class="box" x="120" y="270" width="360" height="120"></rect>
+    <text class="t" x="146" y="308">Simulator</text>
+    <text class="s" x="146" y="334">Isaac Sim / Gazebo / 数字孪生</text>
+    <text class="xs" x="146" y="358">一致性验证 · 回归评测 · 数据生成</text>
+
+    <rect class="box" x="560" y="270" width="360" height="120"></rect>
+    <text class="t" x="586" y="308">Real Robot</text>
+    <text class="s" x="586" y="334">UR5 / 移动双臂等</text>
+    <text class="xs" x="586" y="358">部署执行 · 现场反馈 · 闭环迭代</text>
+
+    <line class="a" x1="330" y1="105" x2="370" y2="105"></line>
+    <line class="a" x1="670" y1="105" x2="710" y2="105"></line>
+
+    <line class="a" x1="520" y1="170" x2="520" y2="190"></line>
+    <line class="a" x1="860" y1="170" x2="650" y2="190"></line>
+    <line class="a" x1="180" y1="170" x2="390" y2="190"></line>
+
+    <line class="a" x1="300" y1="270" x2="420" y2="236"></line>
+    <line class="a" x1="740" y1="270" x2="640" y2="236"></line>
+
+    <path class="a" d="M 560 390 C 640 410, 820 410, 900 390"></path>
+    <path class="a" d="M 480 390 C 400 410, 220 410, 140 390"></path>
+    <text class="xs" x="380" y="410">仿真↔真实闭环：定义 → 验证 → 部署 → 反馈（同一语义与约束）</text>
+  </svg>
+</div>
+</section>
+
+<section class="section">
+  <h2 id="rsp-backbone">RSP：架构主干</h2>
+  <p>Robot Skill Protocol（RSP）标准化技能描述、发现/选择、约束强制与结果上报。正因为这些交互被统一：</p>
+  <ul>
+    <li>技能可以跨系统迁移</li>
+    <li>Agent 可脱离实现细节进行推理</li>
+    <li>执行环境可自由替换（仿真器/真实机器人/不同栈）</li>
+  </ul>
+  <p>RSP 不是内部 API，而是支撑生态协作的<strong>架构主干</strong>。</p>
+</section>
+
+<section class="section">
+  <h2 id="decoupling">能力与实现的解耦</h2>
+  <p>Robot Skill Store 明确分离：<strong>技能语义（做什么）</strong>、<strong>实现方式（如何做）</strong>与<strong>执行环境（在哪里做）</strong>。这使得技能与硬件可以独立演进，行为在部署前即可被验证，系统规模化时也能保持一致性。</p>
+</section>
+
+<section class="section">
+  <h2 id="sim2real-loop">仿真与现实：同一闭环</h2>
+  <p>仿真不是“测试之后的附加步骤”，而是执行语义的一部分。同一技能规范贯穿仿真验证、测试执行与真实部署：</p>
+  <div class="card">
+    <div class="card-title">闭环</div>
+    <p class="tight"><strong>定义 → 仿真 → 验证 → 执行 → 反馈</strong></p>
+    <p class="muted tight">在仿真中不可靠的技能，不应被信任于真实世界。</p>
   </div>
 </section>
 
 <section class="section">
-  <div class="container">
-    <h2>四层架构</h2>
-    <div class="grid3">
-      <div class="feature">
-        <h3>Agent 层</h3>
-        <p>LLM/VLA/Policy 等规划器：决定“做什么”，而不是“怎么驱动电机”。</p>
-      </div>
-      <div class="feature">
-        <h3>编排层</h3>
-        <p>技能发现、匹配、组合、重试、回退与恢复策略。</p>
-      </div>
-      <div class="feature">
-        <h3>运行时层</h3>
-        <p>安全执行：资源限制、安全守护、遥测与统一错误语义。</p>
-      </div>
-      <div class="feature">
-        <h3>机器人/仿真层</h3>
-        <p>ROS2/MoveIt/Nav2/Isaac 等仍在底层，通过适配器封装为技能。</p>
-      </div>
-    </div>
-  </div>
+  <h2 id="safety-position">安全在架构中的位置</h2>
+  <p>安全不是外部附加层，而是被嵌入技能定义、执行约束与运行时强制机制中。将安全前移到协议与技能层，可显著减少对临时补丁与人工兜底的依赖。</p>
 </section>
 
 <section class="section">
-  <div class="container">
-    <div class="card pad">
-      <div class="split">
-        <div>
-          <h2>协议原语</h2>
-          <ul class="list">
-            <li><b>Skill.register</b>：发布 manifest + 运行时端点 + 验证产物</li>
-            <li><b>Skill.discover</b>：按能力/约束/领域/信任等级检索</li>
-            <li><b>Skill.call</b>：支持 sync/async/stream，含超时与策略</li>
-            <li><b>Telemetry</b>：统一日志/指标/链路追踪</li>
-          </ul>
-        </div>
-        <div class="callout">
-          <b>互操作</b><br/>
-          RSP 旨在与既有生态共存。保留 ROS/Isaac 技术栈，RSP 统一外部契约与语义。
-          <div class="hr"></div>
-          <a class="pill small" href="developers.html">查看 SDK 与示例 →</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <h2 id="extensible">为扩展而生</h2>
+  <p>由于架构以协议为中心，新机器人/新仿真器/新 Agent 都可以在不重构系统的前提下接入。这正是 Robot Skill Store 能成为长期生态基础的原因。</p>
 </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="container footergrid">
-      <div class="small">
-        <div><b>RobotSkillStore</b> — Agent*Skill 平台与机器人技能商店</div>
-        <div>协议原生，安全优先，面向生态与商业化。</div>
-      </div>
-      <div class="small">© 2025 RobotSkillStore. All rights reserved.</div>
-    </div>
-  </footer>
-
-  <script src="../assets/js/site.js"></script>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/js/site.js?v=6.15.0"></script>
 </body>
 </html>

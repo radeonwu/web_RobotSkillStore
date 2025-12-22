@@ -1,22 +1,13 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Robot Skill Store</title>
-  <meta http-equiv="refresh" content="0; url=./en/index.html" />
-  <script>
-    // Prefer last selected locale if present, else default to /en
-    (function(){
-      try{
-        var saved = localStorage.getItem("rss_locale");
-        if(saved === "zh"){ location.replace("./zh/index.html"); return; }
-      }catch(e){}
-      location.replace("./en/index.html");
-    })();
-  </script>
-</head>
-<body>
-  <p>Redirecting to <a href="./en/index.html">English</a>…</p>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RobotSkillStore</title>
+<script>
+(function(){
+  try{
+    var lang = localStorage.getItem('rss_lang');
+    if(lang==='zh'){ window.location.replace('zh/index.html'); return; }
+  }catch(e){}
+  window.location.replace('en/index.html');
+})();
+</script>
+</head><body>Redirecting…</body></html>

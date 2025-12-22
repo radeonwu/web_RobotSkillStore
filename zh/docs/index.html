@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>文档 · Robot Skill Store</title>
+<link href="../../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="../index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="../index.html">首页</a>
+<a class="toplink" href="../platform.html">平台</a>
+<a class="toplink" href="../architecture.html">架构</a>
+<a class="toplink" href="../safety.html">安全</a>
+<a class="toplink" href="../developers.html">开发者</a>
+<a class="toplink" href="../demo.html">示例</a>
+<a class="toplink active" href="../docs/index.html">文档</a>
+</nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+<main class="content" id="content">
+<section class="section">
+  <h1>RSP 文档</h1>
+  <p class="lead">Robot Skill Protocol v0.3</p>
+  <p>RSP 是 Robot Skill Store 的协议主干，用于统一技能的描述、发现、验证、执行与审计，确保仿真与真实机器人之间具有一致的语义与约束。</p>
+  <div class="pill-row"><a class="pill-link active" href="index.html">总览</a>
+<a class="pill-link" href="concepts.html">概念</a>
+<a class="pill-link" href="skill-spec.html">技能规格</a>
+<a class="pill-link" href="skill-schema.html">Schema</a>
+<a class="pill-link" href="execution.html">执行语义</a>
+<a class="pill-link" href="safety.html">安全模型</a>
+<a class="pill-link" href="demo-mapping.html">Demo 映射</a></div>
+</section>
+
+<section class="section">
+  <h2>推荐阅读顺序</h2>
+  <ol class="steps">
+    <li><a href="concepts.html">核心概念</a>：Skill / Agent / Runtime / Evidence</li>
+    <li><a href="skill-spec.html">技能规格</a>：规范字段与语义</li>
+    <li><a href="execution.html">执行语义</a>：绑定、强制、结果与证据</li>
+    <li><a href="safety.html">安全模型</a>：技能级安全立场与机制</li>
+    <li><a href="demo-mapping.html">Demo 映射</a>：UR5 参考执行模型</li>
+  </ol>
+</section>
+
+<section class="section">
+  <h2>设计立场</h2>
+  <ul class="checklist">
+    <li>规格是一等公民：Agent 依赖契约，而不是依赖代码细节。</li>
+    <li>运行时强制约束：安全不是“尽力而为”的外挂层。</li>
+    <li>证据必须可用：审计、评测与迭代都依赖 Evidence。</li>
+  </ul>
+</section>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../../assets/js/site.js?v=6.15.0"></script>
+</body>
+</html>

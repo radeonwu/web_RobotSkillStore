@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Docs · Robot Skill Store</title>
+<link href="../../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="../index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="../index.html">Home</a>
+<a class="toplink" href="../platform.html">Platform</a>
+<a class="toplink" href="../architecture.html">Architecture</a>
+<a class="toplink" href="../safety.html">Safety</a>
+<a class="toplink" href="../developers.html">Developers</a>
+<a class="toplink" href="../demo.html">Demo</a>
+<a class="toplink active" href="../docs/index.html">Docs</a>
+</nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+
+<main class="content" id="content">
+<section class="section">
+  <h1>RSP Docs</h1>
+  <p class="lead">Robot Skill Protocol v0.3</p>
+  <p>RSP is the protocol backbone of Robot Skill Store. It standardizes how skills are described, discovered, validated, executed, and audited — consistently across simulators and real robots.</p>
+  <div class="pill-row"><a class="pill-link active" href="index.html">Overview</a>
+<a class="pill-link" href="concepts.html">Concepts</a>
+<a class="pill-link" href="skill-spec.html">Skill Spec</a>
+<a class="pill-link" href="skill-schema.html">Schema</a>
+<a class="pill-link" href="execution.html">Execution</a>
+<a class="pill-link" href="safety.html">Safety</a>
+<a class="pill-link" href="demo-mapping.html">Demo Mapping</a></div>
+</section>
+
+<section class="section">
+  <h2>Reading order</h2>
+  <ol class="steps">
+    <li><a href="concepts.html">Concepts</a>: Skill / Agent / Runtime / Evidence</li>
+    <li><a href="skill-spec.html">Skill Spec</a>: canonical fields and semantics</li>
+    <li><a href="execution.html">Execution</a>: binding, enforcement, outcomes, evidence</li>
+    <li><a href="safety.html">Safety</a>: skill-level stance and mechanisms</li>
+    <li><a href="demo-mapping.html">Demo Mapping</a>: UR5 reference execution model</li>
+  </ol>
+</section>
+
+<section class="section">
+  <h2>Design stance</h2>
+  <ul class="checklist">
+    <li>Specs are first-class: agents reason over contracts, not code.</li>
+    <li>Runtime enforces constraints; safety is not a best-effort add-on.</li>
+    <li>Evidence is required for auditability and iteration.</li>
+  </ul>
+</section>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">On this page</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../../assets/js/site.js?v=6.15.0"></script>
+</body>
+</html>

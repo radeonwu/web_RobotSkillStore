@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Concepts · RSP Docs</title>
+<link href="../../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="../index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="../index.html">Home</a>
+<a class="toplink" href="../platform.html">Platform</a>
+<a class="toplink" href="../architecture.html">Architecture</a>
+<a class="toplink" href="../safety.html">Safety</a>
+<a class="toplink" href="../developers.html">Developers</a>
+<a class="toplink" href="../demo.html">Demo</a>
+<a class="toplink active" href="../docs/index.html">Docs</a>
+</nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+
+<main class="content" id="content">
+<section class="section">
+  <h1>Concepts</h1>
+  <p class="lead">The minimal abstractions of RSP</p>
+  <div class="pill-row"><a class="pill-link" href="index.html">Overview</a>
+<a class="pill-link active" href="concepts.html">Concepts</a>
+<a class="pill-link" href="skill-spec.html">Skill Spec</a>
+<a class="pill-link" href="skill-schema.html">Schema</a>
+<a class="pill-link" href="execution.html">Execution</a>
+<a class="pill-link" href="safety.html">Safety</a>
+<a class="pill-link" href="demo-mapping.html">Demo Mapping</a></div>
+</section>
+
+<section class="section">
+  <h2>Skill</h2>
+  <p>A <strong>Skill</strong> is the smallest meaningful and safe unit of robotic capability. It is defined by intent, constraints, context, and observable outcomes — not by code alone.</p>
+</section>
+
+<section class="section">
+  <h2>Agent</h2>
+  <p>An <strong>Agent</strong> selects, composes, and plans skills based on goals, policies, and risk tradeoffs. Agents reason over specifications.</p>
+</section>
+
+<section class="section">
+  <h2>Runtime</h2>
+  <p>The <strong>Runtime</strong> binds abstract skill specifications to concrete systems (robot, TCP, environment) and enforces constraints during execution.</p>
+</section>
+
+<section class="section">
+  <h2>Evidence</h2>
+  <p><strong>Evidence</strong> includes logs, metrics, trajectories, and outcomes. Evidence enables auditability, evaluation, and reuse.</p>
+</section>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">On this page</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../../assets/js/site.js?v=6.15.0"></script>
+</body>
+</html>

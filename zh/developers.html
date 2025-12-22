@@ -1,118 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>开发者 · RobotSkillStore</title>
-  <meta name="description" content="RobotSkillStore: Agent*Skill platform, Robot Skill Protocol (RSP), and a skill store for agentic robots."/>
-  <link rel="stylesheet" href="../assets/css/styles.css"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>开发者 · RobotSkillStore</title>
+<link href="../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
 </head>
 <body>
-  <div class="navbar">
-    <div class="container navinner">
-      <a class="brand" href="index.html" aria-label="RobotSkillStore">
-        <span class="logo" aria-hidden="true"></span>
-        <span>RobotSkillStore</span>
-      </a>
-      <nav class="navlinks" aria-label="Primary">
-        <a data-nav href="index.html">首页</a>
-<a data-nav href="platform.html">平台</a>
-<a data-nav href="architecture.html">架构</a>
-<a data-nav href="safety.html">安全</a>
-<a data-nav href="developers.html">开发者</a>
-<a data-nav href="contact.html">联系</a>
-<a data-nav href="rsp-v0.3.html">RSP v0.3</a>
-      </nav>
-      <div class="langswitch">
-        <span class="pill small"><strong>Agent*Skill</strong></span>
-        <a class="pill small" href="../en/developers.html" aria-label="Switch language">EN</a>
-      </div>
-    </div>
-  </div>
-
-  <main>
-    
-<section class="hero">
-  <div class="container heroGrid">
-    <div class="card pad">
-      <div class="kicker">开发者</div>
-      <h1>一次开发，<br/>多处部署。</h1>
-      <p class="lead">
-        RSP v0.3 把机器人行为变成“可交付技能资产”：本地开发、仿真验证、发布到技能商店，Agent 通过稳定契约调用你的技能。
-      </p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-        <a class="btn" href="rsp-v0.3.html#sdk">查看协议接口</a>
-        <a class="btn secondary" href="contact.html">合作对接</a>
-      </div>
-      <div class="badges">
-        <span class="badge"><b>本地开发</b></span>
-        <span class="badge"><b>CI/CD</b></span>
-        <span class="badge"><b>发布</b></span>
-        <span class="badge"><b>可观测</b></span>
-      </div>
-    </div>
-    <div class="card pad">
-      <div class="kicker">最小示例</div>
-      <div class="codeblock">
-# 伪接口
-Skill.register(manifest, endpoint, verification_artifacts)
-
-result = Skill.call(
-  name="pick_and_place",
-  inputs={...},
-  mode="async",
-  timeout_s=30
-)
-      </div>
-      <p class="lead" style="margin-top:12px">实现可封装 ROS2、MoveIt2、Isaac 或企业私有栈。</p>
-    </div>
-  </div>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">首页</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink" href="architecture.html">架构</a>
+<a class="toplink" href="safety.html">安全</a>
+<a class="toplink active" href="developers.html">开发者</a>
+<a class="toplink" href="demo.html">示例</a>
+<a class="toplink" href="docs/index.html">文档</a>
+</nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+<main class="content" id="content">
+<section class="section">
+  <h1>开发者</h1>
+  <p class="lead">快速开始：运行你的第一个技能</p>
+  <p>Robot Skill Store 设计为<strong>渐进式引入</strong>：无需替换现有控制栈，只需在能力层引入 RSP 的规范与运行时绑定。</p>
 </section>
 
 <section class="section">
-  <div class="container">
-    <h2>推荐工作流</h2>
-    <div class="grid3">
-      <div class="feature">
-        <h3>1) 开发</h3>
-        <p>编写 manifest：IO schema、约束、前置条件与遥测挂钩。</p>
-      </div>
-      <div class="feature">
-        <h3>2) 验证</h3>
-        <p>仿真优先测试，生成验证产物并随技能一同发布。</p>
-      </div>
-      <div class="feature">
-        <h3>3) 发布</h3>
-        <p>上传技能商店：版本、许可、信任等级与依赖信息。</p>
-      </div>
-      <div class="feature">
-        <h3>4) 部署</h3>
-        <p>运营者选择策略、运行时与满足能力画像的机器人。</p>
-      </div>
-      <div class="feature">
-        <h3>5) 监控</h3>
-        <p>统一日志/指标/链路追踪；跨站点对比效果。</p>
-      </div>
-      <div class="feature">
-        <h3>6) 迭代</h3>
-        <p>兼容性与灰度发布；安全回滚。</p>
-      </div>
-    </div>
-  </div>
+  <h2 id="requirements">你需要准备什么</h2>
+  <ul class="checklist">
+    <li>机器人或仿真器（UR5 / Gazebo / Isaac Sim 等）</li>
+    <li>基础运行环境（ROS / Python 等）</li>
+    <li>一个遵循 RSP 的技能定义</li>
+  </ul>
 </section>
 
-  </main>
+<section class="section">
+  <h2 id="minimal-workflow">最小工作流</h2>
+  <ol class="steps">
+    <li><strong>定义技能</strong>：明确意图、约束、上下文与可观测结果</li>
+    <li><strong>注册技能</strong>：发布到技能注册表（Skill Store）</li>
+    <li><strong>选择技能</strong>：Agent 基于目标、上下文与策略做决策</li>
+    <li><strong>执行技能</strong>：运行时绑定参数并强制约束</li>
+  </ol>
+</section>
 
-  <footer class="footer">
-    <div class="container footergrid">
-      <div class="small">
-        <div><b>RobotSkillStore</b> — Agent*Skill 平台与机器人技能商店</div>
-        <div>协议原生，安全优先，面向生态与商业化。</div>
-      </div>
-      <div class="small">© 2025 RobotSkillStore. All rights reserved.</div>
-    </div>
-  </footer>
+<section class="section">
+  <h2 id="feedback">执行与反馈</h2>
+  <p>执行过程中，参数被动态绑定、约束被持续强制、结果被结构化记录。反馈不是日志附属物，而是生命周期的一部分，可用于后续选择与改进。</p>
+</section>
 
-  <script src="../assets/js/site.js"></script>
+<section class="section">
+  <h2 id="next">下一步</h2>
+  <div class="grid grid-2">
+    <a class="card link-card" href="demo.html"><div class="card-title">跑起来：UR5 Demo</div><div class="card-desc">参考执行模型：绑定、约束强制与审计反馈。</div></a>
+    <a class="card link-card" href="architecture.html"><div class="card-title">理解：协议中心架构</div><div class="card-desc">RSP 如何把工具/仿真/真实/Agent 串成闭环。</div></a>
+  </div>
+</section>
+<footer class="footer">
+<div class="footer-inner">
+<div>Robot Skill Store · build v6.15.0</div>
+<div class="muted">UI: VitePress-like (no search, no version selector)</div>
+</div>
+</footer>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/js/site.js?v=6.15.0"></script>
 </body>
 </html>
