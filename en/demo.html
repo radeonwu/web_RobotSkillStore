@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Demo · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.19.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -22,6 +22,7 @@
 <a class="toplink" href="developers.html">Developers</a>
 <a class="toplink active" href="demo.html">Demo</a>
 <a class="toplink" href="docs/index.html">Docs</a>
+<a class="toplink" href="contact.html">Contact</a>
 </nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
@@ -179,16 +180,88 @@
 </section>
 <footer class="footer">
 <div class="footer-inner">
-<div>Robot Skill Store · build v6.15.0</div>
+<div>Robot Skill Store · build v6.19.0</div>
 <div class="muted">UI: VitePress-like (no search, no version selector)</div>
 </div>
 </footer>
+
+<section class="section">
+  <h2 id="hands-on">Hands-on: Reference Execution + Evidence (D2)</h2>
+  <p>Run a reference demo (mock). The goal is to show <strong>spec-first execution</strong>, <strong>runtime binding</strong>, and <strong>auditable evidence</strong> — not robot control code.</p>
+
+  <div class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <div>
+        <div class="card-title">Run Reference Demo</div>
+        <div class="note">UR5 · reach_target_pose · base/tcp/env binding · constraint enforcement · evidence</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="btn" onclick="rspRunDemo('en');">▶ Run</button>
+        <button class="btn btn-ghost" onclick="rspDownloadLastDemoEvidence();">Download Evidence</button>
+      </div>
+    </div>
+
+    <div id="rsp-demo-status" class="note" style="margin-top:10px;display:none;"></div>
+
+    <div style="margin-top:14px;">
+      <div class="card-title" style="margin-bottom:8px;">Execution Timeline</div>
+      <div id="rsp-demo-timeline" class="timeline"></div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <div class="card-title" style="margin-bottom:8px;">Evidence Bundle</div>
+      <div class="note">Generated after each run. View inline or download as JSON.</div>
+      <pre id="rsp-demo-evidence" style="max-height:360px;overflow:auto;"><code class="language-json">{}</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 id="is-not">What this demo is / is not</h2>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">This demo is</div>
+      <ul class="checklist">
+        <li><strong>Spec-first</strong>: driven by a skill spec &amp; bindings</li>
+        <li><strong>Fail-fast</strong>: constraint violations produce evidence</li>
+        <li><strong>Auditable</strong>: evidence bundle for every run</li>
+        <li><strong>Comparable</strong>: evidence supports regression comparisons</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">This demo is not</div>
+      <ul class="checklist">
+        <li>ROS / URScript tutorial</li>
+        <li>Robot controller implementation</li>
+        <li>Hardware bring-up guide</li>
+        <li>Application-specific workflow</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 id="future-interface">Future interface (for real execution)</h2>
+  <p>This reference demo can be backed by simulator or real robot runtime. Keep the same I/O shape:</p>
+  <div class="card">
+    <div class="card-title">Server endpoint (planned)</div>
+    <pre><code class="language-text">POST /api/execute-skill
+Input:
+  - skill_spec.json
+  - binding.json (base/tcp/env)
+Output:
+  - evidence/ (bundle)
+  - outcome.json</code></pre>
+    <p class="note">Today: mock execution in browser. Tomorrow: connect to simulator / UR5 runtime / CI regression runs.</p>
+  </div>
+</section>
+
 </main>
 <aside aria-label="On this page" class="toc">
 <div class="toc-title">On this page</div>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.15.0"></script>
+<script src="../assets/js/site.js?v=6.19.0"></script>
 </body>
 </html>

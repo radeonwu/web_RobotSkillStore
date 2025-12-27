@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>示例 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.15.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.19.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -22,6 +22,7 @@
 <a class="toplink" href="developers.html">开发者</a>
 <a class="toplink active" href="demo.html">示例</a>
 <a class="toplink" href="docs/index.html">文档</a>
+<a class="toplink" href="contact.html">联系</a>
 </nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
@@ -122,12 +123,84 @@
   <h2 id="sim2real">仿真与现实的一致性</h2>
   <p>同一技能规范贯穿仿真、测试与真实部署。通过一致的绑定、约束强制与结果采集，降低部署风险，加速迭代。</p>
 </section>
+
+<section class="section">
+  <h2 id="hands-on">实操：参考执行 + 证据（D2）</h2>
+  <p>运行一次参考 Demo（当前为 mock）。重点展示 <strong>规格优先执行</strong>、<strong>运行时绑定</strong>、<strong>可审计证据</strong> —— 不是机器人控制代码教学。</p>
+
+  <div class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <div>
+        <div class="card-title">运行参考 Demo</div>
+        <div class="note">UR5 · reach_target_pose · base/tcp/env 绑定 · 约束强制 · 证据输出</div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="btn" onclick="rspRunDemo('zh');">▶ 运行</button>
+        <button class="btn btn-ghost" onclick="rspDownloadLastDemoEvidence();">下载证据</button>
+      </div>
+    </div>
+
+    <div id="rsp-demo-status" class="note" style="margin-top:10px;display:none;"></div>
+
+    <div style="margin-top:14px;">
+      <div class="card-title" style="margin-bottom:8px;">执行时间轴</div>
+      <div id="rsp-demo-timeline" class="timeline"></div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <div class="card-title" style="margin-bottom:8px;">证据包</div>
+      <div class="note">每次运行都会生成。可直接查看或下载 JSON。</div>
+      <pre id="rsp-demo-evidence" style="max-height:360px;overflow:auto;"><code class="language-json">{}</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 id="is-not">这个 Demo 是什么 / 不是什么</h2>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">这是</div>
+      <ul class="checklist">
+        <li><strong>规格优先</strong>：由 Skill Spec + Binding 驱动</li>
+        <li><strong>快速失败</strong>：约束违规会输出证据</li>
+        <li><strong>可审计</strong>：每次运行都有证据包</li>
+        <li><strong>可比较</strong>：支持回归对比</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">不是</div>
+      <ul class="checklist">
+        <li>ROS / URScript 教程</li>
+        <li>控制器实现细节</li>
+        <li>硬件 bring-up 指南</li>
+        <li>特定应用流程方案</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 id="future-interface">面向真实执行的接口（预留）</h2>
+  <p>未来可接入仿真器或真实机器人 Runtime，保持相同输入输出形态：</p>
+  <div class="card">
+    <div class="card-title">服务端端点（规划中）</div>
+    <pre><code class="language-text">POST /api/execute-skill
+输入：
+  - skill_spec.json
+  - binding.json（base/tcp/env）
+输出：
+  - evidence/（证据包）
+  - outcome.json</code></pre>
+    <p class="note">今天：浏览器内 mock。明天：对接仿真 / UR5 Runtime / CI 回归执行。</p>
+  </div>
+</section>
+
 </main>
 <aside aria-label="On this page" class="toc">
 <div class="toc-title">本页导航</div>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.15.0"></script>
+<script src="../assets/js/site.js?v=6.19.0"></script>
 </body>
 </html>

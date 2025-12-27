@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Contact · Robot Skill Store</title>
+<link href="../assets/css/style.css?v=6.19.0" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">Home</a>
+<a class="toplink" href="platform.html">Platform</a>
+<a class="toplink" href="architecture.html">Architecture</a>
+<a class="toplink" href="safety.html">Safety</a>
+<a class="toplink" href="developers.html">Developers</a>
+<a class="toplink" href="demo.html">Demo</a>
+<a class="toplink" href="docs/index.html">Docs</a>
+<a class="toplink active" href="contact.html">Contact</a>
+</nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+
+<main class="content" id="content">
+<section class="section">
+  <h1>Contact</h1>
+  <p class="lead">Get in touch with Robot Skill Store</p>
+</section>
+
+<section class="section">
+  <h2>Email</h2>
+  <p>Direct email: <a href="mailto:contact@robotskillstore.ai">contact@robotskillstore.ai</a></p>
+  <p class="note">For deployments, enable the serverless relay endpoint to send to <code>towu.xiaojun@gmail.com</code>.</p>
+</section>
+
+<section class="section">
+  <h2>Message Board</h2>
+  <p>Post a message. It will appear below (newest first). Messages are stored locally in your browser for this demo.</p>
+
+  <div class="card">
+    <form id="contact-form" onsubmit="return submitMessage(this);">
+      <label>Name</label>
+      <input type="text" name="name" required style="width:100%;margin-bottom:8px;">
+      <label>Email (optional)</label>
+      <input type="email" name="email" style="width:100%;margin-bottom:8px;">
+      <label>Message</label>
+      <textarea name="message" rows="5" required style="width:100%;margin-bottom:10px;"></textarea>
+
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px;">
+        <label style="display:flex;gap:8px;align-items:center;">
+          <input type="checkbox" name="send_email" checked>
+          Send via serverless email relay (when configured)
+        </label>
+        <button type="submit" class="btn">Submit</button>
+        <button type="button" class="btn btn-ghost" onclick="exportLastEvidence();">Export Last Evidence</button>
+      </div>
+
+      <div id="msg-status" class="note" style="display:none;margin-top:8px;"></div>
+    </form>
+  </div>
+
+  <div class="card" style="margin-top:14px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+      <div class="card-title">Latest Messages <span id="message-count" class="badge">0</span></div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <button type="button" class="btn btn-ghost" onclick="toggleMessageBoard();">Collapse</button>
+        <button type="button" class="btn btn-ghost" onclick="clearMessages();">Clear (local)</button>
+      </div>
+    </div>
+    <div id="message-board" style="margin-top:10px;">
+      <div id="message-list" class="msg-list"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Evidence</h2>
+  <p>Each submission generates an evidence bundle: <code>message.json</code>, <code>outcome.json</code>, <code>execution_context.json</code>.</p>
+</section>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">On this page</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/js/site.js?v=6.19.0"></script>
+</body>
+</html>
