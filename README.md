@@ -8,3 +8,6 @@ Folders:
 - `/assets` shared CSS/JS
 
 Note: The branding uses "Agent*Skill" (not "Agent x Skill").
+
+Update history
+[2025.12.27] updated contact page
