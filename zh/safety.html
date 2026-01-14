@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>安全 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.20.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,16 +14,7 @@
 <span class="brand-mark">◆</span>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">首页</a>
-<a class="toplink" href="platform.html">平台</a>
-<a class="toplink" href="architecture.html">架构</a>
-<a class="toplink active" href="safety.html">安全</a>
-<a class="toplink" href="developers.html">开发者</a>
-<a class="toplink" href="demo.html">示例</a>
-<a class="toplink" href="docs/index.html">文档</a>
-<a class="toplink" href="contact.html">联系</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="skills.html">技能</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="agents.html">智能体</a><a class="toplink" href="architecture.html">架构</a><a class="toplink active" href="safety.html">安全</a><a class="toplink" href="developers.html">开发者</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -35,46 +26,41 @@
 <div class="layout">
 <main class="content" id="content">
 <section class="section">
-  <h1>安全</h1>
-  <p class="lead">技能级安全：缺失但关键的一层</p>
-  <p>Robot Skill Store 的安全立场非常明确：<strong>安全必须在技能层面被强制</strong>。</p>
+<h1>安全</h1>
+<p class="lead">技能级安全：缺失但关键的一层</p>
+<p>Robot Skill Store 的安全立场非常明确：<strong>安全必须在技能层面被强制</strong>。</p>
 </section>
-
 <section class="section">
-  <h2 id="why-skill-safety">为什么是技能级安全</h2>
-  <p>控制层/硬件极限/模型输出约束都很重要，但大量风险来自技能被用于错误上下文、隐含假设被打破、约束仅存在于文档而非系统。技能级安全正是为了解决这一缺口。</p>
+<h2 id="why-skill-safety">为什么是技能级安全</h2>
+<p>控制层/硬件极限/模型输出约束都很重要，但大量风险来自技能被用于错误上下文、隐含假设被打破、约束仅存在于文档而非系统。技能级安全正是为了解决这一缺口。</p>
 </section>
-
 <section class="section">
-  <h2 id="boundaries">技能自描述其安全边界</h2>
-  <p>每个技能显式声明操作边界，约束是可执行规范的一部分而不是注释。系统因此可以：</p>
-  <ul class="checklist">
-    <li>执行前拒绝不合法调用</li>
-    <li>运行中在约束下自适应</li>
-    <li>行动前评估风险</li>
-  </ul>
+<h2 id="boundaries">技能自描述其安全边界</h2>
+<p>每个技能显式声明操作边界，约束是可执行规范的一部分而不是注释。系统因此可以：</p>
+<ul class="checklist">
+<li>执行前拒绝不合法调用</li>
+<li>运行中在约束下自适应</li>
+<li>行动前评估风险</li>
+</ul>
 </section>
-
 <section class="section">
-  <h2 id="policies">策略与验证</h2>
-  <p>安全通过多层机制实现：技能约束、Agent 选择策略，以及执行前/执行中的验证。安全从被动响应转变为主动预防。</p>
+<h2 id="policies">策略与验证</h2>
+<p>安全通过多层机制实现：技能约束、Agent 选择策略，以及执行前/执行中的验证。安全从被动响应转变为主动预防。</p>
 </section>
-
 <section class="section">
-  <h2 id="consistency">跨仿真与现实的一致性</h2>
-  <p>同一套约束贯穿仿真、测试与真实部署，使系统行为更可预测、可审计，并支持规模化部署。</p>
+<h2 id="consistency">跨仿真与现实的一致性</h2>
+<p>同一套约束贯穿仿真、测试与真实部署，使系统行为更可预测、可审计，并支持规模化部署。</p>
 </section>
-
 <section class="section">
-  <h2 id="safety-as-enabler">安全是规模化的前提</h2>
-  <div class="callout">
-    <div class="callout-title">结论</div>
-    <p class="tight">当安全被显式建模，技能才能被复用，Agent 才能理性决策，系统才能获得信任。技能级安全不是限制能力，而是让能力得以规模化的前提。</p>
-  </div>
+<h2 id="safety-as-enabler">安全是规模化的前提</h2>
+<div class="callout">
+<div class="callout-title">结论</div>
+<p class="tight">当安全被显式建模，技能才能被复用，Agent 才能理性决策，系统才能获得信任。技能级安全不是限制能力，而是让能力得以规模化的前提。</p>
+</div>
 </section>
 <footer class="footer">
 <div class="footer-inner">
-<div>Robot Skill Store · build v6.20.0</div>
+<div>Robot Skill Store · build v6.21.0</div>
 <div class="muted">UI: VitePress-like (no search, no version selector)</div>
 </div>
 </footer>
@@ -84,6 +70,6 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.20.0"></script>
+<script src="../assets/js/site.js?v=6.43.0"></script>
 </body>
 </html>

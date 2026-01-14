@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>RSS 智能体摘要 · Robot Skill Store</title>
+  <link href="../../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">◆</span>
+        <span class="brand-name">RobotSkillStore</span>
+      </a>
+
+      <nav aria-label="Primary" class="topnav">
+        <a class="toplink" href="../index.html">首页</a>
+        <a class="toplink" href="../skills.html">技能</a>
+        <a class="toplink" href="../platform.html">平台</a>
+        <a class="toplink" href="../agents.html">智能体</a>
+        <a class="toplink" href="../architecture.html">架构</a>
+        <a class="toplink" href="../safety.html">安全</a>
+        <a class="toplink" href="../developers.html">开发者</a>
+        <a class="toplink" href="../demo.html">Demo</a>
+        <a class="toplink active" href="index.html">文档</a>
+        <a class="toplink" href="../contact.html">联系</a>
+      </nav>
+
+      <div class="top-actions">
+        <button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button">
+          <span class="icon">EN/中</span><span class="label">English</span>
+        </button>
+        <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+          <span class="icon">☾</span><span class="label">Appearance</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <main class="content" id="content">
+      <section class="section">
+        <h1>RSS 智能体摘要</h1>
+        <p class="lead">智能体是 RSS 平台内部的<strong>决策层</strong>：提出 Run 请求，平台负责强制与审计。</p>
+        <div class="card">
+          <h2 id="role">智能体的角色</h2>
+          <ul>
+            <li><strong>选择</strong>：从可用技能/版本中挑选候选（受策略约束）。</li>
+            <li><strong>编排</strong>：把多个技能组合成工作流（含分支、重试、升级处理）。</li>
+            <li><strong>依据证据</strong>：使用 Benchmark/Run 结果做决策，而不是 UI 观察。</li>
+          </ul>
+          <h2 id="non-negotiable">不可妥协规则</h2>
+          <p><strong>Agents decide what to try. RSS enforces what is allowed to happen.</strong></p>
+        </div>
+
+        <div class="cta-row" style="margin-top:12px;">
+          <a class="btn primary" href="../agents.html">查看：智能体页面</a>
+          <a class="btn secondary" href="../platform.html">查看：平台概览</a>
+          <a class="btn ghost" href="index.html">返回：文档中心</a>
+        </div>
+      </section>
+    </main>
+
+    <aside aria-label="On this page" class="toc">
+      <div class="toc-title">本页导航</div>
+      <nav class="toc-nav" id="tocNav"></nav>
+    </aside>
+  </div>
+
+  <script src="../../assets/js/site.js?v=6.43.0"></script>
+</body>
+</html>

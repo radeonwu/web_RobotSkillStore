@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>技能规格 · RSP 文档</title>
-<link href="../../assets/css/style.css?v=6.20.0" rel="stylesheet"/>
+<link href="../../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,16 +14,7 @@
 <span class="brand-mark">◆</span>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="../index.html">首页</a>
-<a class="toplink" href="../platform.html">平台</a>
-<a class="toplink" href="../architecture.html">架构</a>
-<a class="toplink" href="../safety.html">安全</a>
-<a class="toplink" href="../developers.html">开发者</a>
-<a class="toplink" href="../demo.html">示例</a>
-<a class="toplink active" href="../docs/index.html">文档</a>
-<a class="toplink" href="../contact.html">联系</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">首页</a><a class="toplink" href="../skills.html">技能</a><a class="toplink" href="../platform.html">平台</a><a class="toplink" href="../agents.html">智能体</a><a class="toplink" href="../architecture.html">架构</a><a class="toplink" href="../safety.html">安全</a><a class="toplink" href="../developers.html">开发者</a><a class="toplink" href="../demo.html">Demo</a><a class="toplink active" href="index.html">文档</a><a class="toplink" href="../contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -35,9 +26,9 @@
 <div class="layout">
 <main class="content" id="content">
 <section class="section">
-  <h1>技能规格（Skill Spec）</h1>
-  <p class="lead">Agent 可读、Runtime 可强制的能力契约</p>
-  <div class="pill-row"><a class="pill-link" href="index.html">总览</a>
+<h1>技能规格（Skill Spec）</h1>
+<p class="lead">Agent 可读、Runtime 可强制的能力契约</p>
+<div class="pill-row"><a class="pill-link" href="index.html">总览</a>
 <a class="pill-link" href="concepts.html">概念</a>
 <a class="pill-link active" href="skill-spec.html">技能规格</a>
 <a class="pill-link" href="skill-schema.html">Schema</a>
@@ -45,30 +36,26 @@
 <a class="pill-link" href="safety.html">安全模型</a>
 <a class="pill-link" href="demo-mapping.html">Demo 映射</a></div>
 </section>
-
 <section class="section">
-  <h2>为什么规格不是代码</h2>
-  <p>实现会变，契约必须稳定。RSP 将技能规格视为<strong>能力契约</strong>：既能被 Agent 理解，也能被运行时强制。</p>
+<h2>为什么规格不是代码</h2>
+<p>实现会变，契约必须稳定。RSP 将技能规格视为<strong>能力契约</strong>：既能被 Agent 理解，也能被运行时强制。</p>
 </section>
-
 <section class="section">
-  <h2>四个不可缺部分</h2>
-  <ul class="checklist">
-    <li><strong>意图（Intent）</strong>：技能要达成什么（目标语义）</li>
-    <li><strong>上下文（Context）</strong>：对机器人与环境的假设</li>
-    <li><strong>约束（Constraints）</strong>：执行过程中必须被强制的边界</li>
-    <li><strong>结果（Outcomes）</strong>：可观测的成功/失败与证据要求</li>
-  </ul>
+<h2>四个不可缺部分</h2>
+<ul class="checklist">
+<li><strong>意图（Intent）</strong>：技能要达成什么（目标语义）</li>
+<li><strong>上下文（Context）</strong>：对机器人与环境的假设</li>
+<li><strong>约束（Constraints）</strong>：执行过程中必须被强制的边界</li>
+<li><strong>结果（Outcomes）</strong>：可观测的成功/失败与证据要求</li>
+</ul>
 </section>
-
 <section class="section">
-  <h2>谁来强制</h2>
-  <p>运行时负责绑定与强制。如果某个约束无法强制，执行应<strong>快速失败</strong>并输出证据。</p>
+<h2>谁来强制</h2>
+<p>运行时负责绑定与强制。如果某个约束无法强制，执行应<strong>快速失败</strong>并输出证据。</p>
 </section>
-
 <section class="section">
-  <h2>下一步</h2>
-  <p>进入 <a href="skill-schema.html">Schema 示例</a> 查看 YAML/JSON。</p>
+<h2>下一步</h2>
+<p>进入 <a href="skill-schema.html">Schema 示例</a> 查看 YAML/JSON。</p>
 </section>
 </main>
 <aside aria-label="On this page" class="toc">
@@ -76,6 +63,6 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../../assets/js/site.js?v=6.20.0"></script>
+<script src="../../assets/js/site.js?v=6.43.0"></script>
 </body>
 </html>

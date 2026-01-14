@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Demo 映射 · RSP 文档</title>
-<link href="../../assets/css/style.css?v=6.20.0" rel="stylesheet"/>
+<link href="../../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,16 +14,7 @@
 <span class="brand-mark">◆</span>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="../index.html">首页</a>
-<a class="toplink" href="../platform.html">平台</a>
-<a class="toplink" href="../architecture.html">架构</a>
-<a class="toplink" href="../safety.html">安全</a>
-<a class="toplink" href="../developers.html">开发者</a>
-<a class="toplink" href="../demo.html">示例</a>
-<a class="toplink active" href="../docs/index.html">文档</a>
-<a class="toplink" href="../contact.html">联系</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">首页</a><a class="toplink" href="../skills.html">技能</a><a class="toplink" href="../platform.html">平台</a><a class="toplink" href="../agents.html">智能体</a><a class="toplink" href="../architecture.html">架构</a><a class="toplink" href="../safety.html">安全</a><a class="toplink" href="../developers.html">开发者</a><a class="toplink" href="../demo.html">Demo</a><a class="toplink active" href="index.html">文档</a><a class="toplink" href="../contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -35,9 +26,9 @@
 <div class="layout">
 <main class="content" id="content">
 <section class="section">
-  <h1>Demo 映射</h1>
-  <p class="lead">将 UR5 参考执行模型显式映射到 RSP</p>
-  <div class="pill-row"><a class="pill-link" href="index.html">总览</a>
+<h1>Demo 映射</h1>
+<p class="lead">将 UR5 参考执行模型显式映射到 RSP</p>
+<div class="pill-row"><a class="pill-link" href="index.html">总览</a>
 <a class="pill-link" href="concepts.html">概念</a>
 <a class="pill-link" href="skill-spec.html">技能规格</a>
 <a class="pill-link" href="skill-schema.html">Schema</a>
@@ -45,113 +36,90 @@
 <a class="pill-link" href="safety.html">安全模型</a>
 <a class="pill-link active" href="demo-mapping.html">Demo 映射</a></div>
 </section>
-
 <div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
-  <div class="card-title">参考调用图（SVG）</div>
-  <div class="note">Agent 基于规格推理；Runtime 负责绑定、强制约束、执行并输出证据。</div>
-  <svg viewBox="0 0 1040 420" width="100%" height="auto" role="img" aria-label="Reference Call Graph">
-    <defs>
-      <style>
+<div class="card-title">参考调用图（SVG）</div>
+<div class="note">Agent 基于规格推理；Runtime 负责绑定、强制约束、执行并输出证据。</div>
+<svg aria-label="Reference Call Graph" height="auto" role="img" viewbox="0 0 1040 420" width="100%">
+<defs>
+<style>
         .lane{fill:rgba(59,130,246,.06);stroke:rgba(27,31,36,.18);stroke-width:1.8;rx:16;ry:16}
         .node{fill:rgba(255,255,255,.06);stroke:rgba(27,31,36,.25);stroke-width:2;rx:14;ry:14}
         .t{font:700 14px ui-sans-serif,system-ui; fill: currentColor}
         .s{font:13px ui-sans-serif,system-ui; fill: currentColor; opacity:.82}
         .a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
       </style>
-      <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
-      </marker>
-    </defs>
-
-    <rect class="lane" x="28" y="32" width="984" height="86"></rect>
-    <text class="t" x="52" y="74">Agent</text>
-
-    <rect class="lane" x="28" y="142" width="984" height="246"></rect>
-    <text class="t" x="52" y="184">Runtime</text>
-
-    <rect class="node" x="220" y="52" width="260" height="46"></rect>
-    <text class="s" x="238" y="80">select(skill_spec)</text>
-
-    <rect class="node" x="540" y="52" width="260" height="46"></rect>
-    <text class="s" x="558" y="80">plan(goal → skill calls)</text>
-
-    <line class="a" x1="480" y1="75" x2="540" y2="75"></line>
-    <line class="a" x1="670" y1="98" x2="670" y2="152"></line>
-
-    <rect class="node" x="560" y="164" width="300" height="46"></rect>
-    <text class="s" x="578" y="192">prepare()</text>
-
-    <rect class="node" x="120" y="236" width="260" height="46"></rect>
-    <text class="s" x="138" y="264">validate_context()</text>
-
-    <rect class="node" x="410" y="236" width="220" height="46"></rect>
-    <text class="s" x="428" y="264">bind_base()</text>
-
-    <rect class="node" x="650" y="236" width="220" height="46"></rect>
-    <text class="s" x="668" y="264">bind_tcp()</text>
-
-    <rect class="node" x="860" y="236" width="140" height="46"></rect>
-    <text class="s" x="872" y="264">bind_env()</text>
-
-    <rect class="node" x="120" y="310" width="300" height="46"></rect>
-    <text class="s" x="138" y="338">execute()</text>
-
-    <rect class="node" x="450" y="310" width="270" height="46"></rect>
-    <text class="s" x="468" y="338">enforce_constraints()</text>
-
-    <rect class="node" x="740" y="310" width="260" height="46"></rect>
-    <text class="s" x="758" y="338">collect_evidence()</text>
-
-    <line class="a" x1="710" y1="210" x2="250" y2="236"></line>
-    <line class="a" x1="710" y1="210" x2="520" y2="236"></line>
-    <line class="a" x1="710" y1="210" x2="760" y2="236"></line>
-    <line class="a" x1="710" y1="210" x2="930" y2="236"></line>
-
-    <line class="a" x1="270" y1="282" x2="270" y2="310"></line>
-    <line class="a" x1="520" y1="282" x2="270" y2="310"></line>
-    <line class="a" x1="760" y1="282" x2="270" y2="310"></line>
-    <line class="a" x1="930" y1="282" x2="270" y2="310"></line>
-
-    <line class="a" x1="420" y1="333" x2="450" y2="333"></line>
-    <line class="a" x1="720" y1="333" x2="740" y2="333"></line>
-
-    <text class="s" x="120" y="392">输出：结果（成功/失败）+ 证据包（日志/指标/轨迹/配置快照）</text>
-  </svg>
+<marker id="m" markerheight="8" markerwidth="8" orient="auto" refx="9" refy="5" viewbox="0 0 10 10">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
+</marker>
+</defs>
+<rect class="lane" height="86" width="984" x="28" y="32"></rect>
+<text class="t" x="52" y="74">Agent</text>
+<rect class="lane" height="246" width="984" x="28" y="142"></rect>
+<text class="t" x="52" y="184">Runtime</text>
+<rect class="node" height="46" width="260" x="220" y="52"></rect>
+<text class="s" x="238" y="80">select(skill_spec)</text>
+<rect class="node" height="46" width="260" x="540" y="52"></rect>
+<text class="s" x="558" y="80">plan(goal → skill calls)</text>
+<line class="a" x1="480" x2="540" y1="75" y2="75"></line>
+<line class="a" x1="670" x2="670" y1="98" y2="152"></line>
+<rect class="node" height="46" width="300" x="560" y="164"></rect>
+<text class="s" x="578" y="192">prepare()</text>
+<rect class="node" height="46" width="260" x="120" y="236"></rect>
+<text class="s" x="138" y="264">validate_context()</text>
+<rect class="node" height="46" width="220" x="410" y="236"></rect>
+<text class="s" x="428" y="264">bind_base()</text>
+<rect class="node" height="46" width="220" x="650" y="236"></rect>
+<text class="s" x="668" y="264">bind_tcp()</text>
+<rect class="node" height="46" width="140" x="860" y="236"></rect>
+<text class="s" x="872" y="264">bind_env()</text>
+<rect class="node" height="46" width="300" x="120" y="310"></rect>
+<text class="s" x="138" y="338">execute()</text>
+<rect class="node" height="46" width="270" x="450" y="310"></rect>
+<text class="s" x="468" y="338">enforce_constraints()</text>
+<rect class="node" height="46" width="260" x="740" y="310"></rect>
+<text class="s" x="758" y="338">collect_evidence()</text>
+<line class="a" x1="710" x2="250" y1="210" y2="236"></line>
+<line class="a" x1="710" x2="520" y1="210" y2="236"></line>
+<line class="a" x1="710" x2="760" y1="210" y2="236"></line>
+<line class="a" x1="710" x2="930" y1="210" y2="236"></line>
+<line class="a" x1="270" x2="270" y1="282" y2="310"></line>
+<line class="a" x1="520" x2="270" y1="282" y2="310"></line>
+<line class="a" x1="760" x2="270" y1="282" y2="310"></line>
+<line class="a" x1="930" x2="270" y1="282" y2="310"></line>
+<line class="a" x1="420" x2="450" y1="333" y2="333"></line>
+<line class="a" x1="720" x2="740" y1="333" y2="333"></line>
+<text class="s" x="120" y="392">输出：结果（成功/失败）+ 证据包（日志/指标/轨迹/配置快照）</text>
+</svg>
 </div>
-
-
 <section class="section">
-  <h2>本页提供什么</h2>
-  <ul class="checklist">
-    <li>一份可直接使用的 UR5 Skill Spec 示例</li>
-    <li>运行时绑定如何应用（base / TCP / 环境）</li>
-    <li>约束如何被强制、证据如何被采集</li>
-    <li>最小可复现的运行命令（示例）</li>
-  </ul>
+<h2>本页提供什么</h2>
+<ul class="checklist">
+<li>一份可直接使用的 UR5 Skill Spec 示例</li>
+<li>运行时绑定如何应用（base / TCP / 环境）</li>
+<li>约束如何被强制、证据如何被采集</li>
+<li>最小可复现的运行命令（示例）</li>
+</ul>
 </section>
-
 <section class="section">
-  <h2 id="evidence-bundle">证据包（参考目录）</h2>
-  <p>Evidence 让每次执行可审计、可比较、可复现。建议的最小目录如下：</p>
-  <pre><code class="language-text">evidence/
+<h2 id="evidence-bundle">证据包（参考目录）</h2>
+<p>Evidence 让每次执行可审计、可比较、可复现。建议的最小目录如下：</p>
+<pre><code class="language-text">evidence/
 ├─ runtime.log
 ├─ metrics.json
 ├─ joint_trajectory.csv
 ├─ tcp_trace.csv
 ├─ outcome.json
 └─ execution_context.yaml</code></pre>
-  <ul>
-    <li><strong>runtime.log</strong>：带时间戳的执行过程记录</li>
-    <li><strong>metrics.json</strong>：关键指标（耗时、误差、违规次数等）</li>
-    <li><strong>trajectory / trace</strong>：关节与 TCP 轨迹</li>
-    <li><strong>execution_context.yaml</strong>：绑定参数快照（base/tcp/env）</li>
-  </ul>
+<ul>
+<li><strong>runtime.log</strong>：带时间戳的执行过程记录</li>
+<li><strong>metrics.json</strong>：关键指标（耗时、误差、违规次数等）</li>
+<li><strong>trajectory / trace</strong>：关节与 TCP 轨迹</li>
+<li><strong>execution_context.yaml</strong>：绑定参数快照（base/tcp/env）</li>
+</ul>
 </section>
-
-
 <section class="section">
-  <h2>UR5 示例 Skill Spec（示例）</h2>
-  <pre><code class="language-yaml">skill:
+<h2>UR5 示例 Skill Spec（示例）</h2>
+<pre><code class="language-yaml">skill:
   name: ur5_reach_pose
   version: 0.1.0
   intent:
@@ -181,67 +149,60 @@
       - joint_trajectory
       - tcp_trace</code></pre>
 </section>
-
 <section class="section">
-  <h2 id="field-mapping">Spec ↔ Demo 字段对照</h2>
-  <div class="card">
-    <div class="card-title">UR5 示例对照表</div>
-    <table class="tbl">
-      <thead><tr><th>Skill Spec 字段</th><th>UR5 Demo 中的对应 / 含义</th></tr></thead>
-      <tbody>
-        <tr><td><code>intent.goal</code></td><td><code>reach_target_pose</code></td></tr>
-        <tr><td><code>context.robot</code></td><td><code>ur5</code></td></tr>
-        <tr><td><code>context.frames.base</code></td><td><code>base_link</code>（运行时可覆盖基座位姿）</td></tr>
-        <tr><td><code>context.frames.tcp</code></td><td><code>tool0</code>（tip link / tool frame）</td></tr>
-        <tr><td><code>constraints.speed_limit</code></td><td>运行时运动限制（规划/控制）</td></tr>
-        <tr><td><code>constraints.force_limit</code></td><td>运行时力监控 / 停止条件</td></tr>
-        <tr><td><code>outcomes.success.criteria</code></td><td>TCP 到达目标位姿且误差在阈值内</td></tr>
-        <tr><td><code>evidence.required</code></td><td>日志 + 指标 + 轨迹 + 上下文快照</td></tr>
-      </tbody>
-    </table>
-  </div>
+<h2 id="field-mapping">Spec ↔ Demo 字段对照</h2>
+<div class="card">
+<div class="card-title">UR5 示例对照表</div>
+<table class="tbl">
+<thead><tr><th>Skill Spec 字段</th><th>UR5 Demo 中的对应 / 含义</th></tr></thead>
+<tbody>
+<tr><td><code>intent.goal</code></td><td><code>reach_target_pose</code></td></tr>
+<tr><td><code>context.robot</code></td><td><code>ur5</code></td></tr>
+<tr><td><code>context.frames.base</code></td><td><code>base_link</code>（运行时可覆盖基座位姿）</td></tr>
+<tr><td><code>context.frames.tcp</code></td><td><code>tool0</code>（tip link / tool frame）</td></tr>
+<tr><td><code>constraints.speed_limit</code></td><td>运行时运动限制（规划/控制）</td></tr>
+<tr><td><code>constraints.force_limit</code></td><td>运行时力监控 / 停止条件</td></tr>
+<tr><td><code>outcomes.success.criteria</code></td><td>TCP 到达目标位姿且误差在阈值内</td></tr>
+<tr><td><code>evidence.required</code></td><td>日志 + 指标 + 轨迹 + 上下文快照</td></tr>
+</tbody>
+</table>
+</div>
 </section>
-
-
 <section class="section">
-  <h2>运行时绑定（你的配置插在哪里）</h2>
-  <ul>
-    <li><strong>基座位姿</strong>：通过运行时配置绑定（例如 RSP_ROBOT_BASE_XYZ）</li>
-    <li><strong>TCP</strong>：通过 tip link / tool frame 解析（例如 tool0）</li>
-    <li><strong>环境参数</strong>：桌面坐标、夹具、标定等</li>
-  </ul>
+<h2>运行时绑定（你的配置插在哪里）</h2>
+<ul>
+<li><strong>基座位姿</strong>：通过运行时配置绑定（例如 RSP_ROBOT_BASE_XYZ）</li>
+<li><strong>TCP</strong>：通过 tip link / tool frame 解析（例如 tool0）</li>
+<li><strong>环境参数</strong>：桌面坐标、夹具、标定等</li>
+</ul>
 </section>
-
 <section class="section">
-  <h2>参考执行步骤</h2>
-  <ol class="steps">
-    <li>加载 Skill Spec 并验证上下文</li>
-    <li>绑定 base/TCP/环境参数</li>
-    <li>规划并执行，运行时全程监控</li>
-    <li>输出结果 + 证据包（日志/指标/轨迹）</li>
-  </ol>
+<h2>参考执行步骤</h2>
+<ol class="steps">
+<li>加载 Skill Spec 并验证上下文</li>
+<li>绑定 base/TCP/环境参数</li>
+<li>规划并执行，运行时全程监控</li>
+<li>输出结果 + 证据包（日志/指标/轨迹）</li>
+</ol>
 </section>
-
 <section class="section">
-  <h2 id="reference-grade">为什么这是参考执行模型（而不是普通 demo）</h2>
-  <ul class="checklist">
-    <li><strong>规格优先</strong>：行为由 Skill Spec 驱动，而非硬编码脚本。</li>
-    <li><strong>快速失败</strong>：若约束无法被强制，执行应停止并输出证据。</li>
-    <li><strong>可审计输出</strong>：每次执行输出结果 + 证据包。</li>
-    <li><strong>可比较</strong>：证据支持跨版本、跨环境的回归比较。</li>
-    <li><strong>仿真↔真实对齐</strong>：同一规格 + 绑定逻辑可用于仿真与 UR5 实机。</li>
-  </ul>
+<h2 id="reference-grade">为什么这是参考执行模型（而不是普通 demo）</h2>
+<ul class="checklist">
+<li><strong>规格优先</strong>：行为由 Skill Spec 驱动，而非硬编码脚本。</li>
+<li><strong>快速失败</strong>：若约束无法被强制，执行应停止并输出证据。</li>
+<li><strong>可审计输出</strong>：每次执行输出结果 + 证据包。</li>
+<li><strong>可比较</strong>：证据支持跨版本、跨环境的回归比较。</li>
+<li><strong>仿真↔真实对齐</strong>：同一规格 + 绑定逻辑可用于仿真与 UR5 实机。</li>
+</ul>
 </section>
-
-
 <section class="section">
-  <h2>最小运行命令（示例）</h2>
-  <pre><code class="language-bash"># 在工程根目录执行
+<h2>最小运行命令（示例）</h2>
+<pre><code class="language-bash"># 在工程根目录执行
 python -m rsp_demo.run --robot ur5 --skill ur5_reach_pose --target preset:pose_A
 
 # 覆盖基座位姿（示例）
 RSP_ROBOT_BASE_XYZ=-0.2,0,0.32 python -m rsp_demo.run --robot ur5 --skill ur5_reach_pose --target preset:pose_A</code></pre>
-  <p class="note">以上为参考执行模型的示例命令，参数名可按你的 demo 工程结构微调。</p>
+<p class="note">以上为参考执行模型的示例命令，参数名可按你的 demo 工程结构微调。</p>
 </section>
 </main>
 <aside aria-label="On this page" class="toc">
@@ -249,6 +210,6 @@ RSP_ROBOT_BASE_XYZ=-0.2,0,0.32 python -m rsp_demo.run --robot ur5 --skill ur5_re
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../../assets/js/site.js?v=6.20.0"></script>
+<script src="../../assets/js/site.js?v=6.43.0"></script>
 </body>
 </html>

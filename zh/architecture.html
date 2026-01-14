@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>架构 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.20.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,16 +14,7 @@
 <span class="brand-mark">◆</span>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">首页</a>
-<a class="toplink" href="platform.html">平台</a>
-<a class="toplink active" href="architecture.html">架构</a>
-<a class="toplink" href="safety.html">安全</a>
-<a class="toplink" href="developers.html">开发者</a>
-<a class="toplink" href="demo.html">示例</a>
-<a class="toplink" href="docs/index.html">文档</a>
-<a class="toplink" href="contact.html">联系</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="skills.html">技能</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="agents.html">智能体</a><a class="toplink active" href="architecture.html">架构</a><a class="toplink" href="safety.html">安全</a><a class="toplink" href="developers.html">开发者</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -35,23 +26,23 @@
 <div class="layout">
 <main class="content" id="content">
 <section class="section">
-  <h1>架构</h1>
-  <p class="lead">以协议为中心，而非以工具为中心</p>
-  <p>Robot Skill Store 的架构基于一个明确选择：<strong>协议是系统的中心</strong>。工具、仿真器、机器人、Agent 都应当接入协议，而不是围绕某个具体工具构建系统。</p>
-  <div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
-  <div class="card-title">协议中心架构图（SVG）</div>
-  <div class="note">可直接用于官网与白皮书；后续仅需替换此 SVG 即可升级为品牌版视觉。</div>
-  <svg viewBox="0 0 1040 420" width="100%" height="auto" role="img" aria-label="Robot Skill Store Protocol-Centered Architecture">
-    <defs>
-      <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-        <stop offset="0" stop-color="rgba(59,130,246,.20)"/>
-        <stop offset="1" stop-color="rgba(59,130,246,.06)"/>
-      </linearGradient>
-      <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
-        <stop offset="0" stop-color="rgba(34,197,94,.18)"/>
-        <stop offset="1" stop-color="rgba(34,197,94,.06)"/>
-      </linearGradient>
-      <style>
+<h1>架构</h1>
+<p class="lead">以平台为中心，以协议强制为底座</p>
+<p>Robot Skill Store 的架构基于一个明确选择：<strong>平台是系统的中心</strong>。RSS 平台负责执行、评测与治理，并<strong>强制</strong>遵循共享协议（RSP），使工具、仿真器、机器人与 Agent 能在不改语义的前提下互操作。</p>
+<div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
+<div class="card-title">协议中心架构图（SVG）</div>
+<div class="note">可直接用于官网与白皮书；后续仅需替换此 SVG 即可升级为品牌版视觉。</div>
+<svg aria-label="Robot Skill Store Protocol-Centered Architecture" height="auto" role="img" viewbox="0 0 1040 420" width="100%">
+<defs>
+<lineargradient id="g1" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0" stop-color="rgba(59,130,246,.20)"></stop>
+<stop offset="1" stop-color="rgba(59,130,246,.06)"></stop>
+</lineargradient>
+<lineargradient id="g2" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0" stop-color="rgba(34,197,94,.18)"></stop>
+<stop offset="1" stop-color="rgba(34,197,94,.06)"></stop>
+</lineargradient>
+<style>
         .box{fill:url(#g1);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
         .boxG{fill:url(#g2);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
         .pill{fill:rgba(59,130,246,.10);stroke:rgba(27,31,36,.20);stroke-width:1.5;rx:999;ry:999}
@@ -60,90 +51,75 @@
         .xs{font:12px ui-sans-serif,system-ui; fill: currentColor; opacity:.72}
         .a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
       </style>
-      <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
-      </marker>
-    </defs>
-
-    <rect class="box" x="30" y="40" width="300" height="130"></rect>
-    <text class="t" x="56" y="78">Skill Store</text>
-    <text class="s" x="56" y="106">注册表 · 元数据 · 版本/签名</text>
-    <text class="s" x="56" y="132">约束 · 依赖 · 评测/证据</text>
-
-    <rect class="box" x="370" y="40" width="300" height="130"></rect>
-    <text class="t" x="396" y="78">Agent / Orchestrator</text>
-    <text class="s" x="396" y="106">发现 · 匹配/排序 · 组合</text>
-    <text class="s" x="396" y="132">策略 · 风险权衡 · 计划</text>
-
-    <rect class="boxG" x="710" y="40" width="300" height="130"></rect>
-    <text class="t" x="736" y="78">Runtime</text>
-    <text class="s" x="736" y="106">绑定参数 · 强制约束 · 监控</text>
-    <text class="s" x="736" y="132">结果审计 · 反馈采集</text>
-
-    <rect class="pill" x="250" y="190" width="540" height="46"></rect>
-    <text class="t" x="278" y="220">RSP（Robot Skill Protocol）— 共享契约 / 语义主干</text>
-
-    <rect class="box" x="120" y="270" width="360" height="120"></rect>
-    <text class="t" x="146" y="308">Simulator</text>
-    <text class="s" x="146" y="334">Isaac Sim / Gazebo / 数字孪生</text>
-    <text class="xs" x="146" y="358">一致性验证 · 回归评测 · 数据生成</text>
-
-    <rect class="box" x="560" y="270" width="360" height="120"></rect>
-    <text class="t" x="586" y="308">Real Robot</text>
-    <text class="s" x="586" y="334">UR5 / 移动双臂等</text>
-    <text class="xs" x="586" y="358">部署执行 · 现场反馈 · 闭环迭代</text>
-
-    <line class="a" x1="330" y1="105" x2="370" y2="105"></line>
-    <line class="a" x1="670" y1="105" x2="710" y2="105"></line>
-
-    <line class="a" x1="520" y1="170" x2="520" y2="190"></line>
-    <line class="a" x1="860" y1="170" x2="650" y2="190"></line>
-    <line class="a" x1="180" y1="170" x2="390" y2="190"></line>
-
-    <line class="a" x1="300" y1="270" x2="420" y2="236"></line>
-    <line class="a" x1="740" y1="270" x2="640" y2="236"></line>
-
-    <path class="a" d="M 560 390 C 640 410, 820 410, 900 390"></path>
-    <path class="a" d="M 480 390 C 400 410, 220 410, 140 390"></path>
-    <text class="xs" x="380" y="410">仿真↔真实闭环：定义 → 验证 → 部署 → 反馈（同一语义与约束）</text>
-  </svg>
+<marker id="m" markerheight="8" markerwidth="8" orient="auto" refx="9" refy="5" viewbox="0 0 10 10">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
+</marker>
+</defs>
+<rect class="box" height="130" width="300" x="30" y="40"></rect>
+<text class="t" x="56" y="78">Skill Store</text>
+<text class="s" x="56" y="106">注册表 · 元数据 · 版本/签名</text>
+<text class="s" x="56" y="132">约束 · 依赖 · 评测/证据</text>
+<rect class="box" height="130" width="300" x="370" y="40"></rect>
+<text class="t" x="396" y="78">Agent / Orchestrator</text>
+<text class="s" x="396" y="106">发现 · 匹配/排序 · 组合</text>
+<text class="s" x="396" y="132">策略 · 风险权衡 · 计划</text>
+<rect class="boxG" height="130" width="300" x="710" y="40"></rect>
+<text class="t" x="736" y="78">Runtime</text>
+<text class="s" x="736" y="106">绑定参数 · 强制约束 · 监控</text>
+<text class="s" x="736" y="132">结果审计 · 反馈采集</text>
+<rect class="pill" height="46" width="540" x="250" y="190"></rect>
+<text class="t" x="278" y="220">RSP（Robot Skill Protocol）— 共享契约 / 语义主干</text>
+<rect class="box" height="120" width="360" x="120" y="270"></rect>
+<text class="t" x="146" y="308">Simulator</text>
+<text class="s" x="146" y="334">Isaac Sim / Gazebo / 数字孪生</text>
+<text class="xs" x="146" y="358">一致性验证 · 回归评测 · 数据生成</text>
+<rect class="box" height="120" width="360" x="560" y="270"></rect>
+<text class="t" x="586" y="308">Real Robot</text>
+<text class="s" x="586" y="334">UR5 / 移动双臂等</text>
+<text class="xs" x="586" y="358">部署执行 · 现场反馈 · 闭环迭代</text>
+<line class="a" x1="330" x2="370" y1="105" y2="105"></line>
+<line class="a" x1="670" x2="710" y1="105" y2="105"></line>
+<line class="a" x1="520" x2="520" y1="170" y2="190"></line>
+<line class="a" x1="860" x2="650" y1="170" y2="190"></line>
+<line class="a" x1="180" x2="390" y1="170" y2="190"></line>
+<line class="a" x1="300" x2="420" y1="270" y2="236"></line>
+<line class="a" x1="740" x2="640" y1="270" y2="236"></line>
+<path class="a" d="M 560 390 C 640 410, 820 410, 900 390"></path>
+<path class="a" d="M 480 390 C 400 410, 220 410, 140 390"></path>
+<text class="xs" x="380" y="410">仿真↔真实闭环：定义 → 验证 → 部署 → 反馈（同一语义与约束）</text>
+</svg>
 </div>
 </section>
-
 <section class="section">
-  <h2 id="rsp-backbone">RSP：架构主干</h2>
-  <p>Robot Skill Protocol（RSP）标准化技能描述、发现/选择、约束强制与结果上报。正因为这些交互被统一：</p>
-  <ul>
-    <li>技能可以跨系统迁移</li>
-    <li>Agent 可脱离实现细节进行推理</li>
-    <li>执行环境可自由替换（仿真器/真实机器人/不同栈）</li>
-  </ul>
-  <p>RSP 不是内部 API，而是支撑生态协作的<strong>架构主干</strong>。</p>
+<h2 id="rsp-backbone">RSP：架构主干</h2>
+<p>Robot Skill Protocol（RSP）标准化技能描述、发现/选择、约束强制与结果上报。正因为这些交互被统一：</p>
+<ul>
+<li>技能可以跨系统迁移</li>
+<li>Agent 可脱离实现细节进行推理</li>
+<li>执行环境可自由替换（仿真器/真实机器人/不同栈）</li>
+</ul>
+<p>RSP 不是内部 API，而是支撑生态协作的<strong>架构主干</strong>。</p>
 </section>
-
 <section class="section">
-  <h2 id="decoupling">能力与实现的解耦</h2>
-  <p>Robot Skill Store 明确分离：<strong>技能语义（做什么）</strong>、<strong>实现方式（如何做）</strong>与<strong>执行环境（在哪里做）</strong>。这使得技能与硬件可以独立演进，行为在部署前即可被验证，系统规模化时也能保持一致性。</p>
+<h2 id="decoupling">能力与实现的解耦</h2>
+<p>Robot Skill Store 明确分离：<strong>技能语义（做什么）</strong>、<strong>实现方式（如何做）</strong>与<strong>执行环境（在哪里做）</strong>。这使得技能与硬件可以独立演进，行为在部署前即可被验证，系统规模化时也能保持一致性。</p>
 </section>
-
 <section class="section">
-  <h2 id="sim2real-loop">仿真与现实：同一闭环</h2>
-  <p>仿真不是“测试之后的附加步骤”，而是执行语义的一部分。同一技能规范贯穿仿真验证、测试执行与真实部署：</p>
-  <div class="card">
-    <div class="card-title">闭环</div>
-    <p class="tight"><strong>定义 → 仿真 → 验证 → 执行 → 反馈</strong></p>
-    <p class="muted tight">在仿真中不可靠的技能，不应被信任于真实世界。</p>
-  </div>
+<h2 id="sim2real-loop">仿真与现实：同一闭环</h2>
+<p>仿真不是“测试之后的附加步骤”，而是执行语义的一部分。同一技能规范贯穿仿真验证、测试执行与真实部署：</p>
+<div class="card">
+<div class="card-title">闭环</div>
+<p class="tight"><strong>定义 → 仿真 → 验证 → 执行 → 反馈</strong></p>
+<p class="muted tight">在仿真中不可靠的技能，不应被信任于真实世界。</p>
+</div>
 </section>
-
 <section class="section">
-  <h2 id="safety-position">安全在架构中的位置</h2>
-  <p>安全不是外部附加层，而是被嵌入技能定义、执行约束与运行时强制机制中。将安全前移到协议与技能层，可显著减少对临时补丁与人工兜底的依赖。</p>
+<h2 id="safety-position">安全在架构中的位置</h2>
+<p>安全不是外部附加层，而是被嵌入技能定义、执行约束与运行时强制机制中。将安全前移到<strong>技能契约</strong>与<strong>运行时策略门禁</strong>（协议强制），可显著减少对临时补丁与人工兜底的依赖。</p>
 </section>
-
 <section class="section">
-  <h2 id="extensible">为扩展而生</h2>
-  <p>由于架构以协议为中心，新机器人/新仿真器/新 Agent 都可以在不重构系统的前提下接入。这正是 Robot Skill Store 能成为长期生态基础的原因。</p>
+<h2 id="extensible">为扩展而生</h2>
+<p>由于 RSS 平台以 RSP 作为稳定底座并强制执行，新机器人/新仿真器/新 Agent 都可以在不重构系统的前提下接入。这正是 Robot Skill Store 能成为长期生态基础的原因。</p>
 </section>
 </main>
 <aside aria-label="On this page" class="toc">
@@ -151,6 +127,6 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.20.0"></script>
+<script src="../assets/js/site.js?v=6.43.0"></script>
 </body>
 </html>

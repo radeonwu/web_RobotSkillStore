@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>平台 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.20.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,16 +14,7 @@
 <span class="brand-mark">◆</span>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">首页</a>
-<a class="toplink active" href="platform.html">平台</a>
-<a class="toplink" href="architecture.html">架构</a>
-<a class="toplink" href="safety.html">安全</a>
-<a class="toplink" href="developers.html">开发者</a>
-<a class="toplink" href="demo.html">示例</a>
-<a class="toplink" href="docs/index.html">文档</a>
-<a class="toplink" href="contact.html">联系</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="skills.html">技能</a><a class="toplink active" href="platform.html">平台</a><a class="toplink" href="agents.html">智能体</a><a class="toplink" href="architecture.html">架构</a><a class="toplink" href="safety.html">安全</a><a class="toplink" href="developers.html">开发者</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -35,46 +26,42 @@
 <div class="layout">
 <main class="content" id="content">
 <section class="section">
-  <h1>平台</h1>
-  <p class="lead">Skill · Agent · Runtime —— 统一的执行平台</p>
-  <p>Robot Skill Store 并不是零散工具集合，而是围绕<strong>技能、Agent 与运行时</strong>构建的统一平台。三者共同定义机器人能力如何被创建、选择与执行。</p>
+<h1>平台</h1>
+<p class="lead">Skill · Agent · Runtime —— 统一的执行平台</p>
+<p>Robot Skill Store 并不是零散工具集合，而是围绕<strong>技能、Agent 与运行时</strong>构建的统一平台。三者共同定义机器人能力如何被创建、选择与执行。</p>
 </section>
-
 <section class="section">
-  <h2 id="skills">技能：一等公民的能力对象</h2>
-  <p>传统系统中的“技能”常常隐藏在实现里，难以被系统理解与复用。Robot Skill Store 将技能提升为显式的、可共享、可推理的能力对象。</p>
-  <p>每个技能清晰声明意图、约束、执行上下文与可观测结果，从而具备可发现、可比较、可验证与可复用的属性。</p>
+<h2 id="skills">技能：一等公民的能力对象</h2>
+<p>传统系统中的“技能”常常隐藏在实现里，难以被系统理解与复用。Robot Skill Store 将技能提升为显式的、可共享、可推理的能力对象。</p>
+<p>每个技能清晰声明意图、约束、执行上下文与可观测结果，从而具备可发现、可比较、可验证与可复用的属性。</p>
 </section>
-
 <section class="section">
-  <h2 id="agents">Agent：能力编排者，而非胶水代码</h2>
-  <p>随着系统复杂度提升，依赖硬编码来决定“下一步做什么”会迅速变得脆弱。Agent 的职责是基于目标与上下文选择技能、在候选技能之间排序与权衡、在约束条件下组合多步骤行为，并在不确定性下做出策略性决策。</p>
-  <div class="callout">
-    <div class="callout-title">关键转变</div>
-    <p class="tight">从“我该调用哪个函数？”转向“在当前条件下，哪个技能最适合我的目标？”</p>
-  </div>
+<h2 id="agents">Agent：能力编排者，而非胶水代码</h2>
+<p>随着系统复杂度提升，依赖硬编码来决定“下一步做什么”会迅速变得脆弱。Agent 的职责是基于目标与上下文选择技能、在候选技能之间排序与权衡、在约束条件下组合多步骤行为，并在不确定性下做出策略性决策。</p>
+<div class="callout">
+<div class="callout-title">关键转变</div>
+<p class="tight">从“我该调用哪个函数？”转向“在当前条件下，哪个技能最适合我的目标？”</p>
+</div>
 </section>
-
 <section class="section">
-  <h2 id="runtime">运行时：具备语义的执行环境</h2>
-  <p>执行不仅是“下发控制指令”。运行时负责将技能规格绑定到具体机器人或仿真器，强制安全约束，处理环境/硬件差异带来的参数变化，并结构化记录执行结果与反馈。</p>
-  <p>同一个技能定义可以在仿真与真实之间迁移，而无需改变其语义。这种解耦是实现 sim-to-real 一致性的关键。</p>
+<h2 id="runtime">运行时：具备语义的执行环境</h2>
+<p>执行不仅是“下发控制指令”。运行时负责将技能规格绑定到具体机器人或仿真器，强制安全约束，处理环境/硬件差异带来的参数变化，并结构化记录执行结果与反馈。</p>
+<p>同一个技能定义可以在仿真与真实之间迁移，而无需改变其语义。这种解耦是实现 sim-to-real 一致性的关键。</p>
 </section>
-
 <section class="section">
-  <h2 id="lifecycle">技能生命周期（RSP）</h2>
-  <ol class="steps">
-    <li><strong>注册</strong>：发布元数据、约束与依赖</li>
-    <li><strong>发现</strong>：按目标/环境检索可用技能</li>
-    <li><strong>匹配与排序</strong>：Agent 在策略与约束下选择最优技能</li>
-    <li><strong>执行</strong>：运行时绑定参数并强制约束</li>
-    <li><strong>反馈</strong>：记录结果，用于后续选择与改进</li>
-  </ol>
-  <p>这一生命周期由 RSP 统一规范，是平台规模化扩展的基础。</p>
+<h2 id="lifecycle">技能生命周期（RSP）</h2>
+<ol class="steps">
+<li><strong>注册</strong>：发布元数据、约束与依赖</li>
+<li><strong>发现</strong>：按目标/环境检索可用技能</li>
+<li><strong>匹配与排序</strong>：Agent 在策略与约束下选择最优技能</li>
+<li><strong>执行</strong>：运行时绑定参数并强制约束</li>
+<li><strong>反馈</strong>：记录结果，用于后续选择与改进</li>
+</ol>
+<p>这一生命周期由 RSP 统一规范，是平台规模化扩展的基础。</p>
 </section>
 <footer class="footer">
 <div class="footer-inner">
-<div>Robot Skill Store · build v6.20.0</div>
+<div>Robot Skill Store · build v6.21.0</div>
 <div class="muted">UI: VitePress-like (no search, no version selector)</div>
 </div>
 </footer>
@@ -84,6 +71,6 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.20.0"></script>
+<script src="../assets/js/site.js?v=6.43.0"></script>
 </body>
 </html>

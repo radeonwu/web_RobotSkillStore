@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Demo Mapping · RSP Docs</title>
-<link href="../../assets/css/style.css?v=6.20.0" rel="stylesheet"/>
+<link href="../../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,16 +14,7 @@
 <span class="brand-mark">◆</span>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="../index.html">Home</a>
-<a class="toplink" href="../platform.html">Platform</a>
-<a class="toplink" href="../architecture.html">Architecture</a>
-<a class="toplink" href="../safety.html">Safety</a>
-<a class="toplink" href="../developers.html">Developers</a>
-<a class="toplink" href="../demo.html">Demo</a>
-<a class="toplink active" href="index.html">Docs</a>
-<a class="toplink" href="../contact.html">Contact</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">Home</a><a class="toplink" href="../skills.html">Skills</a><a class="toplink" href="../platform.html">Platform</a><a class="toplink" href="../agents.html">Agents</a><a class="toplink" href="../architecture.html">Architecture</a><a class="toplink" href="../safety.html">Safety</a><a class="toplink" href="../developers.html">Developers</a><a class="toplink" href="../demo.html">Demo</a><a class="toplink active" href="index.html">Docs</a><a class="toplink" href="../contact.html">Contact</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -33,12 +24,11 @@
 </div>
 </header>
 <div class="layout">
-
 <main class="content" id="content">
 <section class="section">
-  <h1>Demo Mapping</h1>
-  <p class="lead">UR5 reference execution model mapped to RSP</p>
-  <div class="pill-row"><a class="pill-link" href="index.html">Overview</a>
+<h1>Demo Mapping</h1>
+<p class="lead">UR5 reference execution model mapped to RSP</p>
+<div class="pill-row"><a class="pill-link" href="index.html">Overview</a>
 <a class="pill-link" href="concepts.html">Concepts</a>
 <a class="pill-link" href="skill-spec.html">Skill Spec</a>
 <a class="pill-link" href="skill-schema.html">Schema</a>
@@ -46,94 +36,73 @@
 <a class="pill-link" href="safety.html">Safety</a>
 <a class="pill-link active" href="demo-mapping.html">Demo Mapping</a></div>
 </section>
-
 <div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
-  <div class="card-title">Reference Call Graph (SVG)</div>
-  <div class="note">Agent reasons over spec. Runtime binds, enforces constraints, executes, and emits evidence.</div>
-  <svg viewBox="0 0 1040 420" width="100%" height="auto" role="img" aria-label="Reference Call Graph">
-    <defs>
-      <style>
+<div class="card-title">Reference Call Graph (SVG)</div>
+<div class="note">Agent reasons over spec. Runtime binds, enforces constraints, executes, and emits evidence.</div>
+<svg aria-label="Reference Call Graph" height="auto" role="img" viewbox="0 0 1040 420" width="100%">
+<defs>
+<style>
         .lane{fill:rgba(59,130,246,.06);stroke:rgba(27,31,36,.18);stroke-width:1.8;rx:16;ry:16}
         .node{fill:rgba(255,255,255,.06);stroke:rgba(27,31,36,.25);stroke-width:2;rx:14;ry:14}
         .t{font:700 14px ui-sans-serif,system-ui; fill: currentColor}
         .s{font:13px ui-sans-serif,system-ui; fill: currentColor; opacity:.82}
         .a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
       </style>
-      <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
-      </marker>
-    </defs>
-
-    <rect class="lane" x="28" y="32" width="984" height="86"></rect>
-    <text class="t" x="52" y="74">Agent</text>
-
-    <rect class="lane" x="28" y="142" width="984" height="246"></rect>
-    <text class="t" x="52" y="184">Runtime</text>
-
-    <rect class="node" x="220" y="52" width="260" height="46"></rect>
-    <text class="s" x="238" y="80">select(skill_spec)</text>
-
-    <rect class="node" x="540" y="52" width="260" height="46"></rect>
-    <text class="s" x="558" y="80">plan(goal → skill calls)</text>
-
-    <line class="a" x1="480" y1="75" x2="540" y2="75"></line>
-    <line class="a" x1="670" y1="98" x2="670" y2="152"></line>
-
-    <rect class="node" x="560" y="164" width="300" height="46"></rect>
-    <text class="s" x="578" y="192">prepare()</text>
-
-    <rect class="node" x="120" y="236" width="260" height="46"></rect>
-    <text class="s" x="138" y="264">validate_context()</text>
-
-    <rect class="node" x="410" y="236" width="220" height="46"></rect>
-    <text class="s" x="428" y="264">bind_base()</text>
-
-    <rect class="node" x="650" y="236" width="220" height="46"></rect>
-    <text class="s" x="668" y="264">bind_tcp()</text>
-
-    <rect class="node" x="860" y="236" width="140" height="46"></rect>
-    <text class="s" x="872" y="264">bind_env()</text>
-
-    <rect class="node" x="120" y="310" width="300" height="46"></rect>
-    <text class="s" x="138" y="338">execute()</text>
-
-    <rect class="node" x="450" y="310" width="270" height="46"></rect>
-    <text class="s" x="468" y="338">enforce_constraints()</text>
-
-    <rect class="node" x="740" y="310" width="260" height="46"></rect>
-    <text class="s" x="758" y="338">collect_evidence()</text>
-
-    <line class="a" x1="710" y1="210" x2="250" y2="236"></line>
-    <line class="a" x1="710" y1="210" x2="520" y2="236"></line>
-    <line class="a" x1="710" y1="210" x2="760" y2="236"></line>
-    <line class="a" x1="710" y1="210" x2="930" y2="236"></line>
-
-    <line class="a" x1="270" y1="282" x2="270" y2="310"></line>
-    <line class="a" x1="520" y1="282" x2="270" y2="310"></line>
-    <line class="a" x1="760" y1="282" x2="270" y2="310"></line>
-    <line class="a" x1="930" y1="282" x2="270" y2="310"></line>
-
-    <line class="a" x1="420" y1="333" x2="450" y2="333"></line>
-    <line class="a" x1="720" y1="333" x2="740" y2="333"></line>
-
-    <text class="s" x="120" y="392">Output: outcome (success/failure) + evidence bundle (logs/metrics/traces/config snapshot)</text>
-  </svg>
+<marker id="m" markerheight="8" markerwidth="8" orient="auto" refx="9" refy="5" viewbox="0 0 10 10">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
+</marker>
+</defs>
+<rect class="lane" height="86" width="984" x="28" y="32"></rect>
+<text class="t" x="52" y="74">Agent</text>
+<rect class="lane" height="246" width="984" x="28" y="142"></rect>
+<text class="t" x="52" y="184">Runtime</text>
+<rect class="node" height="46" width="260" x="220" y="52"></rect>
+<text class="s" x="238" y="80">select(skill_spec)</text>
+<rect class="node" height="46" width="260" x="540" y="52"></rect>
+<text class="s" x="558" y="80">plan(goal → skill calls)</text>
+<line class="a" x1="480" x2="540" y1="75" y2="75"></line>
+<line class="a" x1="670" x2="670" y1="98" y2="152"></line>
+<rect class="node" height="46" width="300" x="560" y="164"></rect>
+<text class="s" x="578" y="192">prepare()</text>
+<rect class="node" height="46" width="260" x="120" y="236"></rect>
+<text class="s" x="138" y="264">validate_context()</text>
+<rect class="node" height="46" width="220" x="410" y="236"></rect>
+<text class="s" x="428" y="264">bind_base()</text>
+<rect class="node" height="46" width="220" x="650" y="236"></rect>
+<text class="s" x="668" y="264">bind_tcp()</text>
+<rect class="node" height="46" width="140" x="860" y="236"></rect>
+<text class="s" x="872" y="264">bind_env()</text>
+<rect class="node" height="46" width="300" x="120" y="310"></rect>
+<text class="s" x="138" y="338">execute()</text>
+<rect class="node" height="46" width="270" x="450" y="310"></rect>
+<text class="s" x="468" y="338">enforce_constraints()</text>
+<rect class="node" height="46" width="260" x="740" y="310"></rect>
+<text class="s" x="758" y="338">collect_evidence()</text>
+<line class="a" x1="710" x2="250" y1="210" y2="236"></line>
+<line class="a" x1="710" x2="520" y1="210" y2="236"></line>
+<line class="a" x1="710" x2="760" y1="210" y2="236"></line>
+<line class="a" x1="710" x2="930" y1="210" y2="236"></line>
+<line class="a" x1="270" x2="270" y1="282" y2="310"></line>
+<line class="a" x1="520" x2="270" y1="282" y2="310"></line>
+<line class="a" x1="760" x2="270" y1="282" y2="310"></line>
+<line class="a" x1="930" x2="270" y1="282" y2="310"></line>
+<line class="a" x1="420" x2="450" y1="333" y2="333"></line>
+<line class="a" x1="720" x2="740" y1="333" y2="333"></line>
+<text class="s" x="120" y="392">Output: outcome (success/failure) + evidence bundle (logs/metrics/traces/config snapshot)</text>
+</svg>
 </div>
-
-
 <section class="section">
-  <h2>What this page provides</h2>
-  <ul class="checklist">
-    <li>A concrete Skill Spec for the UR5 demo</li>
-    <li>How runtime binding is applied (base / TCP / environment)</li>
-    <li>How constraints and evidence are enforced/collected</li>
-    <li>Minimal commands to run the demo in a reproducible way</li>
-  </ul>
+<h2>What this page provides</h2>
+<ul class="checklist">
+<li>A concrete Skill Spec for the UR5 demo</li>
+<li>How runtime binding is applied (base / TCP / environment)</li>
+<li>How constraints and evidence are enforced/collected</li>
+<li>Minimal commands to run the demo in a reproducible way</li>
+</ul>
 </section>
-
 <section class="section">
-  <h2>UR5 demo skill spec (example)</h2>
-  <pre><code class="language-yaml">skill:
+<h2>UR5 demo skill spec (example)</h2>
+<pre><code class="language-yaml">skill:
   name: ur5_reach_pose
   version: 0.1.0
   intent:
@@ -163,86 +132,77 @@
       - joint_trajectory
       - tcp_trace</code></pre>
 </section>
-
 <section class="section">
-  <h2 id="field-mapping">Spec ↔ Demo field mapping</h2>
-  <div class="card">
-    <div class="card-title">UR5 demo mapping</div>
-    <table class="tbl">
-      <thead><tr><th>Skill Spec field</th><th>UR5 demo binding / meaning</th></tr></thead>
-      <tbody>
-        <tr><td><code>intent.goal</code></td><td><code>reach_target_pose</code></td></tr>
-        <tr><td><code>context.robot</code></td><td><code>ur5</code></td></tr>
-        <tr><td><code>context.frames.base</code></td><td><code>base_link</code> (runtime base pose override)</td></tr>
-        <tr><td><code>context.frames.tcp</code></td><td><code>tool0</code> (tip link / tool frame)</td></tr>
-        <tr><td><code>constraints.speed_limit</code></td><td>runtime motion limits (planner/controller)</td></tr>
-        <tr><td><code>constraints.force_limit</code></td><td>runtime force monitor / stop conditions</td></tr>
-        <tr><td><code>outcomes.success.criteria</code></td><td>TCP within tolerance at target pose</td></tr>
-        <tr><td><code>evidence.required</code></td><td>log + metrics + trajectories + context snapshot</td></tr>
-      </tbody>
-    </table>
-  </div>
+<h2 id="field-mapping">Spec ↔ Demo field mapping</h2>
+<div class="card">
+<div class="card-title">UR5 demo mapping</div>
+<table class="tbl">
+<thead><tr><th>Skill Spec field</th><th>UR5 demo binding / meaning</th></tr></thead>
+<tbody>
+<tr><td><code>intent.goal</code></td><td><code>reach_target_pose</code></td></tr>
+<tr><td><code>context.robot</code></td><td><code>ur5</code></td></tr>
+<tr><td><code>context.frames.base</code></td><td><code>base_link</code> (runtime base pose override)</td></tr>
+<tr><td><code>context.frames.tcp</code></td><td><code>tool0</code> (tip link / tool frame)</td></tr>
+<tr><td><code>constraints.speed_limit</code></td><td>runtime motion limits (planner/controller)</td></tr>
+<tr><td><code>constraints.force_limit</code></td><td>runtime force monitor / stop conditions</td></tr>
+<tr><td><code>outcomes.success.criteria</code></td><td>TCP within tolerance at target pose</td></tr>
+<tr><td><code>evidence.required</code></td><td>log + metrics + trajectories + context snapshot</td></tr>
+</tbody>
+</table>
+</div>
 </section>
-
-
 <section class="section">
-  <h2>Runtime binding (where your config plugs in)</h2>
-  <ul>
-    <li><strong>Robot base</strong>: set via runtime config (e.g., RSP_ROBOT_BASE_XYZ)</li>
-    <li><strong>TCP</strong>: resolved by tip link / tool frame (e.g., tool0)</li>
-    <li><strong>Environment</strong>: table frame and calibration parameters</li>
-  </ul>
+<h2>Runtime binding (where your config plugs in)</h2>
+<ul>
+<li><strong>Robot base</strong>: set via runtime config (e.g., RSP_ROBOT_BASE_XYZ)</li>
+<li><strong>TCP</strong>: resolved by tip link / tool frame (e.g., tool0)</li>
+<li><strong>Environment</strong>: table frame and calibration parameters</li>
+</ul>
 </section>
-
 <section class="section">
-  <h2 id="evidence-bundle">Evidence Bundle (reference layout)</h2>
-  <p>Evidence makes runs auditable, comparable, and reproducible. This is the recommended minimal layout:</p>
-  <pre><code class="language-text">evidence/
+<h2 id="evidence-bundle">Evidence Bundle (reference layout)</h2>
+<p>Evidence makes runs auditable, comparable, and reproducible. This is the recommended minimal layout:</p>
+<pre><code class="language-text">evidence/
 ├─ runtime.log
 ├─ metrics.json
 ├─ joint_trajectory.csv
 ├─ tcp_trace.csv
 ├─ outcome.json
 └─ execution_context.yaml</code></pre>
-  <ul>
-    <li><strong>runtime.log</strong>: execution trace with timestamps</li>
-    <li><strong>metrics.json</strong>: key metrics (time, error, violations)</li>
-    <li><strong>trajectory / trace</strong>: joint &amp; TCP traces</li>
-    <li><strong>execution_context.yaml</strong>: bound parameters snapshot (base/tcp/env)</li>
-  </ul>
+<ul>
+<li><strong>runtime.log</strong>: execution trace with timestamps</li>
+<li><strong>metrics.json</strong>: key metrics (time, error, violations)</li>
+<li><strong>trajectory / trace</strong>: joint &amp; TCP traces</li>
+<li><strong>execution_context.yaml</strong>: bound parameters snapshot (base/tcp/env)</li>
+</ul>
 </section>
-
-
 <section class="section">
-  <h2>Reference execution steps</h2>
-  <ol class="steps">
-    <li>Load skill spec and validate context</li>
-    <li>Bind base/TCP/environment parameters</li>
-    <li>Plan and execute with runtime monitoring</li>
-    <li>Emit outcome + evidence bundle (logs/metrics/traces)</li>
-  </ol>
+<h2>Reference execution steps</h2>
+<ol class="steps">
+<li>Load skill spec and validate context</li>
+<li>Bind base/TCP/environment parameters</li>
+<li>Plan and execute with runtime monitoring</li>
+<li>Emit outcome + evidence bundle (logs/metrics/traces)</li>
+</ol>
 </section>
-
 <section class="section">
-  <h2 id="reference-grade">What makes this a reference execution model</h2>
-  <ul class="checklist">
-    <li><strong>Spec-first</strong>: the demo is driven by a skill spec, not hard-coded behavior.</li>
-    <li><strong>Fail-fast</strong>: if constraints cannot be enforced, the run stops with evidence.</li>
-    <li><strong>Auditable outputs</strong>: every run produces an outcome + evidence bundle.</li>
-    <li><strong>Comparable runs</strong>: evidence enables regression comparisons across versions and environments.</li>
-    <li><strong>Sim↔Real alignment</strong>: the same spec + binding logic is usable in sim and on the UR5.</li>
-  </ul>
+<h2 id="reference-grade">What makes this a reference execution model</h2>
+<ul class="checklist">
+<li><strong>Spec-first</strong>: the demo is driven by a skill spec, not hard-coded behavior.</li>
+<li><strong>Fail-fast</strong>: if constraints cannot be enforced, the run stops with evidence.</li>
+<li><strong>Auditable outputs</strong>: every run produces an outcome + evidence bundle.</li>
+<li><strong>Comparable runs</strong>: evidence enables regression comparisons across versions and environments.</li>
+<li><strong>Sim↔Real alignment</strong>: the same spec + binding logic is usable in sim and on the UR5.</li>
+</ul>
 </section>
-
-
 <section class="section">
-  <h2>Minimal run commands (example)</h2>
-  <pre><code class="language-bash"># from the project root
+<h2>Minimal run commands (example)</h2>
+<pre><code class="language-bash"># from the project root
 python -m rsp_demo.run --robot ur5 --skill ur5_reach_pose --target preset:pose_A
 
 # override base pose (example)
 RSP_ROBOT_BASE_XYZ=-0.2,0,0.32 python -m rsp_demo.run --robot ur5 --skill ur5_reach_pose --target preset:pose_A</code></pre>
-  <p class="note">These commands are examples for the reference execution model. Adjust flags to match your demo repository layout.</p>
+<p class="note">These commands are examples for the reference execution model. Adjust flags to match your demo repository layout.</p>
 </section>
 </main>
 <aside aria-label="On this page" class="toc">
@@ -250,6 +210,6 @@ RSP_ROBOT_BASE_XYZ=-0.2,0,0.32 python -m rsp_demo.run --robot ur5 --skill ur5_re
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../../assets/js/site.js?v=6.20.0"></script>
+<script src="../../assets/js/site.js?v=6.43.0"></script>
 </body>
 </html>

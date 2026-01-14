@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Agents in RSS · Robot Skill Store</title>
+<link href="../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skills</a><a class="toplink" href="platform.html">Platform</a><a class="toplink active" href="agents.html">Agents</a><a class="toplink" href="architecture.html">Architecture</a><a class="toplink" href="safety.html">Safety</a><a class="toplink" href="developers.html">Developers</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button">
+<span class="icon">EN/中</span><span class="label">中文</span>
+</button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span><span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+<main class="content" id="content">
+  <section class="card">
+    <h1>Agents</h1>
+    <p class="lead">Agents decide <em>what to try</em>. RSS enforces what is allowed to actually happen.</p>
+    <p>In Robot Skill Store (RSS), agents are a <strong>decision layer</strong> for selecting and composing skills. They never bypass governance, evaluation, or execution truth—every action becomes a platform-managed <strong>Run</strong> with immutable evidence.</p>
+  </section>
+
+  <section class="card" id="one-rule">
+    <h2 id="rule">One non-negotiable rule</h2>
+    <p><strong>Agents may decide what to try. RSS enforces what is allowed to actually happen.</strong></p>
+    <ul>
+      <li>Agents produce candidate actions (which skill/version/profile/inputs).</li>
+      <li>RSS converts actions into Runs, applies policy gates, and records evidence.</li>
+      <li>Success is determined by benchmarks and outcomes—not by agent persuasion.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="what-is-agent">
+    <h2 id="what">What an agent is (in RSS)</h2>
+    <p>An agent is an orchestrator that reasons over goals, context, and historical evidence to choose <strong>which Skill Version</strong> to run, with which <strong>Profile</strong> and inputs.</p>
+  </section>
+
+  <section class="card" id="may-maynot">
+    <h2 id="dos-donts">Agents may / may not</h2>
+    <div class="grid2" style="gap:16px">
+      <div class="subcard">
+        <h3 style="margin-top:0">Agents may</h3>
+        <ul>
+          <li>Select a Skill and Skill Version (within policy).</li>
+          <li>Bind Profile + parameters (robot / env / limits).</li>
+          <li>Compose multi-step workflows.</li>
+          <li>Branch / retry / escalate based on Run outcomes.</li>
+          <li>Compare candidates using benchmark evidence.</li>
+        </ul>
+      </div>
+      <div class="subcard">
+        <h3 style="margin-top:0">Agents may not</h3>
+        <ul>
+          <li>Execute code directly (no hidden paths).</li>
+          <li>Bypass policy gates (safety / license / approval).</li>
+          <li>Decide “success” (benchmarks do).</li>
+          <li>Edit records (Runs are immutable).</li>
+          <li>Redefine semantics (contracts are versioned).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="where-sit">
+    <h2 id="where">Where agents sit in the system</h2>
+    <ul>
+      <li><strong>Agent</strong>: selects & composes actions.</li>
+      <li><strong>RSS Platform</strong>: validates, gates, schedules, and executes via runtime.</li>
+      <li><strong>Runtime</strong>: binds specs to concrete robot/TCP/environment and enforces constraints.</li>
+      <li><strong>Evidence</strong>: logs/metrics/trajectories/videos linked to the Run for audit and evaluation.</li>
+    </ul>
+  </section>
+
+  <section class="card" id="how-constrain">
+    <h2 id="constraints">How RSS constrains agent actions</h2>
+    <ul>
+      <li><strong>Policy gates</strong>: what is allowed (safety, approval, authorization).</li>
+      <li><strong>Version binding</strong>: every Run binds to immutable Skill Version + Profile.</li>
+      <li><strong>Objective evaluation</strong>: benchmark-defined success enables comparability.</li>
+      <li><strong>Auditability</strong>: evidence is first-class; decisions are explainable and reviewable.</li>
+    </ul>
+  </section>
+
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">On this page</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<footer class="footer">
+<div class="footer-inner">
+<div>Robot Skill Store · build v6.21.0</div>
+<div class="muted">Agents: decision layer; Runs: platform-managed truth</div>
+</div>
+</footer>
+<script src="../assets/js/site.js?v=6.43.0"></script>
+</body>
+</html>

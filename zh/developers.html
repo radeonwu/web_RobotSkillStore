@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>开发者 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.20.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,16 +14,7 @@
 <span class="brand-mark">◆</span>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">首页</a>
-<a class="toplink" href="platform.html">平台</a>
-<a class="toplink" href="architecture.html">架构</a>
-<a class="toplink" href="safety.html">安全</a>
-<a class="toplink active" href="developers.html">开发者</a>
-<a class="toplink" href="demo.html">示例</a>
-<a class="toplink" href="docs/index.html">文档</a>
-<a class="toplink" href="contact.html">联系</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="skills.html">技能</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="agents.html">智能体</a><a class="toplink" href="architecture.html">架构</a><a class="toplink" href="safety.html">安全</a><a class="toplink active" href="developers.html">开发者</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -35,45 +26,41 @@
 <div class="layout">
 <main class="content" id="content">
 <section class="section">
-  <h1>开发者</h1>
-  <p class="lead">快速开始：运行你的第一个技能</p>
-  <p>Robot Skill Store 设计为<strong>渐进式引入</strong>：无需替换现有控制栈，只需在能力层引入 RSP 的规范与运行时绑定。</p>
+<h1>开发者</h1>
+<p class="lead">快速开始：运行你的第一个技能</p>
+<p>Robot Skill Store 设计为<strong>渐进式引入</strong>：无需替换现有控制栈，只需在能力层引入 RSP 的规范与运行时绑定。</p>
 </section>
-
 <section class="section">
-  <h2 id="requirements">你需要准备什么</h2>
-  <ul class="checklist">
-    <li>机器人或仿真器（UR5 / Gazebo / Isaac Sim 等）</li>
-    <li>基础运行环境（ROS / Python 等）</li>
-    <li>一个遵循 RSP 的技能定义</li>
-  </ul>
+<h2 id="requirements">你需要准备什么</h2>
+<ul class="checklist">
+<li>机器人或仿真器（UR5 / Gazebo / Isaac Sim 等）</li>
+<li>基础运行环境（ROS / Python 等）</li>
+<li>一个遵循 RSP 的技能定义</li>
+</ul>
 </section>
-
 <section class="section">
-  <h2 id="minimal-workflow">最小工作流</h2>
-  <ol class="steps">
-    <li><strong>定义技能</strong>：明确意图、约束、上下文与可观测结果</li>
-    <li><strong>注册技能</strong>：发布到技能注册表（Skill Store）</li>
-    <li><strong>选择技能</strong>：Agent 基于目标、上下文与策略做决策</li>
-    <li><strong>执行技能</strong>：运行时绑定参数并强制约束</li>
-  </ol>
+<h2 id="minimal-workflow">最小工作流</h2>
+<ol class="steps">
+<li><strong>定义技能</strong>：明确意图、约束、上下文与可观测结果</li>
+<li><strong>注册技能</strong>：发布到技能注册表（Skill Store）</li>
+<li><strong>选择技能</strong>：Agent 基于目标、上下文与策略做决策</li>
+<li><strong>执行技能</strong>：运行时绑定参数并强制约束</li>
+</ol>
 </section>
-
 <section class="section">
-  <h2 id="feedback">执行与反馈</h2>
-  <p>执行过程中，参数被动态绑定、约束被持续强制、结果被结构化记录。反馈不是日志附属物，而是生命周期的一部分，可用于后续选择与改进。</p>
+<h2 id="feedback">执行与反馈</h2>
+<p>执行过程中，参数被动态绑定、约束被持续强制、结果被结构化记录。反馈不是日志附属物，而是生命周期的一部分，可用于后续选择与改进。</p>
 </section>
-
 <section class="section">
-  <h2 id="next">下一步</h2>
-  <div class="grid grid-2">
-    <a class="card link-card" href="demo.html"><div class="card-title">跑起来：UR5 Demo</div><div class="card-desc">参考执行模型：绑定、约束强制与审计反馈。</div></a>
-    <a class="card link-card" href="architecture.html"><div class="card-title">理解：协议中心架构</div><div class="card-desc">RSP 如何把工具/仿真/真实/Agent 串成闭环。</div></a>
-  </div>
+<h2 id="next">下一步</h2>
+<div class="grid grid-2">
+<a class="card link-card" href="demo.html"><div class="card-title">跑起来：UR5 Demo</div><div class="card-desc">参考执行模型：绑定、约束强制与审计反馈。</div></a>
+<a class="card link-card" href="architecture.html"><div class="card-title">理解：协议中心架构</div><div class="card-desc">RSP 如何把工具/仿真/真实/Agent 串成闭环。</div></a>
+</div>
 </section>
 <footer class="footer">
 <div class="footer-inner">
-<div>Robot Skill Store · build v6.20.0</div>
+<div>Robot Skill Store · build v6.21.0</div>
 <div class="muted">UI: VitePress-like (no search, no version selector)</div>
 </div>
 </footer>
@@ -83,6 +70,6 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.20.0"></script>
+<script src="../assets/js/site.js?v=6.43.0"></script>
 </body>
 </html>

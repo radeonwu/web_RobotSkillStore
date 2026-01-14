@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Concepts · RSP Docs</title>
+<title>RSS Platform Summary · Robot Skill Store</title>
 <link href="../../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
@@ -26,31 +26,28 @@
 <div class="layout">
 <main class="content" id="content">
 <section class="section">
-<h1>Concepts</h1>
-<p class="lead">The minimal abstractions of RSP</p>
-<div class="pill-row"><a class="pill-link" href="index.html">Overview</a>
-<a class="pill-link active" href="concepts.html">Concepts</a>
-<a class="pill-link" href="skill-spec.html">Skill Spec</a>
-<a class="pill-link" href="skill-schema.html">Schema</a>
-<a class="pill-link" href="execution.html">Execution</a>
-<a class="pill-link" href="safety.html">Safety</a>
-<a class="pill-link" href="demo-mapping.html">Demo Mapping</a></div>
+<h1>RSS Platform (Summary)</h1>
+<p class="lead">What the RSS product provides: registry, versioned runs, evaluation, and runtime governance.</p>
+<div class="pill-row"><a class="pill-link" href="index.html">Back to Docs Hub</a><a class="pill-link" href="rss-architecture.html">Architecture</a><a class="pill-link" href="rss-safety.html">Safety</a><a class="pill-link" href="rss-skills.html">Skills</a><a class="pill-link" href="rss-agents.html">Agents</a></div>
 </section>
 <section class="section">
-<h2>Skill</h2>
-<p>A <strong>Skill</strong> is the smallest meaningful and safe unit of robotic capability. It is defined by intent, constraints, context, and observable outcomes — not by code alone.</p>
+<h2 id="capabilities">Core capabilities</h2>
+<ul class="checklist">
+<li><strong>Skill registry</strong>: publish skills as deployable assets with metadata, versions, and compatibility.</li>
+<li><strong>Run orchestration</strong>: every execution becomes a <em>Run</em> bound to a specific skill version.</li>
+<li><strong>Evaluation</strong>: benchmarks + reports produce objective, comparable performance signals.</li>
+<li><strong>Governance</strong>: policy gates enforce approval, safety constraints, and authorization at runtime.</li>
+<li><strong>Evidence</strong>: artifacts (logs, video, metrics) make outcomes auditable and reproducible.</li>
+</ul>
 </section>
 <section class="section">
-<h2>Agent</h2>
-<p>An <strong>Agent</strong> selects, composes, and plans skills based on goals, policies, and risk tradeoffs. Agents reason over specifications.</p>
-</section>
-<section class="section">
-<h2>Runtime</h2>
-<p>The <strong>Runtime</strong> binds abstract skill specifications to concrete systems (robot, TCP, environment) and enforces constraints during execution.</p>
-</section>
-<section class="section">
-<h2>Evidence</h2>
-<p><strong>Evidence</strong> includes logs, metrics, trajectories, and outcomes. Evidence enables auditability, evaluation, and reuse.</p>
+<h2 id="where-to-go">Where to go next</h2>
+<p>Read the deeper pages, or jump to the product pages:</p>
+<ul class="checklist">
+<li><a href="../platform.html">Platform page</a>: the product view of RSS Platform.</li>
+<li><a href="../architecture.html">Architecture page</a>: platform-centered, protocol-enforced design.</li>
+<li><a href="../safety.html">Safety page</a>: policy gates and production guardrails.</li>
+</ul>
 </section>
 </main>
 <aside aria-label="On this page" class="toc">

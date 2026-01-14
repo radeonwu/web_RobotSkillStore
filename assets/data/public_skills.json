@@ -1,0 +1,32 @@
+[
+  {
+    "skill_id": "pick",
+    "name": "Pick",
+    "category": "Assembly",
+    "maturity": "Concept",
+    "latest_version": "0.1.0",
+    "runs_30d": 12,
+    "success_rate_30d": 0.83,
+    "robots_supported": 2
+  },
+  {
+    "skill_id": "insert",
+    "name": "Insert",
+    "category": "Assembly",
+    "maturity": "Concept",
+    "latest_version": "0.1.0",
+    "runs_30d": 9,
+    "success_rate_30d": 0.78,
+    "robots_supported": 2
+  },
+  {
+    "skill_id": "screw_tighten",
+    "name": "Screw Tighten",
+    "category": "Assembly",
+    "maturity": "Concept",
+    "latest_version": "0.1.0",
+    "runs_30d": 7,
+    "success_rate_30d": 0.71,
+    "robots_supported": 2
+  }
+]

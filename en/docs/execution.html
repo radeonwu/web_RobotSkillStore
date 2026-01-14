@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Execution · RSP Docs</title>
-<link href="../../assets/css/style.css?v=6.20.0" rel="stylesheet"/>
+<link href="../../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,16 +14,7 @@
 <span class="brand-mark">◆</span>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="../index.html">Home</a>
-<a class="toplink" href="../platform.html">Platform</a>
-<a class="toplink" href="../architecture.html">Architecture</a>
-<a class="toplink" href="../safety.html">Safety</a>
-<a class="toplink" href="../developers.html">Developers</a>
-<a class="toplink" href="../demo.html">Demo</a>
-<a class="toplink active" href="index.html">Docs</a>
-<a class="toplink" href="../contact.html">Contact</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">Home</a><a class="toplink" href="../skills.html">Skills</a><a class="toplink" href="../platform.html">Platform</a><a class="toplink" href="../agents.html">Agents</a><a class="toplink" href="../architecture.html">Architecture</a><a class="toplink" href="../safety.html">Safety</a><a class="toplink" href="../developers.html">Developers</a><a class="toplink" href="../demo.html">Demo</a><a class="toplink active" href="index.html">Docs</a><a class="toplink" href="../contact.html">Contact</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -33,12 +24,11 @@
 </div>
 </header>
 <div class="layout">
-
 <main class="content" id="content">
 <section class="section">
-  <h1>Execution Semantics</h1>
-  <p class="lead">From spec to a reproducible, auditable run</p>
-  <div class="pill-row"><a class="pill-link" href="index.html">Overview</a>
+<h1>Execution Semantics</h1>
+<p class="lead">From spec to a reproducible, auditable run</p>
+<div class="pill-row"><a class="pill-link" href="index.html">Overview</a>
 <a class="pill-link" href="concepts.html">Concepts</a>
 <a class="pill-link" href="skill-spec.html">Skill Spec</a>
 <a class="pill-link" href="skill-schema.html">Schema</a>
@@ -46,30 +36,26 @@
 <a class="pill-link" href="safety.html">Safety</a>
 <a class="pill-link" href="demo-mapping.html">Demo Mapping</a></div>
 </section>
-
 <section class="section">
-  <h2>Pre-execution validation</h2>
-  <p>Before execution, the runtime validates that required context is present and constraints are enforceable. If not, it fails fast with evidence.</p>
+<h2>Pre-execution validation</h2>
+<p>Before execution, the runtime validates that required context is present and constraints are enforceable. If not, it fails fast with evidence.</p>
 </section>
-
 <section class="section">
-  <h2>Runtime binding</h2>
-  <p>Binding maps abstract spec fields to concrete system parameters:</p>
-  <ul>
-    <li>Robot base pose</li>
-    <li>TCP / tool frame</li>
-    <li>Environment frames, fixtures, and calibration</li>
-  </ul>
+<h2>Runtime binding</h2>
+<p>Binding maps abstract spec fields to concrete system parameters:</p>
+<ul>
+<li>Robot base pose</li>
+<li>TCP / tool frame</li>
+<li>Environment frames, fixtures, and calibration</li>
+</ul>
 </section>
-
 <section class="section">
-  <h2>Constraint enforcement</h2>
-  <p>Constraints must be enforced during execution (e.g., force/speed/workspace). Enforcement is a runtime responsibility, not an implementation promise.</p>
+<h2>Constraint enforcement</h2>
+<p>Constraints must be enforced during execution (e.g., force/speed/workspace). Enforcement is a runtime responsibility, not an implementation promise.</p>
 </section>
-
 <section class="section">
-  <h2>Outcomes and Evidence</h2>
-  <p>Each run produces (1) an outcome (success/failure) and (2) evidence (logs/metrics/trajectory). Evidence makes runs auditable and comparable.</p>
+<h2>Outcomes and Evidence</h2>
+<p>Each run produces (1) an outcome (success/failure) and (2) evidence (logs/metrics/trajectory). Evidence makes runs auditable and comparable.</p>
 </section>
 </main>
 <aside aria-label="On this page" class="toc">
@@ -77,6 +63,6 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../../assets/js/site.js?v=6.20.0"></script>
+<script src="../../assets/js/site.js?v=6.43.0"></script>
 </body>
 </html>

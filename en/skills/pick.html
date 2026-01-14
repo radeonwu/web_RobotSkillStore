@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Pick · Robot Skill Store</title>
+<link href="../../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="../index.html">
+<span class="brand-mark">◆</span>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">Home</a><a class="toplink active" href="../skills.html">Skills</a><a class="toplink" href="../platform.html">Platform</a><a class="toplink" href="../agents.html">Agents</a><a class="toplink" href="../architecture.html">Architecture</a><a class="toplink" href="../safety.html">Safety</a><a class="toplink" href="../developers.html">Developers</a><a class="toplink" href="../demo.html">Demo</a><a class="toplink" href="../docs/index.html">Docs</a><a class="toplink" href="../contact.html">Contact</a></nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+<main class="content" id="content">
+<section class="section">
+<div class="badge">Concept Skill</div>
+<h1>Pick</h1>
+<p class="lead">Pick an object using a template-based or goal-conditioned grasp, producing a stable grasp pose and auditable metrics.</p>
+<div class="cta-row">
+<a class="btn primary" data-rss-platform-skill-link="pick" href="#">Open in Platform</a>
+<a class="btn secondary" href="../docs/skill-spec.html">Skill Spec</a>
+<a class="btn ghost" href="../docs/skill-schema.html">Schema</a>
+</div>
+</section>
+<section class="section">
+<h2 id="status">Platform Status</h2>
+<div data-rss-skill-status="1" data-skill-id="pick" id="rss-skill-status"></div>
+</section>
+<section class="section">
+<h2 id="overview">Overview</h2>
+<p>Pick an object using a template-based or goal-conditioned grasp, producing a stable grasp pose and auditable metrics.</p>
+<div class="grid grid-2">
+<div class="card">
+<div class="card-title">Typical inputs</div>
+<ul class="checklist">
+<li>Object/target pose or identifiers</li>
+<li>Optional hints (templates, approach, thresholds)</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-title">Outputs</div>
+<ul class="checklist">
+<li>Success flag</li>
+<li>Key measurements (timing/force/torque curve)</li>
+</ul>
+</div>
+</div>
+<p class="small-note">This page is the Concept layer. Execution and artifacts stay in Platform.</p>
+</section>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">On this page</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../../assets/js/site.js?v=6.43.0"></script>
+</body>
+</html>

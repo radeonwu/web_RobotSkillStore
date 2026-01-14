@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Demo · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.21.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,16 +14,7 @@
 <span class="brand-mark">◆</span>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">Home</a>
-<a class="toplink" href="platform.html">Platform</a>
-<a class="toplink" href="architecture.html">Architecture</a>
-<a class="toplink" href="safety.html">Safety</a>
-<a class="toplink" href="developers.html">Developers</a>
-<a class="toplink active" href="demo.html">Demo</a>
-<a class="toplink" href="docs/index.html">Docs</a>
-<a class="toplink" href="contact.html">Contact</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skills</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="agents.html">Agents</a><a class="toplink" href="architecture.html">Architecture</a><a class="toplink" href="safety.html">Safety</a><a class="toplink" href="developers.html">Developers</a><a class="toplink active" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -33,28 +24,24 @@
 </div>
 </header>
 <div class="layout">
-
 <main class="content" id="content">
-
 <section class="section">
-  <h1>Demo</h1>  
-  <div class="card">
-    <video controls playsinline preload="metadata"
-      style="width:100%;border-radius:16px;border:1px solid var(--vp-c-divider);background:#000;">
-      <source src="../assets/media/demo.mp4" type="video/mp4"/>
+<div class="card">
+<video controls="" playsinline="" preload="metadata" style="width:100%;border-radius:16px;border:1px solid var(--vp-c-divider);background:#000;">
+<source src="../assets/media/demo.mp4" type="video/mp4"/>
       Your browser does not support the video tag.
     </video>
-  </div>
+</div>
 </section>
-
 <section class="section">
-<h2 id="Reference_Execution_Model">Reference Execution Model — UR5 Example</h2>
-  <div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
-  <div class="card-title">Reference Execution Model (Swimlane SVG)</div>
-  <div class="note">Emphasis: explicit spec + runtime binding + constraint enforcement + auditable outcomes (sim/real consistent).</div>
-  <svg viewBox="0 0 1120 380" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Reference Execution Model with Skill Store">
-  <defs>
-    <style>
+<h1>Demo</h1>
+<p class="lead">Reference Execution Model — UR5 Example</p>
+<div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
+<div class="card-title">Reference Execution Model (Swimlane SVG)</div>
+<div class="note">Emphasis: explicit spec + runtime binding + constraint enforcement + auditable outcomes (sim/real consistent).</div>
+<svg aria-label="Reference Execution Model with Skill Store" height="auto" role="img" viewbox="0 0 1120 380" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<style>
       .lane{fill:#f6f7fb;stroke:#d9dde7;stroke-width:1.2}
       .label{font:600 16px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#111827}
       .node{fill:#ffffff;stroke:#cfd5e3;stroke-width:1.2}
@@ -63,94 +50,74 @@
       .arrow{stroke:#7b8499;stroke-width:1.6;fill:none;marker-end:url(#m)}
       .hint{font:400 12px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill:#6b7280}
     </style>
-    <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7b8499"/>
-    </marker>
-  </defs>
-
-  <text x="24" y="26" class="label">Reference Execution Model (Swimlane) — with Skill Store</text>
-  <text x="24" y="50" class="hint">Explicit I/O semantics • multi-implementation • success/domain/risk • orchestration • enforceable runtime • auditable evidence</text>
-
-  <rect x="24" y="76"  width="1072" height="70" rx="18" class="lane"/>
-  <rect x="24" y="154" width="1072" height="70" rx="18" class="lane"/>
-  <rect x="24" y="232" width="1072" height="70" rx="18" class="lane"/>
-  <rect x="24" y="310" width="1072" height="60" rx="18" class="lane"/>
-
-  <text x="50" y="118" class="label">Skill Store</text>
-  <text x="50" y="196" class="label">Agent</text>
-  <text x="50" y="274" class="label">Runtime</text>
-  <text x="50" y="348" class="label">Robot / Simulator</text>
-
-  <rect x="240" y="92" width="250" height="44" rx="16" class="node"/>
-  <text x="255" y="110" class="t1">Skill Spec (I/O Contract)</text>
-  <text x="255" y="128" class="t2">inputs/outputs • pre/post • evidence schema</text>
-
-  <rect x="520" y="92" width="270" height="44" rx="16" class="node"/>
-  <text x="535" y="110" class="t1">Stats & Boundaries</text>
-  <text x="535" y="128" class="t2">success rate • domain • risk boundary • version</text>
-
-  <rect x="820" y="92" width="240" height="44" rx="16" class="node"/>
-  <text x="835" y="110" class="t1">Candidate Skills</text>
-  <text x="835" y="128" class="t2">rankable & replaceable set</text>
-
-  <rect x="240" y="170" width="260" height="44" rx="16" class="node"/>
-  <text x="255" y="188" class="t1">Goal → Query Store</text>
-  <text x="255" y="206" class="t2">discover skills by goal & context</text>
-
-  <rect x="530" y="170" width="280" height="44" rx="16" class="node"/>
-  <text x="545" y="188" class="t1">Match & Rank (Policy)</text>
-  <text x="545" y="206" class="t2">domain fit • risk • success • cost</text>
-
-  <rect x="840" y="170" width="220" height="44" rx="16" class="node"/>
-  <text x="855" y="188" class="t1">Compose / Replace</text>
-  <text x="855" y="206" class="t2">skills are pluggable units</text>
-
-  <rect x="360" y="248" width="270" height="44" rx="16" class="node"/>
-  <text x="375" y="266" class="t1">Validate Context & Constraints</text>
-  <text x="375" y="284" class="t2">check preconditions & gates</text>
-
-  <rect x="660" y="248" width="230" height="44" rx="16" class="node"/>
-  <text x="675" y="266" class="t1">Bind Params</text>
-  <text x="675" y="284" class="t2">Base/TCP/Env</text>
-
-  <rect x="920" y="248" width="170" height="44" rx="16" class="node"/>
-  <text x="935" y="266" class="t1">Monitor & Enforce</text>
-  <text x="935" y="284" class="t2">safety gates</text>
-
-  <rect x="520" y="322" width="200" height="36" rx="16" class="node"/>
-  <text x="540" y="345" class="t1">Execute (UR5 / Sim)</text>
-
-  <path d="M 500 192 C 520 192, 520 192, 530 192" class="arrow"/>
-  <path d="M 810 192 C 830 192, 830 192, 840 192" class="arrow"/>
-
-  <path d="M 370 214 C 370 232, 420 232, 420 248" class="arrow"/>
-  <path d="M 670 214 C 670 232, 740 232, 740 248" class="arrow"/>
-  <path d="M 950 214 C 950 232, 980 232, 980 248" class="arrow"/>
-
-  <path d="M 720 292 C 720 308, 620 308, 620 322" class="arrow"/>
-  <path d="M 1005 292 C 1005 314, 930 314, 930 248" class="arrow"/>
-
-  <path d="M 620 322 C 620 312, 300 312, 300 146" class="arrow"/>
-  <text x="270" y="304" class="hint">Outcome + Evidence summary → update stats (success/domain/risk)</text>
-
-  <text x="24" y="372" class="hint">Output: success/fail + evidence (logs/metrics) + reproducible run config (sim/real consistent)</text>
+<marker id="m" markerheight="7" markerwidth="7" orient="auto-start-reverse" refx="9" refy="5" viewbox="0 0 10 10">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#7b8499"></path>
+</marker>
+</defs>
+<text class="label" x="24" y="26">Reference Execution Model (Swimlane) — with Skill Store</text>
+<text class="hint" x="24" y="50">Explicit I/O semantics • multi-implementation • success/domain/risk • orchestration • enforceable runtime • auditable evidence</text>
+<rect class="lane" height="70" rx="18" width="1072" x="24" y="76"></rect>
+<rect class="lane" height="70" rx="18" width="1072" x="24" y="154"></rect>
+<rect class="lane" height="70" rx="18" width="1072" x="24" y="232"></rect>
+<rect class="lane" height="60" rx="18" width="1072" x="24" y="310"></rect>
+<text class="label" x="50" y="118">Skill Store</text>
+<text class="label" x="50" y="196">Agent</text>
+<text class="label" x="50" y="274">Runtime</text>
+<text class="label" x="50" y="348">Robot / Simulator</text>
+<rect class="node" height="44" rx="16" width="250" x="240" y="92"></rect>
+<text class="t1" x="255" y="110">Skill Spec (I/O Contract)</text>
+<text class="t2" x="255" y="128">inputs/outputs • pre/post • evidence schema</text>
+<rect class="node" height="44" rx="16" width="270" x="520" y="92"></rect>
+<text class="t1" x="535" y="110">Stats &amp; Boundaries</text>
+<text class="t2" x="535" y="128">success rate • domain • risk boundary • version</text>
+<rect class="node" height="44" rx="16" width="240" x="820" y="92"></rect>
+<text class="t1" x="835" y="110">Candidate Skills</text>
+<text class="t2" x="835" y="128">rankable &amp; replaceable set</text>
+<rect class="node" height="44" rx="16" width="260" x="240" y="170"></rect>
+<text class="t1" x="255" y="188">Goal → Query Store</text>
+<text class="t2" x="255" y="206">discover skills by goal &amp; context</text>
+<rect class="node" height="44" rx="16" width="280" x="530" y="170"></rect>
+<text class="t1" x="545" y="188">Match &amp; Rank (Policy)</text>
+<text class="t2" x="545" y="206">domain fit • risk • success • cost</text>
+<rect class="node" height="44" rx="16" width="220" x="840" y="170"></rect>
+<text class="t1" x="855" y="188">Compose / Replace</text>
+<text class="t2" x="855" y="206">skills are pluggable units</text>
+<rect class="node" height="44" rx="16" width="270" x="360" y="248"></rect>
+<text class="t1" x="375" y="266">Validate Context &amp; Constraints</text>
+<text class="t2" x="375" y="284">check preconditions &amp; gates</text>
+<rect class="node" height="44" rx="16" width="230" x="660" y="248"></rect>
+<text class="t1" x="675" y="266">Bind Params</text>
+<text class="t2" x="675" y="284">Base/TCP/Env</text>
+<rect class="node" height="44" rx="16" width="170" x="920" y="248"></rect>
+<text class="t1" x="935" y="266">Monitor &amp; Enforce</text>
+<text class="t2" x="935" y="284">safety gates</text>
+<rect class="node" height="36" rx="16" width="200" x="520" y="322"></rect>
+<text class="t1" x="540" y="345">Execute (UR5 / Sim)</text>
+<path class="arrow" d="M 500 192 C 520 192, 520 192, 530 192"></path>
+<path class="arrow" d="M 810 192 C 830 192, 830 192, 840 192"></path>
+<path class="arrow" d="M 370 214 C 370 232, 420 232, 420 248"></path>
+<path class="arrow" d="M 670 214 C 670 232, 740 232, 740 248"></path>
+<path class="arrow" d="M 950 214 C 950 232, 980 232, 980 248"></path>
+<path class="arrow" d="M 720 292 C 720 308, 620 308, 620 322"></path>
+<path class="arrow" d="M 1005 292 C 1005 314, 930 314, 930 248"></path>
+<path class="arrow" d="M 620 322 C 620 312, 300 312, 300 146"></path>
+<text class="hint" x="270" y="304">Outcome + Evidence summary → update stats (success/domain/risk)</text>
+<text class="hint" x="24" y="372">Output: success/fail + evidence (logs/metrics) + reproducible run config (sim/real consistent)</text>
 </svg>
 <div class="card" style="margin-top:14px;">
-  <div class="card-title">Why Skill Store is a first-class lane</div>
-  <p class="note" style="margin-top:8px;">
+<div class="card-title">Why Skill Store is a first-class lane</div>
+<p class="note" style="margin-top:8px;">
     In RSP, a <strong>Skill</strong> is a reusable capability unit with explicit semantics — not just “a script”.
     The <strong>Skill Store</strong> provides the contract and the operational profile needed for safe orchestration:
   </p>
-  <ul class="checklist" style="margin-top:10px;">
-    <li><strong>Explicit I/O semantics</strong>: inputs/outputs, preconditions/postconditions, and evidence schema</li>
-    <li><strong>Implementation-agnostic</strong>: rule-based, classical control, RL, VLA, world model — the protocol surface stays stable</li>
-    <li><strong>Operational profile</strong>: success rate, applicability domain, risk boundaries, version &amp; compatibility</li>
-    <li><strong>Orchestratable</strong>: skills can be scheduled, composed, and <strong>replaced</strong> by policy (best-fit selection)</li>
-  </ul>
+<ul class="checklist" style="margin-top:10px;">
+<li><strong>Explicit I/O semantics</strong>: inputs/outputs, preconditions/postconditions, and evidence schema</li>
+<li><strong>Implementation-agnostic</strong>: rule-based, classical control, RL, VLA, world model — the protocol surface stays stable</li>
+<li><strong>Operational profile</strong>: success rate, applicability domain, risk boundaries, version &amp; compatibility</li>
+<li><strong>Orchestratable</strong>: skills can be scheduled, composed, and <strong>replaced</strong> by policy (best-fit selection)</li>
+</ul>
 </div>
-
 </div>
-
 <p>
     This demo is not a showcase. It is a <strong>reference execution model</strong> demonstrating how RSP governs skill execution
     across simulation and real robots — with reproducible bindings, constraint enforcement, and auditable outcomes.
@@ -243,84 +210,76 @@
 <div class="muted">UI: VitePress-like (no search, no version selector)</div>
 </div>
 </footer>
-
 <section class="section">
-  <h2 id="hands-on">Hands-on: Reference Execution + Evidence (D2)</h2>
-  <p>Run a reference demo (mock). The goal is to show <strong>spec-first execution</strong>, <strong>runtime binding</strong>, and <strong>auditable evidence</strong> — not robot control code.</p>
-
-  <div class="card">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-      <div>
-        <div class="card-title">Run Reference Demo</div>
-        <div class="note">UR5 · reach_target_pose · base/tcp/env binding · constraint enforcement · evidence</div>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn" onclick="rspRunDemo('en');">▶ Run</button>
-        <button class="btn btn-ghost" onclick="rspDownloadLastDemoEvidence();">Download Evidence</button>
-      </div>
-    </div>
-
-    <div id="rsp-demo-status" class="note" style="margin-top:10px;display:none;"></div>
-
-    <div style="margin-top:14px;">
-      <div class="card-title" style="margin-bottom:8px;">Execution Timeline</div>
-      <div id="rsp-demo-timeline" class="timeline"></div>
-    </div>
-
-    <div style="margin-top:14px;">
-      <div class="card-title" style="margin-bottom:8px;">Evidence Bundle</div>
-      <div class="note">Generated after each run. View inline or download as JSON.</div>
-      <pre id="rsp-demo-evidence" style="max-height:360px;overflow:auto;"><code class="language-json">{}</code></pre>
-    </div>
-  </div>
+<h2 id="hands-on">Hands-on: Reference Execution + Evidence (D2)</h2>
+<p>Run a reference demo (mock). The goal is to show <strong>spec-first execution</strong>, <strong>runtime binding</strong>, and <strong>auditable evidence</strong> — not robot control code.</p>
+<div class="card">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+<div>
+<div class="card-title">Run Reference Demo</div>
+<div class="note">UR5 · reach_target_pose · base/tcp/env binding · constraint enforcement · evidence</div>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+<button class="btn" onclick="rspRunDemo('en');">▶ Run</button>
+<button class="btn btn-ghost" onclick="rspDownloadLastDemoEvidence();">Download Evidence</button>
+</div>
+</div>
+<div class="note" id="rsp-demo-status" style="margin-top:10px;display:none;"></div>
+<div style="margin-top:14px;">
+<div class="card-title" style="margin-bottom:8px;">Execution Timeline</div>
+<div class="timeline" id="rsp-demo-timeline"></div>
+</div>
+<div style="margin-top:14px;">
+<div class="card-title" style="margin-bottom:8px;">Evidence Bundle</div>
+<div class="note">Generated after each run. View inline or download as JSON.</div>
+<pre id="rsp-demo-evidence" style="max-height:360px;overflow:auto;"><code class="language-json">{}</code></pre>
+</div>
+</div>
 </section>
-
 <section class="section">
-  <h2 id="is-not">What this demo is / is not</h2>
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title">This demo is</div>
-      <ul class="checklist">
-        <li><strong>Spec-first</strong>: driven by a skill spec &amp; bindings</li>
-        <li><strong>Fail-fast</strong>: constraint violations produce evidence</li>
-        <li><strong>Auditable</strong>: evidence bundle for every run</li>
-        <li><strong>Comparable</strong>: evidence supports regression comparisons</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-title">This demo is not</div>
-      <ul class="checklist">
-        <li>ROS / URScript tutorial</li>
-        <li>Robot controller implementation</li>
-        <li>Hardware bring-up guide</li>
-        <li>Application-specific workflow</li>
-      </ul>
-    </div>
-  </div>
+<h2 id="is-not">What this demo is / is not</h2>
+<div class="grid2">
+<div class="card">
+<div class="card-title">This demo is</div>
+<ul class="checklist">
+<li><strong>Spec-first</strong>: driven by a skill spec &amp; bindings</li>
+<li><strong>Fail-fast</strong>: constraint violations produce evidence</li>
+<li><strong>Auditable</strong>: evidence bundle for every run</li>
+<li><strong>Comparable</strong>: evidence supports regression comparisons</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-title">This demo is not</div>
+<ul class="checklist">
+<li>ROS / URScript tutorial</li>
+<li>Robot controller implementation</li>
+<li>Hardware bring-up guide</li>
+<li>Application-specific workflow</li>
+</ul>
+</div>
+</div>
 </section>
-
 <section class="section">
-  <h2 id="future-interface">Future interface (for real execution)</h2>
-  <p>This reference demo can be backed by simulator or real robot runtime. Keep the same I/O shape:</p>
-  <div class="card">
-    <div class="card-title">Server endpoint (planned)</div>
-    <pre><code class="language-text">POST /api/execute-skill
+<h2 id="future-interface">Future interface (for real execution)</h2>
+<p>This reference demo can be backed by simulator or real robot runtime. Keep the same I/O shape:</p>
+<div class="card">
+<div class="card-title">Server endpoint (planned)</div>
+<pre><code class="language-text">POST /api/execute-skill
 Input:
   - skill_spec.json
   - binding.json (base/tcp/env)
 Output:
   - evidence/ (bundle)
   - outcome.json</code></pre>
-    <p class="note">Today: mock execution in browser. Tomorrow: connect to simulator / UR5 runtime / CI regression runs.</p>
-  </div>
+<p class="note">Today: mock execution in browser. Tomorrow: connect to simulator / UR5 runtime / CI regression runs.</p>
+</div>
 </section>
-
 </main>
 <aside aria-label="On this page" class="toc">
 <div class="toc-title">On this page</div>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.21.0"></script>
+<script src="../assets/js/site.js?v=6.43.0"></script>
 </body>
 </html>

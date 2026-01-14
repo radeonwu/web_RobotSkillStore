@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>RSS 架构摘要 · Robot Skill Store</title>
+  <link href="../../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../index.html"><span class="brand-mark">◆</span><span class="brand-name">RobotSkillStore</span></a>
+      <nav aria-label="Primary" class="topnav">
+        <a class="toplink" href="../index.html">首页</a>
+        <a class="toplink" href="../skills.html">技能</a>
+        <a class="toplink" href="../platform.html">平台</a>
+        <a class="toplink" href="../agents.html">智能体</a>
+        <a class="toplink" href="../architecture.html">架构</a>
+        <a class="toplink" href="../safety.html">安全</a>
+        <a class="toplink" href="../developers.html">开发者</a>
+        <a class="toplink" href="../demo.html">Demo</a>
+        <a class="toplink active" href="index.html">文档</a>
+        <a class="toplink" href="../contact.html">联系</a>
+      </nav>
+      <div class="top-actions">
+        <button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+        <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <main class="content" id="content">
+      <section class="section">
+        <div class="badge">RSS Whitepaper · Architecture Digest</div>
+        <h1>RSS 架构摘要</h1>
+        <p class="lead">平台为中心，协议强制；智能体只做决策，执行真相由平台持有。</p>
+
+        <div class="card" style="margin-top:12px;">
+          <h2 id="layers">分层与职责</h2>
+          <ul class="checklist">
+            <li><strong>Website</strong>：面向人（展示、查询、发起请求），不拥有“执行真相”。</li>
+            <li><strong>RSS Platform</strong>：注册/版本/运行编排/评测/治理的系统中心。</li>
+            <li><strong>RSP</strong>：RSS 强制执行的不变量层（对象、语义、门禁、证据）。</li>
+            <li><strong>Agents</strong>：平台内部决策层，通过提交 Run 请求驱动流程。</li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:12px;">
+          <h2 id="truth">执行真相与证据</h2>
+          <ul class="checklist">
+            <li>任何动作都必须表现为 <strong>Run</strong>（平台原子记录）。</li>
+            <li>Run 绑定 <strong>Skill Version + Profile</strong>，输出 <strong>Evidence</strong>（日志/轨迹/视频等）。</li>
+            <li>成功与否由 <strong>Benchmark</strong> 判定，而非 UI “看起来像”。</li>
+          </ul>
+        </div>
+
+        <div class="cta-row" style="margin-top:14px;">
+          <a class="btn primary" href="../architecture.html">查看完整架构页</a>
+          <a class="btn secondary" href="index.html">返回文档中心</a>
+        </div>
+      </section>
+    </main>
+
+    <aside aria-label="On this page" class="toc">
+      <div class="toc-title">本页导航</div>
+      <nav class="toc-nav" id="tocNav"></nav>
+    </aside>
+  </div>
+
+  <script src="../../assets/js/site.js?v=6.43.0"></script>
+</body>
+</html>

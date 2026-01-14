@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>联系 · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.20.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,16 +14,7 @@
 <span class="brand-mark">◆</span>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">首页</a>
-<a class="toplink" href="platform.html">平台</a>
-<a class="toplink" href="architecture.html">架构</a>
-<a class="toplink" href="safety.html">安全</a>
-<a class="toplink" href="developers.html">开发者</a>
-<a class="toplink" href="demo.html">示例</a>
-<a class="toplink" href="docs/index.html">文档</a>
-<a class="toplink active" href="contact.html">联系</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="skills.html">技能</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="agents.html">智能体</a><a class="toplink" href="architecture.html">架构</a><a class="toplink" href="safety.html">安全</a><a class="toplink" href="developers.html">开发者</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink active" href="contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -35,59 +26,52 @@
 <div class="layout">
 <main class="content" id="content">
 <section class="section">
-  <h1>联系</h1>
-  <p class="lead">联系 Robot Skill Store</p>
+<h1>联系</h1>
+<p class="lead">联系 Robot Skill Store</p>
 </section>
-
 <section class="section">
-  <h2>邮箱</h2>
-  <p>直接邮箱：<a href="mailto:contact@robotskillstore.ai">contact@robotskillstore.ai</a></p>
-  <p class="note">部署后可启用 Serverless 邮件转发，将留言发送到 <code>towu.xiaojun@gmail.com</code>。</p>
+<h2>邮箱</h2>
+<p>直接邮箱：<a href="mailto:contact@robotskillstore.ai">contact@robotskillstore.ai</a></p>
+<p class="note">部署后可启用 Serverless 邮件转发，将留言发送到 <code>towu.xiaojun@gmail.com</code>。</p>
 </section>
-
 <section class="section">
-  <h2>留言板</h2>
-  <p>提交后会在下方按时间顺序显示（最新在最上）。本演示版将留言保存在浏览器本地。</p>
-
-  <div class="card">
-    <form id="contact-form" onsubmit="return submitMessage(this);">
-      <label>姓名</label>
-      <input type="text" name="name" required style="width:100%;margin-bottom:8px;">
-      <label>邮箱（可选）</label>
-      <input type="email" name="email" style="width:100%;margin-bottom:8px;">
-      <label>留言</label>
-      <textarea name="message" rows="5" required style="width:100%;margin-bottom:10px;"></textarea>
-
-      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px;">
-        <label style="display:flex;gap:8px;align-items:center;">
-          <input type="checkbox" name="send_email" checked>
+<h2>留言板</h2>
+<p>提交后会在下方按时间顺序显示（最新在最上）。本演示版将留言保存在浏览器本地。</p>
+<div class="card">
+<form id="contact-form" onsubmit="return submitMessage(this);">
+<label>姓名</label>
+<input name="name" required="" style="width:100%;margin-bottom:8px;" type="text"/>
+<label>邮箱（可选）</label>
+<input name="email" style="width:100%;margin-bottom:8px;" type="email"/>
+<label>留言</label>
+<textarea name="message" required="" rows="5" style="width:100%;margin-bottom:10px;"></textarea>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px;">
+<label style="display:flex;gap:8px;align-items:center;">
+<input checked="" name="send_email" type="checkbox"/>
           通过 Serverless 邮件转发发送（配置后生效）
         </label>
-        <button type="submit" class="btn">提交</button>
-        <button type="button" class="btn btn-ghost" onclick="exportLastEvidence();">导出最新证据</button>
-      </div>
-
-      <div id="msg-status" class="note" style="display:none;margin-top:8px;"></div>
-    </form>
-  </div>
-
-  <div class="card" style="margin-top:14px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-      <div class="card-title">留言列表 <span id="message-count" class="badge">0</span></div>
-      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-        <button type="button" class="btn btn-ghost" onclick="toggleMessageBoard();">收起</button>
-        <button type="button" class="btn btn-ghost" onclick="clearMessages();">清空（本地）</button>
-      </div>
-    </div>
-    <div id="message-board" style="margin-top:10px;">
-      <div id="message-list" class="msg-list"></div>
-    </div>
-  </div>
+<button class="btn" type="submit">提交</button>
+<button class="btn btn-ghost" onclick="exportLastEvidence();" type="button">导出最新证据</button>
+</div>
+<div class="note" id="msg-status" style="display:none;margin-top:8px;"></div>
+</form>
+</div>
+<div class="card" style="margin-top:14px;">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+<div class="card-title">留言列表 <span class="badge" id="message-count">0</span></div>
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+<button class="btn btn-ghost" onclick="toggleMessageBoard();" type="button">收起</button>
+<button class="btn btn-ghost" onclick="clearMessages();" type="button">清空（本地）</button>
+</div>
+</div>
+<div id="message-board" style="margin-top:10px;">
+<div class="msg-list" id="message-list"></div>
+</div>
+</div>
 </section>
-
 <section class="section">
-  <h2>Evidence（证据）</h2>
-  <p>每次提交都会生成证据包：<code>message.json</code>、<code>outcome.json</code>、<code>execution_context.json</code>。</p>
+<h2>Evidence（证据）</h2>
+<p>每次提交都会生成证据包：<code>message.json</code>、<code>outcome.json</code>、<code>execution_context.json</code>。</p>
 </section>
 </main>
 <aside aria-label="On this page" class="toc">
@@ -95,6 +79,6 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.20.0"></script>
+<script src="../assets/js/site.js?v=6.43.0"></script>
 </body>
 </html>

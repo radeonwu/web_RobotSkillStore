@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Architecture · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.20.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.43.0" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,16 +14,7 @@
 <span class="brand-mark">◆</span>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">Home</a>
-<a class="toplink" href="platform.html">Platform</a>
-<a class="toplink active" href="architecture.html">Architecture</a>
-<a class="toplink" href="safety.html">Safety</a>
-<a class="toplink" href="developers.html">Developers</a>
-<a class="toplink" href="demo.html">Demo</a>
-<a class="toplink" href="docs/index.html">Docs</a>
-<a class="toplink" href="contact.html">Contact</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skills</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="agents.html">Agents</a><a class="toplink active" href="architecture.html">Architecture</a><a class="toplink" href="safety.html">Safety</a><a class="toplink" href="developers.html">Developers</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -33,25 +24,24 @@
 </div>
 </header>
 <div class="layout">
-
 <main class="content" id="content">
 <section class="section">
 <h1>Architecture</h1>
-<p class="lead">Protocol-Centered, Not Tool-Centered</p>
-  <div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
-  <div class="card-title">Protocol-centered Architecture (SVG)</div>
-  <div class="note">A production-ready placeholder: replace this SVG later with a branded diagram without changing the page layout.</div>
-  <svg viewBox="0 0 1040 420" width="100%" height="auto" role="img" aria-label="Robot Skill Store Protocol-Centered Architecture">
-    <defs>
-      <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-        <stop offset="0" stop-color="rgba(59,130,246,.20)"/>
-        <stop offset="1" stop-color="rgba(59,130,246,.06)"/>
-      </linearGradient>
-      <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
-        <stop offset="0" stop-color="rgba(34,197,94,.18)"/>
-        <stop offset="1" stop-color="rgba(34,197,94,.06)"/>
-      </linearGradient>
-      <style>
+<p class="lead">Platform-Centered, Protocol-Enforced</p>
+<div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
+<div class="card-title">Platform-centered Architecture (SVG)</div>
+<div class="note">A production-ready placeholder: replace this SVG later with a branded diagram without changing the page layout.</div>
+<svg aria-label="Robot Skill Store Platform-centered, Protocol-enforced Architecture" height="auto" role="img" viewbox="0 0 1040 420" width="100%">
+<defs>
+<lineargradient id="g1" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0" stop-color="rgba(59,130,246,.20)"></stop>
+<stop offset="1" stop-color="rgba(59,130,246,.06)"></stop>
+</lineargradient>
+<lineargradient id="g2" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0" stop-color="rgba(34,197,94,.18)"></stop>
+<stop offset="1" stop-color="rgba(34,197,94,.06)"></stop>
+</lineargradient>
+<style>
         .box{fill:url(#g1);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
         .boxG{fill:url(#g2);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
         .pill{fill:rgba(59,130,246,.10);stroke:rgba(27,31,36,.20);stroke-width:1.5;rx:999;ry:999}
@@ -60,59 +50,48 @@
         .xs{font:12px ui-sans-serif,system-ui; fill: currentColor; opacity:.72}
         .a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
       </style>
-      <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
-      </marker>
-    </defs>
-
-    <rect class="box" x="30" y="40" width="300" height="130"></rect>
-    <text class="t" x="56" y="78">Skill Store</text>
-    <text class="s" x="56" y="106">Registry · metadata · version/signature</text>
-    <text class="s" x="56" y="132">constraints · deps · eval evidence</text>
-
-    <rect class="box" x="370" y="40" width="300" height="130"></rect>
-    <text class="t" x="396" y="78">Agent / Orchestrator</text>
-    <text class="s" x="396" y="106">discover · match/rank · compose</text>
-    <text class="s" x="396" y="132">policy · tradeoffs · planning</text>
-
-    <rect class="boxG" x="710" y="40" width="300" height="130"></rect>
-    <text class="t" x="736" y="78">Runtime</text>
-    <text class="s" x="736" y="106">bind params · enforce · monitor</text>
-    <text class="s" x="736" y="132">auditable outcomes · feedback</text>
-
-    <rect class="pill" x="250" y="190" width="540" height="46"></rect>
-    <text class="t" x="278" y="220">RSP — shared contract / semantic backbone</text>
-
-    <rect class="box" x="120" y="270" width="360" height="120"></rect>
-    <text class="t" x="146" y="308">Simulator</text>
-    <text class="s" x="146" y="334">Isaac Sim / Gazebo / digital twin</text>
-    <text class="xs" x="146" y="358">consistency checks · regression eval</text>
-
-    <rect class="box" x="560" y="270" width="360" height="120"></rect>
-    <text class="t" x="586" y="308">Real Robot</text>
-    <text class="s" x="586" y="334">UR5 / mobile manipulators</text>
-    <text class="xs" x="586" y="358">deployment · field feedback · loop</text>
-
-    <line class="a" x1="330" y1="105" x2="370" y2="105"></line>
-    <line class="a" x1="670" y1="105" x2="710" y2="105"></line>
-
-    <line class="a" x1="520" y1="170" x2="520" y2="190"></line>
-    <line class="a" x1="860" y1="170" x2="650" y2="190"></line>
-    <line class="a" x1="180" y1="170" x2="390" y2="190"></line>
-
-    <line class="a" x1="300" y1="270" x2="420" y2="236"></line>
-    <line class="a" x1="740" y1="270" x2="640" y2="236"></line>
-
-    <path class="a" d="M 560 390 C 640 410, 820 410, 900 390"></path>
-    <path class="a" d="M 480 390 C 400 410, 220 410, 140 390"></path>
-    <text class="xs" x="360" y="410">Sim↔Real loop: define → validate → deploy → feedback (same semantics & constraints)</text>
-  </svg>
+<marker id="m" markerheight="8" markerwidth="8" orient="auto" refx="9" refy="5" viewbox="0 0 10 10">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
+</marker>
+</defs>
+<rect class="box" height="130" width="300" x="30" y="40"></rect>
+<text class="t" x="56" y="78">Skill Store</text>
+<text class="s" x="56" y="106">Registry · metadata · version/signature</text>
+<text class="s" x="56" y="132">constraints · deps · eval evidence</text>
+<rect class="box" height="130" width="300" x="370" y="40"></rect>
+<text class="t" x="396" y="78">Agent / Orchestrator</text>
+<text class="s" x="396" y="106">discover · match/rank · compose</text>
+<text class="s" x="396" y="132">policy · tradeoffs · planning</text>
+<rect class="boxG" height="130" width="300" x="710" y="40"></rect>
+<text class="t" x="736" y="78">Runtime</text>
+<text class="s" x="736" y="106">bind params · enforce · monitor</text>
+<text class="s" x="736" y="132">auditable outcomes · feedback</text>
+<rect class="pill" height="46" width="540" x="250" y="190"></rect>
+<text class="t" x="278" y="220">RSP — shared contract / semantic backbone</text>
+<rect class="box" height="120" width="360" x="120" y="270"></rect>
+<text class="t" x="146" y="308">Simulator</text>
+<text class="s" x="146" y="334">Isaac Sim / Gazebo / digital twin</text>
+<text class="xs" x="146" y="358">consistency checks · regression eval</text>
+<rect class="box" height="120" width="360" x="560" y="270"></rect>
+<text class="t" x="586" y="308">Real Robot</text>
+<text class="s" x="586" y="334">UR5 / mobile manipulators</text>
+<text class="xs" x="586" y="358">deployment · field feedback · loop</text>
+<line class="a" x1="330" x2="370" y1="105" y2="105"></line>
+<line class="a" x1="670" x2="710" y1="105" y2="105"></line>
+<line class="a" x1="520" x2="520" y1="170" y2="190"></line>
+<line class="a" x1="860" x2="650" y1="170" y2="190"></line>
+<line class="a" x1="180" x2="390" y1="170" y2="190"></line>
+<line class="a" x1="300" x2="420" y1="270" y2="236"></line>
+<line class="a" x1="740" x2="640" y1="270" y2="236"></line>
+<path class="a" d="M 560 390 C 640 410, 820 410, 900 390"></path>
+<path class="a" d="M 480 390 C 400 410, 220 410, 140 390"></path>
+<text class="xs" x="360" y="410">Sim↔Real loop: define → validate → deploy → feedback (same semantics &amp; constraints)</text>
+</svg>
 </div>
-
 <p>
-    Robot Skill Store is built around a deliberate choice:
-    <strong>the protocol is the center of the system</strong>. Tools, simulators, robots, and agents plug into the protocol —
-    not the other way around.
+    Robot Skill Store is built around a deliberate choice: <strong>the platform is the center of the system</strong>.
+    RSS provides execution, evaluation, and governance — and it <strong>enforces</strong> a shared protocol (RSP) so tools,
+    simulators, robots, and agents can interoperate without redefining semantics.
   </p>
 </section>
 <section class="section">
@@ -162,20 +141,20 @@
 <h2 id="where-safety-fits">Where Safety Fits in the Architecture</h2>
 <p>
     Safety is not an external layer. It is embedded in skill definitions, execution constraints,
-    and runtime enforcement. Placing safety at the protocol and skill level reduces reliance on ad-hoc checks
+    and runtime enforcement. Placing safety in <strong>skill contracts</strong> and <strong>runtime policy gates</strong> (protocol-enforced) reduces reliance on ad-hoc checks
     and makes behavior more predictable across environments.
   </p>
 </section>
 <section class="section">
 <h2 id="extensible">Extensible by Design</h2>
 <p>
-    Because the architecture is protocol-centered, new simulators, robots, and agents can be added without redefining
+    Because RSS enforces a stable protocol backbone (RSP), new simulators, robots, and agents can be added without redefining
     the entire system. This extensibility is what makes Robot Skill Store a foundation for long-term ecosystem growth.
   </p>
 </section>
 <footer class="footer">
 <div class="footer-inner">
-<div>Robot Skill Store · build v6.20.0</div>
+<div>Robot Skill Store · build v6.21.0</div>
 <div class="muted">UI: VitePress-like (no search, no version selector)</div>
 </div>
 </footer>
@@ -185,6 +164,6 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.20.0"></script>
+<script src="../assets/js/site.js?v=6.43.0"></script>
 </body>
 </html>

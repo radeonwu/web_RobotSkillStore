@@ -453,6 +453,142 @@ function _rsp_isZh() {
   try { return (document.documentElement.lang || "").toLowerCase().startsWith("zh"); } catch(e) { return false; }
 }
 
+
+// --- Docs inline tab groups (no navigation) ---
+function initTabGroups(){
+  const groups = document.querySelectorAll('[data-tabgroup]');
+  if(!groups.length) return;
+
+  function activate(groupEl, tab){
+    const group = groupEl.getAttribute('data-tabgroup');
+    // pills
+    groupEl.querySelectorAll('.pill-link').forEach(btn=>{
+      const t = btn.getAttribute('data-tab');
+      if(t === tab) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+    // panels
+    document.querySelectorAll('[data-tabpanel-group="'+group+'"]').forEach(panel=>{
+      const p = panel.getAttribute('data-panel');
+      panel.style.display = (p === tab) ? '' : 'none';
+    });
+  }
+
+  groups.forEach(groupEl=>{
+    // initial
+    const active = groupEl.querySelector('.pill-link.active');
+    const first = groupEl.querySelector('.pill-link');
+    const initTab = (active && active.getAttribute('data-tab')) || (first && first.getAttribute('data-tab'));
+    if(initTab) activate(groupEl, initTab);
+
+    groupEl.querySelectorAll('.pill-link').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const tab = btn.getAttribute('data-tab');
+        if(!tab) return;
+        activate(groupEl, tab);
+      });
+    });
+  });
+
+  // Links that jump to a tab (but stay on the same page)
+  document.querySelectorAll('[data-tab-jump]').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      const spec = a.getAttribute('data-tab-jump') || '';
+      const parts = spec.split(':');
+      if(parts.length !== 2) return;
+      const group = parts[0], tab = parts[1];
+      const groupEl = document.querySelector('[data-tabgroup="'+group+'"]');
+      if(!groupEl) return;
+      e.preventDefault();
+      activate(groupEl, tab);
+      const panel = document.querySelector('[data-tabpanel-group="'+group+'"][data-panel="'+tab+'"]');
+      if(panel) panel.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+}
+
+// Inline pillbar toggle nav (used by Docs RSS/RSP summaries, etc.)
+function initInlineToggleNav(){
+  // Docs uses `hidden` to control visibility, while some older pages used `active`.
+  // This implementation supports BOTH.
+  // Requirements:
+  //  - .pillbar[data-toggle-group] contains .pill elements with data-toggle-target
+  //  - Panels have id=<data-toggle-target> and data-panel=<group>
+
+  function setPills(bar, targetId){
+    const pills = bar.querySelectorAll('.pill');
+    pills.forEach((p) => {
+      const tid = p.getAttribute('data-toggle-target');
+      const isActive = tid === targetId;
+      p.classList.toggle('active', isActive);
+      p.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+  }
+
+  function setPanels(group, targetId){
+    const panels = document.querySelectorAll(`[data-panel="${group}"]`);
+    panels.forEach((panel) => {
+      // Support both styles
+      if (panel.classList.contains('active')) panel.classList.remove('active');
+      if (!panel.classList.contains('hidden')) panel.classList.add('hidden');
+    });
+
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    // Show target
+    target.classList.remove('hidden');
+    target.classList.add('active');
+  }
+
+  function activate(bar, group, targetId){
+    if (!bar || !group || !targetId) return;
+    setPills(bar, targetId);
+    setPanels(group, targetId);
+
+    // Persist selection (best-effort)
+    try { sessionStorage.setItem('tabgroup:'+group, targetId); } catch (e) {}
+
+    // Update hash (without jumping)
+    try {
+      if (history && history.replaceState) {
+        history.replaceState(null, '', '#' + targetId);
+      }
+    } catch (e) {}
+  }
+
+  // Initialize every tab group on the page
+  document.querySelectorAll('.pillbar[data-toggle-group]').forEach((bar) => {
+    const group = bar.getAttribute('data-toggle-group');
+
+    // Delegated click
+    bar.addEventListener('click', (e) => {
+      const pill = e.target && e.target.closest ? e.target.closest('.pill') : null;
+      if (!pill || !bar.contains(pill)) return;
+      e.preventDefault();
+      const href = pill.getAttribute('href');
+      const targetId = pill.getAttribute('data-toggle-target')
+        || pill.getAttribute('data-tab')
+        || (href && href.startsWith('#') ? href.slice(1) : null);
+      activate(bar, group, targetId);
+    });
+
+    // Initial state: restore or default to first pill
+    let initial = null;
+    try { initial = sessionStorage.getItem('tabgroup:'+group); } catch (e) { initial = null; }
+
+    const pills = bar.querySelectorAll('.pill');
+    const first = pills && pills.length ? pills[0].getAttribute('data-toggle-target') : null;
+    const chosen = initial || first;
+    if (chosen) activate(bar, group, chosen);
+  });
+}
+
+
+// Expose for older builds that call window.initInlineToggleNav()
+window.initInlineToggleNav = initInlineToggleNav;
+
 document.addEventListener("DOMContentLoaded", () => {
   if (typeof location !== "undefined" && location.pathname && location.pathname.includes("contact.html")) {
     _rsp_renderMessages();
@@ -585,7 +721,7 @@ function _rsp_demo_makeEvidence(lang) {
       lang,
       created_at: iso,
       version: "v6.19.0",
-      note: "Mock run in browser. Wire to POST /api/execute-skill for real execution."
+      note: "Mock Run in browser. Wire to POST /runs to request a platform-managed Run (policy-gated, auditable)."
     }
   };
 
@@ -648,3 +784,469 @@ function rspDownloadLastDemoEvidence() {
   a.click();
   a.remove();
 }
+/* v6.22 public skill status (Website ↔ Platform linkage) */
+(function(){
+  function _rss_apiBase(){
+    // Allow override by setting window.RSS_PUBLIC_API_BASE before site.js loads.
+    // Default: same origin.
+    try { return (window.RSS_PUBLIC_API_BASE || '').replace(/\/$/, ''); } catch(e){ return ''; }
+  }
+
+  function _rss_timeout(ms){
+    return new Promise((_, rej)=>setTimeout(()=>rej(new Error('timeout')), ms));
+  }
+
+  async function _rss_fetchJson(url, opts){
+    const o = opts || {};
+    const timeoutMs = o.timeoutMs || 2500;
+    const res = await Promise.race([
+      fetch(url, {headers: o.headers || {}}),
+      _rss_timeout(timeoutMs)
+    ]);
+    if(!res || !res.ok) throw new Error('http');
+    return await res.json();
+  
+function _rss_assetsPrefix(){
+  // Works for /en/*.html, /zh/*.html, and docs subpages.
+  const p = (location && location.pathname ? location.pathname : "").replace(/\\/g, "/");
+  if (p.includes("/en/docs/") || p.includes("/zh/docs/")) return "../../assets";
+  return "../assets";
+}
+
+async function _rss_fetchLocalJson(relPath){
+  const res = await fetch(relPath);
+  if(!res || !res.ok) throw new Error("local_http");
+  return await res.json();
+}
+
+}
+
+  function _rss_fmtPct(x){
+    if(x === null || x === undefined || isNaN(x)) return '—';
+    return (Math.round(x*1000)/10).toFixed(1) + '%';
+  }
+
+  function _rss_fmtNum(n){
+    if(n === null || n === undefined || isNaN(n)) return '—';
+    return String(n);
+  }
+
+  function _rss_cardHtml(item){
+    const name = item.name || item.skill_id;
+    const latest = item.latest_version || '—';
+    const runs = (item.runs_30d !== undefined) ? item.runs_30d : (item.runs || '—');
+    const sr = (item.success_rate_30d !== undefined) ? item.success_rate_30d : item.success_rate;
+    const robots = item.robots_supported || item.robots_supported_count || '—';
+    const maturity = item.maturity || '';
+
+    return `
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+          <div>
+            <div class="card-title">${_rsp_escape(name)}</div>
+            <div class="status-muted">${_rsp_escape(item.skill_id || '')}</div>
+          </div>
+          ${maturity ? `<div class="status-badge">${_rsp_escape(maturity)}</div>` : ''}
+        </div>
+        <div class="status-row" style="margin-top:10px;">
+          <div class="status-pill"><span class="k">Latest</span><span class="v">${_rsp_escape(latest)}</span></div>
+          <div class="status-pill"><span class="k">Runs(30d)</span><span class="v">${_rsp_escape(_rss_fmtNum(runs))}</span></div>
+          <div class="status-pill"><span class="k">Success</span><span class="v">${_rsp_escape(_rss_fmtPct(sr))}</span></div>
+          <div class="status-pill"><span class="k">Robots</span><span class="v">${_rsp_escape(_rss_fmtNum(robots))}</span></div>
+        </div>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+          <a class="btn ghost" href="skills/${_rsp_escape(item.skill_id)}.html">Concept</a>
+          <a class="btn secondary" href="https://platform.robotskill.store/skills/${_rsp_escape(item.skill_id)}">Open in Platform</a>
+        </div>
+      </div>
+    `;
+  }
+
+  function _rss_saveCache(key, obj){
+    try{ localStorage.setItem(key, JSON.stringify({t:Date.now(), v:obj})); }catch(e){}
+  }
+
+  function _rss_loadCache(key, maxAgeMs){
+    try{
+      const raw = localStorage.getItem(key);
+      if(!raw) return null;
+      const o = JSON.parse(raw);
+      if(!o || !o.t) return null;
+      if(maxAgeMs && (Date.now()-o.t) > maxAgeMs) return null;
+      return o.v;
+    }catch(e){ return null; }
+  }
+
+  async function rssGetPublicSkills(){
+    const cacheKey = 'rss_public_skills_cache_v1';
+    const cached = _rss_loadCache(cacheKey, 10*60*1000);
+    if(cached) return cached;
+
+    const base = _rss_apiBase();
+    const url = base + '/api/public/v1/skills';
+    const data = await _rss_fetchJson(url, {timeoutMs: 2500});
+    _rss_saveCache(cacheKey, data);
+    return data;
+  }
+
+  async function rssGetPublicSkill(skillId){
+    const cacheKey = 'rss_public_skill_' + skillId;
+    const cached = _rss_loadCache(cacheKey, 10*60*1000);
+    if(cached) return cached;
+
+    const base = _rss_apiBase();
+    const url = base + '/api/public/v1/skills/' + encodeURIComponent(skillId);
+    const data = await _rss_fetchJson(url, {timeoutMs: 2500});
+    _rss_saveCache(cacheKey, data);
+    return data;
+  }
+
+  window.rssRenderPublicSkillsList = async function(containerId){
+    const el = document.getElementById(containerId);
+    if(!el) return;
+    el.innerHTML = '<div class="muted small">Loading...</div>';
+
+    try{
+      const items = await rssGetPublicSkills();
+      if(!items || !items.length){
+        el.innerHTML = '<div class="muted small">No public skills yet.</div>';
+        return;
+      }
+      el.innerHTML = items.map(_rss_cardHtml).join('');
+    }catch(e){
+      const cached = _rss_loadCache('rss_public_skills_cache_v1');
+      if(cached && cached.length){
+        el.innerHTML = cached.map(_rss_cardHtml).join('');
+        return;
+      }
+      el.innerHTML = '<div class="muted small">Platform public API not reachable. (Tip: deploy a reverse proxy so this site can reach <code>/api/public/v1</code>.)</div>';
+    }
+  };
+
+  window.rssRenderSkillStatusCard = async function(containerId){
+    const el = document.getElementById(containerId);
+    if(!el) return;
+    const skillId = el.getAttribute('data-skill-id') || '';
+    if(!skillId) return;
+
+    el.innerHTML = '<div class="muted small">Loading...</div>';
+
+    function render(data){
+      const latest = data.latest_version || '—';
+      const runs = data.stats_30d ? data.stats_30d.runs : data.runs_30d;
+      const sr = data.stats_30d ? data.stats_30d.success_rate : data.success_rate_30d;
+      const p50 = data.stats_30d ? data.stats_30d.p50_cycle_time_s : data.p50_cycle_time_s;
+      const robots = data.robots_supported || (data.compatibility && data.compatibility.robots ? data.compatibility.robots.length : '—');
+
+      el.innerHTML = `
+        <div class="status-row">
+          <div class="status-pill"><span class="k">Latest</span><span class="v">${_rsp_escape(latest)}</span></div>
+          <div class="status-pill"><span class="k">Runs(30d)</span><span class="v">${_rsp_escape(_rss_fmtNum(runs))}</span></div>
+          <div class="status-pill"><span class="k">Success</span><span class="v">${_rsp_escape(_rss_fmtPct(sr))}</span></div>
+          <div class="status-pill"><span class="k">p50</span><span class="v">${_rsp_escape(_rss_fmtNum(p50))}</span></div>
+          <div class="status-pill"><span class="k">Robots</span><span class="v">${_rsp_escape(_rss_fmtNum(robots))}</span></div>
+        </div>
+      `;
+    }
+
+    try{
+      const data = await rssGetPublicSkill(skillId);
+      render(data);
+    }catch(e){
+      const cached = _rss_loadCache('rss_public_skill_' + skillId);
+      if(cached){ render(cached); return; }
+      el.innerHTML = '<div class="muted small">No public status available.</div>';
+    }
+  };
+})();
+
+/* v6.22 Platform-linked Skill Status (public, read-only)
+ * - Website fetches Platform public endpoints:
+ *   GET /public/v1/skills
+ *   GET /public/v1/skills/{skill_id}
+ * - Safe boundary: aggregated only, no run_id/artifact URLs.
+ */
+
+function _rss_publicBase() {
+  try {
+    if (typeof window !== "undefined" && window.RSS_PUBLIC_API_BASE) {
+      return String(window.RSS_PUBLIC_API_BASE).replace(/\/+$/,'');
+    }
+  } catch(e) {}
+  return ""; // same-origin by default (use gateway/proxy in deployment)
+}
+
+function _rss_platformAppBase() {
+  // Allow override: window.RSS_PLATFORM_APP_BASE = "https://platform.example.com"
+  try {
+    if (typeof window !== "undefined" && window.RSS_PLATFORM_APP_BASE) {
+      return String(window.RSS_PLATFORM_APP_BASE).replace(/\/+$/,'');
+    }
+  } catch(e) {}
+  // default: same origin (e.g., via gateway reverse proxy) under /platform
+  return "";
+}
+
+
+function _rss_withTimeout(promise, ms) {
+  return new Promise((resolve, reject) => {
+    const t = setTimeout(() => reject(new Error("timeout")), ms);
+    promise.then(v => { clearTimeout(t); resolve(v); }, e => { clearTimeout(t); reject(e); });
+  });
+}
+
+async function _rss_fetchJson(path) {
+  const base = _rss_publicBase();
+  const url = base + path;
+  const res = await _rss_withTimeout(fetch(url, { headers: { "Accept": "application/json" }}), 6000);
+  if (!res.ok) throw new Error("http_" + res.status);
+  return await res.json();
+}
+
+function _rss_fmtPct(x) {
+  if (x === null || x === undefined || isNaN(x)) return "--";
+  const v = Math.round(Number(x) * 1000) / 10;
+  return v.toFixed(1) + "%";
+}
+
+function _rss_fmtNum(x) {
+  if (x === null || x === undefined || isNaN(x)) return "--";
+  const n = Number(x);
+  if (n >= 1000000) return (Math.round(n/100000)/10) + "M";
+  if (n >= 1000) return (Math.round(n/100)/10) + "K";
+  return String(Math.round(n));
+}
+
+function _rss_escape(s) {
+  try { return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); } catch(e) { return ""; }
+}
+
+function _rss_isZhSafe() {
+  try { return (document.documentElement.lang || "").toLowerCase().startsWith("zh"); } catch(e) { return false; }
+}
+
+function _rss_statusCardHTML(d) {
+  const zh = _rss_isZhSafe();
+  const title = zh ? "平台状态" : "Platform Status";
+  const note = zh ? "数据来自 RSS Platform public API（聚合统计）" : "Data from RSS Platform public API (aggregated).";
+  const latest = d && d.latest_version ? d.latest_version : "--";
+  const runs = d && d.stats_30d && typeof d.stats_30d.runs === "number" ? d.stats_30d.runs : (d && typeof d.runs_30d === "number" ? d.runs_30d : null);
+  const succ = d && d.stats_30d ? d.stats_30d.success_rate : (d ? d.success_rate_30d : null);
+  const p50 = d && d.stats_30d ? d.stats_30d.p50_cycle_time_s : (d ? d.p50_cycle_time_s : null);
+  const robots = d && d.compatibility && Array.isArray(d.compatibility.robots) ? d.compatibility.robots.length : (d && typeof d.robots_supported === "number" ? d.robots_supported : null);
+
+  return `
+    <div class="card">
+      <div class="status-row">
+        <div class="card-title">${_rss_escape(title)}</div>
+        <span class="status-pill">${_rss_escape("v" + latest)}</span>
+      </div>
+      <div class="status-kpis">
+        <div class="kpi">
+          <div class="kpi-label">${zh ? "近30天运行次数" : "Runs (30d)"}</div>
+          <div class="kpi-value">${_rss_escape(_rss_fmtNum(runs))}</div>
+          <div class="kpi-sub">${zh ? "仅公开聚合" : "Public aggregation only"}</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">${zh ? "成功率(30d)" : "Success rate (30d)"}</div>
+          <div class="kpi-value">${_rss_escape(_rss_fmtPct(succ))}</div>
+          <div class="kpi-sub">${zh ? "按 succeeded/failed" : "Succeeded / (succeeded+failed)"}</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">${zh ? "周期时间 P50" : "Cycle time P50"}</div>
+          <div class="kpi-value">${p50 === null || p50 === undefined || isNaN(p50) ? "--" : _rss_escape((Math.round(Number(p50)*10)/10).toFixed(1) + "s")}</div>
+          <div class="kpi-sub">${zh ? "近30天" : "Last 30 days"}</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">${zh ? "支持机器人" : "Robots supported"}</div>
+          <div class="kpi-value">${_rss_escape(_rss_fmtNum(robots))}</div>
+          <div class="kpi-sub">${zh ? "摘要展示" : "Summary"}</div>
+        </div>
+      </div>
+      <div class="small-note">${_rss_escape(note)}</div>
+    </div>
+  `;
+}
+
+async function rssRenderSkillStatus(skillId, containerId) {
+  const box = document.getElementById(containerId);
+  if (!box) return;
+  box.setAttribute('data-rss-skill-status','1');
+  box.setAttribute('data-skill-id', skillId);
+  box.innerHTML = `<div class="card"><div class="card-title">${_rss_isZhSafe() ? "平台状态" : "Platform Status"}</div><div class="status-muted">${_rss_isZhSafe() ? "加载中..." : "Loading..."}</div></div>`;
+  try {
+    const d = await _rss_fetchJson(`/public/v1/skills/${encodeURIComponent(skillId)}`);
+    box.innerHTML = _rss_statusCardHTML(d);
+  } catch(e) {
+    box.innerHTML = `<div class="card"><div class="card-title">${_rss_isZhSafe() ? "平台状态" : "Platform Status"}</div><div class="status-muted">${_rss_isZhSafe() ? "无法从平台获取公开状态（可能未启用 public stats 或未部署反代）。" : "Unable to load public status from Platform (public stats may be disabled or proxy not configured)."}</div></div>`;
+  }
+}
+
+function _rss_skillRowHTML(it, basePath) {
+  const zh = _rss_isZhSafe();
+  const href = (basePath || "") + (it.skill_id ? `skills/${encodeURIComponent(it.skill_id)}.html` : "#");
+  const name = it.name || it.skill_id || "";
+  const cat = it.category || "";
+  const maturity = it.maturity || "";
+  const latest = it.latest_version || "--";
+  const runs = (typeof it.runs_30d === "number") ? it.runs_30d : null;
+  const succ = (typeof it.success_rate_30d === "number") ? it.success_rate_30d : null;
+  const robots = (typeof it.robots_supported === "number") ? it.robots_supported : null;
+
+  return `
+    <tr>
+      <td>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <a href="${_rss_escape(href)}"><strong>${_rss_escape(name)}</strong></a>
+          <div class="status-muted">${_rss_escape(cat)}</div>
+        </div>
+      </td>
+      <td><span class="pill">${_rss_escape(maturity || (zh ? "—" : "--"))}</span></td>
+      <td><span class="pill">v${_rss_escape(latest)}</span></td>
+      <td>${_rss_escape(_rss_fmtNum(runs))}</td>
+      <td>${_rss_escape(_rss_fmtPct(succ))}</td>
+      <td>${_rss_escape(_rss_fmtNum(robots))}</td>
+    </tr>
+  `;
+}
+
+async function rssRenderPublicSkillsList(containerId, basePath) {
+  const box = document.getElementById(containerId);
+  if (!box) return;
+  const zh = _rss_isZhSafe();
+  // IMPORTANT:
+  // Many users open pages via file://. In that mode, JS may partially run and then fail
+  // (or fetch may be blocked), which would leave the page blank if we wipe existing HTML.
+  // Therefore, keep any static fallback content already in the container, and only
+  // render a loading card if the container is empty.
+  const hasStaticFallback = !!box.querySelector('table, .skills-table, .card');
+  if (!hasStaticFallback) {
+    box.innerHTML = `<div class="card"><div class="card-title">${zh ? "技能目录" : "Skills Catalog"}</div><div class="status-muted">${zh ? "加载中..." : "Loading..."}</div></div>`;
+  }
+  let items = null;
+  let offline = false;
+
+  // Built-in offline preview data (works even when opening via file:// where fetch() may be restricted).
+  const builtinOffline = [
+    {
+      skill_id: "pick",
+      name: zh ? "抓取" : "Pick",
+      category: zh ? "装配/搬运" : "Assembly/Handling",
+      maturity: "beta",
+      latest_version: "0.1.0",
+      runs_30d: 42,
+      success_rate_30d: 0.93,
+      robots_supported: 2
+    },
+    {
+      skill_id: "insert",
+      name: zh ? "插入" : "Insert",
+      category: zh ? "装配/插接" : "Assembly/Insertion",
+      maturity: "alpha",
+      latest_version: "0.1.0",
+      runs_30d: 27,
+      success_rate_30d: 0.81,
+      robots_supported: 2
+    },
+    {
+      skill_id: "tighten_screw",
+      name: zh ? "拧螺丝" : "Screw Tighten",
+      category: zh ? "装配/紧固" : "Assembly/Fastening",
+      maturity: "alpha",
+      latest_version: "0.1.0",
+      runs_30d: 18,
+      success_rate_30d: 0.78,
+      robots_supported: 1
+    }
+  ];
+
+  try {
+    // Preferred: platform public aggregation endpoint (via reverse proxy).
+    items = await _rss_fetchJson(`/public/v1/skills`);
+  } catch (e) {
+    // Fallback: offline preview data (useful when opening via file:// or before proxy is configured).
+    try {
+      items = await _rss_fetchLocalJson(`${_rss_assetsPrefix()}/data/public_skills.json`);
+      offline = true;
+    } catch (e2) {
+      items = builtinOffline;
+      offline = true;
+    }
+  }
+
+  // If we are rendering into the dynamic container and the platform is not connected,
+  // keep the static preview table untouched (do not duplicate the offline table).
+  if (offline && /-dyn$/.test(containerId)) {
+    return;
+  }
+
+  if (!items || !Array.isArray(items) || items.length === 0) {
+    // If we already have static fallback, do not wipe it.
+    if (!hasStaticFallback) {
+      box.innerHTML = `<div class="card"><div class="card-title">${zh ? "平台公开 API 不可达" : "Platform public API not reachable"}</div><div class="status-muted">${zh ? "提示：请用本地静态服务器打开本站（避免 file:// 限制），并配置反向代理使本站可访问 /public/v1/skills。" : "Tip: serve this site with a local static server (avoid file://), and configure a reverse proxy so this site can reach /public/v1/skills."}</div></div>`;
+    }
+    return;
+  }
+
+  const html = `
+    <table class="skills-table">
+      <thead>
+        <tr>
+          <th>${zh ? "技能" : "Skill"}</th>
+          <th>${zh ? "成熟度" : "Maturity"}</th>
+          <th>${zh ? "最新版本" : "Latest"}</th>
+          <th>${zh ? "运行(30d)" : "Runs(30d)"}</th>
+          <th>${zh ? "成功率(30d)" : "Success(30d)"}</th>
+          <th>${zh ? "机器人" : "Robots"}</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${items.map(it => _rss_skillRowHTML(it, basePath)).join('')}
+      </tbody>
+    </table>
+    <div class="small-note">${offline
+      ? (zh ? "离线预览数据：未连接平台，仅用于展示页面布局。" : "Offline preview data: platform not connected; for layout preview only.")
+      : (zh ? "注：仅展示 visibility=public 且允许公开聚合的技能。" : "Note: only visibility=public skills that allow public aggregation are shown.")}
+    </div>
+  `;
+  box.innerHTML = html;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Skills page: prefer dynamic container if present.
+  const listDyn = document.getElementById("rss-public-skills-dyn");
+  const listLegacy = document.getElementById("rss-public-skills");
+  if (listDyn) {
+    rssRenderPublicSkillsList("rss-public-skills-dyn", "");
+  } else if (listLegacy) {
+    rssRenderPublicSkillsList("rss-public-skills", "");
+  }
+
+  const links = document.querySelectorAll("[data-rss-platform-skill-link]");
+  if (links && links.length) {
+    const base = _rss_platformAppBase();
+    links.forEach(a => {
+      const sid = a.getAttribute("data-rss-platform-skill-link") || "";
+      if (!sid) return;
+      // if base provided, use it; else default to '/platform' path on same origin
+      const app = base || "/platform";
+      a.setAttribute("href", app.replace(/\/+$/,'') + "/skills/" + encodeURIComponent(sid));
+      a.setAttribute("rel", "noopener");
+      a.setAttribute("target", "_blank");
+    });
+  }
+
+  const statusBoxes = document.querySelectorAll("[data-rss-skill-status]");
+  if (statusBoxes && statusBoxes.length) {
+    // Support multiple status boxes on a page.
+    statusBoxes.forEach((statusBox) => {
+      const sid = statusBox.getAttribute('data-skill-id') || '';
+      if (!sid) return;
+      const cid = statusBox.getAttribute('id') || 'rss-skill-status';
+      rssRenderSkillStatus(sid, cid);
+    });
+  }
+  initTabGroups();
+  initInlineToggleNav();
+
+});
