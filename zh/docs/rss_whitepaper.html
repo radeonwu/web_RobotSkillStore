@@ -1,0 +1,1973 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robot Skill Store（RSS）白皮书</title>
+  <style>
+:root{
+  --bg:#0b0f14; --panel:#0f1620; --text:#e6edf3; --muted:#9aa4ad;
+  --link:#7cc0ff; --border:rgba(255,255,255,.10); --code:#0a0f18;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa;}
+}
+*{box-sizing:border-box}
+body{margin:0; font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.65;}
+a{color:var(--link); text-decoration:none}
+a:hover{text-decoration:underline}
+.header{
+  position:sticky; top:0; z-index:50;
+  background:linear-gradient(to bottom, var(--bg), rgba(0,0,0,0));
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{max-width:1200px; margin:0 auto; padding:14px 16px; display:flex; align-items:center; gap:12px;}
+.badge{font-size:12px; padding:3px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted);}
+.title{font-weight:700; font-size:16px}
+.spacer{flex:1}
+.lang-toggle{display:flex; gap:8px; align-items:center}
+.btn{
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.02);
+  color:var(--text);
+  padding:6px 10px; border-radius:10px; cursor:pointer;
+  font-size:13px;
+}
+.btn[aria-pressed="true"]{background:var(--panel); border-color:rgba(125,211,252,.35);}
+.main{max-width:1200px; margin:0 auto; padding:16px; display:grid; grid-template-columns: 290px 1fr; gap:16px;}
+@media (max-width: 980px){ .main{grid-template-columns: 1fr;} .toc{position:relative; top:auto; max-height:none;} }
+.toc{
+  position:sticky; top:64px;
+  align-self:start;
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;
+  padding:12px 12px;
+  max-height: calc(100vh - 90px);
+  overflow:auto;
+}
+.toc h2{margin:6px 0 10px; font-size:13px; color:var(--muted); font-weight:600; letter-spacing:.02em;}
+.toc ul{list-style:none; padding-left:0; margin:0}
+.toc li{margin:6px 0}
+.toc a{display:block; padding:4px 6px; border-radius:10px; color:var(--muted);}
+.toc a:hover{background:rgba(255,255,255,.04); color:var(--text); text-decoration:none;}
+.content{
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;
+  padding:18px 20px;
+  min-width:0;
+}
+.content h1{font-size:28px; margin:0 0 12px;}
+.content h2{font-size:20px; margin:26px 0 10px;}
+.content h3{font-size:16px; margin:18px 0 8px;}
+.content p{margin:10px 0;}
+.content hr{border:0; border-top:1px solid var(--border); margin:22px 0;}
+.content blockquote{margin:14px 0; padding:10px 12px; border-left:3px solid rgba(125,211,252,.45); background:rgba(255,255,255,.03); border-radius:10px;}
+.content code{font-family:var(--mono); background:rgba(255,255,255,.05); padding:2px 5px; border-radius:6px; font-size:0.95em;}
+.content pre{background:var(--code); padding:12px 14px; border-radius:12px; overflow:auto; border:1px solid var(--border);}
+.content pre code{background:transparent; padding:0}
+.content table{width:100%; border-collapse:collapse; margin:14px 0; overflow:auto;}
+.content th,.content td{border:1px solid var(--border); padding:8px 10px; vertical-align:top;}
+.content th{background:rgba(255,255,255,.04); text-align:left}
+.footer{max-width:1200px; margin:0 auto; padding:18px 16px 30px; color:var(--muted); font-size:12px;}
+.hidden{display:none;}
+
+
+body{font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", var(--sans);}
+.content{letter-spacing:0.2px;}
+.content p, .content li{word-break:break-word; line-break:anywhere;}
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="title">Robot Skill Store（RSS）白皮书</div>
+      <span class="badge">RSS Whitepaper</span>
+      <div class="spacer"></div>
+      <span class="badge">CN</span>
+    </div>
+  </header>
+
+  <main class="main">
+    <aside class="toc" aria-label="目录">
+      <h2>目录</h2>
+      <ul>
+<li><a href="#how-to-read-this-whitepaper">How to Read This Whitepaper</a></li>
+<li><a href="#key-takeaways">Key Takeaways</a></li>
+<li><a href="#chapter-1-执行摘要">Chapter 1 执行摘要</a></li>
+<li><a href="#chapter-2-机器人领域的技能危机">Chapter 2 - 机器人领域的&quot;技能危机&amp;#8221;</a></li>
+<li><a href="#chapter-3-什么是机器人技能">Chapter 3 - 什么是&quot;机器人技能&amp;#8221;</a></li>
+<li><a href="#chapter-4-从技能即代码到技能即系统资产">Chapter 4 - 从&quot;技能即代码&quot;到&quot;技能即系统资产&amp;#8221;</a></li>
+<li><a href="#chapter-5-robot-skill-store系统整体概览">Chapter 5 - Robot Skill Store：系统整体概览</a></li>
+<li><a href="#chapter-6-网站与平台机器人技能系统中的职责分离">Chapter 6 - 网站与平台：机器人技能系统中的职责分离</a></li>
+<li><a href="#chapter-7-统一技能对象模型">Chapter 7 - 统一技能对象模型</a></li>
+<li><a href="#chapter-8-执行评测与数据飞轮">Chapter 8 - 执行、评测与数据飞轮</a></li>
+<li><a href="#chapter-9-物理系统中的治理与可信">Chapter 9 - 物理系统中的治理与可信</a></li>
+<li><a href="#chapter-10-部署模式与工业现实">Chapter 10 - 部署模式与工业现实</a></li>
+<li><a href="#chapter-11-生态影响与未来方向">Chapter 11 - 生态影响与未来方向</a></li>
+<li><a href="#glossary">Glossary</a></li>
+</ul>
+    </aside>
+
+    <article class="content">
+      <h1 id="how-to-read-this-whitepaper">How to Read This Whitepaper</h1>
+
+<p>阅读指南</p>
+
+<p>Executives:</p>
+
+<p>Chapters 1, 2, 10, 11 &#8212; problem framing and strategic implications.</p>
+
+<p>System architects:</p>
+
+<p>Chapters 3&#8211;9 &#8212; skill definition, object model, execution, and
+governance.</p>
+
+<p>Implementers:</p>
+
+<p>Chapters 5&#8211;8 &#8212; lifecycle, execution, benchmarks, and deployment
+semantics.</p>
+
+<h1 id="key-takeaways">Key Takeaways</h1>
+
+<p>关键要点</p>
+
+<ul>
+<li><p>Robot Skill Store (RSS) separates robot skills from robot hardware and
+deployment environments.</p></li>
+<li><p>Skills are versioned, benchmarked, and governed as first-class assets.</p></li>
+<li><p>Execution data forms a closed-loop flywheel for continuous
+improvement.</p></li>
+<li><p>RSS enables cross-vendor, cross-site reuse of robotic capabilities.</p></li>
+<li><p>Governance and safety policies are enforced at execution time, not by
+convention.</p></li>
+</ul>
+
+<h1 id="chapter-1-执行摘要">Chapter 1 执行摘要</h1>
+
+<p><strong>1.1 当下机器人系统的真实状态</strong></p>
+
+<p>机器人领域正处在一个前所未有的"可见性时代"。</p>
+
+<p>研究突破、开源框架、仿真工具以及大量 Demo
+展示，使机器人能力看起来正在快速成熟。</p>
+
+<p>然而在真实生产环境中，<strong>机器人技能的部署依然缓慢、脆弱且成本高昂</strong>。</p>
+
+<p>在不同行业中反复出现同样的现象：</p>
+
+<ul>
+<li><p>Demo 成功，但部署停滞</p></li>
+<li><p>单点技能可行，规模化失败</p></li>
+<li><p>集成成本远高于创新收益</p></li>
+<li><p>运营风险压倒技术吸引力</p></li>
+</ul>
+
+<p>问题并不在于算法或硬件不足，\</p>
+
+<p>而在于<strong>缺乏一个将机器人技能作为"可治理能力"来管理的系统级框架</strong>。</p>
+
+<p><strong>1.2 被忽视的"技能问题"</strong></p>
+
+<p>在部署困难的表象之下，隐藏着一个根本问题：</p>
+
+<p><strong>到底什么是"机器人技能"？</strong></p>
+
+<p>在现实中，技能往往被当作：</p>
+
+<ul>
+<li><p>代码片段</p></li>
+<li><p>ROS 节点</p></li>
+<li><p>学习到的策略</p></li>
+<li><p>演示流程</p></li>
+</ul>
+
+<p>它们普遍缺乏：</p>
+
+<ul>
+<li><p>严格定义</p></li>
+<li><p>版本语义</p></li>
+<li><p>客观评测</p></li>
+<li><p>治理与问责</p></li>
+</ul>
+
+<p>结果是：\
+技能无法被系统性地信任、比较或安全部署。</p>
+
+<p>它们仍然只是<strong>工程产物</strong>，而非<strong>系统资产</strong>。</p>
+
+<p><strong>1.3 Robot Skill Store：系统性回应</strong>
+Robot Skill Store（RSS）正是对此问题的<strong>平台级回应</strong>。
+RSS 引入了一次根本性转变：</p>
+
+<p><strong>从"技能即代码"，到"技能即系统资产"。</strong></p>
+
+<p>在 RSS 中：</p>
+
+<ul>
+<li><p>技能被定义为契约化、可版本化的能力</p></li>
+<li><p>每次执行生成不可变系统记录</p></li>
+<li><p>评测标准化、可比较</p></li>
+<li><p>治理由平台自动执行</p></li>
+<li><p>可信度来自长期数据积累</p></li>
+</ul>
+
+<p>RSS 并不取代现有机器人框架，\
+而是补齐它们之间<strong>缺失的系统层</strong>。</p>
+
+<p><strong>1.4 网站与平台：有意为之的分离</strong></p>
+
+<p>RSS 的一个核心设计选择是<strong>严格区分</strong>：</p>
+
+<ul>
+<li><p><strong>RSS 网站</strong>：服务人类</p></li>
+<li><p><strong>RSS 平台</strong>：服务系统</p></li>
+</ul>
+
+<p>网站负责：</p>
+
+<ul>
+<li><p>技能发现与理解</p></li>
+<li><p>评测结果可视化</p></li>
+<li><p>人工触发流程</p></li>
+</ul>
+
+<p>平台负责：</p>
+
+<ul>
+<li><p>执行真相</p></li>
+<li><p>评测完整性</p></li>
+<li><p>治理与审计</p></li>
+</ul>
+
+<p>这种分离不是形式上的，而是<strong>物理系统安全与规模化的必要条件</strong>。</p>
+
+<p><strong>1.5 面向工业现实而设计</strong></p>
+
+<p>RSS 从一开始就面向真实工业环境设计：</p>
+
+<ul>
+<li><p>本地部署与内网隔离</p></li>
+<li><p>长周期生产系统</p></li>
+<li><p>严格安全与合规要求</p></li>
+<li><p>受控变更流程</p></li>
+</ul>
+
+<p>通过在不同部署环境中保持一致语义，\
+RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
+
+<p><strong>1.6 RSS 面向谁</strong></p>
+
+<p>RSS 面向的对象包括：</p>
+
+<ul>
+<li><p>希望从 Demo 走向规模化的机器人工程团队</p></li>
+<li><p>管理复杂部署的系统集成商</p></li>
+<li><p>希望分发可靠能力的技能提供方</p></li>
+<li><p>需要透明与可信的工业运营方</p></li>
+</ul>
+
+<p>它不是面向消费者的市场，\
+而是一个<strong>面向专业部署的机器人能力平台</strong>。</p>
+
+<p><strong>1.7 向前的路径</strong></p>
+
+<p>本白皮书阐述了：</p>
+
+<ul>
+<li><p>机器人技能面临的系统性问题</p></li>
+<li><p>技能的严格定义</p></li>
+<li><p>将技能作为资产管理的平台架构</p></li>
+<li><p>适用于物理系统的治理模型</p></li>
+</ul>
+
+<p>Robot Skill Store 不是终点，\
+而是一个<strong>可规模化机器人生态的基础设施起点</strong>。</p>
+
+<h1 id="chapter-2-机器人领域的技能危机">Chapter 2 - 机器人领域的"技能危机&#8221;</h1>
+
+<p><strong>2.1 机器人世界"演示很多，技能很少"</strong></p>
+
+<p>现代机器人领域看起来异常繁荣：</p>
+
+<ul>
+<li><p>论文不断</p></li>
+<li><p>开源项目丰富</p></li>
+<li><p>Demo 视频层出不穷</p></li>
+<li><p>实验室展示令人印象深刻</p></li>
+</ul>
+
+<p>但在现实工程中，<strong>真正可规模化部署的机器人技能极少</strong>。</p>
+
+<p>今天大多数所谓的"技能"实际上是：</p>
+
+<ul>
+<li><p>针对单一项目的脚本</p></li>
+<li><p>与具体 ROS 拓扑强耦合的节点</p></li>
+<li><p>只为某个场景训练的策略</p></li>
+<li><p>为一次 Demo 临时拼接的流程</p></li>
+</ul>
+
+<p>它们通常只在<strong>一次演示、一个环境、一台机器人、一组假设条件下</strong>成立。</p>
+
+<p>一旦条件发生变化，哪怕很小，技能便失效。</p>
+
+<p><strong>演示成功 ≠ 可部署能力</strong>，\
+这是机器人技能领域的核心危机。</p>
+
+<p><strong>2.2 技能被当成代码，而不是资产</strong></p>
+
+<p>在现有机器人流程中，技能通常被视为：</p>
+
+<p>&#8220;一段可以运行的代码&#8221;</p>
+
+<p>而不是：</p>
+
+<p>&#8220;一个需要被管理的系统资产&#8221;</p>
+
+<p>因此产生了一系列系统性问题：</p>
+
+<ul>
+<li><p>技能缺乏明确的版本语义</p></li>
+<li><p>修改无法被可靠追踪或审计</p></li>
+<li><p>回滚依赖人工甚至不可行</p></li>
+<li><p>兼容性与前提条件未被正式描述</p></li>
+<li><p>可信度来源于个人经验或"口碑&#8221;</p></li>
+</ul>
+
+<p>这种方式在研究原型阶段尚可接受，\
+但在生产系统中是<strong>不可接受的</strong>。</p>
+
+<p>云计算、数据库、安全关键软件等领域早已证明：</p>
+
+<p><strong>能力必须被当作资产来管理，而不是文件。</strong></p>
+
+<p>机器人运行在物理世界中，更不应落后于这一原则。</p>
+
+<p><strong>2.3 以 Demo 为中心的验证方式无法规模化</strong></p>
+
+<p>当下大多数机器人技能的验证方式是<strong>视觉化、主观的</strong>：</p>
+
+<ul>
+<li><p>机器人动作"看起来差不多&#8221;</p></li>
+<li><p>物体"基本能抓起来&#8221;</p></li>
+<li><p>对齐效果"感觉还行&#8221;</p></li>
+</ul>
+
+<p>这种验证方式无法回答任何工程级问题：</p>
+
+<ul>
+<li><p>在什么条件下会失败？</p></li>
+<li><p>成功率是多少？</p></li>
+<li><p>与其他方案相比如何？</p></li>
+<li><p>最近一次修改是否引入回退？</p></li>
+</ul>
+
+<p>没有系统化评测，<strong>就没有可信度</strong>；\
+没有可信度，<strong>就无法规模化部署</strong>。</p>
+
+<p><strong>2.4 缺乏治理，阻断工业落地</strong></p>
+
+<p>在工业环境中，部署一个机器人技能不仅是技术行为，\
+更是<strong>运营决策与法律责任问题</strong>。</p>
+
+<p>工厂需要明确回答：</p>
+
+<ul>
+<li><p>技能由谁提供？</p></li>
+<li><p>谁批准了部署？</p></li>
+<li><p>哪个版本运行在哪台设备上？</p></li>
+<li><p>执行前检查了哪些策略？</p></li>
+<li><p>出现问题时，有哪些可追溯证据？</p></li>
+</ul>
+
+<p>传统机器人工具链<strong>无法系统性地回答这些问题</strong>。</p>
+
+<p>结果往往是：</p>
+
+<ul>
+<li><p>行为被冻结，不敢升级</p></li>
+<li><p>严重依赖人工流程与经验</p></li>
+<li><p>拒绝使用外部技能</p></li>
+</ul>
+
+<p>这些路径都<strong>无法长期成立</strong>。</p>
+
+<p><strong>2.5 机器人、环境与厂商之间的碎片化</strong></p>
+
+<p>即使某个技能工程质量很高，它通常仍然：</p>
+
+<ul>
+<li><p>绑定于特定机器人型号</p></li>
+<li><p>针对单一场景调参</p></li>
+<li><p>依赖专有接口</p></li>
+</ul>
+
+<p>这种碎片化使得技能<strong>难以复用，生态无法形成</strong>。</p>
+
+<p>如果没有一个统一系统来定义：</p>
+
+<ul>
+<li><p>什么是技能</p></li>
+<li><p>技能如何被评测</p></li>
+<li><p>技能如何被部署</p></li>
+</ul>
+
+<p>那么技能永远只是<strong>孤立制品</strong>，而非系统构件。</p>
+
+<p><strong>2.6 结果：技能无法规模化</strong></p>
+
+<p>综合以上问题，可以得出一个明确结论：</p>
+
+<p><strong>现有形态下的机器人技能无法规模化。</strong></p>
+
+<p>它们无法跨机器人规模化，\
+无法跨环境规模化，\
+无法跨组织规模化，\
+更无法进入真正的生产系统。</p>
+
+<p><strong>Robot Skill Store 正是为解决这一问题而设计的。</strong></p>
+
+<h1 id="chapter-3-什么是机器人技能">Chapter 3 - 什么是"机器人技能&#8221;</h1>
+
+<p><strong>3.1 为什么"技能"必须被严格定义</strong></p>
+
+<p>在机器人领域，"技能（skill）"一词被广泛使用，却几乎从未被严格定义。</p>
+
+<p>它可能指代：</p>
+
+<ul>
+<li><p>一个运动原语</p></li>
+<li><p>一个 ROS 节点</p></li>
+<li><p>一段控制执行器的脚本</p></li>
+<li><p>一个训练好的策略权重</p></li>
+<li><p>为演示临时拼装的流程</p></li>
+</ul>
+
+<p>这种模糊性带来的后果是致命的：</p>
+
+<p><strong>系统无法建立在未定义的概念之上。</strong></p>
+
+<p>当不同团队对"技能"的理解不一致时，以下事情都无法成立：</p>
+
+<ul>
+<li><p>能力对比</p></li>
+<li><p>可靠性评估</p></li>
+<li><p>部署治理</p></li>
+<li><p>生态复用</p></li>
+</ul>
+
+<p>因此，RSS 的第一步不是做平台，而是<strong>强制给"机器人技能"一个系统级定义</strong>。</p>
+
+<p><strong>3.2 技能不是代码</strong></p>
+
+<p>一个常见误区是把机器人技能等同为"可执行代码"。</p>
+
+<p>但二者并不等价。</p>
+
+<ul>
+<li><p><strong>代码</strong>是实现方式</p></li>
+<li><p><strong>技能</strong>是能力承诺</p></li>
+</ul>
+
+<p>代码回答的是：</p>
+
+<p>&#8220;这是如何实现的？&#8221;</p>
+
+<p>而技能必须回答：</p>
+
+<p>&#8220;我提供什么能力？在什么条件下？有什么保证？&#8221;</p>
+
+<p>同一个技能可以有多种实现方式；\
+同一段代码在不同约束下，也可能代表不同技能。</p>
+
+<p>因此，在 RSS 中，<strong>代码只是技能的一部分，而不是技能本身</strong>。</p>
+
+<p><strong>3.3 技能也不是 Demo</strong></p>
+
+<p>Demo 展示的是<strong>可能性</strong>，\
+而技能必须具备<strong>可重复性</strong>。</p>
+
+<p>Demo 通常具有以下特征：</p>
+
+<ul>
+<li><p>人工干预</p></li>
+<li><p>强环境依赖</p></li>
+<li><p>操作员辅助</p></li>
+<li><p>为展示效果优化</p></li>
+</ul>
+
+<p>Demo 回答的是：</p>
+
+<p>&#8220;能不能演示一次？&#8221;</p>
+
+<p>而技能必须回答：</p>
+
+<p>&#8220;在不同运行、环境和操作条件下，能否稳定执行？&#8221;</p>
+
+<p>RSS 明确区分 <strong>演示（Demo）</strong> 与 <strong>技能（Skill）</strong>：</p>
+
+<ul>
+<li><p>Demo 可以展示技能</p></li>
+<li><p>但 Demo 不是技能的定义</p></li>
+</ul>
+
+<p><strong>3.4 技能是一种"被契约化的能力"</strong></p>
+
+<p>技能不仅是"能运行"，而是<strong>可描述、可测试、可治理</strong>。</p>
+
+<p>在 RSS 中，一个技能必须明确声明：</p>
+
+<ol>
+<li><p><strong>能力声明</strong>\
+技能声称完成的任务（如"将螺丝拧至 X 扭矩"）</p></li>
+<li><p><strong>输入</strong>\
+所需参数、引用或感知信息</p></li>
+<li><p><strong>前置条件</strong>\
+对环境、机器人状态、工具的假设</p></li>
+<li><p><strong>执行边界</strong>\
+技能控制的范围，以及明确不控制的部分</p></li>
+<li><p><strong>输出</strong>\
+可度量的结果或状态变化</p></li>
+<li><p><strong>失败模式</strong>\
+已知可能失败的情况</p></li>
+<li><p><strong>评测标准</strong>\
+判定成功与否的指标与阈值</p></li>
+</ol>
+
+<p>这个契约使得技能<strong>在执行之前就可以被理解与评估</strong>。</p>
+
+<p><strong>3.5 技能版本与不可变性</strong></p>
+
+<p>一旦技能被定义为契约，<strong>不可变性就成为必然要求</strong>。</p>
+
+<p>一个已发布的技能版本，不能在不知情的情况下改变行为。</p>
+
+<p>原因很简单：</p>
+
+<ul>
+<li><p>评测结果必须长期有效</p></li>
+<li><p>部署决策必须可审计</p></li>
+<li><p>回滚必须可靠</p></li>
+</ul>
+
+<p>在 RSS 中：</p>
+
+<ul>
+<li><p><strong>Skill</strong> 表示逻辑能力</p></li>
+<li><p><strong>Skill Version</strong> 表示不可变的"契约 + 实现&#8221;</p></li>
+</ul>
+
+<p>任何改动&#8212;&#8212;无论大小&#8212;&#8212;都必须生成新版本。</p>
+
+<p>这是机器人系统走向成熟工程体系的必要条件。</p>
+
+<p><strong>3.6 为什么这样的定义才能支撑平台</strong></p>
+
+<p>只有在技能被严格定义之后，RSS 才能真正支撑：</p>
+
+<ul>
+<li><p>可比较的评测</p></li>
+<li><p>有意义的基准测试</p></li>
+<li><p>基于策略的治理</p></li>
+<li><p>技能生态复用</p></li>
+</ul>
+
+<p>如果没有这一层定义，RSS 最终只会退化为：</p>
+
+<ul>
+<li><p>代码仓库</p></li>
+<li><p>Demo 展示站</p></li>
+<li><p>或一个没有可信度的技能市场</p></li>
+</ul>
+
+<p><strong>将技能定义为"可契约、可版本化、可评测的能力"，\
+是 RSS 成为平台的前提条件。</strong></p>
+
+<h1 id="chapter-4-从技能即代码到技能即系统资产">Chapter 4 - 从"技能即代码"到"技能即系统资产&#8221;</h1>
+
+<p><strong>4.1 &#8220;技能即代码"模式的根本局限</strong></p>
+
+<p>将机器人技能视为"可执行代码"，是长期以来的默认做法。</p>
+
+<p>在这种模式下：</p>
+
+<ul>
+<li><p>技能是一段脚本、一个节点或一个包</p></li>
+<li><p>执行等同于"把代码跑起来&#8221;</p></li>
+<li><p>验证等同于"Demo 成功过&#8221;</p></li>
+<li><p>分发等同于"共享仓库&#8221;</p></li>
+</ul>
+
+<p>这种方式可以规模化<strong>工程工作量</strong>，\
+却无法规模化<strong>能力的可靠性</strong>。</p>
+
+<p>其根本原因在于：</p>
+
+<p><strong>代码本身并不携带"能力语义"。</strong></p>
+
+<p>单靠代码，无法明确：</p>
+
+<ul>
+<li><p>它解决什么问题</p></li>
+<li><p>在什么条件下成立</p></li>
+<li><p>成功与失败如何判定</p></li>
+<li><p>是否可以安全部署</p></li>
+</ul>
+
+<p>结果是：\
+<strong>每一次复用，都会退化为一次新的系统集成项目。</strong></p>
+
+<p><strong>4.2 没有系统上下文，复用必然失败</strong></p>
+
+<p>在工程实践中，大多数技能复用失败都呈现相同模式：</p>
+
+<ul>
+<li><p>代码可以运行</p></li>
+<li><p>机器人可以运动</p></li>
+<li><p>但结果不可预测，甚至不安全</p></li>
+</ul>
+
+<p>原因在于：</p>
+
+<p><strong>技能依赖大量隐式系统上下文。</strong></p>
+
+<p>例如：</p>
+
+<ul>
+<li><p>机器人运动学与关节极限</p></li>
+<li><p>工具与标定状态</p></li>
+<li><p>环境几何关系</p></li>
+<li><p>感知假设</p></li>
+<li><p>时序与控制特性</p></li>
+</ul>
+
+<p>当这些假设未被显式描述、也未被系统约束时，\
+复用就只能靠"试试看"。</p>
+
+<p>RSS 的一个核心认知是：</p>
+
+<p><strong>上下文不是可选元数据，而是技能的一部分。</strong></p>
+
+<p><strong>4.3 将技能提升为系统的一等资产</strong></p>
+
+<p>RSS 提出一个根本性转变：</p>
+
+<p><strong>机器人技能不是"被运行的代码"，\
+而是"被管理的系统资产"。</strong></p>
+
+<p>作为系统资产，技能必须具备：</p>
+
+<ul>
+<li><p>身份（它是什么）</p></li>
+<li><p>版本（它具体是哪一个）</p></li>
+<li><p>状态（在哪里、如何被使用）</p></li>
+<li><p>历史（长期表现如何）</p></li>
+<li><p>规则（在什么条件下允许运行）</p></li>
+</ul>
+
+<p>这与成熟系统对关键构件的管理方式高度一致：</p>
+
+<ul>
+<li><p>云平台中的容器镜像</p></li>
+<li><p>制造流程中的工艺版本</p></li>
+<li><p>受监管 ML 系统中的模型</p></li>
+</ul>
+
+<p>机器人系统同样需要这种工程纪律。</p>
+
+<p><strong>4.4 当技能成为资产，系统会发生什么变化</strong></p>
+
+<p>当技能被视为系统资产后，会立即解锁一系列关键能力：</p>
+
+<p><strong>1. 可复现性</strong></p>
+
+<p>每一次执行都绑定明确的技能版本与配置。</p>
+
+<p>结果不再是经验描述，而是可复现记录。</p>
+
+<p><strong>2. 可比较性</strong></p>
+
+<p>不同技能或不同版本，可以在相同条件下进行评测。</p>
+
+<p>&#8220;哪个更好"成为一个有数据支撑的问题。</p>
+
+<p><strong>3. 可治理性</strong></p>
+
+<p>策略可以在资产层生效：</p>
+
+<ul>
+<li><p>谁可以运行？</p></li>
+<li><p>在哪些机器人上？</p></li>
+<li><p>在什么环境中？</p></li>
+</ul>
+
+<p><strong>4. 生命周期管理</strong></p>
+
+<p>技能可以被系统性地：</p>
+
+<ul>
+<li><p>发布</p></li>
+<li><p>弃用</p></li>
+<li><p>回滚</p></li>
+<li><p>认证</p></li>
+</ul>
+
+<p>而不是依赖人工流程。</p>
+
+<p><strong>4.5 为什么这种转变必须依赖平台</strong></p>
+
+<p>将技能作为资产来管理，<strong>不可能仅靠约定完成</strong>。</p>
+
+<p>它需要：</p>
+
+<ul>
+<li><p>权威注册表</p></li>
+<li><p>不可变版本管理</p></li>
+<li><p>执行记录体系</p></li>
+<li><p>评测基础设施</p></li>
+<li><p>策略与治理机制</p></li>
+</ul>
+
+<p>换句话说：</p>
+
+<p><strong>它需要一个平台。</strong></p>
+
+<p>如果没有平台，"技能即资产"最终只会退化为：</p>
+
+<ul>
+<li><p>文档规范</p></li>
+<li><p>目录约定</p></li>
+<li><p>个人自律</p></li>
+</ul>
+
+<p>RSS 的存在，正是为了补齐这一平台层。</p>
+
+<p><strong>4.6 为 RSS 架构奠定基础</strong></p>
+
+<p>这一章完成了一个关键转折：</p>
+
+<ul>
+<li><p>技能不再是短暂的 Demo</p></li>
+<li><p>而是长期存在、可治理的系统资产</p></li>
+</ul>
+
+<p>在此基础上，自然引出后续问题：</p>
+
+<ul>
+<li><p>这些资产如何建模？</p></li>
+<li><p>如何执行与评测？</p></li>
+<li><p>如何建立可信与治理机制？</p></li>
+</ul>
+
+<p>这些问题将直接导向 RSS 的<strong>对象模型与系统架构</strong>。</p>
+
+<h1 id="chapter-5-robot-skill-store系统整体概览">Chapter 5 - Robot Skill Store：系统整体概览</h1>
+
+<p><strong>5.1 从理念走向系统</strong></p>
+
+<p>前几章已经确立了三个关键前提：</p>
+
+<ol>
+<li><p>现有形态的机器人技能无法规模化</p></li>
+<li><p>机器人技能必须被定义为"被契约化、可版本化的能力&#8221;</p></li>
+<li><p>技能必须作为系统的一等资产进行管理</p></li>
+</ol>
+
+<p>这些前提自然导出一个结论：</p>
+
+<p><strong>需要一个系统，来管理机器人技能的完整生命周期。</strong></p>
+
+<p>Robot Skill Store（RSS）正是这样一个系统。</p>
+
+<p>RSS 不是一个单一应用，也不是脚本集合，\
+而是一个<strong>围绕机器人技能构建的统一平台</strong>，\
+覆盖从创建、验证到部署的全过程。</p>
+
+<p><strong>5.2 RSS 的核心目标</strong></p>
+
+<p>RSS 的核心目标可以用一句话概括：</p>
+
+<p><strong>让机器人技能"可被可信地部署"。</strong></p>
+
+<p>这意味着：</p>
+
+<ul>
+<li><p>技能在执行前就可以被理解</p></li>
+<li><p>技能可以被客观评测</p></li>
+<li><p>技能可以在治理约束下部署</p></li>
+<li><p>技能可以持续演进而不破坏可信度</p></li>
+</ul>
+
+<p>RSS 并不试图替代现有的机器人框架，\
+而是补齐它们之间<strong>缺失的系统层</strong>。</p>
+
+<p><strong>5.3 RSS 是什么，不是什么</strong></p>
+
+<p>为了避免误解，RSS 必须明确边界。</p>
+
+<p><strong>RSS 是：</strong></p>
+
+<ul>
+<li><p>以技能为中心的平台</p></li>
+<li><p>技能执行与评测的权威记录系统</p></li>
+<li><p>机器人能力的治理层</p></li>
+<li><p>Demo 与生产部署之间的桥梁</p></li>
+</ul>
+
+<p><strong>RSS 不是：</strong></p>
+
+<ul>
+<li><p>机器人控制器</p></li>
+<li><p>实时运动规划器</p></li>
+<li><p>ROS、MoveIt 或厂商 SDK 的替代品</p></li>
+<li><p>一个简单的网站或商城</p></li>
+</ul>
+
+<p>这种澄清是防止系统演变失控的关键。</p>
+
+<p><strong>5.4 RSS 中的技能生命周期</strong></p>
+
+<p>RSS 以明确的生命周期来组织机器人技能：</p>
+
+<ol>
+<li><p><strong>定义</strong>\
+技能被定义为具有明确假设与评测标准的能力契约。</p></li>
+<li><p><strong>封装</strong>\
+实现被封装为与技能版本绑定的制品。</p></li>
+<li><p><strong>执行</strong>\
+通过平台在仿真或真实环境中触发 Run。</p></li>
+<li><p><strong>评测</strong>\
+结果通过基准测试被度量、记录与对比。</p></li>
+<li><p><strong>治理</strong>\
+策略、权限与授权决定技能如何、在哪里运行。</p></li>
+<li><p><strong>部署</strong>\
+通过治理的技能版本进入生产环境。</p></li>
+</ol>
+
+<p>每一个阶段都会生成<strong>可长期保留的系统记录</strong>。</p>
+
+<p><strong>5.5 网站与平台的协同关系（概览）</strong></p>
+
+<p>RSS 通过两个互补角色来实现上述生命周期：</p>
+
+<ul>
+<li><strong>网站（Website）</strong>：服务人类</li>
+</ul>
+
+<p>网站关注：</p>
+
+<ul>
+<li><p>技能发现与理解</p></li>
+<li><p>可视化与比较</p></li>
+<li><p>人工触发的流程</p></li>
+</ul>
+
+<p>平台关注：</p>
+
+<ul>
+<li><p>执行与调度</p></li>
+<li><p>评测与记录</p></li>
+<li><p>策略执行与审计</p></li>
+</ul>
+
+<p>二者缺一不可，\
+共同构成完整的 RSS 系统。</p>
+
+<p><strong>5.6 为什么 RSS 是平台，而不是单一产品</strong></p>
+
+<p>RSS 的一个根本特征是：</p>
+
+<p><strong>它被设计为可扩展的，而不是"做完即止"的。</strong></p>
+
+<p>新的技能、机器人、环境、评测与策略\
+都可以在不破坏系统整体的情况下被引入。</p>
+
+<p>因此 RSS 可以同时作为：</p>
+
+<ul>
+<li><p>企业内部机器人工程的基础设施</p></li>
+<li><p>系统集成商的能力整合层</p></li>
+<li><p>技能提供方的分发与治理平台</p></li>
+</ul>
+
+<p>这正是<strong>平台</strong>与<strong>单一产品</strong>的本质区别。</p>
+
+<p><strong>5.7 走向架构与对象模型</strong></p>
+
+<p>在系统整体轮廓明确之后，剩下的问题变得具体而清晰：</p>
+
+<ul>
+<li><p>RSS 管理哪些权威对象？</p></li>
+<li><p>这些对象如何交互？</p></li>
+<li><p>系统如何保证执行真相与治理？</p></li>
+</ul>
+
+<p>这些问题将由后续章节系统回答。</p>
+
+<h1 id="chapter-6-网站与平台机器人技能系统中的职责分离">Chapter 6 - 网站与平台：机器人技能系统中的职责分离</h1>
+
+<p><strong>6.1 为什么在机器人系统中必须做严格分层</strong></p>
+
+<p>在传统软件系统中，网站与后端的边界往往只是工程实现上的选择。\
+但在机器人系统中，这条边界<strong>具有架构级与运营级的决定性意义</strong>。</p>
+
+<p>大量现有机器人项目存在以下问题：</p>
+
+<ul>
+<li><p>Demo 直接由 UI 工具触发</p></li>
+<li><p>执行逻辑隐藏在脚本或前端流程中</p></li>
+<li><p>成功与否依赖"人眼观察"而非系统性验证</p></li>
+</ul>
+
+<p>这种方式在"单次演示"阶段尚可接受，但在以下场景中会<strong>彻底失效</strong>：</p>
+
+<ul>
+<li><p>规模化部署</p></li>
+<li><p>生产环境运行</p></li>
+<li><p>安全与责任审计</p></li>
+</ul>
+
+<p>机器人运行在<strong>物理世界</strong>中，错误不仅是程序异常，而是可能导致：</p>
+
+<ul>
+<li><p>设备损坏</p></li>
+<li><p>人身安全风险</p></li>
+<li><p>产线停机</p></li>
+<li><p>法律与责任问题</p></li>
+</ul>
+
+<p>因此，一个核心原则必须被明确：</p>
+
+<p><strong>执行真相、评测结果与治理逻辑，绝不能依赖人类界面。</strong></p>
+
+<p><strong>6.2 RSS 网站的角色边界</strong></p>
+
+<p>RSS 网站的存在目的是<strong>服务人类的理解与决策</strong>，而不是系统执行。</p>
+
+<p>网站回答的是以下问题：</p>
+
+<ul>
+<li><p>有哪些技能？</p></li>
+<li><p>这些技能声称具备什么能力？</p></li>
+<li><p>它们是如何被评测的？</p></li>
+<li><p>在什么条件下它们是可信的？</p></li>
+</ul>
+
+<p>网站的职责是<strong>聚合、可视化、解释</strong>平台产生的数据，\
+帮助人类探索技能生态、进行比较，并发起受控操作。</p>
+
+<p>但必须明确：</p>
+
+<p><strong>网站不拥有执行逻辑，也不拥有系统真相。</strong></p>
+
+<p>在 RSS 中，网站可以：</p>
+
+<ul>
+<li><p>触发运行请求</p></li>
+<li><p>展示执行结果</p></li>
+<li><p>引导接入与使用流程</p></li>
+</ul>
+
+<p>但网站<strong>不能</strong>：</p>
+
+<ul>
+<li><p>实现任何控制闭环</p></li>
+<li><p>判定执行是否成功</p></li>
+<li><p>存储权威执行记录</p></li>
+<li><p>执行安全或策略判断</p></li>
+</ul>
+
+<p>网站是<strong>操作界面（control surface）</strong>，而不是<strong>控制系统（control
+system）</strong>。</p>
+
+<p><strong>6.3 RSS 平台的角色边界</strong></p>
+
+<p>它负责所有<strong>必须独立于人类界面而成立的事实</strong>，包括：</p>
+
+<ul>
+<li><p>技能生命周期管理</p></li>
+<li><p>执行调度与编排</p></li>
+<li><p>评测与基准测试</p></li>
+<li><p>策略与权限治理</p></li>
+<li><p>审计与可追溯性</p></li>
+</ul>
+
+<p>换句话说：</p>
+
+<p><strong>平台定义"到底发生了什么"。</strong></p>
+
+<p>技能是否被执行，由平台记录；\
+评测是否通过，由平台判定；\
+部署是否被阻断，由平台执行策略。</p>
+
+<p>这些能力必须在以下情况下都成立：</p>
+
+<ul>
+<li><p>无网站访问</p></li>
+<li><p>私有工厂网络</p></li>
+<li><p>自动化流水线</p></li>
+<li><p>第三方系统集成</p></li>
+</ul>
+
+<p>因此，RSS 平台必须是 <strong>API 优先、界面无关的系统</strong>。</p>
+
+<p><strong>6.4 为什么执行真相必须在平台</strong></p>
+
+<p>机器人系统中一个常见但致命的失败模式是 <strong>"由 UI 定义真相"</strong>。</p>
+
+<p>典型表现包括：</p>
+
+<ul>
+<li><p>点击一次 Demo 按钮即认为成功</p></li>
+<li><p>通过视觉对齐判断效果</p></li>
+<li><p>由操作人员主观确认"看起来可以&#8221;</p></li>
+</ul>
+
+<p>这些方式<strong>不可复现、不可审计、不可规模化</strong>。</p>
+
+<p>RSS 明确拒绝这种模式。</p>
+
+<p>在 RSS 中：</p>
+
+<ul>
+<li><p>每一次执行都是平台管理的 Run</p></li>
+<li><p>每一个 Run 都有完整的输入、输出、日志与指标</p></li>
+<li><p>每一个决策都能追溯到数据与策略</p></li>
+</ul>
+
+<p>这是机器人技能从"演示代码"进化为<strong>可部署系统资产</strong>的唯一路径。</p>
+
+<p><strong>6.5 不可妥协的边界规则</strong></p>
+
+<p>为了防止架构退化，RSS 明确规定以下<strong>不可妥协规则</strong>：</p>
+
+<ol>
+<li><p><strong>禁止 UI-only 能力</strong>\
+任何影响执行、评测或治理的能力，必须以平台 API 形式存在。</p></li>
+<li><p><strong>禁止双重真相</strong>\
+网站可以缓存和展示数据，但权威记录必须在平台。</p></li>
+<li><p><strong>禁止隐藏执行路径</strong>\
+所有技能执行必须可追溯到平台日志与身份。</p></li>
+<li><p><strong>禁止绕过治理</strong>\
+网站在任何情况下都不能绕过安全、授权或策略。</p></li>
+</ol>
+
+<p>这些不是实现偏好，而是 <strong>系统不变量</strong>。</p>
+
+<p><strong>6.6 对系统设计的含义</strong></p>
+
+<p>这种分层带来的直接结果包括：</p>
+
+<ul>
+<li><p>平台服务可以独立测试、部署与演进</p></li>
+<li><p>网站可以快速迭代而不破坏系统正确性</p></li>
+<li><p>第三方系统可以直接集成平台能力</p></li>
+</ul>
+
+<p>最重要的是：</p>
+
+<p><strong>Robot Skill Store 因此成为平台，而不是一个技能商城网站。</strong></p>
+
+<h1 id="chapter-7-统一技能对象模型">Chapter 7 - 统一技能对象模型</h1>
+
+<p><strong>7.1 为什么必须有统一对象模型</strong></p>
+
+<p>一个平台如果没有统一的对象模型，是无法成立的。</p>
+
+<p>在现有机器人体系中，不同团队对同一概念的表达完全不同：</p>
+
+<ul>
+<li><p>有的系统中，"技能"是一段脚本</p></li>
+<li><p>有的系统中，是一个 ROS 节点</p></li>
+<li><p>有的系统中，是一个训练好的策略</p></li>
+<li><p>有的系统中，是一条 Demo 流程</p></li>
+</ul>
+
+<p>这种碎片化直接导致：</p>
+
+<ul>
+<li><p>能力无法比较</p></li>
+<li><p>变更无法追踪</p></li>
+<li><p>治理无法统一</p></li>
+<li><p>工具链无法互通</p></li>
+</ul>
+
+<p>RSS 引入 <strong>统一的技能对象模型（Canonical Skill Model）</strong>，\
+用于在系统、团队与组织之间建立<strong>共同语言</strong>。</p>
+
+<p><strong>7.2 对象模型设计原则</strong></p>
+
+<p>RSS 的对象模型遵循四个设计原则：</p>
+
+<ol>
+<li><p><strong>显式性</strong>\
+所有关键假设必须被明确表达。</p></li>
+<li><p><strong>不可变性</strong>\
+已发布的版本与制品不可被隐式修改。</p></li>
+<li><p><strong>可追溯性</strong>\
+每一次执行都必须可追溯到身份、版本与配置。</p></li>
+<li><p><strong>可组合性</strong>\
+对象之间的组合必须清晰、无隐式耦合。</p></li>
+</ol>
+
+<p>这些原则贯穿所有对象定义。</p>
+
+<p><strong>7.3 RSS 的核心对象</strong></p>
+
+<p>RSS defines a small number of <strong>first-class objects</strong>.\
+Each object has a precise responsibility and lifecycle.</p>
+
+<p><strong>7.3.1 能力抽象</strong></p>
+
+<p><strong>Skill（技能）</strong> 表示一种<strong>逻辑能力抽象</strong>，与实现无关。</p>
+
+<p>它定义的是：</p>
+
+<ul>
+<li><p>能力本身是什么</p></li>
+<li><p>期望达成的结果</p></li>
+<li><p>所属任务类型</p></li>
+</ul>
+
+<p>例如：</p>
+
+<ul>
+<li><p>tighten_screw</p></li>
+<li><p>pick<em>and</em>place</p></li>
+<li><p>connector_insertion</p></li>
+</ul>
+
+<p>Skill <strong>不定义</strong>：</p>
+
+<ul>
+<li><p>实现方式</p></li>
+<li><p>执行机器人</p></li>
+<li><p>具体版本</p></li>
+</ul>
+
+<p>这使得同一能力可以存在多个实现。</p>
+
+<p><strong>7.3.2 不可变发布单元</strong></p>
+
+<p><strong>Skill Version（技能版本）</strong> 是能力定义与具体发布的绑定单元。</p>
+
+<p>它包含：</p>
+
+<ul>
+<li><p>明确的能力契约（输入、假设、评测指标）</p></li>
+<li><p>一个或多个可执行制品</p></li>
+<li><p>兼容性约束</p></li>
+<li><p>对应的评测结果</p></li>
+</ul>
+
+<p>一旦发布，Skill Version <strong>必须保持不可变</strong>。</p>
+
+<p>任何改动都必须生成新版本。</p>
+
+<p><strong>7.3.3 可执行制品</strong></p>
+
+<p><strong>Artifact（制品）</strong> 是具体的可执行包。</p>
+
+<p>例如：</p>
+
+<ul>
+<li><p>容器镜像</p></li>
+<li><p>Python wheel</p></li>
+<li><p>ROS2 包</p></li>
+<li><p>厂商特定二进制</p></li>
+</ul>
+
+<p>制品<strong>只能通过 Skill Version 被引用</strong>，\
+不能被绕过平台直接执行。</p>
+
+<p><strong>7.3.4 运行配置</strong></p>
+
+<p><strong>Profile（配置）</strong> 描述运行时环境：</p>
+
+<ul>
+<li><p>机器人型号与运动学</p></li>
+<li><p>工具与标定</p></li>
+<li><p>环境描述</p></li>
+<li><p>安全与限制参数</p></li>
+</ul>
+
+<p>Profile 使同一 Skill Version 能够在不同环境中运行，\
+同时保持可追溯性。</p>
+
+<p><strong>7.3.5 Run 执行记录</strong></p>
+
+<p><strong>Run（运行）</strong> 表示一次具体执行。</p>
+
+<p>它记录：</p>
+
+<ul>
+<li><p>技能版本</p></li>
+<li><p>配置</p></li>
+<li><p>输入与输出</p></li>
+<li><p>日志、指标、视频等</p></li>
+<li><p>状态与时间戳</p></li>
+</ul>
+
+<p>Run 是<strong>不可变的历史事实</strong>，\
+是 RSS 中建立可信度的基础。</p>
+
+<p><strong>7.3.6 评测定义</strong></p>
+
+<p><strong>Benchmark（评测）</strong> 定义标准化测试流程：</p>
+
+<ul>
+<li><p>测试场景</p></li>
+<li><p>评测指标</p></li>
+<li><p>阈值</p></li>
+<li><p>通过/失败条件</p></li>
+</ul>
+
+<p>Benchmark 使技能与版本之间的对比成为可能。</p>
+
+<p><strong>7.3.7 可信标识</strong></p>
+
+<p>A <strong>Badge</strong> represents a platform-issued trust signal.</p>
+
+<p>例如：</p>
+
+<ul>
+<li><p>已验证</p></li>
+<li><p>可生产部署</p></li>
+<li><p>工厂测试通过</p></li>
+</ul>
+
+<p>这些标识<strong>来源于数据，而非声明</strong>。</p>
+
+<p><strong>7.4 对象之间的关系</strong></p>
+
+<p>对象之间的核心关系是：</p>
+
+<ul>
+<li><p>Skill → 多个 → Skill Version</p></li>
+<li><p>Skill Version → 引用 → Artifact</p></li>
+<li><p>Skill Version → 产生 → Run</p></li>
+<li><p>Run → 参与 → Benchmark</p></li>
+<li><p>Benchmark → 产生 → Badge</p></li>
+</ul>
+
+<p>这保证了：</p>
+
+<p><strong>任何能力声明，都可以追溯到具体证据。</strong></p>
+
+<p><strong>7.5 为什么该模型天然支持治理</strong></p>
+
+<p>治理之所以成立，是因为：</p>
+
+<ul>
+<li><p>执行始终绑定版本</p></li>
+<li><p>版本不可变</p></li>
+<li><p>策略可以附着在对象上</p></li>
+<li><p>审计自动生成</p></li>
+</ul>
+
+<p>治理从"人为流程"转变为<strong>系统属性</strong>。</p>
+
+<p><strong>7.6 从对象模型走向系统架构</strong></p>
+
+<p>在统一对象模型确立之后：</p>
+
+<ul>
+<li><p>架构职责边界变得清晰</p></li>
+<li><p>API 设计不再随意</p></li>
+<li><p>治理与可信有了落点</p></li>
+</ul>
+
+<p>接下来的章节将围绕<strong>执行、评测与治理</strong>展开。</p>
+
+<h1 id="chapter-8-执行评测与数据飞轮">Chapter 8 - 执行、评测与数据飞轮</h1>
+
+<p><strong>8.1 执行不等于"把代码跑起来"</strong></p>
+
+<p>在传统机器人流程中，"执行"通常被视为一次性事件：</p>
+
+<ul>
+<li><p>启动脚本</p></li>
+<li><p>机器人运动</p></li>
+<li><p>过程结束</p></li>
+</ul>
+
+<p>最终留下的往往只是：</p>
+
+<ul>
+<li><p>一段视频</p></li>
+<li><p>一份日志</p></li>
+<li><p>或操作者的主观记忆</p></li>
+</ul>
+
+<p>RSS 对执行采取了完全不同的立场：</p>
+
+<p><strong>执行是系统中的一等事件，而不是瞬时动作。</strong></p>
+
+<p>在 RSS 中，每一次执行都是一个 <strong>Run</strong> &#8212;&#8212;\
+一个不可变、结构化的系统记录，\
+它不仅记录"执行了什么"，还记录：</p>
+
+<ul>
+<li><p>在什么条件下</p></li>
+<li><p>由谁触发</p></li>
+<li><p>产生了什么结果</p></li>
+</ul>
+
+<p>执行因此从"动作"转变为<strong>数据资产</strong>。</p>
+
+<p><strong>8.2 Run 是证据的最小原子单元</strong></p>
+
+<p><strong>Run</strong> 是 RSS 中构建可信度的最小证据单元。</p>
+
+<p>每一个 Run 都完整记录：</p>
+
+<ul>
+<li><p>技能版本（具体是哪一个能力）</p></li>
+<li><p>Profile（机器人、环境、限制条件）</p></li>
+<li><p>输入参数</p></li>
+<li><p>输出与状态变化</p></li>
+<li><p>日志、指标、视频等制品</p></li>
+<li><p>时间戳与身份信息</p></li>
+</ul>
+
+<p>Run 一经生成即不可变。</p>
+
+<p>不会被修改、覆盖或"事后修正"。</p>
+
+<p>任何变化，都会产生一个新的 Run。</p>
+
+<p>这种不可变性是<strong>可审计性与可复现性</strong>的基础。</p>
+
+<p><strong>8.3 从执行到评测</strong></p>
+
+<p>一次 Run 展示的是<strong>行为</strong>，\
+而评测需要的是<strong>聚合与对比</strong>。</p>
+
+<p>RSS 有意将"执行"和"评测"分离。</p>
+
+<p>评测通过 <strong>Benchmark</strong> 来定义，明确：</p>
+
+<ul>
+<li><p>测试场景</p></li>
+<li><p>评测指标</p></li>
+<li><p>阈值</p></li>
+<li><p>成功/失败判定</p></li>
+</ul>
+
+<p>Benchmark 作用于 <strong>一组 Runs</strong>，而非单次执行。</p>
+
+<p>因此 RSS 能够系统性地回答：</p>
+
+<ul>
+<li><p>这个技能在不同条件下有多可靠？</p></li>
+<li><p>新版本相对于旧版本是否退化？</p></li>
+<li><p>在特定约束下哪个实现更优？</p></li>
+</ul>
+
+<p><strong>8.4 用客观指标取代"看起来不错"</strong></p>
+
+<p>在许多机器人团队中，验证仍然依赖视觉判断：</p>
+
+<ul>
+<li><p>&#8220;看起来挺稳&#8221;</p></li>
+<li><p>&#8220;动作好像很顺&#8221;</p></li>
+<li><p>&#8220;这次没有滑掉&#8221;</p></li>
+</ul>
+
+<p>这种判断<strong>主观、不可复现</strong>。</p>
+
+<p>RSS 明确用 <strong>量化指标</strong> 取代视觉判断。</p>
+
+<p>例如：</p>
+
+<ul>
+<li><p>成功率</p></li>
+<li><p>完成时间</p></li>
+<li><p>误差容限</p></li>
+<li><p>力/扭矩限制</p></li>
+<li><p>位姿偏差</p></li>
+</ul>
+
+<p>模糊的感觉被转化为<strong>可计算、可比较的信号</strong>。</p>
+
+<p><strong>8.5 数据飞轮如何形成</strong></p>
+
+<p>随着 Run 的持续积累与 Benchmark 的评测，\
+RSS 形成一个<strong>数据飞轮</strong>：</p>
+
+<ol>
+<li><p><strong>执行产生数据</strong>\
+每一次 Run 生成日志、指标与制品。</p></li>
+<li><p><strong>评测聚合数据</strong>\
+Benchmark 将原始 Run 转化为性能信号。</p></li>
+<li><p><strong>可信信号出现</strong>\
+认证标识、排序与置信度由评测数据产生。</p></li>
+<li><p><strong>决策质量提升</strong>\
+用户基于证据选择技能，而非宣传。</p></li>
+<li><p><strong>使用进一步增加</strong>\
+更多执行产生更多数据，形成正反馈。</p></li>
+</ol>
+
+<p>这是一个<strong>随时间增强的系统效应</strong>。</p>
+
+<p><strong>8.6 为什么数据飞轮必须依赖平台</strong></p>
+
+<p>数据飞轮无法通过零散工具维持。</p>
+
+<p>它需要：</p>
+
+<ul>
+<li><p>一致的数据结构</p></li>
+<li><p>不可变的执行记录</p></li>
+<li><p>集中的评测逻辑</p></li>
+<li><p>对数据访问的治理</p></li>
+<li><p>长期存储与血缘关系</p></li>
+</ul>
+
+<p>只有平台才能稳定提供这些能力。</p>
+
+<p>否则，数据将再次碎片化为：</p>
+
+<ul>
+<li><p>本地日志</p></li>
+<li><p>共享文件夹中的视频</p></li>
+<li><p>临时看板中的指标</p></li>
+</ul>
+
+<p>飞轮随之失效。</p>
+
+<p><strong>8.7 对技能提供方与使用方的影响</strong></p>
+
+<p>对技能提供方而言：</p>
+
+<ul>
+<li><p>能力声明必须由数据支撑</p></li>
+<li><p>改进效果清晰可见</p></li>
+<li><p>信誉可以随时间累积</p></li>
+</ul>
+
+<p>对技能使用方而言：</p>
+
+<ul>
+<li><p>选择基于证据</p></li>
+<li><p>风险显著降低</p></li>
+<li><p>部署信心增强</p></li>
+</ul>
+
+<p>RSS 通过数据<strong>对齐整个生态的激励机制</strong>。</p>
+
+<p><strong>8.8 为治理奠定基础</strong></p>
+
+<p>仅有执行与评测还不够。</p>
+
+<p>一旦数据存在，系统必须进一步回答：</p>
+
+<ul>
+<li><p>谁可以运行什么？</p></li>
+<li><p>在什么条件下？</p></li>
+<li><p>谁承担责任？</p></li>
+</ul>
+
+<p>这些问题将直接引向 <strong>治理与可信</strong>。</p>
+
+<h1 id="chapter-9-物理系统中的治理与可信">Chapter 9 - 物理系统中的治理与可信</h1>
+
+<p><strong>9.1 为什么在机器人系统中"可信"更难</strong></p>
+
+<p>在纯数字系统中，失败通常是可逆的：</p>
+
+<ul>
+<li><p>服务可以重启</p></li>
+<li><p>数据可以恢复</p></li>
+<li><p>Bug 可以修复</p></li>
+</ul>
+
+<p>但在机器人系统中，失败是<strong>物理性的</strong>。</p>
+
+<p>它可能导致：</p>
+
+<ul>
+<li><p>设备损坏</p></li>
+<li><p>安全事故</p></li>
+<li><p>产线停机</p></li>
+<li><p>法律与合规风险</p></li>
+</ul>
+
+<p>因此，机器人系统中的可信度不能依赖"默认信任"或"经验判断"。</p>
+
+<p><strong>可信必须被系统性地设计出来。</strong></p>
+
+<p><strong>9.2 治理不是"事后流程"</strong></p>
+
+<p>一个常见误区是把治理理解为<strong>人为流程</strong>：</p>
+
+<ul>
+<li><p>代码评审</p></li>
+<li><p>审批会议</p></li>
+<li><p>检查清单与 SOP</p></li>
+</ul>
+
+<p>这些流程是必要的，但远远不够。</p>
+
+<p>它们无法规模化，也无法在运行时生效。</p>
+
+<p>RSS 的立场是：</p>
+
+<p><strong>治理必须是系统属性，而不是事后流程。</strong></p>
+
+<p>这意味着治理逻辑必须：</p>
+
+<ul>
+<li><p>可被机器强制执行</p></li>
+<li><p>在所有路径上一致生效</p></li>
+<li><p>深度嵌入执行流程</p></li>
+</ul>
+
+<p><strong>9.3 RSS 中可信的来源</strong></p>
+
+<p>RSS 中的可信并非来自"声明"，而是来自<strong>证据</strong>。</p>
+
+<p>可信的核心来源包括：</p>
+
+<ol>
+<li><p><strong>不可变记录</strong>\
+所有 Run、版本与制品都是不可变的。</p></li>
+<li><p><strong>可追溯性</strong>\
+所有行为都绑定身份、时间与配置。</p></li>
+<li><p><strong>客观评测</strong>\
+Benchmark 提供数据支撑的性能信号。</p></li>
+<li><p><strong>策略执行</strong>\
+执行与部署受到明确规则的约束。</p></li>
+<li><p><strong>可审计性</strong>\
+历史证据可被事后检查。</p></li>
+</ol>
+
+<p>可信不是一次性获得的，而是<strong>长期一致性行为的结果</strong>。</p>
+
+<p><strong>9.4 策略门禁与执行控制</strong></p>
+
+<p>在 RSS 中，<strong>不存在无条件的执行</strong>。</p>
+
+<p>在执行 Run 之前，平台会评估一系列策略门禁，例如：</p>
+
+<ul>
+<li><p>该技能版本是否被批准用于此环境？</p></li>
+<li><p>该机器人是否被认证具备该能力？</p></li>
+<li><p>是否满足安全约束？</p></li>
+<li><p>触发者是否具备权限？</p></li>
+</ul>
+
+<p>这些检查是在<strong>执行时由系统自动完成</strong>的，\
+而不是依赖人工预先确认。</p>
+
+<p>即使是误触或恶意触发，也无法绕过这些门禁。</p>
+
+<p><strong>9.5 跨部署环境的一致治理</strong></p>
+
+<p>机器人系统部署环境高度多样：</p>
+
+<ul>
+<li><p>云端测试环境</p></li>
+<li><p>本地工厂网络</p></li>
+<li><p>内网隔离场景</p></li>
+</ul>
+
+<p>治理必须在所有环境中<strong>保持一致</strong>。</p>
+
+<p>RSS 通过以下方式实现：</p>
+
+<ul>
+<li><p>策略定义集中管理</p></li>
+<li><p>在平台层统一执行</p></li>
+<li><p>与网站解耦</p></li>
+</ul>
+
+<p>即使网站被镜像或不可用，治理依然成立。</p>
+
+<p><strong>9.6 责任与问责</strong></p>
+
+<p>在物理系统中，治理必然伴随责任问题。</p>
+
+<p>RSS 确保：</p>
+
+<ul>
+<li><p>每一次执行都有明确触发者</p></li>
+<li><p>每一次部署决策都有记录</p></li>
+<li><p>每一次失败都有可调查证据</p></li>
+</ul>
+
+<p>这并不能消除风险，\
+但它让<strong>责任变得清晰可界定</strong>。</p>
+
+<p>这是工业场景采纳系统的前提。</p>
+
+<p><strong>9.7 将可信作为平台属性</strong></p>
+
+<p>RSS 的核心洞见在于：</p>
+
+<p><strong>可信无法通过补丁方式叠加。</strong></p>
+
+<p>它必须：</p>
+
+<ul>
+<li><p>植入对象模型</p></li>
+<li><p>体现在执行路径</p></li>
+<li><p>通过数据长期强化</p></li>
+</ul>
+
+<p>当可信成为平台属性时，RSS 才能同时实现：</p>
+
+<ul>
+<li><p>更安全的部署</p></li>
+<li><p>更快的迭代</p></li>
+<li><p>更广泛的生态参与</p></li>
+</ul>
+
+<p><strong>9.8 为部署与生态规模化做准备</strong></p>
+
+<p>当治理与可信确立之后，RSS 才具备安全扩展的基础：</p>
+
+<ul>
+<li><p>跨团队</p></li>
+<li><p>跨工厂</p></li>
+<li><p>跨组织</p></li>
+</ul>
+
+<p>这为最后关于<strong>部署模式与生态影响</strong>的章节铺平道路。</p>
+
+<h1 id="chapter-10-部署模式与工业现实">Chapter 10 - 部署模式与工业现实</h1>
+
+<p><strong>10.1 部署，是机器人系统最容易失败的地方</strong></p>
+
+<p>许多机器人平台在受控环境中表现出色，\
+却在部署阶段失败。</p>
+
+<p>常见现象包括：</p>
+
+<ul>
+<li><p>仿真中可行，工厂中不可行</p></li>
+<li><p>默认假设网络稳定</p></li>
+<li><p>运行依赖频繁人工干预</p></li>
+<li><p>治理机制一旦离开实验室就失效</p></li>
+</ul>
+
+<p>这些失败并非偶然，\
+而是源于<strong>系统假设与工业现实之间的错位</strong>。</p>
+
+<p>RSS 从设计之初就将"部署现实"视为一等约束，而非事后补救。</p>
+
+<p><strong>10.2 工业部署环境的高度多样性</strong></p>
+
+<p>工业机器人系统的部署环境高度多样：</p>
+
+<ul>
+<li><p>集中式云环境</p></li>
+<li><p>企业本地网络</p></li>
+<li><p>工厂内私有集群</p></li>
+<li><p>完全隔离的内网环境</p></li>
+</ul>
+
+<p>这些环境在以下方面存在巨大差异：</p>
+
+<ul>
+<li><p>网络连通性</p></li>
+<li><p>时延要求</p></li>
+<li><p>安全与合规</p></li>
+<li><p>更新与维护方式</p></li>
+</ul>
+
+<p>如果平台只假设一种部署模式，它就无法跨行业扩展。</p>
+
+<p><strong>10.3 云端部署：探索与聚合</strong></p>
+
+<p>云端部署非常适合：</p>
+
+<ul>
+<li><p>技能开发与快速迭代</p></li>
+<li><p>大规模评测</p></li>
+<li><p>跨团队协作</p></li>
+<li><p>评测数据的聚合</p></li>
+</ul>
+
+<p>在这一模式下，RSS 提供：</p>
+
+<ul>
+<li><p>集中式技能注册</p></li>
+<li><p>可扩展的执行基础设施</p></li>
+<li><p>统一的评测管线</p></li>
+</ul>
+
+<p>但 RSS <strong>并不假设云端是最终部署位置</strong>。</p>
+
+<p><strong>10.4 本地部署：控制与合规</strong></p>
+
+<p>由于以下原因，许多工业用户必须采用本地部署：</p>
+
+<ul>
+<li><p>数据主权</p></li>
+<li><p>安全策略</p></li>
+<li><p>法规要求</p></li>
+<li><p>运行可靠性</p></li>
+</ul>
+
+<p>RSS 通过以下方式支持本地部署：</p>
+
+<ul>
+<li><p>平台可完全本地运行</p></li>
+<li><p>对象模型与 API 保持一致</p></li>
+<li><p>治理机制不依赖云端</p></li>
+</ul>
+
+<p>部署位置的变化，不会改变系统语义。</p>
+
+<p><strong>10.5 内网隔离工厂：为"断连"而设计</strong></p>
+
+<p>在高安全等级或高价值产线中，\
+完全内网隔离（air-gapped）是常态。</p>
+
+<p>这些环境通常具有：</p>
+
+<ul>
+<li><p>禁止外部网络连接</p></li>
+<li><p>更新频率低且高度受控</p></li>
+<li><p>稳定性优先于迭代速度</p></li>
+</ul>
+
+<p>RSS 明确支持内网隔离部署：</p>
+
+<ul>
+<li><p>支持离线技能注册与制品存储</p></li>
+<li><p>提供受控的数据同步机制</p></li>
+<li><p>治理能力不依赖外部系统</p></li>
+</ul>
+
+<p>这不是边缘场景，而是<strong>工业现实的核心需求</strong>。</p>
+
+<p><strong>10.6 网站可用性与平台运行解耦</strong></p>
+
+<p>在工业部署中，不能假设 UI 始终可用。</p>
+
+<p>操作可能通过以下方式进行：</p>
+
+<ul>
+<li><p>自动化流水线</p></li>
+<li><p>无界面系统</p></li>
+<li><p>第三方系统集成</p></li>
+</ul>
+
+<p>RSS 确保：</p>
+
+<ul>
+<li><p>平台 API 始终是权威接口</p></li>
+<li><p>网站不可用不影响执行</p></li>
+<li><p>治理不依赖 UI 状态</p></li>
+</ul>
+
+<p>这再次强化了<strong>界面与系统真相的分离</strong>。</p>
+
+<p><strong>10.7 工业场景下的运行生命周期</strong></p>
+
+<p>在工业环境中，运行更关注：</p>
+
+<ul>
+<li><p>稳定性而非新颖性</p></li>
+<li><p>可预测性而非灵活性</p></li>
+<li><p>受控变更而非快速试错</p></li>
+</ul>
+
+<p>RSS 通过以下机制适配这一现实：</p>
+
+<ul>
+<li><p>明确的版本锁定</p></li>
+<li><p>可控的发布与回滚</p></li>
+<li><p>对认证版本的长期支持</p></li>
+</ul>
+
+<p>创新与工程纪律得以共存。</p>
+
+<p><strong>10.8 部署是平台设计的最终验证</strong></p>
+
+<p>如果一个平台无法在真实部署环境中生存，\
+那么它的设计就是不完整的。</p>
+
+<p>RSS 将部署视为：</p>
+
+<p><strong>对系统设计选择的终极检验。</strong></p>
+
+<p>当系统在不同部署环境下仍保持一致语义，\
+这说明其抽象不是学术性的，而是工程可行的。</p>
+
+<h1 id="chapter-11-生态影响与未来方向">Chapter 11 - 生态影响与未来方向</h1>
+
+<p><strong>11.1 RSS 重塑机器人生态中的激励结构</strong></p>
+
+<p>当下的机器人生态中，激励结构普遍失衡：</p>
+
+<ul>
+<li><p>技能作者因 Demo 效果而获益，而非可靠性</p></li>
+<li><p>系统集成商因定制化而获益，而非复用</p></li>
+<li><p>终端用户承担风险，却缺乏质量透明度</p></li>
+</ul>
+
+<p>RSS 通过引入"以证据支撑的能力"作为价值单位，重塑了这一结构。</p>
+
+<p>当技能被视为系统资产时：</p>
+
+<ul>
+<li><p>能力声明必须由数据支持</p></li>
+<li><p>质量改进可以长期累积</p></li>
+<li><p>可信度可以跨项目迁移</p></li>
+</ul>
+
+<p>这从根本上改变了价值的产生与交换方式。</p>
+
+<p><strong>11.2 对技能提供方的影响</strong></p>
+
+<p>对技能提供方而言，RSS 带来的是从：</p>
+
+<p><strong>"宣传驱动&#8221; → &#8220;性能驱动"</strong></p>
+
+<p>的转变。</p>
+
+<p>具体体现在：</p>
+
+<ul>
+<li><p>技能质量被持续评测，而非一次性验证</p></li>
+<li><p>信誉可以在多次部署中累积</p></li>
+<li><p>微小但稳定的改进会被系统识别</p></li>
+<li><p>明确失败模式反而提升可信度</p></li>
+</ul>
+
+<p>RSS 使工程投入（健壮性、文档、评测）\
+直接转化为平台内的可信信号。</p>
+
+<p><strong>11.3 对系统集成商的影响</strong></p>
+
+<p>传统系统集成商往往以<strong>定制集成能力</strong>作为核心优势。</p>
+
+<p>RSS 将其关注点转向：</p>
+
+<ul>
+<li><p>选择与组合已验证的技能</p></li>
+<li><p>管理部署策略与约束</p></li>
+<li><p>优化系统级性能</p></li>
+</ul>
+
+<p>RSS 并未削弱集成商的价值，\
+而是将其角色提升为：</p>
+
+<p><strong>系统级编排者与责任承担者</strong></p>
+
+<p><strong>11.4 对终端用户与运营方的影响</strong></p>
+
+<p>对终端用户而言，RSS 用<strong>透明度</strong>取代了不确定性。</p>
+
+<p>运营方可以获得：</p>
+
+<ul>
+<li><p>清晰可见的运行状态</p></li>
+<li><p>有数据支撑的部署信心</p></li>
+<li><p>对个人经验的依赖显著降低</p></li>
+<li><p>通过可追溯性快速定位问题</p></li>
+</ul>
+
+<p>这显著降低了先进机器人能力进入生产系统的门槛。</p>
+
+<p><strong>11.5 平台效应与网络增长</strong></p>
+
+<p>随着 RSS 的采用，平台效应逐步显现：</p>
+
+<ul>
+<li><p>更多执行产生更多数据</p></li>
+<li><p>更多数据提升评测质量</p></li>
+<li><p>更好的评测增强可信度</p></li>
+<li><p>更高的可信度吸引更优质技能</p></li>
+</ul>
+
+<p>这一正循环在<strong>治理约束下运行</strong>，\
+避免平台退化为无序市场。</p>
+
+<p><strong>11.6 RSS 明确不做的事情</strong></p>
+
+<p>为了保持平台稳定性，RSS 必须明确其非目标。</p>
+
+<p>RSS <strong>不会</strong>：</p>
+
+<ul>
+<li><p>替代机器人控制系统</p></li>
+<li><p>统一底层运动规划</p></li>
+<li><p>取代厂商运行时</p></li>
+<li><p>普适性解决感知或操作问题</p></li>
+</ul>
+
+<p>这些领域更适合由专用系统快速演进。</p>
+
+<p>RSS 刻意保持对实现细节的<strong>中立性</strong>。</p>
+
+<p><strong>11.7 未来方向</strong></p>
+
+<p>在稳定核心之上，RSS 为未来演进预留空间：</p>
+
+<ul>
+<li><p>更丰富的评测库</p></li>
+<li><p>合规前提下的跨工厂数据聚合</p></li>
+<li><p>更高级的可信度与认证体系</p></li>
+<li><p>与数字孪生和仿真的深度融合</p></li>
+</ul>
+
+<p>这些演进不会破坏平台的基本原则。</p>
+
+<p><strong>11.8 总结性视角</strong></p>
+
+<p>机器人无法仅靠更炫的 Demo 实现规模化。</p>
+
+<p>真正的规模化，来自能力被：</p>
+
+<ul>
+<li><p>明确定义</p></li>
+<li><p>客观度量</p></li>
+<li><p>系统治理</p></li>
+<li><p>长期信任</p></li>
+</ul>
+
+<p>Robot Skill Store 正是朝这一方向迈出的关键一步&#8212;&#8212;\
+不是通过新算法，而是通过<strong>系统纪律</strong>。</p>
+
+<h1 id="glossary">Glossary</h1>
+
+<p>术语表</p>
+
+<hr />
+
+<p>Term (EN)       中文              Definition</p>
+
+<hr />
+
+<p>Skill           技能              A reusable, abstract robotic
+                                    capability</p>
+
+<p>Skill Version   技能版本          An immutable version of a skill</p>
+
+<p>Run             运行记录          One execution instance of a skill</p>
+
+<p>Artifact        工件 / 配置产物   Executable or configuration bound to
+                                    a skill version</p>
+
+<p>Governance      治理              Policies controlling execution,
+                                    safety, and compliance</p>
+
+<hr />
+
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div>Generated from Markdown (CN) on 2026-01-15 03:43.</div>
+  </footer>
+</body>
+</html>

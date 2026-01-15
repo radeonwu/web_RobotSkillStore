@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robot Skill Protocol (RSP) v0.3（中文页）</title>
+  <style>
+:root{
+  --bg:#0b0f14; --panel:#0f1620; --text:#e6edf3; --muted:#9aa4ad;
+  --link:#7cc0ff; --border:rgba(255,255,255,.10); --code:#0a0f18;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa;}
+}
+*{box-sizing:border-box}
+body{margin:0; font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.65;}
+a{color:var(--link); text-decoration:none}
+a:hover{text-decoration:underline}
+.header{
+  position:sticky; top:0; z-index:50;
+  background:linear-gradient(to bottom, var(--bg), rgba(0,0,0,0));
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{max-width:1200px; margin:0 auto; padding:14px 16px; display:flex; align-items:center; gap:12px;}
+.badge{font-size:12px; padding:3px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted);}
+.title{font-weight:700; font-size:16px}
+.spacer{flex:1}
+.lang-toggle{display:flex; gap:8px; align-items:center}
+.btn{
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.02);
+  color:var(--text);
+  padding:6px 10px; border-radius:10px; cursor:pointer;
+  font-size:13px;
+}
+.btn[aria-pressed="true"]{background:var(--panel); border-color:rgba(125,211,252,.35);}
+.main{max-width:1200px; margin:0 auto; padding:16px; display:grid; grid-template-columns: 290px 1fr; gap:16px;}
+@media (max-width: 980px){ .main{grid-template-columns: 1fr;} .toc{position:relative; top:auto; max-height:none;} }
+.toc{
+  position:sticky; top:64px;
+  align-self:start;
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;
+  padding:12px 12px;
+  max-height: calc(100vh - 90px);
+  overflow:auto;
+}
+.toc h2{margin:6px 0 10px; font-size:13px; color:var(--muted); font-weight:600; letter-spacing:.02em;}
+.toc ul{list-style:none; padding-left:0; margin:0}
+.toc li{margin:6px 0}
+.toc a{display:block; padding:4px 6px; border-radius:10px; color:var(--muted);}
+.toc a:hover{background:rgba(255,255,255,.04); color:var(--text); text-decoration:none;}
+.content{
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;
+  padding:18px 20px;
+  min-width:0;
+}
+.content h1{font-size:28px; margin:0 0 12px;}
+.content h2{font-size:20px; margin:26px 0 10px;}
+.content h3{font-size:16px; margin:18px 0 8px;}
+.content p{margin:10px 0;}
+.content hr{border:0; border-top:1px solid var(--border); margin:22px 0;}
+.content blockquote{margin:14px 0; padding:10px 12px; border-left:3px solid rgba(125,211,252,.45); background:rgba(255,255,255,.03); border-radius:10px;}
+.content code{font-family:var(--mono); background:rgba(255,255,255,.05); padding:2px 5px; border-radius:6px; font-size:0.95em;}
+.content pre{background:var(--code); padding:12px 14px; border-radius:12px; overflow:auto; border:1px solid var(--border);}
+.content pre code{background:transparent; padding:0}
+.content table{width:100%; border-collapse:collapse; margin:14px 0; overflow:auto;}
+.content th,.content td{border:1px solid var(--border); padding:8px 10px; vertical-align:top;}
+.content th{background:rgba(255,255,255,.04); text-align:left}
+.footer{max-width:1200px; margin:0 auto; padding:18px 16px 30px; color:var(--muted); font-size:12px;}
+.hidden{display:none;}
+
+
+body{font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei","Hiragino Sans GB",ui-sans-serif,system-ui;}
+.notice{border:1px solid var(--border);background:rgba(255,255,255,.03);padding:12px 14px;border-radius:12px;margin:0 0 16px;}
+.notice h3{margin:0 0 6px;font-size:14px;}
+.notice p{margin:6px 0;color:var(--muted);}
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="title">Robot Skill Protocol (RSP) v0.3（中文页）</div>
+      <span class="badge">RSP 白皮书</span>
+      <div class="spacer"></div>
+      <a class="btn" href="./index.html">返回 Docs</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <aside class="toc" aria-label="目录">
+      <h2>目录</h2>
+      <ul>
+<li><a href="#chapter-1-executive-summary">Chapter 1 — Executive Summary</a></li>
+<li><a href="#chapter-2-background-problem-definition">Chapter 2 — Background &amp; Problem Definition</a></li>
+<li><a href="#chapter-3-design-principles">Chapter 3 — Design Principles</a></li>
+<li><a href="#chapter-4-core-concepts-terminology">Chapter 4 — Core Concepts &amp; Terminology</a></li>
+<li><a href="#chapter-5-rsp-architecture-overview">Chapter 5 — RSP Architecture Overview</a></li>
+<li><a href="#chapter-6-robot-skill-lifecycle">Chapter 6 — Robot Skill Lifecycle</a></li>
+<li><a href="#chapter-7-skill-interface-specification">Chapter 7 — Skill Interface Specification</a></li>
+<li><a href="#chapter-8-safety-trust-model">Chapter 8 — Safety &amp; Trust Model</a></li>
+<li><a href="#chapter-9-agentic-orchestration-model">Chapter 9 — Agentic Orchestration Model</a></li>
+<li><a href="#chapter-10-robot-skill-store-marketplace">Chapter 10 — Robot Skill Store &amp; Marketplace</a></li>
+<li><a href="#chapter-11-reference-implementations">Chapter 11 — Reference Implementations</a></li>
+<li><a href="#chapter-12-developer-experience-dx">Chapter 12 — Developer Experience (DX)</a></li>
+<li><a href="#chapter-13-comparison-positioning">Chapter 13 — Comparison &amp; Positioning</a></li>
+<li><a href="#chapter-14-business-ecosystem-implications">Chapter 14 — Business &amp; Ecosystem Implications</a></li>
+<li><a href="#chapter-15-roadmap-future-directions">Chapter 15 — Roadmap &amp; Future Directions</a></li>
+<li><a href="#chapter-16-conclusion">Chapter 16 — Conclusion</a></li>
+</ul>
+    </aside>
+
+    <article class="content">
+      <div class="notice">
+        <h3>说明</h3>
+        <p>你提供的 RSP v0.3 仅有英文原版。此页面已完成<strong>排版与目录结构</strong>，并先以英文正文呈现，方便你立即在网站中使用。</p>
+        <p>如果你确认版式/目录/段落分割无误，我可以按“章节逐步翻译并替换”为全中文版本（避免一次性翻译造成错位与回归）。</p>
+      </div>
+      <h1 id="chapter-1-executive-summary">Chapter 1 — Executive Summary</h1>
+
+<h2>第一章 · 背景与动机</h2>
+<p>在多数机器人系统中，“技能”通常以脚本或示例程序的形式存在。
+这些实现往往与具体硬件、环境参数以及操作者经验高度耦合，
+一旦迁移到新的场景或系统，便难以保证一致的行为和结果。</p>
+<p>这种模式在小规模实验中尚可接受，但在工程化和规模化阶段会迅速失效。
+缺乏统一语义和约束的技能，无法被稳定复用，也无法进行客观评估与治理。</p>
+<p>RSP 的提出，正是为了解决这一结构性问题：通过定义稳定的协议对象、
+清晰的生命周期以及强制执行的约束，使技能具备系统级资产应有的属性。</p>
+
+<h1 id="chapter-2-background-problem-definition">Chapter 2 — Background &amp; Problem Definition</h1>
+
+<h2>第二章 · 机器人技能危机</h2>
+<p>机器人领域面临的核心危机并非算法能力不足，而是<strong>工程可信度不足</strong>。
+大量“看起来可行”的技能，在缺乏明确规范与证据的情况下，
+无法被验证、比较或安全地部署。</p>
+<p>当技能执行结果依赖于操作者主观判断、UI 状态或环境偶然性时，
+系统就失去了工程意义上的确定性。这种不确定性在规模扩大后被放大，
+最终成为阻碍机器人系统落地的关键瓶颈。</p>
+<p>RSP 通过将执行过程、结果和证据全部纳入协议约束，
+确保每一次运行都是一个<strong>可审计的运行实例（Run）</strong>，
+从而为评估、治理与长期演进奠定基础。</p>
+
+<h1 id="chapter-3-design-principles">Chapter 3 — Design Principles</h1>
+
+<h2>第三章 · 什么是“机器人技能”</h2>
+<p>在 RSP 的语境中，“机器人技能（Robot Skill）”不是某段脚本、某个控制器调用，
+也不是一次性的演示流程。技能是一个<strong>可复用、可评测、可治理</strong>的能力单元，
+其定义必须同时覆盖：输入与前置条件、执行边界、可观测输出以及可验证的成功判据。</p>
+<p>这意味着：技能的“语义”必须被显式化，而不是隐含在代码、参数或操作者经验里。
+当技能被显式定义后，系统才能在不同机器人、不同产线与不同 Runtime 上做一致的执行与评估。</p>
+<p>RSP 将技能视为协议对象（而非代码片段），并通过 Run（运行实例）把一次执行过程固化为
+一份可追溯、可审计的证据集合，为后续的评测、回归与治理提供基础。</p>
+<ul>
+  <li><strong>可复用：</strong>技能在多场景可迁移，且行为边界清晰。</li>
+  <li><strong>可评测：</strong>技能有明确成功定义，可被量化评估与对比。</li>
+  <li><strong>可治理：</strong>技能的版本、依赖、风险与权限可被管理与审计。</li>
+</ul>
+
+<h1 id="chapter-4-core-concepts-terminology">Chapter 4 — Core Concepts &amp; Terminology</h1>
+
+<h2>第四章 · 从“技能即代码”到“技能即系统资产”</h2>
+<p>传统做法往往把技能等同于“代码实现”。这种“技能即代码”的模式在工程上存在天然缺陷：
+代码可以运行并不代表能力被稳定定义；一次成功演示也不代表在规模化场景中可复制。
+更关键的是，代码缺少统一的证据与评测规范，导致结果难以对齐、难以回归、难以治理。</p>
+<p>RSP 提出“技能即系统资产（Skill-as-System Asset）”，强调技能应具备系统资产的属性：</p>
+<ul>
+  <li><strong>可版本化：</strong>每个技能版本对应明确的语义、依赖、约束与评测基线。</li>
+  <li><strong>可追溯：</strong>每次运行都沉淀 Run 证据，可定位差异来源（环境/参数/数据/实现）。</li>
+  <li><strong>可比较：</strong>不同实现、不同机器人上的运行结果可在统一指标体系下对齐。</li>
+  <li><strong>可治理：</strong>对安全、权限、合规与发布流程有明确规则与审计链路。</li>
+</ul>
+<p>把技能提升为系统资产的意义在于：你不再依赖“某个工程师能把它调出来”，
+而是依赖一个可复制的体系来保证交付质量。这也是 RSS + RSP 组合的根本价值所在。</p>
+
+<h1 id="chapter-5-rsp-architecture-overview">Chapter 5 — RSP Architecture Overview</h1>
+
+<h2>第五章 · RSP 架构概览</h2>
+<p>RSP 并非一个单一的软件模块，而是一套围绕“技能生命周期”的协议化架构。
+它覆盖技能从<strong>定义、执行、评测、证据沉淀到治理</strong>的全过程，
+并通过强制的不变量约束，保证不同系统与角色之间对技能语义的理解一致。</p>
+<p>在该架构中，RSP 明确区分以下核心对象：</p>
+<ul>
+  <li><strong>Skill：</strong>技能定义本体，描述能力语义、输入输出、约束与成功判据。</li>
+  <li><strong>Run：</strong>一次技能执行实例，记录真实执行轨迹与结果。</li>
+  <li><strong>Evidence：</strong>围绕 Run 生成的可验证证据集合（日志、轨迹、视频、指标）。</li>
+  <li><strong>Profile / Policy：</strong>描述环境、权限、安全与治理规则。</li>
+</ul>
+<p>通过这些对象的组合，RSP 将“技能执行”提升为可审计、可比较、可治理的系统行为，
+而不再是隐含在 Runtime 或个人经验中的黑盒过程。</p>
+
+<h1 id="chapter-6-robot-skill-lifecycle">Chapter 6 — Robot Skill Lifecycle</h1>
+
+<h2>第六章 · 网站、平台与协议的职责分离</h2>
+<p>在 RSS + RSP 体系中，网站、平台与协议各自承担不同但互补的职责：</p>
+<ul>
+  <li><strong>RSP（协议）：</strong>定义不可协商的语义、不变量与证据要求，确保工程一致性。</li>
+  <li><strong>RSS Platform（平台）：</strong>提供技能管理、运行调度、评测与治理的系统能力。</li>
+  <li><strong>RSS Website（网站）：</strong>作为信息与交互入口，面向人类用户展示技能、文档与结果。</li>
+</ul>
+<p>这种分层设计的关键在于<strong>解耦</strong>：
+协议不依赖具体平台实现，平台不绑定某个网站形态，
+从而避免“工具即规范”或“实现即标准”的工程陷阱。</p>
+<p>通过明确的职责分离，RSS 能够在不同组织、不同业务线与不同技术栈中演进，
+而 RSP 则始终作为稳定的工程基线存在。</p>
+
+<h1 id="chapter-7-skill-interface-specification">Chapter 7 — Skill Interface Specification</h1>
+
+<h2>第七章 · 执行模型（Execution Model）</h2>
+<p>RSP 的执行模型以 <strong>Run（运行实例）</strong> 为核心。
+每一次技能执行都会被显式建模为一个 Run，而不是隐含在日志或临时状态中的过程。
+Run 连接了技能定义、运行环境与真实执行结果，是后续评估与治理的基本单位。</p>
+<p>在执行模型中，RSP 强制要求：</p>
+<ul>
+  <li>执行前条件与参数被明确记录；</li>
+  <li>执行过程中关键状态与轨迹可被观测；</li>
+  <li>执行结束后结果与失败原因可被判定。</li>
+</ul>
+<p>通过这一模型，系统可以区分“技能设计问题”和“运行环境问题”，
+从而避免将偶发失败误判为能力缺陷。</p>
+
+<h1 id="chapter-8-safety-trust-model">Chapter 8 — Safety &amp; Trust Model</h1>
+
+<h2>第八章 · 证据与评测（Evidence & Evaluation）</h2>
+<p>在 RSP 中，<strong>证据（Evidence）</strong>并非附属产物，而是协议的核心组成部分。
+任何 Run 若缺乏可验证的证据，就不具备工程意义上的可信度。</p>
+<p>RSP 要求证据具备以下特性：</p>
+<ul>
+  <li><strong>可验证：</strong>证据能够支持或反驳一次执行是否满足成功判据；</li>
+  <li><strong>可追溯：</strong>证据与具体 Run、技能版本和环境配置一一对应；</li>
+  <li><strong>可比较：</strong>不同 Run 之间的证据可在统一指标体系下对齐。</li>
+</ul>
+<p>基于证据，评测不再依赖人工主观判断，而是成为可自动化、可回归的系统能力。
+这为技能的长期演进与质量控制提供了基础。</p>
+
+<h1 id="chapter-9-agentic-orchestration-model">Chapter 9 — Agentic Orchestration Model</h1>
+
+<h2>第九章 · 治理（Governance）</h2>
+<p>当机器人技能进入规模化应用阶段，技术问题往往不再是主要瓶颈，
+<strong>治理问题</strong>才是真正决定系统能否长期演进的关键。</p>
+<p>RSP 将治理视为协议层的内建能力，而不是事后补充的流程或文档。
+通过协议化的方式，RSP 明确了以下治理要素：</p>
+<ul>
+  <li><strong>责任边界：</strong>明确技能设计、部署、运行与评测的责任归属；</li>
+  <li><strong>权限控制：</strong>不同角色对技能与运行实例的访问与操作权限；</li>
+  <li><strong>风险管理：</strong>对高风险技能、环境或参数进行识别与限制；</li>
+  <li><strong>审计能力：</strong>所有关键行为都有可追溯记录。</li>
+</ul>
+<p>通过治理机制，RSP 使技能不再依赖“信任某个人或团队”，
+而是依赖一套可验证、可审计的系统规则。</p>
+
+<h1 id="chapter-10-robot-skill-store-marketplace">Chapter 10 — Robot Skill Store &amp; Marketplace</h1>
+
+<h2>第十章 · 版本管理与生命周期</h2>
+<p>技能的工程价值，取决于其在时间维度上的可控性。
+没有明确的版本与生命周期管理，任何技能都会在演进过程中逐渐失去可解释性。</p>
+<p>RSP 要求技能与其运行实例都具备清晰的生命周期状态，包括但不限于：</p>
+<ul>
+  <li><strong>定义：</strong>技能语义、约束与评测标准被明确描述；</li>
+  <li><strong>发布：</strong>技能版本被批准进入可使用状态；</li>
+  <li><strong>运行：</strong>技能在具体环境中被执行并生成 Run；</li>
+  <li><strong>回归：</strong>新版本或新环境下的对比与验证；</li>
+  <li><strong>退役：</strong>过期或不安全技能被下线。</li>
+</ul>
+<p>通过版本与生命周期管理，RSP 为技能的长期维护、回溯分析与持续优化
+提供了结构化基础。</p>
+
+<h1 id="chapter-11-reference-implementations">Chapter 11 — Reference Implementations</h1>
+
+<h2>第十一章 · 安全（Security）</h2>
+<p>随着机器人技能在真实生产环境中的部署，安全性不再是可选特性，
+而是协议层必须强制保证的基本要求。</p>
+<p>RSP 将安全视为技能治理的一部分，通过协议化约束降低系统性风险：</p>
+<ul>
+  <li><strong>访问控制：</strong>明确谁可以查看、修改、运行或发布某个技能版本；</li>
+  <li><strong>数据保护：</strong>运行数据、日志与证据需遵循统一的访问与存储策略；</li>
+  <li><strong>执行隔离：</strong>不同技能与运行实例之间避免产生不可控的相互影响；</li>
+  <li><strong>审计追踪：</strong>所有敏感操作都必须留下可回溯的审计记录。</li>
+</ul>
+<p>通过在协议层内建安全约束，RSP 避免了“依赖外围系统补救”的脆弱模式，
+为技能的规模化部署提供稳固的安全基础。</p>
+
+<h1 id="chapter-12-developer-experience-dx">Chapter 12 — Developer Experience (DX)</h1>
+
+<h2>第十二章 · 安全性、合规与责任</h2>
+<p>在工业与商业场景中，机器人系统不仅需要技术正确性，
+还必须满足安全规范、法规要求以及组织层面的责任界定。</p>
+<p>RSP 通过明确技能、运行实例与责任主体之间的关系，
+为合规性与责任追溯提供了结构化支撑：</p>
+<ul>
+  <li><strong>合规映射：</strong>将技能执行与行业标准、安全规范进行对应；</li>
+  <li><strong>责任划分：</strong>区分技能设计方、部署方与运行方的责任边界；</li>
+  <li><strong>风险披露：</strong>对潜在风险与已知限制进行显式声明；</li>
+  <li><strong>证据留存：</strong>在争议或事故场景下，提供可验证的事实基础。</li>
+</ul>
+<p>通过将合规与责任纳入协议体系，RSP 使机器人技能的使用
+能够在可控、可解释与可追责的前提下进行。</p>
+
+<h1 id="chapter-13-comparison-positioning">Chapter 13 — Comparison &amp; Positioning</h1>
+
+<h2>第十三章 · 部署（Deployment）</h2>
+<p>机器人技能从实验环境进入真实部署阶段时，面临的首要挑战是环境差异与系统复杂度。
+RSP 要求部署过程本身也必须是<strong>可描述、可回溯、可验证</strong>的工程活动。</p>
+<p>在部署阶段，RSP 关注以下关键要素：</p>
+<ul>
+  <li><strong>环境描述：</strong>明确硬件配置、传感器、工位与外部系统依赖；</li>
+  <li><strong>参数基线：</strong>记录影响执行结果的关键参数与初始状态；</li>
+  <li><strong>风险前置：</strong>在上线前识别潜在失败模式并给出约束；</li>
+  <li><strong>部署证据：</strong>将部署行为本身纳入证据体系。</li>
+</ul>
+<p>通过协议化的部署描述，RSP 减少了“环境不可复现”带来的不确定性，
+为技能跨场景复制提供基础。</p>
+
+<h1 id="chapter-14-business-ecosystem-implications">Chapter 14 — Business &amp; Ecosystem Implications</h1>
+
+<h2>第十四章 · Runtime 集成</h2>
+<p>RSP 并不试图取代现有的机器人 Runtime、控制器或调度系统，
+而是通过清晰的接口与语义边界，与其形成协作关系。</p>
+<p>在 Runtime 集成层面，RSP 强调：</p>
+<ul>
+  <li><strong>语义解耦：</strong>协议定义“做什么”，Runtime 决定“如何做”；</li>
+  <li><strong>执行回传：</strong>Runtime 必须向 RSP 回传可观测状态与结果；</li>
+  <li><strong>失败显式化：</strong>任何失败都应被明确标注并可被分析；</li>
+  <li><strong>可插拔：</strong>不同 Runtime 可在不破坏协议的前提下替换。</li>
+</ul>
+<p>这种集成方式使 RSP 能够适配多种机器人平台与控制架构，
+同时保持技能语义与评测标准的一致性。</p>
+
+<h1 id="chapter-15-roadmap-future-directions">Chapter 15 — Roadmap &amp; Future Directions</h1>
+
+<h2>第十五章 · 结论（Conclusion）</h2>
+<p>Robot Skill Protocol（RSP）并不是对现有机器人系统的一次局部改进，
+而是一次<strong>工程范式层面的重构</strong>。它将“技能”从代码或演示流程，
+提升为具备明确语义、不变量约束与可验证证据的系统资产。</p>
+<p>通过 RSP，技能执行不再依赖个人经验或隐含假设，
+而是被纳入统一的协议框架中进行定义、运行、评测与治理。
+这为机器人系统在规模化、跨组织与跨平台场景中的稳定演进，
+提供了坚实且可持续的工程基础。</p>
+
+<h1 id="chapter-16-conclusion">Chapter 16 — Conclusion</h1>
+
+<h2>第十六章 · 展望与附录（Outlook & Appendix）</h2>
+<p>随着机器人系统逐步走向通用化与平台化，
+RSP 将持续演进，以适配新的硬件形态、控制架构与应用场景。</p>
+<p>未来的 RSP 版本将重点关注：</p>
+<ul>
+  <li>更丰富的证据类型与自动化评测能力；</li>
+  <li>与仿真、数据闭环和学习系统的深度集成；</li>
+  <li>在安全、合规与责任方面的进一步形式化；</li>
+  <li>跨组织、跨生态的技能共享与治理机制。</li>
+</ul>
+<p>附录部分用于补充协议实现细节、示例与术语定义，
+以支持 RSP 在实际工程项目中的落地与扩展。</p>
+
+</article>
+  </main>
+
+  <footer class="footer">
+    <div>Generated from DOCX on 2026-01-15 05:54.</div>
+  </footer>
+  <script>
+(function(){
+  document.querySelectorAll('.toc a').forEach(a=>{
+    a.addEventListener('click',(e)=>{
+      const href=a.getAttribute('href')||'';
+      if(href.startsWith('#')){
+        e.preventDefault();
+        const t=document.querySelector(href);
+        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+        const url=new URL(location.href); url.hash=href; history.replaceState({},'',url);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

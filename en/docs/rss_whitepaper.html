@@ -1,0 +1,2128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robot Skill Store (RSS) Whitepaper</title>
+  <style>
+:root{
+  --bg:#0b0f14; --panel:#0f1620; --text:#e6edf3; --muted:#9aa4ad;
+  --link:#7cc0ff; --border:rgba(255,255,255,.10); --code:#0a0f18;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa;}
+}
+*{box-sizing:border-box}
+body{margin:0; font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.65;}
+a{color:var(--link); text-decoration:none}
+a:hover{text-decoration:underline}
+.header{
+  position:sticky; top:0; z-index:50;
+  background:linear-gradient(to bottom, var(--bg), rgba(0,0,0,0));
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{max-width:1200px; margin:0 auto; padding:14px 16px; display:flex; align-items:center; gap:12px;}
+.badge{font-size:12px; padding:3px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted);}
+.title{font-weight:700; font-size:16px}
+.spacer{flex:1}
+.lang-toggle{display:flex; gap:8px; align-items:center}
+.btn{
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.02);
+  color:var(--text);
+  padding:6px 10px; border-radius:10px; cursor:pointer;
+  font-size:13px;
+}
+.btn[aria-pressed="true"]{background:var(--panel); border-color:rgba(125,211,252,.35);}
+.main{max-width:1200px; margin:0 auto; padding:16px; display:grid; grid-template-columns: 290px 1fr; gap:16px;}
+@media (max-width: 980px){ .main{grid-template-columns: 1fr;} .toc{position:relative; top:auto; max-height:none;} }
+.toc{
+  position:sticky; top:64px;
+  align-self:start;
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;
+  padding:12px 12px;
+  max-height: calc(100vh - 90px);
+  overflow:auto;
+}
+.toc h2{margin:6px 0 10px; font-size:13px; color:var(--muted); font-weight:600; letter-spacing:.02em;}
+.toc ul{list-style:none; padding-left:0; margin:0}
+.toc li{margin:6px 0}
+.toc a{display:block; padding:4px 6px; border-radius:10px; color:var(--muted);}
+.toc a:hover{background:rgba(255,255,255,.04); color:var(--text); text-decoration:none;}
+.content{
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;
+  padding:18px 20px;
+  min-width:0;
+}
+.content h1{font-size:28px; margin:0 0 12px;}
+.content h2{font-size:20px; margin:26px 0 10px;}
+.content h3{font-size:16px; margin:18px 0 8px;}
+.content p{margin:10px 0;}
+.content hr{border:0; border-top:1px solid var(--border); margin:22px 0;}
+.content blockquote{margin:14px 0; padding:10px 12px; border-left:3px solid rgba(125,211,252,.45); background:rgba(255,255,255,.03); border-radius:10px;}
+.content code{font-family:var(--mono); background:rgba(255,255,255,.05); padding:2px 5px; border-radius:6px; font-size:0.95em;}
+.content pre{background:var(--code); padding:12px 14px; border-radius:12px; overflow:auto; border:1px solid var(--border);}
+.content pre code{background:transparent; padding:0}
+.content table{width:100%; border-collapse:collapse; margin:14px 0; overflow:auto;}
+.content th,.content td{border:1px solid var(--border); padding:8px 10px; vertical-align:top;}
+.content th{background:rgba(255,255,255,.04); text-align:left}
+.footer{max-width:1200px; margin:0 auto; padding:18px 16px 30px; color:var(--muted); font-size:12px;}
+.hidden{display:none;}
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="title">Robot Skill Store (RSS) Whitepaper</div>
+      <span class="badge">RSS Whitepaper</span>
+      <div class="spacer"></div>
+      
+    </div>
+  </header>
+
+  <main class="main">
+    <aside class="toc" aria-label="Table of Contents">
+      <div id="toc-en">
+        <h2>Contents</h2>
+        <ul>
+  <li><a href="#table-of-contents">Table of Contents</a></li>
+  <li><a href="#how-to-read-this-whitepaper">How to Read This Whitepaper</a></li>
+  <li><a href="#key-takeaways">Key Takeaways</a></li>
+  <li><a href="#chapter-1-executive-summary"><strong>Chapter 1 -</strong> Executive Summary</a></li>
+  <li><a href="#chapter-2-the-skill-crisis-in-robotics"><strong>Chapter 2 -</strong> The Skill Crisis in Robotics</a></li>
+  <li><a href="#chapter-3-what-is-a-robot-skill"><strong>Chapter 3 -</strong> What Is a Robot Skill?</a></li>
+  <li><a href="#chapter-4-from-skill-as-code-to-skill-as-system-asset"><strong>Chapter 4 -</strong> From Skill-as-Code to Skill-as-System Asset</a></li>
+  <li><a href="#chapter-5-robot-skill-store-system-overview"><strong>Chapter 5 -</strong> Robot Skill Store: System Overview</a></li>
+  <li><a href="#chapter-6-website-vs-platform-separation-of-concerns-in-robot-skill-systems"><strong>Chapter 6 -</strong> Website vs Platform: Separation of Concerns in Robot Skill Systems</a></li>
+  <li><a href="#chapter-7-canonical-skill-model"><strong>Chapter 7</strong> - Canonical Skill Model</a></li>
+  <li><a href="#chapter-8-execution-evaluation-and-the-data-flywheel"><strong>Chapter 8 -</strong> Execution, Evaluation, and the Data Flywheel</a></li>
+  <li><a href="#chapter-9-governance-and-trust-in-physical-systems"><strong>Chapter 9 -</strong> Governance and Trust in Physical Systems</a></li>
+  <li><a href="#chapter-10-deployment-models-and-industrial-reality"><strong>Chapter 10 -</strong> Deployment Models and Industrial Reality</a></li>
+  <li><a href="#chapter-11-ecosystem-implications-and-future-directions"><strong>Chapter 11 -</strong> Ecosystem Implications and Future Directions</a></li>
+  <li><a href="#glossary">Glossary</a></li>
+</ul>
+
+      </div>
+      <div id="toc-cn" class="hidden">
+        <h2>目录</h2>
+        <p style='color:var(--muted);font-size:12px'>未生成目录。</p>
+      </div>
+    </aside>
+
+    <article class="content">
+      <section id="section-en">
+        <h1 id="table-of-contents">Table of Contents</h1>
+
+<p><a href="#_Toc219149779">Table of Contents [1](#_Toc219149779)</a></p>
+
+<p><a href="#how-to-read-this-whitepaper">How to Read This Whitepaper
+[2](#how-to-read-this-whitepaper)</a></p>
+
+<p><a href="#key-takeaways">Key Takeaways [2](#key-takeaways)</a></p>
+
+<p><a href="#chapter-1---executive-summary"><strong>Chapter 1 -</strong> Executive Summary
+[3](#chapter-1&#8212;executive-summary)</a></p>
+
+<p><a href="#chapter-2---the-skill-crisis-in-robotics"><strong>Chapter 2 -</strong> The Skill Crisis in Robotics
+[11](#chapter-2&#8212;the-skill-crisis-in-robotics)</a></p>
+
+<p><a href="#chapter-3---what-is-a-robot-skill"><strong>Chapter 3 -</strong> What Is a Robot Skill?
+[18](#chapter-3&#8212;what-is-a-robot-skill)</a></p>
+
+<p><a href="#chapter-4---from-skill-as-code-to-skill-as-system-asset"><strong>Chapter 4 -</strong> From Skill-as-Code to Skill-as-System Asset
+[26](#chapter-4&#8212;from-skill-as-code-to-skill-as-system-asset)</a></p>
+
+<p><a href="#chapter-5---robot-skill-store-system-overview"><strong>Chapter 5 -</strong> Robot Skill Store: System Overview
+[35](#chapter-5&#8212;robot-skill-store-system-overview)</a></p>
+
+<p><a href="#chapter-6---website-vs-platform-separation-of-concerns-in-robot-skill-systems"><strong>Chapter 6 -</strong> Website vs Platform: Separation of Concerns in Robot
+Skill Systems
+[43](#chapter-6&#8212;website-vs-platform-separation-of-concerns-in-robot-skill-systems)</a></p>
+
+<p><a href="#chapter-7---canonical-skill-model"><strong>Chapter 7</strong> - Canonical Skill Model
+[52](#chapter-7&#8212;canonical-skill-model)</a></p>
+
+<p><a href="#chapter-8---execution-evaluation-and-the-data-flywheel"><strong>Chapter 8 -</strong> Execution, Evaluation, and the Data Flywheel
+[63](#chapter-8&#8212;execution-evaluation-and-the-data-flywheel)</a></p>
+
+<p><a href="#chapter-9---governance-and-trust-in-physical-systems"><strong>Chapter 9 -</strong> Governance and Trust in Physical Systems
+[73](#chapter-9&#8212;governance-and-trust-in-physical-systems)</a></p>
+
+<p><a href="#chapter-10---deployment-models-and-industrial-reality"><strong>Chapter 10 -</strong> Deployment Models and Industrial Reality
+[81](#chapter-10&#8212;deployment-models-and-industrial-reality)</a></p>
+
+<p><a href="#chapter-11---ecosystem-implications-and-future-directions"><strong>Chapter 11 -</strong> Ecosystem Implications and Future Directions
+[89](#chapter-11&#8212;ecosystem-implications-and-future-directions)</a></p>
+
+<p><a href="#glossary">Glossary [96](#glossary)</a></p>
+
+<h1 id="how-to-read-this-whitepaper">How to Read This Whitepaper</h1>
+
+<p>Executives:</p>
+
+<p>Chapters 1, 2, 10, 11 &#8212; problem framing and strategic implications.</p>
+
+<p>System architects:</p>
+
+<p>Chapters 3&#8211;9 &#8212; skill definition, object model, execution, and
+governance.</p>
+
+<p>Implementers:</p>
+
+<p>Chapters 5&#8211;8 &#8212; lifecycle, execution, benchmarks, and deployment
+semantics.</p>
+
+<h1 id="key-takeaways">Key Takeaways</h1>
+
+<ul>
+<li><p>Robot Skill Store (RSS) separates robot skills from robot hardware and
+deployment environments.</p></li>
+<li><p>Skills are versioned, benchmarked, and governed as first-class assets.</p></li>
+<li><p>Execution data forms a closed-loop flywheel for continuous
+improvement.</p></li>
+<li><p>RSS enables cross-vendor, cross-site reuse of robotic capabilities.</p></li>
+<li><p>Governance and safety policies are enforced at execution time, not by
+convention.</p></li>
+</ul>
+
+<h1 id="chapter-1-executive-summary"><strong>Chapter 1 -</strong> Executive Summary</h1>
+
+<p><strong>1.1 The State of Robotics Today</strong></p>
+
+<p>Robotics has entered an era of unprecedented visibility.</p>
+
+<p>Research breakthroughs, open-source frameworks, simulation tools, and
+large-scale demonstrations have created the impression that robot
+capabilities are rapidly maturing.</p>
+
+<p>Yet despite this progress, <strong>the deployment of robot skills in real
+production environments remains slow, fragile, and expensive</strong>.</p>
+
+<p>Across industries, the same pattern repeats:</p>
+
+<ul>
+<li><p>Demos succeed, deployments stall</p></li>
+<li><p>Skills work in isolation, but fail at scale</p></li>
+<li><p>Integration effort dominates innovation</p></li>
+<li><p>Operational risk outweighs perceived benefit</p></li>
+</ul>
+
+<p>The core issue is not a lack of algorithms or hardware.\
+It is the absence of a <strong>system-level framework for managing robot
+skills as reliable, governable capabilities</strong>.</p>
+
+<p><strong>1.2 The Skill Problem Beneath the Surface</strong></p>
+
+<p>At the heart of the deployment challenge lies a deceptively simple
+question:</p>
+
+<p><strong>What is a robot skill?</strong></p>
+
+<p>In practice, robot skills are treated as:</p>
+
+<ul>
+<li><p>Code fragments</p></li>
+<li><p>ROS nodes</p></li>
+<li><p>Learned policies</p></li>
+<li><p>Demo pipelines</p></li>
+</ul>
+
+<p>They lack:</p>
+
+<ul>
+<li><p>A precise definition</p></li>
+<li><p>Versioned semantics</p></li>
+<li><p>Objective evaluation</p></li>
+<li><p>Governance and accountability</p></li>
+</ul>
+
+<p>As a result, robot skills cannot be trusted, compared, or deployed with
+confidence.</p>
+
+<p>They remain <strong>engineering artifacts</strong>, not <strong>system assets</strong>.</p>
+
+<p><strong>1.3 Robot Skill Store: A Systemic Response</strong></p>
+
+<p><strong>Robot Skill Store：系统性回应</strong></p>
+
+<p>Robot Skill Store (RSS) is proposed as a <strong>platform-level solution</strong> to
+this problem.</p>
+
+<p>RSS introduces a fundamental shift:</p>
+
+<p><strong>From skill-as-code to skill-as-system asset.</strong></p>
+
+<p>In RSS:</p>
+
+<ul>
+<li><p>A robot skill is defined as a contracted, versioned capability</p></li>
+<li><p>Execution produces immutable system records</p></li>
+<li><p>Evaluation is standardized and comparable</p></li>
+<li><p>Governance is enforced by the platform</p></li>
+<li><p>Trust emerges from accumulated evidence</p></li>
+</ul>
+
+<p>RSS does not replace existing robotics frameworks.\
+Instead, it provides the <strong>missing system layer</strong> that connects them
+into a deployable whole.</p>
+
+<p><strong>1.4 Website and Platform: A Deliberate Separation</strong></p>
+
+<p>A defining design choice of RSS is the strict separation between:</p>
+
+<ul>
+<li><p>The <strong>RSS Website</strong>, which serves humans</p></li>
+<li><p>The <strong>RSS Platform</strong>, which serves systems</p></li>
+</ul>
+
+<p>The Website enables:</p>
+
+<ul>
+<li><p>Discovery and understanding of skills</p></li>
+<li><p>Visualization of evaluation results</p></li>
+<li><p>Human-triggered workflows</p></li>
+</ul>
+
+<p>The Platform ensures:</p>
+
+<ul>
+<li><p>Execution truth</p></li>
+<li><p>Evaluation integrity</p></li>
+<li><p>Governance and auditability</p></li>
+</ul>
+
+<p>This separation is not cosmetic&#8212;it is essential for safety,
+scalability, and trust in physical systems.</p>
+
+<p><strong>1.5 Designed for Industrial Reality</strong></p>
+
+<p>RSS is designed with real industrial constraints in mind:</p>
+
+<ul>
+<li><p>On-prem and air-gapped deployments</p></li>
+<li><p>Long-lived production systems</p></li>
+<li><p>Strict safety and compliance requirements</p></li>
+<li><p>Controlled change management</p></li>
+</ul>
+
+<p>By maintaining consistent semantics across deployment environments, RSS
+enables innovation without sacrificing operational discipline.</p>
+
+<p><strong>1.6 Who RSS Is For</strong></p>
+
+<p>RSS is designed for:</p>
+
+<ul>
+<li><p>Robotics teams seeking to scale beyond demos</p></li>
+<li><p>System integrators managing complex deployments</p></li>
+<li><p>Skill providers aiming to distribute reliable capabilities</p></li>
+<li><p>Industrial operators demanding transparency and trust</p></li>
+</ul>
+
+<p>It is not a consumer marketplace.\
+It is a <strong>professional platform for deployable robot capabilities</strong>.</p>
+
+<p><strong>1.7 The Path Forward</strong></p>
+
+<p>This whitepaper presents:</p>
+
+<ul>
+<li><p>The problem facing robot skills today</p></li>
+<li><p>A precise definition of what a skill is</p></li>
+<li><p>A platform architecture to manage skills as assets</p></li>
+<li><p>A governance model suitable for physical systems</p></li>
+</ul>
+
+<p>Robot Skill Store is not a final product.\
+It is a foundation upon which a scalable robotics ecosystem can be
+built.</p>
+
+<p>#</p>
+
+<p><em>**</em></p>
+
+<h1 id="chapter-2-the-skill-crisis-in-robotics"><strong>Chapter 2 -</strong> The Skill Crisis in Robotics</h1>
+
+<p><strong>2.1 Robotics Is Rich in Demos, Poor in Deployable Skills</strong></p>
+
+<p>Modern robotics appears vibrant:\
+research papers, open-source repositories, demo videos, and impressive
+lab showcases are abundant.</p>
+
+<p>Yet in practice, <strong>very few robot skills are actually deployable at
+scale</strong>.</p>
+
+<p>Most &#8220;skills&#8221; in robotics today exist as:</p>
+
+<ul>
+<li><p>Project-specific scripts</p></li>
+<li><p>Tightly coupled ROS nodes</p></li>
+<li><p>Ad-hoc policies trained for a single setup</p></li>
+<li><p>Demo pipelines assembled for one-off demonstrations</p></li>
+</ul>
+
+<p>They work <strong>once</strong>, in <strong>one environment</strong>, for <strong>one robot</strong>, under
+<strong>one set of assumptions</strong>.</p>
+
+<p>When conditions change&#8212;even slightly&#8212;the skill breaks.</p>
+
+<p>This gap between <em>demonstration success</em> and <em>deployment readiness</em> is
+the central crisis in robotics skills.</p>
+
+<p><strong>2.2 Skills Are Treated as Code, Not as Assets</strong></p>
+
+<p>In most robotics workflows, a skill is treated as <strong>code to be run</strong>,
+not as an <strong>asset to be managed</strong>.</p>
+
+<p>As a result:</p>
+
+<ul>
+<li><p>Skills have no explicit versioning semantics</p></li>
+<li><p>Changes are rarely tracked or audited</p></li>
+<li><p>Rollback is manual or impossible</p></li>
+<li><p>Compatibility is undocumented</p></li>
+<li><p>Trust is based on author reputation or anecdotal evidence</p></li>
+</ul>
+
+<p>This is acceptable for research prototypes, but unacceptable for
+production systems.</p>
+
+<p>Industries such as cloud computing, databases, and safety-critical
+software long ago learned that <strong>capabilities must be managed as
+assets</strong>, not as files.</p>
+
+<p>Robotics, operating in the physical world, cannot afford to lag behind.</p>
+
+<p><strong>2.3 Demo-Centric Validation Breaks at Scale</strong></p>
+
+<p>Most robot skills today are validated visually:</p>
+
+<ul>
+<li><p>The robot moves &#8220;roughly correctly&#8221;</p></li>
+<li><p>The object is grasped &#8220;most of the time&#8221;</p></li>
+<li><p>The alignment &#8220;looks good enough&#8221;</p></li>
+</ul>
+
+<p>Such validation is inherently subjective.</p>
+
+<p>It fails to answer critical questions:</p>
+
+<ul>
+<li><p>Under what conditions does this skill fail?</p></li>
+<li><p>How often does it succeed?</p></li>
+<li><p>How does it compare to alternatives?</p></li>
+<li><p>Has it regressed since the last change?</p></li>
+</ul>
+
+<p>Without systematic evaluation, <strong>trust cannot be established</strong>, and
+without trust, <strong>deployment cannot scale</strong>.</p>
+
+<p><strong>2.4 Lack of Governance Prevents Industrial Adoption</strong></p>
+
+<p>In industrial environments, deploying a robot skill is not merely a
+technical act&#8212;it is an operational and legal decision.</p>
+
+<p>Factories require answers to questions such as:</p>
+
+<ul>
+<li><p>Who authored this skill?</p></li>
+<li><p>Who approved its deployment?</p></li>
+<li><p>What version is running on which machine?</p></li>
+<li><p>What policies were checked before execution?</p></li>
+<li><p>What evidence exists if something goes wrong?</p></li>
+</ul>
+
+<p>Traditional robotics toolchains offer <strong>no coherent answers</strong> to these
+questions.</p>
+
+<p>As a result, organizations either:</p>
+
+<ul>
+<li><p>Freeze robot behavior and avoid updates</p></li>
+<li><p>Rely on manual processes and tribal knowledge</p></li>
+<li><p>Reject external skills entirely</p></li>
+</ul>
+
+<p>None of these paths are sustainable.</p>
+
+<p><strong>2.5 Fragmentation Across Robots, Environments, and Vendors</strong></p>
+
+<p>Even when a skill is well-engineered, it is often:</p>
+
+<ul>
+<li><p>Locked to a specific robot model</p></li>
+<li><p>Tuned for a single scene</p></li>
+<li><p>Dependent on proprietary interfaces</p></li>
+</ul>
+
+<p>This fragmentation prevents reuse and ecosystem growth.</p>
+
+<p>Without a common system that defines <strong>what a skill is</strong>, <strong>how it is
+evaluated</strong>, and <strong>how it is deployed</strong>, skills remain isolated
+artifacts rather than building blocks.</p>
+
+<p><strong>2.6 The Consequence: Skills Cannot Scale</strong></p>
+
+<p>Taken together, these issues lead to a single conclusion:</p>
+
+<p><strong>Robot skills, as they exist today, do not scale.</strong></p>
+
+<p>They do not scale across robots.\
+They do not scale across environments.\
+They do not scale across organizations.</p>
+
+<p>Most importantly, they do not scale into production.</p>
+
+<p>This is the problem Robot Skill Store is designed to address.</p>
+
+<p><em>**</em></p>
+
+<h1 id="chapter-3-what-is-a-robot-skill"><strong>Chapter 3 -</strong> What Is a Robot Skill?</h1>
+
+<p><strong>3.1 Why &#8220;Skill&#8221; Must Be Defined Precisely</strong></p>
+
+<p>In robotics, the term <em>skill</em> is widely used but rarely defined.</p>
+
+<p>It may refer to:</p>
+
+<ul>
+<li><p>A motion primitive</p></li>
+<li><p>A ROS node</p></li>
+<li><p>A script that controls actuators</p></li>
+<li><p>A learned policy checkpoint</p></li>
+<li><p>A demo pipeline assembled for a presentation</p></li>
+</ul>
+
+<p>This ambiguity creates a serious problem:\
+<strong>systems cannot be built on undefined concepts</strong>.</p>
+
+<p>When &#8220;skill&#8221; means different things to different teams, it becomes
+impossible to:</p>
+
+<ul>
+<li><p>Compare capabilities</p></li>
+<li><p>Evaluate reliability</p></li>
+<li><p>Govern deployment</p></li>
+<li><p>Build reusable ecosystems</p></li>
+</ul>
+
+<p>RSS starts by enforcing a precise definition of a robot skill&#8212;not as
+an implementation detail, but as a <strong>system contract</strong>.</p>
+
+<p><strong>3.2 Skill Is Not Code</strong></p>
+
+<p>A common misconception is to equate a robot skill with executable code.</p>
+
+<p>Code is an <strong>implementation</strong>.\
+A skill is a <strong>capability promise</strong>.</p>
+
+<p>Code answers the question:</p>
+
+<p><em>How is something done?</em></p>
+
+<p>A skill must answer:</p>
+
+<p><em>What capability is provided, under which conditions, and with what
+guarantees?</em></p>
+
+<p>Multiple code implementations may exist for the same skill.\
+Conversely, the same code may represent different skills under different
+constraints.</p>
+
+<p>Therefore, in RSS, code is only one component of a skill&#8212;not its
+definition.</p>
+
+<p><strong>3.3 Skill Is Not a Demo</strong></p>
+
+<p>A demo demonstrates <strong>possibility</strong>.\
+A skill must guarantee <strong>repeatability</strong>.</p>
+
+<p>Demos are typically:</p>
+
+<ul>
+<li><p>Manually curated</p></li>
+<li><p>Environment-specific</p></li>
+<li><p>Operator-assisted</p></li>
+<li><p>Optimized for presentation</p></li>
+</ul>
+
+<p>They answer:</p>
+
+<p><em>Can this be shown once?</em></p>
+
+<p>Skills must answer:</p>
+
+<p><em>Can this be executed reliably across runs, environments, and
+operators?</em></p>
+
+<p>RSS explicitly separates <em>demonstration</em> from <em>skill definition</em>.</p>
+
+<p>A demo may showcase a skill.\
+It does not define one.</p>
+
+<p><strong>3.4 Skill as a Contracted Capability</strong></p>
+
+<p>RSS defines a robot skill as a <strong>contracted capability</strong>.</p>
+
+<p>A skill is not merely executable&#8212;it is <strong>describable, testable, and
+governable</strong>.</p>
+
+<p>Formally, a robot skill in RSS is defined by:</p>
+
+<ol>
+<li><p><strong>Declared Capability</strong>\
+What the skill claims to achieve (e.g., &#8220;tighten a screw to torque
+X").</p></li>
+<li><p><strong>Inputs</strong>\
+Required parameters, references, or perceptions.</p></li>
+<li><p><strong>Preconditions</strong>\
+Assumptions about the environment, robot state, and tooling.</p></li>
+<li><p><strong>Execution Boundary</strong>\
+What the skill controls&#8212;and what it explicitly does not.</p></li>
+<li><p><strong>Outputs</strong>\
+Measurable outcomes, signals, or state changes.</p></li>
+<li><p><strong>Failure Modes</strong>\
+Known conditions under which the skill may fail.</p></li>
+<li><p><strong>Evaluation Criteria</strong>\
+Metrics and thresholds used to judge success.</p></li>
+</ol>
+
+<p>This contract allows the skill to be reasoned about <strong>before it is
+executed</strong>.</p>
+
+<p><strong>3.5 Skill Versioning and Immutability</strong></p>
+
+<p>Once a skill is defined as a contract, <strong>immutability becomes
+mandatory</strong>.</p>
+
+<p>A released skill version must not change its behavior silently.</p>
+
+<p>Why?</p>
+
+<ul>
+<li><p>Evaluation results must remain valid</p></li>
+<li><p>Deployment decisions must be auditable</p></li>
+<li><p>Rollback must be reliable</p></li>
+</ul>
+
+<p>In RSS:</p>
+
+<ul>
+<li><p>A <strong>Skill</strong> represents a logical capability</p></li>
+<li><p>A <strong>Skill Version</strong> represents an immutable contract + implementation</p></li>
+</ul>
+
+<p>Any change&#8212;no matter how small&#8212;creates a new version.</p>
+
+<p>This principle aligns robotics with mature software and safety-critical
+systems.</p>
+
+<p><strong>3.6 Why This Definition Enables a Platform</strong></p>
+
+<p>Only with a precise definition of a robot skill can RSS enable:</p>
+
+<ul>
+<li><p>Comparable evaluation</p></li>
+<li><p>Meaningful benchmarks</p></li>
+<li><p>Policy-based governance</p></li>
+<li><p>Ecosystem reuse</p></li>
+</ul>
+
+<p>Without a strict definition, RSS would collapse into:</p>
+
+<ul>
+<li><p>A code repository</p></li>
+<li><p>A demo gallery</p></li>
+<li><p>Or a marketplace without trust</p></li>
+</ul>
+
+<p>By defining skills as contracted, versioned, and evaluable capabilities,
+RSS establishes the foundation for everything that follows.</p>
+
+<p><em>**</em></p>
+
+<h1 id="chapter-4-from-skill-as-code-to-skill-as-system-asset"><strong>Chapter 4 -</strong> From Skill-as-Code to Skill-as-System Asset</h1>
+
+<p><strong>4.1 The Limitations of Skill-as-Code</strong></p>
+
+<p>Treating robot skills as executable code has been the default approach
+for decades.</p>
+
+<p>In this model:</p>
+
+<ul>
+<li><p>A skill is a script, node, or package</p></li>
+<li><p>Execution means &#8220;running the code&#8221;</p></li>
+<li><p>Validation means &#8220;it worked during the demo&#8221;</p></li>
+<li><p>Distribution means &#8220;share the repository&#8221;</p></li>
+</ul>
+
+<p>This approach scales <strong>engineering effort</strong>, but it does not scale
+<strong>capability reliability</strong>.</p>
+
+<p>The fundamental limitation is that <strong>code has no inherent semantics
+about capability</strong>.</p>
+
+<p>Code alone does not specify:</p>
+
+<ul>
+<li><p>What problem it solves</p></li>
+<li><p>Under which conditions it is valid</p></li>
+<li><p>How success or failure should be judged</p></li>
+<li><p>Whether it is safe to deploy</p></li>
+</ul>
+
+<p>As a result, every reuse attempt becomes a new integration project.</p>
+
+<p><strong>4.2 Why Reuse Fails Without System Context</strong></p>
+
+<p>In practice, most failed skill reuse attempts share a common pattern:</p>
+
+<ul>
+<li><p>The code runs</p></li>
+<li><p>The robot moves</p></li>
+<li><p>But the outcome is unreliable or unsafe</p></li>
+</ul>
+
+<p>This happens because <strong>skills depend on implicit system context</strong>:</p>
+
+<ul>
+<li><p>Robot kinematics and limits</p></li>
+<li><p>Tooling and calibration</p></li>
+<li><p>Environment geometry</p></li>
+<li><p>Perception assumptions</p></li>
+<li><p>Timing and control characteristics</p></li>
+</ul>
+
+<p>When these assumptions are undocumented and unenforced, reuse becomes
+guesswork.</p>
+
+<p>RSS recognizes that <strong>context is not optional metadata</strong>&#8212;it is part of
+the skill itself.</p>
+
+<p><strong>4.3 Skill as a First-Class System Asset</strong></p>
+
+<p>RSS proposes a fundamental shift:</p>
+
+<p>A robot skill is not code to be executed,\
+but a <strong>system asset to be managed</strong>.</p>
+
+<p>As a system asset, a skill must have:</p>
+
+<ul>
+<li><p>Identity (what it is)</p></li>
+<li><p>Version (what exactly it is)</p></li>
+<li><p>State (where and how it is used)</p></li>
+<li><p>History (how it performed over time)</p></li>
+<li><p>Policy (under what rules it can run)</p></li>
+</ul>
+
+<p>This mirrors how mature systems treat critical components:</p>
+
+<ul>
+<li><p>Containers in cloud platforms</p></li>
+<li><p>Images in manufacturing pipelines</p></li>
+<li><p>Models in regulated ML systems</p></li>
+</ul>
+
+<p>Robotics requires the same level of discipline.</p>
+
+<p><strong>4.4 What Changes When Skills Become Assets</strong></p>
+
+<p>This shift unlocks several critical capabilities:</p>
+
+<p><strong>1. Reproducibility</strong></p>
+
+<p>Every execution references a specific skill version and profile.</p>
+
+<p>Results are no longer anecdotal&#8212;they are reproducible records.</p>
+
+<p><strong>2. Comparability</strong></p>
+
+<p>Different skills (or versions) can be benchmarked under the same
+conditions.</p>
+
+<p>&#8220;Which one is better?&#8221; becomes a data-backed question.</p>
+
+<p><strong>3. Governability</strong></p>
+
+<p>Policies can be enforced at the asset level:</p>
+
+<ul>
+<li><p>Who can run this skill?</p></li>
+<li><p>On which robots?</p></li>
+<li><p>In which environments?</p></li>
+</ul>
+
+<p><strong>4. Lifecycle Management</strong></p>
+
+<p>Skills can be:</p>
+
+<ul>
+<li><p>Released</p></li>
+<li><p>Deprecated</p></li>
+<li><p>Rolled back</p></li>
+<li><p>Certified</p></li>
+</ul>
+
+<p>Systematically, not manually.</p>
+
+<p><strong>4.5 Why This Shift Requires a Platform</strong></p>
+
+<p>Managing skills as assets cannot be achieved through conventions alone.</p>
+
+<p>It requires:</p>
+
+<ul>
+<li><p>A canonical registry</p></li>
+<li><p>Immutable versioning</p></li>
+<li><p>Execution records</p></li>
+<li><p>Evaluation infrastructure</p></li>
+<li><p>Policy enforcement</p></li>
+</ul>
+
+<p>In other words, it requires a <strong>platform</strong>.</p>
+
+<p>Without a platform, &#8220;skill-as-asset&#8221; collapses back into:</p>
+
+<ul>
+<li><p>Documentation conventions</p></li>
+<li><p>Folder structures</p></li>
+<li><p>Best-effort discipline</p></li>
+</ul>
+
+<p>RSS exists precisely to provide this missing platform layer.</p>
+
+<p><strong>4.6 Setting the Stage for RSS Architecture</strong></p>
+
+<p>This chapter completes a critical transition:</p>
+
+<ul>
+<li><p>Skills are no longer ephemeral demos</p></li>
+<li><p>They are durable, governable system assets</p></li>
+</ul>
+
+<p>With this shift established, the following questions naturally arise:</p>
+
+<ul>
+<li><p>How are these assets modeled?</p></li>
+<li><p>How are they executed and evaluated?</p></li>
+<li><p>How are trust and policy enforced?</p></li>
+</ul>
+
+<p>These questions lead directly to the RSS architecture and object model.</p>
+
+<p><em>**</em></p>
+
+<h1 id="chapter-5-robot-skill-store-system-overview"><strong>Chapter 5 -</strong> Robot Skill Store: System Overview</h1>
+
+<p><strong>Robot Skill Store：系统整体概览</strong></p>
+
+<p><strong>5.1 From Principles to a System</strong></p>
+
+<p>The previous chapters established three critical premises:</p>
+
+<ol>
+<li><p>Robot skills, as practiced today, do not scale</p></li>
+<li><p>A robot skill must be defined as a contracted, versioned capability</p></li>
+<li><p>Skills must be treated as first-class system assets</p></li>
+</ol>
+
+<p>These premises imply a clear requirement:</p>
+
+<p><strong>A system is needed to manage the full lifecycle of robot skills.</strong></p>
+
+<p>Robot Skill Store (RSS) is that system.</p>
+
+<p>RSS is not a single application, nor a collection of scripts.\
+It is a <strong>coherent platform</strong> designed to manage robot skills from
+creation to deployment, across simulation and real-world environments.</p>
+
+<p>Robot Skill Store（RSS）正是这样一个系统。</p>
+
+<p><strong>5.2 The Core Objective of RSS</strong></p>
+
+<p>The core objective of RSS is to <strong>make robot skills deployable with
+confidence</strong>.</p>
+
+<p>This means:</p>
+
+<ul>
+<li><p>Skills can be understood before execution</p></li>
+<li><p>Skills can be evaluated objectively</p></li>
+<li><p>Skills can be deployed under governance</p></li>
+<li><p>Skills can evolve without losing trust</p></li>
+</ul>
+
+<p>RSS does not aim to replace existing robotics frameworks.\
+Instead, it provides the <strong>missing system layer</strong> that connects them.</p>
+
+<p><strong>5.3 What RSS Is &#8212; and What It Is Not</strong></p>
+
+<p>To avoid ambiguity, RSS explicitly defines its scope.</p>
+
+<p><strong>RSS is:</strong></p>
+
+<ul>
+<li><p>A skill-centric platform</p></li>
+<li><p>A system-of-record for skill execution and evaluation</p></li>
+<li><p>A governance layer for robot capabilities</p></li>
+<li><p>A bridge between demos and production deployment</p></li>
+</ul>
+
+<p><strong>RSS is not:</strong></p>
+
+<ul>
+<li><p>A robot controller</p></li>
+<li><p>A real-time motion planner</p></li>
+<li><p>A replacement for ROS, MoveIt, or vendor SDKs</p></li>
+<li><p>A mere website or marketplace</p></li>
+</ul>
+
+<p>This distinction is critical to prevent architectural drift.</p>
+
+<p><strong>5.4 The Skill Lifecycle in RSS</strong></p>
+
+<p>RSS organizes robot skills around a clearly defined lifecycle:</p>
+
+<ol>
+<li><p><strong>Definition</strong>\
+A skill is defined as a contracted capability, with explicit
+assumptions and metrics.</p></li>
+<li><p><strong>Packaging</strong>\
+The implementation is packaged as an artifact bound to a specific
+skill version.</p></li>
+<li><p><strong>Execution</strong>\
+Runs are triggered in simulation or real environments via the
+Platform.</p></li>
+<li><p><strong>Evaluation</strong>\
+Results are measured, recorded, and compared using benchmarks.</p></li>
+<li><p><strong>Governance</strong>\
+Policies, permissions, and licenses determine where and how the
+skill may run.</p></li>
+<li><p><strong>Deployment</strong>\
+Approved skill versions are deployed into production environments.</p></li>
+</ol>
+
+<p>Each stage produces system records that persist beyond individual
+executions.</p>
+
+<p><strong>5.5 Website and Platform as Complementary Roles</strong></p>
+
+<p>RSS realizes this lifecycle through two complementary system roles:</p>
+
+<ul>
+<li><p>The <strong>Website</strong>, which serves humans</p></li>
+<li><p>The <strong>Platform</strong>, which serves systems</p></li>
+</ul>
+
+<p>The Website focuses on:</p>
+
+<ul>
+<li><p>Discovery and understanding</p></li>
+<li><p>Visualization and comparison</p></li>
+<li><p>Human-triggered workflows</p></li>
+</ul>
+
+<p>The Platform focuses on:</p>
+
+<ul>
+<li><p>Execution and orchestration</p></li>
+<li><p>Evaluation and record-keeping</p></li>
+<li><p>Policy enforcement and auditability</p></li>
+</ul>
+
+<p>Neither role is sufficient on its own.\
+Together, they form a complete system.</p>
+
+<p><strong>5.6 Why RSS Is a Platform, Not a Product</strong></p>
+
+<p>A defining characteristic of RSS is that it is designed to be
+<strong>extended</strong>, not completed.</p>
+
+<p>New skills, robots, environments, benchmarks, and policies can be added
+without redefining the system.</p>
+
+<p>This openness allows RSS to function as:</p>
+
+<ul>
+<li><p>A foundation for internal robotics teams</p></li>
+<li><p>An integration layer for system integrators</p></li>
+<li><p>A distribution and governance layer for skill providers</p></li>
+</ul>
+
+<p>This is what distinguishes a platform from a product.</p>
+
+<p><strong>5.7 Transition to Architecture and Object Model</strong></p>
+
+<p>With the system overview established, the remaining questions become
+concrete:</p>
+
+<ul>
+<li><p>What are the canonical objects managed by RSS?</p></li>
+<li><p>How do these objects interact?</p></li>
+<li><p>How does the system enforce execution truth and governance?</p></li>
+</ul>
+
+<p>These questions are addressed in the following chapters.</p>
+
+<h1 id="chapter-6-website-vs-platform-separation-of-concerns-in-robot-skill-systems"><strong>Chapter 6 -</strong> Website vs Platform: Separation of Concerns in Robot Skill Systems</h1>
+
+<p><strong>6.1 Why Separation Matters in Robotics Systems</strong></p>
+
+<p>In traditional software products, the boundary between a website and a
+backend service is often a matter of implementation convenience.\
+In robotics systems, however, this boundary becomes <strong>architecturally
+and operationally critical</strong>.</p>
+
+<p>Traditional robotics workflows frequently blur this boundary:</p>
+
+<ul>
+<li><p>Demos are executed directly from UI tools</p></li>
+<li><p>Execution logic is embedded in scripts triggered by human operators</p></li>
+<li><p>Results are validated visually rather than systematically</p></li>
+</ul>
+
+<p>This approach may work for <strong>single demonstrations</strong>, but it fails
+fundamentally when robotics systems need to scale, be audited, or be
+deployed in production environments.</p>
+
+<p>Robots operate in the <strong>physical world</strong>.\
+Mistakes are not limited to software bugs; they translate into:</p>
+
+<ul>
+<li><p>Physical damage</p></li>
+<li><p>Safety risks</p></li>
+<li><p>Production downtime</p></li>
+<li><p>Liability exposure</p></li>
+</ul>
+
+<p>For this reason, <strong>execution truth, evaluation, and governance must
+never depend on a human-facing interface</strong>.</p>
+
+<p><strong>6.2 The Role of the RSS Website</strong></p>
+
+<p>The RSS Website exists to serve <strong>human understanding and
+decision-making</strong>, not system execution.</p>
+
+<p>Its primary responsibility is to answer questions such as:</p>
+
+<ul>
+<li><p>What skills exist?</p></li>
+<li><p>What capabilities do they claim?</p></li>
+<li><p>How were they evaluated?</p></li>
+<li><p>Under what conditions do they work?</p></li>
+</ul>
+
+<p>The Website aggregates, visualizes, and contextualizes information
+produced by the Platform.\
+It enables humans to explore the skill ecosystem, compare options, and
+initiate controlled actions.</p>
+
+<p>Crucially, the Website <strong>does not own execution logic or system truth</strong>.</p>
+
+<p>In RSS, the Website is allowed to:</p>
+
+<ul>
+<li><p>Trigger executions</p></li>
+<li><p>Visualize results</p></li>
+<li><p>Guide onboarding workflows</p></li>
+</ul>
+
+<p>But it is <strong>not allowed to</strong>:</p>
+
+<ul>
+<li><p>Implement control loops</p></li>
+<li><p>Decide execution success or failure</p></li>
+<li><p>Store authoritative execution records</p></li>
+<li><p>Enforce safety or policy gates</p></li>
+</ul>
+
+<p>The Website is a <strong>control surface</strong>, not a control system.</p>
+
+<p><strong>6.3 The Role of the RSS Platform</strong></p>
+
+<p>The RSS Platform is the <strong>system-facing backbone</strong> of the Robot Skill
+Store.</p>
+
+<p>It is responsible for all properties that must remain true regardless of
+who initiates an action, from where, or through which interface.</p>
+
+<p>The Platform owns:</p>
+
+<ul>
+<li><p>Skill lifecycle management</p></li>
+<li><p>Execution orchestration</p></li>
+<li><p>Evaluation and benchmarking</p></li>
+<li><p>Policy enforcement and governance</p></li>
+<li><p>Auditability and traceability</p></li>
+</ul>
+
+<p>In other words, the Platform defines <strong>what actually happened</strong>.</p>
+
+<p>If a skill is executed, the Platform records it.\
+If a benchmark is passed or failed, the Platform determines it.\
+If a policy gate blocks deployment, the Platform enforces it.</p>
+
+<p>These guarantees must hold:</p>
+
+<ul>
+<li><p>With or without a Website</p></li>
+<li><p>In cloud, on-prem, or air-gapped environments</p></li>
+<li><p>Under automation or human-triggered workflows</p></li>
+</ul>
+
+<p>This is why the Platform must be <strong>API-first and interface-agnostic</strong>.</p>
+
+<p>RSS 平台是 Robot Skill Store 的<strong>系统级骨干</strong>。</p>
+
+<p><strong>6.4 Why Execution Truth Must Live in the Platform</strong></p>
+
+<p>A common failure mode in robotics systems is <strong>UI-driven truth</strong>.</p>
+
+<p>Examples include:</p>
+
+<ul>
+<li><p>A demo button that implicitly defines success</p></li>
+<li><p>A visual alignment that substitutes for quantitative metrics</p></li>
+<li><p>A human operator manually deciding &#8220;this works&#8221;</p></li>
+</ul>
+
+<p>These approaches are inherently non-reproducible and non-auditable.</p>
+
+<p>RSS rejects UI-driven truth.</p>
+
+<p>Instead, RSS enforces that:</p>
+
+<ul>
+<li><p>Every execution is a Platform-managed Run</p></li>
+<li><p>Every Run has inputs, outputs, logs, and metrics</p></li>
+<li><p>Every decision can be traced to data and policy</p></li>
+</ul>
+
+<p>This is the only way robot skills can evolve from demonstrations into
+<strong>deployable system assets</strong>.</p>
+
+<p><strong>6.5 Non-Negotiable Boundary Rules</strong></p>
+
+<p>To prevent architectural erosion, RSS enforces strict rules:</p>
+
+<ol>
+<li><p><strong>No UI-only capabilities</strong>\
+Any capability that affects execution, evaluation, or governance
+must exist as a Platform API.</p></li>
+<li><p><strong>No duplicate truth</strong>\
+The Website may cache or visualize data, but canonical records live
+in the Platform.</p></li>
+<li><p><strong>No hidden execution paths</strong>\
+If a skill can be executed, it must be traceable via Platform logs
+and identity.</p></li>
+<li><p><strong>No policy bypass</strong>\
+The Website cannot bypass safety, license, or governance checks
+under any circumstances.</p></li>
+</ol>
+
+<p>These rules are not implementation preferences; they are <strong>system
+invariants</strong>.</p>
+
+<p><strong>6.6 Implications for System Design</strong></p>
+
+<p>This separation has concrete implications:</p>
+
+<ul>
+<li><p>Platform services must be robust, testable, and deployable
+independently</p></li>
+<li><p>Website development can iterate rapidly without risking system
+correctness</p></li>
+<li><p>Third-party systems can integrate without depending on UI flows</p></li>
+</ul>
+
+<p>Most importantly, this separation ensures that <strong>Robot Skill Store
+remains a platform</strong>, not merely a marketplace website.</p>
+
+<h1 id="chapter-7-canonical-skill-model"><strong>Chapter 7</strong> - Canonical Skill Model</h1>
+
+<p><strong>7.1 Why a Canonical Model Is Necessary</strong></p>
+
+<p>A platform cannot function without a shared object model.</p>
+
+<p>In robotics today, different teams describe the same concepts using
+incompatible abstractions:</p>
+
+<ul>
+<li><p>A &#8220;skill&#8221; in one system is a script</p></li>
+<li><p>In another, it is a ROS node</p></li>
+<li><p>In a third, it is a trained policy</p></li>
+<li><p>In a fourth, it is a demo pipeline</p></li>
+</ul>
+
+<p>This fragmentation makes it impossible to:</p>
+
+<ul>
+<li><p>Compare capabilities</p></li>
+<li><p>Track changes over time</p></li>
+<li><p>Enforce governance consistently</p></li>
+<li><p>Build interoperable tooling</p></li>
+</ul>
+
+<p>RSS introduces a <strong>canonical object model</strong> to establish a common
+language across systems, teams, and organizations.</p>
+
+<p><strong>7.2 Design Principles of the Skill Model</strong></p>
+
+<p>The canonical model in RSS follows four principles:</p>
+
+<ol>
+<li><p><strong>Explicitness</strong>\
+All assumptions must be made explicit.</p></li>
+<li><p><strong>Immutability</strong>\
+Released artifacts and versions must not change.</p></li>
+<li><p><strong>Traceability</strong>\
+Every execution must be traceable to identity, version, and
+configuration.</p></li>
+<li><p><strong>Composability</strong>\
+Objects should compose cleanly without hidden coupling.</p></li>
+</ol>
+
+<p>These principles guide every object defined in the model.</p>
+
+<p><strong>7.3 Core Objects in RSS</strong></p>
+
+<p>RSS defines a small number of <strong>first-class objects</strong>.\
+Each object has a precise responsibility and lifecycle.</p>
+
+<p><strong>7.3.1 Skill</strong></p>
+
+<p>A <strong>Skill</strong> represents a logical capability, independent of
+implementation.</p>
+
+<p>It defines:</p>
+
+<ul>
+<li><p>What the capability is</p></li>
+<li><p>What outcome it claims to achieve</p></li>
+<li><p>What class of tasks it belongs to</p></li>
+</ul>
+
+<p>Examples:</p>
+
+<ul>
+<li><p>tighten_screw</p></li>
+<li><p>pick<em>and</em>place</p></li>
+<li><p>connector_insertion</p></li>
+</ul>
+
+<p>A Skill does <strong>not</strong> specify:</p>
+
+<ul>
+<li><p>How it is implemented</p></li>
+<li><p>Which robot executes it</p></li>
+<li><p>Which version is used</p></li>
+</ul>
+
+<p>This separation allows multiple implementations to coexist under the
+same capability definition.</p>
+
+<ul>
+<li><p>tighten_screw</p></li>
+<li><p>pick<em>and</em>place</p></li>
+<li><p>connector_insertion</p></li>
+</ul>
+
+<p><strong>7.3.2 Skill Version</strong></p>
+
+<p>A <strong>Skill Version</strong> binds a capability definition to a concrete,
+immutable release.</p>
+
+<p>It encapsulates:</p>
+
+<ul>
+<li><p>A specific contract (inputs, assumptions, metrics)</p></li>
+<li><p>One or more executable artifacts</p></li>
+<li><p>Compatibility constraints</p></li>
+<li><p>Evaluation results</p></li>
+</ul>
+
+<p>Once released, a Skill Version must never change its behavior.</p>
+
+<p>Any modification&#8212;code, parameters, or assumptions&#8212;creates a new
+version.</p>
+
+<p><strong>7.3.3 Artifact</strong></p>
+
+<p>An <strong>Artifact</strong> is a concrete executable package.</p>
+
+<p>Examples include:</p>
+
+<ul>
+<li><p>Container images</p></li>
+<li><p>Python wheels</p></li>
+<li><p>ROS2 packages</p></li>
+<li><p>Vendor-specific binaries</p></li>
+</ul>
+
+<p>Artifacts are always referenced <strong>through a Skill Version</strong>, never
+directly.</p>
+
+<p>This prevents execution outside the governance boundary.</p>
+
+<ul>
+<li><p>Python wheel</p></li>
+<li><p>ROS2 包</p></li>
+</ul>
+
+<p><strong>7.3.4 Profile</strong></p>
+
+<p>A <strong>Profile</strong> captures runtime-specific configuration:</p>
+
+<ul>
+<li><p>Robot model and kinematics</p></li>
+<li><p>Tooling and calibration</p></li>
+<li><p>Environment descriptors</p></li>
+<li><p>Safety and limit parameters</p></li>
+</ul>
+
+<p>Profiles allow the same Skill Version to run across different setups
+while preserving traceability.</p>
+
+<p><strong>7.3.5 Run</strong></p>
+
+<p>A <strong>Run</strong> represents a single execution of a skill.</p>
+
+<p>It records:</p>
+
+<ul>
+<li><p>Skill Version</p></li>
+<li><p>Profile</p></li>
+<li><p>Inputs</p></li>
+<li><p>Outputs</p></li>
+<li><p>Logs, metrics, and artifacts (e.g., video)</p></li>
+<li><p>Status and timestamps</p></li>
+</ul>
+
+<p>Runs are immutable historical records.</p>
+
+<p>They form the empirical foundation of trust in RSS.</p>
+
+<p><strong>7.3.6 Benchmark</strong></p>
+
+<p>A <strong>Benchmark</strong> defines standardized evaluation procedures.</p>
+
+<p>It specifies:</p>
+
+<ul>
+<li><p>Test scenarios</p></li>
+<li><p>Metrics</p></li>
+<li><p>Thresholds</p></li>
+<li><p>Pass/fail criteria</p></li>
+</ul>
+
+<p>Benchmarks allow Skills and Skill Versions to be compared objectively.</p>
+
+<p><strong>7.3.7 Badge / Certification</strong></p>
+
+<p>A <strong>Badge</strong> represents a platform-issued trust signal.</p>
+
+<p>Examples:</p>
+
+<ul>
+<li><p>Verified</p></li>
+<li><p>Production-Ready</p></li>
+<li><p>Factory-Tested</p></li>
+</ul>
+
+<p>Badges are derived from data, not claims.</p>
+
+<p><strong>7.4 Object Relationships</strong></p>
+
+<p>The canonical relationships are:</p>
+
+<ul>
+<li><p>Skill → has many → Skill Versions</p></li>
+<li><p>Skill Version → references → Artifacts</p></li>
+<li><p>Skill Version → executed via → Runs</p></li>
+<li><p>Runs → evaluated by → Benchmarks</p></li>
+<li><p>Benchmarks → issue → Badges</p></li>
+</ul>
+
+<p>This graph ensures that <strong>every claim can be traced to evidence</strong>.</p>
+
+<ul>
+<li><p>Skill → 多个 → Skill Version</p></li>
+<li><p>Skill Version → 引用 → Artifact</p></li>
+<li><p>Skill Version → 产生 → Run</p></li>
+<li><p>Run → 参与 → Benchmark</p></li>
+<li><p>Benchmark → 产生 → Badge</p></li>
+</ul>
+
+<p><strong>7.5 Why This Model Enables Governance</strong></p>
+
+<p>Governance becomes feasible because:</p>
+
+<ul>
+<li><p>Execution always references a version</p></li>
+<li><p>Versions are immutable</p></li>
+<li><p>Policies can be attached to objects</p></li>
+<li><p>Audit trails are automatic</p></li>
+</ul>
+
+<p>This shifts governance from <strong>manual process</strong> to <strong>system property</strong>.</p>
+
+<p><strong>7.6 From Object Model to Architecture</strong></p>
+
+<p>With a canonical object model, architecture choices become constrained
+and clear:</p>
+
+<ul>
+<li><p>Which services own which objects</p></li>
+<li><p>Which APIs expose which relationships</p></li>
+<li><p>Where trust and policy are enforced</p></li>
+</ul>
+
+<p>These questions are addressed in the following chapters on execution,
+evaluation, and governance.</p>
+
+<h1 id="chapter-8-execution-evaluation-and-the-data-flywheel"><strong>Chapter 8 -</strong> Execution, Evaluation, and the Data Flywheel</h1>
+
+<p><strong>8.1 Execution Is Not Just Running Code</strong></p>
+
+<p>In traditional robotics workflows, execution is often treated as a
+transient event:</p>
+
+<ul>
+<li><p>A script is launched</p></li>
+<li><p>The robot moves</p></li>
+<li><p>The process ends</p></li>
+</ul>
+
+<p>What remains is usually a video clip, a console log, or human memory.</p>
+
+<p>RSS adopts a fundamentally different stance:</p>
+
+<p><strong>Execution is a first-class, persistent system event.</strong></p>
+
+<p>Every execution in RSS is a <strong>Run</strong>&#8212;a structured, immutable record
+that captures not only <em>what was executed</em>, but <em>under what conditions</em>
+and <em>with what outcome</em>.</p>
+
+<p>This shift transforms execution from an ephemeral action into durable
+system data.</p>
+
+<p><strong>8.2 The Run as the Atomic Unit of Evidence</strong></p>
+
+<p>A <strong>Run</strong> is the atomic unit upon which trust is built in RSS.</p>
+
+<p>Each Run captures:</p>
+
+<ul>
+<li><p>Skill Version (what capability, exactly)</p></li>
+<li><p>Profile (robot, environment, limits)</p></li>
+<li><p>Inputs and parameters</p></li>
+<li><p>Outputs and state changes</p></li>
+<li><p>Logs, metrics, and artifacts (e.g., video)</p></li>
+<li><p>Timestamps and identity</p></li>
+</ul>
+
+<p>Runs are immutable.\
+They are never edited, overwritten, or retroactively &#8220;fixed&#8221;.</p>
+
+<p>If something changes, a <strong>new Run</strong> is created.</p>
+
+<p>This immutability is essential for auditability and reproducibility.</p>
+
+<p><strong>8.3 From Runs to Evaluation</strong></p>
+
+<p>A single Run demonstrates behavior.\
+Evaluation requires <strong>aggregation and comparison</strong>.</p>
+
+<p>RSS separates execution from evaluation deliberately.</p>
+
+<p>Evaluation is defined through <strong>Benchmarks</strong>, which specify:</p>
+
+<ul>
+<li><p>Scenarios to test</p></li>
+<li><p>Metrics to collect</p></li>
+<li><p>Thresholds to enforce</p></li>
+<li><p>Criteria for success or failure</p></li>
+</ul>
+
+<p>Benchmarks operate over <strong>sets of Runs</strong>, not individual executions.</p>
+
+<p>This allows RSS to answer questions such as:</p>
+
+<ul>
+<li><p>How reliable is this skill across conditions?</p></li>
+<li><p>How does this version compare to the previous one?</p></li>
+<li><p>Which implementation performs better under constraint X?</p></li>
+</ul>
+
+<p><strong>8.4 Objective Metrics Replace Visual Judgment</strong></p>
+
+<p>In many robotics teams, validation still relies on visual inspection:</p>
+
+<ul>
+<li><p>&#8220;It looks stable.&#8221;</p></li>
+<li><p>&#8220;The motion seems smooth.&#8221;</p></li>
+<li><p>&#8220;The grasp didn&#8217;t slip this time.&#8221;</p></li>
+</ul>
+
+<p>Such judgments are inherently subjective and non-repeatable.</p>
+
+<p>RSS replaces visual judgment with <strong>explicit, quantitative metrics</strong>.</p>
+
+<p>Examples include:</p>
+
+<ul>
+<li><p>Success rate</p></li>
+<li><p>Completion time</p></li>
+<li><p>Error tolerance</p></li>
+<li><p>Force/torque limits</p></li>
+<li><p>Positional deviation</p></li>
+</ul>
+
+<p>These metrics turn vague impressions into measurable signals.</p>
+
+<p><strong>8.5 The Data Flywheel</strong></p>
+
+<p>As Runs accumulate and Benchmarks evaluate them, RSS creates a <strong>data
+flywheel</strong>:</p>
+
+<ol>
+<li><p><strong>Execution generates data</strong>\
+Each Run produces logs, metrics, and artifacts.</p></li>
+<li><p><strong>Evaluation aggregates data</strong>\
+Benchmarks transform raw runs into performance signals.</p></li>
+<li><p><strong>Trust signals emerge</strong>\
+Badges, rankings, and confidence scores are derived from evaluation.</p></li>
+<li><p><strong>Better decisions are made</strong>\
+Users choose skills based on evidence, not claims.</p></li>
+<li><p><strong>Usage increases</strong>\
+More execution generates more data, reinforcing the cycle.</p></li>
+</ol>
+
+<p>This flywheel is self-reinforcing and improves over time.</p>
+
+<p><strong>8.6 Why the Flywheel Requires a Platform</strong></p>
+
+<p>The data flywheel cannot be sustained through ad-hoc tooling.</p>
+
+<p>It requires:</p>
+
+<ul>
+<li><p>Consistent data schemas</p></li>
+<li><p>Immutable execution records</p></li>
+<li><p>Centralized evaluation logic</p></li>
+<li><p>Governance over data access</p></li>
+<li><p>Long-term storage and lineage</p></li>
+</ul>
+
+<p>Only a platform can provide these properties reliably.</p>
+
+<p>Without a platform, data fragments across:</p>
+
+<ul>
+<li><p>Logs on local machines</p></li>
+<li><p>Videos in shared folders</p></li>
+<li><p>Metrics in ad-hoc dashboards</p></li>
+</ul>
+
+<p>The flywheel breaks.</p>
+
+<p><strong>8.7 Implications for Skill Providers and Users</strong></p>
+
+<p>For skill providers:</p>
+
+<ul>
+<li><p>Claims must be backed by data</p></li>
+<li><p>Improvements are visible and measurable</p></li>
+<li><p>Reputation compounds over time</p></li>
+</ul>
+
+<p>For skill users:</p>
+
+<ul>
+<li><p>Selection is evidence-based</p></li>
+<li><p>Risk is reduced</p></li>
+<li><p>Deployment confidence increases</p></li>
+</ul>
+
+<p>RSS aligns incentives across the ecosystem through data.</p>
+
+<p><strong>8.8 Preparing for Governance</strong></p>
+
+<p>Execution and evaluation alone are not sufficient.</p>
+
+<p>Once data exists, the system must answer:</p>
+
+<ul>
+<li><p>Who is allowed to run what?</p></li>
+<li><p>Under which conditions?</p></li>
+<li><p>With what responsibility and liability?</p></li>
+</ul>
+
+<p>These questions lead directly to governance.</p>
+
+<h1 id="chapter-9-governance-and-trust-in-physical-systems"><strong>Chapter 9 -</strong> Governance and Trust in Physical Systems</h1>
+
+<p><strong>9.1 Why Trust Is Harder in Robotics</strong></p>
+
+<p>In purely digital systems, failures are usually reversible:</p>
+
+<ul>
+<li><p>A service can be restarted</p></li>
+<li><p>Data can be restored</p></li>
+<li><p>A bug can be patched</p></li>
+</ul>
+
+<p>In robotics, failures are <strong>physical</strong>.</p>
+
+<p>They can result in:</p>
+
+<ul>
+<li><p>Equipment damage</p></li>
+<li><p>Safety incidents</p></li>
+<li><p>Production downtime</p></li>
+<li><p>Legal and regulatory consequences</p></li>
+</ul>
+
+<p>As a result, trust in robotics systems cannot be implicit or informal.</p>
+
+<p>It must be <strong>engineered into the system</strong>.</p>
+
+<p><strong>9.2 Governance Is Not a Process Layer</strong></p>
+
+<p>A common misconception is to treat governance as a human process:</p>
+
+<ul>
+<li><p>Code reviews</p></li>
+<li><p>Approval meetings</p></li>
+<li><p>Checklists and SOPs</p></li>
+</ul>
+
+<p>While necessary, these mechanisms are insufficient on their own.</p>
+
+<p>They do not scale, and they do not operate at runtime.</p>
+
+<p>RSS takes a different stance:</p>
+
+<p><strong>Governance must be a system property, not a procedural afterthought.</strong></p>
+
+<p>This means governance logic must be:</p>
+
+<ul>
+<li><p>Machine-enforceable</p></li>
+<li><p>Applied consistently</p></li>
+<li><p>Integrated into execution paths</p></li>
+</ul>
+
+<p><strong>9.3 The Sources of Trust in RSS</strong></p>
+
+<p>RSS establishes trust through <strong>evidence, not assertions</strong>.</p>
+
+<p>The primary sources of trust are:</p>
+
+<ol>
+<li><p><strong>Immutable Records</strong>\
+Every Run, version, and artifact is immutable.</p></li>
+<li><p><strong>Traceability</strong>\
+All actions are tied to identity, time, and configuration.</p></li>
+<li><p><strong>Objective Evaluation</strong>\
+Benchmarks provide data-backed performance signals.</p></li>
+<li><p><strong>Policy Enforcement</strong>\
+Execution and deployment are gated by explicit rules.</p></li>
+<li><p><strong>Auditability</strong>\
+Historical evidence can be inspected post hoc.</p></li>
+</ol>
+
+<p>Trust emerges from the <strong>consistency of these mechanisms over time</strong>.</p>
+
+<p><strong>9.4 Policy Gates and Execution Control</strong></p>
+
+<p>In RSS, no skill execution is unconditional.</p>
+
+<p>Before a Run is executed, the Platform evaluates policy gates such as:</p>
+
+<ul>
+<li><p>Is this Skill Version approved for this environment?</p></li>
+<li><p>Is the robot certified for this capability?</p></li>
+<li><p>Are safety constraints satisfied?</p></li>
+<li><p>Is the requester authorized?</p></li>
+</ul>
+
+<p>These checks are enforced <strong>at execution time</strong>, not manually
+beforehand.</p>
+
+<p>This prevents unsafe or unauthorized actions even if triggered
+accidentally or maliciously.</p>
+
+<p><strong>9.5 Governance Across Deployment Environments</strong></p>
+
+<p>Robotics systems are deployed in diverse environments:</p>
+
+<ul>
+<li><p>Cloud-based testing</p></li>
+<li><p>On-prem factory networks</p></li>
+<li><p>Air-gapped facilities</p></li>
+</ul>
+
+<p>Governance must remain consistent across all of them.</p>
+
+<p>RSS achieves this by:</p>
+
+<ul>
+<li><p>Centralizing policy definitions</p></li>
+<li><p>Enforcing them at the Platform level</p></li>
+<li><p>Decoupling governance from the Website</p></li>
+</ul>
+
+<p>Even when the Website is mirrored or unavailable, governance remains
+intact.</p>
+
+<p><strong>9.6 Accountability and Liability</strong></p>
+
+<p>In physical systems, governance is inseparable from accountability.</p>
+
+<p>RSS ensures that:</p>
+
+<ul>
+<li><p>Every execution has a clear initiator</p></li>
+<li><p>Every deployment decision is traceable</p></li>
+<li><p>Every failure can be investigated with evidence</p></li>
+</ul>
+
+<p>This does not eliminate risk, but it <strong>makes responsibility explicit</strong>.</p>
+
+<p>Such clarity is essential for industrial adoption.</p>
+
+<p><strong>9.7 Trust as a Platform Property</strong></p>
+
+<p>The key insight of RSS is that trust cannot be bolted on.</p>
+
+<p>It must be:</p>
+
+<ul>
+<li><p>Designed into object models</p></li>
+<li><p>Enforced by execution paths</p></li>
+<li><p>Reinforced by data over time</p></li>
+</ul>
+
+<p>By making trust a platform property, RSS enables:</p>
+
+<ul>
+<li><p>Safer deployments</p></li>
+<li><p>Faster iteration</p></li>
+<li><p>Broader ecosystem participation</p></li>
+</ul>
+
+<p><strong>9.8 Preparing for Deployment and Ecosystem Scale</strong></p>
+
+<p>With governance and trust established, RSS can safely scale:</p>
+
+<ul>
+<li><p>Across teams</p></li>
+<li><p>Across factories</p></li>
+<li><p>Across organizations</p></li>
+</ul>
+
+<p>This sets the stage for the final chapters on deployment models and
+ecosystem implications.</p>
+
+<h1 id="chapter-10-deployment-models-and-industrial-reality"><strong>Chapter 10 -</strong> Deployment Models and Industrial Reality</h1>
+
+<p><strong>10.1 Deployment Is Where Robotics Systems Break</strong></p>
+
+<p>Many robotics platforms look compelling in controlled environments but
+fail during deployment.</p>
+
+<p>Common symptoms include:</p>
+
+<ul>
+<li><p>A system that works in simulation but not on the factory floor</p></li>
+<li><p>A pipeline that assumes stable connectivity</p></li>
+<li><p>Tooling that requires frequent manual intervention</p></li>
+<li><p>Governance mechanisms that collapse outside the lab</p></li>
+</ul>
+
+<p>These failures are not accidental.\
+They stem from a mismatch between <strong>assumed environments</strong> and
+<strong>industrial reality</strong>.</p>
+
+<p>RSS treats deployment not as an afterthought, but as a first-class
+design constraint.</p>
+
+<p><strong>10.2 The Diversity of Industrial Deployment Environments</strong></p>
+
+<p>Industrial robotics deployments span a wide spectrum:</p>
+
+<ul>
+<li><p>Centralized cloud environments</p></li>
+<li><p>On-prem enterprise networks</p></li>
+<li><p>Factory-local clusters</p></li>
+<li><p>Fully air-gapped facilities</p></li>
+</ul>
+
+<p>Each environment imposes different constraints on:</p>
+
+<ul>
+<li><p>Connectivity</p></li>
+<li><p>Latency</p></li>
+<li><p>Security and compliance</p></li>
+<li><p>Update and maintenance workflows</p></li>
+</ul>
+
+<p>A platform that assumes a single deployment model cannot scale across
+industries.</p>
+
+<p><strong>10.3 Cloud Deployment: Exploration and Aggregation</strong></p>
+
+<p>Cloud-based deployment is well-suited for:</p>
+
+<ul>
+<li><p>Skill development and iteration</p></li>
+<li><p>Large-scale benchmarking</p></li>
+<li><p>Cross-team collaboration</p></li>
+<li><p>Aggregation of evaluation data</p></li>
+</ul>
+
+<p>In this model, RSS enables:</p>
+
+<ul>
+<li><p>Centralized registries</p></li>
+<li><p>Scalable execution infrastructure</p></li>
+<li><p>Shared evaluation pipelines</p></li>
+</ul>
+
+<p>However, RSS does <strong>not</strong> assume that cloud is the final deployment
+destination.</p>
+
+<p><strong>10.4 On-Prem Deployment: Control and Compliance</strong></p>
+
+<p>Many industrial users require on-prem deployment due to:</p>
+
+<ul>
+<li><p>Data sovereignty</p></li>
+<li><p>Security policies</p></li>
+<li><p>Regulatory requirements</p></li>
+<li><p>Operational reliability</p></li>
+</ul>
+
+<p>RSS supports on-prem deployment by:</p>
+
+<ul>
+<li><p>Allowing the Platform to run fully locally</p></li>
+<li><p>Preserving the same object model and APIs</p></li>
+<li><p>Enforcing governance without cloud dependency</p></li>
+</ul>
+
+<p>This ensures that deployment location does not alter system semantics.</p>
+
+<p><strong>10.5 Air-Gapped Factories: Designing for Disconnection</strong></p>
+
+<p>Some of the most safety-critical and high-value factories operate in
+air-gapped environments.</p>
+
+<p>In such settings:</p>
+
+<ul>
+<li><p>External connectivity is prohibited</p></li>
+<li><p>Updates are infrequent and controlled</p></li>
+<li><p>Operational stability is prioritized over iteration speed</p></li>
+</ul>
+
+<p>RSS explicitly supports air-gapped deployments by:</p>
+
+<ul>
+<li><p>Allowing offline registries and artifact stores</p></li>
+<li><p>Enabling controlled synchronization workflows</p></li>
+<li><p>Ensuring governance operates without external dependencies</p></li>
+</ul>
+
+<p>This is not an edge case&#8212;it is a core industrial requirement.</p>
+
+<p><strong>10.6 Decoupling Website Availability from Platform Operation</strong></p>
+
+<p>In industrial deployments, UI availability cannot be assumed.</p>
+
+<p>Operators may interact via:</p>
+
+<ul>
+<li><p>Automation pipelines</p></li>
+<li><p>Headless systems</p></li>
+<li><p>Third-party integrations</p></li>
+</ul>
+
+<p>RSS ensures that:</p>
+
+<ul>
+<li><p>Platform APIs remain authoritative</p></li>
+<li><p>Website outages do not affect execution</p></li>
+<li><p>Governance continues regardless of UI state</p></li>
+</ul>
+
+<p>This reinforces the separation between <strong>human interfaces</strong> and <strong>system
+truth</strong>.</p>
+
+<p><strong>10.7 Operational Lifecycle in Industrial Settings</strong></p>
+
+<p>In practice, industrial deployments emphasize:</p>
+
+<ul>
+<li><p>Stability over novelty</p></li>
+<li><p>Predictability over flexibility</p></li>
+<li><p>Controlled change over rapid iteration</p></li>
+</ul>
+
+<p>RSS aligns with this reality by enabling:</p>
+
+<ul>
+<li><p>Explicit version pinning</p></li>
+<li><p>Controlled rollout and rollback</p></li>
+<li><p>Long-term support for certified versions</p></li>
+</ul>
+
+<p>This allows innovation to coexist with operational discipline.</p>
+
+<p><strong>10.8 Deployment as a Validation of Platform Design</strong></p>
+
+<p>A platform that cannot survive real deployment constraints is
+incomplete.</p>
+
+<p>RSS treats deployment not as a final step, but as:</p>
+
+<p><strong>The ultimate validation of system design choices.</strong></p>
+
+<p>By supporting diverse deployment models without semantic drift, RSS
+demonstrates that its abstractions are not academic&#8212;they are
+operational.</p>
+
+<h1 id="chapter-11-ecosystem-implications-and-future-directions"><strong>Chapter 11 -</strong> Ecosystem Implications and Future Directions</h1>
+
+<p><strong>11.1 RSS Changes Incentives Across the Robotics Ecosystem</strong></p>
+
+<p>Most robotics ecosystems today are shaped by misaligned incentives:</p>
+
+<ul>
+<li><p>Skill authors are rewarded for demos, not reliability</p></li>
+<li><p>System integrators are rewarded for custom integration, not reuse</p></li>
+<li><p>End users bear the operational risk without visibility into skill
+quality</p></li>
+</ul>
+
+<p>RSS alters these incentives by introducing <strong>evidence-backed
+capabilities</strong> as the unit of value.</p>
+
+<p>When skills are treated as system assets:</p>
+
+<ul>
+<li><p>Claims must be supported by data</p></li>
+<li><p>Quality improvements compound over time</p></li>
+<li><p>Trust becomes transferable</p></li>
+</ul>
+
+<p>This fundamentally changes how value is created and exchanged in the
+ecosystem.</p>
+
+<p><strong>11.2 Implications for Skill Providers</strong></p>
+
+<p>For skill providers, RSS creates a shift from <strong>marketing-driven
+differentiation</strong> to <strong>performance-driven credibility</strong>.</p>
+
+<p>Key implications include:</p>
+
+<ul>
+<li><p>Skill quality is measured continuously, not once</p></li>
+<li><p>Reputation compounds across deployments</p></li>
+<li><p>Incremental improvements are visible and rewarded</p></li>
+<li><p>Honest failure modes increase trust, not reduce it</p></li>
+</ul>
+
+<p>RSS incentivizes providers to invest in robustness, documentation, and
+evaluation&#8212;because these efforts directly translate into platform
+trust signals.</p>
+
+<p><strong>11.3 Implications for System Integrators</strong></p>
+
+<p>System integrators traditionally rely on bespoke integration as a
+competitive advantage.</p>
+
+<p>RSS shifts the focus toward:</p>
+
+<ul>
+<li><p>Selecting and composing verified skills</p></li>
+<li><p>Managing deployment policies and constraints</p></li>
+<li><p>Optimizing system-level performance</p></li>
+</ul>
+
+<p>Rather than reducing the role of integrators, RSS elevates it&#8212;from
+manual glue work to <strong>system-level orchestration and responsibility</strong>.</p>
+
+<p><strong>11.4 Implications for End Users and Operators</strong></p>
+
+<p>For end users, RSS replaces opacity with transparency.</p>
+
+<p>Operators gain:</p>
+
+<ul>
+<li><p>Clear visibility into what is running</p></li>
+<li><p>Evidence-backed confidence in deployments</p></li>
+<li><p>Reduced dependence on tribal knowledge</p></li>
+<li><p>Faster recovery from failure through traceability</p></li>
+</ul>
+
+<p>This lowers the barrier to adopting advanced robot capabilities in
+production environments.</p>
+
+<p><strong>11.5 Platform Effects and Network Growth</strong></p>
+
+<p>As RSS adoption grows, platform effects emerge:</p>
+
+<ul>
+<li><p>More executions generate more data</p></li>
+<li><p>More data improves evaluation quality</p></li>
+<li><p>Better evaluation increases trust</p></li>
+<li><p>Increased trust attracts higher-quality skills</p></li>
+</ul>
+
+<p>This creates a virtuous cycle that strengthens the ecosystem over time.</p>
+
+<p>Importantly, this growth is <strong>constrained by governance</strong>, preventing
+the platform from devolving into an untrusted marketplace.</p>
+
+<p><strong>11.6 What RSS Explicitly Does Not Do</strong></p>
+
+<p>To remain focused and stable, RSS defines clear non-goals.</p>
+
+<p>RSS does <strong>not</strong> aim to:</p>
+
+<ul>
+<li><p>Replace robot control stacks</p></li>
+<li><p>Standardize low-level motion planning</p></li>
+<li><p>Compete with vendor-specific runtimes</p></li>
+<li><p>Solve perception or manipulation universally</p></li>
+</ul>
+
+<p>These domains evolve rapidly and are better handled by specialized
+systems.</p>
+
+<p>RSS remains intentionally <strong>agnostic</strong> to implementation details.</p>
+
+<p><strong>11.7 Future Directions</strong></p>
+
+<p>While RSS defines a stable core, it leaves room for evolution:</p>
+
+<ul>
+<li><p>Richer benchmark libraries</p></li>
+<li><p>Cross-factory data aggregation (where permitted)</p></li>
+<li><p>Advanced trust signals and certification schemes</p></li>
+<li><p>Deeper integration with digital twins and simulation</p></li>
+</ul>
+
+<p>These directions build upon the existing platform without altering its
+foundational principles.</p>
+
+<p><strong>11.8 Concluding Perspective</strong></p>
+
+<p>Robotics will not scale through better demos alone.</p>
+
+<p>It will scale when capabilities become:</p>
+
+<ul>
+<li><p>Defined</p></li>
+<li><p>Measured</p></li>
+<li><p>Governed</p></li>
+<li><p>Trusted</p></li>
+</ul>
+
+<p>Robot Skill Store represents a step toward that future&#8212;not by
+introducing new algorithms, but by introducing <strong>system discipline</strong>.</p>
+
+<h1 id="glossary">Glossary</h1>
+
+<hr />
+
+<p>Term (EN)       中文              Definition</p>
+
+<hr />
+
+<p>Skill           技能              A reusable, abstract robotic
+                                    capability</p>
+
+<p>Skill Version   技能版本          An immutable version of a skill</p>
+
+<p>Run             运行记录          One execution instance of a skill</p>
+
+<p>Artifact        工件 / 配置产物   Executable or configuration bound to
+                                    a skill version</p>
+
+<p>Governance      治理              Policies controlling execution,
+                                    safety, and compliance</p>
+
+<hr />
+
+      </section>
+      <section id="section-cn" class="hidden">
+        
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div>Generated from Markdown (EN/CN) on 2026-01-15 03:33.</div>
+    <div>Tip: append <code>?lang=en</code> or <code>?lang=cn</code> to the URL.</div>
+  </footer>
+
+  <script>
+(function(){
+  const qs = new URLSearchParams(location.search);
+  const init = (qs.get('lang') || 'en').toLowerCase();
+  const btnEn = document.getElementById('btn-en');
+  const btnCn = document.getElementById('btn-cn');
+  const secEn = document.getElementById('section-en');
+  const secCn = document.getElementById('section-cn');
+  const tocEn = document.getElementById('toc-en');
+  const tocCn = document.getElementById('toc-cn');
+
+  function setLang(lang, push){
+    const isEn = lang === 'en';
+    btnEn.setAttribute('aria-pressed', isEn ? 'true':'false');
+    btnCn.setAttribute('aria-pressed', !isEn ? 'true':'false');
+    secEn.classList.toggle('hidden', !isEn);
+    secCn.classList.toggle('hidden', isEn);
+    tocEn.classList.toggle('hidden', !isEn);
+    tocCn.classList.toggle('hidden', isEn);
+
+    const url = new URL(location.href);
+    url.searchParams.set('lang', lang);
+    if(push) history.replaceState({}, '', url);
+  }
+
+  btnEn.addEventListener('click', ()=>setLang('en', true));
+  btnCn.addEventListener('click', ()=>setLang('cn', true));
+
+  // Smooth scroll for TOC anchors while preserving lang
+  document.querySelectorAll('.toc a').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      const href = a.getAttribute('href') || '';
+      if(href.startsWith('#')){
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+        const url = new URL(location.href);
+        url.hash = href;
+        history.replaceState({}, '', url);
+      }
+    });
+  });
+
+  setLang(init === 'cn' ? 'cn' : 'en', true);
+})();
+</script>
+</body>
+</html>

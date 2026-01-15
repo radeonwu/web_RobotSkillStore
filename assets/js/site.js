@@ -526,15 +526,35 @@ function initInlineToggleNav(){
     });
   }
 
-  function setPanels(group, targetId){
-    const panels = document.querySelectorAll(`[data-panel="${group}"]`);
+  function getScope(bar){
+    // Prefer an explicit scope wrapper to avoid cross-page / duplicate-ID interference.
+    // Falls back to the nearest section/card container, then the document.
+    return (
+      bar.closest('[data-toggle-scope]') ||
+      bar.closest('section') ||
+      bar.closest('.card') ||
+      document
+    );
+  }
+
+  function setPanels(scope, group, targetId){
+    const panels = scope.querySelectorAll(`[data-panel="${group}"]`);
     panels.forEach((panel) => {
       // Support both styles
       if (panel.classList.contains('active')) panel.classList.remove('active');
       if (!panel.classList.contains('hidden')) panel.classList.add('hidden');
     });
 
-    const target = document.getElementById(targetId);
+    // Query inside scope first; fallback to global by id.
+    let target = null;
+    try {
+      // CSS.escape is not available in some older browsers; this is best-effort.
+      const sel = '#' + (window.CSS && CSS.escape ? CSS.escape(targetId) : targetId);
+      target = scope.querySelector(sel);
+    } catch (e) {
+      target = null;
+    }
+    if (!target) target = document.getElementById(targetId);
     if (!target) return;
 
     // Show target
@@ -544,8 +564,9 @@ function initInlineToggleNav(){
 
   function activate(bar, group, targetId){
     if (!bar || !group || !targetId) return;
+    const scope = getScope(bar);
     setPills(bar, targetId);
-    setPanels(group, targetId);
+    setPanels(scope, group, targetId);
 
     // Persist selection (best-effort)
     try { sessionStorage.setItem('tabgroup:'+group, targetId); } catch (e) {}

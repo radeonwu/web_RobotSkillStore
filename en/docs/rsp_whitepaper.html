@@ -1,0 +1,2030 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robot Skill Protocol (RSP) v0.3</title>
+  <style>
+:root{
+  --bg:#0b0f14; --panel:#0f1620; --text:#e6edf3; --muted:#9aa4ad;
+  --link:#7cc0ff; --border:rgba(255,255,255,.10); --code:#0a0f18;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+@media (prefers-color-scheme: light){
+  :root{--bg:#ffffff; --panel:#ffffff; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa;}
+}
+*{box-sizing:border-box}
+body{margin:0; font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.65;}
+a{color:var(--link); text-decoration:none}
+a:hover{text-decoration:underline}
+.header{
+  position:sticky; top:0; z-index:50;
+  background:linear-gradient(to bottom, var(--bg), rgba(0,0,0,0));
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{max-width:1200px; margin:0 auto; padding:14px 16px; display:flex; align-items:center; gap:12px;}
+.badge{font-size:12px; padding:3px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted);}
+.title{font-weight:700; font-size:16px}
+.spacer{flex:1}
+.btn{
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.02);
+  color:var(--text);
+  padding:7px 10px; border-radius:10px; cursor:pointer;
+  font-size:13px;
+}
+.main{max-width:1200px; margin:0 auto; padding:16px; display:grid; grid-template-columns: 290px 1fr; gap:16px;}
+@media (max-width: 980px){ .main{grid-template-columns: 1fr;} .toc{position:relative; top:auto; max-height:none;} }
+.toc{
+  position:sticky; top:64px;
+  align-self:start;
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;
+  padding:12px 12px;
+  max-height: calc(100vh - 90px);
+  overflow:auto;
+}
+.toc h2{margin:6px 0 10px; font-size:13px; color:var(--muted); font-weight:600; letter-spacing:.02em;}
+.toc ul{list-style:none; padding-left:0; margin:0}
+.toc li{margin:6px 0}
+.toc a{display:block; padding:4px 6px; border-radius:10px; color:var(--muted);}
+.toc a:hover{background:rgba(255,255,255,.04); color:var(--text); text-decoration:none;}
+.content{
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:14px;
+  padding:18px 20px;
+  min-width:0;
+}
+.content h1{font-size:26px; margin:22px 0 10px;}
+.content h2{font-size:20px; margin:20px 0 10px;}
+.content h3{font-size:16px; margin:16px 0 8px;}
+.content p{margin:10px 0;}
+.content ul{margin:8px 0 8px 22px;}
+.figure-cap{color:var(--muted); font-size:13px;}
+.footer{max-width:1200px; margin:0 auto; padding:18px 16px 30px; color:var(--muted); font-size:12px;}
+.muted{color:var(--muted); font-size:12px;}
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="title">Robot Skill Protocol (RSP) v0.3</div>
+      <span class="badge">RSP Whitepaper</span>
+      <div class="spacer"></div>
+      <a class="btn" href="./index.html">Back to Docs</a>
+    </div>
+  </header>
+
+  <main class="main">
+    <aside class="toc" aria-label="Table of Contents">
+      <h2>Contents</h2>
+      <ul>
+<li><a href="#chapter-1-executive-summary">Chapter 1 — Executive Summary</a></li>
+<li><a href="#chapter-2-background-problem-definition">Chapter 2 — Background &amp; Problem Definition</a></li>
+<li><a href="#chapter-3-design-principles">Chapter 3 — Design Principles</a></li>
+<li><a href="#chapter-4-core-concepts-terminology">Chapter 4 — Core Concepts &amp; Terminology</a></li>
+<li><a href="#chapter-5-rsp-architecture-overview">Chapter 5 — RSP Architecture Overview</a></li>
+<li><a href="#chapter-6-robot-skill-lifecycle">Chapter 6 — Robot Skill Lifecycle</a></li>
+<li><a href="#chapter-7-skill-interface-specification">Chapter 7 — Skill Interface Specification</a></li>
+<li><a href="#chapter-8-safety-trust-model">Chapter 8 — Safety &amp; Trust Model</a></li>
+<li><a href="#chapter-9-agentic-orchestration-model">Chapter 9 — Agentic Orchestration Model</a></li>
+<li><a href="#chapter-10-robot-skill-store-marketplace">Chapter 10 — Robot Skill Store &amp; Marketplace</a></li>
+<li><a href="#chapter-11-reference-implementations">Chapter 11 — Reference Implementations</a></li>
+<li><a href="#chapter-12-developer-experience-dx">Chapter 12 — Developer Experience (DX)</a></li>
+<li><a href="#chapter-13-comparison-positioning">Chapter 13 — Comparison &amp; Positioning</a></li>
+<li><a href="#chapter-14-business-ecosystem-implications">Chapter 14 — Business &amp; Ecosystem Implications</a></li>
+<li><a href="#chapter-15-roadmap-future-directions">Chapter 15 — Roadmap &amp; Future Directions</a></li>
+<li><a href="#chapter-16-conclusion">Chapter 16 — Conclusion</a></li>
+</ul>
+    </aside>
+
+    <article class="content">
+      <h1 id="chapter-1-executive-summary">Chapter 1 — Executive Summary</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>1.1 The Structural Problem in Robotics Software</strong></p>
+<p>Over the past decade, robotics has seen remarkable progress in hardware, sensors, and AI models. Industrial manipulators have become more precise and affordable; mobile robots have matured from research prototypes into deployed products; and foundation models are rapidly expanding into perception, language, and action.</p>
+<p>Yet despite these advances, <strong>robot software has failed to scale</strong>.</p>
+<p>Today, most robot capabilities are still delivered as:</p>
+<ul>
+<li>Project-specific integration code</li>
+<li>Robot-vendor-locked SDK implementations</li>
+<li>One-off ROS graphs tightly coupled to hardware</li>
+</ul>
+<p>As a result, deploying the <em>same capability</em>—for example, “bin picking,” “mobile docking,” or “visual inspection”—across different robots, factories, or customers repeatedly requires new engineering effort. Knowledge does not accumulate at the ecosystem level; it remains trapped inside individual projects.</p>
+<p>This is not a tooling problem.
+It is a <strong>missing abstraction problem</strong>.</p>
+<p><strong>1.2 Why Existing Abstractions Are Not Enough</strong></p>
+<p>Robotics middleware such as ROS provides excellent communication primitives—topics, services, and actions—but these primitives operate at the wrong level of abstraction for scaling robotics software:</p>
+<ul>
+<li>They define <em>how components communicate</em>, not <em>what capability is provided</em></li>
+<li>They lack explicit semantic contracts, safety envelopes, and lifecycle management</li>
+<li>They are not designed to be portable, discoverable, or tradable</li>
+</ul>
+<p>As a result, robot software remains <strong>project-centric</strong> rather than <strong>capability-centric</strong>.</p>
+<p>In contrast, modern software ecosystems scale by elevating higher-level abstractions:</p>
+<ul>
+<li>Functions → Services</li>
+<li>Services → Products</li>
+<li>Products → Marketplaces</li>
+</ul>
+<p>Robotics has not yet completed this transition.</p>
+<p><strong>1.3 The Core Insight: Skills as First-Class Assets</strong></p>
+<p>Human operators, system integrators, and customers do not think in terms of ROS nodes or control loops.
+They think in terms of <strong>skills</strong>:</p>
+<ul>
+<li>Pick an object</li>
+<li>Navigate to a location</li>
+<li>Inspect a surface</li>
+<li>Assemble a component</li>
+</ul>
+<p>A <strong>robot skill</strong> represents a bounded, meaningful capability with:</p>
+<ul>
+<li>Clear intent</li>
+<li>Defined inputs and outputs</li>
+<li>Measurable outcomes</li>
+<li>Safety constraints</li>
+</ul>
+<p>The central insight behind Robot Skill Protocol (RSP) is simple but profound:</p>
+<p><strong>If skills become first-class, portable, and verifiable assets, robotics software can finally scale.</strong></p>
+<p><strong>1.4 From Robot-Centric Code to Skill Economy</strong></p>
+<p class="figure-cap"><strong>Figure 1-1. From Robot-Centric Code to Skill Economy</strong></p>
+<p><strong>What this figure conveys</strong></p>
+<ul>
+<li><strong>Left</strong>:
+Each robot platform embeds its own robot-specific code. Capabilities are duplicated and tightly coupled to hardware.</li>
+<li><strong>Middle</strong>:
+A shared <strong>Skill Layer</strong> abstracts robot-specific details and exposes reusable capabilities.</li>
+<li><strong>Right</strong>:
+Skills are published, discovered, and reused through a <strong>Skill Store</strong>, enabling cross-robot deployment.</li>
+</ul>
+<p>This transition mirrors how cloud computing evolved from machine-specific scripts to reusable services and APIs.</p>
+<p><strong>1.5 The Agent*Skill Paradigm</strong></p>
+<p>At the heart of RSP v0.3 is a strict separation of concerns:</p>
+<ul>
+<li><strong>Agents decide </strong><em><strong>what to do</strong></em></li>
+<li><strong>Skills define </strong><em><strong>how it is done</strong></em></li>
+</ul>
+<p>Agents never directly control motors, tune controllers, or manage safety envelopes. Instead, they operate purely in the space of skills.</p>
+<p class="figure-cap"><strong>Figure 1-2. The Agent*Skill Interaction Model</strong></p>
+<p><strong>Key message of the figure</strong></p>
+<ul>
+<li>Agents reason at the task and plan level</li>
+<li>Skills encapsulate execution logic and safety</li>
+<li>The Skill Runtime is the only trusted boundary to physical robots</li>
+</ul>
+<p>This <strong>Agent*Skill</strong> model allows intelligence (LLMs, planners, VLA models) to evolve independently from hardware and control stacks.</p>
+<p><strong>1.6 What Robot Skill Protocol (RSP) v0.3 Defines</strong></p>
+<p>Robot Skill Protocol v0.3 is not a framework, SDK, or robot operating system.
+It is a <strong>protocol-level specification</strong> that defines:</p>
+<ul>
+<li><strong>How skills are described</strong>
+– via machine-readable manifests and formal contracts</li>
+<li><strong>How skills are discovered and matched</strong>
+– based on capability profiles, constraints, and trust requirements</li>
+<li><strong>How skills are invoked and executed</strong>
+– through standardized semantics independent of transport or middleware</li>
+<li><strong>How safety and trust are enforced</strong>
+– as protocol primitives, not application add-ons</li>
+<li><strong>How skills evolve over time</strong>
+– with versioning, evaluation, and deprecation</li>
+</ul>
+<p><strong>1.7 Why RSP v0.3, and Why Now</strong></p>
+<p>Several industry trends converge to make RSP both necessary and timely:</p>
+<ul>
+<li><strong>Agentic AI systems</strong> are becoming capable of high-level reasoning but lack safe execution interfaces</li>
+<li><strong>Simulation platforms</strong> enable large-scale validation and benchmarking of robot behavior</li>
+<li><strong>Robotics markets</strong> are shifting toward long-tail, application-specific deployments</li>
+<li><strong>Developers and SMEs</strong> need reusable building blocks rather than bespoke integrations</li>
+</ul>
+<p>RSP v0.3 incorporates lessons from earlier iterations by:</p>
+<ul>
+<li>Making safety and capability constraints explicit</li>
+<li>Embracing agent-native orchestration</li>
+<li>Designing for marketplace and ecosystem growth from day one</li>
+</ul>
+<p><strong>1.8 The Long-Term Vision</strong></p>
+<p>The ultimate vision of RSP is not merely better robot software tooling.</p>
+<p>It is the emergence of a <strong>global robot skill economy</strong>, where:</p>
+<ul>
+<li>Capabilities are developed once and deployed everywhere</li>
+<li>Innovation is shared across robots, vendors, and industries</li>
+<li>Robotics transitions from hardware-centric delivery to capability-centric value creation</li>
+</ul>
+<p>RSP v0.3 establishes the foundational contract required to make this vision achievable.</p>
+<h1 id="chapter-2-background-problem-definition">Chapter 2 — Background &amp; Problem Definition</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>2.1 Robotics Software Has Not Scaled</strong></p>
+<p>Despite continuous progress in robot hardware, sensors, and AI models, robotics software remains fundamentally project-centric. Each deployment is typically engineered as a bespoke system, tightly bound to a specific robot configuration, environment, and customer requirement.</p>
+<p>Even when two projects share similar functional goals—such as bin picking or mobile navigation—the underlying software is often rewritten or heavily modified. Knowledge does not accumulate across deployments; instead, integration cost resets with every new project.</p>
+<p>This structural inefficiency is the root cause of slow scaling in robotics.</p>
+<p><strong>2.2 Fragmentation Across the Robotics Stack</strong></p>
+<p class="figure-cap"><strong>Figure 2-1. Fragmentation Across the Robotics Software Stack</strong></p>
+<p>Fragmentation exists simultaneously across:</p>
+<ul>
+<li>Robot vendors and hardware platforms</li>
+<li>Software middleware and SDKs</li>
+<li>Functional layers (perception, planning, control, integration)</li>
+</ul>
+<p>The same capability is repeatedly reimplemented in different silos, making reuse the exception rather than the norm.</p>
+<p><strong>2.3 Why Existing APIs and Middleware Are Insufficient</strong></p>
+<p>Middleware such as ROS provides communication primitives, but does not define:</p>
+<ul>
+<li>Semantic meaning of capabilities</li>
+<li>Safety envelopes</li>
+<li>Lifecycle management</li>
+<li>Trust and validation signals</li>
+</ul>
+<p>APIs expose <em>how to call functions</em>, not <em>what capability is being provided</em>.
+As a result, they cannot support automated discovery, safe agent-driven execution, or ecosystem-level reuse.</p>
+<p><strong>2.4 Project-Centric vs Capability-Centric Robotics</strong></p>
+<p class="figure-cap"><strong>Figure 2-2. Project-Centric vs Capability-Centric Robotics</strong></p>
+<p>In a project-centric model:</p>
+<ul>
+<li>Software value is trapped inside projects</li>
+<li>Scaling requires proportional engineering effort</li>
+</ul>
+<p>In a capability-centric model:</p>
+<ul>
+<li>Skills are reusable assets</li>
+<li>Value compounds across deployments</li>
+</ul>
+<p>RSP is designed explicitly to enable the latter.</p>
+<p><strong>2.5 Problem Statement</strong></p>
+<p><strong>Robotics lacks a standardized, safe, and portable abstraction for reusable robot capabilities.</strong></p>
+<p>Without such an abstraction:</p>
+<ul>
+<li>Agentic AI cannot scale safely</li>
+<li>Ecosystems cannot form</li>
+<li>Economic leverage remains limited</li>
+</ul>
+<h1 id="chapter-3-design-principles">Chapter 3 — Design Principles</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>3.1 Principles as Architectural Constraints</strong></p>
+<p>RSP is not a collection of features—it is a system constrained by <strong>explicit design principles</strong>. These principles determine what RSP <em>must</em> do, and equally importantly, what it <em>must not</em> do.</p>
+<p><strong>3.2 Core Design Principles</strong></p>
+<p class="figure-cap"><strong>Figure 3-1. RSP Design Principles</strong></p>
+<p>The core principles are:</p>
+<ul>
+<li><strong>Skill-first abstraction</strong></li>
+<li><strong>Agent-native design</strong></li>
+<li><strong>Capability-bound execution</strong></li>
+<li><strong>Safety-by-design</strong></li>
+<li><strong>Model and implementation agnosticism</strong></li>
+<li><strong>Cloud–edge–robot co-design</strong></li>
+</ul>
+<p>These principles act as hard constraints on all protocol decisions.</p>
+<p><strong>3.3 Agent–Execution Separation</strong></p>
+<p>Agents decide <em>what</em> to do.
+Skills define <em>how</em> it is executed safely.</p>
+<p>This separation prevents:</p>
+<ul>
+<li>Agent hallucinations from directly affecting hardware</li>
+<li>Safety logic from being duplicated inconsistently</li>
+</ul>
+<p><strong>3.4 What RSP Intentionally Does Not Define</strong></p>
+<p class="figure-cap"><strong>Figure 3-2. Scope Boundaries of RSP</strong></p>
+<p>RSP deliberately does <strong>not</strong> define:</p>
+<ul>
+<li>Planning algorithms</li>
+<li>Control strategies</li>
+<li>World model representations</li>
+<li>Machine learning architectures</li>
+</ul>
+<p>By constraining scope, RSP remains stable while surrounding technologies evolve.</p>
+<p><strong>3.5 Minimalism and Orthogonality</strong></p>
+<p>RSP defines a minimal set of orthogonal concepts. Each concept has a single responsibility, reducing coupling and enabling independent evolution of system layers.</p>
+<h1 id="chapter-4-core-concepts-terminology">Chapter 4 — Core Concepts &amp; Terminology</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>4.1 Why Precise Concepts Matter</strong></p>
+<p>One of the root causes of fragmentation in robotics is <strong>terminological ambiguity</strong>.</p>
+<p>Terms such as <em>behavior</em>, <em>capability</em>, <em>action</em>, <em>skill</em>, and <em>task</em> are often used interchangeably across teams, vendors, and frameworks. This ambiguity leads to:</p>
+<ul>
+<li>unclear system boundaries,</li>
+<li>inconsistent interfaces,</li>
+<li>and brittle integrations that do not scale.</li>
+</ul>
+<p>RSP v0.3 therefore defines a <strong>minimal, explicit ontology</strong>.
+Each concept has:</p>
+<ul>
+<li>a clear responsibility,</li>
+<li>a strict boundary,</li>
+<li>and a defined relationship to other concepts.</li>
+</ul>
+<p>These definitions are <strong>normative</strong> within the scope of RSP.</p>
+<p><strong>4.2 Skill</strong></p>
+<p><strong>Definition</strong></p>
+<p>A <strong>Skill</strong> is a <strong>bounded, executable robot capability</strong> that:</p>
+<ul>
+<li>performs a specific class of physical or cyber-physical actions,</li>
+<li>exposes a formal interface,</li>
+<li>executes under a runtime that enforces safety and policy.</li>
+</ul>
+<p>A skill is <strong>not</strong>:</p>
+<ul>
+<li>a raw control loop,</li>
+<li>a middleware node,</li>
+<li>or an agent-generated action sequence.</li>
+</ul>
+<p><strong>Properties of a Skill</strong></p>
+<ul>
+<li><strong>Intent-bounded</strong>: expresses <em>what capability is provided</em>, not arbitrary behavior.</li>
+<li><strong>Reusable</strong>: can be executed across robots with compatible capabilities.</li>
+<li><strong>Inspectable</strong>: exposes inputs, outputs, constraints, and telemetry.</li>
+<li><strong>Governable</strong>: versioned, validated, and policy-controlled.</li>
+</ul>
+<p>Skills are the <strong>atomic execution units</strong> of RSP.</p>
+<p><strong>4.3 Agent</strong></p>
+<p><strong>Definition</strong></p>
+<p>An <strong>Agent</strong> is a reasoning entity responsible for:</p>
+<ul>
+<li>interpreting goals and context,</li>
+<li>decomposing tasks into skills,</li>
+<li>selecting, sequencing, and parameterizing skills,</li>
+<li>responding to outcomes and failures.</li>
+</ul>
+<p>Agents may be implemented using:</p>
+<ul>
+<li>LLMs,</li>
+<li>VLA models,</li>
+<li>symbolic planners,</li>
+<li>or hybrid systems.</li>
+</ul>
+<p><strong>Explicit Restriction</strong></p>
+<p>In RSP:</p>
+<p><strong>Agents are prohibited from directly controlling robot actuators.</strong></p>
+<p>They may only invoke skills through the RSP interface.
+This restriction is structural, not advisory.</p>
+<p><strong>4.4 Agent–Skill Boundary</strong></p>
+<p class="figure-cap"><strong>Figure 4-1. Agent–Skill Boundary</strong></p>
+<p>This boundary is the <strong>single most important concept</strong> in RSP.</p>
+<ul>
+<li>Above the boundary:</li>
+<ul>
+<li>reasoning, planning, uncertainty, learning.</li>
+</ul>
+<li>Below the boundary:</li>
+<ul>
+<li>deterministic execution, safety enforcement, hardware constraints.</li>
+</ul>
+</ul>
+<p>Benefits:</p>
+<ul>
+<li>Agent innovation does not compromise physical safety.</li>
+<li>Execution remains predictable and auditable.</li>
+<li>System responsibilities are cleanly separated.</li>
+</ul>
+<p><strong>4.5 Skill Manifest</strong></p>
+<p><strong>Definition</strong></p>
+<p>A <strong>Skill Manifest</strong> is the <strong>canonical, declarative description</strong> of a skill.</p>
+<p>It defines:</p>
+<ul>
+<li>skill identity and version,</li>
+<li>required robot capabilities,</li>
+<li>input/output schemas,</li>
+<li>execution modes,</li>
+<li>safety constraints and invariants,</li>
+<li>trust and validation artifacts.</li>
+</ul>
+<p>The manifest is:</p>
+<ul>
+<li>machine-readable,</li>
+<li>transport-agnostic,</li>
+<li>and the single source of truth for tooling, runtime enforcement, and store indexing.</li>
+</ul>
+<p><strong>4.6 Capability Profile</strong></p>
+<p><strong>Definition</strong></p>
+<p>A <strong>Capability Profile</strong> describes what a robot (or simulator) can safely support.</p>
+<p>It may include:</p>
+<ul>
+<li>kinematic structure and reach,</li>
+<li>payload limits,</li>
+<li>sensors and perception modalities,</li>
+<li>compute and runtime features,</li>
+<li>certifications and safety ratings.</li>
+</ul>
+<p>Capability profiles enable <strong>automatic compatibility checks</strong> before skill execution.</p>
+<p><strong>4.7 Skill Runtime</strong></p>
+<p class="figure-cap"><strong>Figure 4-2. Skill Runtime Responsibilities</strong></p>
+<p>A <strong>Skill Runtime</strong> is the trusted execution environment that:</p>
+<ul>
+<li>validates preconditions,</li>
+<li>enforces constraints and invariants during execution,</li>
+<li>mediates access to robot hardware and middleware,</li>
+<li>emits structured telemetry and events.</li>
+</ul>
+<p>The runtime is <strong>non-</strong><strong>bypassable</strong>.
+It is the final authority over execution safety.</p>
+<p><strong>4.8 Skill Contract</strong></p>
+<p><strong>Definition</strong></p>
+<p>A <strong>Skill Contract</strong> formalizes execution guarantees and assumptions.</p>
+<p>It consists of:</p>
+<ul>
+<li><strong>Preconditions</strong>
+Conditions that must hold before execution begins.</li>
+<li><strong>Postconditions</strong>
+Guarantees provided upon successful completion.</li>
+<li><strong>Invariants</strong>
+Conditions that must hold throughout execution.</li>
+</ul>
+<p>Contracts enable:</p>
+<ul>
+<li>static validation,</li>
+<li>runtime enforcement,</li>
+<li>and reliable skill composition.</li>
+</ul>
+<p><strong>4.9 Task (Non-Normative)</strong></p>
+<p>In RSP, a <strong>Task</strong> is a higher-level goal or objective.
+Tasks are:</p>
+<ul>
+<li>interpreted by agents,</li>
+<li>decomposed into skills,</li>
+<li><strong>not</strong> part of the execution protocol itself.</li>
+</ul>
+<p>This distinction prevents protocol complexity from exploding upward into goal semantics.</p>
+<p><strong>4.10 Relationship Overview</strong></p>
+<p class="figure-cap"><strong>Figure 4-3. Core Concepts and Relationships</strong></p>
+<ul>
+<li>Agents reason and plan.</li>
+<li>Skills define executable capabilities.</li>
+<li>Manifests declare interfaces and constraints.</li>
+<li>Capability Profiles gate compatibility.</li>
+<li>Runtimes enforce safety and execution.</li>
+<li>Robots and simulators remain below the protocol boundary.</li>
+</ul>
+<p><strong>4.11 What RSP Intentionally Does </strong><em><strong>Not</strong></em><strong> Define</strong></p>
+<p>To preserve flexibility, RSP does <strong>not</strong> define:</p>
+<ul>
+<li>internal skill algorithms,</li>
+<li>agent planning strategies,</li>
+<li>world model representations,</li>
+<li>learning methods.</li>
+</ul>
+<p>These remain innovation spaces.</p>
+<h1 id="chapter-5-rsp-architecture-overview">Chapter 5 — RSP Architecture Overview</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>5.1 Architectural Goals</strong></p>
+<p>The architecture of Robot Skill Protocol (RSP) v0.3 is designed to satisfy five non-negotiable goals:</p>
+<ul>
+<li><strong>Strict Agent–Execution Separation</strong>
+Agents must never directly control hardware.</li>
+<li><strong>Skill-Centric Execution Boundary</strong>
+All robot actions must be mediated through skills.</li>
+<li><strong>Safety as a First-Class Architectural Concern</strong>
+Safety must be enforced structurally, not procedurally.</li>
+<li><strong>Compatibility with Existing Robotics Stacks</strong>
+RSP must coexist with ROS2, MoveIt, Nav2, Isaac, and proprietary systems.</li>
+<li><strong>Ecosystem Scalability</strong>
+The architecture must support marketplaces, versioning, and multi-vendor deployment.</li>
+</ul>
+<p>These goals lead naturally to a <strong>layered reference architecture</strong>, rather than a monolithic framework.</p>
+<p><strong>5.2 The Four-Layer RSP Architecture</strong></p>
+<p class="figure-cap"><strong>Figure 5-1. RSP Four-Layer Reference Architecture</strong></p>
+<p><strong>Overview of Layers</strong></p>
+<p>From top to bottom, RSP defines four conceptual layers:</p>
+<ul>
+<li><strong>Agent Layer</strong></li>
+<li><strong>Skill Orchestration Layer</strong></li>
+<li><strong>Skill Runtime Layer</strong></li>
+<li><strong>Robot / Simulator Layer</strong></li>
+</ul>
+<p>Each layer has a <strong>clearly defined responsibility</strong> and a <strong>narrow interface</strong> to adjacent layers.</p>
+<p><strong>5.3 Agent Layer</strong></p>
+<p><strong>Responsibility</strong></p>
+<p>The <strong>Agent Layer</strong> is responsible for:</p>
+<ul>
+<li>Task understanding and goal reasoning</li>
+<li>Planning and decision-making</li>
+<li>Selecting and sequencing skills</li>
+<li>Handling contingencies and recovery</li>
+</ul>
+<p>Agents operate purely in <strong>semantic space</strong>, not physical space.</p>
+<p><strong>Key Characteristics</strong></p>
+<ul>
+<li>Robot-agnostic</li>
+<li>Hardware-independent</li>
+<li>Skill-aware, not controller-aware</li>
+</ul>
+<p>An agent may be implemented using:</p>
+<ul>
+<li>Large Language Models (LLMs)</li>
+<li>Vision–Language–Action (VLA) models</li>
+<li>Symbolic planners</li>
+<li>Hybrid architectures</li>
+</ul>
+<p>RSP intentionally places <strong>no constraints</strong> on internal agent design, as long as the agent:</p>
+<p><strong>Invokes robot </strong><strong>behavior</strong><strong> exclusively through skills.</strong></p>
+<p><strong>5.4 Skill Orchestration Layer</strong></p>
+<p><strong>Responsibility</strong></p>
+<p>The <strong>Skill Orchestration Layer</strong> bridges high-level intent and concrete execution. It is responsible for:</p>
+<ul>
+<li>Skill discovery and matching</li>
+<li>Capability compatibility checks</li>
+<li>Skill composition and chaining</li>
+<li>Retry, fallback, and substitution logic</li>
+</ul>
+<p>This layer can be implemented as:</p>
+<ul>
+<li>A standalone service</li>
+<li>Part of an agent runtime</li>
+<li>A platform-level component</li>
+</ul>
+<p><strong>Why Orchestration Is a Separate Layer</strong></p>
+<p>Separating orchestration from agents allows:</p>
+<ul>
+<li>Reuse of orchestration logic across agents</li>
+<li>Centralized policy enforcement</li>
+<li>Consistent behavior across deployments</li>
+</ul>
+<p>It also prevents agents from embedding fragile execution assumptions.</p>
+<p><strong>5.5 Skill Runtime Layer</strong></p>
+<p><strong>Responsibility</strong></p>
+<p>The <strong>Skill Runtime Layer</strong> is the <strong>trusted execution boundary</strong> of RSP.</p>
+<p>It is responsible for:</p>
+<ul>
+<li>Executing skills</li>
+<li>Enforcing constraints and policies</li>
+<li>Monitoring execution state</li>
+<li>Collecting telemetry</li>
+</ul>
+<p>All physical actions must pass through this layer.</p>
+<p><strong>Runtime as a Safety Boundary</strong></p>
+<p>The runtime ensures that:</p>
+<ul>
+<li>Preconditions are validated</li>
+<li>Invariants are continuously enforced</li>
+<li>Violations result in deterministic termination</li>
+</ul>
+<p>This design ensures that <strong>even incorrect or hallucinated agent plans cannot directly cause unsafe </strong><strong>behavior</strong>.</p>
+<p><strong>5.6 Robot / Simulator Layer</strong></p>
+<p><strong>Responsibility</strong></p>
+<p>The bottom layer contains the actual robot control stacks, including:</p>
+<ul>
+<li>ROS2 nodes</li>
+<li>MoveIt motion planning</li>
+<li>Nav2 navigation</li>
+<li>NVIDIA Isaac</li>
+<li>Vendor-specific controllers</li>
+</ul>
+<p>RSP does <strong>not</strong> replace these systems.</p>
+<p>Instead, it defines a <strong>clean interface above them</strong>, allowing:</p>
+<ul>
+<li>Legacy systems to be reused</li>
+<li>New robots to be onboarded incrementally</li>
+</ul>
+<p><strong>5.7 Agent*Skill Interaction Flow</strong></p>
+<p class="figure-cap"><strong>Figure 5-2. Agent*Skill Interaction Flow</strong></p>
+<p><strong>Step-by-Step Flow</strong></p>
+<ul>
+<li><strong>Intent Formation</strong>
+The agent determines a goal (e.g., “pick object A”).</li>
+<li><strong>Skill Discovery</strong>
+The orchestration layer queries available skills.</li>
+<li><strong>Capability Matching</strong>
+Candidate skills are filtered against the robot’s capability profile.</li>
+<li><strong>Skill Invocation</strong>
+The agent invokes the selected skill via Skill.call.</li>
+<li><strong>Runtime Enforcement</strong>
+The skill runtime validates preconditions and enforces constraints.</li>
+<li><strong>Execution &amp; Monitoring</strong>
+The robot executes under continuous supervision.</li>
+<li><strong>Result Reporting</strong>
+Structured outcomes and telemetry are returned to the agent.</li>
+</ul>
+<p><strong>5.8 Deployment Patterns</strong></p>
+<p class="figure-cap"><strong>Figure 5-3. Typical RSP Deployment Patterns</strong></p>
+<p>RSP supports multiple deployment topologies:</p>
+<p><strong>On-Robot Execution</strong></p>
+<ul>
+<li>Skill runtime runs directly on the robot controller</li>
+<li>Low latency, high determinism</li>
+</ul>
+<p><strong>Edge-Orchestrated Execution</strong></p>
+<ul>
+<li>Orchestration and policy at the edge</li>
+<li>Skills executed close to hardware</li>
+</ul>
+<p><strong>Cloud-Assisted Execution</strong></p>
+<ul>
+<li>Skill store, validation, analytics in the cloud</li>
+<li>No real-time control loops in the cloud</li>
+</ul>
+<p>This flexibility is essential for industrial and regulated environments.</p>
+<p><strong>5.9 Relationship with Existing Frameworks</strong></p>
+<p><strong>RSP and ROS2</strong></p>
+<ul>
+<li>ROS2 remains the communication backbone</li>
+<li>RSP operates <strong>above ROS</strong>, not instead of it</li>
+</ul>
+<p><strong>RSP and </strong><strong>MoveIt</strong><strong> / Nav2</strong></p>
+<ul>
+<li>Motion planning remains internal to skills</li>
+<li>RSP standardizes how these capabilities are exposed</li>
+</ul>
+<p><strong>RSP and Simulation (Isaac, Gazebo)</strong></p>
+<ul>
+<li>Simulation is a first-class validation environment</li>
+<li>Skills can be verified before deployment</li>
+</ul>
+<p><strong>5.10 Why This Architecture Scales</strong></p>
+<p>The RSP architecture scales because:</p>
+<ul>
+<li><strong>Agents scale horizontally</strong> (new reasoning models)</li>
+<li><strong>Skills scale vertically</strong> (better implementations)</li>
+<li><strong>Runtimes enforce invariants</strong> (safety and trust)</li>
+<li><strong>Stores enable ecosystems</strong> (distribution and incentives)</li>
+</ul>
+<p>Each layer evolves independently without breaking the others.</p>
+<h1 id="chapter-6-robot-skill-lifecycle">Chapter 6 — Robot Skill Lifecycle</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>6.1 Why a Skill Lifecycle Is Necessary</strong></p>
+<p>In traditional robotics projects, software artifacts are treated as <strong>project deliverables</strong>:</p>
+<ul>
+<li>Code is written for a specific robot</li>
+<li>Integrated once</li>
+<li>Maintained informally, if at all</li>
+</ul>
+<p>This approach fundamentally limits scalability.
+If skills are to become <strong>first-class assets</strong>, they must be treated like modern software products — with a <strong>clear, explicit lifecycle</strong>.</p>
+<p>Robot Skill Protocol (RSP) v0.3 defines a <strong>standardized skill lifecycle</strong> that governs how skills are:</p>
+<ul>
+<li>Created</li>
+<li>Distributed</li>
+<li>Executed</li>
+<li>Evaluated</li>
+<li>Evolved</li>
+<li>Retired</li>
+</ul>
+<p>This lifecycle is a <strong>protocol-level concept</strong>, not merely a development guideline.</p>
+<p><strong>6.2 Overview of the Skill Lifecycle</strong></p>
+<p class="figure-cap"><strong>Figure 6-1. The Robot Skill Lifecycle</strong></p>
+<p>The RSP lifecycle is intentionally designed as a <strong>closed loop</strong>, reflecting continuous improvement rather than one-time delivery.</p>
+<p>The major stages are:</p>
+<ul>
+<li>Authoring</li>
+<li>Registration</li>
+<li>Discovery &amp; Matching</li>
+<li>Invocation</li>
+<li>Execution &amp; Monitoring</li>
+<li>Evaluation &amp; Versioning</li>
+<li>Deprecation &amp; Retirement</li>
+</ul>
+<p><strong>6.3 Skill Authoring</strong></p>
+<p><strong>Purpose</strong></p>
+<p>Skill authoring is the process by which a developer creates a new robot capability that complies with RSP.</p>
+<p><strong>Key Activities</strong></p>
+<p>During authoring, the developer:</p>
+<ul>
+<li>Implements the skill logic (perception, planning, control)</li>
+<li>Defines the <strong>Skill Manifest</strong></li>
+<li>Specifies preconditions, constraints, and invariants</li>
+<li>Selects execution modes (sync / async / streaming)</li>
+</ul>
+<p>Importantly, authoring does <strong>not</strong> require:</p>
+<ul>
+<li>Knowledge of specific agents</li>
+<li>Knowledge of downstream applications</li>
+</ul>
+<p>This decoupling allows skills to be reused across multiple contexts.</p>
+<p><strong>6.4 Skill Registration (</strong><strong>Skill.register</strong><strong>)</strong></p>
+<p><strong>Purpose</strong></p>
+<p>Registration makes a skill <strong>visible and usable</strong> within an RSP ecosystem.</p>
+<p><strong>Registration Artifacts</strong></p>
+<p>A registered skill typically includes:</p>
+<ul>
+<li>Skill manifest</li>
+<li>Runtime endpoint</li>
+<li>Version identifier</li>
+<li>Verification and test artifacts</li>
+</ul>
+<p>Registration does not imply trust or production readiness.
+It only establishes <strong>existence and accessibility</strong>.</p>
+<p><strong>6.5 Skill Discovery &amp; Matching</strong></p>
+<p><strong>Purpose</strong></p>
+<p>Discovery enables agents or platforms to identify suitable skills for a given task.</p>
+<p><strong>Matching Criteria</strong></p>
+<p>Skills are matched based on:</p>
+<ul>
+<li>Required capabilities</li>
+<li>Input/output compatibility</li>
+<li>Declared constraints</li>
+<li>Trust and certification level</li>
+</ul>
+<p>This process may be:</p>
+<ul>
+<li>Automated (agent-driven)</li>
+<li>Assisted (human-in-the-loop)</li>
+<li>Policy-constrained (enterprise rules)</li>
+</ul>
+<p>Discovery is a <strong>decision point</strong>, not a static lookup.</p>
+<p><strong>6.6 Skill Invocation (</strong><strong>Skill.call</strong><strong>)</strong></p>
+<p><strong>Purpose</strong></p>
+<p>Invocation represents the <strong>transition from intent to execution</strong>.</p>
+<p><strong>Invocation Semantics</strong></p>
+<p>A skill is invoked with:</p>
+<ul>
+<li>Structured inputs</li>
+<li>Execution mode</li>
+<li>Policy context (safety, resource limits, trust)</li>
+</ul>
+<p>Invocation is always mediated by the <strong>Skill Runtime</strong>, never directly by the agent.</p>
+<p>This guarantees that:</p>
+<ul>
+<li>Preconditions are validated</li>
+<li>Constraints are enforced</li>
+<li>Execution is observable</li>
+</ul>
+<p><strong>6.7 Skill Execution &amp; Monitoring</strong></p>
+<p><strong>Purpose</strong></p>
+<p>Execution is the stage where abstract capability becomes physical action.</p>
+<p><strong>Runtime Responsibilities</strong></p>
+<p>During execution, the Skill Runtime:</p>
+<ul>
+<li>Continuously enforces invariants</li>
+<li>Monitors system and environment state</li>
+<li>Collects logs, metrics, and traces</li>
+</ul>
+<p>If violations occur:</p>
+<ul>
+<li>Execution is deterministically terminated</li>
+<li>Structured errors are reported</li>
+<li>Recovery options may be triggered</li>
+</ul>
+<p>Observability at this stage is mandatory and standardized.</p>
+<p><strong>6.8 Skill Evaluation</strong></p>
+<p><strong>Purpose</strong></p>
+<p>Evaluation determines whether a skill performs as expected across:</p>
+<ul>
+<li>Robots</li>
+<li>Environments</li>
+<li>Tasks</li>
+</ul>
+<p><strong>Evaluation Signals</strong></p>
+<p>Evaluation may consider:</p>
+<ul>
+<li>Success / failure rates</li>
+<li>Performance metrics</li>
+<li>Safety incidents</li>
+<li>Operator feedback</li>
+</ul>
+<p>Evaluation is essential for:</p>
+<ul>
+<li>Trust building</li>
+<li>Skill ranking</li>
+<li>Continuous improvement</li>
+</ul>
+<p><strong>6.9 Skill Versioning</strong></p>
+<p><strong>Why Versioning Matters</strong></p>
+<p>Skills evolve:</p>
+<ul>
+<li>Bugs are fixed</li>
+<li>Performance improves</li>
+<li>Capabilities expand</li>
+</ul>
+<p>Without explicit versioning, reuse becomes unsafe.</p>
+<p><strong>Versioning Principles</strong></p>
+<p>RSP encourages:</p>
+<ul>
+<li>Semantic versioning</li>
+<li>Backward compatibility declarations</li>
+<li>Explicit deprecation notices</li>
+</ul>
+<p>Agents and platforms can then make <strong>informed selection decisions</strong>.</p>
+<p><strong>6.10 Skill Deprecation &amp; Retirement</strong></p>
+<p><strong>Purpose</strong></p>
+<p>Not all skills should live forever.</p>
+<p>Deprecation allows:</p>
+<ul>
+<li>Signaling that a skill should no longer be used</li>
+<li>Providing migration paths</li>
+</ul>
+<p>Retirement removes a skill from active use without breaking dependent systems.</p>
+<p><strong>Safe Retirement</strong></p>
+<p>A skill may only be fully retired when:</p>
+<ul>
+<li>No active dependencies exist</li>
+<li>Replacement strategies are available</li>
+<li>Policies permit removal</li>
+</ul>
+<p>This prevents ecosystem fragmentation.</p>
+<p><strong>6.11 Lifecycle as an Ecosystem Enabler</strong></p>
+<p>By formalizing the skill lifecycle, RSP enables:</p>
+<ul>
+<li>Independent developers to publish skills</li>
+<li>Enterprises to enforce governance</li>
+<li>Agents to reason about trust and maturity</li>
+<li>Platforms to support marketplaces</li>
+</ul>
+<p>The lifecycle transforms skills from <strong>engineering artifacts</strong> into <strong>economic units</strong>.</p>
+<h1 id="chapter-7-skill-interface-specification">Chapter 7 — Skill Interface Specification</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>7.1 Purpose and Scope of the Skill Interface</strong></p>
+<p>The Skill Interface is the <strong>most critical contract</strong> defined by Robot Skill Protocol.</p>
+<p>It specifies <strong>how an agent interacts with a skill</strong>, without:</p>
+<ul>
+<li>Knowing how the skill is implemented</li>
+<li>Knowing what robot executes it</li>
+<li>Bypassing safety or policy constraints</li>
+</ul>
+<p>This interface must simultaneously satisfy:</p>
+<ul>
+<li><strong>Machine readability</strong> (for agents and tooling)</li>
+<li><strong>Human interpretability</strong> (for developers and operators)</li>
+<li><strong>Protocol stability</strong> (for ecosystem scaling)</li>
+</ul>
+<p>RSP v0.3 deliberately defines the interface at the <strong>semantic and </strong><strong>behavioral</strong><strong> level</strong>, not at the transport or middleware level.</p>
+<p><strong>7.2 Design Principles of the Skill Interface</strong></p>
+<p>The Skill Interface is governed by the following principles:</p>
+<ul>
+<li><strong>Declarative over Procedural</strong>
+Interfaces describe <em>what</em> a skill does, not <em>how</em>.</li>
+<li><strong>Explicit Contracts</strong>
+Preconditions, constraints, and outputs must be explicit.</li>
+<li><strong>Transport-Agnostic</strong>
+REST, gRPC, DDS, or other transports are implementation choices.</li>
+<li><strong>Safety-First</strong>
+Every interface element must be enforceable at runtime.</li>
+<li><strong>Agent-Reasonable</strong>
+Agents must be able to reason about success, failure, and alternatives.</li>
+</ul>
+<p><strong>7.3 Skill Manifest as the Canonical Interface</strong></p>
+<p class="figure-cap"><strong>Figure 7-1. Skill Manifest as the Canonical Interface</strong></p>
+<p><strong>Role of the Manifest</strong></p>
+<p>In RSP, the <strong>Skill Manifest</strong> is the <em>canonical interface definition</em>.</p>
+<p>Everything else—SDKs, APIs, runtime adapters—is derived from it.</p>
+<p>The manifest enables:</p>
+<ul>
+<li>Skill discovery</li>
+<li>Capability matching</li>
+<li>Safety enforcement</li>
+<li>Versioning and governance</li>
+</ul>
+<p><strong>7.4 Manifest Structure Overview</strong></p>
+<p>A typical Skill Manifest contains the following sections:</p>
+<p><strong>1. Identity &amp; Metadata</strong></p>
+<ul>
+<li>Skill name</li>
+<li>Semantic version</li>
+<li>Author / organization</li>
+<li>Domain classification</li>
+</ul>
+<p><strong>2. Capability Requirements</strong></p>
+<ul>
+<li>Required robot capabilities</li>
+<li>Sensor dependencies</li>
+<li>Runtime dependencies</li>
+</ul>
+<p><strong>3. Interface Definition</strong></p>
+<ul>
+<li>Input schema</li>
+<li>Output schema</li>
+<li>Execution modes</li>
+</ul>
+<p><strong>4. Contract Definition</strong></p>
+<ul>
+<li>Preconditions</li>
+<li>Postconditions</li>
+<li>Invariants</li>
+</ul>
+<p><strong>5. Constraints &amp; Limits</strong></p>
+<ul>
+<li>Motion constraints</li>
+<li>Force / torque limits</li>
+<li>Workspace restrictions</li>
+</ul>
+<p><strong>6. Trust &amp; Validation</strong></p>
+<ul>
+<li>Simulation coverage</li>
+<li>Verification artifacts</li>
+<li>Certification level (optional)</li>
+</ul>
+<p>This structure is intentionally <strong>flat and explicit</strong>, avoiding implicit assumptions.</p>
+<p><strong>7.5 Input and Output Schemas</strong></p>
+<p><strong>Structured Inputs</strong></p>
+<p>Inputs are defined using structured schemas with:</p>
+<ul>
+<li>Explicit types</li>
+<li>Units and coordinate frames</li>
+<li>Required vs optional fields</li>
+</ul>
+<p>Example input concepts:</p>
+<ul>
+<li>Target pose</li>
+<li>Object identifiers</li>
+<li>Tolerance parameters</li>
+</ul>
+<p>This enables:</p>
+<ul>
+<li>Static validation</li>
+<li>Automatic tooling</li>
+<li>Cross-skill composability</li>
+</ul>
+<p><strong>Structured Outputs</strong></p>
+<p>Outputs describe:</p>
+<ul>
+<li>Execution result</li>
+<li>Outcome data</li>
+<li>Diagnostic information</li>
+</ul>
+<p>Outputs must be:</p>
+<ul>
+<li>Deterministic</li>
+<li>Machine-readable</li>
+<li>Suitable for agent-level reasoning</li>
+</ul>
+<p><strong>7.6 Preconditions</strong></p>
+<p>Preconditions define <strong>what must be true before a skill can start</strong>.</p>
+<p>Examples:</p>
+<ul>
+<li>Robot is stationary</li>
+<li>Gripper is empty</li>
+<li>Target object pose confidence ≥ threshold</li>
+</ul>
+<p>Preconditions serve two purposes:</p>
+<ul>
+<li><strong>Early rejection</strong> of invalid plans</li>
+<li><strong>Agent reasoning</strong> about feasibility</li>
+</ul>
+<p>They are checked <em>before</em> execution begins.</p>
+<p><strong>7.7 Constraints and Invariants</strong></p>
+<p class="figure-cap"><strong>Figure 7-2. Constraints and Invariants Enforced by the Runtime</strong></p>
+<p><strong>Constraints</strong></p>
+<p>Constraints define <strong>allowed operational envelopes</strong>:</p>
+<ul>
+<li>Speed limits</li>
+<li>Force limits</li>
+<li>Workspace bounds</li>
+</ul>
+<p><strong>Invariants</strong></p>
+<p>Invariants define <strong>conditions that must </strong><strong>hold at all times</strong>:</p>
+<ul>
+<li>No entry into forbidden zones</li>
+<li>No violation of safety thresholds</li>
+</ul>
+<p>Constraints and invariants are enforced <strong>continuously by the Skill Runtime</strong>, not by the agent.</p>
+<p><strong>7.8 Execution Semantics</strong></p>
+<p>RSP defines three standard execution semantics:</p>
+<p><strong>Synchronous Execution</strong></p>
+<ul>
+<li>Blocking call</li>
+<li>Returns upon completion or failure</li>
+<li>Suitable for short, deterministic actions</li>
+</ul>
+<p><strong>Asynchronous Execution</strong></p>
+<ul>
+<li>Non-blocking</li>
+<li>Returns a handle for monitoring</li>
+<li>Suitable for long-running tasks</li>
+</ul>
+<p><strong>Streaming Execution</strong></p>
+<ul>
+<li>Continuous input/output</li>
+<li>Suitable for perception-driven or adaptive skills</li>
+</ul>
+<p>Agents select execution mode explicitly; runtimes enforce semantics consistently.</p>
+<p><strong>7.9 Error Model and Failure Semantics</strong></p>
+<p>RSP standardizes error categories to enable robust orchestration:</p>
+<ul>
+<li><strong>PreconditionViolation</strong></li>
+<li><strong>ConstraintViolation</strong></li>
+<li><strong>ExecutionFailure</strong></li>
+<li><strong>ExternalInterruption</strong></li>
+<li><strong>Timeout</strong></li>
+</ul>
+<p>Errors are:</p>
+<ul>
+<li>Explicit</li>
+<li>Typed</li>
+<li>Observable</li>
+</ul>
+<p>This enables agents to:</p>
+<ul>
+<li>Retry</li>
+<li>Fallback</li>
+<li>Replan</li>
+</ul>
+<p>Without relying on brittle heuristics.</p>
+<p><strong>7.10 Observability and Telemetry Hooks</strong></p>
+<p class="figure-cap"><strong>Figure 7-3. Skill Observability and Telemetry</strong></p>
+<p>Every skill execution exposes standardized observability hooks:</p>
+<ul>
+<li>Logs (events, warnings, errors)</li>
+<li>Metrics (latency, success rate)</li>
+<li>Traces (execution timeline)</li>
+</ul>
+<p>Observability is <strong>mandatory</strong> in RSP v0.3.</p>
+<p>A skill that cannot be observed cannot be trusted.</p>
+<p><strong>7.11 Why the Interface Is Intentionally Strict</strong></p>
+<p>RSP deliberately rejects:</p>
+<ul>
+<li>Implicit behavior</li>
+<li>Undeclared side effects</li>
+<li>Hidden assumptions</li>
+</ul>
+<p>This strictness is what allows:</p>
+<ul>
+<li>Cross-robot reuse</li>
+<li>Safe agent autonomy</li>
+<li>Marketplace-level trust</li>
+</ul>
+<p>Looser interfaces may be convenient locally, but they do not scale.</p>
+<h1 id="chapter-8-safety-trust-model">Chapter 8 — Safety &amp; Trust Model</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>8.1 Why Safety Must Be a Protocol Primitive</strong></p>
+<p>As robots gain autonomy through agentic systems and foundation models, safety can no longer be treated as an application-level concern or a best-effort implementation detail.</p>
+<p>Traditional approaches often assume:</p>
+<ul>
+<li>Agents will generate “reasonable” plans</li>
+<li>Developers will correctly implement safety checks</li>
+<li>Operators will intervene when something goes wrong</li>
+</ul>
+<p>These assumptions do not hold at scale.</p>
+<p>Robot Skill Protocol (RSP) v0.3 is founded on a stronger premise:</p>
+<p><strong>Safety must be embedded into the protocol itself, not delegated to agents or developers.</strong></p>
+<p>This means safety guarantees must hold <strong>regardless of agent intelligence, implementation quality, or deployment context</strong>.</p>
+<p><strong>8.2 Threat Model and Failure Modes</strong></p>
+<p>To design a robust safety model, RSP explicitly considers realistic failure modes:</p>
+<ul>
+<li><strong>Agent errors</strong>
+Hallucinated plans, invalid assumptions, or incomplete context.</li>
+<li><strong>Skill implementation bugs</strong>
+Software defects, numerical instability, or edge-case failures.</li>
+<li><strong>Environment uncertainty</strong>
+Sensor noise, occlusions, unexpected obstacles.</li>
+<li><strong>Integration drift</strong>
+Skill reused on robots or environments it was not designed for.</li>
+</ul>
+<p>The safety model must remain effective even when <strong>multiple failure modes occur simultaneously</strong>.</p>
+<p><strong>8.3 Safety-in-Depth Architecture</strong></p>
+<p class="figure-cap"><strong>Figure 8-1. Safety-in-Depth Architecture in RSP</strong></p>
+<p>RSP adopts a <strong>defense</strong><strong>-in-depth</strong> approach, with independent safety mechanisms at multiple layers:</p>
+<ul>
+<li><strong>Declarative Safety in the Skill Manifest</strong></li>
+<li><strong>Capability-Bound Skill Selection</strong></li>
+<li><strong>Runtime Safety Guards</strong></li>
+<li><strong>Policy Enforcement and Governance</strong></li>
+<li><strong>Human-in-the-Loop Escalation</strong></li>
+</ul>
+<p>Each layer is designed to fail safely and independently.</p>
+<p><strong>8.4 Declarative Safety in the Skill Manifest</strong></p>
+<p>The first safety barrier is <strong>declarative and explicit</strong>.</p>
+<p>Each skill manifest defines:</p>
+<ul>
+<li>Preconditions (what must be true before execution)</li>
+<li>Constraints (allowed operational envelope)</li>
+<li>Invariants (conditions that must always hold)</li>
+</ul>
+<p>Because these are <strong>machine-readable</strong>, they can be:</p>
+<ul>
+<li>Validated statically</li>
+<li>Enforced dynamically</li>
+<li>Audited after execution</li>
+</ul>
+<p>This shifts safety from implicit code logic to explicit contracts.</p>
+<p><strong>8.5 Capability-Bound Execution</strong></p>
+<p>A central safety principle in RSP is:</p>
+<p><strong>A skill may only execute on robots whose capability profiles fully satisfy the skill’s declared requirements.</strong></p>
+<p>This prevents unsafe reuse such as:</p>
+<ul>
+<li>Running a high-force manipulation skill on a lightweight robot</li>
+<li>Executing a precision task without sufficient sensing capability</li>
+</ul>
+<p>Capability matching is performed <strong>before execution</strong> and is non-overridable by agents.</p>
+<p><strong>8.6 Runtime Safety Guards</strong></p>
+<p class="figure-cap"><strong>Figure 8-2. Runtime Safety Guards and Invariant Enforcement</strong></p>
+<p>The <strong>Skill Runtime</strong> acts as the final and most critical safety boundary.</p>
+<p><strong>Runtime Responsibilities</strong></p>
+<p>During execution, the runtime continuously enforces:</p>
+<ul>
+<li>Motion limits (velocity, acceleration)</li>
+<li>Force and torque thresholds</li>
+<li>Workspace and zone restrictions</li>
+<li>Resource usage limits</li>
+</ul>
+<p>If any invariant is violated:</p>
+<ul>
+<li>Execution is immediately terminated</li>
+<li>The robot is brought to a safe state</li>
+<li>A structured safety event is emitted</li>
+</ul>
+<p>This enforcement is <strong>non-negotiable and </strong><strong>agent-independent</strong>.</p>
+<p><strong>8.7 Policy-Based Safety and Governance</strong></p>
+<p>Beyond individual skills, organizations require <strong>system-level safety governance</strong>.</p>
+<p>RSP supports policy enforcement such as:</p>
+<ul>
+<li>Only certified skills may run in production</li>
+<li>Certain skills require human approval</li>
+<li>Execution limited to specific time windows or locations</li>
+</ul>
+<p>Policies are enforced:</p>
+<ul>
+<li>At skill registration</li>
+<li>At discovery and selection</li>
+<li>At invocation time</li>
+</ul>
+<p>This enables consistent safety posture across fleets and sites.</p>
+<p><strong>8.8 Simulation-First Safety Validation</strong></p>
+<p class="figure-cap"><strong>Figure 8-3. Simulation-First Safety Validation Flow</strong></p>
+<p>RSP strongly encourages a <strong>simulation-first</strong> approach:</p>
+<ul>
+<li>Skill authored and instrumented</li>
+<li>Tested across simulated environments</li>
+<li>Edge cases and failure scenarios evaluated</li>
+<li>Verification artifacts generated</li>
+<li>Skill promoted to production eligibility</li>
+</ul>
+<p>Simulation does not replace real-world testing, but it dramatically reduces risk and increases coverage.</p>
+<p><strong>8.9 Certification-Ready Trust Artifacts</strong></p>
+<p>To support industrial and regulated deployments, RSP allows skills to attach <strong>trust artifacts</strong>, including:</p>
+<ul>
+<li>Test coverage reports</li>
+<li>Safety analyses</li>
+<li>Compliance documentation</li>
+<li>Third-party certification results</li>
+</ul>
+<p>These artifacts are:</p>
+<ul>
+<li>Versioned</li>
+<li>Auditable</li>
+<li>Enforceable by policy</li>
+</ul>
+<p>This makes RSP compatible with existing safety and compliance workflows.</p>
+<p><strong>8.10 Human-in-the-Loop Escalation</strong></p>
+<p>Autonomy does not eliminate responsibility.</p>
+<p>When uncertainty exceeds acceptable thresholds:</p>
+<ul>
+<li>Skill execution may pause</li>
+<li>Control may be escalated to a human operator</li>
+<li>Decisions are logged and traceable</li>
+</ul>
+<p>Human-in-the-loop mechanisms provide a <strong>controlled safety valve</strong> without collapsing into full teleoperation.</p>
+<p><strong>8.11 Trust as an Emergent Property</strong></p>
+<p>In RSP, trust is not binary.</p>
+<p>It emerges from:</p>
+<ul>
+<li>Repeated successful executions</li>
+<li>Transparent observability</li>
+<li>Independent verification</li>
+<li>Clear accountability</li>
+</ul>
+<p>By standardizing how trust signals are generated and consumed, RSP enables agents and organizations to make <strong>informed, risk-aware decisions</strong>.</p>
+<p><strong>8.12 Why This Safety Model Scales</strong></p>
+<p>RSP’s safety model scales because it is:</p>
+<ul>
+<li><strong>Protocol-level</strong>, not application-level</li>
+<li><strong>Declarative</strong>, not heuristic</li>
+<li><strong>Runtime-enforced</strong>, not agent-dependent</li>
+</ul>
+<p>This allows increasingly powerful agents to be deployed <strong>without proportionally increasing risk</strong>.</p>
+<h1 id="chapter-9-agentic-orchestration-model">Chapter 9 — Agentic Orchestration Model</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>9.1 From Skill Invocation to Orchestration</strong></p>
+<p>Invoking a single skill is straightforward.
+Operating robust robotic systems in the real world is not.</p>
+<p>Real deployments must handle:</p>
+<ul>
+<li>Partial observability</li>
+<li>Non-deterministic outcomes</li>
+<li>Hardware variability</li>
+<li>Environmental change</li>
+</ul>
+<p><strong>Agentic orchestration</strong> is the layer that transforms individual skills into <strong>coherent, resilient </strong><strong>behavior</strong>.
+RSP v0.3 explicitly defines this layer—not as a monolithic planner, but as a <strong>protocol-compliant pattern</strong> for composing skills safely.</p>
+<p><strong>9.2 Responsibilities of the Orchestration Layer</strong></p>
+<p>The orchestration layer sits between <strong>agent reasoning</strong> and <strong>skill execution</strong>. Its responsibilities include:</p>
+<ul>
+<li>Skill selection and substitution</li>
+<li>Sequencing and composition</li>
+<li>Conditional branching</li>
+<li>Retry, fallback, and recovery</li>
+<li>Policy- and trust-aware execution</li>
+</ul>
+<p>Crucially, orchestration is <strong>skill-centric</strong>, not controller-centric.
+All decisions are expressed in terms of skills and their contracts.</p>
+<p><strong>9.3 Single-Agent Orchestration</strong></p>
+<p>In the simplest case, a single agent orchestrates skills for one robot.</p>
+<p><strong>Typical Workflow</strong></p>
+<ul>
+<li>Interpret task intent</li>
+<li>Decompose into skill-level steps</li>
+<li>Select compatible skills</li>
+<li>Invoke skills under policy constraints</li>
+<li>Monitor outcomes and adapt</li>
+</ul>
+<p>This model already enables:</p>
+<ul>
+<li>Dynamic replanning</li>
+<li>Skill substitution</li>
+<li>Graceful degradation</li>
+</ul>
+<p><strong>9.4 Multi-Agent Orchestration</strong></p>
+<p>RSP does not restrict orchestration to a single agent.</p>
+<p>Multiple agents may:</p>
+<ul>
+<li>Coordinate on shared goals</li>
+<li>Control different robots</li>
+<li>Specialize in planning, perception, or supervision</li>
+</ul>
+<p class="figure-cap"><strong>Figure 9-1. Multi-Agent Skill Orchestration</strong></p>
+<p><strong>Key idea</strong></p>
+<ul>
+<li>Agents communicate at the <strong>intent and skill level</strong>, not via low-level signals</li>
+<li>Skills remain the only execution boundary</li>
+</ul>
+<p>This enables scalable coordination without entangling control logic.</p>
+<p><strong>9.5 Skill Composition and Chaining</strong></p>
+<p>Skills are designed to be <strong>composable by contract</strong>.</p>
+<p>A composite behavior is formed by chaining skills where:</p>
+<ul>
+<li>The postconditions of Skill A satisfy the preconditions of Skill B</li>
+<li>Constraints are compatible across the chain</li>
+</ul>
+<p class="figure-cap"><strong>Figure 9-2. Skill Composition as a Directed Graph</strong></p>
+<p>Composition is expressed as a <strong>directed acyclic graph (DAG)</strong>:</p>
+<ul>
+<li>Nodes: skills</li>
+<li>Edges: dependency and control flow</li>
+</ul>
+<p>This representation allows:</p>
+<ul>
+<li>Static validation</li>
+<li>Partial execution</li>
+<li>Local recovery</li>
+</ul>
+<p><strong>9.6 Conditional Execution and Branching</strong></p>
+<p>Real-world execution requires conditional logic:</p>
+<ul>
+<li>If object not detected → retry perception skill</li>
+<li>If grasp fails → switch gripper or strategy</li>
+<li>If path blocked → replan navigation</li>
+</ul>
+<p>RSP supports conditional branching based on:</p>
+<ul>
+<li>Structured outputs</li>
+<li>Error types</li>
+<li>Telemetry signals</li>
+</ul>
+<p>Conditions are evaluated <strong>outside</strong> skills, preserving encapsulation.</p>
+<p><strong>9.7 Fallback, Retry, and Recovery</strong></p>
+<p class="figure-cap"><strong>Figure 9-3. Fallback and Recovery in Skill Orchestration</strong></p>
+<p>When a skill fails, orchestration logic may:</p>
+<ul>
+<li>Retry the same skill</li>
+<li>Substitute an alternative skill</li>
+<li>Invoke a recovery skill</li>
+<li>Replan the task</li>
+</ul>
+<p>Because failures are <strong>typed and explicit</strong> (Chapter 7), recovery is systematic rather than heuristic.</p>
+<p><strong>9.8 Context and World Model Injection</strong></p>
+<p>Skills are intentionally context-minimal.
+Agents may inject additional context at invocation time, such as:</p>
+<ul>
+<li>World state summaries</li>
+<li>Perception results</li>
+<li>Task-level constraints</li>
+</ul>
+<p>This allows:</p>
+<ul>
+<li>Skills to remain reusable</li>
+<li>Agents to leverage richer world models</li>
+<li>Clear ownership of state and reasoning</li>
+</ul>
+<p>Context injection is explicit and auditable.</p>
+<p><strong>9.9 Interaction with World Models</strong></p>
+<p>RSP does not define a world model.
+However, it defines <strong>how world models interact with skills</strong>:</p>
+<ul>
+<li>World models inform agent decisions</li>
+<li>Agents select and parameterize skills</li>
+<li>Skills execute within declared constraints</li>
+</ul>
+<p>This separation prevents world-model assumptions from leaking into execution logic.</p>
+<p><strong>9.10 Integration with LLMs, VLA, and Policy Models</strong></p>
+<p>Modern agentic systems increasingly rely on:</p>
+<ul>
+<li>LLMs for reasoning and planning</li>
+<li>VLA models for perception-to-action</li>
+<li>Classical policies for control</li>
+</ul>
+<p>RSP provides a <strong>stable execution boundary</strong> for all of them.</p>
+<p>Regardless of intelligence source:</p>
+<ul>
+<li>Skills are invoked the same way</li>
+<li>Safety is enforced the same way</li>
+<li>Observability is preserved</li>
+</ul>
+<p>This future-proofs the ecosystem against rapid model evolution.</p>
+<p><strong>9.11 Orchestration Is Not Control</strong></p>
+<p>A common misunderstanding is to treat orchestration as a replacement for control logic.</p>
+<p>RSP draws a strict line:</p>
+<ul>
+<li><strong>Control</strong> lives inside skills</li>
+<li><strong>Orchestration</strong> lives above skills</li>
+</ul>
+<p>This separation allows:</p>
+<ul>
+<li>High-level autonomy</li>
+<li>Low-level determinism</li>
+<li>Clear safety boundaries</li>
+</ul>
+<p><strong>9.12 Why Agentic Orchestration Scales</strong></p>
+<p>The RSP orchestration model scales because it is:</p>
+<ul>
+<li><strong>Contract-driven</strong></li>
+<li><strong>Failure-aware</strong></li>
+<li><strong>Policy-enforced</strong></li>
+<li><strong>Agent-agnostic</strong></li>
+</ul>
+<p>It enables increasingly autonomous behavior without sacrificing predictability or safety.</p>
+<h1 id="chapter-10-robot-skill-store-marketplace">Chapter 10 — Robot Skill Store &amp; Marketplace</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>10.1 Why a Skill Store Is Essential</strong></p>
+<p>Protocols alone do not create ecosystems.</p>
+<p>History has repeatedly shown that large-scale technology adoption requires:</p>
+<ul>
+<li>A standardized interface</li>
+<li>A distribution mechanism</li>
+<li>Incentives for contributors</li>
+</ul>
+<p>In robotics today, even when reusable capabilities exist, there is <strong>no systematic way to discover, evaluate, trust, and deploy them</strong> across organizations and robot platforms.</p>
+<p>The <strong>Robot Skill Store</strong> addresses this missing layer.</p>
+<p>It transforms robot skills from internal engineering artifacts into <strong>discoverable, distributable, and economically viable assets</strong>.</p>
+<p><strong>10.2 Role of the Skill Store in the RSP Ecosystem</strong></p>
+<p>The Skill Store is not merely an app store clone.
+It is a <strong>protocol-aware platform</strong> tightly coupled with RSP semantics.</p>
+<p>Its core roles include:</p>
+<ul>
+<li>Skill registration and indexing</li>
+<li>Metadata-driven discovery</li>
+<li>Trust and validation signaling</li>
+<li>Licensing and access control</li>
+<li>Distribution and lifecycle management</li>
+</ul>
+<p>Crucially, the Skill Store does <strong>not</strong> execute skills.
+Execution remains the responsibility of Skill Runtimes.</p>
+<p><strong>10.3 High-Level Skill Store Architecture</strong></p>
+<p class="figure-cap"><strong>Figure 10-1. Robot Skill Store Architecture</strong></p>
+<p><strong>Key Components</strong></p>
+<ul>
+<li><strong>Skill Registry</strong>
+Stores manifests, versions, and metadata.</li>
+<li><strong>Index &amp; Search Engine</strong>
+Enables discovery by capability, domain, constraints, and trust level.</li>
+<li><strong>Trust &amp; Validation Layer</strong>
+Aggregates verification artifacts, test coverage, and usage signals.</li>
+<li><strong>Licensing &amp; Policy Engine</strong>
+Controls access, pricing, and enterprise policies.</li>
+<li><strong>Distribution Layer</strong>
+Delivers skill packages and updates to runtimes.</li>
+</ul>
+<p>This architecture ensures the store remains <strong>agnostic to robot hardware and execution details</strong>, while being deeply aware of protocol semantics.</p>
+<p><strong>10.4 Skill Metadata and Discovery</strong></p>
+<p><strong>Metadata as a First-Class Asset</strong></p>
+<p>In RSP, metadata is not auxiliary—it is central.</p>
+<p>Each skill is indexed by:</p>
+<ul>
+<li>Declared capabilities</li>
+<li>Input/output schema</li>
+<li>Constraints and invariants</li>
+<li>Supported execution modes</li>
+<li>Trust and certification level</li>
+</ul>
+<p>This allows both <strong>humans and agents</strong> to query the store intelligently.</p>
+<p><strong>Discovery by Agents</strong></p>
+<p>Agents may issue queries such as:</p>
+<p>“Find a manipulation skill compatible with Robot X, certified for production, capable of handling objects up to 2kg.”</p>
+<p>Discovery thus becomes a <strong>reasoned selection process</strong>, not a keyword search.</p>
+<p><strong>10.5 Trust, Rating, and Verification Signals</strong></p>
+<p class="figure-cap"><strong>Figure 10-2. Trust and Verification Signals in the Skill Store</strong></p>
+<p>Trust in the Skill Store is multi-dimensional and evidence-based.</p>
+<p>Signals may include:</p>
+<ul>
+<li>Simulation and test coverage</li>
+<li>Deployment history across robots</li>
+<li>Safety incident records</li>
+<li>Operator feedback</li>
+<li>Third-party certification</li>
+</ul>
+<p>Importantly, trust is:</p>
+<ul>
+<li><strong>Transparent</strong> (artifacts are inspectable)</li>
+<li><strong>Version-specific</strong></li>
+<li><strong>Policy-enforceable</strong></li>
+</ul>
+<p>This enables risk-aware adoption at scale.</p>
+<p><strong>10.6 Licensing and Pricing Models</strong></p>
+<p>The Skill Store supports diverse economic models, including:</p>
+<ul>
+<li><strong>Open-source skills</strong>
+Community-driven innovation and reference implementations.</li>
+<li><strong>Commercial skills</strong>
+Subscription-based, per-use, or per-deployment licensing.</li>
+<li><strong>Enterprise-only skills</strong>
+Private distribution within an organization.</li>
+</ul>
+<p>RSP does not mandate a business model—it enables <strong>coexistence</strong> of multiple models within a single ecosystem.</p>
+<p><strong>10.7 Public vs Enterprise Skill Stores</strong></p>
+<p class="figure-cap"><strong>Figure 10-3. Public and Enterprise Skill Store Models</strong></p>
+<p><strong>Public Skill Store</strong></p>
+<ul>
+<li>Open ecosystem</li>
+<li>Broad developer participation</li>
+<li>Marketplace dynamics</li>
+</ul>
+<p><strong>Enterprise Skill Store</strong></p>
+<ul>
+<li>Controlled access</li>
+<li>Internal governance and compliance</li>
+<li>Integration with IT and security systems</li>
+</ul>
+<p><strong>Hybrid Model</strong></p>
+<ul>
+<li>Curated external skills</li>
+<li>Internal validation and policy enforcement</li>
+</ul>
+<p>This flexibility is essential for industrial and regulated deployments.</p>
+<p><strong>10.8 Skill Distribution and Update Management</strong></p>
+<p>Skills evolve over time.</p>
+<p>The Skill Store manages:</p>
+<ul>
+<li>Versioned distribution</li>
+<li>Compatibility metadata</li>
+<li>Update notifications</li>
+<li>Rollback mechanisms</li>
+</ul>
+<p>This prevents:</p>
+<ul>
+<li>Silent breaking changes</li>
+<li>Unsafe automatic upgrades</li>
+<li>Fragmentation across deployments</li>
+</ul>
+<p>Skill updates become <strong>managed operations</strong>, not ad-hoc redeployments.</p>
+<p><strong>10.9 Economic and Network Effects</strong></p>
+<p>The Skill Store enables powerful network effects:</p>
+<ul>
+<li>More skills → more capable robots</li>
+<li>More robots → more usage data</li>
+<li>More data → better skills</li>
+</ul>
+<p>This feedback loop benefits:</p>
+<ul>
+<li>Developers (reuse and monetization)</li>
+<li>Enterprises (lower integration cost)</li>
+<li>OEMs (differentiated capability ecosystems)</li>
+</ul>
+<p>The result is a <strong>positive-sum ecosystem</strong>, not a zero-sum integration market.</p>
+<p><strong>10.10 Why This Is Not “Just an App Store”</strong></p>
+<p>Unlike traditional app stores:</p>
+<ul>
+<li>Skills are safety-critical</li>
+<li>Execution is physical and constrained</li>
+<li>Trust must be verifiable, not assumed</li>
+</ul>
+<p>RSP’s Skill Store integrates <strong>protocol semantics, safety, and lifecycle management</strong> in a way generic marketplaces cannot.</p>
+<p><strong>10.11 Strategic Implications</strong></p>
+<p>The Robot Skill Store shifts the industry from:</p>
+<ul>
+<li>Project-based delivery
+→ to capability-based consumption</li>
+</ul>
+<p>It creates the conditions for:</p>
+<ul>
+<li>Independent robot skill developers</li>
+<li>Vertical-specialized skill vendors</li>
+<li>Cross-OEM capability reuse</li>
+</ul>
+<p>This is the foundation of a <strong>robot skill economy</strong>.</p>
+<h1 id="chapter-11-reference-implementations">Chapter 11 — Reference Implementations</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>11.1 Why Reference Implementations Matter</strong></p>
+<p>Reference implementations demonstrate that RSP is <strong>deployable, not theoretical</strong>. They validate the protocol across domains, robots, and execution environments.</p>
+<p><strong>11.2 Cross-Domain Validation</strong></p>
+<p class="figure-cap"><strong>Figure 11-1. Cross-Domain Validation of RSP</strong></p>
+<p>RSP has been validated in:</p>
+<ul>
+<li>Industrial manipulation</li>
+<li>Mobile navigation</li>
+<li>Inspection and AOI</li>
+<li>Simulation-only pipelines</li>
+</ul>
+<p>Across these domains, the Agent*Skill boundary and safety enforcement remain consistent.</p>
+<p><strong>11.3 Skill Reuse Across Robots</strong></p>
+<p class="figure-cap"><strong>Figure 11-2. Same Skill, Different Robots</strong></p>
+<p>A single skill manifest can be reused across multiple robots with different low-level implementations, as long as capability requirements are satisfied.</p>
+<p><strong>11.4 Key Insights from Implementations</strong></p>
+<p>Across all reference implementations:</p>
+<ul>
+<li>Skill reuse reduced integration effort dramatically</li>
+<li>Safety constraints remained enforceable</li>
+<li>Agent logic stayed robot-agnostic</li>
+</ul>
+<p>These results confirm the protocol’s core assumptions.</p>
+<h1 id="chapter-12-developer-experience-dx">Chapter 12 — Developer Experience (DX)</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>12.1 Why Developer Experience Matters</strong></p>
+<p>No protocol succeeds on architecture alone.</p>
+<p>History across software ecosystems shows a consistent pattern:</p>
+<ul>
+<li>Technically superior systems fail due to poor DX</li>
+<li>Simpler, well-tooled systems win adoption and mindshare</li>
+</ul>
+<p>Robotics is no exception.
+If building an RSP-compliant skill is significantly harder than writing a one-off ROS node, developers will bypass the protocol—undermining ecosystem growth.</p>
+<p>Therefore, RSP v0.3 treats <strong>Developer Experience as a first-class design objective</strong>, not an afterthought.</p>
+<p><strong>12.2 Design Goals for RSP Developer Experience</strong></p>
+<p>The RSP developer experience is guided by four goals:</p>
+<ul>
+<li><strong>Low Barrier to Entry</strong>
+A developer should be able to build a basic skill within hours, not weeks.</li>
+<li><strong>Fast Feedback Loops</strong>
+Errors, constraint violations, and performance issues must be visible early.</li>
+<li><strong>Simulation-First Workflow</strong>
+Developers should validate skills without requiring physical robots.</li>
+<li><strong>Production-Grade from Day One</strong>
+Skills should be easy to promote from prototype to production.</li>
+</ul>
+<p>These goals shape the entire RSP tooling ecosystem.</p>
+<p><strong>12.3 Skill SDKs</strong></p>
+<p class="figure-cap"><strong>Figure 12-1. Skill SDK Architecture</strong></p>
+<p><strong>Purpose of the SDK</strong></p>
+<p>Skill SDKs provide developers with:</p>
+<ul>
+<li>Manifest templates and validators</li>
+<li>Strongly-typed input/output bindings</li>
+<li>Local runtime adapters</li>
+<li>Observability hooks</li>
+</ul>
+<p>SDKs are language-agnostic in principle, with reference implementations commonly provided in:</p>
+<ul>
+<li>Python</li>
+<li>C++</li>
+</ul>
+<p><strong>SDK Philosophy</strong></p>
+<p>The SDK does <strong>not</strong> hide RSP concepts.
+Instead, it makes them <strong>explicit and ergonomic</strong>.</p>
+<p>Developers work directly with:</p>
+<ul>
+<li>Manifests</li>
+<li>Contracts</li>
+<li>Execution semantics</li>
+</ul>
+<p>This avoids “magic behavior” that breaks portability or trust.</p>
+<p><strong>12.4 Local Development Workflow</strong></p>
+<p class="figure-cap"><strong>Figure 12-2. Local Skill Development Workflow</strong></p>
+<p>A typical local workflow includes:</p>
+<ul>
+<li><strong>Author Skill Logic</strong>
+Implement perception, planning, or control logic.</li>
+<li><strong>Define the Manifest</strong>
+Specify interface, constraints, and required capabilities.</li>
+<li><strong>Local Runtime Execution</strong>
+Run the skill against a local or simulated runtime.</li>
+<li><strong>Immediate Validation</strong>
+Detect contract violations, schema errors, or safety issues early.</li>
+</ul>
+<p>This tight loop dramatically reduces integration friction.</p>
+<p><strong>12.5 Simulation-First Development</strong></p>
+<p>Simulation is a <strong>default</strong>, not an optional step.</p>
+<p>RSP-compatible workflows integrate naturally with:</p>
+<ul>
+<li>NVIDIA Isaac</li>
+<li>Gazebo</li>
+<li>Custom digital twins</li>
+</ul>
+<p>Developers can:</p>
+<ul>
+<li>Test skills across scenarios</li>
+<li>Inject noise and edge cases</li>
+<li>Validate safety invariants</li>
+</ul>
+<p>This approach:</p>
+<ul>
+<li>Reduces hardware dependency</li>
+<li>Improves test coverage</li>
+<li>Accelerates iteration speed</li>
+</ul>
+<p><strong>12.6 Continuous Integration and Validation</strong></p>
+<p class="figure-cap"><strong>Figure 12-3. CI Pipeline for Robot Skills</strong></p>
+<p>RSP encourages skills to be treated like production software artifacts.</p>
+<p>Typical CI steps include:</p>
+<ul>
+<li>Manifest schema validation</li>
+<li>Static contract checks</li>
+<li>Simulation-based tests</li>
+<li>Performance regression detection</li>
+</ul>
+<p>CI artifacts become <strong>trust signals</strong> consumable by the Skill Store and enterprises.</p>
+<p><strong>12.7 Publishing Skills to the Store</strong></p>
+<p>Publishing a skill is a <strong>first-class operation</strong>.</p>
+<p>The publishing process includes:</p>
+<ul>
+<li>Version tagging</li>
+<li>Uploading manifests and artifacts</li>
+<li>Attaching validation reports</li>
+<li>Declaring licensing and access policies</li>
+</ul>
+<p>Publishing does not imply universal availability; access is governed by store and enterprise policies.</p>
+<p><strong>12.8 Debugging and Profiling Skills</strong></p>
+<p>Observability is central to DX.</p>
+<p>RSP provides standardized telemetry:</p>
+<ul>
+<li>Execution timelines</li>
+<li>Resource usage</li>
+<li>Constraint enforcement events</li>
+</ul>
+<p>Developers can:</p>
+<ul>
+<li>Reproduce failures</li>
+<li>Compare performance across robots</li>
+<li>Optimize without breaking contracts</li>
+</ul>
+<p>Debugging focuses on <strong>behavioral</strong><strong> correctness</strong>, not just code correctness.</p>
+<p><strong>12.9 Upgrading and Maintaining Skills</strong></p>
+<p>As skills evolve:</p>
+<ul>
+<li>New versions are published</li>
+<li>Compatibility is declared explicitly</li>
+<li>Deprecation is signaled clearly</li>
+</ul>
+<p>Developers are not forced into breaking changes, and operators retain control over upgrade timing.</p>
+<p><strong>12.10 Supporting Independent and Enterprise Developers</strong></p>
+<p>RSP’s DX model supports both:</p>
+<ul>
+<li>Independent developers building reusable skills</li>
+<li>Enterprise teams developing internal capabilities</li>
+</ul>
+<p>This inclusivity is essential for a healthy ecosystem.</p>
+<p><strong>12.11 Why RSP’s DX Enables Ecosystem Growth</strong></p>
+<p>RSP’s developer experience succeeds because it:</p>
+<ul>
+<li>Aligns with modern software practices</li>
+<li>Respects robotics safety realities</li>
+<li>Makes reuse the default path</li>
+</ul>
+<p>When developers are empowered, ecosystems follow.</p>
+<h1 id="chapter-13-comparison-positioning">Chapter 13 — Comparison &amp; Positioning</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>13.1 Why Positioning Is Necessary</strong></p>
+<p>RSP is often misunderstood as a replacement for ROS, behavior trees, or end-to-end learning systems. Clear positioning avoids confusion and sets correct expectations.</p>
+<p><strong>13.2 Abstraction-Level Comparison</strong></p>
+<p class="figure-cap"><strong>Figure 13-1. Abstraction Level vs Reuse</strong></p>
+<p>RSP operates at a higher semantic level than ROS primitives or behavior trees, focusing on capability contracts and lifecycle rather than control flow.</p>
+<p><strong>13.3 Where RSP Fits in the Robotics Stack</strong></p>
+<p class="figure-cap"><strong>Figure 13-2. Position of RSP in the Robotics Stack</strong></p>
+<p>RSP sits between:</p>
+<ul>
+<li>Low-level robot control stacks</li>
+<li>High-level agent reasoning systems</li>
+</ul>
+<p>It defines the <strong>only safe and standardized execution boundary</strong>.</p>
+<p><strong>13.4 Strategic Positioning Summary</strong></p>
+<p>RSP is best understood as:</p>
+<p><strong>A protocol for capability contracts, safety enforcement, and ecosystem scaling.</strong></p>
+<p>It complements existing tools rather than competing with them.</p>
+<h1 id="chapter-14-business-ecosystem-implications">Chapter 14 — Business &amp; Ecosystem Implications</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>14.1 From Project Economics to Platform Economics</strong></p>
+<p>Most robotics businesses today operate under <strong>project economics</strong>:</p>
+<ul>
+<li>Revenue is tied to system integration projects</li>
+<li>Margins depend on customization effort</li>
+<li>Knowledge does not compound across deployments</li>
+</ul>
+<p>This model does not scale.</p>
+<p>Robot Skill Protocol enables a structural transition to <strong>platform economics</strong>, where:</p>
+<ul>
+<li>Capabilities are reused across customers</li>
+<li>Value compounds through distribution</li>
+<li>Marginal deployment cost approaches zero</li>
+</ul>
+<p>This shift mirrors transformations seen in cloud computing, mobile platforms, and AI tooling ecosystems.</p>
+<p><strong>14.2 The Value Chain Shift in Robotics</strong></p>
+<p class="figure-cap"><strong>Figure 14-1. Value Chain Shift Enabled by RSP</strong></p>
+<p><strong>Traditional Robotics Value Chain</strong></p>
+<ul>
+<li>Hardware manufacturing</li>
+<li>System integration</li>
+<li>Project delivery</li>
+<li>Maintenance contracts</li>
+</ul>
+<p><strong>RSP-Enabled Value Chain</strong></p>
+<ul>
+<li>Hardware platforms</li>
+<li>Skill development</li>
+<li>Skill distribution</li>
+<li>Capability consumption</li>
+</ul>
+<p>By decoupling skills from hardware and projects, RSP introduces <strong>new value-creation layers</strong> that did not previously exist.</p>
+<p><strong>14.3 New Roles in the RSP Ecosystem</strong></p>
+<p>RSP enables a richer and more specialized ecosystem:</p>
+<p><strong>Skill Developers</strong></p>
+<ul>
+<li>Independent or enterprise developers</li>
+<li>Focus on domain-specific capabilities</li>
+<li>Monetize expertise without owning hardware</li>
+</ul>
+<p><strong>Platform Operators</strong></p>
+<ul>
+<li>Operate skill stores and orchestration infrastructure</li>
+<li>Curate, certify, and govern ecosystems</li>
+</ul>
+<p><strong>Robot OEMs</strong></p>
+<ul>
+<li>Differentiate via capability ecosystems rather than proprietary APIs</li>
+<li>Reduce integration burden for customers</li>
+</ul>
+<p><strong>System Integrators</strong></p>
+<ul>
+<li>Shift from low-level coding to higher-value solution design</li>
+<li>Assemble solutions from validated skills</li>
+</ul>
+<p>This specialization increases overall ecosystem efficiency.</p>
+<p><strong>14.4 Lowering Barriers to Entry and Innovation</strong></p>
+<p>By standardizing interfaces and execution semantics, RSP lowers barriers for:</p>
+<ul>
+<li>Small and medium enterprises</li>
+<li>Academic spin-offs</li>
+<li>Independent developers</li>
+</ul>
+<p>Innovation no longer requires:</p>
+<ul>
+<li>Full robot stacks</li>
+<li>Deep integration expertise</li>
+<li>Large upfront capital investment</li>
+</ul>
+<p>Instead, contributors can focus on <strong>narrow, high-value capabilities</strong>.</p>
+<p><strong>14.5 Network Effects and Data Flywheels</strong></p>
+<p class="figure-cap"><strong>Figure 14-2. Network Effects in the Robot Skill Ecosystem</strong></p>
+<p>RSP enables positive feedback loops:</p>
+<ul>
+<li>More skills → more capable robots</li>
+<li>More deployments → more performance data</li>
+<li>More data → better skills and trust signals</li>
+</ul>
+<p>This flywheel benefits all participants and accelerates ecosystem maturation.</p>
+<p><strong>14.6 Economic Models Enabled by RSP</strong></p>
+<p>RSP supports multiple, coexisting business models:</p>
+<ul>
+<li><strong>Usage-based pricing</strong>
+Pay per invocation or execution time.</li>
+<li><strong>Subscription models</strong>
+Ongoing access to evolving capabilities.</li>
+<li><strong>Enterprise licensing</strong>
+Private skill distribution and governance.</li>
+<li><strong>Open-core models</strong>
+Community base with commercial extensions.</li>
+</ul>
+<p>The protocol does not constrain monetization—it enables <strong>experimentation and market discovery</strong>.</p>
+<p><strong>14.7 Risk Reduction for Enterprises</strong></p>
+<p>For enterprise adopters, RSP reduces key risks:</p>
+<ul>
+<li><strong>Vendor lock-in</strong>
+Skills are portable across compliant platforms.</li>
+<li><strong>Integration risk</strong>
+Skills are pre-validated and contract-bound.</li>
+<li><strong>Safety and compliance risk</strong>
+Trust artifacts and policies are explicit.</li>
+</ul>
+<p>This lowers the threshold for large-scale robotic adoption.</p>
+<p><strong>14.8 Strategic Implications for Robot OEMs</strong></p>
+<p>RSP presents a strategic choice for OEMs:</p>
+<ul>
+<li>Compete on proprietary stacks</li>
+<li>Or compete on ecosystem enablement</li>
+</ul>
+<p>OEMs that embrace RSP can:</p>
+<ul>
+<li>Attract third-party innovation</li>
+<li>Reduce customer integration cost</li>
+<li>Accelerate time-to-capability</li>
+</ul>
+<p>This parallels the shift from closed platforms to open ecosystems in other industries.</p>
+<p><strong>14.9 Implications for Investors and the Market</strong></p>
+<p>From an investment perspective, RSP-enabled companies:</p>
+<ul>
+<li>Scale faster than project-based integrators</li>
+<li>Build defensible platforms and ecosystems</li>
+<li>Capture long-term network effects</li>
+</ul>
+<p>This redefines how value is created and captured in robotics.</p>
+<p><strong>14.10 From Robotics Products to Robotics Infrastructure</strong></p>
+<p>Ultimately, RSP shifts robotics from:</p>
+<ul>
+<li>Delivering bespoke products
+→ to building <strong>shared infrastructure</strong></li>
+</ul>
+<p>Infrastructure-level platforms:</p>
+<ul>
+<li>Outlast individual applications</li>
+<li>Enable entire markets</li>
+<li>Attract sustained developer investment</li>
+</ul>
+<p>RSP positions the robot skill layer as such infrastructure.</p>
+<p><strong>14.11 Why Business Alignment Matters for Protocol Adoption</strong></p>
+<p>Technical elegance alone does not guarantee adoption.</p>
+<p>RSP is explicitly designed to align:</p>
+<ul>
+<li>Technical incentives</li>
+<li>Economic incentives</li>
+<li>Organizational incentives</li>
+</ul>
+<p>When these align, ecosystems grow naturally.</p>
+<h1 id="chapter-15-roadmap-future-directions">Chapter 15 — Roadmap &amp; Future Directions</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>15.1 Why a Roadmap Matters for a Protocol</strong></p>
+<p>A protocol is not a static artifact.
+It is a <strong>social and technical contract that evolves over time</strong>.</p>
+<p>Without a clear roadmap:</p>
+<ul>
+<li>Early adopters fear lock-in</li>
+<li>Contributors lack direction</li>
+<li>Ecosystems fragment</li>
+</ul>
+<p>RSP therefore defines an <strong>explicit evolution path</strong>, balancing:</p>
+<ul>
+<li>Stability for adopters</li>
+<li>Innovation for developers</li>
+<li>Governance for safety and trust</li>
+</ul>
+<p><strong>15.2 Design Principles for RSP Evolution</strong></p>
+<p>The RSP roadmap is guided by four principles:</p>
+<ul>
+<li><strong>Backward Compatibility by Default</strong>
+Existing skills and agents must continue to function.</li>
+<li><strong>Incremental Formalization</strong>
+Start practical, then progressively strengthen guarantees.</li>
+<li><strong>Ecosystem-Driven Priorities</strong>
+Real deployments inform protocol evolution.</li>
+<li><strong>Vendor-Neutral Governance</strong>
+No single company controls the protocol’s direction.</li>
+</ul>
+<p><strong>15.3 RSP Version Roadmap Overview</strong></p>
+<p class="figure-cap"><strong>Figure 15-1. RSP Protocol Roadmap</strong></p>
+<p><strong>15.4 RSP v0.3 — Foundation (Current)</strong></p>
+<p><strong>Primary Focus</strong></p>
+<ul>
+<li>Agent*Skill abstraction</li>
+<li>Skill manifest and contracts</li>
+<li>Safety-by-design runtime model</li>
+<li>Skill lifecycle and store concept</li>
+</ul>
+<p><strong>What v0.3 Enables</strong></p>
+<ul>
+<li>Safe agent-driven execution</li>
+<li>Cross-robot skill reuse</li>
+<li>Early marketplace experiments</li>
+</ul>
+<p>v0.3 intentionally prioritizes <strong>clarity and </strong><strong>implementability</strong> over formal completeness.</p>
+<p><strong>15.5 RSP v0.4 — Validation &amp; Benchmarking</strong></p>
+<p><strong>Key Directions</strong></p>
+<ul>
+<li>Standardized skill benchmarking</li>
+<li>Formal simulation test suites</li>
+<li>Comparable performance metrics</li>
+</ul>
+<p><strong>Impact</strong></p>
+<ul>
+<li>Objective skill comparison</li>
+<li>Stronger trust signals</li>
+<li>Easier enterprise adoption</li>
+</ul>
+<p>This phase strengthens <strong>confidence</strong>, not just capability.</p>
+<p><strong>15.6 RSP v0.5 — Interoperability &amp; Certification</strong></p>
+<p><strong>Key Directions</strong></p>
+<ul>
+<li>Cross-vendor interoperability profiles</li>
+<li>Certification frameworks for safety-critical skills</li>
+<li>Compliance alignment (industrial and regulated domains)</li>
+</ul>
+<p><strong>Impact</strong></p>
+<ul>
+<li>Reduced integration friction</li>
+<li>Increased OEM participation</li>
+<li>Regulatory-ready deployments</li>
+</ul>
+<p>This version marks RSP’s transition from <strong>experimental protocol to industry-grade standard</strong>.</p>
+<p><strong>15.7 RSP v1.0 — Autonomous Skill Ecosystem</strong></p>
+<p><strong>Long-Term Vision</strong></p>
+<ul>
+<li>Autonomous skill discovery</li>
+<li>Automated skill learning and improvement</li>
+<li>Closed-loop data flywheels across fleets</li>
+</ul>
+<p><strong>Characteristics</strong></p>
+<ul>
+<li>Agents can reason about unknown skills</li>
+<li>Skills can self-report performance and confidence</li>
+<li>Ecosystem-level optimization emerges</li>
+</ul>
+<p>v1.0 represents the <strong>full realization of a robot skill economy</strong>.</p>
+<p><strong>15.8 Governance and Standardization Path</strong></p>
+<p>RSP is designed to evolve under:</p>
+<ul>
+<li>Open specifications</li>
+<li>Transparent decision processes</li>
+<li>Community and industry participation</li>
+</ul>
+<p>Potential governance models include:</p>
+<ul>
+<li>Open consortium</li>
+<li>Foundation-backed stewardship</li>
+<li>Multi-stakeholder technical committees</li>
+</ul>
+<p>Governance is essential to maintain trust and neutrality.</p>
+<p><strong>15.9 Risks and Mitigations</strong></p>
+<p><strong>Risk</strong>: Over-standardization too early
+→ <strong>Mitigation</strong>: Incremental formalization</p>
+<p><strong>Risk</strong>: Fragmented implementations
+→ <strong>Mitigation</strong>: Reference implementations and conformance tests</p>
+<p><strong>Risk</strong>: Safety regression with autonomy
+→ <strong>Mitigation</strong>: Protocol-level safety invariants</p>
+<p><strong>15.10 Why the Roadmap Is Realistic</strong></p>
+<p>The roadmap aligns with:</p>
+<ul>
+<li>Current industry trajectories</li>
+<li>Agentic AI maturity curves</li>
+<li>Simulation and digital twin adoption</li>
+</ul>
+<p>It is ambitious, but grounded in deployable steps.</p>
+<h1 id="chapter-16-conclusion">Chapter 16 — Conclusion</h1>
+<p>Robot Skill Protocol (RSP) v0.3</p>
+<p><strong>16.1 Revisiting the Core Problem</strong></p>
+<p>Robotics has long suffered from:</p>
+<ul>
+<li>Fragmented software</li>
+<li>High integration costs</li>
+<li>Limited reuse</li>
+</ul>
+<p>Despite advances in hardware and AI, <strong>capabilities do not compound</strong>.</p>
+<p>This is not a failure of talent or technology.
+It is the absence of a shared abstraction.</p>
+<p><strong>16.2 What RSP v0.3 Establishes</strong></p>
+<p>Robot Skill Protocol v0.3 establishes:</p>
+<ul>
+<li>Skills as first-class, portable assets</li>
+<li>Agent*Skill as the safe autonomy boundary</li>
+<li>Declarative contracts and lifecycle management</li>
+<li>Safety and trust as protocol primitives</li>
+</ul>
+<p>Together, these form the <strong>minimum viable foundation</strong> for scalable robotics software.</p>
+<p><strong>16.3 Why Agent*Skill Is the Right Boundary</strong></p>
+<p class="figure-cap"><strong>Figure 16-1. The Agent*Skill Vision</strong></p>
+<p>By separating:</p>
+<ul>
+<li><strong>Reasoning</strong> (Agents)</li>
+<li><strong>Execution</strong> (Skills)</li>
+</ul>
+<p>RSP enables rapid progress in AI intelligence <strong>without proportionally increasing physical risk</strong>.</p>
+<p>This boundary is the key to safe, scalable autonomy.</p>
+<p><strong>16.4 From Robots to Infrastructure</strong></p>
+<p>RSP reframes robotics from:</p>
+<ul>
+<li>Delivering machines
+→ to building shared infrastructure</li>
+</ul>
+<p>Infrastructure-level abstractions:</p>
+<ul>
+<li>Enable ecosystems</li>
+<li>Attract long-term investment</li>
+<li>Outlive individual applications</li>
+</ul>
+<p>RSP positions the <strong>robot skill layer</strong> as such infrastructure.</p>
+<p><strong>16.5 Call to the Ecosystem</strong></p>
+<p>The success of RSP does not depend on a single organization.</p>
+<p>It depends on:</p>
+<ul>
+<li>Developers building skills</li>
+<li>OEMs enabling open capability layers</li>
+<li>Enterprises demanding portability and trust</li>
+<li>Researchers contributing new abstractions</li>
+</ul>
+<p>RSP is an invitation to collaborate on the future of robotics.</p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div>Generated from DOCX on 2026-01-15 05:43.</div>
+  </footer>
+
+  <script>
+(function(){
+  document.querySelectorAll('.toc a').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      const href = a.getAttribute('href') || '';
+      if(href.startsWith('#')){
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+        const url = new URL(location.href);
+        url.hash = href;
+        history.replaceState({}, '', url);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
