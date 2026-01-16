@@ -1,13 +1,19 @@
-# RobotSkillStore static site (EN/ZH)
+Robot Skill Store (RSS) Website
+===============================
 
-Open `index.html` at the repo root to auto-redirect to `/en/`.
+Freeze Version : v6.75
+Freeze Date    : 2026-01-16
+Status         : FINAL / FROZEN
 
-Folders:
-- `/en` English pages
-- `/zh` Chinese pages
-- `/assets` shared CSS/JS
+Scope:
+- RSS main site
+- Docs (EN / 中文)
+- RSS Whitepaper (EN / 中文)
+- RSP Whitepaper (EN / 中文)
+- Demo pages
+- Navigation, anchor offset, logo sizing, topbar behavior
 
-Note: The branding uses "Agent*Skill" (not "Agent x Skill").
-
-Update history
-[2025.12.27] updated contact page
+Notes:
+- This version is frozen and approved.
+- No further modifications are allowed on this version.
+- Any change must start from v6.76 or later.

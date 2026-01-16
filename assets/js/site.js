@@ -2,6 +2,36 @@
 (function(){
   const root = document.documentElement;
 
+  // --- Auto anchor offset: measure top sticky/fixed bars and expose as CSS var --topbar-h
+  function __rss_measureTopbarHeight(){
+    const candidates = Array.from(document.querySelectorAll('.topbar, .site-topbar, .navbar, header, nav'));
+    let maxH = 0;
+    for(const el of candidates){
+      try{
+        const cs = getComputedStyle(el);
+        const pos = (cs.position || '').toLowerCase();
+        const top = (cs.top || '').trim();
+        if(pos !== 'fixed' && pos !== 'sticky') continue;
+        // Only count elements that stick to the very top (top: 0 / 0px)
+        if(top !== '0' && top !== '0px') continue;
+        const h = el.getBoundingClientRect().height || 0;
+        if(h > maxH) maxH = h;
+      }catch(e){}
+    }
+    // Fallback to 64px if we couldn't find a topbar
+    if(!maxH || maxH < 40) maxH = 64;
+    root.style.setProperty('--topbar-h', Math.round(maxH) + 'px');
+  }
+
+  function __rss_scheduleTopbarMeasure(){
+    // measure a few times to stabilize (fonts/images can affect height)
+    __rss_measureTopbarHeight();
+    requestAnimationFrame(__rss_measureTopbarHeight);
+    setTimeout(__rss_measureTopbarHeight, 250);
+    setTimeout(__rss_measureTopbarHeight, 800);
+  }
+
+
   function setTheme(theme){
     if(theme === 'dark'){
       root.setAttribute('data-theme','dark');
@@ -75,7 +105,7 @@ function initLangToggle(){
     const content = document.getElementById('content');
     if(!toc || !content) return;
 
-    const headings = content.querySelectorAll('h2[id], h3[id]');
+    const headings = content.querySelectorAll('h1[id], h2[id], h3[id]');
     if(!headings.length){
       toc.innerHTML = '<div class="muted small">No sections</div>';
       return;
@@ -510,6 +540,14 @@ function initTabGroups(){
 
 // Inline pillbar toggle nav (used by Docs RSS/RSP summaries, etc.)
 function initInlineToggleNav(){
+  // Avoid initial anchor-jump to a tab panel (can scroll to bottom on page entry)
+  try {
+    if (typeof location !== "undefined" && location.hash) {
+      if (history && history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+      window.scrollTo(0, 0);
+    }
+  } catch (e) {}
+
   // Docs uses `hidden` to control visibility, while some older pages used `active`.
   // This implementation supports BOTH.
   // Requirements:
@@ -562,7 +600,7 @@ function initInlineToggleNav(){
     target.classList.add('active');
   }
 
-  function activate(bar, group, targetId){
+  function activate(bar, group, targetId, updateHash=true){
     if (!bar || !group || !targetId) return;
     const scope = getScope(bar);
     setPills(bar, targetId);
@@ -572,11 +610,13 @@ function initInlineToggleNav(){
     try { sessionStorage.setItem('tabgroup:'+group, targetId); } catch (e) {}
 
     // Update hash (without jumping)
-    try {
-      if (history && history.replaceState) {
-        history.replaceState(null, '', '#' + targetId);
-      }
-    } catch (e) {}
+    if(updateHash){
+      try {
+        if (history && history.replaceState) {
+          history.replaceState(null, '', '#' + targetId);
+        }
+      } catch (e) {}
+    }
   }
 
   // Initialize every tab group on the page
@@ -602,7 +642,7 @@ function initInlineToggleNav(){
     const pills = bar.querySelectorAll('.pill');
     const first = pills && pills.length ? pills[0].getAttribute('data-toggle-target') : null;
     const chosen = initial || first;
-    if (chosen) activate(bar, group, chosen);
+    if (chosen) activate(bar, group, chosen, false);
   });
 }
 

@@ -12,7 +12,7 @@
   --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
 @media (prefers-color-scheme: light){
-  :root{--bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa;}
+  :root{--bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa; --anchor-fudge:-8px;}
 }
 *{box-sizing:border-box}
 body{margin:0; font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.65;}
@@ -20,11 +20,14 @@ a{color:var(--link); text-decoration:none}
 a:hover{text-decoration:underline}
 .header{
   position:sticky; top:0; z-index:50;
-  background:linear-gradient(to bottom, var(--bg), rgba(0,0,0,0));
-  backdrop-filter:saturate(180%) blur(12px);
+  /* Fully opaque header bar (no translucent gradient). */
+  background:var(--bg);
+  backdrop-filter:none;
   border-bottom:1px solid var(--border);
 }
-.header-inner{max-width:1200px; margin:0 auto; padding:14px 16px; display:flex; align-items:center; gap:12px;}
+.header-inner{max-width:1200px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; gap:12px;}
+/* Ensure RSS header logo does not inflate the top bar height */
+.topbar-logo{width:28px; height:28px; border-radius:8px; display:block; flex:0 0 auto;}
 .badge{font-size:12px; padding:3px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted);}
 .title{font-weight:700; font-size:16px}
 .spacer{flex:1}
@@ -80,11 +83,15 @@ a:hover{text-decoration:underline}
 body{font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", var(--sans);}
 .content{letter-spacing:0.2px;}
 .content p, .content li{word-break:break-word; line-break:anywhere;}
+
+/* Anchor offset so headings are not hidden under sticky header */
+h1,h2,h3,h4,h5,h6{scroll-margin-top:calc(var(--anchor-offset,72px) + var(--anchor-fudge,0px));}
 </style>
 </head>
-<body>
+<body class="rss-whitepaper">
   <header class="header">
     <div class="header-inner">
+      <img class="topbar-logo" src="../../assets/media/rss_logo.png" alt="Robot Skill Store logo" />
       <div class="title">Robot Skill Store（RSS）白皮书</div>
       <span class="badge">RSS Whitepaper</span>
       <div class="spacer"></div>
@@ -96,55 +103,50 @@ body{font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sa
     <aside class="toc" aria-label="目录">
       <h2>目录</h2>
       <ul>
-<li><a href="#how-to-read-this-whitepaper">How to Read This Whitepaper</a></li>
-<li><a href="#key-takeaways">Key Takeaways</a></li>
-<li><a href="#chapter-1-执行摘要">Chapter 1 执行摘要</a></li>
-<li><a href="#chapter-2-机器人领域的技能危机">Chapter 2 - 机器人领域的&quot;技能危机&amp;#8221;</a></li>
-<li><a href="#chapter-3-什么是机器人技能">Chapter 3 - 什么是&quot;机器人技能&amp;#8221;</a></li>
-<li><a href="#chapter-4-从技能即代码到技能即系统资产">Chapter 4 - 从&quot;技能即代码&quot;到&quot;技能即系统资产&amp;#8221;</a></li>
-<li><a href="#chapter-5-robot-skill-store系统整体概览">Chapter 5 - Robot Skill Store：系统整体概览</a></li>
-<li><a href="#chapter-6-网站与平台机器人技能系统中的职责分离">Chapter 6 - 网站与平台：机器人技能系统中的职责分离</a></li>
-<li><a href="#chapter-7-统一技能对象模型">Chapter 7 - 统一技能对象模型</a></li>
-<li><a href="#chapter-8-执行评测与数据飞轮">Chapter 8 - 执行、评测与数据飞轮</a></li>
-<li><a href="#chapter-9-物理系统中的治理与可信">Chapter 9 - 物理系统中的治理与可信</a></li>
-<li><a href="#chapter-10-部署模式与工业现实">Chapter 10 - 部署模式与工业现实</a></li>
-<li><a href="#chapter-11-生态影响与未来方向">Chapter 11 - 生态影响与未来方向</a></li>
+<li><a href="#how-to-read-this-whitepaper">如何阅读本白皮书</a></li>
+<li><a href="#key-takeaways">关键要点</a></li>
+<li><a href="#chapter-1-执行摘要">第 1 章 执行摘要</a></li>
+<li><a href="#chapter-2-机器人领域的技能危机">第 2 章 - 机器人领域的&quot;技能危机”</a></li>
+<li><a href="#chapter-3-什么是机器人技能">第 3 章 - 什么是&quot;机器人技能”</a></li>
+<li><a href="#chapter-4-从技能即代码到技能即系统资产">第 4 章 - 从&quot;技能即代码&quot;到&quot;技能即系统资产”</a></li>
+<li><a href="#chapter-5-robot-skill-store系统整体概览">第 5 章 - Robot Skill Store：系统整体概览</a></li>
+<li><a href="#chapter-6-网站与平台机器人技能系统中的职责分离">第 6 章 - 网站与平台：机器人技能系统中的职责分离</a></li>
+<li><a href="#chapter-7-统一技能对象模型">第 7 章 - 统一技能对象模型</a></li>
+<li><a href="#chapter-8-执行评测与数据飞轮">第 8 章 - 执行、评测与数据飞轮</a></li>
+<li><a href="#chapter-9-物理系统中的治理与可信">第 9 章 - 物理系统中的治理与可信</a></li>
+<li><a href="#chapter-10-部署模式与工业现实">第 10 章 - 部署模式与工业现实</a></li>
+<li><a href="#chapter-11-生态影响与未来方向">第 11 章 - 生态影响与未来方向</a></li>
 <li><a href="#glossary">Glossary</a></li>
 </ul>
     </aside>
 
     <article class="content">
-      <h1 id="how-to-read-this-whitepaper">How to Read This Whitepaper</h1>
+      <h1 id="how-to-read-this-whitepaper">如何阅读本白皮书</h1>
 
 <p>阅读指南</p>
 
-<p>Executives:</p>
+<p>决策层：</p>
 
-<p>Chapters 1, 2, 10, 11 &#8212; problem framing and strategic implications.</p>
+<p>第 1、2、10、11 章——问题界定与战略影响。</p>
 
-<p>System architects:</p>
+<p>系统架构师：</p>
 
-<p>Chapters 3&#8211;9 &#8212; skill definition, object model, execution, and
-governance.</p>
+<p>第 3–9 章——技能定义、对象模型、执行与治理。</p>
 
-<p>Implementers:</p>
+<p>落地实现团队：</p>
 
-<p>Chapters 5&#8211;8 &#8212; lifecycle, execution, benchmarks, and deployment
-semantics.</p>
+<p>第 5–8 章——生命周期、执行、基准评测与部署语义。</p>
 
-<h1 id="key-takeaways">Key Takeaways</h1>
+<h1 id="key-takeaways">关键要点</h1>
 
 <p>关键要点</p>
 
 <ul>
-<li><p>Robot Skill Store (RSS) separates robot skills from robot hardware and
-deployment environments.</p></li>
-<li><p>Skills are versioned, benchmarked, and governed as first-class assets.</p></li>
-<li><p>Execution data forms a closed-loop flywheel for continuous
-improvement.</p></li>
-<li><p>RSS enables cross-vendor, cross-site reuse of robotic capabilities.</p></li>
-<li><p>Governance and safety policies are enforced at execution time, not by
-convention.</p></li>
+<li><p>Robot Skill Store（RSS）将机器人技能与机器人硬件及部署环境解耦。</p></li>
+<li><p>技能以“一等资产”的方式进行版本化、基准评测与治理。</p></li>
+<li><p>执行数据形成闭环飞轮，驱动持续改进。</p></li>
+<li><p>RSS 支持跨供应商、跨工厂复用机器人能力。</p></li>
+<li><p>治理与安全策略在运行时强制执行，而非依赖约定俗成。</p></li>
 </ul>
 
 <h1 id="chapter-1-执行摘要">Chapter 1 执行摘要</h1>
@@ -288,7 +290,7 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 <p>Robot Skill Store 不是终点，\
 而是一个<strong>可规模化机器人生态的基础设施起点</strong>。</p>
 
-<h1 id="chapter-2-机器人领域的技能危机">Chapter 2 - 机器人领域的"技能危机&#8221;</h1>
+<h1 id="chapter-2-机器人领域的技能危机">Chapter 2 - 机器人领域的"技能危机”</h1>
 
 <p><strong>2.1 机器人世界"演示很多，技能很少"</strong></p>
 
@@ -323,11 +325,11 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 
 <p>在现有机器人流程中，技能通常被视为：</p>
 
-<p>&#8220;一段可以运行的代码&#8221;</p>
+<p>“一段可以运行的代码”</p>
 
 <p>而不是：</p>
 
-<p>&#8220;一个需要被管理的系统资产&#8221;</p>
+<p>“一个需要被管理的系统资产”</p>
 
 <p>因此产生了一系列系统性问题：</p>
 
@@ -336,7 +338,7 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 <li><p>修改无法被可靠追踪或审计</p></li>
 <li><p>回滚依赖人工甚至不可行</p></li>
 <li><p>兼容性与前提条件未被正式描述</p></li>
-<li><p>可信度来源于个人经验或"口碑&#8221;</p></li>
+<li><p>可信度来源于个人经验或"口碑”</p></li>
 </ul>
 
 <p>这种方式在研究原型阶段尚可接受，\
@@ -353,9 +355,9 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 <p>当下大多数机器人技能的验证方式是<strong>视觉化、主观的</strong>：</p>
 
 <ul>
-<li><p>机器人动作"看起来差不多&#8221;</p></li>
-<li><p>物体"基本能抓起来&#8221;</p></li>
-<li><p>对齐效果"感觉还行&#8221;</p></li>
+<li><p>机器人动作"看起来差不多”</p></li>
+<li><p>物体"基本能抓起来”</p></li>
+<li><p>对齐效果"感觉还行”</p></li>
 </ul>
 
 <p>这种验证方式无法回答任何工程级问题：</p>
@@ -432,7 +434,7 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 
 <p><strong>Robot Skill Store 正是为解决这一问题而设计的。</strong></p>
 
-<h1 id="chapter-3-什么是机器人技能">Chapter 3 - 什么是"机器人技能&#8221;</h1>
+<h1 id="chapter-3-什么是机器人技能">Chapter 3 - 什么是"机器人技能”</h1>
 
 <p><strong>3.1 为什么"技能"必须被严格定义</strong></p>
 
@@ -476,11 +478,11 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 
 <p>代码回答的是：</p>
 
-<p>&#8220;这是如何实现的？&#8221;</p>
+<p>“这是如何实现的？”</p>
 
 <p>而技能必须回答：</p>
 
-<p>&#8220;我提供什么能力？在什么条件下？有什么保证？&#8221;</p>
+<p>“我提供什么能力？在什么条件下？有什么保证？”</p>
 
 <p>同一个技能可以有多种实现方式；\
 同一段代码在不同约束下，也可能代表不同技能。</p>
@@ -503,11 +505,11 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 
 <p>Demo 回答的是：</p>
 
-<p>&#8220;能不能演示一次？&#8221;</p>
+<p>“能不能演示一次？”</p>
 
 <p>而技能必须回答：</p>
 
-<p>&#8220;在不同运行、环境和操作条件下，能否稳定执行？&#8221;</p>
+<p>“在不同运行、环境和操作条件下，能否稳定执行？”</p>
 
 <p>RSS 明确区分 <strong>演示（Demo）</strong> 与 <strong>技能（Skill）</strong>：</p>
 
@@ -559,7 +561,7 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 
 <ul>
 <li><p><strong>Skill</strong> 表示逻辑能力</p></li>
-<li><p><strong>Skill Version</strong> 表示不可变的"契约 + 实现&#8221;</p></li>
+<li><p><strong>Skill Version</strong> 表示不可变的"契约 + 实现”</p></li>
 </ul>
 
 <p>任何改动&#8212;&#8212;无论大小&#8212;&#8212;都必须生成新版本。</p>
@@ -588,9 +590,9 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 <p><strong>将技能定义为"可契约、可版本化、可评测的能力"，\
 是 RSS 成为平台的前提条件。</strong></p>
 
-<h1 id="chapter-4-从技能即代码到技能即系统资产">Chapter 4 - 从"技能即代码"到"技能即系统资产&#8221;</h1>
+<h1 id="chapter-4-从技能即代码到技能即系统资产">Chapter 4 - 从"技能即代码"到"技能即系统资产”</h1>
 
-<p><strong>4.1 &#8220;技能即代码"模式的根本局限</strong></p>
+<p><strong>4.1 “技能即代码"模式的根本局限</strong></p>
 
 <p>将机器人技能视为"可执行代码"，是长期以来的默认做法。</p>
 
@@ -598,9 +600,9 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 
 <ul>
 <li><p>技能是一段脚本、一个节点或一个包</p></li>
-<li><p>执行等同于"把代码跑起来&#8221;</p></li>
-<li><p>验证等同于"Demo 成功过&#8221;</p></li>
-<li><p>分发等同于"共享仓库&#8221;</p></li>
+<li><p>执行等同于"把代码跑起来”</p></li>
+<li><p>验证等同于"Demo 成功过”</p></li>
+<li><p>分发等同于"共享仓库”</p></li>
 </ul>
 
 <p>这种方式可以规模化<strong>工程工作量</strong>，\
@@ -694,7 +696,7 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 
 <p>不同技能或不同版本，可以在相同条件下进行评测。</p>
 
-<p>&#8220;哪个更好"成为一个有数据支撑的问题。</p>
+<p>“哪个更好"成为一个有数据支撑的问题。</p>
 
 <p><strong>3. 可治理性</strong></p>
 
@@ -774,7 +776,7 @@ RSS 实现了<strong>创新与工程纪律的共存</strong>。</p>
 
 <ol>
 <li><p>现有形态的机器人技能无法规模化</p></li>
-<li><p>机器人技能必须被定义为"被契约化、可版本化的能力&#8221;</p></li>
+<li><p>机器人技能必须被定义为"被契约化、可版本化的能力”</p></li>
 <li><p>技能必须作为系统的一等资产进行管理</p></li>
 </ol>
 
@@ -1025,7 +1027,7 @@ system）</strong>。</p>
 <ul>
 <li><p>点击一次 Demo 按钮即认为成功</p></li>
 <li><p>通过视觉对齐判断效果</p></li>
-<li><p>由操作人员主观确认"看起来可以&#8221;</p></li>
+<li><p>由操作人员主观确认"看起来可以”</p></li>
 </ul>
 
 <p>这些方式<strong>不可复现、不可审计、不可规模化</strong>。</p>
@@ -1374,9 +1376,9 @@ Each object has a precise responsibility and lifecycle.</p>
 <p>在许多机器人团队中，验证仍然依赖视觉判断：</p>
 
 <ul>
-<li><p>&#8220;看起来挺稳&#8221;</p></li>
-<li><p>&#8220;动作好像很顺&#8221;</p></li>
-<li><p>&#8220;这次没有滑掉&#8221;</p></li>
+<li><p>“看起来挺稳”</p></li>
+<li><p>“动作好像很顺”</p></li>
+<li><p>“这次没有滑掉”</p></li>
 </ul>
 
 <p>这种判断<strong>主观、不可复现</strong>。</p>
@@ -1830,7 +1832,7 @@ Benchmark 提供数据支撑的性能信号。</p></li>
 
 <p>对技能提供方而言，RSS 带来的是从：</p>
 
-<p><strong>"宣传驱动&#8221; → &#8220;性能驱动"</strong></p>
+<p><strong>"宣传驱动” → “性能驱动"</strong></p>
 
 <p>的转变。</p>
 
@@ -1969,5 +1971,7 @@ Benchmark 提供数据支撑的性能信号。</p></li>
   <footer class="footer">
     <div>Generated from Markdown (CN) on 2026-01-15 03:43.</div>
   </footer>
+
+  <script src="../../assets/js/anchor_fix.js"></script>
 </body>
 </html>

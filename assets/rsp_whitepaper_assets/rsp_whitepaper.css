@@ -1,0 +1,81 @@
+
+:root { --maxw: 980px; }
+body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, "PingFang SC","Microsoft YaHei", sans-serif; color:#1f2328; background:#fff; }
+.wp-container { max-width: var(--maxw); margin: 0 auto; padding: 28px 18px 80px; line-height: 1.6; }
+h1,h2,h3,h4 { line-height: 1.25; margin: 26px 0 12px; }
+h1 { font-size: 30px; }
+h2 { font-size: 22px; }
+h3 { font-size: 18px; }
+h4 { font-size: 16px; }
+p { margin: 10px 0; }
+ul,ol { margin: 8px 0 8px 22px; padding: 0; }
+li { margin: 6px 0; }
+ul.lvl1, ol.lvl1 { margin-left: 32px; }
+ul.lvl2, ol.lvl2 { margin-left: 42px; }
+ul.lvl3, ol.lvl3 { margin-left: 52px; }
+.docx-img { max-width: 100%; height: auto; display:block; margin: 12px auto; }
+a { color: inherit; text-decoration: underline; }
+
+/* --- Top header bar (match RSS whitepaper style) --- */
+.wp-header{position:sticky;top:0;z-index:50;background:#fff;backdrop-filter:none;border-bottom:1px solid #e6e8eb;}
+.wp-header-inner{max-width:1240px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:12px;}
+.wp-header-logo{width:26px;height:26px;border-radius:6px;object-fit:cover;display:inline-block;}
+.wp-header-logo{width:26px;height:26px;border-radius:6px;display:inline-block;object-fit:cover;}
+.wp-header-title{font-weight:750;font-size:16px;letter-spacing:.2px;}
+.wp-header-badge{font-size:12px;padding:3px 8px;border:1px solid #e6e8eb;border-radius:999px;color:#57606a;background:#fff;}
+.wp-header-spacer{flex:1}
+
+
+/* --- Publish-grade tables & code blocks --- */
+.wp-container table { border-collapse: collapse; width: 100%; margin: 14px 0; font-size: 14px; }
+.wp-container th, .wp-container td { border: 1px solid #d0d7de; padding: 8px 10px; vertical-align: top; }
+.wp-container th { background: #f6f8fa; font-weight: 650; }
+.wp-container tr:nth-child(even) td { background: #fcfcfd; }
+
+.wp-container pre, .wp-container code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+.wp-container code { background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 6px; padding: 0.1em 0.35em; font-size: 0.95em; }
+.wp-container pre { background: #0b1020; color: #e6edf3; border-radius: 10px; padding: 14px 16px; overflow-x: auto; border: 1px solid #20293a; }
+.wp-container pre code { background: transparent; border: 0; padding: 0; color: inherit; font-size: 13px; }
+
+/* --- Layout: left TOC + content --- */
+.wp-layout { display: grid; grid-template-columns: 280px 1fr; gap: 24px; max-width: 1240px; margin: 0 auto; padding: 20px 18px; }
+.wp-toc { position: sticky; top: 72px; align-self: start; max-height: calc(100vh - 96px); overflow: auto; padding: 14px 14px; border: 1px solid #e6e8eb; border-radius: 14px; background: #fff; }
+.wp-toc-title { font-weight: 700; margin: 2px 0 10px; }
+.wp-toc a { color: #0b4aa2; text-decoration: none; display: block; padding: 4px 2px; border-radius: 8px; font-size: 13px; }
+.wp-toc a:hover { background: #f6f8fa; }
+.wp-toc .lvl2 { padding-left: 12px; }
+.wp-toc .lvl3 { padding-left: 24px; }
+
+.wp-content { min-width: 0; }
+@media (max-width: 980px) {
+  .wp-layout { grid-template-columns: 1fr; }
+  .wp-toc { position: relative; top: 0; max-height: none; }
+}
+
+
+/* Anchor offset so headings are not hidden under sticky top header */
+.wp-content h1,.wp-content h2,.wp-content h3,.wp-content h4,.wp-content h5,.wp-content h6{scroll-margin-top:64px;}
+
+
+/* Auto anchor offset (topbar-aware) */
+:root{ --topbar-h: 64px; }
+
+/* RSP whitepaper: keep a bit more breathing room under topbar */
+.rsp-whitepaper h1[id],
+.rsp-whitepaper h2[id],
+.rsp-whitepaper h3[id]{
+  scroll-margin-top: calc(var(--topbar-h, 64px) + 10px);
+}
+
+/* RSS whitepaper: tighter (avoid showing half-line text above heading) */
+.rss-whitepaper h1[id],
+.rss-whitepaper h2[id],
+.rss-whitepaper h3[id]{
+  scroll-margin-top: calc(var(--topbar-h, 64px) - 24px);
+}
+
+/* Fallback: headings in main content */
+main h1[id], main h2[id], main h3[id]{
+  scroll-margin-top: calc(var(--topbar-h, 64px) + 6px);
+}
+

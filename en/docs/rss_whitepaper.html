@@ -12,7 +12,7 @@
   --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
 @media (prefers-color-scheme: light){
-  :root{--bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa;}
+  :root{--bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa; --anchor-fudge:-8px;}
 }
 *{box-sizing:border-box}
 body{margin:0; font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.65;}
@@ -20,11 +20,14 @@ a{color:var(--link); text-decoration:none}
 a:hover{text-decoration:underline}
 .header{
   position:sticky; top:0; z-index:50;
-  background:linear-gradient(to bottom, var(--bg), rgba(0,0,0,0));
-  backdrop-filter:saturate(180%) blur(12px);
+  /* Fully opaque header bar (no translucent gradient). */
+  background:var(--bg);
+  backdrop-filter:none;
   border-bottom:1px solid var(--border);
 }
-.header-inner{max-width:1200px; margin:0 auto; padding:14px 16px; display:flex; align-items:center; gap:12px;}
+.header-inner{max-width:1200px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; gap:12px;}
+/* Ensure RSS header logo does not inflate the top bar height */
+.topbar-logo{width:28px; height:28px; border-radius:8px; display:block; flex:0 0 auto;}
 .badge{font-size:12px; padding:3px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted);}
 .title{font-weight:700; font-size:16px}
 .spacer{flex:1}
@@ -75,11 +78,15 @@ a:hover{text-decoration:underline}
 .content th{background:rgba(255,255,255,.04); text-align:left}
 .footer{max-width:1200px; margin:0 auto; padding:18px 16px 30px; color:var(--muted); font-size:12px;}
 .hidden{display:none;}
+
+/* Anchor offset so headings are not hidden under sticky header */
+h1,h2,h3,h4,h5,h6{scroll-margin-top:calc(var(--anchor-offset,72px) + var(--anchor-fudge,0px));}
 </style>
 </head>
-<body>
+<body class="rss-whitepaper">
   <header class="header">
     <div class="header-inner">
+      <img class="topbar-logo" src="../../assets/media/rss_logo.png" alt="Robot Skill Store logo" />
       <div class="title">Robot Skill Store (RSS) Whitepaper</div>
       <span class="badge">RSS Whitepaper</span>
       <div class="spacer"></div>
@@ -118,51 +125,6 @@ a:hover{text-decoration:underline}
 
     <article class="content">
       <section id="section-en">
-        <h1 id="table-of-contents">Table of Contents</h1>
-
-<p><a href="#_Toc219149779">Table of Contents [1](#_Toc219149779)</a></p>
-
-<p><a href="#how-to-read-this-whitepaper">How to Read This Whitepaper
-[2](#how-to-read-this-whitepaper)</a></p>
-
-<p><a href="#key-takeaways">Key Takeaways [2](#key-takeaways)</a></p>
-
-<p><a href="#chapter-1---executive-summary"><strong>Chapter 1 -</strong> Executive Summary
-[3](#chapter-1&#8212;executive-summary)</a></p>
-
-<p><a href="#chapter-2---the-skill-crisis-in-robotics"><strong>Chapter 2 -</strong> The Skill Crisis in Robotics
-[11](#chapter-2&#8212;the-skill-crisis-in-robotics)</a></p>
-
-<p><a href="#chapter-3---what-is-a-robot-skill"><strong>Chapter 3 -</strong> What Is a Robot Skill?
-[18](#chapter-3&#8212;what-is-a-robot-skill)</a></p>
-
-<p><a href="#chapter-4---from-skill-as-code-to-skill-as-system-asset"><strong>Chapter 4 -</strong> From Skill-as-Code to Skill-as-System Asset
-[26](#chapter-4&#8212;from-skill-as-code-to-skill-as-system-asset)</a></p>
-
-<p><a href="#chapter-5---robot-skill-store-system-overview"><strong>Chapter 5 -</strong> Robot Skill Store: System Overview
-[35](#chapter-5&#8212;robot-skill-store-system-overview)</a></p>
-
-<p><a href="#chapter-6---website-vs-platform-separation-of-concerns-in-robot-skill-systems"><strong>Chapter 6 -</strong> Website vs Platform: Separation of Concerns in Robot
-Skill Systems
-[43](#chapter-6&#8212;website-vs-platform-separation-of-concerns-in-robot-skill-systems)</a></p>
-
-<p><a href="#chapter-7---canonical-skill-model"><strong>Chapter 7</strong> - Canonical Skill Model
-[52](#chapter-7&#8212;canonical-skill-model)</a></p>
-
-<p><a href="#chapter-8---execution-evaluation-and-the-data-flywheel"><strong>Chapter 8 -</strong> Execution, Evaluation, and the Data Flywheel
-[63](#chapter-8&#8212;execution-evaluation-and-the-data-flywheel)</a></p>
-
-<p><a href="#chapter-9---governance-and-trust-in-physical-systems"><strong>Chapter 9 -</strong> Governance and Trust in Physical Systems
-[73](#chapter-9&#8212;governance-and-trust-in-physical-systems)</a></p>
-
-<p><a href="#chapter-10---deployment-models-and-industrial-reality"><strong>Chapter 10 -</strong> Deployment Models and Industrial Reality
-[81](#chapter-10&#8212;deployment-models-and-industrial-reality)</a></p>
-
-<p><a href="#chapter-11---ecosystem-implications-and-future-directions"><strong>Chapter 11 -</strong> Ecosystem Implications and Future Directions
-[89](#chapter-11&#8212;ecosystem-implications-and-future-directions)</a></p>
-
-<p><a href="#glossary">Glossary [96](#glossary)</a></p>
-
 <h1 id="how-to-read-this-whitepaper">How to Read This Whitepaper</h1>
 
 <p>Executives:</p>
@@ -359,7 +321,7 @@ lab showcases are abundant.</p>
 <p>Yet in practice, <strong>very few robot skills are actually deployable at
 scale</strong>.</p>
 
-<p>Most &#8220;skills&#8221; in robotics today exist as:</p>
+<p>Most “skills” in robotics today exist as:</p>
 
 <ul>
 <li><p>Project-specific scripts</p></li>
@@ -405,9 +367,9 @@ assets</strong>, not as files.</p>
 <p>Most robot skills today are validated visually:</p>
 
 <ul>
-<li><p>The robot moves &#8220;roughly correctly&#8221;</p></li>
-<li><p>The object is grasped &#8220;most of the time&#8221;</p></li>
-<li><p>The alignment &#8220;looks good enough&#8221;</p></li>
+<li><p>The robot moves “roughly correctly”</p></li>
+<li><p>The object is grasped “most of the time”</p></li>
+<li><p>The alignment “looks good enough”</p></li>
 </ul>
 
 <p>Such validation is inherently subjective.</p>
@@ -486,7 +448,7 @@ They do not scale across organizations.</p>
 
 <h1 id="chapter-3-what-is-a-robot-skill"><strong>Chapter 3 -</strong> What Is a Robot Skill?</h1>
 
-<p><strong>3.1 Why &#8220;Skill&#8221; Must Be Defined Precisely</strong></p>
+<p><strong>3.1 Why “Skill” Must Be Defined Precisely</strong></p>
 
 <p>In robotics, the term <em>skill</em> is widely used but rarely defined.</p>
 
@@ -503,7 +465,7 @@ They do not scale across organizations.</p>
 <p>This ambiguity creates a serious problem:\
 <strong>systems cannot be built on undefined concepts</strong>.</p>
 
-<p>When &#8220;skill&#8221; means different things to different teams, it becomes
+<p>When “skill” means different things to different teams, it becomes
 impossible to:</p>
 
 <ul>
@@ -578,7 +540,7 @@ governable</strong>.</p>
 
 <ol>
 <li><p><strong>Declared Capability</strong>\
-What the skill claims to achieve (e.g., &#8220;tighten a screw to torque
+What the skill claims to achieve (e.g., “tighten a screw to torque
 X").</p></li>
 <li><p><strong>Inputs</strong>\
 Required parameters, references, or perceptions.</p></li>
@@ -659,9 +621,9 @@ for decades.</p>
 
 <ul>
 <li><p>A skill is a script, node, or package</p></li>
-<li><p>Execution means &#8220;running the code&#8221;</p></li>
-<li><p>Validation means &#8220;it worked during the demo&#8221;</p></li>
-<li><p>Distribution means &#8220;share the repository&#8221;</p></li>
+<li><p>Execution means “running the code”</p></li>
+<li><p>Validation means “it worked during the demo”</p></li>
+<li><p>Distribution means “share the repository”</p></li>
 </ul>
 
 <p>This approach scales <strong>engineering effort</strong>, but it does not scale
@@ -749,7 +711,7 @@ but a <strong>system asset to be managed</strong>.</p>
 <p>Different skills (or versions) can be benchmarked under the same
 conditions.</p>
 
-<p>&#8220;Which one is better?&#8221; becomes a data-backed question.</p>
+<p>“Which one is better?” becomes a data-backed question.</p>
 
 <p><strong>3. Governability</strong></p>
 
@@ -790,7 +752,7 @@ conditions.</p>
 
 <p>In other words, it requires a <strong>platform</strong>.</p>
 
-<p>Without a platform, &#8220;skill-as-asset&#8221; collapses back into:</p>
+<p>Without a platform, “skill-as-asset” collapses back into:</p>
 
 <ul>
 <li><p>Documentation conventions</p></li>
@@ -1092,7 +1054,7 @@ If a policy gate blocks deployment, the Platform enforces it.</p>
 <ul>
 <li><p>A demo button that implicitly defines success</p></li>
 <li><p>A visual alignment that substitutes for quantitative metrics</p></li>
-<li><p>A human operator manually deciding &#8220;this works&#8221;</p></li>
+<li><p>A human operator manually deciding “this works”</p></li>
 </ul>
 
 <p>These approaches are inherently non-reproducible and non-auditable.</p>
@@ -1157,7 +1119,7 @@ remains a platform</strong>, not merely a marketplace website.</p>
 incompatible abstractions:</p>
 
 <ul>
-<li><p>A &#8220;skill&#8221; in one system is a script</p></li>
+<li><p>A “skill” in one system is a script</p></li>
 <li><p>In another, it is a ROS node</p></li>
 <li><p>In a third, it is a trained policy</p></li>
 <li><p>In a fourth, it is a demo pipeline</p></li>
@@ -1431,7 +1393,7 @@ system data.</p>
 </ul>
 
 <p>Runs are immutable.\
-They are never edited, overwritten, or retroactively &#8220;fixed&#8221;.</p>
+They are never edited, overwritten, or retroactively “fixed”.</p>
 
 <p>If something changes, a <strong>new Run</strong> is created.</p>
 
@@ -1468,9 +1430,9 @@ Evaluation requires <strong>aggregation and comparison</strong>.</p>
 <p>In many robotics teams, validation still relies on visual inspection:</p>
 
 <ul>
-<li><p>&#8220;It looks stable.&#8221;</p></li>
-<li><p>&#8220;The motion seems smooth.&#8221;</p></li>
-<li><p>&#8220;The grasp didn&#8217;t slip this time.&#8221;</p></li>
+<li><p>“It looks stable.”</p></li>
+<li><p>“The motion seems smooth.”</p></li>
+<li><p>“The grasp didn’t slip this time.”</p></li>
 </ul>
 
 <p>Such judgments are inherently subjective and non-repeatable.</p>
@@ -2078,7 +2040,8 @@ introducing new algorithms, but by introducing <strong>system discipline</strong
     <div>Tip: append <code>?lang=en</code> or <code>?lang=cn</code> to the URL.</div>
   </footer>
 
-  <script>
+<script src="../../assets/js/anchor_fix.js"></script>
+<script>
 (function(){
   const qs = new URLSearchParams(location.search);
   const init = (qs.get('lang') || 'en').toLowerCase();
@@ -2112,11 +2075,16 @@ introducing new algorithms, but by introducing <strong>system discipline</strong
       const href = a.getAttribute('href') || '';
       if(href.startsWith('#')){
         e.preventDefault();
-        const target = document.querySelector(href);
-        if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
         const url = new URL(location.href);
         url.hash = href;
         history.replaceState({}, '', url);
+        if (window.__anchorFix && typeof window.__anchorFix.scrollToHashTarget === 'function') {
+          // Use measured sticky-header height to avoid covered headings / extra lines.
+          window.__anchorFix.scrollToHashTarget(true);
+        } else {
+          const target = document.querySelector(href);
+          if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+        }
       }
     });
   });

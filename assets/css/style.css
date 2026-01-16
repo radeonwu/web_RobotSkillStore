@@ -44,9 +44,28 @@ a:hover{color: var(--vp-c-brand)}
   position: sticky;
   top:0;
   z-index: 50;
-  backdrop-filter: saturate(180%) blur(12px);
-  background: color-mix(in srgb, var(--vp-c-bg) 84%, transparent);
+  /* Fully opaque topbar (no glass effect). */
+  backdrop-filter: none;
+  background: var(--vp-c-bg);
   border-bottom: 1px solid var(--vp-c-border);
+}
+
+/* Logo used in whitepaper header bars (next to the title). */
+.topbar-logo{
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: inline-block;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* Logo used in whitepaper header bars */
+.topbar-logo{
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: inline-block;
 }
 .topbar-inner{
   max-width: 1280px;
@@ -475,10 +494,16 @@ svg text{paint-order: stroke;}
 /* v6.30 inline docs summaries (expand in-place) */
 .hidden{display:none !important;}
 .section-actions{margin-top:10px;margin-bottom:10px}
+.section-head-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.section-head-row > span{font-weight:700}
+.section-head-row .btn{margin-left:auto}
 .btn.tiny{padding:6px 10px;font-size:12px;border-radius:10px}
 .pillbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;margin-bottom:10px}
-.pillbar .pill{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:var(--card);text-decoration:none;color:var(--text);font-size:13px}
-.pillbar .pill.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(96,165,250,.15)}
+.pillbar .pill{display:inline-block;padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:var(--surface);text-decoration:none;color:var(--text);font-size:13px;cursor:pointer;}
+.pillbar .pill:hover{background:rgba(37,99,235,.10);}
+/* Active tab highlight (deeper blue) for mini nav pill tabs on Docs pages */
+.pillbar .pill.active{border-color:rgba(37,99,235,.95);background:rgba(37,99,235,.28);box-shadow:0 0 0 2px rgba(37,99,235,.35);font-weight:800;color:var(--text);}
+/* Active tab highlight (deeper blue) for mini nav pill tabs on Docs pages */
 .inline-panel{margin-top:10px;display:none}
 .inline-panel.active{display:block}
 .inline-panels{margin-top:10px}
@@ -495,3 +520,47 @@ svg text{paint-order: stroke;}
 .subcard h3{margin:0 0 6px 0;font-size:16px}
 .tiny{margin:8px 0 0 18px;padding:0}
 .tiny li{margin:4px 0;color:var(--muted)}
+
+/* rss-whitepaper-scrollfix: ensure anchor jumps reveal headings below topbar */
+.rss-whitepaper #content h1[id],
+.rss-whitepaper #content h2[id],
+.rss-whitepaper #content h3[id],
+.rsp-whitepaper #content h1[id],
+.rsp-whitepaper #content h2[id],
+.rsp-whitepaper #content h3[id]{
+  scroll-margin-top: 64px;
+}
+
+/* rss-nav-logo */
+.brand-mark{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  height:22px;
+  border-radius:6px;
+}
+.brand-mark.logo-img{
+  width:22px;
+  height:22px;
+  border-radius:6px;
+  object-fit:cover;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
+}
+
+/* Navbar logo sizing */
+.brand-logo img {
+  height: 36px;   /* previously ~24px */
+  width: auto;
+}
+
+/* Homepage hero title with logo */
+.hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero-title-row .hero-logo img {
+  height: 64px;
+  width: auto;
+}
