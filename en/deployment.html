@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Deployment · Robot Skill Store</title>
+<link rel="stylesheet" href="../assets/css/style.css?v=6.77.44"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">Home</a>
+<a class="toplink" href="lifecycle.html">Skill Lifecycle</a>
+<a class="toplink" href="platform.html">Platform</a>
+<a class="toplink" href="concepts.html">Concepts</a>
+<a class="toplink" href="skills.html">Certified Skills</a>
+<a class="toplink" href="deployment.html">Deployment</a>
+<a class="toplink" href="docs/index.html">Docs</a>
+<a class="toplink" href="contact.html">Contact</a>
+</nav>
+<div class="top-actions">
+<button type="button" class="iconbtn" id="langToggle" title="Language" aria-label="Switch language" data-current="en"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button type="button" class="iconbtn" id="themeToggle" title="Appearance" aria-label="Toggle theme"><span class="icon">☾</span><span class="label">Appearance</span></button>
+</div>
+</div>
+</header>
+<div class="layout">
+<main class="content">
+<section class="section-plain">
+<h1>Users &amp; Deployment</h1>
+<div class="onboarding">
+  <p><strong>Purpose</strong>Turn certified skills into real applications.</p>
+  <p><strong>What this page covers</strong>How users reuse skills (UR5/RG2 example) and how agent orchestration improves efficiency: plan → match → execute → recover.</p>
+  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="deploy" data-compact="1"></div></div>
+</div>
+</section>
+<p class="lead">RSS outputs skills to the user side as reusable application building blocks — not one-off demo code.</p>
+
+<section class="section">
+  <h2 id="agent-example">Agent-based Skill Deployment Flow</h2>
+  <p>An application team typically starts with a user task (for example, to assemble connector and tighten screw using UR5 robotic arm and RG2 gripper) and lets an agent orchestrate certified skills as building blocks.</p>
+
+  <div class="deploy-flow" aria-label="Agent-based skill deployment flow">
+    <div class="deploy-row top">
+      <div class="deploy-step">
+        <h4>Task</h4>
+        <p>Pick → insert → tighten</p>
+      </div>
+      <div class="deploy-arrow">➜</div>
+      <div class="deploy-step">
+        <h4>Plan</h4>
+        <p>Decompose into subtasks: pick → insert → tighten</p>
+      </div>
+      <div class="deploy-arrow">➜</div>
+      <div class="deploy-step">
+        <h4>Match</h4>
+        <p>Retrieve skills: <b>pick_place</b>, <b>connector_insert</b>, <b>tighten_screw</b></p>
+      </div>
+      <div class="deploy-arrow">➜</div>
+      <div class="deploy-step">
+        <h4>Execute</h4>
+        <p>Run each skill with constraints + parameters (sim/HIL/real)</p>
+      </div>
+    </div>
+
+    <div class="deploy-row bottom" style="margin-top:14px;">
+      <div class="deploy-arrow down">↘</div>
+      <div class="deploy-step recover compact">
+        <h4>Recover</h4>
+        <p>On failure: retry, adjust parameters, or switch candidate skill</p>
+      </div>
+      <div class="deploy-arrow">➜</div>
+      <div class="deploy-step evidence compact">
+        <h4>Evidence</h4>
+        <p>Attach traces (video/logs/metrics) and review in viewer</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:14px;" id="agent-loop">What the agent does (practical loop)</h3>
+  <ul>
+    <li><b>Pick</b>: agent selects a grasp template + approach height for <b>pick_place</b> based on part pose and workspace constraints.</li>
+    <li><b>Insert</b>: agent sets pose constraints and failure-recovery thresholds for <b>connector_insert</b> (approach/retract, contact, seat).</li>
+    <li><b>Tighten</b>: agent configures <b>tighten_screw</b> with torque/angle targets and validates evidence for determinism.</li>
+    <li><b>Govern</b>: each run produces a trace bundle; stability is promoted by validation → certification, not by rewriting code.</li>
+  </ul>
+
+  <pre class="codeblock list-align" data-title="Agent orchestration pseudocode"><code>// Pseudocode: agent orchestration over certified skills
+goal = "assemble_connector_and_tighten"
+plan = ["pick_place", "connector_insert", "tighten_screw"]
+
+for step in plan:
+    candidates = rss.search(skill_name=step, evidence_min="E1")
+    skill = agent.select_best(candidates, context)
+    params = agent.configure(skill, context, constraints)
+    run = rss.execute(skill, params)
+    if not run.success:
+        context = agent.recover(run, context)  # retry / reparam / alternate skill
+        continue
+    agent.update_context_from_evidence(run.evidence)
+</code></pre>
+</section>
+
+<section class="section">
+  <h2 id="demo">Connector assembly application example</h2>
+  <div class="video-card">
+    <video controls preload="metadata" src="../assets/media/ur5_rg2_demo.mp4" style="width:100%;border-radius:12px;"></video>
+    <p style="margin:10px 0 0;color:var(--vp-c-text-2);line-height:1.6;">Example workflow: <b>pick_place</b> → <b>connector_insert</b> → <b>tighten_screw</b>. The same skills can be reused by changing constraints and parameters, not by rewriting programs.</p>
+    <ul style="margin:12px 0 0;">
+      <li><b>pick_place</b>: grasp templates + collision-aware IK.</li>
+      <li><b>connector_insert</b>: pose constraints + approach/retract + recovery traces.</li>
+      <li><b>tighten_screw</b>: deterministic tightening with traceable torque/angle evidence.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <h2 id="agent">Why agent orchestration matters</h2>
+  <p>Agent orchestration is not just a recommendation — it is how application teams scale delivery. The agent automates the integration work (plan/match/execute/recover) while RSS keeps each skill <b>modular, evidence-backed, and governable</b>.</p>
+  <ul>
+    <li><b>Faster iteration</b>: failures become parameter updates with evidence, not weeks of re-coding.</li>
+    <li><b>Safer reuse</b>: constraints and maturity gates reduce deployment risk across variants.</li>
+    <li><b>Portable delivery</b>: the same plan can run on different workcells by swapping skill bindings.</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2 id="next">Next steps</h2>
+  <p>Start from <a href="skills.html">Certified Skills</a>, open the <a href="/viewer/">Evidence Viewer</a>, and reuse skills via parameters and constraints. When ready, standardize the contract via RSP and promote maturity through validation → certification.</p>
+</section>
+</main>
+<aside class="toc" aria-label="ON THIS PAGE">
+<div class="toc-title">ON THIS PAGE</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/js/site.js?v=6.77.44"></script>
+</body>
+</html>

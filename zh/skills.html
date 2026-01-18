@@ -5,16 +5,16 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>首页 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.44.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.44" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
-<img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink active" href="skills.html">技能</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="agents.html">智能体</a><a class="toplink" href="architecture.html">架构</a><a class="toplink" href="safety.html">安全</a><a class="toplink" href="developers.html">开发者</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="deployment.html">用户与部署</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -24,85 +24,80 @@
 </div>
 </header>
 <div class="layout">
-<main class="content" id="content">
-<section class="section">
-<h1>技能</h1>
-<p class="lead">技能概念目录，并展示来自 RSS Platform 的公开聚合状态。</p>
-<!--
-  重要：此页面在 file:// 方式打开时也必须能展示内容。
-  因此下方提供静态离线预览表格；当 RSS Platform 的公开聚合接口可达时，
-  JS 会把实时数据渲染到 #rss-public-skills-dyn，并不会覆盖静态预览。
--->
+<main class="content">
 
-<div id="rss-public-skills-static">
-  <div class="card" style="margin-bottom:14px;">
-    <div class="card-title">离线预览（示例技能）</div>
-    <div class="status-muted">以下为示例数据，用于预览页面布局。连接 RSS Platform 后将显示真实公开聚合数据。</div>
-  </div>
-  <table class="skills-table">
-    <thead>
-      <tr>
-        <th>技能</th><th>成熟度</th><th>最新版本</th><th>运行(30d)</th><th>成功率(30d)</th><th>机器人</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td><strong>抓取</strong><div class="muted" style="font-size:12px;">pick</div></td><td>beta</td><td>0.1.0</td><td>42</td><td>93%</td><td>2</td></tr>
-      <tr><td><strong>插入</strong><div class="muted" style="font-size:12px;">insert</div></td><td>alpha</td><td>0.1.0</td><td>27</td><td>81%</td><td>2</td></tr>
-      <tr><td><strong>拧螺丝</strong><div class="muted" style="font-size:12px;">tighten_screw</div></td><td>alpha</td><td>0.1.0</td><td>18</td><td>78%</td><td>1</td></tr>
-    </tbody>
-  </table>
-  <div class="small-note">离线预览数据：用于展示页面布局；连接平台后将自动显示真实聚合数据。</div>
+
+
+
+
+<section class="section-plain">
+<h1>Certified Skills（认证技能）</h1>
+<div class="onboarding">
+  <p><strong>目的</strong>让用户可以放心选择与复用技能。</p>
+  <p><strong>本页内容</strong>认证技能清单（Evidence 等级）+ 证据查看入口 + 平台公开记录入口。</p>
+  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期锚点</strong></div><div class="rss-lifecycle-bar compact" data-stage="deploy" data-compact="1"></div></div>
 </div>
 
-<!-- 平台公开聚合数据（可达时会渲染到这里） -->
-<div id="rss-public-skills-dyn"></div>
-<p class="small-note">若此页无数据，请配置反向代理，让网站能访问平台的 <code>/public/v1/skills</code> 接口。</p>
+<p class="lead">展示已认证技能：证据等级、兼容性摘要、以及“Latest Run”直达平台。</p>
 </section>
-
-
-  <section class="card" id="pipeline">
-    <h2>流程（示例工作流）</h2>
-    <p class="muted">已将“流程”页面内容合并到本页，用于说明多个技能如何组成端到端任务。</p>
-    <div class="grid3" style="margin-top:14px">
-      <div class="subcard">
-        <h3>1) 抓取（Pick）</h3>
-        <p class="muted">将目标从料盘/工位抓取到预对齐位置，为插入与拧紧准备姿态与约束。</p>
-        <ul class="tiny">
-          <li><strong>输入</strong>：目标位姿/抓取模板、机器人/夹爪 Profile</li>
-          <li><strong>输出</strong>：抓取成功 + 轨迹与视觉证据</li>
-          <li><strong>关键</strong>：TCP 语义、碰撞/可达约束、容错</li>
-        </ul>
-      </div>
-      <div class="subcard">
-        <h3>2) 插入（Insert）</h3>
-        <p class="muted">将 connector 对准 socket 并完成插入/就位，产出成功率与误差证据。</p>
-        <ul class="tiny">
-          <li><strong>输入</strong>：对齐基准、接触门槛、插入深度</li>
-          <li><strong>输出</strong>：插入结果 + 位姿误差/力控/视频证据</li>
-          <li><strong>关键</strong>：轴对齐、接触检测、回退策略</li>
-        </ul>
-      </div>
-      <div class="subcard">
-        <h3>3) 拧紧（Screw Tighten）</h3>
-        <p class="muted">对螺丝执行拧紧，受 RSP 的策略门禁与证据要求约束。</p>
-        <ul class="tiny">
-          <li><strong>输入</strong>：螺丝位姿来源、转速/扭矩策略、门禁参数</li>
-          <li><strong>输出</strong>：拧紧结果 + 角度/时间序列证据</li>
-          <li><strong>关键</strong>：版本绑定、可追溯、可审计</li>
-        </ul>
-      </div>
-    </div>
-    <div class="callout" style="margin-top:14px">
-      <strong>Note：</strong>Pipeline 是“技能组合”的例子。真正执行时，智能体只负责决策与组合；RSS 通过 Run+Policy 强制约束执行与证据。
-    </div>
-  </section>
-
+<section class="section">
+<h2 id="skills">技能列表</h2>
+<div class="grid-cards">
+<div class="skill-card">
+<div class="skill-card-head">
+<a class="skill-name" href="skills/tighten_screw.html">tighten_screw</a>
+<span class="badge">证据：E2</span>
+</div>
+<div class="muted">可确定执行的拧螺丝技能，沉淀扭矩/角度等可追溯证据。</div>
+<div class="compat">UR5 + RG2 · RSP v0.3 · 支持 Sim→Real</div>
+<div class="actions">
+<a class="btn btn-outline" href="/viewer/">Latest Run</a>
+<a class="btn btn-outline" href="/public/v1/skills/tighten_screw">平台入口</a>
+</div>
+</div>
+<div class="skill-card">
+<div class="skill-card-head">
+<a class="skill-name" href="skills/connector_insert.html">connector_insert</a>
+<span class="badge">证据：E1</span>
+</div>
+<div class="muted">插入技能：姿态约束、进退路径、失败恢复与运行证据。</div>
+<div class="compat">UR5 + RG2 · Socket A/B · 仿真验证</div>
+<div class="actions">
+<a class="btn btn-outline" href="/viewer/">Latest Run</a>
+<a class="btn btn-outline" href="/public/v1/skills/connector_insert">平台入口</a>
+</div>
+</div>
+<div class="skill-card">
+<div class="skill-card-head">
+<a class="skill-name" href="skills/pick_place.html">pick_place</a>
+<span class="badge">证据：E1</span>
+</div>
+<div class="muted">Pick&amp;Place：抓取模板 + 避障 IK。</div>
+<div class="compat">UR5 + RG2 · Workspace A · 仿真</div>
+<div class="actions">
+<a class="btn btn-outline" href="/viewer/">Latest Run</a>
+<a class="btn btn-outline" href="/public/v1/skills/pick_place">平台入口</a>
+</div>
+</div>
+<div class="skill-card">
+<div class="skill-card-head">
+<a class="skill-name" href="skills/inspect_aoi.html">inspect_aoi</a>
+<span class="badge">证据：E0</span>
+</div>
+<div class="muted">AOI 质检能力占位（Schema + 执行框架），证据待补齐。</div>
+<div class="compat">仅相机 · 证据待补齐</div>
+<div class="actions">
+<a class="btn btn-outline" href="/viewer/">Latest Run</a>
+<a class="btn btn-outline" href="/public/v1/skills/inspect_aoi">平台入口</a>
+</div>
+</div>
+</div>
+</section>
 </main>
-<aside aria-label="On this page" class="toc">
+<aside aria-label="本页导航" class="toc">
 <div class="toc-title">本页导航</div>
-<nav class="toc-nav" id="tocNav"></nav>
+<nav class="toc-nav" id="tocNav"><a class="toc-link" href="#">Certified Skills</a></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.44.0"></script>
-</body>
+<script src="../assets/js/site.js?v=6.77.44"></script></body>
 </html>

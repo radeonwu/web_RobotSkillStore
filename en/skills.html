@@ -4,17 +4,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Skills · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.44.0" rel="stylesheet"/>
+<title>Certified Skills · Robot Skill Store</title>
+<link href="../assets/css/style.css?v=6.77.44" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
-<img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink active" href="skills.html">Skills</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="agents.html">Agents</a><a class="toplink" href="architecture.html">Architecture</a><a class="toplink" href="safety.html">Safety</a><a class="toplink" href="developers.html">Developers</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -24,102 +24,80 @@
 </div>
 </header>
 <div class="layout">
-<main class="content" id="content">
-<section class="section">
-<h1 id="skills">Skills</h1>
-<p class="lead">Concept catalog with live status from RSS Platform (public aggregation only).</p>
-<!--
-  IMPORTANT: This page must show meaningful content even when opened via file://.
-  Therefore we render a static preview table below. When the RSS Platform public
-  aggregation API is reachable, JS will render the live table into
-  #rss-public-skills-dyn without touching the static preview.
--->
+<main class="content">
 
-<div id="rss-public-skills-static">
-  <div class="card" style="margin-bottom:14px;">
-    <div class="card-title">Offline preview (sample skills)</div>
-    <div class="status-muted">This is sample data to preview layout. Connect the RSS Platform to see live public aggregation.</div>
-  </div>
-  <table class="skills-table">
-    <thead>
-      <tr>
-        <th>Skill</th>
-        <th>Maturity</th>
-        <th>Latest</th>
-        <th>Runs(30d)</th>
-        <th>Success(30d)</th>
-        <th>Robots</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Pick</strong><div class="muted" style="font-size:12px;">pick</div></td>
-        <td>beta</td><td>0.1.0</td><td>42</td><td>93%</td><td>2</td>
-      </tr>
-      <tr>
-        <td><strong>Insert</strong><div class="muted" style="font-size:12px;">insert</div></td>
-        <td>alpha</td><td>0.1.0</td><td>27</td><td>81%</td><td>2</td>
-      </tr>
-      <tr>
-        <td><strong>Screw Tighten</strong><div class="muted" style="font-size:12px;">tighten_screw</div></td>
-        <td>alpha</td><td>0.1.0</td><td>18</td><td>78%</td><td>1</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="small-note">Offline preview data: platform not connected; for layout preview only.</div>
+
+
+
+
+<section class="section-plain">
+<h1>Certified Skills</h1>
+<div class="onboarding">
+  <p><strong>Purpose</strong>Consume robot skills with confidence.</p>
+  <p><strong>What this page covers</strong>Certified skills with evidence levels and stable links to the Evidence Viewer and public platform records.</p>
+  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="deploy" data-compact="1"></div></div>
 </div>
 
-<!-- Live table will be rendered here when the RSS Platform public API is reachable. -->
-<div id="rss-public-skills-dyn"></div>
-
-<!-- JS will render live public aggregation here when available. -->
-<div id="rss-public-skills-dyn"></div>
-<p class="small-note">If this page shows no data, configure a reverse proxy so this site can reach <code>/public/v1/skills</code> on the Platform.</p>
+<p class="lead">A curated list of certified skills with evidence levels, compatibility summary, and direct links to latest runs.</p>
 </section>
-
-  <section class="card" id="pipeline">
-    <h2 id="pipeline">Pipeline (example workflow)</h2>
-    <p class="muted">Pipeline content has been merged into this page. It shows how multiple skills form an end-to-end workflow.</p>
-    <div class="grid3" style="margin-top:14px">
-      <div class="subcard">
-        <h3>1) Pick</h3>
-        <p class="muted">Grasp an object from a source location with defined approach/attach tolerances.</p>
-        <ul>
-          <li>Input: object pose / bin / constraints</li>
-          <li>Output: grasped object with evidence</li>
-          <li>Status: stable; benchmarkable</li>
-        </ul>
-      </div>
-      <div class="subcard">
-        <h3>2) Insert</h3>
-        <p class="muted">Align and insert the object into a target socket with contact-aware motion.</p>
-        <ul>
-          <li>Input: target pose / clearance / force limits</li>
-          <li>Output: inserted state + contact traces</li>
-          <li>Status: improving; measurable</li>
-        </ul>
-      </div>
-      <div class="subcard">
-        <h3>3) Tighten Screw</h3>
-        <p class="muted">Tighten to a torque/angle goal with policy gates and immutable records.</p>
-        <ul>
-          <li>Input: screw pose / axis / speed limits</li>
-          <li>Output: tightened result + video/metrics</li>
-          <li>Status: benchmarked; auditable</li>
-        </ul>
-      </div>
-    </div>
-    <div class="note" style="margin-top:14px">
-      Tip: In RSS, the pipeline is executed as a sequence of <strong>Runs</strong>, each bound to an immutable <strong>Skill Version</strong> and a <strong>Profile</strong>.
-    </div>
-  </section>
-
+<section class="section">
+<h2 id="skills">Skills</h2>
+<div class="grid-cards">
+<div class="skill-card">
+<div class="skill-card-head">
+<a class="skill-name" href="skills/tighten_screw.html">tighten_screw</a>
+<span class="badge">Evidence: E2</span>
+</div>
+<div class="muted">Deterministic screw tightening with traceable torque / angle evidence.</div>
+<div class="compat">UR5 + RG2 · RSP v0.3 · Sim→Real ready</div>
+<div class="actions">
+<a class="btn btn-outline" href="/viewer/">Latest Run</a>
+<a class="btn btn-outline" href="/public/v1/skills/tighten_screw">Platform</a>
+</div>
+</div>
+<div class="skill-card">
+<div class="skill-card-head">
+<a class="skill-name" href="skills/connector_insert.html">connector_insert</a>
+<span class="badge">Evidence: E1</span>
+</div>
+<div class="muted">Insertion with pose constraints, approach/retract, and failure recovery traces.</div>
+<div class="compat">UR5 + RG2 · Socket A/B · Sim validation</div>
+<div class="actions">
+<a class="btn btn-outline" href="/viewer/">Latest Run</a>
+<a class="btn btn-outline" href="/public/v1/skills/connector_insert">Platform</a>
+</div>
+</div>
+<div class="skill-card">
+<div class="skill-card-head">
+<a class="skill-name" href="skills/pick_place.html">pick_place</a>
+<span class="badge">Evidence: E1</span>
+</div>
+<div class="muted">Pick-and-place with grasp templates and collision-aware IK.</div>
+<div class="compat">UR5 + RG2 · Workspace A · Sim</div>
+<div class="actions">
+<a class="btn btn-outline" href="/viewer/">Latest Run</a>
+<a class="btn btn-outline" href="/public/v1/skills/pick_place">Platform</a>
+</div>
+</div>
+<div class="skill-card">
+<div class="skill-card-head">
+<a class="skill-name" href="skills/inspect_aoi.html">inspect_aoi</a>
+<span class="badge">Evidence: E0</span>
+</div>
+<div class="muted">AOI inspection pipeline stub (schema + execution harness).</div>
+<div class="compat">Camera-only · Evidence pending</div>
+<div class="actions">
+<a class="btn btn-outline" href="/viewer/">Latest Run</a>
+<a class="btn btn-outline" href="/public/v1/skills/inspect_aoi">Platform</a>
+</div>
+</div>
+</div>
+</section>
 </main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">On this page</div>
-<nav class="toc-nav" id="tocNav"></nav>
+<aside aria-label="ON THIS PAGE" class="toc">
+<div class="toc-title">ON THIS PAGE</div>
+<nav class="toc-nav" id="tocNav"><a class="toc-link" href="#">Certified Skills</a></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.44.0"></script>
-</body>
+<script src="../assets/js/site.js?v=6.77.44"></script></body>
 </html>

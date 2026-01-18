@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Platform · Robot Skill Store</title>
+<link href="../assets/css/style.css?v=6.77.44" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
+
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+
+<div class="layout">
+  <main class="content">
+    
+    <section class="section">
+      <h1>Robot Skill vs LLM Skill</h1>
+<div class="onboarding"><p><strong>Purpose</strong>This page clarifies the relationship between robot skills and LLM-based skills.</p><p><strong>What you will see here</strong>Why they operate at different layers, how they complement each other, and where RSS positions itself in the AI–robotics stack.</p><p><strong>Lifecycle Anchor</strong>Conceptual Layer</p></div>
+
+    </section>
+    
+<section class="section">
+  <h2 id="robot-skill-vs-llm-skill">Robot Skill vs LLM Skill FAQ (8 Q&amp;A)</h2>
+
+  <h3 id="q1">Q1. What is a Robot Skill in RSS?</h3>
+  <p>A robot skill in RSS is a deterministic, executable capability that controls physical robots under explicit constraints. It is designed to be validated, certified, and reused across deployments.</p>
+  <ul>
+    <li>Executable on real robots</li>
+    <li>Deterministic behavior</li>
+    <li>Explicit preconditions and constraints</li>
+    <li>Verifiable through evidence</li>
+  </ul>
+
+  <h3 id="q2">Q2. Is a Robot Skill the same as an LLM Skill?</h3>
+  <p><strong>No.</strong> LLM skills operate in the cognitive or tool-invocation layer, while RSS robot skills operate in the physical execution layer. They address fundamentally different problem spaces.</p>
+
+  <h3 id="q3">Q3. What are the key differences?</h3>
+  <table class="simple-table">
+    <thead><tr><th>Dimension</th><th>LLM Skill</th><th>RSS Robot Skill</th></tr></thead>
+    <tbody>
+      <tr><td>Execution domain</td><td>Language / Tools / APIs</td><td>Physical robots</td></tr>
+      <tr><td>Determinism</td><td>Probabilistic</td><td>Deterministic</td></tr>
+      <tr><td>Failure cost</td><td>Low</td><td>High (safety, hardware, production)</td></tr>
+      <tr><td>Evaluation</td><td>Semantic / reward-based</td><td>Evidence-based physical metrics</td></tr>
+      <tr><td>Reuse barrier</td><td>Low</td><td>High (core moat)</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:10px;opacity:.85;">Interpretation: the higher the execution cost and risk, the more critical validation and governance become.</p>
+
+  <h3 id="q4">Q4. Are Robot Skills and LLM Skills related?</h3>
+  <p>Yes, but they operate at different layers.</p>
+  <p>LLM skills decide <em>what</em> to do. Robot skills guarantee <em>how</em> it is done safely and reliably.</p>
+
+  <h3 id="q5">Q5. Can RSS integrate with agent-based or LLM systems?</h3>
+  <p>Yes. RSS robot skills can serve as the physical execution primitives for agent-based systems. Agents may orchestrate skills, but execution must remain deterministic, observable, and certifiable — which is exactly what RSS provides.</p>
+
+  <h3 id="q6">Q6. Why not let LLMs directly control robots?</h3>
+  <p>Direct LLM-to-robot control is powerful for exploration, but risky for production. RSS exists because physical execution has real-world consequences and industrial deployment requires deterministic guarantees.</p>
+
+  <h3 id="q7">Q7. Where does RSS sit in the AI / Robotics stack?</h3>
+  <p>RSS positions itself as the skill validation, certification, and delivery layer between intelligent decision systems and physical robots. It does not replace agents or models — it grounds them in reality.</p>
+  <p><strong>RSS is not a replacement for agents/models; it is the trusted physical execution layer.</strong></p>
+
+  <h3 id="q8">Q8. Why focus on Robot Skills as assets?</h3>
+  <p>Robot skills are expensive to build, hard to validate, and valuable once proven. RSS turns robot skills from project-specific code into long-term capability assets that can compound over time.</p>
+
+  <p class="quote" style="margin-top:14px;">RSS treats robot skills not as demos, but as certifiable, reusable infrastructure assets.</p>
+</section>
+
+  </main>
+  <aside class="toc" aria-label="ON THIS PAGE">
+    <div class="toc-title">ON THIS PAGE</div>
+    <nav class="toc-nav" id="tocNav"><a class="toc-link" href="#robot-skill-vs-llm-skill">FAQ</a><a class="toc-link" href="#q1">Q1</a><a class="toc-link" href="#q2">Q2</a><a class="toc-link" href="#q3">Q3</a><a class="toc-link" href="#q4">Q4</a><a class="toc-link" href="#q5">Q5</a><a class="toc-link" href="#q6">Q6</a><a class="toc-link" href="#q7">Q7</a><a class="toc-link" href="#q8">Q8</a></nav>
+  </aside>
+</div>
+</body>
+</html>
+

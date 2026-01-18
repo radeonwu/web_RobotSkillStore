@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>技能生命周期 · RobotSkillStore</title>
+<link href="../assets/css/style.css?v=6.77.44" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+<main class="content">
+
+<section class="section-plain">
+<h1>技能生命周期</h1>
+<div class="onboarding">
+  <p><strong>目的</strong>把技能做成“可信、可复用”的资产。</p>
+  <p><strong>本页内容</strong>Register → Validate → Certify → Deploy，并解释平台如何在每一环节提供治理与证据，避免技能变成一次性项目代码。</p>
+  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期锚点</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div>
+</div>
+</section>
+
+<section class="section-plain">
+<h2 id="overview">Overview</h2>
+<div class="grid-2" style="align-items:center;">
+<div>
+<p class="lead">RSS 将机器人技能视为能力资产，并用生命周期管理：<strong>注册 → 验证 → 认证 → 部署</strong>。</p>
+<ul>
+<li><strong>注册</strong>：供应方发布技能（接口 + 约束）。</li>
+<li><strong>验证</strong>：RSS 执行技能并记录运行（runs）。</li>
+<li><strong>认证</strong>：RSS 基于证据与指标形成认证快照。</li>
+<li><strong>部署</strong>：用户复用已认证技能，获得可预测的交付行为。</li>
+</ul>
+</div>
+<div>
+  <img alt="RSS 技能生命周期总览" class="hero-figure-full" src="../assets/media/rss_skill_lifecycle_overview.png"/>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 id="register">Register（注册）</h2>
+<div class="onboarding"><p><strong>目的</strong>本页说明技能供应方如何将机器人技能提交到 RSS。</p><p><strong>你将看到什么</strong>你会了解技能接口是什么样、必须声明哪些约束，以及在技能进入验证前 RSS 需要哪些关键信息。</p><p><strong>生命周期锚点</strong>RSS 技能生命周期 → 注册（供应方 → RSS）</p></div>
+
+<ul>
+<li><strong>什么是技能注册</strong>：技能包 + 元数据 + 接口契约。</li>
+<li><strong>技能接口与约束</strong>：明确前置条件、安全限制与输入输出规范。</li>
+<li><strong>链接</strong>：<a href="developers.html">Skill Registration Guide</a></li>
+</ul>
+</section>
+<section class="section">
+<h2 id="validate">Validate（验证与运行）</h2>
+<div class="onboarding"><p><strong>目的</strong>本页介绍 RSS 如何在受控环境中执行机器人技能。</p><p><strong>你将看到什么</strong>你会看到技能如何被运行、执行结果如何被记录，以及 RSS 如何验证正确性、稳定性与可重复性。</p><p><strong>生命周期锚点</strong>RSS 技能生命周期 → 验证（RSS 内部）</p></div>
+
+<ul>
+<li><strong>技能执行与仿真</strong>：仿真 / 硬件在环运行。</li>
+<li><strong>运行记录</strong>：每次运行都有可追溯记录与上下文。</li>
+<li><strong>链接</strong>：<a href="platform.html">Run API / Execution Docs</a></li>
+</ul>
+</section>
+<section class="section">
+<h2 id="certify">Certify（收集证据并认证）</h2>
+<div class="onboarding"><p><strong>目的</strong>本页说明 RSS 如何评估并认证机器人技能。</p><p><strong>你将看到什么</strong>执行日志、指标与各类产物会被收集，用于评估技能质量与部署就绪度。</p><p><strong>生命周期锚点</strong>RSS 技能生命周期 → 认证（RSS 内部）</p></div>
+
+<ul>
+<li><strong>证据与指标</strong>：成功率、时延、安全约束、鲁棒性等。</li>
+<li><strong>工件管理</strong>：日志、视频、数据集、报告。</li>
+<li><strong>认证逻辑</strong>：策略 + 阈值 + 治理。</li>
+<li><strong>链接</strong>：<a href="skills.html">Certified Skill Examples</a></li>
+</ul>
+</section>
+<section class="section">
+<h2 id="deploy">Deploy（部署与复用）</h2>
+<div class="onboarding"><p><strong>目的</strong>本页展示已认证技能如何交付给用户使用。</p><p><strong>你将看到什么</strong>你会了解已验证技能如何被打包、部署，并在不同机器人、项目与场景中复用。</p><p><strong>生命周期锚点</strong>RSS 技能生命周期 → 部署（RSS → 用户）</p></div>
+
+<ul>
+<li><strong>技能打包</strong>：可复现的 bundle + 依赖锁定。</li>
+<li><strong>部署场景</strong>：产线、移动操作、户外机器人等。</li>
+<li><strong>链接</strong>：<a href="skills.html">Certified Skill Examples</a><a class="toplink" href="deployment.html">用户与部署</a></li>
+</ul>
+</section>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav">
+<a class="toc-link" href="#overview">Overview</a><a class="toc-link" href="#register">Register</a><a class="toc-link" href="#validate">Validate</a><a class="toc-link" href="#certify">Certify</a><a class="toc-link" href="#deploy">Deploy</a>
+</nav>
+</aside>
+</div>
+<script src="../assets/js/site.js?v=6.77.44"></script></body>
+</html>

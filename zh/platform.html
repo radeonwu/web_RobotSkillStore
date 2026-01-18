@@ -5,16 +5,16 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>平台 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.44.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.44" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
-<img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="skills.html">技能</a><a class="toplink active" href="platform.html">平台</a><a class="toplink" href="agents.html">智能体</a><a class="toplink" href="architecture.html">架构</a><a class="toplink" href="safety.html">安全</a><a class="toplink" href="developers.html">开发者</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="deployment.html">用户与部署</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -25,52 +25,186 @@
 </header>
 <div class="layout">
 <main class="content" id="content">
-<section class="section">
-<h1>平台</h1>
-<p class="lead">Skill · Agent · Runtime —— 统一的执行平台</p>
-<p>Robot Skill Store 并不是零散工具集合，而是围绕<strong>技能、Agent 与运行时</strong>构建的统一平台。三者共同定义机器人能力如何被创建、选择与执行。</p>
+
+<section class="section-plain">
+  <h1>平台能力</h1>
+  <div class="onboarding">
+    <p><strong>目的</strong>RSS 定义“技能如何在组织间被供应、被治理、被消费”。</p>
+    <p><strong>本页内容</strong>供应方注册技能，平台完成验证与认证形成信任，用户端消费证据完备的技能并部署到现场。</p>
+    <div class="onboarding-line onboarding-anchor">
+      <div class="onboarding-label"><strong>生命周期锚点</strong></div>
+      <div class="rss-lifecycle-bar compact" data-stage="register,validate,certify" data-compact="1"></div>
+    </div>
+  </div>
 </section>
+
+<p class="lead">RSS 平台能做什么</p>
+
+
 <section class="section">
-<h2 id="skills">技能：一等公民的能力对象</h2>
-<p>传统系统中的“技能”常常隐藏在实现里，难以被系统理解与复用。Robot Skill Store 将技能提升为显式的、可共享、可推理的能力对象。</p>
-<p>每个技能清晰声明意图、约束、执行上下文与可观测结果，从而具备可发现、可比较、可验证与可复用的属性。</p>
+  <h2 id="runtime-pipeline">平台运行时流水线（Platform runtime pipeline）</h2>
+  <p class="tight">以下流水线来自当前 RSS Platform 栈（v1.0.4.12）。验证会产出 <em>Run</em> + <em>Evidence</em>；认证/治理在不可变记录之上计算治理状态。</p>
+  <div class="pipeline" aria-label="Platform runtime pipeline">
+    <div class="pipe-row top">
+      <div class="pipe-step"><div class="pipe-title">1) 注册</div><div class="pipe-body">POST <code>/skills</code><br/>JSONSchema 校验（<code>validation.py</code>）</div></div>
+      <div class="pipe-arrow">➜</div>
+      <div class="pipe-step"><div class="pipe-title">2) 执行/验证</div><div class="pipe-body">POST <code>/runs</code> 或 <code>/runs/submit</code><br/>Run 记录 + 上下文</div></div>
+      <div class="pipe-arrow">➜</div>
+      <div class="pipe-step"><div class="pipe-title">3) 证据采集</div><div class="pipe-body">POST <code>/runs/{run_id}/artifacts</code><br/>GET <code>/runs/{run_id}/events</code></div></div>
+      <div class="pipe-arrow">➜</div>
+      <div class="pipe-step eval"><div class="pipe-title">4) 评估</div><div class="pipe-body">GET <code>/runs/{run_id}</code><br/>Outcome + 约束 + 指标</div></div>
+    </div>
+
+    <div class="pipe-row bottom" style="margin-top:10px;">
+      <div class="pipe-arrow">➜</div>
+      <div class="pipe-step certify"><div class="pipe-title">5) 认证/治理</div><div class="pipe-body">GET <code>/skills/{skill}/{ver}/governance</code><br/><code>governance.py</code> 规则 + 置信区间</div></div>
+      <div class="pipe-arrow">➜</div>
+      <div class="pipe-step publish"><div class="pipe-title">6) 对外发布（Public）</div><div class="pipe-body">GET <code>/public/v1/skills</code><br/>GET <code>/public/v1/skills/{skill_id}</code></div></div>
+    </div>
+  </div>
+  <p class="muted" style="margin-top:10px;">UI 入口（由 Gateway 暴露）：<code>/viewer/</code>（证据浏览），<code>/public/v1/*</code>（官网嵌入）。</p>
 </section>
+
 <section class="section">
-<h2 id="agents">Agent：能力编排者，而非胶水代码</h2>
-<p>随着系统复杂度提升，依赖硬编码来决定“下一步做什么”会迅速变得脆弱。Agent 的职责是基于目标与上下文选择技能、在候选技能之间排序与权衡、在约束条件下组合多步骤行为，并在不确定性下做出策略性决策。</p>
-<div class="callout">
-<div class="callout-title">关键转变</div>
-<p class="tight">从“我该调用哪个函数？”转向“在当前条件下，哪个技能最适合我的目标？”</p>
-</div>
+  <h2 id="validation">验证（Validation）：真实模块与真实数据</h2>
+  <p>在 RSS Platform 中，<strong>验证</strong>意味着：每一次执行都成为平台管理的 <em>Run</em>，并绑定不可变的上下文与证据。</p>
+  <ul class="tight" style="margin-top:10px;">
+    <li><strong>创建 Run</strong>：<code>POST /runs</code>（或 <code>POST /runs/submit</code>）创建 Run，并绑定 <code>(skill_id, version)</code> + profile + 参数。</li>
+    <li><strong>证据入库</strong>：<code>POST /runs/{run_id}/artifacts</code> 关联工件（log、mp4、trace）。存储后端支持 <code>LocalArtifactStore</code> 或 <code>S3ArtifactStore</code>（<code>storage.py</code>）。</li>
+    <li><strong>事件/追踪</strong>：<code>GET /runs/{run_id}/events</code> 返回结构化事件；trace 索引通过队列异步入库（<code>queueing.py</code>）。</li>
+    <li><strong>读取真相</strong>：<code>GET /runs/{run_id}</code> 是 outcome / primary_constraint / reason 的唯一真相来源，直接驱动认证计算。</li>
+  </ul>
+  <pre class="codeblock list-align" data-title="核心 API 路由（验证）">
+核心 API（验证）
+- POST /skills
+- POST /runs
+- POST /runs/submit
+- GET  /runs/{run_id}
+- POST /runs/{run_id}/artifacts
+- GET  /runs/{run_id}/artifacts
+- GET  /runs/{run_id}/events
+  </pre>
 </section>
+
 <section class="section">
-<h2 id="runtime">运行时：具备语义的执行环境</h2>
-<p>执行不仅是“下发控制指令”。运行时负责将技能规格绑定到具体机器人或仿真器，强制安全约束，处理环境/硬件差异带来的参数变化，并结构化记录执行结果与反馈。</p>
-<p>同一个技能定义可以在仿真与真实之间迁移，而无需改变其语义。这种解耦是实现 sim-to-real 一致性的关键。</p>
+  <h2 id="certification-details">认证与治理（Certification &amp; Governance）：从证据计算出来</h2>
+  <p>RSS Platform 的认证是<strong>证据驱动</strong>的：治理状态从历史 Run 窗口计算（成功率、违规率、近期回归等规则），而不是“人为声明”。</p>
+  <ul class="tight" style="margin-top:10px;">
+    <li><strong>治理快照</strong>：<code>GET /skills/{skill_id}/{version}/governance</code> 调用 <code>compute_governance()</code> 输出状态（<code>ACTIVE / DEGRADED / QUARANTINED</code>）+ 原因 + 建议。</li>
+    <li><strong>策略评估</strong>：<code>POST /governance/policies/eval</code> 用策略（min_n、成功阈值、违规上限、回归阈值）评估窗口。</li>
+    <li><strong>对外汇总</strong>：<code>POST /admin/public/v1/rollup</code> 刷新 public 统计缓存；官网通过 <code>/public/v1/skills*</code> 消费（带 ETag + cache headers）。</li>
+  </ul>
+  <pre class="codeblock list-align" data-title="核心 API 路由（认证/治理）">
+核心 API（认证/治理）
+- GET  /skills/{skill_id}/{version}/governance
+- POST /governance/policies/eval
+- POST /admin/public/v1/rollup
+- GET  /public/v1/skills
+- GET  /public/v1/skills/{skill_id}
+  </pre>
 </section>
+
 <section class="section">
-<h2 id="lifecycle">技能生命周期（RSP）</h2>
-<ol class="steps">
-<li><strong>注册</strong>：发布元数据、约束与依赖</li>
-<li><strong>发现</strong>：按目标/环境检索可用技能</li>
-<li><strong>匹配与排序</strong>：Agent 在策略与约束下选择最优技能</li>
-<li><strong>执行</strong>：运行时绑定参数并强制约束</li>
-<li><strong>反馈</strong>：记录结果，用于后续选择与改进</li>
-</ol>
-<p>这一生命周期由 RSP 统一规范，是平台规模化扩展的基础。</p>
+  <h2 id="skill-registry">Skill Registry（技能注册）</h2>
+  <p>以稳定的能力契约发布技能（Schema、约束、版本）。在 API 服务中，Skill Spec 在入库前会做 Schema 校验。</p>
+  <ul class="tight" style="margin-top:10px;">
+    <li><strong>入库校验</strong>：JSON Schema（Draft 2020-12）通过 <code>validate_skill_spec()</code>。</li>
+    <li><strong>创建/查询</strong>：<code>POST /skills</code>、<code>GET /skills</code>、<code>GET /skills/{skill_id}</code>、<code>GET /skills/{skill_id}/{version}</code>。</li>
+    <li><strong>治理分类</strong>：<code>GET /skills/{skill_id}/{version}/taxonomy</code>。</li>
+  </ul>
 </section>
-<footer class="footer">
-<div class="footer-inner">
-<div>Robot Skill Store · build v6.21.0</div>
-<div class="muted">UI: VitePress-like (no search, no version selector)</div>
-</div>
-</footer>
+
+<section class="section">
+  <h2 id="execution-engine">Validation 执行（Runs）</h2>
+  <p>验证以平台托管的 <strong>Run</strong> 形式执行。一个 Run 绑定：Skill Version + Profile（机器人/TCP/环境）+ 参数，并产出不可篡改的记录与事件。</p>
+  <ul class="tight" style="margin-top:10px;">
+    <li><strong>创建 Run</strong>：<code>POST /runs</code>（写入请求并做配额限制）。</li>
+    <li><strong>提交执行</strong>：<code>POST /runs/submit</code>（进入队列，触发 Worker 执行与 Trace 索引）。</li>
+    <li><strong>读取状态</strong>：<code>GET /runs/{run_id}</code>，以及 <code>GET /skills/{skill_id}/{version}/runs</code>。</li>
+    <li><strong>事件/Trace</strong>：<code>GET /runs/{run_id}/events</code>（用于还原执行过程）。</li>
+  </ul>
+  <p class="muted" style="margin-top:10px;">平台会从 evidence 中归一化 outcome / primary constraint / reason，使治理统计可对比。</p>
+</section>
+
+<section class="section">
+  <h2 id="evidence-store">Evidence &amp; Artifact Store（证据与工件库）</h2>
+  <p>工件可以存本地文件系统或 S3/MinIO（可配置）。每个工件都与 Run 绑定，从而让验证结果可审计、可复现。</p>
+  <ul class="tight" style="margin-top:10px;">
+    <li><strong>上传工件</strong>：<code>POST /runs/{run_id}/artifacts</code>（日志、视频、报告、遥测等）。</li>
+    <li><strong>列举工件</strong>：<code>GET /runs/{run_id}/artifacts</code>。</li>
+    <li><strong>下载/链接</strong>：<code>GET /artifacts/{artifact_id}</code>，以及 <code>GET /artifacts/{artifact_id}/url</code>（预签名下载）。</li>
+    <li><strong>后台任务</strong>：<code>GET /runs/{run_id}/jobs</code>（索引/处理状态）。</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2 id="auth-anon-read">认证与公开读取：Anon-read / X-API-Key</h2>
+  <p>RSS Platform 将<strong>官网可嵌入的公开读取</strong>与<strong>平台运维操作</strong>分离：前者用于展示与分享，后者用于执行、上传、管理刷新。开关由 <code>RSP_AUTH_ALLOW_ANON_READ</code> 控制。</p>
+  <ul class="tight" style="margin-top:10px;">
+    <li><strong>Public 读路径</strong>：<code>/public/v1/*</code> 设计为只读汇总（适合缓存与嵌入）。</li>
+    <li><strong>Anon-read 开关</strong>：当 <code>RSP_AUTH_ALLOW_ANON_READ=1</code> 时，网站可在不带凭据的情况下读取选定的 public 路由（常用于 demo/对外展示）。</li>
+    <li><strong>X-API-Key</strong>：当 anon-read 关闭（或访问非 public 路由）时，客户端需携带 <code>X-API-Key: &lt;key&gt;</code> 才能访问网关。</li>
+    <li><strong>经验法则</strong>：<code>/public/v1</code> 用于“可缓存的公开汇总”；所有会改变状态或访问原始证据的接口都要走认证。</li>
+  </ul>
+  <pre class="codeblock list-align" data-title="认证与公开读取（anon-read / X-API-Key）">
+环境变量与 Header
+- RSP_AUTH_ALLOW_ANON_READ=1
+- X-API-Key: &lt;your-key&gt;
+
+公开读取（anon-read 开启时可不带 key）
+- GET  /public/v1/skills
+- GET  /public/v1/skills/{skill_id}
+
+需要认证（示例）
+- POST /runs
+- POST /runs/submit
+- POST /runs/{run_id}/artifacts
+- POST /admin/public/v1/rollup
+  </pre>
+  <p class="muted" style="margin-top:10px;">这样既保证官网页面稳定、可缓存，又保护执行、上传与管理操作不被匿名访问。</p>
+</section>
+
+<section class="section">
+  <h2 id="artifact-backends">工件存储后端切换：Local vs S3/MinIO</h2>
+  <p>工件（视频、日志、遥测）可存本地或对象存储。平台通过 <code>RSP_ARTIFACT_STORE</code> 选择后端，并在 S3/MinIO 模式下通过<strong>预签名 URL</strong>让大文件直连传输，避免压垮 API。</p>
+  <ul class="tight" style="margin-top:10px;">
+    <li><strong>后端选择</strong>：<code>RSP_ARTIFACT_STORE=local</code> 或 <code>RSP_ARTIFACT_STORE=s3</code>（S3 兼容，如 MinIO）。</li>
+    <li><strong>Local</strong>：工件写入平台卷；<code>GET /artifacts/{artifact_id}</code> 由平台直接回传。</li>
+    <li><strong>S3/MinIO</strong>：工件存为对象；平台下发带过期时间的 presigned URL（下载/上传）。</li>
+  </ul>
+  <pre class="codeblock list-align" data-title="工件存储后端（local vs S3/MinIO）">
+预签名下载流程（S3/MinIO）
+1) 列举工件：        GET  /runs/{run_id}/artifacts
+2) 请求下载 URL：    GET  /artifacts/{artifact_id}/url
+3) 平台返回：        { url, expires_at }
+4) 客户端直连下载：  GET  &lt;presigned-url&gt;  （直接从 MinIO/S3）
+
+（可选）预签名上传流程
+1) 请求上传 URL：    POST /artifacts/presign（或 artifacts 上传接口携带 presign 参数）
+2) 客户端直连上传：  PUT  &lt;presigned-url&gt;
+3) 平台记录元数据：  artifact 与 Run 绑定，保证可追溯
+  </pre>
+  <p class="muted" style="margin-top:10px;">好处：Run 记录仍由平台统一治理，但大体量工件传输走对象存储直连，更适合团队规模化部署。</p>
+</section>
+
+<section class="section">
+  <h2 id="certification">Certification &amp; Governance（认证与治理）</h2>
+  <p>认证由证据窗口计算得到。平台聚合 Run outcome、约束违规、回归信号，并生成“治理快照”（ACTIVE / DEGRADED / QUARANTINED）。</p>
+  <ul class="tight" style="margin-top:10px;">
+    <li><strong>技能治理快照</strong>：<code>GET /skills/{skill_id}/{version}/governance</code>。</li>
+    <li><strong>策略评估（what-if）</strong>：<code>POST /governance/policies/eval</code>（测试阈值/黑名单规则）。</li>
+    <li><strong>官网对外汇总</strong>：<code>GET /public/v1/skills</code>、<code>GET /public/v1/skills/{skill_id}</code>。</li>
+    <li><strong>管理员刷新</strong>：<code>POST /admin/public/v1/rollup</code>（重算对外缓存统计）。</li>
+  </ul>
+  <p class="muted" style="margin-top:10px;">典型规则：最小 Run 数、最小成功率、最大违规率、近期回归检测等。</p>
+</section>
 </main>
 <aside aria-label="On this page" class="toc">
 <div class="toc-title">本页导航</div>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.44.0"></script>
-</body>
+<script src="../assets/config.js?v=6.77.44"></script>
+<script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
+<script src="../assets/js/site.js?v=6.77.44"></script></body>
 </html>

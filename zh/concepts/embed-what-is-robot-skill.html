@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>什么是 Robot Skill · Robot Skill Store</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=6.77.44"/>
+  <style>
+    /* Embed mode: remove extra margins and keep content tight */
+    html,body{height:auto!important;min-height:0!important;}
+    body{margin:0;padding:0;display:inline-block;width:100%;}
+    .content{max-width:920px;margin:0 auto;padding:18px 18px 24px;}
+    .section{margin-top:14px;}
+  </style>
+</head>
+<body>
+  <main class="content">
+<section class="section-plain">
+<h1>什么是 Robot Skill？</h1>
+<p class="lead">RSS 中的 Robot Skill 是一种可确定执行的机器人能力单元，在明确约束下控制真实机器人，并能够被验证、认证与复用。</p>
+</section><section class="section">
+<h2 id="definition">定义</h2>
+<p>Robot Skill 是物理执行层的能力基元，具备可验证、可认证、可复用的工程属性。</p>
+<ul>
+<li>可在真实机器人上执行</li>
+<li>确定性行为（在已声明约束内）</li>
+<li>显式前置条件 / 安全边界 / I/O Schema</li>
+<li>可通过证据与指标进行验证</li>
+</ul>
+</section><section class="section">
+<h2 id="why">为什么 RSS 要强调 Skill</h2>
+<p>物理执行的成本与风险远高于软件调用，因此必须引入验证、证据与治理机制。RSS 的目标是让技能可迁移、可信、可规模化复用。</p>
+</section></main>
+
+<script>
+(function(){
+  function calc(){
+    var b = document.body;
+    var e = document.documentElement;
+    return Math.max(
+      b ? (b.scrollHeight||0) : 0,
+      e ? (e.scrollHeight||0) : 0,
+      b ? (b.offsetHeight||0) : 0,
+      e ? (e.offsetHeight||0) : 0
+    );
+  }
+
+  var last = 0;
+  function send(){
+    var h = calc();
+    if(!h) return;
+    if(Math.abs(h - last) < 2) return;
+    last = h;
+    try{ parent.postMessage({type:'rss-embed-height', height:h}, '*'); }catch(e){}
+  }
+
+  window.addEventListener('message', function(ev){
+    var d = ev.data || {};
+    if(d.type === 'rss-embed-ping') send();
+  });
+
+  if('ResizeObserver' in window){
+    try{ new ResizeObserver(function(){ send(); }).observe(document.documentElement); }catch(e){}
+  }
+  if('MutationObserver' in window){
+    try{ new MutationObserver(function(){ send(); }).observe(document.documentElement, {subtree:true, childList:true, attributes:true, characterData:true}); }catch(e){}
+  }
+
+  window.addEventListener('load', function(){
+    send();
+    setTimeout(send, 100);
+    setTimeout(send, 400);
+  });
+
+  // Keep-alive: some browsers don't fire observers reliably under file://
+  setInterval(send, 2000);
+})();
+</script>
+
+</body>
+</html>

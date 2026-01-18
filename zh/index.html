@@ -5,16 +5,16 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>首页 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.44.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.44" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
-<img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink active" href="index.html">首页</a><a class="toplink" href="skills.html">技能</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="agents.html">智能体</a><a class="toplink" href="architecture.html">架构</a><a class="toplink" href="safety.html">安全</a><a class="toplink" href="developers.html">开发者</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="deployment.html">用户与部署</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -24,44 +24,52 @@
 </div>
 </header>
 <div class="layout">
-<main class="content" id="content">
-<section class="hero">
-<div class="hero-inner">
-<div class="hero-left">
-<div class="badge">平台优先 · 可治理 · 可部署</div>
-<div class="hero-title-row"><h1>Robot Skill Store</h1>
-<span class="hero-logo">
-  <img src="../assets/media/rss_logo.png" alt="Robot Skill Store Logo">
-</span>
+<main class="content">
+<section class="section-plain">
+<div class="hero">
+<div class="hero-title">
+<h1 class="hero-h1 hero-h1-flex"><span>机器人技能商店</span><span class="hero-subtag">– 可信、可复用机器人技能的平台</span>
+  <img alt="RSS logo" class="hero-logo-inline hero-logo-right" src="../assets/media/rss_logo.png"/>
+</h1>
 </div>
-<p class="lead">面向可部署机器人能力的平台</p>
-<p class="sublead"><strong>跨仿真器与真实机器人系统</strong>，定义、发现、评测并部署机器人技能——由平台发起并管理 Run，具备不可变记录与策略门禁。</p>
-<p class="sublead">Robot Skill Store 将机器人技能视为<strong>版本化、契约化、可审计</strong>的系统资产——而不只是零散代码、函数调用或一次性 Demo。</p>
-<div class="cta-row">
-<a class="btn primary" href="developers.html">快速开始</a>
-<a class="btn secondary" href="demo.html">查看 Demo</a>
-<a class="btn ghost" href="architecture.html#rsp-backbone">RSS 如何保证可信</a>
+<div class="onboarding"><p><strong>Purpose</strong>本网站介绍 Robot Skill Store (RSS)：一个用于验证并部署可复用机器人技能的平台。</p><p><strong>What you will see here</strong>你将了解 RSS 如何连接技能供应方与技能使用方，以及机器人技能如何沿着结构化生命周期从注册走到部署。</p><div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div></div>
+
+<section class="section" style="margin-top:14px;">
+  <h2 id="what-is-rss" style="margin:0 0 8px 0;">什么是 RSS</h2>
+  <p class="lead" style="margin:0 0 6px 0;">面向机器人技能的验证与交付平台</p>
+  <p style="margin:0;color:var(--vp-c-text-2);line-height:1.7;">RSS 提供一套标准化流水线，将机器人行为抽象为可复用的 Skill，并完成 注册 → 验证 → 认证 → 部署复用，把一次性项目能力沉淀为可持续复利的能力资产。</p>
+</section>
+
+<section class="section" style="margin-top:14px;">
+<h2 id="what-is-rss-for" style="margin:0 0 8px 0;">RSS 面向谁？</h2>
+<p style="margin:0 0 10px 0;">Robot Skill Store 面向构建下一代机器人的团队：</p>
+<ul style="margin:0 0 0 18px;line-height:1.9;">
+<li>中小型机器人团队</li>
+<li>工业自动化开发者</li>
+<li>具身智能与 Agent 研究者</li>
+<li>探索机器人生态的平台构建者</li>
+</ul>
+</section>
 </div>
-<div class="meta-row">
-<span>build v6.21.0</span><span class="dot">•</span><span>无搜索</span><span class="dot">•</span><span>无版本选择器</span><span class="dot">•</span><span>无左侧栏</span>
-</div>
-</div>
-<div class="hero-right">
-<div class="card hero-card">
-<div class="card-title">技能生命周期（RSS 平台）</div>
-<ol class="steps">
-<li><strong>注册</strong> —— 发布意图、约束、上下文与可观测结果</li>
-<li><strong>发现</strong> —— 按目标与环境检索技能</li>
-<li><strong>匹配与排序</strong> —— Agent 在策略/约束下选择最优技能</li>
-<li><strong>Run</strong> —— 发起策略门禁的、由平台管理的 Run，并绑定机器人/环境参数</li>
-<li><strong>反馈</strong> —— 记录结果，提升选择与鲁棒性</li>
-</ol>
-</div>
+</section>
+<section class="section">
+<div>
+<h2 id="ecosystem">RSS 在生态中的位置</h2>
+<p style="margin-top:8px;">供应方发布技能；RSS 负责验证与认证；用户部署并复用技能。</p>
+<p style="margin:10px 0 0;color:var(--vp-c-text-2);line-height:1.7;">RSS 定义了机器人技能在组织之间的供给、治理与消费方式。<br/>
+技能供应方聚焦能力开发，RSS 负责验证与可信治理，用户则可以有信心地部署技能。</p>
+<div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px;flex-wrap:wrap;">
+<span class="badge">Supplier</span><span style="opacity:.6;">→</span>
+<span class="badge">RSS</span><span style="opacity:.6;">→</span>
+<span class="badge">User</span>
 </div>
 </div>
 </section>
 <section class="section">
+<div>
 <h2 id="why">为什么需要 Robot Skill Store</h2>
+<p class="quote" style="margin-top:10px;">RSS 通过复利式积累已验证技能实现规模化。</p>
+<div class="prose">
 <p>当今的机器人能力高度碎片化：技能往往深埋在代码里，与特定机器人/环境强耦合，为单一场景定制，难以在团队或系统之间复用。</p>
 <p>我们口中的“技能”，很多时候只是一个函数调用、一个 ROS 节点，或一个只能跑一次的 demo 脚本。</p>
 <p>这种碎片化直接导致：</p>
@@ -71,90 +79,12 @@
 <li>仿真到真实部署难以规模化迁移</li>
 <li>行为编排依赖硬编码拼接，Agent 难以组合与决策</li>
 </ul>
-<p><strong>Robot Skill Store 正是为解决这一根本性问题而设计。</strong></p>
-</section>
-<section class="section">
-<h2 id="what-is-skill">什么是机器人技能</h2>
-<p>在 Robot Skill Store 中，技能不仅仅是可执行代码。一个机器人技能，是最小的、<strong>有意义且安全</strong>的能力单元，其定义远不止于“怎么实现”。</p>
-<div class="grid grid-2">
-<div class="card">
-<div class="card-title">一个技能明确包含</div>
-<ul class="checklist">
-<li><strong>意图（Intent）</strong>——机器人要达成什么目标</li>
-<li><strong>约束（Constraints）</strong>——安全边界、限制与前提假设</li>
-<li><strong>执行上下文（Context）</strong>——仿真或真实世界运行条件</li>
-<li><strong>可观测结果（Outcomes）</strong>——成功/失败标准与反馈信号</li>
-</ul>
+<p><strong>Robot Skill Store</strong> 正是为解决这一根本性问题而设计。</p>
 </div>
-<div class="card">
-<div class="card-title">因此技能可以被</div>
-<ul class="checklist">
-<li><strong>发现</strong>与<strong>比较</strong></li>
-<li><strong>执行前验证</strong></li>
-<li>由 Agent <strong>组合与决策</strong></li>
-<li>跨机器人/环境<strong>复用</strong></li>
-</ul>
-</div>
-</div>
-<p class="note">技能不再是私有实现细节，而是由协议定义的共享能力对象。</p>
-</section>
-<section class="section">
-<h2 id="rsp">RSP：Robot Skill Protocol</h2>
-<p>要让技能可移植、可比较且安全，必须被<strong>协议化</strong>。Robot Skill Protocol（RSP）定义：</p>
-<ul>
-<li>技能如何注册与描述</li>
-<li>Agent 如何发现、匹配与选择技能</li>
-<li>执行过程中如何约束与监控</li>
-<li>结果如何记录并反馈复用</li>
-</ul>
-<p>RSP 不是 SDK，也不是框架；它是技能提供方、Agent/编排系统、仿真器与真实机器人之间的<strong>共同语言</strong>。</p>
-</section>
-<section class="section">
-<h2 id="demo-not-demo">Demo ≠ Demo</h2>
-<p>Robot Skill Store 的 demo 不是展示效果，而是<strong>参考执行模型（Reference Execution Model）</strong>：强调可复现的绑定、约束强制与可审计结果，在仿真与真实之间保持一致。</p>
-<div class="callout">
-<div class="callout-title">参考模型聚焦</div>
-<ul>
-<li>显式技能规格</li>
-<li>运行时参数覆盖（Base/TCP/环境）</li>
-<li>环境感知的执行行为</li>
-<li>仿真↔真实的一致性评估</li>
-</ul>
+
 </div>
 </section>
-<section class="section">
-<h2 id="who-for">面向新一代机器人生态</h2>
-<p>Robot Skill Store 面向正在构建未来机器人的团队：中小规模机器人研发团队、工业自动化开发者、具身智能/Agent 研究者，以及平台与生态构建者。</p>
-<p>如果你相信机器人智能应当<strong>模块化</strong>而非单体、由<strong>Agent 驱动</strong>而非硬编码、安全应当<strong>内生于能力定义</strong>——Robot Skill Store 正是为你而生。</p>
-<div class="cta-row">
-<a class="btn primary" href="developers.html">快速开始</a>
-<a class="btn secondary" href="platform.html">理解平台</a>
-<a class="btn ghost" href="safety.html">阅读安全</a>
-</div>
-</section>
-<section class="section">
-<h2 id="featured">推荐页面</h2>
-<div class="grid grid-3">
-<a class="card link-card" href="platform.html"><div class="card-title">平台</div><div class="card-desc">Skill · Agent · Runtime 三位一体的统一执行平台。</div></a>
-<a class="card link-card" href="architecture.html"><div class="card-title">架构</div><div class="card-desc">以协议为中心：工具接入 RSP，而不是反过来。</div></a>
-<a class="card link-card" href="safety.html"><div class="card-title">安全</div><div class="card-desc">技能级安全：在控制与模型之间补上关键一层。</div></a>
-<a class="card link-card" href="developers.html"><div class="card-title">开发者</div><div class="card-desc">Quick Start：定义→注册→选择→执行→反馈。</div></a>
-<a class="card link-card" href="demo.html"><div class="card-title">Demo（UR5）</div><div class="card-desc">参考执行模型：绑定、约束强制、审计与反馈。</div></a>
-<a class="card link-card" href="architecture.html#sim2real-loop"><div class="card-title">仿真↔真实闭环</div><div class="card-desc">验证一致性，加速迭代与部署。</div></a>
-</div>
-</section>
-<footer class="footer">
-<div class="footer-inner">
-<div>Robot Skill Store · build v6.21.0</div>
-<div class="muted">UI: VitePress-like (no search, no version selector)</div>
-</div>
-</footer>
 </main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">本页导航</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<script src="../assets/js/site.js?v=6.44.0"></script>
-</body>
+<aside class="toc"><div class="toc-title">ON THIS PAGE</div><nav id="tocNav"></nav></aside></div>
+<script src="../assets/js/site.js?v=6.77.44"></script></body>
 </html>

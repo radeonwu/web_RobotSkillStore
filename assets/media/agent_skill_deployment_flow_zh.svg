@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="基于智能体的技能部署流程">
+  <defs>
+    <style>
+      .title{font:700 34px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#111827;}
+      .subtitle{font:500 16px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#475569;}
+      .stepTitle{font:700 20px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#0f172a;}
+      .stepText{font:500 15px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#334155;}
+      .box{fill:#f8fafc; stroke:#cbd5e1; stroke-width:2;}
+      .box2{fill:#f1f5f9; stroke:#cbd5e1; stroke-width:2;}
+      .arrow{stroke:#94a3b8; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round;}
+    </style>
+    <marker id="arrowHead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="58" class="title">基于智能体的技能部署流程</text>
+  <text x="40" y="88" class="subtitle">示例：UR5 机械臂 + RG2 夹爪，任务 = 抓取 → 插入 → 拧紧；证据在 RSS Viewer 中记录</text>
+
+  <!-- Top row: Task → Plan → Match → Execute → Recover -->
+  <g transform="translate(40,140)">
+    <rect class="box" x="0" y="0" rx="16" ry="16" width="190" height="110"/>
+    <text class="stepTitle" x="18" y="38">任务</text>
+    <text class="stepText" x="18" y="66">抓取 → 插入 → 拧紧</text>
+
+    <path class="arrow" marker-end="url(#arrowHead)" d="M200 55 H238"/>
+
+    <rect class="box" x="260" y="0" rx="16" ry="16" width="190" height="110"/>
+    <text class="stepTitle" x="278" y="38">规划</text>
+    <text class="stepText" x="278" y="66">分解为子任务</text>
+
+    <path class="arrow" marker-end="url(#arrowHead)" d="M460 55 H498"/>
+
+    <rect class="box" x="520" y="0" rx="16" ry="16" width="190" height="110"/>
+    <text class="stepTitle" x="538" y="38">匹配</text>
+    <text class="stepText" x="538" y="66">选择已认证技能</text>
+
+    <path class="arrow" marker-end="url(#arrowHead)" d="M720 55 H758"/>
+
+    <rect class="box" x="780" y="0" rx="16" ry="16" width="190" height="110"/>
+    <text class="stepTitle" x="798" y="38">执行</text>
+    <text class="stepText" x="798" y="66">带约束运行</text>
+
+    <path class="arrow" marker-end="url(#arrowHead)" d="M980 55 H1018"/>
+
+    <rect class="box" x="1040" y="0" rx="16" ry="16" width="190" height="110"/>
+    <text class="stepTitle" x="1058" y="38">恢复</text>
+    <text class="stepText" x="1058" y="66">重试 / 调参 / 替换</text>
+  </g>
+
+  <!-- Evidence bar (bottom) -->
+  <g transform="translate(40,270)">
+    <rect class="box2" x="0" y="0" rx="16" ry="16" width="1120" height="70"/>
+    <text class="stepTitle" x="18" y="44">证据</text>
+    <text class="stepText" x="140" y="44">挂载轨迹（视频 / 日志 / 指标），在 RSS Viewer 中复核，用于验证与认证</text>
+  </g>
+</svg>

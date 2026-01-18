@@ -5,16 +5,25 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>文档 · Robot Skill Store</title>
-<link href="../../assets/css/style.css?v=6.44.0" rel="stylesheet"/>
+<link href="../../assets/css/style.css?v=6.77.44" rel="stylesheet"/>
 </head>
-<body>
+<body class="docs">
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="../index.html">
-<img class="brand-mark logo-img" src="../../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">首页</a><a class="toplink" href="../skills.html">技能</a><a class="toplink" href="../platform.html">平台</a><a class="toplink" href="../agents.html">智能体</a><a class="toplink" href="../architecture.html">架构</a><a class="toplink" href="../safety.html">安全</a><a class="toplink" href="../developers.html">开发者</a><a class="toplink" href="../demo.html">Demo</a><a class="toplink active" href="index.html">文档</a><a class="toplink" href="../contact.html">联系</a></nav>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="../index.html">首页</a>
+<a class="toplink" href="../lifecycle.html">技能生命周期</a>
+<a class="toplink" href="../platform.html">平台</a>
+<a class="toplink" href="../concepts.html">概念</a>
+<a class="toplink" href="../skills.html">认证技能</a>
+<a class="toplink" href="../deployment.html">用户与部署</a>
+<a class="toplink" href="index.html">文档</a>
+<a class="toplink" href="../contact.html">联系</a>
+</nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -25,22 +34,55 @@
 </header>
 <div class="layout">
 <main class="content" id="content">
-<section class="section">
+
+<section class="section-plain">
 <h1>文档中心</h1>
+<div class="onboarding">
+  <p><strong>目的</strong>理解 RSS（平台）与 RSP（可迁移与可信的契约）。</p>
+  <p><strong>本页内容</strong>平台架构、技能 schema、执行与证据、生命周期治理等阅读路径。</p>
+  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期锚点</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div>
+</div>
+
+
 <p class="lead">先看 <strong>RSS</strong>（产品/平台），再看 <strong>RSP</strong>（平台强制执行的协议）。</p>
 </section>
 <section class="section" id="whitepapers-overview">
 <h2 id="overview">白皮书综述：RSS + RSP</h2>
-<div class="card">
-<p class="status-muted" style="margin:0;">
+<p class="tight" style="margin:0;color:var(--muted);">
 <strong>RSS 白皮书</strong>讲产品/平台：如何把技能变成可部署资产（版本绑定、客观评测、运行时治理、证据可审计）。
       <br/>
 <strong>RSP 白皮书</strong>讲平台强制执行的协议层：定义标准对象与不变量，确保执行真相与治理不依赖 UI、操作员或环境漂移。
     </p>
+<div class="card" style="margin:14px 0;">
+  <div class="card-title">推荐阅读（Docs）</div>
+  <ul style="margin:8px 0 0 18px;line-height:1.8;">
+    <li><a href="rss_whitepaper.html">RSS 白皮书 (HTML)</a></li>
+    <li><a href="rsp_whitepaper.html">RSP 白皮书 (HTML)</a></li>
+    <li><a href="execution.html">执行与证据采集</a></li>
+    <li><a href="skill-spec.html">Skill 规范（契约）</a></li>
+    <li><a href="skill-schema.html">Skill Schema（I/O）</a></li>
+    <li><a href="safety.html">安全与治理说明</a></li>
+    <li><a href="concepts.html">Concept 说明</a></li>
+    <li><a href="demo-mapping.html">UR5 Demo 映射（可选）</a></li>
+  </ul>
 </div>
+
+<details class="card" style="margin:14px 0;">
+  <summary class="card-title" style="cursor:pointer;">Legacy / 内部页面（可选）</summary>
+  <div class="status-muted" style="margin-top:8px;">
+    以下页面保留用于历史草稿与内部引用，大部分内容已汇总进上面的白皮书。
+  </div>
+  <ul style="margin:10px 0 0 18px;line-height:1.8;">
+    <li><a href="rss-platform.html">rss-platform</a></li>
+    <li><a href="rss-architecture.html">rss-architecture</a></li>
+    <li><a href="rss-safety.html">rss-safety</a></li>
+    <li><a href="rss-skills.html">rss-skills</a></li>
+    <li><a href="rss-agents.html">rss-agents</a></li>
+  </ul>
+</details>
 </section>
-<section class="section" id="rss-summaries" data-toggle-scope="rss">
-<h2 id="rss-summaries-h" class="section-head-row"><span>Robot Skill Store (RSS) Whitepaper</span><a class="btn primary" data-missing-ok="1" href="rss_whitepaper.html" target="_blank" rel="noopener">RSS Whitepaper (HTML)</a></h2>
+<section class="section" data-toggle-scope="rss" id="rss-summaries">
+<h2 class="section-head-row" id="rss-summaries-h"><span>Robot Skill Store (RSS) Whitepaper</span><a class="btn primary" data-missing-ok="1" href="rss_whitepaper.html" rel="noopener" target="_blank">RSS Whitepaper (HTML)</a></h2>
 <div class="card" id="rss-whitepaper">
 <div class="card-title">要点</div>
 <div class="status-muted" style="margin-top:8px;">
@@ -56,20 +98,20 @@
 <div style="margin-top:12px;">
 <div class="card-title" style="font-size:13px; opacity:.8;">推荐阅读顺序（RSS）</div>
 <ol class="steps" style="margin-top:8px;">
-<li><a data-tab-jump="rss:platform" href="rss_whitepaper.htmlrss-summaries">平台摘要</a>：RSS 提供哪些能力（注册、运行、评测、治理）</li>
+<li><a data-tab-jump="rss:platform" href="rss_whitepaper.html#rss-summaries">平台摘要</a>：RSS 提供哪些能力（注册、运行、评测、治理）</li>
 <li><a data-tab-jump="rss:architecture" href="#rss-summaries">架构摘要</a>：平台为中心、协议强制</li>
 <li><a data-tab-jump="rss:safety" href="#rss-summaries">安全摘要</a>：策略门禁与生产级护栏</li>
 </ol>
 </div>
 </div>
 <div class="inline-toggle-block" id="rss-inline-nav">
-    <div class="muted" style="margin:10px 0 8px;font-weight:700;">概述</div>
-<div class="pillbar" data-toggle-group="rss">
-<a class="pill active" data-target="rss-panel-platform" data-toggle-group="rss" data-toggle-target="rss-panel-platform" href="#rss-panel-platform">平台</a>
-<a class="pill" data-target="rss-panel-architecture" data-toggle-group="rss" data-toggle-target="rss-panel-architecture" href="#rss-panel-architecture">架构</a>
-<a class="pill" data-target="rss-panel-safety" data-toggle-group="rss" data-toggle-target="rss-panel-safety" href="#rss-panel-safety">安全</a>
-<a class="pill" data-target="rss-panel-skills" data-toggle-group="rss" data-toggle-target="rss-panel-skills" href="#rss-panel-skills">技能</a>
-<a class="pill" data-target="rss-panel-agents" data-toggle-group="rss" data-toggle-target="rss-panel-agents" href="#rss-panel-agents">智能体</a>
+<div class="muted" style="margin:10px 0 8px;font-weight:700;">概述</div>
+<div aria-label="RSS 摘要导航" class="concept-tabs" data-toggle-group="rss" role="tablist">
+  <button class="tab-btn active" data-toggle-group="rss" data-toggle-target="rss-panel-platform" role="tab" type="button">平台</button>
+  <button class="tab-btn" data-toggle-group="rss" data-toggle-target="rss-panel-architecture" role="tab" type="button">架构</button>
+  <button class="tab-btn" data-toggle-group="rss" data-toggle-target="rss-panel-safety" role="tab" type="button">安全</button>
+  <button class="tab-btn" data-toggle-group="rss" data-toggle-target="rss-panel-skills" role="tab" type="button">技能</button>
+  <button class="tab-btn" data-toggle-group="rss" data-toggle-target="rss-panel-agents" role="tab" type="button">智能体</button>
 </div>
 <div class="inline-panels">
 <div class="card inline-panel active" data-panel="rss" id="rss-panel-platform">
@@ -114,7 +156,7 @@
 </div>
 </div>
 </div></section>
-<section class="section" id="rsp-summaries" data-toggle-scope="rsp"><h2 id="rsp-summaries-h" class="section-head-row"><span>Robot Skill Protocol (RSP) Whitepaper</span><a class="btn primary" data-missing-ok="1" href="rsp_whitepaper.html" target="_blank" rel="noopener">RSP Whitepaper (HTML)</a></h2>
+<section class="section" data-toggle-scope="rsp" id="rsp-summaries"><h2 class="section-head-row" id="rsp-summaries-h"><span>Robot Skill Protocol (RSP) Whitepaper</span><a class="btn primary" data-missing-ok="1" href="rsp_whitepaper.html" rel="noopener" target="_blank">RSP Whitepaper (HTML)</a></h2>
 <div class="card" id="rsp-whitepaper">
 <div class="card-title">要点</div>
 <div class="status-muted" style="margin-top:8px;">
@@ -137,15 +179,15 @@
 </ol>
 </div>
 <div class="inline-toggle-block" id="rsp-inline-nav">
-    <div class="muted" style="margin:10px 0 8px;font-weight:700;">概述</div>
-<div class="pillbar" data-toggle-group="rsp">
-<a class="pill active" data-target="rsp-panel-overview" data-toggle-group="rsp" data-toggle-target="rsp-panel-overview" href="#rsp-panel-overview">概览</a>
-<a class="pill" data-target="rsp-panel-concepts" data-toggle-group="rsp" data-toggle-target="rsp-panel-concepts" href="#rsp-panel-concepts">概念</a>
-<a class="pill" data-target="rsp-panel-skill-spec" data-toggle-group="rsp" data-toggle-target="rsp-panel-skill-spec" href="#rsp-panel-skill-spec">Skill 规范</a>
-<a class="pill" data-target="rsp-panel-schema" data-toggle-group="rsp" data-toggle-target="rsp-panel-schema" href="#rsp-panel-schema">Schema</a>
-<a class="pill" data-target="rsp-panel-execution" data-toggle-group="rsp" data-toggle-target="rsp-panel-execution" href="#rsp-panel-execution">执行</a>
-<a class="pill" data-target="rsp-panel-safety" data-toggle-group="rsp" data-toggle-target="rsp-panel-safety" href="#rsp-panel-safety">安全</a>
-<a class="pill" data-target="rsp-panel-demo" data-toggle-group="rsp" data-toggle-target="rsp-panel-demo" href="#rsp-panel-demo">Demo 映射</a>
+<div class="muted" style="margin:10px 0 8px;font-weight:700;">概述</div>
+<div aria-label="RSP 摘要导航" class="concept-tabs" data-toggle-group="rsp" role="tablist">
+  <button class="tab-btn active" data-toggle-group="rsp" data-toggle-target="rsp-panel-overview" role="tab" type="button">概览</button>
+  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-concepts" role="tab" type="button">概念</button>
+  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-skill-spec" role="tab" type="button">Skill 规范</button>
+  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-schema" role="tab" type="button">Schema</button>
+  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-execution" role="tab" type="button">执行</button>
+  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-safety" role="tab" type="button">安全</button>
+  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-demo" role="tab" type="button">Demo 映射</button>
 </div>
 <div class="inline-panels">
 <div class="card inline-panel active" data-panel="rsp" id="rsp-panel-overview">
@@ -223,51 +265,12 @@
 </ul>
 </div>
 </div>
-</div>
-<section class="section" id="mental-model">
-<h2 id="two-minute-model">两分钟理解模型</h2>
-<div class="card">
-<ul class="checklist" style="margin-top:4px;">
-<li><strong>RSS</strong> = 你部署与运营的平台。</li>
-<li><strong>RSP</strong> = RSS 强制执行的不变量层（不是另一个可选产品）。</li>
-<li><strong>智能体</strong> = RSS 平台内部的决策层，用于提出 Run 请求。</li>
-<li><strong>Run</strong> = 证据的原子单位（不可变记录 + 制品）。</li>
-<li><strong>Policy</strong> = 运行时不可绕过的门禁。</li>
-</ul>
-</div>
-</section>
-<section class="section" id="design-stance">
-<h2 id="design-stance-h">设计立场</h2>
-<div class="grid grid-2" style="margin-top:12px;">
-<div class="card">
-<div class="card-title">RSS 立场</div>
-<ul class="checklist" style="margin-top:10px;">
-<li><strong>生产优先</strong>：面向可重复部署，而非一次性演示。</li>
-<li><strong>系统治理</strong>：强制优于约定俗成。</li>
-<li><strong>证据驱动</strong>：信任来自 Run 与 Benchmark。</li>
-</ul>
-</div>
-<div class="card">
-<div class="card-title">RSP 立场</div>
-<ul class="checklist" style="margin-top:10px;">
-<li><strong>规范优先</strong>：定义标准对象与语义。</li>
-<li><strong>不变量强制</strong>：运行时门禁不可妥协。</li>
-<li><strong>可审计</strong>：结果绑定版本、Profile 与证据。</li>
-</ul>
-</div>
-</div>
-</section>
 </section></main>
 <aside aria-label="On this page" class="toc">
 <div class="toc-title">本页导航</div>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../../assets/js/site.js?v=6.44.0"></script>
-<script id="docs-tab-init">
-  window.addEventListener("load", () => {
-    try { if (window.initInlineToggleNav) window.initInlineToggleNav(); } catch (e) {}
-  });
-</script>
-</body>
+<script src="../../assets/js/site.js?v=6.77.44"></script>
+<script>try{ if(window.initInlineToggleNav) window.initInlineToggleNav(); }catch(e){};</script></body>
 </html>

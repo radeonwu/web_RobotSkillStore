@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>确定性为何重要 · Robot Skill Store</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=6.77.44"/>
+  <style>
+    /* Embed mode: remove extra margins and keep content tight */
+    html,body{height:auto!important;min-height:0!important;}
+    body{margin:0;padding:0;display:inline-block;width:100%;}
+    .content{max-width:920px;margin:0 auto;padding:18px 18px 24px;}
+    .section{margin-top:14px;}
+  </style>
+</head>
+<body>
+  <main class="content">
+<section class="section-plain">
+<h1>确定性为何重要</h1>
+<p class="lead">在物理世界中，不确定性非常昂贵。确定性是安全与规模化复用的前提。</p>
+</section><section class="section">
+<h2 id="cost">物理失败成本高</h2>
+<p>机器人动作可能损坏硬件、带来安全风险或造成停线。RSS 将确定性视为认证与交付的基本要求。</p>
+</section><section class="section">
+<h2 id="governance">确定性让治理成为可能</h2>
+<p>显式约束 + 证据 + 可复现运行，使得版本对比、门禁阈值、兼容性声明具备工程可操作性。</p>
+</section><section class="section">
+<h2 id="agents">Agent 需要可靠的执行基元</h2>
+<p>Agent 可以决定“做什么”，但执行需要稳定可靠的物理基元。RSS 的技能正是这类可治理的执行基元。</p>
+</section></main>
+
+<script>
+(function(){
+  function calc(){
+    var b = document.body;
+    var e = document.documentElement;
+    return Math.max(
+      b ? (b.scrollHeight||0) : 0,
+      e ? (e.scrollHeight||0) : 0,
+      b ? (b.offsetHeight||0) : 0,
+      e ? (e.offsetHeight||0) : 0
+    );
+  }
+
+  var last = 0;
+  function send(){
+    var h = calc();
+    if(!h) return;
+    if(Math.abs(h - last) < 2) return;
+    last = h;
+    try{ parent.postMessage({type:'rss-embed-height', height:h}, '*'); }catch(e){}
+  }
+
+  window.addEventListener('message', function(ev){
+    var d = ev.data || {};
+    if(d.type === 'rss-embed-ping') send();
+  });
+
+  if('ResizeObserver' in window){
+    try{ new ResizeObserver(function(){ send(); }).observe(document.documentElement); }catch(e){}
+  }
+  if('MutationObserver' in window){
+    try{ new MutationObserver(function(){ send(); }).observe(document.documentElement, {subtree:true, childList:true, attributes:true, characterData:true}); }catch(e){}
+  }
+
+  window.addEventListener('load', function(){
+    send();
+    setTimeout(send, 100);
+    setTimeout(send, 400);
+  });
+
+  // Keep-alive: some browsers don't fire observers reliably under file://
+  setInterval(send, 2000);
+})();
+</script>
+
+</body>
+</html>

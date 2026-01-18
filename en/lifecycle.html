@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Skill Lifecycle · Robot Skill Store</title>
+<link href="../assets/css/style.css?v=6.77.44" rel="stylesheet"/>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
+</button>
+</div>
+</div>
+</header>
+<div class="layout">
+<main class="content">
+
+<section class="section-plain">
+<h1>Skill Lifecycle</h1>
+<div class="onboarding">
+  <p><strong>Purpose</strong>The lifecycle that makes robot skills trustworthy and reusable.</p>
+  <p><strong>What this page covers</strong>Register → Validate → Certify → Deploy, and how RSS governs each stage so skills become portable assets rather than project-specific code.</p>
+  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div>
+</div>
+</section>
+
+<section class="section-plain">
+<h2 id="overview">Overview</h2>
+<div class="grid-2" style="align-items:center;">
+<div>
+<p class="lead">RSS treats robot skills as capability assets with a lifecycle: <strong>Register → Validate → Certify → Deploy</strong>.</p>
+<ul>
+<li><strong>Register</strong>: suppliers publish skills with interfaces + constraints.</li>
+<li><strong>Validate</strong>: RSS executes skills and records runs.</li>
+<li><strong>Certify</strong>: RSS evaluates evidence and issues a certification snapshot.</li>
+<li><strong>Deploy</strong>: users reuse certified skills with predictable behavior.</li>
+</ul>
+</div>
+<div>
+  <img alt="RSS Skill Lifecycle overview" class="hero-figure-full" src="../assets/media/rss_skill_lifecycle_overview.png"/>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 id="register">Register</h2>
+<div class="onboarding"><p><strong>Purpose</strong>This page explains how robot skills are submitted to RSS by skill suppliers.</p><p><strong>What you will see here</strong>You will learn what a skill interface looks like, what constraints must be declared, and what information RSS requires before a skill can be validated.</p><p><strong>Lifecycle Anchor</strong>RSS Skill Lifecycle → Register (Supplier → RSS)</p></div>
+
+<ul>
+<li><strong>What is Skill Registration</strong>: package + metadata + interface contract.</li>
+<li><strong>Skill Interface &amp; Constraints</strong>: explicit preconditions, safety limits, and IO schema.</li>
+<li><strong>Link</strong>: <a class="link-pill" href="developers.html">Skill Registration Guide</a></li>
+</ul>
+</section>
+<section class="section">
+<h2 id="validate">Validate</h2>
+<div class="onboarding"><p><strong>Purpose</strong>This page describes how RSS executes robot skills in controlled environments.</p><p><strong>What you will see here</strong>You will see how skills are run, how execution results are recorded, and how RSS verifies correctness, stability, and repeatability.</p><p><strong>Lifecycle Anchor</strong>RSS Skill Lifecycle → Validate (Inside RSS)</p></div>
+
+<ul>
+<li><strong>Skill Execution &amp; Simulation</strong>: run skills in sim / hardware-in-loop.</li>
+<li><strong>Run Records</strong>: every run is logged with traceable context.</li>
+<li><strong>Link</strong>: <a class="link-pill" href="platform.html">Run API / Execution Docs</a></li>
+</ul>
+</section>
+<section class="section">
+<h2 id="certify">Certify</h2>
+<div class="onboarding"><p><strong>Purpose</strong>This page explains how RSS evaluates and certifies robot skills.</p><p><strong>What you will see here</strong>Execution logs, metrics, and artifacts are collected to assess skill quality and readiness for deployment.</p><p><strong>Lifecycle Anchor</strong>RSS Skill Lifecycle → Certify (Inside RSS)</p></div>
+
+<ul>
+<li><strong>Evidence &amp; Metrics</strong>: success rate, latency, safety constraints, robustness.</li>
+<li><strong>Artifact Management</strong>: logs, videos, datasets, reports.</li>
+<li><strong>Certification Logic</strong>: policy + thresholds + governance.</li>
+<li><strong>Link</strong>: <a class="link-pill" href="skills.html">Certified Skill Examples</a></li>
+</ul>
+</section>
+<section class="section">
+<h2 id="deploy">Deploy</h2>
+<div class="onboarding"><p><strong>Purpose</strong>This page shows how certified robot skills are delivered to users.</p><p><strong>What you will see here</strong>You will learn how validated skills are packaged, deployed, and reused across robots, projects, and scenarios.</p><p><strong>Lifecycle Anchor</strong>RSS Skill Lifecycle → Deploy (RSS → Users)</p></div>
+
+<ul>
+<li><strong>Skill Packaging</strong>: reproducible bundle + dependency lock.</li>
+<li><strong>Deployment Scenarios</strong>: factory lines, mobile manipulation, field robots.</li>
+<li><strong>Link</strong>: <a class="link-pill" href="skills.html">Certified Skill Examples</a></li>
+</ul>
+</section>
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">On this page</div>
+<nav class="toc-nav" id="tocNav">
+<a class="toc-link" href="#overview">Overview</a><a class="toc-link" href="#register">Register</a><a class="toc-link" href="#validate">Validate</a><a class="toc-link" href="#certify">Certify</a><a class="toc-link" href="#deploy">Deploy</a>
+</nav>
+</aside>
+</div>
+<script src="../assets/js/site.js?v=6.77.44"></script></body>
+</html>

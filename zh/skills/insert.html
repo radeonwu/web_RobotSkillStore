@@ -1,71 +1,80 @@
 <!DOCTYPE html>
-
-<html lang="zh">
+<html>
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>首页 · RobotSkillStore</title>
-<link href="../../assets/css/style.css?v=6.44.0" rel="stylesheet"/>
+<title>插入技能（Insert）</title>
+<link rel="stylesheet" href="../../assets/css/style.css?v=6.77.44"/>
+<script src="../../assets/config.js?v=6.77.44"></script>
+<script src="../../assets/js/site.js?v=6.77.44"></script>
 </head>
 <body>
-<header class="topbar">
-<div class="topbar-inner">
-<a class="brand" href="../index.html">
-<img class="brand-mark logo-img" src="../../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
-<span class="brand-name">RobotSkillStore</span>
-</a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">首页</a><a class="toplink active" href="../skills.html">技能</a><a class="toplink" href="../platform.html">平台</a><a class="toplink" href="../agents.html">智能体</a><a class="toplink" href="../architecture.html">架构</a><a class="toplink" href="../safety.html">安全</a><a class="toplink" href="../developers.html">开发者</a><a class="toplink" href="../demo.html">Demo</a><a class="toplink" href="../docs/index.html">文档</a><a class="toplink" href="../contact.html">联系</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
-<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
-<span class="icon">☾</span>
-<span class="label">Appearance</span>
-</button>
+<nav aria-label="Primary" class="topnav">
+  <a class="toplink" href="../index.html">首页</a>
+  <a class="toplink" href="../lifecycle.html">技能生命周期</a>
+  <a class="toplink" href="../platform.html">平台</a>
+  <a class="toplink" href="../concepts.html">概念</a>
+  <a class="toplink" href="../skills.html">认证技能</a>
+  <a class="toplink" href="../deployment.html">用户与部署</a>
+  <a class="toplink" href="../docs/index.html">文档</a>
+  <a class="toplink" href="../contact.html">联系</a>
+</nav>
+<main>
+  <h1>插入技能（Insert）</h1>
+<div class="onboarding"><p><strong>Purpose</strong>本页描述一个可通过 RSS 获取的已认证机器人技能。</p><p><strong>What you will see here</strong>包括技能行为、验证运行产生的证据，以及该技能在部署中的复用示例。</p><p><strong>Lifecycle Anchor</strong>RSS 技能生命周期 → 部署</p></div>
+
+<div class="card" id="skill-meta" style="margin:12px 0;">
+  <div class="card-title">Certified Snapshot</div>
+  <div class="skill-meta-row">
+    <span class="badge">Evidence L2</span>
+    <span class="badge">UR5 + RG2/2F-85</span>
+    <a class="link-pill" href="/viewer/">Latest Run</a>
+    <a class="link-pill" href="/viewer/">Evidence Viewer</a>
+  </div>
 </div>
+
+  <div class="rss-lifecycle-bar" data-stage="certify"><a class="rss-life-item " href="../lifecycle.html#register">Register</a><a class="rss-life-item " href="../lifecycle.html#validate">Validate</a><a class="rss-life-item active certify" href="../lifecycle.html#certify">Certify</a><a class="rss-life-item " href="../lifecycle.html#deploy">Deploy</a></div>
+  <p style="opacity:.85">将连接器插入到插座（socket）。</p>
+
+  <div class="cert-summary" data-skill-id="insert_connector">
+    <div><strong>认证摘要</strong><span class="badge">已认证</span></div>
+    <div class="row">
+      <div class="metric"><div class="k">Runs (30d)</div><div class="v" data-metric="runs_30d">—</div></div>
+      <div class="metric"><div class="k">Success Rate (30d)</div><div class="v" data-metric="success_rate_30d">—</div></div>
+      <div class="metric"><div class="k">P50 Cycle Time</div><div class="v" data-metric="p50_cycle_time_s_30d">—</div></div>
+      <div class="metric"><div class="k">Latest Version</div><div class="v" data-metric="latest_version">—</div></div>
+      <div class="metric"><div class="k">Robots Supported</div><div class="v" data-metric="robots_supported">—</div></div>
+    </div>
+    <div style="margin-top:8px; font-size:12px; opacity:0.8;">Data source: <code>/public/v1/skills/insert_connector</code></div>
+  
+  <h2 id="certification">Certification</h2>
+  <div class="card" style="margin:12px 0;">
+    <div class="card-title">Evidence Level</div>
+    <p style="margin-top:8px;"><span class="badge">L2（仿真验证 + 运行记录）</span> — evidence-backed certification snapshot.</p>
+  </div>
+
+  <h2 id="compatibility">Compatibility Matrix</h2>
+  <table class="simple-table">
+    <thead><tr><th>Dimension</th><th>Supported</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>机器人</td><td>UR5（参考）</td><td>可通过认证适配器扩展</td></tr><tr><td>夹爪/末端</td><td>Robotiq 2F-85 / RG2（参考）</td><td>需要夹爪坐标系标定</td></tr><tr><td>运行时</td><td>RSS Platform + RSP runtime</td><td>开启证据与工件存储</td></tr><tr><td>仿真到实机</td><td>支持</td><td>需保持场景与约束一致</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="latest-run">Latest Run</h2>
+  <p>
+    <a href="/viewer/">Open latest run</a>
+    <span style="opacity:.7;">(same-domain via reverse proxy)</span>
+  </p>
+  <p style="font-size:12px;opacity:.8;">If you are running locally, ensure <code>/platform</code> is reverse-proxied to RSS Platform.</p>
 </div>
-</header>
-<div class="layout">
-<main class="content" id="content">
-<section class="section">
-<div class="badge">概念技能</div>
-<h1>插入（Insert）</h1>
-<p class="lead">针对插入装配任务：对齐 + 接触处理 + 可选搜索策略，输出接触事件与质量指标。</p>
-<div class="cta-row">
-<a class="btn primary" data-rss-platform-skill-link="insert" href="#">在平台中打开</a>
-<a class="btn secondary" href="../docs/skill-spec.html">Skill Spec</a>
-<a class="btn ghost" href="../docs/skill-schema.html">Schema</a>
-</div>
-</section>
-<section class="section">
-<h2 id="status">平台状态</h2>
-<div data-rss-skill-status="1" data-skill-id="insert" id="rss-skill-status"></div>
-</section>
-<section class="section">
-<h2 id="overview">概览</h2>
-<p>针对插入装配任务：对齐 + 接触处理 + 可选搜索策略，输出接触事件与质量指标。</p>
-<div class="grid grid-2">
-<div class="card">
-<div class="card-title">典型输入</div>
-<ul class="checklist">
-<li>目标物体/工位位姿或标识</li>
-<li>可选提示（模板、接近策略、阈值）</li>
-</ul>
-</div>
-<div class="card">
-<div class="card-title">输出</div>
-<ul class="checklist">
-<li>成功/失败</li>
-<li>关键测量（耗时/力/扭矩曲线）</li>
-</ul>
-</div>
-</div>
-<p class="small-note">本页是概念层：解释是什么与约束。执行与产物仅在平台侧。</p>
-</section>
+
+  <h2 id="evidence">证据</h2>
+  <p>此处可链接到平台 Evidence Viewer 展示最近运行与证据。</p>
+
+  <h2 id="deployment">部署示例</h2>
+  <p>展示如何在生产环境部署/复用该已认证技能。</p>
+
+  <p style="margin-top:24px;"><a href="../skills.html">← 返回已认证技能列表</a><a class="toplink" href="../deployment.html">用户与部署</a></p>
 </main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">本页导航</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<script src="../../assets/js/site.js?v=6.44.0"></script>
 </body>
 </html>

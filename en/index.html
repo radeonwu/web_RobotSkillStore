@@ -5,16 +5,16 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.44.0" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.44" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
-<img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink active" href="index.html">Home</a><a class="toplink" href="skills.html">Skills</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="agents.html">Agents</a><a class="toplink" href="architecture.html">Architecture</a><a class="toplink" href="safety.html">Safety</a><a class="toplink" href="developers.html">Developers</a><a class="toplink" href="demo.html">Demo</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -24,194 +24,64 @@
 </div>
 </header>
 <div class="layout">
-<main class="content" id="content">
-<section class="hero">
-<div class="hero-inner">
-<div class="hero-left">
-<div class="badge">Platform-first · Governable · Deployable</div>
-<div class="hero-title-row"><h1>Robot Skill Store</h1>
-<span class="hero-logo">
-  <img src="../assets/media/rss_logo.png" alt="Robot Skill Store Logo">
-</span>
+<main class="content">
+<section class="section-plain">
+<div class="hero">
+<div class="hero-title">
+<h1 class="hero-h1 hero-h1-flex"><span>Robot Skill Store</span><span class="hero-subtag">– The Platform for Trusted, Reusable Robot Skills</span><img alt="RSS logo" class="hero-logo-inline hero-logo-right" src="../assets/media/rss_logo.png"/></h1>
 </div>
-<p class="lead">A Platform for Deployable Robot Capabilities</p>
-<p class="sublead">
-<strong>Define, discover, evaluate, and deploy robot skills</strong> across simulators and real-world robotic systems — with platform-managed Runs, immutable records, and policy gates.
-      </p>
-<p class="sublead">
-        Robot Skill Store treats robot skills as <strong>versioned, contracted, and auditable</strong> system assets — not just code, functions, or isolated demos.
-      </p>
-<div class="cta-row">
-<a class="btn primary" href="developers.html">Get Started</a>
-<a class="btn secondary" href="demo.html">View Demo</a>
-<a class="btn ghost" href="architecture.html#rsp-as-the-architectural-backbone">How RSS Guarantees Trust</a>
-</div>
-<div class="meta-row">
-<span>build v6.21.0</span>
-<span class="dot">•</span>
-<span>No Search</span>
-<span class="dot">•</span>
-<span>No Version Selector</span>
-</div>
-</div>
-<div class="hero-right">
-<div class="card hero-card">
-<div class="card-title">Skill Lifecycle (RSS Platform)</div>
-<ol class="steps">
-<li><strong>Register</strong> — publish intent, constraints, context, outcomes</li>
-<li><strong>Discover</strong> — search skills by goal &amp; environment</li>
-<li><strong>Match &amp; Rank</strong> — agent selects best skill under policies</li>
-<li><strong>Run</strong> — request a policy-gated, platform-managed Run with bound robot/env parameters</li>
-<li><strong>Feedback</strong> — record outcomes to improve selection and robustness</li>
-</ol>
-</div>
-</div>
-</div>
+<div class="onboarding"><p><strong>Purpose</strong>This site introduces Robot Skill Store (RSS), a platform for validating and deploying reusable robot skills.</p><p><strong>What you will see here</strong>You will learn how RSS sits between skill suppliers and skill users, and how robot skills move through a structured lifecycle from registration to deployment.</p><div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div></div>
+
+<section class="section" style="margin-top:14px;">
+  <h2 id="what-is-rss" style="margin:0 0 8px 0;">What is RSS</h2>
+  <p class="keypoint" style="margin:0 0 10px 0;">A Platform for Validating and Deploying Robot Skills</p>
+  <p style="margin:0;color:var(--vp-c-text-2);line-height:1.7;">RSS provides a structured pipeline to register, validate, certify, and deploy reusable robot skills — turning project-specific robot behaviors into long-term capability assets.</p>
 </section>
-<section class="section">
-<h2 id="why">Why Robot Skill Store</h2>
-<p>
-    Robotic capability today is fragmented. Skills are buried inside codebases, tightly coupled to
-    specific robots, tuned for a single environment, and rarely reusable across teams or systems.
-    What we call a “skill” is often just a function call, a ROS node, or a demo script.
-  </p>
-<p>That fragmentation makes it difficult to:</p>
-<ul>
-<li>share capabilities across robots and teams</li>
-<li>reason about safety and constraints in a structured way</li>
-<li>scale from simulation to real-world execution</li>
-<li>compose behaviors at the system or agent level</li>
-</ul>
-<p>
-<strong>Robot Skill Store addresses this gap by redefining what a robot skill is</strong> and
-    standardizing how it is described, selected, executed, and evaluated.
-  </p>
-</section>
-<section class="section">
-<h2 id="what-is-skill">What Is a Robot Skill</h2>
-<p>
-    In Robot Skill Store, a <em>skill</em> is not just executable code.
-    A robot skill is the smallest <strong>meaningful</strong> and <strong>safe</strong> unit of robotic capability,
-    defined by more than its implementation.
-  </p>
-<div class="grid grid-2">
-<div class="card">
-<div class="card-title">A skill includes</div>
-<ul class="checklist">
-<li><strong>Intent</strong> — what the robot is trying to achieve</li>
-<li><strong>Constraints</strong> — safety boundaries, limits, assumptions</li>
-<li><strong>Execution Context</strong> — simulator or real-world environment</li>
-<li><strong>Observable Outcomes</strong> — success criteria and feedback signals</li>
-</ul>
-</div>
-<div class="card">
-<div class="card-title">This enables skills to be</div>
-<ul class="checklist">
-<li><strong>Discoverable</strong> and comparable</li>
-<li><strong>Validated</strong> before execution</li>
-<li><strong>Composable</strong> by agents</li>
-<li><strong>Reusable</strong> across robots and environments</li>
-</ul>
-</div>
-</div>
-<p class="note">
-    A skill is no longer a private implementation detail — it becomes a shared, protocol-defined capability.
-  </p>
-</section>
-<section class="section">
-<h2 id="rsp">RSP: Robot Skill Protocol</h2>
-<p>
-    To make skills portable, comparable, and safe, they must be <strong>protocolized</strong>.
-    The Robot Skill Protocol (RSP) is the canonical contract that defines:
-  </p>
-<ul>
-<li>how skills are registered and described</li>
-<li>how agents discover, match, and select skills</li>
-<li>how execution is constrained and monitored</li>
-<li>how feedback is captured and reused</li>
-</ul>
-<p>
-    RSP is not an SDK and not a framework. It is the <strong>shared language</strong> between
-    skill providers, agents and orchestrators, simulators, and real robots.
-  </p>
-</section>
-<section class="section">
-<h2 id="demo-not-demo">Demo ≠ Demo</h2>
-<p>
-    Robot Skill Store demos are <strong>reference execution models</strong> — not showcases.
-    They exist to demonstrate how RSP-defined skills behave across environments with reproducible bindings,
-    constraint enforcement, and auditable outcomes.
-  </p>
-<div class="callout">
-<div class="callout-title">Reference Model Focus</div>
-<ul>
-<li>explicit skill specifications</li>
-<li>runtime parameter overrides (robot base, TCP, environment)</li>
-<li>environment-aware execution</li>
-<li>consistent evaluation in simulation and reality</li>
-</ul>
-</div>
-</section>
-<section class="section">
-<h2 id="who-for">Built for an Emerging Robot Ecosystem</h2>
-<p>Robot Skill Store is designed for teams building the next generation of robots:</p>
-<ul>
+
+<section class="section" style="margin-top:14px;">
+<h2 id="what-is-rss-for" style="margin:0 0 8px 0;">Whom RSS aims to serve?</h2>
+<p class="keypoint" style="margin:0 0 10px 0;">Robot Skill Store is designed for teams building the next generation of robots:</p>
+<ul style="margin:0 0 0 18px;line-height:1.9;">
 <li>small and mid-sized robotics teams</li>
 <li>industrial automation developers</li>
 <li>embodied AI and agent researchers</li>
 <li>platform builders exploring robot ecosystems</li>
 </ul>
-<p>
-    If you believe robot intelligence should be modular instead of monolithic, agent-driven instead of hard-coded,
-    and safe by construction — Robot Skill Store is built for you.
-  </p>
-<div class="cta-row">
-<a class="btn primary" href="developers.html">Get Started</a>
-<a class="btn secondary" href="platform.html">Understand the Platform</a>
-<a class="btn ghost" href="safety.html">Read Safety</a>
+</section>
 </div>
 </section>
 <section class="section">
-<h2 id="featured">Featured Pages</h2>
-<div class="grid grid-3">
-<a class="card link-card" href="platform.html">
-<div class="card-title">Platform</div>
-<div class="card-desc">Skill · Agent · Runtime unified into a single execution platform.</div>
-</a>
-<a class="card link-card" href="architecture.html">
-<div class="card-title">Architecture</div>
-<div class="card-desc">Protocol-centered design: tools plug into RSP, not the other way around.</div>
-</a>
-<a class="card link-card" href="safety.html">
-<div class="card-title">Safety</div>
-<div class="card-desc">Skill-level safety as the missing layer between controllers and models.</div>
-</a>
-<a class="card link-card" href="developers.html">
-<div class="card-title">Developers</div>
-<div class="card-desc">Quick start: define, register, select, execute, and evaluate skills.</div>
-</a>
-<a class="card link-card" href="demo.html">
-<div class="card-title">Demo (UR5)</div>
-<div class="card-desc">Reference execution model showing runtime binding and feedback loop.</div>
-</a>
-<a class="card link-card" href="architecture.html#simulation-and-reality-as-a-single-loop">
-<div class="card-title">Sim↔Real Loop</div>
-<div class="card-desc">Validation and consistency across simulation and deployment.</div>
-</a>
+<div>
+<h2 id="ecosystem">Where RSS sits in the ecosystem</h2>
+<p class="keypoint" style="margin-top:10px;">Suppliers publish skills. RSS validates and certifies them. Users deploy reusable skills.</p>
+<p style="margin:10px 0 0;color:var(--vp-c-text-2);line-height:1.7;">It defines how robot skills are supplied, governed, and consumed across organizations.<br/>Skill suppliers focus on capability development, RSS ensures validation and trust, and users deploy skills with confidence.</p>
+<div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px;flex-wrap:wrap;">
+<span class="badge">Supplier</span><span style="opacity:.6;">→</span>
+<span class="badge">RSS</span><span style="opacity:.6;">→</span>
+<span class="badge">User</span>
+</div>
 </div>
 </section>
-<footer class="footer">
-<div class="footer-inner">
-<div>Robot Skill Store · build v6.21.0</div>
-<div class="muted">UI: VitePress-like (no search, no version selector)</div>
+<section class="section">
+<div>
+<h2 id="why">Why RSS matters</h2>
+<p class="quote" style="margin-top:10px;">RSS scales by compounding validated skills.</p>
+<div class="prose">
+<p>Today, robot capabilities are highly fragmented: “skills” are often buried in code, tightly coupled to a specific robot and environment, customized for a single scenario, and hard to reuse across teams or systems.</p>
+<p>What we call a “skill” is frequently just a function call, a ROS node, or a one-off demo script.</p>
+<p>This fragmentation leads to:</p>
+<ul>
+<li>Poor sharing across robots and teams</li>
+<li>Safety constraints not expressed structurally (hard to reason about systematically)</li>
+<li>Sim-to-real transfer that does not scale</li>
+<li>Orchestration that relies on hard-coded glue, limiting what agents can compose and decide</li>
+</ul>
+<p><strong>Robot Skill Store</strong> is designed to solve this root problem.</p>
 </div>
-</footer>
+
+</div>
+</section>
 </main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">On this page</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<script src="../assets/js/site.js?v=6.44.0"></script>
-</body>
+<aside class="toc"><div class="toc-title">ON THIS PAGE</div><nav id="tocNav"></nav></aside></div>
+<script src="../assets/js/site.js?v=6.77.44"></script></body>
 </html>

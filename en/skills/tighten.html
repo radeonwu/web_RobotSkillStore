@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Screw Tighten Skill</title>
+<link rel="stylesheet" href="../../assets/css/style.css?v=6.77.44"/>
+<script src="../../assets/config.js?v=6.77.44"></script>
+<script src="../../assets/js/site.js?v=6.77.44"></script>
+</head>
+<body>
+<nav aria-label="Primary" class="topnav">
+  <a class="toplink" href="../index.html">Home</a>
+  <a class="toplink" href="../lifecycle.html">Skill Lifecycle</a>
+  <a class="toplink" href="../platform.html">Platform</a>
+  <a class="toplink" href="../concepts.html">Concepts</a>
+  <a class="toplink" href="../skills.html">Certified Skills</a><a class="toplink" href="../deployment.html">Deployment</a>
+  <a class="toplink" href="../docs/index.html">Docs</a>
+  <a class="toplink" href="../contact.html">Contact</a>
+</nav>
+<main>
+  <h1>Screw Tighten Skill</h1>
+<div class="onboarding"><p><strong>Purpose</strong>This page describes a certified robot skill available through RSS.</p><p><strong>What you will see here</strong>Skill behavior, evidence from validation runs, and examples of how this skill can be reused in deployments.</p><p><strong>Lifecycle Anchor</strong>RSS Skill Lifecycle → Deploy</p></div>
+
+<div class="card" id="skill-meta" style="margin:12px 0;">
+  <div class="card-title">Certified Snapshot</div>
+  <div class="skill-meta-row">
+    <span class="badge">Evidence L2</span>
+    <span class="badge">UR5 + RG2/2F-85</span>
+    <a class="link-pill" href="/viewer/">Latest Run</a>
+    <a class="link-pill" href="/viewer/">Evidence Viewer</a>
+  </div>
+</div>
+
+  <div class="rss-lifecycle-bar" data-stage="certify"><a class="rss-life-item " href="../lifecycle.html#register">Register</a><a class="rss-life-item " href="../lifecycle.html#validate">Validate</a><a class="rss-life-item active certify" href="../lifecycle.html#certify">Certify</a><a class="rss-life-item " href="../lifecycle.html#deploy">Deploy</a></div>
+  <p style="opacity:.85">Tighten a screw with controlled motion.</p>
+
+  <div class="cert-summary" data-skill-id="tighten_screw">
+    <div><strong>Certification Summary</strong><span class="badge">Certified</span></div>
+    <div class="row">
+      <div class="metric"><div class="k">Runs (30d)</div><div class="v" data-metric="runs_30d">—</div></div>
+      <div class="metric"><div class="k">Success Rate (30d)</div><div class="v" data-metric="success_rate_30d">—</div></div>
+      <div class="metric"><div class="k">P50 Cycle Time</div><div class="v" data-metric="p50_cycle_time_s_30d">—</div></div>
+      <div class="metric"><div class="k">Latest Version</div><div class="v" data-metric="latest_version">—</div></div>
+      <div class="metric"><div class="k">Robots Supported</div><div class="v" data-metric="robots_supported">—</div></div>
+    </div>
+    <div style="margin-top:8px; font-size:12px; opacity:0.8;">Data source: <code>/public/v1/skills/tighten_screw</code></div>
+  
+  <h2 id="certification">Certification</h2>
+  <div class="card" style="margin:12px 0;">
+    <div class="card-title">Evidence Level</div>
+    <p style="margin-top:8px;"><span class="badge">L2 (Validated in sim + logged runs)</span> — evidence-backed certification snapshot.</p>
+  </div>
+
+  <h2 id="compatibility">Compatibility Matrix</h2>
+  <table class="simple-table">
+    <thead><tr><th>Dimension</th><th>Supported</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Robot</td><td>UR5 (reference)</td><td>Extend via certified adapters</td></tr><tr><td>End-effector</td><td>Robotiq 2F-85 / RG2 (reference)</td><td>Gripper frame calibration required</td></tr><tr><td>Runtime</td><td>RSS Platform + RSP runtime</td><td>Evidence + artifact store enabled</td></tr><tr><td>Sim→Real</td><td>Supported</td><td>Validation requires consistent scene + constraints</td></tr>
+    </tbody>
+  </table>
+
+  <h2 id="latest-run">Latest Run</h2>
+  <p>
+    <a href="/viewer/">Open latest run</a>
+    <span style="opacity:.7;">(same-domain via reverse proxy)</span>
+  </p>
+  <p style="font-size:12px;opacity:.8;">If you are running locally, ensure <code>/platform</code> is reverse-proxied to RSS Platform.</p>
+</div>
+
+  <h2 id="evidence">Evidence</h2>
+  <p><a href="/viewer/">Open Evidence Viewer</a> (runs, videos, artifacts, metrics).</p>
+
+  <h2 id="deployment">Deployment Example</h2>
+  <p>See <a href="/platform/deploy/?skill_id=tighten_screw">deployment packaging</a> and <a href="../lifecycle.html#deploy">Deploy stage</a>.</p>
+
+  <p style="margin-top:24px;"><a href="../skills.html">← Back to Certified Skills</a></p>
+</main>
+</body>
+</html>

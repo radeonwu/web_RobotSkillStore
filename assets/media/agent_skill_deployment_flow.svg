@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-label="Agent-based skill deployment flow">
+  <defs>
+    <style>
+      .title{font:700 34px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#111827;}
+      .subtitle{font:500 16px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#475569;}
+      .stepTitle{font:700 20px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#0f172a;}
+      .stepText{font:500 15px system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:#334155;}
+      .box{fill:#f8fafc; stroke:#cbd5e1; stroke-width:2;}
+      .box2{fill:#f1f5f9; stroke:#cbd5e1; stroke-width:2;}
+      .arrow{stroke:#94a3b8; stroke-width:4; fill:none; stroke-linecap:round; stroke-linejoin:round;}
+    </style>
+    <marker id="arrowHead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="58" class="title">Agent-based Skill Deployment Flow</text>
+  <text x="40" y="88" class="subtitle">Example: UR5 arm + RG2 gripper, task = pick → insert → tighten, with evidence recorded in RSS Viewer</text>
+  <line x1="40" y1="108" x2="1160" y2="108" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Step boxes (top row) -->
+  <!-- Layout constants: box w=190 h=110, gap=30 -->
+  <g transform="translate(40,140)">
+    <rect class="box" x="0" y="0" rx="16" ry="16" width="190" height="110"/>
+    <text class="stepTitle" x="18" y="38">Task</text>
+    <text class="stepText" x="18" y="66">Pick → insert → tighten</text>
+
+    <path class="arrow" marker-end="url(#arrowHead)" d="M200 55 H238"/>
+
+    <rect class="box" x="260" y="0" rx="16" ry="16" width="190" height="110"/>
+    <text class="stepTitle" x="278" y="38">Plan</text>
+    <text class="stepText" x="278" y="66">Decompose into subtasks</text>
+
+    <path class="arrow" marker-end="url(#arrowHead)" d="M460 55 H498"/>
+
+    <rect class="box" x="520" y="0" rx="16" ry="16" width="190" height="110"/>
+    <text class="stepTitle" x="538" y="38">Match</text>
+    <text class="stepText" x="538" y="66">Select certified skills</text>
+
+    <path class="arrow" marker-end="url(#arrowHead)" d="M720 55 H758"/>
+
+    <rect class="box" x="780" y="0" rx="16" ry="16" width="190" height="110"/>
+    <text class="stepTitle" x="798" y="38">Execute</text>
+    <text class="stepText" x="798" y="66">Run with constraints</text>
+
+    <path class="arrow" marker-end="url(#arrowHead)" d="M980 55 H1018"/>
+
+    <rect class="box" x="1040" y="0" rx="16" ry="16" width="190" height="110"/>
+    <text class="stepTitle" x="1058" y="38">Recover</text>
+    <text class="stepText" x="1058" y="66">Retry / reparam / swap</text>
+  </g>
+
+  <!-- Evidence bar (bottom) -->
+  <g transform="translate(40,270)">
+    <rect class="box2" x="0" y="0" rx="16" ry="16" width="1120" height="70"/>
+    <text class="stepTitle" x="18" y="44">Evidence</text>
+    <text class="stepText" x="140" y="44">Attach traces (video / logs / metrics) and review in RSS Viewer for validation and certification</text>
+  </g>
+</svg>
