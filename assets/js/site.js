@@ -410,6 +410,234 @@
     });
   }
 
+  // ---- Contact message board (local demo) ----
+  // The contact page uses inline handlers (onsubmit/onclick), so we expose a few globals.
+  var CONTACT_KEY = 'rss_contact_messages';
+  var EVID_KEY = 'rsp_last_evidence';
+
+  function nowISO(){
+    try{ return new Date().toISOString(); }catch(e){ return ''+Date.now(); }
+  }
+
+  function loadMessages(){
+    try{
+      var raw = localStorage.getItem(CONTACT_KEY);
+      if(!raw) return [];
+      var arr = JSON.parse(raw);
+      return Array.isArray(arr) ? arr : [];
+    }catch(e){
+      return [];
+    }
+  }
+
+  function saveMessages(arr){
+    try{ localStorage.setItem(CONTACT_KEY, JSON.stringify(arr||[])); }catch(e){}
+  }
+
+  function renderMessages(){
+    var list = qs('#message-list');
+    var count = qs('#message-count');
+    if(!list || !count) return;
+    var msgs = loadMessages();
+    count.textContent = String(msgs.length);
+    list.innerHTML = '';
+    if(!msgs.length){
+      var empty = document.createElement('div');
+      empty.className = 'note';
+      empty.textContent = 'No messages yet.';
+      list.appendChild(empty);
+      return;
+    }
+    msgs
+      .slice()
+      .sort(function(a,b){ return (b.ts||0) - (a.ts||0); })
+      .forEach(function(m){
+        var item = document.createElement('div');
+        item.className = 'msg-item';
+        item.style.borderTop = '1px solid var(--border)';
+        item.style.padding = '10px 2px';
+
+        var head = document.createElement('div');
+        head.style.display = 'flex';
+        head.style.justifyContent = 'space-between';
+        head.style.gap = '10px';
+        head.style.flexWrap = 'wrap';
+
+        var who = document.createElement('div');
+        who.innerHTML = '<strong>' + (m.name||'Anonymous') + '</strong>' + (m.email ? (' · <span class="note">' + m.email + '</span>') : '');
+        var when = document.createElement('div');
+        when.className = 'note';
+        when.textContent = m.time || '';
+
+        head.appendChild(who);
+        head.appendChild(when);
+
+        var body = document.createElement('div');
+        body.style.marginTop = '6px';
+        body.textContent = m.message || '';
+
+        item.appendChild(head);
+        item.appendChild(body);
+        list.appendChild(item);
+      });
+  }
+
+  function setMsgStatus(text, ok){
+    var el = qs('#msg-status');
+    if(!el) return;
+    el.style.display = 'block';
+    el.textContent = text;
+    el.style.color = ok ? 'var(--text)' : 'var(--danger)';
+  }
+
+  function buildEvidence(msg, emailAttempt){
+    var ctx = {
+      time: nowISO(),
+      page: String(location.href||''),
+      user_agent: (navigator && navigator.userAgent) ? navigator.userAgent : '',
+      mode: (location && location.protocol) ? location.protocol : ''
+    };
+    var outcome = {
+      stored_local: true,
+      email_attempted: !!emailAttempt,
+      email_sent: false,
+      error: null
+    };
+    var bundle = {
+      "message.json": {
+        name: msg.name || '',
+        email: msg.email || '',
+        message: msg.message || '',
+        page: ctx.page,
+        time: ctx.time
+      },
+      "outcome.json": outcome,
+      "execution_context.json": ctx
+    };
+    try{ localStorage.setItem(EVID_KEY, JSON.stringify(bundle)); }catch(e){}
+    return bundle;
+  }
+
+  // Global: submitMessage(form)
+  window.submitMessage = function(form){
+    try{
+      var f = form || qs('#contact-form');
+      if(!f) return false;
+      var name = (f.elements.name && f.elements.name.value || '').trim();
+      var email = (f.elements.email && f.elements.email.value || '').trim();
+      var message = (f.elements.message && f.elements.message.value || '').trim();
+      var sendEmail = !!(f.elements.send_email && f.elements.send_email.checked);
+
+      if(!name || !message){
+        setMsgStatus('Please fill in required fields.', false);
+        return false;
+      }
+
+      var msg = {
+        id: 'm_' + Date.now() + '_' + Math.random().toString(16).slice(2),
+        ts: Date.now(),
+        time: nowISO(),
+        name: name,
+        email: email,
+        message: message
+      };
+
+      var msgs = loadMessages();
+      msgs.push(msg);
+      saveMessages(msgs);
+      renderMessages();
+
+      // Evidence bundle (updated with outcome after email attempt)
+      var bundle = buildEvidence(msg, sendEmail);
+
+      // Attempt email relay only when hosted (not file://)
+      if(sendEmail){
+        if((location && location.protocol) === 'file:'){
+          setMsgStatus('Saved locally. Email relay requires hosting this site and configuring POST /api/contact.', true);
+          return false;
+        }
+        var payload = {
+          to: 'towu.xiaojun@gmail.com',
+          from_name: name,
+          from_email: email,
+          message: message,
+          page: String(location.href||'')
+        };
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify(payload)
+        }).then(function(r){
+          if(!r.ok) throw new Error('HTTP ' + r.status);
+          return r.text();
+        }).then(function(){
+          try{
+            bundle['outcome.json'].email_sent = true;
+            localStorage.setItem(EVID_KEY, JSON.stringify(bundle));
+          }catch(e){}
+          setMsgStatus('Saved locally and sent via email relay.', true);
+        }).catch(function(err){
+          try{
+            bundle['outcome.json'].error = String(err && err.message ? err.message : err);
+            localStorage.setItem(EVID_KEY, JSON.stringify(bundle));
+          }catch(e){}
+          setMsgStatus('Saved locally. Email relay failed: ' + (err && err.message ? err.message : err), false);
+        });
+      }else{
+        setMsgStatus('Saved locally.', true);
+      }
+
+      // Reset message field (keep name/email for convenience)
+      try{ f.elements.message.value = ''; }catch(e){}
+      return false;
+    }catch(e){
+      setMsgStatus('Submit failed: ' + (e && e.message ? e.message : e), false);
+      return false;
+    }
+  };
+
+  // Global: exportLastEvidence()
+  window.exportLastEvidence = function(){
+    try{
+      var raw = localStorage.getItem(EVID_KEY);
+      if(!raw){
+        alert('No evidence bundle found yet. Submit a message first.');
+        return;
+      }
+      var blob = new Blob([raw], {type:'application/json'});
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'rss_contact_evidence.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(function(){ try{ URL.revokeObjectURL(url); }catch(e){} }, 500);
+    }catch(e){
+      alert('Export failed: ' + (e && e.message ? e.message : e));
+    }
+  };
+
+  // Global: toggleMessageBoard()
+  window.toggleMessageBoard = function(){
+    var board = qs('#message-board');
+    if(!board) return;
+    var isHidden = board.style.display === 'none';
+    board.style.display = isHidden ? '' : 'none';
+  };
+
+  // Global: clearMessages()
+  window.clearMessages = function(){
+    try{ localStorage.removeItem(CONTACT_KEY); }catch(e){}
+    renderMessages();
+    setMsgStatus('Cleared local messages.', true);
+  };
+
+  function initContactBoard(){
+    if(!qs('#contact-form')) return;
+    renderMessages();
+  }
+
   function init(){
     measureTopbar();
     initTheme();
@@ -421,6 +649,7 @@
     initIframeAutoHeight();
     initInlineToggleNav();
     bindPlatformLinks();
+    initContactBoard();
     enableAnchorOffset();
     bindLangToggle();
     window.addEventListener('resize', measureTopbar);
