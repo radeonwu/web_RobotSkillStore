@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Deployment · Robot Skill Store</title>
-<link rel="stylesheet" href="../assets/css/style.css?v=6.77.46"/>
+<link rel="stylesheet" href="../assets/css/style.css?v=6.77.49"/>
 </head>
 <body>
 <header class="topbar">
@@ -96,10 +96,16 @@
 
   <h3 style="margin-top:14px;" id="agent-loop">What the agent does (practical loop)</h3>
   <ul>
-    <li><b>Pick</b>: agent selects a grasp template + approach height for <b>pick_place</b> based on part pose and workspace constraints.</li>
-    <li><b>Insert</b>: agent sets pose constraints and failure-recovery thresholds for <b>connector_insert</b> (approach/retract, contact, seat).</li>
-    <li><b>Tighten</b>: agent configures <b>tighten_screw</b> with torque/angle targets and validates evidence for determinism.</li>
-    <li><b>Govern</b>: each run produces a trace bundle; stability is promoted by validation → certification, not by rewriting code.</li>
+    <li><b>Task orchestration</b>: breaks a high-level goal into an executable plan (a sequence of skills) and attaches the required context &amp; constraints for each step.</li>
+    <li><b>Skill matching</b>: searches RSS for candidate skills/versions and selects the best one based on evidence maturity, applicability bounds, and constraint fit (replaceable, rollbackable).</li>
+    <li><b>Execution (example: connector assembly)</b>:
+      <ul style="margin-top:8px;">
+        <li><b>pick</b>: choose a grasp template and approach/avoidance strategy so the grasp pose remains compatible with downstream insertion constraints.</li>
+        <li><b>insert</b>: set pose/contact thresholds; control approach/seat/retract; trigger recovery when failures occur.</li>
+        <li><b>tighten</b>: configure torque/angle targets and stop conditions; run deterministically and produce auditable evidence.</li>
+      </ul>
+    </li>
+    <li><b>Governance</b>: every run produces a trace/evidence bundle; stability improves via validate → certify → policy gates, not by repeatedly editing demo code.</li>
   </ul>
 
   <pre class="codeblock list-align" data-title="Agent orchestration pseudocode"><code>// Pseudocode: agent orchestration over certified skills
@@ -119,7 +125,7 @@ for step in plan:
 </section>
 
 <section class="section">
-  <h2 id="demo">Connector assembly application example</h2>
+  <h2 id="demo">Skill deployment example: connector assembly</h2>
   <div class="video-card">
     <video controls preload="metadata" src="../assets/media/ur5_rg2_demo.mp4" style="width:100%;border-radius:12px;"></video>
     <p style="margin:10px 0 0;color:var(--vp-c-text-2);line-height:1.6;">Example workflow: <b>pick_place</b> → <b>connector_insert</b> → <b>tighten_screw</b>. The same skills can be reused by changing constraints and parameters, not by rewriting programs.</p>
@@ -151,6 +157,6 @@ for step in plan:
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.77.46"></script>
+<script src="../assets/js/site.js?v=6.77.49"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>什么是 Robot Skill · Robot Skill Store</title>
-  <link rel="stylesheet" href="../../assets/css/style.css?v=6.77.46"/>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=6.77.49"/>
   <style>
     /* Embed mode: remove extra margins and keep content tight */
     html,body{height:auto!important;min-height:0!important;}
@@ -26,6 +26,19 @@
 <li>确定性行为（在已声明约束内）</li>
 <li>显式前置条件 / 安全边界 / I/O Schema</li>
 <li>可通过证据与指标进行验证</li>
+</ul>
+<h3 id="what" style="margin:12px 0 6px 0;">核心思想（What）- Robot Skill 的重新定义</h3>
+<ul style="margin:0 0 10px 18px;line-height:1.8;">
+  <li>Skill ≠ 动作脚本 / Trajectory / Demo</li>
+  <li>Skill = <strong>可调用、可评估、可迁移</strong>的能力单元</li>
+</ul>
+
+<h3 id="must-have" style="margin:12px 0 6px 0;">Skill 必须具备</h3>
+<ul>
+  <li><strong>明确的输入 / 输出语义</strong>（I/O schema 与约束）</li>
+  <li><strong>内部实现可多样</strong>：规则 / RL / VLA / World Model / 混合</li>
+  <li><strong>可量化的质量属性</strong>：成功率、适用域、风险边界</li>
+  <li><strong>可被 Agent 调度</strong>：可组合、可替换、可编排</li>
 </ul>
 </section><section class="section">
 <h2 id="why">为什么 RSS 要强调 Skill</h2>
