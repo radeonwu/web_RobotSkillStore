@@ -1105,9 +1105,19 @@ pre.codeblock.list-align{
 .pipe-step.publish{flex:1.10 1 0;}
 .pipe-body{font-size:12px;color:rgba(40,50,70,.92);line-height:1.35;word-break:break-word;}
 .pipe-title{font-weight:800;font-size:12px;margin-bottom:6px;}
-.pipe-arrow{flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:var(--vp-c-text-1);font-size:28px;font-weight:900;min-width:26px;}
+.pipe-arrow{flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:var(--vp-c-text-1);font-size:24px;font-weight:900;min-width:22px;}
+.pipe-arrow.down{min-width:22px;}
+.pipe-arrow.reverse{transform:rotate(180deg);} 
+
+/* Connector row between top/bottom in platform pipeline */
+.pipe-connector{display:flex;align-items:center;gap:10px;margin:2px 0 8px 0;color:var(--vp-c-text-1);}
+.pipe-spacer{flex:1 1 0;min-width:0;}
+.pipe-arrow-spacer{flex:0 0 auto;min-width:22px;}
+.pipe-connector-cell{flex:1 1 0;display:flex;justify-content:center;}
+.pipe-connector-cell svg{width:60px;height:44px;display:block;}
 @media (max-width: 980px){
   .pipe-arrow{display:none;}
+  .pipe-connector{display:none;}
   .pipe-row{flex-wrap:wrap;}
   .pipe-row.bottom{justify-content:flex-start;}
 }
@@ -1116,12 +1126,22 @@ pre.codeblock.list-align{
 .deploy-flow{margin:14px 0 0;}
 .deploy-flow .deploy-row{display:flex;align-items:stretch;gap:14px;flex-wrap:wrap;}
 .deploy-flow .deploy-row.top{flex-wrap:nowrap;}
-.deploy-flow .deploy-row.bottom{flex-wrap:nowrap;}
+.deploy-flow .deploy-row.bottom{flex-wrap:nowrap;justify-content:flex-start;}
 .deploy-step{flex:1 1 200px;background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-radius:14px;padding:14px;min-height:92px;}
 .deploy-step h4{margin:0 0 8px;font-size:17px;}
 .deploy-step p{margin:0;color:var(--vp-c-text-2);line-height:1.55;}
-.deploy-arrow{flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:var(--vp-c-text-1);font-size:28px;font-weight:900;min-width:26px;}
-.deploy-arrow.down{min-width:36px;}
+.deploy-arrow{flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:var(--vp-c-text-1);font-size:24px;font-weight:900;min-width:22px;}
+.deploy-arrow.down{min-width:22px;}
+.deploy-arrow.reverse{transform:rotate(180deg);} 
+.deploy-arrow.v{transform:rotate(90deg);} 
+
+/* Connector row between top/bottom in deployment flow */
+.deploy-flow{position:relative;}
+.deploy-connector-down{display:flex;align-items:center;gap:14px;margin:2px 0 8px 0;color:var(--vp-c-text-1);}
+.deploy-spacer{flex:1 1 200px;min-width:0;}
+.deploy-arrow-spacer{flex:0 0 auto;min-width:22px;}
+.deploy-connector-cell{flex:1 1 200px;display:flex;justify-content:center;}
+.deploy-connector-cell svg{width:60px;height:44px;display:block;}
 
 /* Compact bottom-row cards in agent deployment flow */
 .deploy-step.compact{flex:0 0 280px;min-height:86px;}

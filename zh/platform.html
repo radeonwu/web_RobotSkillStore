@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>平台 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.77.45" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -51,15 +51,25 @@
       <div class="pipe-step"><div class="pipe-title">2) 执行/验证</div><div class="pipe-body">POST <code>/runs</code> 或 <code>/runs/submit</code><br/>Run 记录 + 上下文</div></div>
       <div class="pipe-arrow">➜</div>
       <div class="pipe-step"><div class="pipe-title">3) 证据采集</div><div class="pipe-body">POST <code>/runs/{run_id}/artifacts</code><br/>GET <code>/runs/{run_id}/events</code></div></div>
-      <div class="pipe-arrow">➜</div>
-      <div class="pipe-step eval"><div class="pipe-title">4) 评估</div><div class="pipe-body">GET <code>/runs/{run_id}</code><br/>Outcome + 约束 + 指标</div></div>
     </div>
 
-    <div class="pipe-row bottom" style="margin-top:10px;">
-      <div class="pipe-arrow">➜</div>
-      <div class="pipe-step certify"><div class="pipe-title">5) 认证/治理</div><div class="pipe-body">GET <code>/skills/{skill}/{ver}/governance</code><br/><code>governance.py</code> 规则 + 置信区间</div></div>
-      <div class="pipe-arrow">➜</div>
+    <!-- Connector: 3) 证据采集 -> 4) 评估（第二排最右） -->
+    <div class="pipe-connector" aria-hidden="true">
+      <div class="pipe-spacer"></div>
+      <div class="pipe-arrow-spacer"></div>
+      <div class="pipe-spacer"></div>
+      <div class="pipe-arrow-spacer"></div>
+      <div class="pipe-connector-cell">
+        <div class="pipe-arrow down" aria-hidden="true">⬇</div>
+      </div>
+    </div>
+
+    <div class="pipe-row bottom rtl" style="margin-top:10px;">
       <div class="pipe-step publish"><div class="pipe-title">6) 对外发布（Public）</div><div class="pipe-body">GET <code>/public/v1/skills</code><br/>GET <code>/public/v1/skills/{skill_id}</code></div></div>
+      <div class="pipe-arrow reverse">➜</div>
+      <div class="pipe-step certify"><div class="pipe-title">5) 认证/治理</div><div class="pipe-body">GET <code>/skills/{skill}/{ver}/governance</code><br/><code>governance.py</code> 规则 + 置信区间</div></div>
+      <div class="pipe-arrow reverse">➜</div>
+      <div class="pipe-step eval"><div class="pipe-title">4) 评估</div><div class="pipe-body">GET <code>/runs/{run_id}</code><br/>Outcome + 约束 + 指标</div></div>
     </div>
   </div>
   <p class="muted" style="margin-top:10px;">UI 入口（由 Gateway 暴露）：<code>/viewer/</code>（证据浏览），<code>/public/v1/*</code>（官网嵌入）。</p>
@@ -204,7 +214,7 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/config.js?v=6.77.45"></script>
+<script src="../assets/config.js?v=6.77.46"></script>
 <script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
-<script src="../assets/js/site.js?v=6.77.45"></script></body>
+<script src="../assets/js/site.js?v=6.77.46"></script></body>
 </html>

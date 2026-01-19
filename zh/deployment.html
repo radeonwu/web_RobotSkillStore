@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>用户与部署 · Robot Skill Store</title>
-<link rel="stylesheet" href="../assets/css/style.css?v=6.77.45"/>
+<link rel="stylesheet" href="../assets/css/style.css?v=6.77.46"/>
 </head>
 <body>
 <header class="topbar">
@@ -46,6 +46,7 @@
   <p>应用团队通常从用户任务出发（例如，使用 UR5 机械臂和 RG2 夹爪完成连接器装配并拧紧螺丝），由智能体把认证技能当作积木进行编排与执行。</p>
 
   <div class="deploy-flow" aria-label="智能体技能部署流程">
+    <!-- 第一排（1-3）：任务 → 规划 → 匹配 -->
     <div class="deploy-row top">
       <div class="deploy-step">
         <h4>任务</h4>
@@ -61,23 +62,34 @@
         <h4>匹配</h4>
         <p>检索技能：<b>pick_place</b>、<b>connector_insert</b>、<b>tighten_screw</b></p>
       </div>
-      <div class="deploy-arrow">➜</div>
-      <div class="deploy-step">
-        <h4>执行</h4>
-        <p>带约束运行（参数 / sim / HIL / real）</p>
+    </div>
+
+    <!-- 连接：匹配（第一排第3列）↓ 执行（第二排第3列） -->
+    <div class="deploy-connector-down" aria-hidden="true" style="margin-top:2px;margin-bottom:8px;">
+      <div class="deploy-spacer"></div>
+      <div class="deploy-arrow-spacer"></div>
+      <div class="deploy-spacer"></div>
+      <div class="deploy-arrow-spacer"></div>
+      <div class="deploy-connector-cell">
+        <div class="deploy-arrow v" aria-hidden="true">➜</div>
       </div>
     </div>
 
-    <div class="deploy-row bottom" style="margin-top:14px;">
-      <div class="deploy-arrow down">↘</div>
-      <div class="deploy-step recover compact">
+    <!-- 第二排（4-6，右→左）：执行 → 恢复 → 证据 -->
+    <div class="deploy-row bottom" style="margin-top:0;">
+      <div class="deploy-step evidence">
+        <h4>证据</h4>
+        <p>附加 traces（视频 / 日志 / 指标）并在 viewer 中复盘</p>
+      </div>
+      <div class="deploy-arrow reverse">➜</div>
+      <div class="deploy-step recover">
         <h4>恢复</h4>
         <p>失败时：重试、调参，或切换候选技能</p>
       </div>
-      <div class="deploy-arrow">➜</div>
-      <div class="deploy-step evidence compact">
-        <h4>证据</h4>
-        <p>附加 traces（视频 / 日志 / 指标）并在 viewer 中复盘</p>
+      <div class="deploy-arrow reverse">➜</div>
+      <div class="deploy-step">
+        <h4>执行</h4>
+        <p>带约束运行（参数 / sim / HIL / real）</p>
       </div>
     </div>
   </div>
@@ -139,6 +151,6 @@ for step in plan:
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.77.45"></script>
+<script src="../assets/js/site.js?v=6.77.46"></script>
 </body>
 </html>
