@@ -557,7 +557,7 @@
           return false;
         }
         var payload = {
-          to: 'towu.xiaojun@gmail.com',
+          to: 'wu.xiaojun@gmail.com',
           from_name: name,
           from_email: email,
           message: message,

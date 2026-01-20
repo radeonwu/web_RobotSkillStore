@@ -978,6 +978,11 @@ p.lead{background:rgba(37,99,235,0.08);border-left:4px solid #2563eb;padding:10p
 .hero-h1-flex{display:flex;align-items:center;gap:12px;width:100%;flex-wrap:nowrap;}
 .hero-h1-flex .hero-logo-right{margin-left:auto;}
 
+/* Keep the main EN title on one line for desktop widths (avoid 'Robot Skill' / 'Store' split) */
+@media (min-width: 900px){
+  .hero-h1-flex > span:first-child{white-space:nowrap;}
+}
+
 /* Home title suffix (smaller slogan after RSS) */
 .hero-h1-flex .hero-subtag{
   font-size:0.55em;
@@ -1154,3 +1159,90 @@ pre.codeblock.list-align{
   .deploy-flow .deploy-row.bottom{flex-wrap:wrap;}
   .deploy-arrow{display:none;}
 }
+
+/* =========================================================
+   Visual consistency sweep (Freeze+ polish6)
+   Scope: typography rhythm + badges + docs foldable cards
+   NOTE: CSS-only overrides; no structural changes.
+   ========================================================= */
+
+/* Quote / keypoint highlight */
+.quote{
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-left: 4px solid color-mix(in srgb, var(--vp-c-brand) 65%, transparent);
+  background: color-mix(in srgb, var(--vp-c-brand) 10%, transparent);
+  border-radius: 12px;
+  line-height: 1.65;
+}
+
+/* Lead text: consistent rhythm across pages */
+p.lead{
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--vp-c-text-2);
+  margin: 8px 0 12px;
+}
+.hero .lead{
+  font-size: 20px;
+  margin: 0 0 12px;
+}
+
+/* Lists: consistent indentation + density inside sections/cards */
+.section ul, .section ol,
+.card ul, .card ol{
+  margin: 10px 0 12px 22px;
+  line-height: 1.75;
+}
+.section li, .card li{margin: 6px 0;}
+
+/* Badge system: align baseline & sizes */
+.badge{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--vp-c-border);
+  background: color-mix(in srgb, var(--vp-c-bg-soft) 75%, transparent);
+  color: var(--vp-c-text-2);
+  font-size: 12px;
+  line-height: 1;
+}
+.badge.square{
+  border-radius: 10px;
+  padding: 6px 14px;
+}
+
+/* Docs foldable card summary */
+details.card > summary.card-summary{
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--vp-c-text-1);
+}
+details.card > summary.card-summary::-webkit-details-marker{display:none;}
+details.card > summary.card-summary::before{
+  content: "▶";
+  display: inline-block;
+  margin-right: 10px;
+  color: var(--vp-c-text-2);
+  transform-origin: 50% 50%;
+  transition: transform .15s ease;
+}
+details.card[open] > summary.card-summary::before{
+  transform: rotate(90deg);
+}
+details.card > summary.card-summary:hover{color: var(--vp-c-brand);}
+
+/* --- Flow diagram (Supplier -> RSS -> User) --- */
+.flowline{display:flex;align-items:stretch;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:14px}
+.flow-node{min-width:168px;max-width:220px;border:1px solid rgba(0,0,0,.12);background:#fff;border-radius:12px;padding:12px 12px 10px;text-align:center}
+.flow-node .flow-title{font-weight:700}
+.flow-node .flow-sub{margin-top:6px;font-size:13px;line-height:1.35;opacity:.78}
+.flow-edge{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:120px}
+.flow-edge .flow-label{font-size:12.5px;line-height:1.2;opacity:.75;white-space:nowrap}
+.flow-edge .flow-arrow{font-size:18px;line-height:1;opacity:.6}

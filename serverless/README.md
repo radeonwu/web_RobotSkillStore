@@ -1,6 +1,6 @@
 # Contact Form Backend (Serverless) — Example
 
-This site is static. To send messages to **towu.xiaojun@gmail.com**, deploy a serverless endpoint at:
+This site is static. To send messages to **wu.xiaojun@gmail.com**, deploy a serverless endpoint at:
 
 - `POST /api/contact`
 
@@ -13,7 +13,7 @@ Files: `serverless/cloudflare-worker.js`
 ### Setup
 1. Create a Cloudflare Worker
 2. Add a Worker route: `https://YOUR_DOMAIN/api/contact*`
-3. (Optional) Put `towu.xiaojun@gmail.com` into the script as the target receiver
+3. (Optional) Put `wu.xiaojun@gmail.com` into the script as the target receiver
 
 ### Notes
 - MailChannels works on Cloudflare for email relay. You may need to verify domains / set allowed senders depending on your setup.
@@ -24,7 +24,7 @@ The same request shape applies; implement the handler and send mail via SendGrid
 ## Request JSON schema
 ```json
 {
-  "to": "towu.xiaojun@gmail.com",
+  "to": "wu.xiaojun@gmail.com",
   "from_name": "Visitor Name",
   "from_email": "visitor@example.com",
   "message": "Hello",

@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>用户与部署 · Robot Skill Store</title>
-<link rel="stylesheet" href="../assets/css/style.css?v=6.77.49"/>
+<link rel="stylesheet" href="../assets/css/style.css?v=6.77"/>
 </head>
 <body>
 <header class="topbar">
@@ -99,7 +99,7 @@
     <li><b>任务编排</b>：把高层目标拆成可执行的技能序列（plan），并在每一步附带必要的场景约束（工件/工位/安全边界）。</li>
     <li><b>技能匹配</b>：从 RSS 检索候选技能/版本，基于证据成熟度、适用域与约束匹配度选择最优项（可替换、可回滚）。</li>
     <li><b>任务执行（以装配任务为例）</b>：
-      <ul style="margin-top:8px;">
+      <ul>
         <li><b>pick</b>：选择抓取模板与接近/避碰策略，确保抓取姿态满足后续插入的约束。</li>
         <li><b>insert</b>：设置位姿与接触阈值，控制接近/入座/后撤，并在失败时触发恢复策略。</li>
         <li><b>tighten</b>：配置 torque/angle 任务与停止条件，执行确定性拧紧并输出可审计证据。</li>
@@ -129,7 +129,7 @@ for step in plan:
   <div class="video-card">
     <video controls preload="metadata" src="../assets/media/ur5_rg2_demo.mp4" style="width:100%;border-radius:12px;"></video>
     <p style="margin:10px 0 0;color:var(--vp-c-text-2);line-height:1.6;">示例流程：<b>pick_place</b> → <b>connector_insert</b> → <b>tighten_screw</b>。同一套技能通过调整约束与参数即可复用，无需重写程序。</p>
-    <ul style="margin:12px 0 0;">
+    <ul>
       <li><b>pick_place</b>：抓取模板 + 避碰 IK。</li>
       <li><b>connector_insert</b>：位姿约束 + 接近/后撤 + 失败恢复 trace。</li>
       <li><b>tighten_screw</b>：确定性拧紧，并输出 torque/angle 证据。</li>
@@ -157,6 +157,6 @@ for step in plan:
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.77.49"></script>
+<script src="../assets/js/site.js?v=6.77"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Deployment · Robot Skill Store</title>
-<link rel="stylesheet" href="../assets/css/style.css?v=6.77.49"/>
+<link rel="stylesheet" href="../assets/css/style.css?v=6.77"/>
 </head>
 <body>
 <header class="topbar">
@@ -99,7 +99,7 @@
     <li><b>Task orchestration</b>: breaks a high-level goal into an executable plan (a sequence of skills) and attaches the required context &amp; constraints for each step.</li>
     <li><b>Skill matching</b>: searches RSS for candidate skills/versions and selects the best one based on evidence maturity, applicability bounds, and constraint fit (replaceable, rollbackable).</li>
     <li><b>Execution (example: connector assembly)</b>:
-      <ul style="margin-top:8px;">
+      <ul>
         <li><b>pick</b>: choose a grasp template and approach/avoidance strategy so the grasp pose remains compatible with downstream insertion constraints.</li>
         <li><b>insert</b>: set pose/contact thresholds; control approach/seat/retract; trigger recovery when failures occur.</li>
         <li><b>tighten</b>: configure torque/angle targets and stop conditions; run deterministically and produce auditable evidence.</li>
@@ -129,7 +129,7 @@ for step in plan:
   <div class="video-card">
     <video controls preload="metadata" src="../assets/media/ur5_rg2_demo.mp4" style="width:100%;border-radius:12px;"></video>
     <p style="margin:10px 0 0;color:var(--vp-c-text-2);line-height:1.6;">Example workflow: <b>pick_place</b> → <b>connector_insert</b> → <b>tighten_screw</b>. The same skills can be reused by changing constraints and parameters, not by rewriting programs.</p>
-    <ul style="margin:12px 0 0;">
+    <ul>
       <li><b>pick_place</b>: grasp templates + collision-aware IK.</li>
       <li><b>connector_insert</b>: pose constraints + approach/retract + recovery traces.</li>
       <li><b>tighten_screw</b>: deterministic tightening with traceable torque/angle evidence.</li>
@@ -157,6 +157,6 @@ for step in plan:
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.77.49"></script>
+<script src="../assets/js/site.js?v=6.77"></script>
 </body>
 </html>

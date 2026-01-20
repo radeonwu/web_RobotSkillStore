@@ -16,7 +16,7 @@ export default {
       });
     }
 
-    const to = body.to || "towu.xiaojun@gmail.com";
+    const to = body.to || "wu.xiaojun@gmail.com";
     const fromName = body.from_name || "RobotSkillStore Visitor";
     const fromEmail = body.from_email || "noreply@robotskillstore.ai";
     const message = body.message || "";

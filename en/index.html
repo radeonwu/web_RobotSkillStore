@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.49" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -47,7 +47,7 @@
 <section class="section" style="margin-top:14px;">
 <h2 id="what-is-rss-for" style="margin:0 0 8px 0;">Whom RSS aims to serve?</h2>
 <p class="keypoint" style="margin:0 0 10px 0;">Robot Skill Store is designed for teams building the next generation of robots:</p>
-<ul style="margin:0 0 0 18px;line-height:1.9;">
+<ul>
 <li>small and mid-sized robotics teams</li>
 <li>industrial automation developers</li>
 <li>embodied AI and agent researchers</li>
@@ -59,23 +59,25 @@
 <section class="section">
 <div>
 <h2 id="ecosystem">Where RSS sits in the ecosystem</h2>
-<p class="quote" style="margin-top:10px;">RSS defines how robot skills are supplied, governed, and consumed across organizations.</p>
-<ul style="margin:10px 0 0 18px;line-height:1.85;">
+<p class="quote">RSS defines how robot skills are supplied, governed, and consumed across organizations.</p>
+<ul>
   <li>Skill suppliers focus on capability development and publish skills.</li>
   <li>RSS ensures validation and trust governance.</li>
   <li>Users can deploy and reuse skills with confidence.</li>
 </ul>
-<div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px;flex-wrap:wrap;">
-<span class="badge square">Supplier</span><span style="opacity:.6;">→</span>
-<span class="badge square">RSS</span><span style="opacity:.6;">→</span>
-<span class="badge square">User</span>
+<div class="flowline">
+  <div class="flow-node"><div class="flow-title">Supplier</div><div class="flow-sub">Capability development</div><div class="flow-sub">Publish skills</div></div>
+  <div class="flow-edge"><div class="flow-label">Skill Proposal</div><div class="flow-arrow">→</div></div>
+  <div class="flow-node"><div class="flow-title">RSS</div><div class="flow-sub">Skill validation</div><div class="flow-sub">&amp; trust governance</div></div>
+  <div class="flow-edge"><div class="flow-label">Certified Skill</div><div class="flow-arrow">→</div></div>
+  <div class="flow-node"><div class="flow-title">User</div><div class="flow-sub">Deploy skills</div><div class="flow-sub">&amp; reuse skills</div></div>
 </div>
 </div>
 </section>
 <section class="section">
 <div>
 <h2 id="why">Why RSS matters</h2>
-<p class="quote" style="margin-top:10px;">RSS scales by compounding validated skills.</p>
+<p class="quote">RSS scales by compounding validated skills.</p>
 <div class="prose">
 <p>Today, robot capabilities are highly fragmented: “skills” are often buried in code, tightly coupled to a specific robot and environment, customized for a single scenario, and hard to reuse across teams or systems.</p>
 <p>What we call a “skill” is frequently just a function call, a ROS node, or a one-off demo script.</p>
@@ -93,5 +95,5 @@
 </section>
 </main>
 <aside class="toc"><div class="toc-title">ON THIS PAGE</div><nav id="tocNav"></nav></aside></div>
-<script src="../assets/js/site.js?v=6.77.49"></script></body>
+<script src="../assets/js/site.js?v=6.77"></script></body>
 </html>
