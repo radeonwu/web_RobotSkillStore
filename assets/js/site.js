@@ -638,6 +638,60 @@
     renderMessages();
   }
 
+  // ---- Apple 风格滚动动画 ----
+  function initScrollAnimations(){
+    var observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('animate-in');
+          // 可选：动画后停止观察
+          // observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // 观察所有需要动画的元素
+    var animatedElements = document.querySelectorAll('.animate-on-scroll');
+    animatedElements.forEach(function(el){
+      observer.observe(el);
+    });
+  }
+
+  // ---- 移动端汉堡菜单 ----
+  function initMobileMenu(){
+    var menuBtn = document.querySelector('.mobile-menu-btn');
+    var topnav = document.querySelector('.topnav');
+
+    if(!menuBtn || !topnav) return;
+
+    menuBtn.addEventListener('click', function(){
+      menuBtn.classList.toggle('active');
+      topnav.classList.toggle('active');
+
+      // 防止背景滚动
+      if(topnav.classList.contains('active')){
+        document.body.style.overflow = 'hidden';
+      }else{
+        document.body.style.overflow = '';
+      }
+    });
+
+    // 点击链接后关闭菜单
+    var links = topnav.querySelectorAll('.toplink');
+    links.forEach(function(link){
+      link.addEventListener('click', function(){
+        menuBtn.classList.remove('active');
+        topnav.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
   function init(){
     measureTopbar();
     initTheme();
@@ -652,6 +706,8 @@
     initContactBoard();
     enableAnchorOffset();
     bindLangToggle();
+    initScrollAnimations(); // Apple 风格滚动动画
+    initMobileMenu(); // 移动端汉堡菜单
     window.addEventListener('resize', measureTopbar);
   }
 

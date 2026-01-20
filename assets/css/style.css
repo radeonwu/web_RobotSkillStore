@@ -1,5 +1,23 @@
 
+/* ============================================
+   Apple 风格设计系统 - Robot Skill Store
+   ============================================ */
+
 :root{
+  /* Apple 风格基础色 */
+  --apple-bg: #000000;
+  --apple-bg-alt: #f5f5f7;
+  --apple-text: #f5f5f7;
+  --apple-text-dark: #1d1d1f;
+  --apple-gray: #86868b;
+  --apple-gray-light: #a1a1a6;
+
+  /* RSS 品牌蓝（融入 Apple 风格） */
+  --rss-blue: #0071e3;
+  --rss-blue-hover: #0077ed;
+  --rss-blue-light: rgba(0, 113, 227, 0.1);
+
+  /* 原有变量（保持兼容） */
   --vp-c-bg: #ffffff;
   --vp-c-bg-soft: #f6f7f9;
   --vp-c-bg-alt: #f2f3f5;
@@ -13,8 +31,470 @@
   --vp-shadow: 0 10px 30px rgba(0,0,0,.06);
   --vp-font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   --vp-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  /* Align blocks with list item body text (matches browser list indentation) */
   --rss-list-body-offset: 58px;
+}
+
+/* ============================================
+   Apple 风格导航栏
+   ============================================ */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+.topbar .brand-name,
+.topbar .toplink {
+  color: var(--rss-blue);
+  font-weight: 600;
+}
+
+.topbar .brand-mark {
+  background: rgba(0, 113, 227, 0.1);
+  border-color: rgba(0, 113, 227, 0.2);
+  color: var(--rss-blue);
+}
+
+.topbar .toplink:hover {
+  background: rgba(0, 113, 227, 0.1);
+  color: #0051a8;
+}
+
+.topbar .toplink.active {
+  background: rgba(0, 113, 227, 0.15);
+  color: #0051a8;
+  font-weight: 600;
+}
+
+.topbar .iconbtn {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #1d1d1f;
+}
+
+.topbar .iconbtn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.topbar .label {
+  color: #6e6e73;
+}
+
+/* 移动端汉堡菜单按钮 */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-menu-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #1d1d1f;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* ============================================
+   Apple 风格英雄区
+   ============================================ */
+
+.apple-hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 120px 20px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.apple-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(0, 113, 227, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.apple-hero .hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+}
+
+.apple-hero h1 {
+  font-size: clamp(48px, 8vw, 80px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: #f5f5f7;
+  margin: 0 0 24px;
+}
+
+.apple-hero .hero-subtitle {
+  font-size: clamp(20px, 3vw, 28px);
+  color: #a1a1a6;
+  margin-top: 24px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.4;
+}
+
+.apple-hero .cta-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+/* Apple 风格按钮 */
+.btn-apple {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--rss-blue);
+  color: #ffffff;
+  border-radius: 980px;
+  padding: 14px 30px;
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-apple:hover {
+  background: var(--rss-blue-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 113, 227, 0.3);
+}
+
+.btn-apple.secondary {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #f5f5f7;
+}
+
+.btn-apple.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================
+   Apple 风格全宽内容区块
+   ============================================ */
+
+.section-hero {
+  width: 100%;
+  padding: 120px 0;
+  background: #f5f5f7;
+  position: relative;
+}
+
+.section-hero:nth-child(even) {
+  background: #ffffff;
+}
+
+.section-hero .content-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.section-hero.reverse .content-inner {
+  direction: rtl;
+}
+
+.section-hero.reverse .content-inner > * {
+  direction: ltr;
+}
+
+.section-hero .text h2 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #1d1d1f;
+  margin: 0 0 20px;
+}
+
+.section-hero .text p {
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.6;
+  color: #6e6e73;
+  margin: 0;
+}
+
+.section-hero .visual img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   Apple 风格卡片
+   ============================================ */
+
+.apple-card {
+  border: none;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.apple-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+.apple-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   Apple 风格滚动动画
+   ============================================ */
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+.animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+.animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+.animate-on-scroll.delay-4 { transition-delay: 0.4s; }
+.animate-on-scroll.delay-5 { transition-delay: 0.5s; }
+
+/* ============================================
+   Apple 风格网格布局
+   ============================================ */
+
+.apple-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.apple-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.apple-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.apple-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ============================================
+   响应式设计
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .apple-hero h1 { font-size: 56px; }
+  .section-hero .content-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .section-hero.reverse .content-inner {
+    direction: ltr;
+  }
+  .apple-grid-3, .apple-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  /* 显示汉堡菜单按钮 */
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  /* 隐藏桌面导航 */
+  .topnav {
+    display: none;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    padding: 20px;
+    gap: 0;
+    overflow-y: auto;
+    max-height: calc(100vh - 50px);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .topnav.active {
+    display: flex;
+  }
+
+  .toplink {
+    font-size: 17px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 0;
+    color: var(--rss-blue);
+  }
+
+  .top-actions {
+    display: none;
+  }
+
+  /* 英雄区移动端 */
+  .apple-hero {
+    min-height: 70vh;
+    padding: 100px 20px 60px;
+  }
+
+  .apple-hero h1 { font-size: 40px; }
+  .apple-hero .hero-subtitle { font-size: 18px; }
+  .apple-hero .cta-row { flex-direction: column; width: 100%; max-width: 280px; }
+  .btn-apple { width: 100%; }
+
+  .section-hero {
+    padding: 60px 0;
+  }
+
+  .section-hero .text h2 { font-size: 32px; }
+
+  .apple-grid-2, .apple-grid-3, .apple-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 375px) {
+  .apple-hero h1 { font-size: 36px; }
+  .apple-hero .hero-subtitle { font-size: 16px; }
+}
+
+/* ============================================
+   深色主题适配
+   ============================================ */
+
+[data-theme="dark"] .topbar {
+  background: rgba(28, 28, 30, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .topbar .brand-name,
+[data-theme="dark"] .topbar .toplink {
+  color: var(--rss-blue);
+}
+
+[data-theme="dark"] .topbar .brand-mark {
+  background: rgba(0, 113, 227, 0.2);
+  border-color: rgba(0, 113, 227, 0.3);
+  color: var(--rss-blue);
+}
+
+[data-theme="dark"] .topbar .toplink:hover {
+  background: rgba(0, 113, 227, 0.15);
+  color: var(--rss-blue);
+}
+
+[data-theme="dark"] .topbar .toplink.active {
+  background: rgba(0, 113, 227, 0.2);
+  color: var(--rss-blue);
+}
+
+[data-theme="dark"] .topbar .iconbtn {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #f5f5f7;
+}
+
+[data-theme="dark"] .topbar .iconbtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .topbar .label {
+  color: #a1a1a6;
+}
+
+[data-theme="dark"] .mobile-menu-btn span {
+  background: #f5f5f7;
+}
+
+[data-theme="dark"] .topnav {
+  background: rgba(28, 28, 30, 0.98);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .toplink {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--rss-blue);
+}
+
+[data-theme="dark"] .section-hero {
+  background: #000000;
+}
+
+[data-theme="dark"] .section-hero:nth-child(even) {
+  background: #1a1a1a;
+}
+
+[data-theme="dark"] .section-hero .text h2,
+[data-theme="dark"] .section-hero .text p {
+  color: #f5f5f7;
+}
+
+[data-theme="dark"] .section-hero .text p {
+  color: #a1a1a6;
+}
+
+[data-theme="dark"] .apple-card {
+  background: #1a1a1a;
 }
 
 [data-theme="dark"]{

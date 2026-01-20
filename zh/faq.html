@@ -1,11 +1,131 @@
 <!DOCTYPE html>
-
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>平台 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<title>常见问题 · Robot Skill Store</title>
+<link href="../assets/css/style.css?v=6.77.64" rel="stylesheet"/>
+<style>
+/* FAQ Accordion Styles */
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  margin-bottom: 16px;
+}
+
+.faq-question {
+  width: 100%;
+  background: white;
+  border: none;
+  border-radius: 16px;
+  padding: 20px 24px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transform: translateY(-1px);
+}
+
+.faq-question.active {
+  background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%);
+  color: white;
+}
+
+.faq-icon {
+  font-size: 20px;
+  transition: transform 0.3s ease;
+}
+
+.faq-question.active .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  background: white;
+  border-radius: 0 0 16px 16px;
+  margin-top: -8px;
+  padding: 0 24px;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.faq-answer ul {
+  margin: 12px 0 0 20px;
+}
+
+.faq-answer li {
+  margin-bottom: 8px;
+}
+
+/* Comparison Table */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.comparison-table th {
+  background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%);
+  color: white;
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.comparison-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f5f5f7;
+}
+
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.comparison-table tr:nth-child(even) {
+  background: #f9f9fb;
+}
+
+.comparison-highlight {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .comparison-table {
+    font-size: 14px;
+  }
+  .comparison-table th, .comparison-table td {
+    padding: 10px 8px;
+  }
+  .faq-question {
+    padding: 16px 20px;
+    font-size: 15px;
+  }
+}
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -14,80 +134,221 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="deployment.html">用户与部署</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
-
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">首页</a>
+<a class="toplink" href="lifecycle.html">技能生命周期</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink" href="concepts.html">概念</a>
+<a class="toplink" href="skills.html">认证技能</a>
+<a class="toplink" href="deployment.html">用户与部署</a>
+<a class="toplink" href="docs/index.html">文档</a>
+<a class="toplink" href="contact.html">联系</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
-<span class="label">Appearance</span>
+<span class="label">外观</span>
 </button>
 </div>
 </div>
 </header>
 
-<div class="layout">
-  <main class="content">
-    
-    <section class="section">
-      <h1>Robot Skill vs LLM Skill</h1>
-<div class="onboarding"><p><strong>Purpose</strong>本页澄清机器人技能与基于 LLM 的技能之间的关系。</p><p><strong>What you will see here</strong>解释它们为何处于不同层次、如何互补，以及 RSS 在 AI–机器人技术栈中的定位。</p><p><strong>Lifecycle Anchor</strong>概念层</p></div>
-
-    </section>
-    
-<section class="section">
-  <h2 id="robot-skill-vs-llm-skill">Robot Skill vs LLM Skill（8 问答）</h2>
-
-  <h3 id="q1">Q1. RSS 中的 Robot Skill 是什么？</h3>
-  <p>RSS 中的 Robot Skill 是一种<strong>可确定执行</strong>的机器人能力单元，在明确约束下控制真实机器人，并能够被验证、认证与复用。</p>
-  <ul>
-    <li>可在真实机器人上执行</li>
-    <li>确定性行为</li>
-    <li>明确的前置条件与约束</li>
-    <li>可通过证据进行验证</li>
-  </ul>
-
-  <h3 id="q2">Q2. Robot Skill 等同于 LLM Skill 吗？</h3>
-  <p><strong>不是。</strong> LLM Skill 主要作用于认知与工具调用层，而 RSS 的 Robot Skill 直接作用于物理世界中的机器人执行层。</p>
-
-  <h3 id="q3">Q3. 关键差异是什么？</h3>
-  <table class="simple-table">
-    <thead><tr><th>维度</th><th>LLM Skill</th><th>RSS Robot Skill</th></tr></thead>
-    <tbody>
-      <tr><td>执行域</td><td>语言 / 工具 / API</td><td>物理机器人</td></tr>
-      <tr><td>确定性</td><td>概率性</td><td>确定性</td></tr>
-      <tr><td>失败代价</td><td>低</td><td>高（安全、硬件、产线）</td></tr>
-      <tr><td>评估方式</td><td>语义 / 奖励驱动</td><td>证据驱动的物理指标</td></tr>
-      <tr><td>复用门槛</td><td>低</td><td>高（核心护城河）</td></tr>
-    </tbody>
-  </table>
-  <p style="margin-top:10px;opacity:.85;">解释：执行代价与风险越高，验证与治理越关键。</p>
-
-  <h3 id="q4">Q4. 两者有关联吗？</h3>
-  <p>有关联，但处在不同层级。</p>
-  <p>LLM Skill 负责“决策与编排”，Robot Skill 负责“安全、稳定的物理执行”。</p>
-
-  <h3 id="q5">Q5. RSS 能与 Agent/LLM 系统集成吗？</h3>
-  <p>可以。RSS 的 Robot Skill 可作为 Agent 系统调用的物理执行基元，但执行必须保持可观测、可验证与可治理 —— 这正是 RSS 提供的能力。</p>
-
-  <h3 id="q6">Q6. 为什么不让 LLM 直接控制机器人？</h3>
-  <p>LLM 直接控制机器人适合探索，但在生产环境风险过高。RSS 的存在，是为了在真实世界中提供确定性与工程级保障。</p>
-
-  <h3 id="q7">Q7. RSS 在 AI/机器人技术栈中处于什么位置？</h3>
-  <p>RSS 是智能决策系统与物理机器人之间的技能验证、认证与交付层。它不替代 Agent 或模型，而是让它们“落地到现实”。</p>
-  <p><strong>RSS 不是替代大模型或 Agent，而是为它们提供可信、可落地的物理执行层。</strong></p>
-
-  <h3 id="q8">Q8. 为什么强调 Robot Skill 是资产？</h3>
-  <p>机器人技能研发成本高、验证难，但一旦证明可靠就极具价值。RSS 将技能从一次性项目代码变成可长期复用、可复利积累的能力资产。</p>
-
-  <p class="quote" style="margin-top:14px;">RSS 将机器人技能视为可认证、可复用的基础设施级能力资产，而非一次性 Demo。</p>
+<main class="apple-main">
+<!-- Hero Section -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
+<h1>常见问题</h1>
+<p class="hero-subtitle">Robot Skill vs LLM Skill</p>
+</div>
 </section>
 
-  </main>
-  <aside class="toc" aria-label="本页导航">
-    <div class="toc-title">本页导航</div>
-    <nav class="toc-nav" id="tocNav"><a class="toc-link" href="#robot-skill-vs-llm-skill">FAQ</a><a class="toc-link" href="#q1">Q1</a><a class="toc-link" href="#q2">Q2</a><a class="toc-link" href="#q3">Q3</a><a class="toc-link" href="#q4">Q4</a><a class="toc-link" href="#q5">Q5</a><a class="toc-link" href="#q6">Q6</a><a class="toc-link" href="#q7">Q7</a><a class="toc-link" href="#q8">Q8</a></nav>
-  </aside>
+<!-- Purpose Section -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="apple-card" style="grid-column: 1 / -1; padding: 24px; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+<div style="font-size: 14px; opacity: 0.8; margin-bottom: 8px;">页面目的</div>
+<div style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">你将了解</div>
+<p style="margin: 0;">为什么机器人技能与 LLM 技能处于不同层次、如何互补，以及 RSS 在 AI–机器人技术栈中的定位。</p>
 </div>
+</div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section-hero animate-on-scroll delay-1">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div class="faq-container">
+
+<div class="faq-item">
+<button class="faq-question">
+Q1: RSS 中的 Robot Skill 是什么？
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+<p>RSS 中的 Robot Skill 是一种<strong>可确定执行</strong>的机器人能力单元，在明确约束下控制真实机器人，并能够被验证、认证与复用。</p>
+<ul>
+<li>可在真实机器人上执行</li>
+<li>确定性行为</li>
+<li>明确的前置条件与约束</li>
+<li>可通过证据进行验证</li>
+</ul>
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">
+Q2: Robot Skill 等同于 LLM Skill 吗？
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+<p><strong>不是。</strong> LLM Skill 主要作用于认知与工具调用层，而 RSS 的 Robot Skill 直接作用于<strong>物理执行层</strong>。它们解决的是完全不同的问题空间。</p>
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">
+Q3: 关键差异是什么？
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>维度</th>
+<th>LLM Skill</th>
+<th class="comparison-highlight">RSS Robot Skill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>执行域</td>
+<td>语言 / 工具 / API</td>
+<td class="comparison-highlight">物理机器人</td>
+</tr>
+<tr>
+<td>确定性</td>
+<td>概率性</td>
+<td class="comparison-highlight">确定性</td>
+</tr>
+<tr>
+<td>失败代价</td>
+<td>低</td>
+<td class="comparison-highlight">高（安全、硬件、产线）</td>
+</tr>
+<tr>
+<td>评估方式</td>
+<td>语义 / 奖励驱动</td>
+<td class="comparison-highlight">证据驱动物理指标</td>
+</tr>
+<tr>
+<td>复用门槛</td>
+<td>低</td>
+<td class="comparison-highlight">高（核心护城河）</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center; opacity: 0.7; font-size: 14px; margin-top: 16px;">执行代价与风险越高，验证与治理越关键。</p>
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">
+Q4: 两者有关联吗？
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+<p>有关联，但处在不同层级。</p>
+<p>LLM Skill 负责"决策与编排"，Robot Skill 负责"安全、稳定的物理执行"。</p>
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">
+Q5: RSS 能与 Agent/LLM 系统集成吗？
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+<p>可以。RSS 的 Robot Skill 可作为 Agent 系统调用的物理执行基元，但执行必须保持可观测、可验证与可治理 —— 这正是 RSS 提供的能力。</p>
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">
+Q6: 为什么不让 LLM 直接控制机器人？
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+<p>LLM 直接控制机器人适合探索，但在生产环境风险过高。RSS 的存在，是为了在真实世界中提供确定性与工程级保障。</p>
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">
+Q7: RSS 在 AI/机器人技术栈中处于什么位置？
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+<p>RSS 是智能决策系统与物理机器人之间的技能验证、认证与交付层。它不替代 Agent 或模型，而是让它们"落地到现实"。</p>
+<p><strong>RSS 不是替代大模型或 Agent，而是为它们提供可信、可落地的物理执行层。</strong></p>
+</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-question">
+Q8: 为什么强调 Robot Skill 是资产？
+<span class="faq-icon">▼</span>
+</button>
+<div class="faq-answer">
+<p>机器人技能研发成本高、验证难，但一旦证明可靠就极具价值。RSS 将技能从一次性项目代码变成可长期复用、可复利积累的能力资产。</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- Quote Section -->
+<section class="section-hero animate-on-scroll delay-2" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="color: white; font-size: clamp(24px, 4vw, 36px); margin-bottom: 24px;">RSS 理念</h2>
+<p style="font-size: clamp(18px, 2.5vw, 24px); opacity: 0.95; max-width: 700px; margin: 0 auto 40px;">"RSS 将机器人技能视为可认证、可复用的基础设施级能力资产，而非一次性 Demo。"</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="concepts.html" class="btn-apple">所有概念</a>
+<a href="contact.html" class="btn-apple secondary">联系我们</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<script src="../assets/config.js?v=6.77.64"></script>
+<script src="../assets/js/site.js?v=6.77.64"></script>
+<script>
+// FAQ Accordion functionality
+document.querySelectorAll('.faq-question').forEach(button => {
+  button.addEventListener('click', () => {
+    const item = button.parentElement;
+    const isActive = item.classList.contains('active');
+
+    // Close all other items
+    document.querySelectorAll('.faq-item').forEach(otherItem => {
+      if (otherItem !== item) {
+        otherItem.classList.remove('active');
+        otherItem.querySelector('.faq-question').classList.remove('active');
+      }
+    });
+
+    // Toggle current item
+    item.classList.toggle('active');
+    button.classList.toggle('active');
+  });
+});
+</script>
 </body>
 </html>
-

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Agents in RSS · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.57" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,103 +13,167 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">Home</a>
+<a class="toplink" href="lifecycle.html">Lifecycle</a>
+<a class="toplink" href="platform.html">Platform</a>
+<a class="toplink" href="concepts.html">Concepts</a>
+<a class="toplink" href="skills.html">Skills</a>
+<a class="toplink" href="deployment.html">Deployment</a>
+<a class="toplink" href="docs/index.html">Docs</a>
+<a class="toplink" href="contact.html">Contact</a>
+</nav>
 <div class="top-actions">
 <button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button">
-<span class="icon">EN/中</span><span class="label">中文</span>
+<span class="icon">EN/中</span>
+<span class="label">中文</span>
 </button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
-<span class="icon">☾</span><span class="label">Appearance</span>
+<span class="icon">☾</span>
+<span class="label">Appearance</span>
 </button>
 </div>
 </div>
 </header>
 
+<main class="apple-main">
+<!-- Hero Section -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
+<h1>Agents</h1>
+<p class="hero-subtitle">Agents decide what to try. RSS enforces what is allowed to actually happen.</p>
+</div>
+</section>
 
-<div class="layout">
-<main class="content" id="content">
-<div class="rss-lifecycle-bar" data-stage="overview"></div>
+<!-- One Rule Section -->
+<section class="section-hero animate-on-scroll" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); color: white;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="text-align: center; max-width: 700px; margin: 0 auto;">
+<h2 style="color: white; font-size: clamp(32px, 5vw, 48px); margin-bottom: 24px;">One Non-Negotiable Rule</h2>
+<p style="font-size: clamp(18px, 2.5vw, 24px); color: rgba(255,255,255,0.9); margin-bottom: 32px;"><strong>Agents may decide what to try. RSS enforces what is allowed to actually happen.</strong></p>
+<div style="font-size: 16px; opacity: 0.85; max-width: 500px; margin: 0 auto;">
+Success is determined by benchmarks and outcomes—not by agent persuasion.
+</div>
+</div>
+</div>
+</section>
 
-  <section class="card">
-    <h1>Agents</h1>
-    <p class="lead">Agents decide <em>what to try</em>. RSS enforces what is allowed to actually happen.</p>
-    <p>In Robot Skill Store (RSS), agents are a <strong>decision layer</strong> for selecting and composing skills. They never bypass governance, evaluation, or execution truth—every action becomes a platform-managed <strong>Run</strong> with immutable evidence.</p>
-  </section>
+<!-- What is Agent Section -->
+<section class="section-hero animate-on-scroll delay-1">
+<div class="content-inner">
+<div class="text">
+<h2>What is an Agent (in RSS)</h2>
+<p>An agent is an orchestrator that reasons over goals, context, and historical evidence to choose <strong>which Skill Version</strong> to run, with which <strong>Profile</strong> and inputs.</p>
+<p style="margin-top: 16px;">In Robot Skill Store (RSS), agents are a <strong>decision layer</strong> for selecting and composing skills. They never bypass governance, evaluation, or execution truth—every action becomes a platform-managed <strong>Run</strong> with immutable evidence.</p>
+</div>
+<div class="visual">
+<div class="apple-card" style="background: #f5f5f7; padding: 40px; text-align: center;">
+<div style="font-size: 48px; margin-bottom: 16px;">🤖</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Agent Role</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">Decision & Orchestration Layer</p>
+</div>
+</div>
+</div>
+</section>
 
-  <section class="card" id="one-rule">
-    <h2 id="rule">One non-negotiable rule</h2>
-    <p><strong>Agents may decide what to try. RSS enforces what is allowed to actually happen.</strong></p>
-    <ul>
-      <li>Agents produce candidate actions (which skill/version/profile/inputs).</li>
-      <li>RSS converts actions into Runs, applies policy gates, and records evidence.</li>
-      <li>Success is determined by benchmarks and outcomes—not by agent persuasion.</li>
-    </ul>
-  </section>
+<!-- May / May Not Section -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="text-align: center; margin-bottom: 32px;">Agents May / May Not</h2>
+</div>
+</div>
+<div class="apple-grid" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+<div class="apple-card animate-on-scroll" style="padding: 32px; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+<div style="font-size: 32px; margin-bottom: 16px;">✅</div>
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">Agents May</h3>
+<ul style="margin: 0;">
+<li>Select a Skill and Skill Version (within policy)</li>
+<li>Bind Profile + parameters (robot / env / limits)</li>
+<li>Compose multi-step workflows</li>
+<li>Branch / retry / escalate based on Run outcomes</li>
+<li>Compare candidates using benchmark evidence</li>
+</ul>
+</div>
 
-  <section class="card" id="what-is-agent">
-    <h2 id="what">What an agent is (in RSS)</h2>
-    <p>An agent is an orchestrator that reasons over goals, context, and historical evidence to choose <strong>which Skill Version</strong> to run, with which <strong>Profile</strong> and inputs.</p>
-  </section>
+<div class="apple-card animate-on-scroll delay-1" style="padding: 32px; background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);">
+<div style="font-size: 32px; margin-bottom: 16px;">🚫</div>
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">Agents May Not</h3>
+<ul style="margin: 0;">
+<li>Execute code directly (no hidden paths)</li>
+<li>Bypass policy gates (safety / license / approval)</li>
+<li>Decide "success" (benchmarks do)</li>
+<li>Edit records (Runs are immutable)</li>
+<li>Redefine semantics (contracts are versioned)</li>
+</ul>
+</div>
+</div>
+</section>
 
-  <section class="card" id="may-maynot">
-    <h2 id="dos-donts">Agents may / may not</h2>
-    <div class="grid2" style="gap:16px">
-      <div class="subcard">
-        <h3 style="margin-top:0">Agents may</h3>
-        <ul>
-          <li>Select a Skill and Skill Version (within policy).</li>
-          <li>Bind Profile + parameters (robot / env / limits).</li>
-          <li>Compose multi-step workflows.</li>
-          <li>Branch / retry / escalate based on Run outcomes.</li>
-          <li>Compare candidates using benchmark evidence.</li>
-        </ul>
-      </div>
-      <div class="subcard">
-        <h3 style="margin-top:0">Agents may not</h3>
-        <ul>
-          <li>Execute code directly (no hidden paths).</li>
-          <li>Bypass policy gates (safety / license / approval).</li>
-          <li>Decide “success” (benchmarks do).</li>
-          <li>Edit records (Runs are immutable).</li>
-          <li>Redefine semantics (contracts are versioned).</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<!-- Where Agents Sit Section -->
+<section class="section-hero animate-on-scroll delay-3 reverse">
+<div class="content-inner">
+<div class="visual">
+<div class="apple-card" style="background: #f5f5f7; padding: 40px;">
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 24px;">System Stack</h3>
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="background: white; padding: 16px; border-radius: 12px;">
+<div style="font-weight: 600; margin-bottom: 4px;">Agent</div>
+<div style="font-size: 14px; color: var(--apple-gray);">Selects & composes actions</div>
+</div>
+<div style="text-align: center; color: var(--apple-gray);">↓</div>
+<div style="background: white; padding: 16px; border-radius: 12px;">
+<div style="font-weight: 600; margin-bottom: 4px;">RSS Platform</div>
+<div style="font-size: 14px; color: var(--apple-gray);">Validates, gates, schedules, executes</div>
+</div>
+<div style="text-align: center; color: var(--apple-gray);">↓</div>
+<div style="background: white; padding: 16px; border-radius: 12px;">
+<div style="font-weight: 600; margin-bottom: 4px;">Runtime</div>
+<div style="font-size: 14px; color: var(--apple-gray);">Binds specs to robot/TCP/env</div>
+</div>
+<div style="text-align: center; color: var(--apple-gray);">↓</div>
+<div style="background: white; padding: 16px; border-radius: 12px;">
+<div style="font-weight: 600; margin-bottom: 4px;">Evidence</div>
+<div style="font-size: 14px; color: var(--apple-gray);">Logs/metrics/trajectories/videos</div>
+</div>
+</div>
+</div>
+</div>
+<div class="text">
+<h2>Where Agents Sit in the System</h2>
+<p>Agents operate at the decision layer, while RSS handles enforcement and truth. This separation ensures:</p>
+<ul style="margin-top: 16px;">
+<li><strong>Policy gates</strong>: what is allowed (safety, approval, authorization)</li>
+<li><strong>Version binding</strong>: every Run binds to immutable Skill Version + Profile</li>
+<li><strong>Objective evaluation</strong>: benchmark-defined success enables comparability</li>
+<li><strong>Auditability</strong>: evidence is first-class; decisions are explainable and reviewable</li>
+</ul>
+</div>
+</div>
+</section>
 
-  <section class="card" id="where-sit">
-    <h2 id="where">Where agents sit in the system</h2>
-    <ul>
-      <li><strong>Agent</strong>: selects & composes actions.</li>
-      <li><strong>RSS Platform</strong>: validates, gates, schedules, and executes via runtime.</li>
-      <li><strong>Runtime</strong>: binds specs to concrete robot/TCP/environment and enforces constraints.</li>
-      <li><strong>Evidence</strong>: logs/metrics/trajectories/videos linked to the Run for audit and evaluation.</li>
-    </ul>
-  </section>
-
-  <section class="card" id="how-constrain">
-    <h2 id="constraints">How RSS constrains agent actions</h2>
-    <ul>
-      <li><strong>Policy gates</strong>: what is allowed (safety, approval, authorization).</li>
-      <li><strong>Version binding</strong>: every Run binds to immutable Skill Version + Profile.</li>
-      <li><strong>Objective evaluation</strong>: benchmark-defined success enables comparability.</li>
-      <li><strong>Auditability</strong>: evidence is first-class; decisions are explainable and reviewable.</li>
-    </ul>
-  </section>
-
+<!-- CTA Section -->
+<section class="section-hero animate-on-scroll delay-4" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="color: white; font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">Learn More</h2>
+<p style="font-size: clamp(17px, 2vw, 21px); color: #a1a1a6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Explore platform capabilities or deployment strategies</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="platform.html" class="btn-apple">Platform</a>
+<a href="deployment.html" class="btn-apple secondary">Deployment</a>
+</div>
+</div>
+</div>
+</section>
 </main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">On this page</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<footer class="footer">
-<div class="footer-inner">
-<div>Robot Skill Store · build v6.76</div>
-<div class="muted">Agents: decision layer; Runs: platform-managed truth</div>
-</div>
-</footer>
-<script src="../assets/config.js?v=6.77.46"></script>
 
+<script src="../assets/config.js?v=6.77.57"></script>
+<script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
+<script src="../assets/js/site.js?v=6.77.57"></script>
 </body>
 </html>

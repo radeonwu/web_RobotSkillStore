@@ -1,11 +1,112 @@
 <!DOCTYPE html>
-
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>联系 · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.55" rel="stylesheet"/>
+<style>
+/* Contact page specific styles */
+.contact-form-card {
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.contact-form-card label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #1d1d1f;
+}
+
+.contact-form-card input[type="text"],
+.contact-form-card input[type="email"],
+.contact-form-card textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #d2d2d7;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  margin-bottom: 20px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #fafafa;
+}
+
+.contact-form-card input:focus,
+.contact-form-card textarea:focus {
+  outline: none;
+  border-color: #0071e3;
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
+  background: white;
+}
+
+.contact-form-card .checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.contact-form-card input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.message-board-card {
+  background: white;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.btn-submit {
+  background: var(--rss-blue);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-submit:hover {
+  background: #0051a8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
+}
+
+.btn-ghost-custom {
+  background: transparent;
+  color: var(--rss-blue);
+  border: 1px solid var(--rss-blue);
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-ghost-custom:hover {
+  background: rgba(0, 113, 227, 0.08);
+}
+
+@media (max-width: 768px) {
+  .contact-form-card,
+  .message-board-card {
+    padding: 24px;
+    border-radius: 20px;
+  }
+}
+</style>
 </head>
 <body>
 <header class="topbar">
@@ -14,8 +115,23 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="deployment.html">用户与部署</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">首页</a>
+<a class="toplink" href="lifecycle.html">技能生命周期</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink" href="concepts.html">概念</a>
+<a class="toplink" href="skills.html">认证技能</a>
+<a class="toplink" href="deployment.html">用户与部署</a>
+<a class="toplink" href="docs/index.html">文档</a>
+<a class="toplink" href="contact.html">联系</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
 <span class="label">Appearance</span>
@@ -23,63 +139,116 @@
 </div>
 </div>
 </header>
-<div class="layout">
-<main class="content" id="content">
 
-<section class="section-plain">
+<main class="apple-main">
+<!-- Apple 风格全宽英雄区 -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
 <h1>联系</h1>
-<p class="lead">联系 Robot Skill Store</p>
+<p class="hero-subtitle">联系 Robot Skill Store</p>
+</div>
 </section>
-<section class="section">
-<h2>邮箱</h2>
-<p>直接邮箱：<a href="mailto:contact@robotskillstore.ai">contact@robotskillstore.ai</a></p>
-<p class="note">部署后可启用 Serverless 邮件转发，将留言发送到 <code>towu.xiaojun@gmail.com</code>。</p>
+
+<!-- Email Section -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="text">
+<h2>联系我们</h2>
+<p>我们很乐意听到您的声音。无论您是对 Robot Skill Store 有疑问，想讨论部署，还是只是打个招呼。</p>
+<p style="margin-top: 16px;"><strong>直接邮箱：</strong> <a href="mailto:contact@robotskillstore.ai" style="color: var(--rss-blue);">contact@robotskillstore.ai</a></p>
+<p class="muted" style="margin-top: 12px;">部署后可启用 Serverless 邮件转发，将留言直接发送。</p>
+</div>
+<div class="visual">
+<div style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); border-radius: 24px; padding: 60px; text-align: center; color: white;">
+<div style="font-size: 64px; margin-bottom: 16px;">📧</div>
+<h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px;">联系我们</h3>
+<p style="font-size: 16px; opacity: 0.9; margin: 0;">我们会尽快回复您</p>
+</div>
+</div>
+</div>
 </section>
-<section class="section">
-<h2>留言板</h2>
-<p>提交后会在下方按时间顺序显示（最新在最上）。本演示版将留言保存在浏览器本地。</p>
-<div class="card">
+
+<!-- Contact Form Section -->
+<section class="section-hero animate-on-scroll delay-1" style="background: #f5f5f7;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="max-width: 700px; margin: 0 auto;">
+<h2 style="text-align: center; margin-bottom: 32px;">发送留言</h2>
+<div class="contact-form-card">
 <form id="contact-form" onsubmit="return submitMessage(this);">
 <label>姓名</label>
-<input name="name" required="" style="width:100%;margin-bottom:8px;" type="text"/>
+<input name="name" required="" type="text" placeholder="您的姓名"/>
+
 <label>邮箱（可选）</label>
-<input name="email" style="width:100%;margin-bottom:8px;" type="email"/>
+<input name="email" type="email" placeholder="your@email.com"/>
+
 <label>留言</label>
-<textarea name="message" required="" rows="5" style="width:100%;margin-bottom:10px;"></textarea>
-<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px;">
-<label style="display:flex;gap:8px;align-items:center;">
+<textarea name="message" required="" rows="5" placeholder="有什么可以帮助您的？"></textarea>
+
+<div style="display: flex; gap: 16px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; margin-top: 8px;">
+<label class="checkbox-label">
 <input checked="" name="send_email" type="checkbox"/>
-          通过 Serverless 邮件转发发送（配置后生效）
-        </label>
-<button class="btn" type="submit">提交</button>
-<button class="btn btn-ghost" onclick="exportLastEvidence();" type="button">导出最新证据</button>
+通过 Serverless 邮件转发发送（配置后生效）
+</label>
 </div>
-<div class="note" id="msg-status" style="display:none;margin-top:8px;"></div>
+
+<div style="display: flex; gap: 12px; flex-wrap: wrap;">
+<button class="btn-submit" type="submit">提交</button>
+<button class="btn-ghost-custom" onclick="exportLastEvidence();" type="button">导出最新证据</button>
+</div>
+
+<div class="note" id="msg-status" style="display: none; margin-top: 16px; padding: 12px; border-radius: 8px;"></div>
 </form>
 </div>
-<div class="card" style="margin-top:14px;">
-<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-<div class="card-title">留言列表 <span class="badge" id="message-count">0</span></div>
-<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-<button class="btn btn-ghost" onclick="toggleMessageBoard();" type="button">收起</button>
-<button class="btn btn-ghost" onclick="clearMessages();" type="button">清空（本地）</button>
 </div>
 </div>
-<div id="message-board" style="margin-top:10px;">
+</section>
+
+<!-- Message Board Section -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="max-width: 800px; margin: 0 auto;">
+<div class="message-board-card">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px;">
+<h3 style="margin: 0; font-size: 20px; font-weight: 600;">留言列表 <span class="badge" id="message-count" style="background: var(--rss-blue); color: white; padding: 4px 12px; border-radius: 12px; font-size: 14px; font-weight: 600;">0</span></h3>
+<div style="display: flex; gap: 8px; flex-wrap: wrap;">
+<button class="btn-ghost-custom" onclick="toggleMessageBoard();" type="button">收起</button>
+<button class="btn-ghost-custom" onclick="clearMessages();" type="button">清空（本地）</button>
+</div>
+</div>
+<div id="message-board">
 <div class="msg-list" id="message-list"></div>
 </div>
 </div>
+</div>
+</div>
 </section>
-<section class="section">
-<h2>Evidence（证据）</h2>
-<p>每次提交都会生成证据包：<code>message.json</code>、<code>outcome.json</code>、<code>execution_context.json</code>。</p>
+
+<!-- Evidence Section -->
+<section class="section-hero animate-on-scroll delay-3" style="background: #f5f5f7;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="max-width: 700px; margin: 0 auto; text-align: center;">
+<h2>证据包</h2>
+<p style="font-size: 17px; color: var(--apple-gray); margin-top: 16px;">每次提交都会生成完整的证据包，确保可追溯性</p>
+<div class="apple-grid" style="margin-top: 32px;">
+<div class="apple-card" style="padding: 24px; text-align: left;">
+<div style="font-family: monospace; font-size: 14px; color: var(--rss-blue); font-weight: 600; margin-bottom: 8px;">message.json</div>
+<div style="font-size: 14px; color: var(--apple-gray);">您提交的留言</div>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: left;">
+<div style="font-family: monospace; font-size: 14px; color: var(--rss-blue); font-weight: 600; margin-bottom: 8px;">outcome.json</div>
+<div style="font-size: 14px; color: var(--apple-gray);">处理结果</div>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: left;">
+<div style="font-family: monospace; font-size: 14px; color: var(--rss-blue); font-weight: 600; margin-bottom: 8px;">execution_context.json</div>
+<div style="font-size: 14px; color: var(--apple-gray);">环境元数据</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 </main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">本页导航</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<script src="../assets/config.js?v=6.77.46"></script>
-<script src="../assets/js/site.js?v=6.77.46"></script></body>
+
+<script src="../assets/config.js?v=6.77.55"></script>
+<script src="../assets/js/site.js?v=6.77.55"></script>
+</body>
 </html>

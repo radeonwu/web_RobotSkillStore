@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>RSS 中的智能体 · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.57" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,103 +13,167 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="deployment.html">用户与部署</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">首页</a>
+<a class="toplink" href="lifecycle.html">技能生命周期</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink" href="concepts.html">概念</a>
+<a class="toplink" href="skills.html">认证技能</a>
+<a class="toplink" href="deployment.html">用户与部署</a>
+<a class="toplink" href="docs/index.html">文档</a>
+<a class="toplink" href="contact.html">联系</a>
+</nav>
 <div class="top-actions">
 <button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button">
-<span class="icon">EN/中</span><span class="label">EN</span>
+<span class="icon">EN/中</span>
+<span class="label">EN</span>
 </button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
-<span class="icon">☾</span><span class="label">外观</span>
+<span class="icon">☾</span>
+<span class="label">外观</span>
 </button>
 </div>
 </div>
 </header>
 
+<main class="apple-main">
+<!-- Hero Section -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
+<h1>智能体</h1>
+<p class="hero-subtitle">智能体决定"要尝试什么"；RSS 平台决定"允许真正发生什么"</p>
+</div>
+</section>
 
-<div class="layout">
-<main class="content" id="content">
-<div class="rss-lifecycle-bar" data-stage="overview"></div>
+<!-- One Rule Section -->
+<section class="section-hero animate-on-scroll" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); color: white;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="text-align: center; max-width: 700px; margin: 0 auto;">
+<h2 style="color: white; font-size: clamp(32px, 5vw, 48px); margin-bottom: 24px;">一条不可协商的规则</h2>
+<p style="font-size: clamp(18px, 2.5vw, 24px); color: rgba(255,255,255,0.9); margin-bottom: 32px;"><strong>智能体可以决定尝试什么；RSS 强制执行什么能真正发生。</strong></p>
+<div style="font-size: 16px; opacity: 0.85; max-width: 500px; margin: 0 auto;">
+"成功"由 Benchmark 与结果判定，而不是由智能体"说服"
+</div>
+</div>
+</div>
+</section>
 
-  <section class="card">
-    <h1>智能体</h1>
-    <p class="lead">智能体决定“要尝试什么”；RSS 平台决定“允许真正发生什么”。</p>
-    <p>在 Robot Skill Store（RSS）里，智能体是用于选择、组合与调度技能的<strong>决策层</strong>。它不能绕过治理、评测或执行真相——任何动作最终都要变成平台管理的 <strong>Run</strong>，并绑定不可变证据。</p>
-  </section>
+<!-- What is Agent Section -->
+<section class="section-hero animate-on-scroll delay-1">
+<div class="content-inner">
+<div class="text">
+<h2>什么是智能体（在 RSS 语境下）</h2>
+<p>智能体是一个编排器，它基于目标、上下文与历史证据来选择<strong>哪个技能版本</strong>去运行，并决定<strong>采用哪个 Profile</strong> 与参数。</p>
+<p style="margin-top: 16px;">在 Robot Skill Store（RSS）里，智能体是用于选择、组合与调度技能的<strong>决策层</strong>。它不能绕过治理、评测或执行真相——任何动作最终都要变成平台管理的 <strong>Run</strong>，并绑定不可变证据。</p>
+</div>
+<div class="visual">
+<div class="apple-card" style="background: #f5f5f7; padding: 40px; text-align: center;">
+<div style="font-size: 48px; margin-bottom: 16px;">🤖</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">智能体角色</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">决策与编排层</p>
+</div>
+</div>
+</div>
+</section>
 
-  <section class="card" id="one-rule">
-    <h2 id="rule">一条不可协商的规则</h2>
-    <p><strong>智能体可以决定尝试什么；RSS 强制执行什么能真正发生。</strong></p>
-    <ul>
-      <li>智能体提出候选动作：选择哪个 Skill/版本、使用哪个 Profile、带哪些输入。</li>
-      <li>RSS 将动作固化为 Run，执行 Policy 门禁，并记录 Evidence。</li>
-      <li>“成功”由 Benchmark 与结果判定，而不是由智能体“说服”。</li>
-    </ul>
-  </section>
+<!-- May / May Not Section -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="text-align: center; margin-bottom: 32px;">智能体可以 / 不可以做什么</h2>
+</div>
+</div>
+<div class="apple-grid" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+<div class="apple-card animate-on-scroll" style="padding: 32px; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+<div style="font-size: 32px; margin-bottom: 16px;">✅</div>
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">智能体可以</h3>
+<ul style="margin: 0;">
+<li>在策略允许范围内选择 Skill 与 Skill Version</li>
+<li>绑定 Profile 与参数（机器人/环境/限制）</li>
+<li>组合多步流程（workflow）</li>
+<li>根据 Run 结果分支 / 重试 / 升级</li>
+<li>用 benchmark 证据比较候选方案</li>
+</ul>
+</div>
 
-  <section class="card" id="what-is-agent">
-    <h2 id="what">什么是智能体（在 RSS 语境下）</h2>
-    <p>智能体是一个编排器，它基于目标、上下文与历史证据来选择<strong>哪个技能版本</strong>去运行，并决定<strong>采用哪个 Profile</strong> 与参数。</p>
-  </section>
+<div class="apple-card animate-on-scroll delay-1" style="padding: 32px; background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);">
+<div style="font-size: 32px; margin-bottom: 16px;">🚫</div>
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">智能体不可以</h3>
+<ul style="margin: 0;">
+<li>直接执行代码（不允许"隐藏路径"）</li>
+<li>绕过策略门禁（安全/许可/审批）</li>
+<li>自行判定"成功"（由 benchmark 判定）</li>
+<li>修改记录（Run 不可变）</li>
+<li>随意改语义（契约与字段是版本化的）</li>
+</ul>
+</div>
+</div>
+</section>
 
-  <section class="card" id="may-maynot">
-    <h2 id="dos-donts">智能体可以 / 不可以做什么</h2>
-    <div class="grid2">
-      <div class="subcard">
-        <h3>可以</h3>
-        <ul>
-          <li>在策略允许范围内选择 Skill 与 Skill Version</li>
-          <li>绑定 Profile 与参数（机器人/环境/限制）</li>
-          <li>组合多步流程（workflow）</li>
-          <li>根据 Run 结果分支 / 重试 / 升级</li>
-          <li>用 benchmark 证据比较候选方案</li>
-        </ul>
-      </div>
-      <div class="subcard">
-        <h3>不可以</h3>
-        <ul>
-          <li>直接执行代码（不允许“隐藏路径”）</li>
-          <li>绕过策略门禁（安全/许可/审批）</li>
-          <li>自行判定“成功”（由 benchmark 判定）</li>
-          <li>修改记录（Run 不可变）</li>
-          <li>随意改语义（契约与字段是版本化的）</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<!-- Where Agents Sit Section -->
+<section class="section-hero animate-on-scroll delay-3 reverse">
+<div class="content-inner">
+<div class="visual">
+<div class="apple-card" style="background: #f5f5f7; padding: 40px;">
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 24px;">系统栈</h3>
+<div style="display: flex; flex-direction: column; gap: 12px;">
+<div style="background: white; padding: 16px; border-radius: 12px;">
+<div style="font-weight: 600; margin-bottom: 4px;">智能体</div>
+<div style="font-size: 14px; color: var(--apple-gray);">选择与组合动作</div>
+</div>
+<div style="text-align: center; color: var(--apple-gray);">↓</div>
+<div style="background: white; padding: 16px; border-radius: 12px;">
+<div style="font-weight: 600; margin-bottom: 4px;">RSS 平台</div>
+<div style="font-size: 14px; color: var(--apple-gray);">验证、门禁、调度、执行</div>
+</div>
+<div style="text-align: center; color: var(--apple-gray);">↓</div>
+<div style="background: white; padding: 16px; border-radius: 12px;">
+<div style="font-weight: 600; margin-bottom: 4px;">运行时</div>
+<div style="font-size: 14px; color: var(--apple-gray);">绑定规范到机器人/TCP/环境</div>
+</div>
+<div style="text-align: center; color: var(--apple-gray);">↓</div>
+<div style="background: white; padding: 16px; border-radius: 12px;">
+<div style="font-weight: 600; margin-bottom: 4px;">证据</div>
+<div style="font-size: 14px; color: var(--apple-gray);">日志/指标/轨迹/视频</div>
+</div>
+</div>
+</div>
+</div>
+<div class="text">
+<h2>智能体在系统中的位置</h2>
+<p>智能体在决策层运作，而 RSS 负责强制执行和真相。这种分离确保：</p>
+<ul style="margin-top: 16px;">
+<li><strong>策略门禁</strong>：决定允许发生什么（安全、审批、授权）</li>
+<li><strong>版本绑定</strong>：每次 Run 绑定不可变 Skill Version + Profile</li>
+<li><strong>客观评测</strong>：基准定义的成功实现可比较性</li>
+<li><strong>可审计性</strong>：证据是一等公民；决策可解释和审查</li>
+</ul>
+</div>
+</div>
+</section>
 
-  <section class="card" id="where">
-    <h2 id="where">智能体在系统中的位置</h2>
-    <ol>
-      <li><strong>智能体</strong>：生成候选计划与动作意图（要跑什么）。</li>
-      <li><strong>RSS 平台</strong>：把动作转换为 Run（谁/何时/如何跑）。</li>
-      <li><strong>RSP 不变量</strong>：强制对象与门禁（允许什么发生）。</li>
-      <li><strong>Evidence</strong>：记录日志/指标/轨迹/视频，支撑审计与复现。</li>
-    </ol>
-  </section>
-
-  <section class="card" id="why">
-    <h2 id="constraints">为什么要把智能体“关进平台”</h2>
-    <ul>
-      <li><strong>可治理</strong>：审批/授权/风控要可追溯。</li>
-      <li><strong>可评测</strong>：跨版本、跨团队比较必须有统一证据。</li>
-      <li><strong>可复现</strong>：同一输入同一版本应产出可重放的 Run 记录。</li>
-      <li><strong>可扩展</strong>：规模化生产不能依赖 UI 操作或个人经验。</li>
-    </ul>
-  </section>
-
+<!-- CTA Section -->
+<section class="section-hero animate-on-scroll delay-4" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="color: white; font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">了解更多</h2>
+<p style="font-size: clamp(17px, 2vw, 21px); color: #a1a1a6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">探索平台能力或部署策略</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="platform.html" class="btn-apple">平台</a>
+<a href="deployment.html" class="btn-apple secondary">用户与部署</a>
+</div>
+</div>
+</div>
+</section>
 </main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">本页导航</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<footer class="footer">
-<div class="footer-inner">
-<div>Robot Skill Store · build v6.76</div>
-<div class="muted">智能体：决策层；Run：平台真相</div>
-</div>
-</footer>
-<script src="../assets/config.js?v=6.77.46"></script>
 
+<script src="../assets/config.js?v=6.77.57"></script>
+<script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
+<script src="../assets/js/site.js?v=6.77.57"></script>
 </body>
 </html>

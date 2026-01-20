@@ -1,103 +1,171 @@
 <!DOCTYPE html>
-
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>首页 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<title>认证技能 · RobotSkillStore</title>
+<link href="../assets/css/style.css?v=6.77.52" rel="stylesheet"/>
 </head>
 <body>
+<!-- Apple 风格导航栏 -->
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="deployment.html">用户与部署</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<!-- 移动端汉堡菜单按钮 -->
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">首页</a>
+<a class="toplink" href="lifecycle.html">生命周期</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink" href="skills.html">技能</a>
+<a class="toplink" href="docs/index.html">文档</a>
+<a class="toplink" href="contact.html">联系</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
-<span class="label">Appearance</span>
+<span class="label">外观</span>
 </button>
 </div>
 </div>
 </header>
-<div class="layout">
-<main class="content">
 
-
-
-
-
-<section class="section-plain">
-<h1>Certified Skills（认证技能）</h1>
-<div class="onboarding">
-  <p><strong>目的</strong>让用户可以放心选择与复用技能。</p>
-  <p><strong>本页内容</strong>认证技能清单（Evidence 等级）+ 证据查看入口 + 平台公开记录入口。</p>
-  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期锚点</strong></div><div class="rss-lifecycle-bar compact" data-stage="deploy" data-compact="1"></div></div>
+<main class="apple-main">
+<!-- Apple 风格全宽英雄区 -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
+<h1>认证技能</h1>
+<p class="hero-subtitle">让用户可以放心选择与复用技能</p>
+<div class="cta-row">
+<a href="lifecycle.html" class="btn-apple">了解生命周期</a>
+<a href="platform.html" class="btn-apple secondary">查看平台</a>
 </div>
-
-<p class="lead">展示已认证技能：证据等级、兼容性摘要、以及“Latest Run”直达平台。</p>
+</div>
 </section>
-<section class="section">
-<h2 id="skills">技能列表</h2>
-<div class="grid-cards">
-<div class="skill-card">
-<div class="skill-card-head">
-<a class="skill-name" href="skills/tighten_screw.html">tighten_screw</a>
-<span class="badge">证据：E2</span>
-</div>
-<div class="muted">可确定执行的拧螺丝技能，沉淀扭矩/角度等可追溯证据。</div>
-<div class="compat">UR5 + RG2 · RSP v0.3 · 支持 Sim→Real</div>
-<div class="actions">
-<a class="btn btn-outline" href="/viewer/">Latest Run</a>
-<a class="btn btn-outline" href="/public/v1/skills/tighten_screw">平台入口</a>
+
+<!-- 技能列表 -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="text-align: center; max-width: 700px; margin: 0 auto;">
+<h2>技能列表</h2>
+<p style="font-size: 18px; color: var(--apple-gray);">认证技能清单：证据等级、兼容性摘要、以及"Latest Run"直达平台</p>
 </div>
 </div>
-<div class="skill-card">
-<div class="skill-card-head">
-<a class="skill-name" href="skills/connector_insert.html">connector_insert</a>
-<span class="badge">证据：E1</span>
+<div class="apple-grid" style="max-width: 1200px; margin: 40px auto 0; padding: 0 20px;">
+<!-- tighten_screw -->
+<div class="apple-card animate-on-scroll" style="padding: 0; overflow: hidden;">
+<div style="padding: 24px;">
+<div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+<h3 style="font-size: 22px; font-weight: 600; margin: 0;">tighten_screw</h3>
+<span style="background: var(--rss-blue); color: white; padding: 6px 14px; border-radius: 16px; font-size: 13px; font-weight: 600;">证据：E2</span>
 </div>
-<div class="muted">插入技能：姿态约束、进退路径、失败恢复与运行证据。</div>
-<div class="compat">UR5 + RG2 · Socket A/B · 仿真验证</div>
-<div class="actions">
-<a class="btn btn-outline" href="/viewer/">Latest Run</a>
-<a class="btn btn-outline" href="/public/v1/skills/connector_insert">平台入口</a>
-</div>
-</div>
-<div class="skill-card">
-<div class="skill-card-head">
-<a class="skill-name" href="skills/pick_place.html">pick_place</a>
-<span class="badge">证据：E1</span>
-</div>
-<div class="muted">Pick&amp;Place：抓取模板 + 避障 IK。</div>
-<div class="compat">UR5 + RG2 · Workspace A · 仿真</div>
-<div class="actions">
-<a class="btn btn-outline" href="/viewer/">Latest Run</a>
-<a class="btn btn-outline" href="/public/v1/skills/pick_place">平台入口</a>
+<p style="color: var(--apple-gray); font-size: 15px; margin: 0 0 16px;">可确定执行的拧螺丝技能，沉淀扭矩/角度等可追溯证据。</p>
+<div style="color: var(--apple-gray); font-size: 14px; margin-bottom: 20px;">UR5 + RG2 · RSP v0.3 · 支持 Sim→Real</div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+<a href="/viewer/" class="btn-apple" style="font-size: 14px; padding: 10px 20px;">Latest Run</a>
+<a href="/public/v1/skills/tighten_screw" class="btn-apple secondary" style="font-size: 14px; padding: 10px 20px; color: #1d1d1f; border-color: var(--rss-blue);">平台入口</a>
 </div>
 </div>
-<div class="skill-card">
-<div class="skill-card-head">
-<a class="skill-name" href="skills/inspect_aoi.html">inspect_aoi</a>
-<span class="badge">证据：E0</span>
 </div>
-<div class="muted">AOI 质检能力占位（Schema + 执行框架），证据待补齐。</div>
-<div class="compat">仅相机 · 证据待补齐</div>
-<div class="actions">
-<a class="btn btn-outline" href="/viewer/">Latest Run</a>
-<a class="btn btn-outline" href="/public/v1/skills/inspect_aoi">平台入口</a>
+
+<!-- connector_insert -->
+<div class="apple-card animate-on-scroll delay-1" style="padding: 0; overflow: hidden;">
+<div style="padding: 24px;">
+<div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+<h3 style="font-size: 22px; font-weight: 600; margin: 0;">connector_insert</h3>
+<span style="background: var(--rss-blue); color: white; padding: 6px 14px; border-radius: 16px; font-size: 13px; font-weight: 600;">证据：E1</span>
+</div>
+<p style="color: var(--apple-gray); font-size: 15px; margin: 0 0 16px;">插入技能：姿态约束、进退路径、失败恢复与运行证据。</p>
+<div style="color: var(--apple-gray); font-size: 14px; margin-bottom: 20px;">UR5 + RG2 · Socket A/B · 仿真验证</div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+<a href="/viewer/" class="btn-apple" style="font-size: 14px; padding: 10px 20px;">Latest Run</a>
+<a href="/public/v1/skills/connector_insert" class="btn-apple secondary" style="font-size: 14px; padding: 10px 20px; color: #1d1d1f; border-color: var(--rss-blue);">平台入口</a>
+</div>
+</div>
+</div>
+
+<!-- pick_place -->
+<div class="apple-card animate-on-scroll delay-2" style="padding: 0; overflow: hidden;">
+<div style="padding: 24px;">
+<div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+<h3 style="font-size: 22px; font-weight: 600; margin: 0;">pick_place</h3>
+<span style="background: var(--rss-blue); color: white; padding: 6px 14px; border-radius: 16px; font-size: 13px; font-weight: 600;">证据：E1</span>
+</div>
+<p style="color: var(--apple-gray); font-size: 15px; margin: 0 0 16px;">Pick&Place：抓取模板 + 避障 IK。</p>
+<div style="color: var(--apple-gray); font-size: 14px; margin-bottom: 20px;">UR5 + RG2 · Workspace A · 仿真</div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+<a href="/viewer/" class="btn-apple" style="font-size: 14px; padding: 10px 20px;">Latest Run</a>
+<a href="/public/v1/skills/pick_place" class="btn-apple secondary" style="font-size: 14px; padding: 10px 20px; color: #1d1d1f; border-color: var(--rss-blue);">平台入口</a>
+</div>
+</div>
+</div>
+
+<!-- inspect_aoi -->
+<div class="apple-card animate-on-scroll delay-3" style="padding: 0; overflow: hidden;">
+<div style="padding: 24px;">
+<div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+<h3 style="font-size: 22px; font-weight: 600; margin: 0;">inspect_aoi</h3>
+<span style="background: #8e8e93; color: white; padding: 6px 14px; border-radius: 16px; font-size: 13px; font-weight: 600;">证据：E0</span>
+</div>
+<p style="color: var(--apple-gray); font-size: 15px; margin: 0 0 16px;">AOI 质检能力占位（Schema + 执行框架），证据待补齐。</p>
+<div style="color: var(--apple-gray); font-size: 14px; margin-bottom: 20px;">仅相机 · 证据待补齐</div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+<a href="/viewer/" class="btn-apple" style="font-size: 14px; padding: 10px 20px;">Latest Run</a>
+<a href="/public/v1/skills/inspect_aoi" class="btn-apple secondary" style="font-size: 14px; padding: 10px 20px; color: #1d1d1f; border-color: var(--rss-blue);">平台入口</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 证据等级说明 -->
+<section class="section-hero animate-on-scroll delay-4" style="background: #f5f5f7;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="max-width: 800px; margin: 0 auto;">
+<h2 style="text-align: center; margin-bottom: 32px;">证据等级</h2>
+<div class="apple-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; font-weight: 700; color: var(--rss-blue); margin-bottom: 8px;">E2</div>
+<div style="font-size: 14px; color: var(--apple-gray);">完整证据 + 真实硬件验证</div>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; font-weight: 700; color: var(--rss-blue); margin-bottom: 8px;">E1</div>
+<div style="font-size: 14px; color: var(--apple-gray);">仿真验证 + 结构化追踪</div>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; font-weight: 700; color: #8e8e93; margin-bottom: 8px;">E0</div>
+<div style="font-size: 14px; color: var(--apple-gray);">Schema 已定义，证据待补充</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 准备部署 CTA -->
+<section class="section-hero animate-on-scroll delay-5" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px; color: white;">准备部署？</h2>
+<p style="font-size: clamp(17px, 2vw, 21px); color: #a1a1a6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">探索平台或联系我们，了解如何部署认证技能</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="platform.html" class="btn-apple">平台详情</a>
+<a href="contact.html" class="btn-apple secondary">联系我们</a>
 </div>
 </div>
 </div>
 </section>
 </main>
-<aside aria-label="本页导航" class="toc">
-<div class="toc-title">本页导航</div>
-<nav class="toc-nav" id="tocNav"><a class="toc-link" href="#">Certified Skills</a></nav>
-</aside>
-</div>
-<script src="../assets/js/site.js?v=6.77.46"></script></body>
+
+<script src="../assets/config.js?v=6.77.52"></script>
+<script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
+<script src="../assets/js/site.js?v=6.77.52"></script>
+</body>
 </html>

@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<title>Robot Skill Store - The Platform for Trusted, Reusable Robot Skills</title>
+<link href="../assets/css/style.css?v=6.77.50" rel="stylesheet"/>
 </head>
 <body>
+<!-- Apple 风格导航栏 -->
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<!-- 移动端汉堡菜单按钮 -->
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">Home</a>
+<a class="toplink" href="lifecycle.html">Lifecycle</a>
+<a class="toplink" href="platform.html">Platform</a>
+<a class="toplink" href="skills.html">Skills</a>
+<a class="toplink" href="docs/index.html">Docs</a>
+<a class="toplink" href="contact.html">Contact</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
 <span class="label">Appearance</span>
@@ -23,65 +37,152 @@
 </div>
 </div>
 </header>
-<div class="layout">
-<main class="content">
-<section class="section-plain">
-<div class="hero">
-<div class="hero-title">
-<h1 class="hero-h1 hero-h1-flex"><span>Robot Skill Store</span><span class="hero-subtag">– The Platform for Trusted, Reusable Robot Skills</span><img alt="RSS logo" class="hero-logo-inline hero-logo-right" src="../assets/media/rss_logo.png"/></h1>
+
+<main class="apple-main">
+<!-- Apple 风格全宽英雄区 -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
+<h1>Robot Skill Store</h1>
+<p class="hero-subtitle">The Platform for Trusted, Reusable Robot Skills</p>
+<div class="cta-row">
+<a href="lifecycle.html" class="btn-apple">Explore Lifecycle</a>
+<a href="skills.html" class="btn-apple secondary">View Skills</a>
 </div>
-<div class="onboarding"><p><strong>Purpose</strong>This site introduces Robot Skill Store (RSS), a platform for validating and deploying reusable robot skills.</p><p><strong>What you will see here</strong>You will learn how RSS sits between skill suppliers and skill users, and how robot skills move through a structured lifecycle from registration to deployment.</p><div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div></div>
-
-<section class="section" style="margin-top:14px;">
-  <h2 id="what-is-rss" style="margin:0 0 8px 0;">What is RSS</h2>
-  <p class="keypoint" style="margin:0 0 10px 0;">A Platform for Validating and Deploying Robot Skills</p>
-  <p style="margin:0;color:var(--vp-c-text-2);line-height:1.7;">RSS provides a structured pipeline to register, validate, certify, and deploy reusable robot skills — turning project-specific robot behaviors into long-term capability assets.</p>
-</section>
-
-<section class="section" style="margin-top:14px;">
-<h2 id="what-is-rss-for" style="margin:0 0 8px 0;">Whom RSS aims to serve?</h2>
-<p class="keypoint" style="margin:0 0 10px 0;">Robot Skill Store is designed for teams building the next generation of robots:</p>
-<ul style="margin:0 0 0 18px;line-height:1.9;">
-<li>small and mid-sized robotics teams</li>
-<li>industrial automation developers</li>
-<li>embodied AI and agent researchers</li>
-<li>platform builders exploring robot ecosystems</li>
-</ul>
-</section>
 </div>
 </section>
-<section class="section">
+
+<!-- What is RSS - 左图右文 -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="visual">
+<img src="../assets/media/rss_skill_lifecycle_overview.png" alt="Robot Skill Lifecycle" class="apple-card"/>
+</div>
+<div class="text">
+<h2>What is RSS</h2>
+<p>Robot Skill Store is a platform for validating and deploying reusable robot skills — turning project-specific robot behaviors into long-term capability assets.</p>
+<p style="margin-top: 16px;">It provides a structured pipeline to register, validate, certify, and deploy robot skills across organizations.</p>
+<div style="margin-top: 24px;">
+<a href="platform.html" class="btn-apple">Learn More</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Ecosystem - 右图左文 -->
+<section class="section-hero reverse animate-on-scroll delay-1">
+<div class="content-inner">
+<div class="text">
+<h2>Where RSS sits in the ecosystem</h2>
+<p>Suppliers publish skills. RSS validates and certifies them. Users deploy reusable skills with confidence.</p>
+<p style="margin-top: 16px;">It defines how robot skills are supplied, governed, and consumed across organizations.</p>
+<div style="display: flex; align-items: center; gap: 10px; margin-top: 24px; flex-wrap: wrap;">
+<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">Supplier</span>
+<span style="color: var(--apple-gray);">→</span>
+<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">RSS</span>
+<span style="color: var(--apple-gray);">→</span>
+<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">User</span>
+</div>
+</div>
+<div class="visual">
+<div style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); border-radius: 24px; padding: 60px; text-align: center; color: white;">
+<div style="font-size: 64px; font-weight: 700; margin-bottom: 20px;">→</div>
+<div style="font-size: 24px; font-weight: 600;">Skills Flow</div>
+<div style="font-size: 16px; opacity: 0.8; margin-top: 12px;">From suppliers to users</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Why RSS Matters - 左图右文 -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner">
+<div class="visual">
+<div style="background: #f5f5f7; border-radius: 24px; padding: 60px; text-align: center;">
+<div style="font-size: 56px; font-weight: 700; color: var(--rss-blue); margin-bottom: 16px;">Scale</div>
+<div style="font-size: 20px; color: var(--apple-gray);">RSS scales by compounding validated skills</div>
+</div>
+</div>
+<div class="text">
+<h2>Why RSS matters</h2>
+<p>Today, robot capabilities are highly fragmented. "Skills" are often buried in code, tightly coupled to specific robots and environments, and hard to reuse.</p>
+<p style="margin-top: 16px;">This fragmentation leads to poor sharing, unexpressed safety constraints, and sim-to-real transfer that doesn't scale.</p>
+<p style="margin-top: 16px;"><strong>Robot Skill Store</strong> is designed to solve this root problem.</p>
+<div style="margin-top: 24px;">
+<a href="concepts.html" class="btn-apple">Explore Concepts</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Who is RSS for - 卡片网格 -->
+<section class="section-hero animate-on-scroll delay-3">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="text-align: center; max-width: 700px; margin: 0 auto;">
+<h2>Who RSS is for</h2>
+<p style="font-size: 18px; color: var(--apple-gray);">Robot Skill Store is designed for teams building the next generation of robots</p>
+</div>
+</div>
+<div class="apple-grid apple-grid-4" style="max-width: 1200px; margin: 40px auto 0; padding: 0 20px;">
+<div class="apple-card animate-on-scroll" style="padding: 32px; text-align: center;">
+<div style="font-size: 40px; margin-bottom: 16px;">🤖</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Robotics Teams</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">Small and mid-sized teams developing robot capabilities</p>
+</div>
+<div class="apple-card animate-on-scroll delay-1" style="padding: 32px; text-align: center;">
+<div style="font-size: 40px; margin-bottom: 16px;">🏭</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Automation</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">Industrial automation developers and integrators</p>
+</div>
+<div class="apple-card animate-on-scroll delay-2" style="padding: 32px; text-align: center;">
+<div style="font-size: 40px; margin-bottom: 16px;">🧠</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">AI Researchers</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">Embodied AI and agent researchers</p>
+</div>
+<div class="apple-card animate-on-scroll delay-3" style="padding: 32px; text-align: center;">
+<div style="font-size: 40px; margin-bottom: 16px;">🛠️</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Platform Builders</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">Teams exploring robot ecosystems and platforms</p>
+</div>
+</div>
+</section>
+
+<!-- Lifecycle Section -->
+<section class="section-hero animate-on-scroll delay-4" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="text-align: center; max-width: 800px; margin: 0 auto;">
+<h2 style="color: white; font-size: clamp(36px, 6vw, 64px); margin-bottom: 24px;">Skill Lifecycle</h2>
+<p style="font-size: clamp(18px, 2.5vw, 24px); color: #a1a1a6; margin-bottom: 40px;">From registration to deployment</p>
+<div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+<div style="background: rgba(0, 113, 227, 0.8); padding: 16px 32px; border-radius: 50px; font-weight: 600; font-size: 18px;">Register</div>
+<div style="color: #86868b; font-size: 24px; display: flex; align-items: center;">→</div>
+<div style="background: rgba(0, 113, 227, 0.8); padding: 16px 32px; border-radius: 50px; font-weight: 600; font-size: 18px;">Validate</div>
+<div style="color: #86868b; font-size: 24px; display: flex; align-items: center;">→</div>
+<div style="background: rgba(0, 113, 227, 0.8); padding: 16px 32px; border-radius: 50px; font-weight: 600; font-size: 18px;">Certify</div>
+<div style="color: #86868b; font-size: 24px; display: flex; align-items: center;">→</div>
+<div style="background: rgba(0, 113, 227, 0.8); padding: 16px 32px; border-radius: 50px; font-weight: 600; font-size: 18px;">Deploy</div>
+</div>
+<div style="margin-top: 48px;">
+<a href="lifecycle.html" class="btn-apple">Learn More</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Get Started CTA -->
+<section class="section-hero animate-on-scroll delay-5" style="background: #f5f5f7; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
 <div>
-<h2 id="ecosystem">Where RSS sits in the ecosystem</h2>
-<p class="keypoint" style="margin-top:10px;">Suppliers publish skills. RSS validates and certifies them. Users deploy reusable skills.</p>
-<p style="margin:10px 0 0;color:var(--vp-c-text-2);line-height:1.7;">It defines how robot skills are supplied, governed, and consumed across organizations.<br/>Skill suppliers focus on capability development, RSS ensures validation and trust, and users deploy skills with confidence.</p>
-<div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px;flex-wrap:wrap;">
-<span class="badge">Supplier</span><span style="opacity:.6;">→</span>
-<span class="badge">RSS</span><span style="opacity:.6;">→</span>
-<span class="badge">User</span>
+<h2 style="font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">Get Started</h2>
+<p style="font-size: clamp(17px, 2vw, 21px); color: var(--apple-gray); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Explore the platform, browse certified skills, or dive into the documentation</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="docs/index.html" class="btn-apple">Read Documentation</a>
+<a href="contact.html" class="btn-apple secondary" style="color: #1d1d1f; border-color: var(--rss-blue);">Contact Us</a>
 </div>
 </div>
-</section>
-<section class="section">
-<div>
-<h2 id="why">Why RSS matters</h2>
-<p class="quote" style="margin-top:10px;">RSS scales by compounding validated skills.</p>
-<div class="prose">
-<p>Today, robot capabilities are highly fragmented: “skills” are often buried in code, tightly coupled to a specific robot and environment, customized for a single scenario, and hard to reuse across teams or systems.</p>
-<p>What we call a “skill” is frequently just a function call, a ROS node, or a one-off demo script.</p>
-<p>This fragmentation leads to:</p>
-<ul>
-<li>Poor sharing across robots and teams</li>
-<li>Safety constraints not expressed structurally (hard to reason about systematically)</li>
-<li>Sim-to-real transfer that does not scale</li>
-<li>Orchestration that relies on hard-coded glue, limiting what agents can compose and decide</li>
-</ul>
-<p><strong>Robot Skill Store</strong> is designed to solve this root problem.</p>
-</div>
-
 </div>
 </section>
 </main>
-<aside class="toc"><div class="toc-title">ON THIS PAGE</div><nav id="tocNav"></nav></aside></div>
-<script src="../assets/js/site.js?v=6.77.46"></script></body>
+
+<script src="../assets/js/site.js?v=6.77.50"></script>
+</body>
 </html>

@@ -1,21 +1,162 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Docs · Robot Skill Store</title>
-<link href="../../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<link href="../../assets/css/style.css?v=6.77.56" rel="stylesheet"/>
+<style>
+/* Docs tabs styling */
+.docs-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.docs-tab-btn {
+  background: #f5f5f7;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--apple-gray);
+}
+
+.docs-tab-btn:hover {
+  background: #e8e8ed;
+  transform: translateY(-1px);
+}
+
+.docs-tab-btn.active {
+  background: var(--rss-blue);
+  color: white;
+  font-weight: 600;
+}
+
+.docs-panel {
+  display: none;
+}
+
+.docs-panel.active {
+  display: block;
+}
+
+.inline-toggle-block {
+  margin-top: 20px;
+}
+
+.concept-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.inline-panels .card {
+  padding: 20px;
+}
+
+.inline-panel {
+  display: none;
+}
+
+.inline-panel.active {
+  display: block;
+}
+
+.section-head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.section-head-row span {
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 700;
+}
+
+.section-head-row .btn {
+  flex-shrink: 0;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.keypoints-block {
+  background: #f5f5f7;
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 16px 0;
+}
+
+details.card {
+  cursor: pointer;
+}
+
+details.card summary {
+  list-style: none;
+}
+
+details.card[open] summary {
+  margin-bottom: 12px;
+}
+
+.checklist li, .tight li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.muted, .status-muted {
+  color: var(--apple-gray);
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .section-head-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+</style>
 </head>
-<body class="docs">
+<body>
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="../index.html">
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">Home</a><a class="toplink" href="../lifecycle.html">Skill Lifecycle</a><a class="toplink" href="../platform.html">Platform</a><a class="toplink" href="../concepts.html">Concepts</a><a class="toplink" href="../skills.html">Certified Skills</a><a class="toplink" href="../deployment.html">Deployment</a><a class="toplink" href="index.html">Docs</a><a class="toplink" href="../contact.html">Contact</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="../index.html">Home</a>
+<a class="toplink" href="../lifecycle.html">Lifecycle</a>
+<a class="toplink" href="../platform.html">Platform</a>
+<a class="toplink" href="../concepts.html">Concepts</a>
+<a class="toplink" href="../skills.html">Skills</a>
+<a class="toplink" href="../deployment.html">Deployment</a>
+<a class="toplink" href="index.html">Docs</a>
+<a class="toplink" href="../contact.html">Contact</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
 <span class="label">Appearance</span>
@@ -23,117 +164,136 @@
 </div>
 </div>
 </header>
-<div class="layout">
-<main class="content" id="content">
 
-<section class="section-plain">
+<main class="apple-main">
+<!-- Hero Section -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
 <h1>Documentation Hub</h1>
-<div class="onboarding">
-  <p><strong>Purpose</strong>Learn RSS as a platform and RSP as its portability &amp; trust contract.</p>
-  <p><strong>What this page covers</strong>Reading paths for platform architecture, skill schema, execution, evidence, and lifecycle governance.</p>
-  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div>
+<p class="hero-subtitle">Learn RSS as a platform and RSP as its portability & trust contract</p>
 </div>
-
-
-<p class="lead">Start with <strong>RSS</strong> (the product), then dive into <strong>RSP</strong> (the enforced protocol).</p>
 </section>
-<section class="section" id="whitepapers-overview">
-<h2 id="overview">Overview: RSS + RSP whitepapers</h2>
-<p class="tight" style="margin:0;color:var(--muted);">
-<strong>RSS Whitepaper</strong> explains the product/platform: how skills become deployable assets with versioned execution, objective evaluation, runtime governance, and auditable evidence.
-      <br/>
-<strong>RSP Whitepaper</strong> defines the enforced protocol layer inside RSS: canonical objects and invariants so execution truth and governance never depend on UI, operators, or environment drift.
-    </p>
-<div class="card" style="margin:14px 0;">
-  <div class="card-title">Recommended reading (docs)</div>
-  <ul style="margin:8px 0 0 18px;line-height:1.8;">
-    <li><a href="rss_whitepaper.html">RSS Whitepaper (HTML)</a></li>
-    <li><a href="rsp_whitepaper.html">RSP Whitepaper (HTML)</a></li>
-    <li><a href="execution.html">Execution &amp; evidence capture</a></li>
-    <li><a href="skill-spec.html">Skill spec (contract)</a></li>
-    <li><a href="skill-schema.html">Skill schema (I/O)</a></li>
-    <li><a href="safety.html">Safety &amp; governance notes</a></li>
-    <li><a href="concepts.html">Concept notes</a></li>
-    <li><a href="demo-mapping.html">UR5 demo mapping (optional)</a></li>
-  </ul>
+
+<!-- Purpose Section -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="text">
+<h2>Start Here</h2>
+<p>Start with <strong>RSS</strong> (the product), then dive into <strong>RSP</strong> (the enforced protocol).</p>
+<p style="margin-top: 16px;">This page covers reading paths for platform architecture, skill schema, execution, evidence, and lifecycle governance.</p>
+<div style="margin-top: 24px;">
+<div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div>
+</div>
+</div>
+<div class="visual">
+<div style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); border-radius: 24px; padding: 60px; text-align: center; color: white;">
+<div style="font-size: 48px; font-weight: 700; margin-bottom: 20px;">Docs</div>
+<div style="font-size: 20px; opacity: 0.9;">RSS + RSP</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Overview Section -->
+<section class="section-hero animate-on-scroll delay-1" style="background: #f5f5f7;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="max-width: 800px; margin: 0 auto;">
+<h2 style="text-align: center; margin-bottom: 24px;">Overview: RSS + RSP Whitepapers</h2>
+<div class="card">
+<div class="card-title">Recommended Reading</div>
+<ul style="margin-top: 12px; line-height: 2;">
+<li><a href="rss_whitepaper.html">RSS Whitepaper (HTML)</a></li>
+<li><a href="rsp_whitepaper.html">RSP Whitepaper (HTML)</a></li>
+<li><a href="execution.html">Execution & evidence capture</a></li>
+<li><a href="skill-spec.html">Skill spec (contract)</a></li>
+<li><a href="skill-schema.html">Skill schema (I/O)</a></li>
+<li><a href="safety.html">Safety & governance notes</a></li>
+<li><a href="concepts.html">Concept notes</a></li>
+<li><a href="demo-mapping.html">UR5 demo mapping (optional)</a></li>
+</ul>
 </div>
 
-<details class="card" style="margin:14px 0;">
-  <summary class="card-title" style="cursor:pointer;">Legacy / internal pages (optional)</summary>
-  <div class="status-muted" style="margin-top:8px;">
-    These pages are kept for internal drafts and historical references. Most content is already summarized in the whitepapers above.
-  </div>
-  <ul style="margin:10px 0 0 18px;line-height:1.8;">
-    <li><a href="rss-platform.html">rss-platform</a></li>
-    <li><a href="rss-architecture.html">rss-architecture</a></li>
-    <li><a href="rss-safety.html">rss-safety</a></li>
-    <li><a href="rss-skills.html">rss-skills</a></li>
-    <li><a href="rss-agents.html">rss-agents</a></li>
-  </ul>
+<details class="card">
+<summary class="card-title">Legacy / internal pages (optional)</summary>
+<div class="status-muted" style="margin-top: 12px;">These pages are kept for internal drafts and historical references.</div>
+<ul style="margin-top: 12px; line-height: 2;">
+<li><a href="rss-platform.html">rss-platform</a></li>
+<li><a href="rss-architecture.html">rss-architecture</a></li>
+<li><a href="rss-safety.html">rss-safety</a></li>
+<li><a href="rss-skills.html">rss-skills</a></li>
+<li><a href="rss-agents.html">rss-agents</a></li>
+</ul>
 </details>
+</div>
+</div>
 </section>
-<section class="section" data-toggle-scope="rss" id="rss-summaries">
-<h2 class="section-head-row" id="rss-summaries-h"><span>Robot Skill Store (RSS) Whitepaper</span><a class="btn primary" href="rss_whitepaper.html" rel="noopener" target="_blank">RSS Whitepaper (HTML)</a></h2>
-<div class="keypoints-block" style="margin-top:12px;">
+
+<!-- RSS Whitepaper Section -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 class="section-head-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+<span>Robot Skill Store (RSS) Whitepaper</span>
+<a class="btn-apple" href="rss_whitepaper.html" rel="noopener" target="_blank">RSS Whitepaper (HTML)</a>
+</h2>
+
+<div class="keypoints-block">
 <div class="card-title">Key Points</div>
-<div class="status-muted" style="margin-top:8px;">
-      What you get: a platform view of robot skills as deployable system assets—versioned, evaluated, and governed.
-    </div>
-<ul class="checklist" style="margin-top:12px;">
+<div class="status-muted" style="margin-top: 12px;">What you get: a platform view of robot skills as deployable system assets—versioned, evaluated, and governed.</div>
+<ul class="checklist" style="margin-top: 16px;">
 <li><strong>Platform-first</strong>: skills are deployable system assets, not demo code.</li>
 <li><strong>Versioned execution</strong>: every run binds to an immutable skill version.</li>
 <li><strong>Objective evaluation</strong>: benchmarks define success, not subjective demos.</li>
 <li><strong>Governance at runtime</strong>: policy gates enforce safety/approval/authorization.</li>
-<li><strong>Evidence &amp; auditability</strong>: every run produces traceable artifacts.</li>
+<li><strong>Evidence & auditability</strong>: every run produces traceable artifacts.</li>
 </ul>
-<div class="inline-toggle-block" id="rss-inline-nav" style="margin-top:14px;">
-<div class="muted" style="margin:10px 0 8px;font-weight:700;">Summary</div>
-<div aria-label="RSS summaries navigation" class="concept-tabs" data-toggle-group="rss" role="tablist">
-  <button class="tab-btn active" data-toggle-group="rss" data-toggle-target="rss-panel-platform" role="tab">Platform</button>
-  <button class="tab-btn" data-toggle-group="rss" data-toggle-target="rss-panel-architecture" role="tab">Architecture</button>
-  <button class="tab-btn" data-toggle-group="rss" data-toggle-target="rss-panel-safety" role="tab">Safety</button>
-  <button class="tab-btn" data-toggle-group="rss" data-toggle-target="rss-panel-skills" role="tab">Skills</button>
-  <button class="tab-btn" data-toggle-group="rss" data-toggle-target="rss-panel-agents" role="tab">Agents</button>
+
+<div class="inline-toggle-block">
+<div class="muted" style="font-weight: 600; margin-bottom: 12px;">Summary</div>
+<div class="docs-tabs" role="tablist" aria-label="RSS summaries navigation">
+<button class="docs-tab-btn active" data-tab="rss-panel-platform" role="tab">Platform</button>
+<button class="docs-tab-btn" data-tab="rss-panel-architecture" role="tab">Architecture</button>
+<button class="docs-tab-btn" data-tab="rss-panel-safety" role="tab">Safety</button>
+<button class="docs-tab-btn" data-tab="rss-panel-skills" role="tab">Skills</button>
+<button class="docs-tab-btn" data-tab="rss-panel-agents" role="tab">Agents</button>
 </div>
-<div class="inline-panels" style="margin-top:12px;">
-<div class="card inline-panel active" data-panel="rss" id="rss-panel-platform" role="tabpanel">
+<div class="docs-panels">
+<div class="card docs-panel active" id="rss-panel-platform" role="tabpanel">
 <div class="card-title">Platform summary</div>
 <p class="tight">RSS is the product platform for deploying and operating skills at scale. It makes execution, evaluation, and governance platform-managed—not human-managed.</p>
-<ul class="tight" style="margin-top:10px;">
+<ul class="tight" style="margin-top: 12px;">
 <li><strong>Registry</strong>: manage Skill / Version / Profile / Artifacts as first-class assets.</li>
 <li><strong>Runs</strong>: every action becomes a platform-managed Run with immutable records.</li>
 <li><strong>Evaluation</strong>: benchmark-defined success for comparability across time and teams.</li>
 <li><strong>Governance</strong>: approvals, authz, and safety gates enforced at runtime.</li>
 <li><strong>Evidence</strong>: logs/metrics/trajectories/video captured and linked to each Run.</li>
 </ul>
-<div class="muted" style="margin-top:10px;">Result: reliable rollout, measurable quality, and reusable capability—not “trust me” demos.</div>
 </div>
-<div class="card inline-panel hidden" data-panel="rss" id="rss-panel-architecture" role="tabpanel">
+<div class="card docs-panel" id="rss-panel-architecture" role="tabpanel">
 <div class="card-title">Architecture summary</div>
 <p class="tight">RSS is platform-centered. RSP is enforced inside the platform so the same invariants hold across simulators and real robots.</p>
-<ul class="tight" style="margin-top:10px;">
+<ul class="tight" style="margin-top: 12px;">
 <li><strong>Control plane</strong>: registry, versions, policies, and approvals.</li>
 <li><strong>Data plane</strong>: execution Runs + evidence capture + artifact storage.</li>
 <li><strong>Skill runtime</strong>: binds specs to robot/TCP/environment and enforces constraints.</li>
 <li><strong>Evaluation layer</strong>: benchmark definitions + scoring + dashboards.</li>
 <li><strong>Agent layer</strong>: planners/orchestrators propose Runs, but never bypass gates.</li>
 </ul>
-<div class="muted" style="margin-top:10px;">Rule: the platform is the source of truth; humans and UIs cannot “override reality.”</div>
 </div>
-<div class="card inline-panel hidden" data-panel="rss" id="rss-panel-safety" role="tabpanel">
+<div class="card docs-panel" id="rss-panel-safety" role="tabpanel">
 <div class="card-title">Safety summary</div>
 <p class="tight">Safety is not a best-effort guideline. In RSS it is an enforceable mechanism.</p>
-<ul class="tight" style="margin-top:10px;">
+<ul class="tight" style="margin-top: 12px;">
 <li><strong>Policy gates</strong>: approval/authz, environment readiness, compliance.</li>
 <li><strong>Runtime constraints</strong>: speed/force/workspace limits, collision margins, watchdogs.</li>
 <li><strong>Skill stance</strong>: hazards, limits, and required guards declared per skill.</li>
 <li><strong>Evidence</strong>: every safety-critical run yields traceable artifacts for audit.</li>
 </ul>
 </div>
-<div class="card inline-panel hidden" data-panel="rss" id="rss-panel-skills" role="tabpanel">
+<div class="card docs-panel" id="rss-panel-skills" role="tabpanel">
 <div class="card-title">Skills summary</div>
 <p class="tight">Skills are deployable, versioned capability contracts. Code is implementation—contracts are what the platform governs.</p>
-<ul class="tight" style="margin-top:10px;">
+<ul class="tight" style="margin-top: 12px;">
 <li><strong>Spec</strong>: intent, constraints, inputs, outcomes, requirements.</li>
 <li><strong>Versioning</strong>: immutable releases; comparison across time becomes meaningful.</li>
 <li><strong>Profiles</strong>: bind to robot/TCP/environment so runs are reproducible.</li>
@@ -141,113 +301,121 @@
 <li><strong>Benchmarks</strong>: define success for evaluation and regressions.</li>
 </ul>
 </div>
-<div class="card inline-panel hidden" data-panel="rss" id="rss-panel-agents" role="tabpanel">
+<div class="card docs-panel" id="rss-panel-agents" role="tabpanel">
 <div class="card-title">Agents summary</div>
 <p class="tight">Agents are a decision layer inside RSS. They select, compose, and retry skills based on goals and evidence—without bypassing execution truth.</p>
-<ul class="tight" style="margin-top:10px;">
+<ul class="tight" style="margin-top: 12px;">
 <li><strong>May</strong>: choose candidates, bind profiles, compose workflows, branch/retry/escalate.</li>
 <li><strong>May not</strong>: execute code directly, bypass gates, edit records, redefine semantics.</li>
 <li><strong>Evidence-driven</strong>: compare candidates using benchmark outcomes, not persuasion.</li>
 </ul>
-<div class="muted" style="margin-top:10px;">Rule: Agents may decide what to try; RSS enforces what is allowed to actually happen.</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </section>
-<section class="section" data-toggle-scope="rsp" id="rsp-summaries">
-<h2 class="section-head-row" id="rsp-summaries-h"><span>Robot Skill Protocol (RSP) Whitepaper</span><a class="btn primary" href="rsp_whitepaper.html" rel="noopener" target="_blank">RSP Whitepaper (HTML)</a></h2>
-<div class="keypoints-block" style="margin-top:12px;">
+
+<!-- RSP Whitepaper Section -->
+<section class="section-hero animate-on-scroll delay-3">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 class="section-head-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+<span>Robot Skill Protocol (RSP) Whitepaper</span>
+<a class="btn-apple" href="rsp_whitepaper.html" rel="noopener" target="_blank">RSP Whitepaper (HTML)</a>
+</h2>
+
+<div class="keypoints-block">
 <div class="card-title">Key Points</div>
-<div class="status-muted" style="margin-top:8px;">
-      Why RSP exists: RSS needs non-negotiable invariants so execution truth and governance never depend on UI, operators, or environment drift.
-    </div>
-<ul class="checklist" style="margin-top:12px;">
+<div class="status-muted" style="margin-top: 12px;">Why RSP exists: RSS needs non-negotiable invariants so execution truth and governance never depend on UI, operators, or environment drift.</div>
+<ul class="checklist" style="margin-top: 16px;">
 <li><strong>Canonical objects</strong>: Skill / Run / Profile / Policy / Evidence with stable semantics.</li>
 <li><strong>Versioned contracts</strong>: skill specs are immutable and comparable across time.</li>
 <li><strong>Runtime enforcement</strong>: all actions become platform-managed Runs; policies gate what can happen.</li>
 <li><strong>Immutable evidence</strong>: every Run produces traceable artifacts (logs, metrics, trajectories, outcomes).</li>
-<li><strong>Auditability</strong>: evaluation and governance are evidence-driven, not “trust me” demos.</li>
+<li><strong>Auditability</strong>: evaluation and governance are evidence-driven, not "trust me" demos.</li>
 </ul>
-<div class="inline-toggle-block" id="rsp-inline-nav" style="margin-top:14px;">
-<div class="muted" style="margin:10px 0 8px;font-weight:700;">Summary</div>
-<div aria-label="RSP summaries navigation" class="concept-tabs" data-toggle-group="rsp" role="tablist">
-  <button class="tab-btn active" data-toggle-group="rsp" data-toggle-target="rsp-panel-overview" role="tab">Overview</button>
-  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-concepts" role="tab">Concepts</button>
-  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-skill-spec" role="tab">Skill Spec</button>
-  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-schema" role="tab">Schema</button>
-  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-execution" role="tab">Execution</button>
-  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-safety" role="tab">Safety</button>
-  <button class="tab-btn" data-toggle-group="rsp" data-toggle-target="rsp-panel-demo" role="tab">Demo Mapping</button>
+
+<div class="inline-toggle-block">
+<div class="muted" style="font-weight: 600; margin-bottom: 12px;">Summary</div>
+<div class="docs-tabs" role="tablist" aria-label="RSP summaries navigation">
+<button class="docs-tab-btn active" data-tab="rsp-panel-overview" role="tab">Overview</button>
+<button class="docs-tab-btn" data-tab="rsp-panel-concepts" role="tab">Concepts</button>
+<button class="docs-tab-btn" data-tab="rsp-panel-skill-spec" role="tab">Skill Spec</button>
+<button class="docs-tab-btn" data-tab="rsp-panel-schema" role="tab">Schema</button>
+<button class="docs-tab-btn" data-tab="rsp-panel-execution" role="tab">Execution</button>
+<button class="docs-tab-btn" data-tab="rsp-panel-safety" role="tab">Safety</button>
+<button class="docs-tab-btn" data-tab="rsp-panel-demo" role="tab">Demo Mapping</button>
 </div>
-<div class="inline-panels" style="margin-top:12px;">
-<div class="card inline-panel active" data-panel="rsp" id="rsp-panel-overview" role="tabpanel">
+<div class="docs-panels">
+<div class="card docs-panel active" id="rsp-panel-overview" role="tabpanel">
 <div class="card-title">RSP overview</div>
 <p class="tight">RSP is the enforced protocol layer inside RSS. It standardizes canonical objects and invariants so execution truth, evaluation, and governance never depend on UI, operators, or environment drift.</p>
-<ul class="tight" style="margin-top:10px;">
-<li><strong>Why</strong>: robotics fails at scale when “skills” are demos without stable contracts and evidence.</li>
+<ul class="tight" style="margin-top: 12px;">
+<li><strong>Why</strong>: robotics fails at scale when "skills" are demos without stable contracts and evidence.</li>
 <li><strong>What</strong>: canonical objects (Skill / Run / Profile / Policy / Evidence) with versioned semantics.</li>
 <li><strong>How</strong>: runtime binds specs to concrete systems and records immutable outcomes + artifacts.</li>
 <li><strong>Result</strong>: skills become comparable, auditable, and safe to reuse across simulators and real robots.</li>
 </ul>
 </div>
-<div class="card inline-panel hidden" data-panel="rsp" id="rsp-panel-concepts" role="tabpanel">
+<div class="card docs-panel" id="rsp-panel-concepts" role="tabpanel">
 <div class="card-title">Concepts</div>
 <p class="tight">Minimal abstractions RSP standardizes so different teams and backends speak the same language:</p>
-<ul class="tight" style="margin-top:10px;">
+<ul class="tight" style="margin-top: 12px;">
 <li><strong>Skill</strong>: capability contract (intent, constraints, inputs, observable outcomes) — not just code.</li>
 <li><strong>Run</strong>: an execution instance with immutable records and links to evidence.</li>
-<li><strong>Profile</strong>: binding to robot/TCP/env + limits (what makes execution “the same”).</li>
+<li><strong>Profile</strong>: binding to robot/TCP/env + limits (what makes execution "the same").</li>
 <li><strong>Policy</strong>: runtime gates and constraints (what is allowed to happen).</li>
 <li><strong>Evidence</strong>: logs/metrics/trajectories/video/provenance that make results auditable.</li>
 <li><strong>Agent</strong>: decision layer that reasons over specs and evidence (but cannot bypass policies).</li>
 </ul>
 </div>
-<div class="card inline-panel hidden" data-panel="rsp" id="rsp-panel-skill-spec" role="tabpanel">
+<div class="card docs-panel" id="rsp-panel-skill-spec" role="tabpanel">
 <div class="card-title">Skill Spec</div>
 <p class="tight">Skill Spec defines canonical fields and semantics so a skill can be deployed, evaluated, and governed consistently.</p>
-<ul class="tight" style="margin-top:10px;">
+<ul class="tight" style="margin-top: 12px;">
 <li><strong>Identity</strong>: name, version, lineage, compatibility.</li>
-<li><strong>Intent &amp; scope</strong>: what the skill tries to achieve and what it must never do.</li>
+<li><strong>Intent & scope</strong>: what the skill tries to achieve and what it must never do.</li>
 <li><strong>Constraints</strong>: geometry, timing, force/torque, safety envelopes.</li>
 <li><strong>Inputs/outputs</strong>: declared parameters and observable outcomes (what will be measured).</li>
 <li><strong>Requirements</strong>: required sensors, tooling, environment assumptions.</li>
 </ul>
-<div class="muted" style="margin-top:10px;">In RSS, every Run binds to an immutable Skill Spec version.</div>
 </div>
-<div class="card inline-panel hidden" data-panel="rsp" id="rsp-panel-schema" role="tabpanel">
+<div class="card docs-panel" id="rsp-panel-schema" role="tabpanel">
 <div class="card-title">Schema</div>
 <p class="tight">Schema makes the spec machine-checkable and automatable.</p>
-<ul class="tight" style="margin-top:10px;">
+<ul class="tight" style="margin-top: 12px;">
 <li><strong>Validation</strong>: reject malformed or incomplete skill/run records before execution.</li>
 <li><strong>Interoperability</strong>: different simulators/robots can consume the same contract.</li>
 <li><strong>Tooling</strong>: editors, linters, CI checks, diffing, and version upgrades.</li>
 <li><strong>Traceability</strong>: stable field names enable analytics and evidence search.</li>
 </ul>
 </div>
-<div class="card inline-panel hidden" data-panel="rsp" id="rsp-panel-execution" role="tabpanel">
+<div class="card docs-panel" id="rsp-panel-execution" role="tabpanel">
 <div class="card-title">Execution</div>
 <p class="tight">Execution binds abstract specs to concrete systems and produces evidence.</p>
-<ul class="tight" style="margin-top:10px;">
+<ul class="tight" style="margin-top: 12px;">
 <li><strong>Binding</strong>: choose Skill Version + Profile + parameters → create a Run request.</li>
 <li><strong>Enforcement</strong>: policies and constraints are checked before/during execution.</li>
 <li><strong>Outcomes</strong>: results are measured by benchmarks, not by operator declaration.</li>
 <li><strong>Evidence</strong>: artifacts are stored and linked to the Run for audit and reuse.</li>
 </ul>
 </div>
-<div class="card inline-panel hidden" data-panel="rsp" id="rsp-panel-safety" role="tabpanel">
+<div class="card docs-panel" id="rsp-panel-safety" role="tabpanel">
 <div class="card-title">Safety</div>
 <p class="tight">Safety is defined as enforceable, testable mechanisms.</p>
-<ul class="tight" style="margin-top:10px;">
+<ul class="tight" style="margin-top: 12px;">
 <li><strong>Skill-level stance</strong>: each skill declares hazards, limits, and required guards.</li>
 <li><strong>Policy gates</strong>: approval, authorization, environment readiness, compliance.</li>
 <li><strong>Runtime constraints</strong>: speed/force/workspace limits, collision margins, watchdogs.</li>
 <li><strong>Incident handling</strong>: standardized records for failures, retries, and escalations.</li>
 </ul>
 </div>
-<div class="card inline-panel hidden" data-panel="rsp" id="rsp-panel-demo" role="tabpanel">
+<div class="card docs-panel" id="rsp-panel-demo" role="tabpanel">
 <div class="card-title">Demo Mapping</div>
 <p class="tight">Demo Mapping connects the UR5 reference pipeline to RSP objects.</p>
-<ul class="tight" style="margin-top:10px;">
+<ul class="tight" style="margin-top: 12px;">
 <li><strong>Pipeline</strong>: pick → insert → tighten as a composed workflow of skills.</li>
 <li><strong>Skill Versions</strong>: each stage is versioned and evaluated separately.</li>
 <li><strong>Runs</strong>: each execution creates evidence (trajectory, video, logs, metrics).</li>
@@ -257,13 +425,55 @@
 </div>
 </div>
 </div>
+</div>
+</div>
+</section>
+
+<!-- CTA Section -->
+<section class="section-hero animate-on-scroll delay-4" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="color: white; font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">Ready to Explore?</h2>
+<p style="font-size: clamp(17px, 2vw, 21px); color: #a1a1a6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Read the whitepapers or explore certified skills</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="rss_whitepaper.html" class="btn-apple">RSS Whitepaper</a>
+<a href="../skills.html" class="btn-apple secondary">View Skills</a>
+</div>
+</div>
+</div>
 </section>
 </main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">On this page</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<script src="../../assets/js/site.js?v=6.77.46"></script>
-<script>try{ if(window.initInlineToggleNav) window.initInlineToggleNav(); }catch(e){};</script></body>
+
+<script src="../../assets/config.js?v=6.77.56"></script>
+<script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
+<script src="../../assets/js/site.js?v=6.77.56"></script>
+<script>
+// Docs tabs functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const tabGroups = document.querySelectorAll('.docs-tabs');
+
+  tabGroups.forEach(group => {
+    const tabs = group.querySelectorAll('.docs-tab-btn');
+    const container = group.parentElement;
+    const panels = container.querySelectorAll('.docs-panel');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-tab');
+
+        tabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        panels.forEach(panel => {
+          panel.classList.remove('active');
+          if (panel.id === targetId) {
+            panel.classList.add('active');
+          }
+        });
+      });
+    });
+  });
+});
+</script>
+</body>
 </html>

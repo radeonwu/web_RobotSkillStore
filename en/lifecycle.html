@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Skill Lifecycle · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.51" rel="stylesheet"/>
 </head>
 <body>
+<!-- Apple 风格导航栏 -->
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<!-- 移动端汉堡菜单按钮 -->
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">Home</a>
+<a class="toplink" href="lifecycle.html">Lifecycle</a>
+<a class="toplink" href="platform.html">Platform</a>
+<a class="toplink" href="skills.html">Skills</a>
+<a class="toplink" href="docs/index.html">Docs</a>
+<a class="toplink" href="contact.html">Contact</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
 <span class="label">Appearance</span>
@@ -23,83 +37,149 @@
 </div>
 </div>
 </header>
-<div class="layout">
-<main class="content">
 
-<section class="section-plain">
+<main class="apple-main">
+<!-- Apple 风格全宽英雄区 -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
 <h1>Skill Lifecycle</h1>
-<div class="onboarding">
-  <p><strong>Purpose</strong>The lifecycle that makes robot skills trustworthy and reusable.</p>
-  <p><strong>What this page covers</strong>Register → Validate → Certify → Deploy, and how RSS governs each stage so skills become portable assets rather than project-specific code.</p>
-  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div>
+<p class="hero-subtitle">The lifecycle that makes robot skills trustworthy and reusable</p>
+<div class="cta-row">
+<a href="platform.html" class="btn-apple">Learn About Platform</a>
+<a href="skills.html" class="btn-apple secondary">View Skills</a>
+</div>
 </div>
 </section>
 
-<section class="section-plain">
-<h2 id="overview">Overview</h2>
-<div class="grid-2" style="align-items:center;">
-<div>
-<p class="lead">RSS treats robot skills as capability assets with a lifecycle: <strong>Register → Validate → Certify → Deploy</strong>.</p>
-<ul>
+<!-- Overview - 左图右文 -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="visual">
+<img src="../assets/media/rss_skill_lifecycle_overview.png" alt="Robot Skill Lifecycle" class="apple-card"/>
+</div>
+<div class="text">
+<h2>Overview</h2>
+<p>RSS treats robot skills as capability assets with a lifecycle: <strong>Register → Validate → Certify → Deploy</strong>.</p>
+<ul style="margin-top: 16px; line-height: 1.8;">
 <li><strong>Register</strong>: suppliers publish skills with interfaces + constraints.</li>
 <li><strong>Validate</strong>: RSS executes skills and records runs.</li>
 <li><strong>Certify</strong>: RSS evaluates evidence and issues a certification snapshot.</li>
 <li><strong>Deploy</strong>: users reuse certified skills with predictable behavior.</li>
 </ul>
 </div>
-<div>
-  <img alt="RSS Skill Lifecycle overview" class="hero-figure-full" src="../assets/media/rss_skill_lifecycle_overview.png"/>
-</div>
 </div>
 </section>
-<section class="section">
-<h2 id="register">Register</h2>
-<div class="onboarding"><p><strong>Purpose</strong>This page explains how robot skills are submitted to RSS by skill suppliers.</p><p><strong>What you will see here</strong>You will learn what a skill interface looks like, what constraints must be declared, and what information RSS requires before a skill can be validated.</p><p><strong>Lifecycle Anchor</strong>RSS Skill Lifecycle → Register (Supplier → RSS)</p></div>
 
-<ul>
+<!-- Register - 右图左文 -->
+<section class="section-hero reverse animate-on-scroll delay-1">
+<div class="content-inner">
+<div class="text">
+<h2>Register</h2>
+<p><strong>Purpose</strong> This page explains how robot skills are submitted to RSS by skill suppliers.</p>
+<p style="margin-top: 12px;"><strong>What you will see here</strong> You will learn what a skill interface looks like, what constraints must be declared, and what information RSS requires before a skill can be validated.</p>
+<p style="margin-top: 12px;"><strong>Lifecycle Anchor</strong> RSS Skill Lifecycle → Register (Supplier → RSS)</p>
+<ul style="margin-top: 16px; line-height: 1.8;">
 <li><strong>What is Skill Registration</strong>: package + metadata + interface contract.</li>
 <li><strong>Skill Interface &amp; Constraints</strong>: explicit preconditions, safety limits, and IO schema.</li>
-<li><strong>Link</strong>: <a class="link-pill" href="developers.html">Skill Registration Guide</a></li>
 </ul>
+</div>
+<div class="visual">
+<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); color: white; padding: 48px; text-align: center;">
+<div style="font-size: 72px; font-weight: 700; margin-bottom: 16px;">1</div>
+<div style="font-size: 24px; font-weight: 600;">Register</div>
+<div style="font-size: 16px; opacity: 0.8; margin-top: 12px;">Supplier → RSS</div>
+</div>
+</div>
+</div>
 </section>
-<section class="section">
-<h2 id="validate">Validate</h2>
-<div class="onboarding"><p><strong>Purpose</strong>This page describes how RSS executes robot skills in controlled environments.</p><p><strong>What you will see here</strong>You will see how skills are run, how execution results are recorded, and how RSS verifies correctness, stability, and repeatability.</p><p><strong>Lifecycle Anchor</strong>RSS Skill Lifecycle → Validate (Inside RSS)</p></div>
 
-<ul>
+<!-- Validate - 左图右文 -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner">
+<div class="visual">
+<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); color: white; padding: 48px; text-align: center;">
+<div style="font-size: 72px; font-weight: 700; margin-bottom: 16px;">2</div>
+<div style="font-size: 24px; font-weight: 600;">Validate</div>
+<div style="font-size: 16px; opacity: 0.8; margin-top: 12px;">Inside RSS</div>
+</div>
+</div>
+<div class="text">
+<h2>Validate</h2>
+<p><strong>Purpose</strong> This page describes how RSS executes robot skills in controlled environments.</p>
+<p style="margin-top: 12px;"><strong>What you will see here</strong> You will see how skills are run, how execution results are recorded, and how RSS verifies correctness, stability, and repeatability.</p>
+<p style="margin-top: 12px;"><strong>Lifecycle Anchor</strong> RSS Skill Lifecycle → Validate (Inside RSS)</p>
+<ul style="margin-top: 16px; line-height: 1.8;">
 <li><strong>Skill Execution &amp; Simulation</strong>: run skills in sim / hardware-in-loop.</li>
 <li><strong>Run Records</strong>: every run is logged with traceable context.</li>
-<li><strong>Link</strong>: <a class="link-pill" href="platform.html">Run API / Execution Docs</a></li>
 </ul>
+</div>
+</div>
 </section>
-<section class="section">
-<h2 id="certify">Certify</h2>
-<div class="onboarding"><p><strong>Purpose</strong>This page explains how RSS evaluates and certifies robot skills.</p><p><strong>What you will see here</strong>Execution logs, metrics, and artifacts are collected to assess skill quality and readiness for deployment.</p><p><strong>Lifecycle Anchor</strong>RSS Skill Lifecycle → Certify (Inside RSS)</p></div>
 
-<ul>
+<!-- Certify - 右图左文 -->
+<section class="section-hero reverse animate-on-scroll delay-3">
+<div class="content-inner">
+<div class="text">
+<h2>Certify</h2>
+<p><strong>Purpose</strong> This page explains how RSS evaluates and certifies robot skills.</p>
+<p style="margin-top: 12px;"><strong>What you will see here</strong> Execution logs, metrics, and artifacts are collected to assess skill quality and readiness for deployment.</p>
+<p style="margin-top: 12px;"><strong>Lifecycle Anchor</strong> RSS Skill Lifecycle → Certify (Inside RSS)</p>
+<ul style="margin-top: 16px; line-height: 1.8;">
 <li><strong>Evidence &amp; Metrics</strong>: success rate, latency, safety constraints, robustness.</li>
 <li><strong>Artifact Management</strong>: logs, videos, datasets, reports.</li>
 <li><strong>Certification Logic</strong>: policy + thresholds + governance.</li>
-<li><strong>Link</strong>: <a class="link-pill" href="skills.html">Certified Skill Examples</a></li>
 </ul>
+</div>
+<div class="visual">
+<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); color: white; padding: 48px; text-align: center;">
+<div style="font-size: 72px; font-weight: 700; margin-bottom: 16px;">3</div>
+<div style="font-size: 24px; font-weight: 600;">Certify</div>
+<div style="font-size: 16px; opacity: 0.8; margin-top: 12px;">Inside RSS</div>
+</div>
+</div>
+</div>
 </section>
-<section class="section">
-<h2 id="deploy">Deploy</h2>
-<div class="onboarding"><p><strong>Purpose</strong>This page shows how certified robot skills are delivered to users.</p><p><strong>What you will see here</strong>You will learn how validated skills are packaged, deployed, and reused across robots, projects, and scenarios.</p><p><strong>Lifecycle Anchor</strong>RSS Skill Lifecycle → Deploy (RSS → Users)</p></div>
 
-<ul>
+<!-- Deploy - 左图右文 -->
+<section class="section-hero animate-on-scroll delay-4">
+<div class="content-inner">
+<div class="visual">
+<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); color: white; padding: 48px; text-align: center;">
+<div style="font-size: 72px; font-weight: 700; margin-bottom: 16px;">4</div>
+<div style="font-size: 24px; font-weight: 600;">Deploy</div>
+<div style="font-size: 16px; opacity: 0.8; margin-top: 12px;">RSS → Users</div>
+</div>
+</div>
+<div class="text">
+<h2>Deploy</h2>
+<p><strong>Purpose</strong> This page shows how certified robot skills are delivered to users.</p>
+<p style="margin-top: 12px;"><strong>What you will see here</strong> You will learn how validated skills are packaged, deployed, and reused across robots, projects, and scenarios.</p>
+<p style="margin-top: 12px;"><strong>Lifecycle Anchor</strong> RSS Skill Lifecycle → Deploy (RSS → Users)</p>
+<ul style="margin-top: 16px; line-height: 1.8;">
 <li><strong>Skill Packaging</strong>: reproducible bundle + dependency lock.</li>
 <li><strong>Deployment Scenarios</strong>: factory lines, mobile manipulation, field robots.</li>
-<li><strong>Link</strong>: <a class="link-pill" href="skills.html">Certified Skill Examples</a></li>
 </ul>
+</div>
+</div>
+</section>
+
+<!-- Get Started CTA -->
+<section class="section-hero animate-on-scroll delay-5" style="background: #f5f5f7; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">Explore the Platform</h2>
+<p style="font-size: clamp(17px, 2vw, 21px); color: var(--apple-gray); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Dive deeper into how RSS manages robot skills throughout their lifecycle</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="platform.html" class="btn-apple">Platform Details</a>
+<a href="skills.html" class="btn-apple secondary" style="color: #1d1d1f; border-color: var(--rss-blue);">View Skills</a>
+</div>
+</div>
+</div>
 </section>
 </main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">On this page</div>
-<nav class="toc-nav" id="tocNav">
-<a class="toc-link" href="#overview">Overview</a><a class="toc-link" href="#register">Register</a><a class="toc-link" href="#validate">Validate</a><a class="toc-link" href="#certify">Certify</a><a class="toc-link" href="#deploy">Deploy</a>
-</nav>
-</aside>
-</div>
-<script src="../assets/js/site.js?v=6.77.46"></script></body>
+
+<script src="../assets/config.js?v=6.77.51"></script>
+<script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
+<script src="../assets/js/site.js?v=6.77.51"></script>
+</body>
 </html>

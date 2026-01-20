@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>用户与部署 · Robot Skill Store</title>
-<link rel="stylesheet" href="../assets/css/style.css?v=6.77.46"/>
+<link rel="stylesheet" href="../assets/css/style.css?v=6.77.54"/>
 </head>
 <body>
 <header class="topbar">
@@ -13,15 +13,20 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
 <nav aria-label="Primary" class="topnav">
-  <a class="toplink" href="index.html">首页</a>
-  <a class="toplink" href="lifecycle.html">技能生命周期</a>
-  <a class="toplink" href="platform.html">平台</a>
-  <a class="toplink" href="concepts.html">概念</a>
-  <a class="toplink" href="skills.html">认证技能</a>
-  <a class="toplink" href="deployment.html">用户与部署</a>
-  <a class="toplink" href="docs/index.html">文档</a>
-  <a class="toplink" href="contact.html">联系</a>
+<a class="toplink" href="index.html">首页</a>
+<a class="toplink" href="lifecycle.html">技能生命周期</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink" href="concepts.html">概念</a>
+<a class="toplink" href="skills.html">认证技能</a>
+<a class="toplink" href="deployment.html">用户与部署</a>
+<a class="toplink" href="docs/index.html">文档</a>
+<a class="toplink" href="contact.html">联系</a>
 </nav>
 <div class="top-actions">
 <button type="button" class="iconbtn" id="langToggle" title="Language" aria-label="Switch language" data-current="zh"><span class="icon">EN/中</span><span class="label">English</span></button>
@@ -29,80 +34,137 @@
 </div>
 </div>
 </header>
-<div class="layout">
-<main class="content">
-<section class="section-plain">
+
+<main class="apple-main">
+<!-- Hero Section -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
 <h1>用户与部署</h1>
-<div class="onboarding">
-  <p><strong>目的</strong>把认证技能变成可复用的现场应用。</p>
-  <p><strong>本页内容</strong>以 UR5/RG2 示例说明技能如何复用；并推荐使用“智能体编排”提升效率：规划 → 匹配 → 执行 → 失败恢复。</p>
-  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期锚点</strong></div><div class="rss-lifecycle-bar compact" data-stage="deploy" data-compact="1"></div></div>
+<p class="hero-subtitle">把认证技能变成可复用的现场应用</p>
 </div>
 </section>
-<p class="lead">RSS 面向用户端输出“技能资产”，用于快速拼装应用流程，而不是一次性 demo 代码。</p>
 
-<section class="section">
-  <h2 id="agent-example">基于智能体的技能部署流程</h2>
-  <p>应用团队通常从用户任务出发（例如，使用 UR5 机械臂和 RG2 夹爪完成连接器装配并拧紧螺丝），由智能体把认证技能当作积木进行编排与执行。</p>
+<!-- Purpose Overview -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="text">
+<h2>从技能到应用</h2>
+<p>RSS 面向用户端输出"技能资产"，用于快速拼装应用流程，而不是一次性 demo 代码。</p>
+<p style="margin-top: 16px;">本页以 UR5/RG2 示例说明技能如何复用；并推荐使用"智能体编排"提升效率：规划 → 匹配 → 执行 → 失败恢复。</p>
+<div style="margin-top: 24px;">
+<div class="rss-lifecycle-bar compact" data-stage="deploy" data-compact="1"></div>
+</div>
+</div>
+<div class="visual">
+<div style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); border-radius: 24px; padding: 60px; text-align: center; color: white;">
+<div style="font-size: 48px; font-weight: 700; margin-bottom: 20px;">部署</div>
+<div style="font-size: 20px; opacity: 0.9;">技能现场应用</div>
+</div>
+</div>
+</div>
+</section>
 
-  <div class="deploy-flow" aria-label="智能体技能部署流程">
-    <!-- 第一排（1-3）：任务 → 规划 → 匹配 -->
-    <div class="deploy-row top">
-      <div class="deploy-step">
-        <h4>任务</h4>
-        <p>pick → insert → tighten</p>
-      </div>
-      <div class="deploy-arrow">➜</div>
-      <div class="deploy-step">
-        <h4>规划</h4>
-        <p>分解子任务：pick → insert → tighten</p>
-      </div>
-      <div class="deploy-arrow">➜</div>
-      <div class="deploy-step">
-        <h4>匹配</h4>
-        <p>检索技能：<b>pick_place</b>、<b>connector_insert</b>、<b>tighten_screw</b></p>
-      </div>
-    </div>
+<!-- Agent Flow Section -->
+<section class="section-hero reverse animate-on-scroll delay-1">
+<div class="content-inner">
+<div class="visual">
+<div class="deploy-flow apple-card" aria-label="智能体技能部署流程" style="background: #f5f5f7; padding: 32px; border-radius: 20px;">
+<!-- Row 1 (1-3): 任务 -> 规划 -> 匹配 -->
+<div class="deploy-row top">
+<div class="deploy-step">
+<h4>任务</h4>
+<p>pick → insert → tighten</p>
+</div>
+<div class="deploy-arrow">➜</div>
+<div class="deploy-step">
+<h4>规划</h4>
+<p>分解子任务：pick → insert → tighten</p>
+</div>
+<div class="deploy-arrow">➜</div>
+<div class="deploy-step">
+<h4>匹配</h4>
+<p>检索技能：<b>pick_place</b>、<b>connector_insert</b>、<b>tighten_screw</b></p>
+</div>
+</div>
 
-    <!-- 连接：匹配（第一排第3列）↓ 执行（第二排第3列） -->
-    <div class="deploy-connector-down" aria-hidden="true" style="margin-top:2px;margin-bottom:8px;">
-      <div class="deploy-spacer"></div>
-      <div class="deploy-arrow-spacer"></div>
-      <div class="deploy-spacer"></div>
-      <div class="deploy-arrow-spacer"></div>
-      <div class="deploy-connector-cell">
-        <div class="deploy-arrow v" aria-hidden="true">➜</div>
-      </div>
-    </div>
+<!-- Connector -->
+<div class="deploy-connector-down" aria-hidden="true" style="margin-top:2px;margin-bottom:8px;">
+<div class="deploy-spacer"></div>
+<div class="deploy-arrow-spacer"></div>
+<div class="deploy-spacer"></div>
+<div class="deploy-arrow-spacer"></div>
+<div class="deploy-connector-cell">
+<div class="deploy-arrow v" aria-hidden="true">➜</div>
+</div>
+</div>
 
-    <!-- 第二排（4-6，右→左）：执行 → 恢复 → 证据 -->
-    <div class="deploy-row bottom" style="margin-top:0;">
-      <div class="deploy-step evidence">
-        <h4>证据</h4>
-        <p>附加 traces（视频 / 日志 / 指标）并在 viewer 中复盘</p>
-      </div>
-      <div class="deploy-arrow reverse">➜</div>
-      <div class="deploy-step recover">
-        <h4>恢复</h4>
-        <p>失败时：重试、调参，或切换候选技能</p>
-      </div>
-      <div class="deploy-arrow reverse">➜</div>
-      <div class="deploy-step">
-        <h4>执行</h4>
-        <p>带约束运行（参数 / sim / HIL / real）</p>
-      </div>
-    </div>
-  </div>
+<!-- Row 2 (4-6, right-to-left): 执行 -> 恢复 -> 证据 -->
+<div class="deploy-row bottom" style="margin-top:0;">
+<div class="deploy-step evidence">
+<h4>证据</h4>
+<p>附加 traces（视频 / 日志 / 指标）并在 viewer 中复盘</p>
+</div>
+<div class="deploy-arrow reverse">➜</div>
+<div class="deploy-step recover">
+<h4>恢复</h4>
+<p>失败时：重试、调参，或切换候选技能</p>
+</div>
+<div class="deploy-arrow reverse">➜</div>
+<div class="deploy-step">
+<h4>执行</h4>
+<p>带约束运行（参数 / sim / HIL / real）</p>
+</div>
+</div>
+</div>
+</div>
+<div class="text">
+<h2>基于智能体的技能部署流程</h2>
+<p>应用团队通常从用户任务出发（例如，使用 UR5 机械臂和 RG2 夹爪完成连接器装配并拧紧螺丝），由智能体把认证技能当作积木进行编排与执行。</p>
+</div>
+</div>
+</section>
 
-  <h3 style="margin-top:14px;" id="agent-loop">智能体在做什么（可操作的闭环）</h3>
-  <ul>
-    <li><b>抓取</b>：根据工件位姿与工作空间约束，为 <b>pick_place</b> 选择抓取模板、接近高度、避碰策略。</li>
-    <li><b>插入</b>：为 <b>connector_insert</b> 设置位姿约束、接近/后撤参数与失败恢复阈值（接触/入座/退出）。</li>
-    <li><b>拧紧</b>：为 <b>tighten_screw</b> 配置 torque/angle 任务，并用证据验证确定性与一致性。</li>
-    <li><b>治理</b>：每次运行都形成 trace 包；稳定性通过“验证→认证”提升，而不是靠反复改 demo 代码。</li>
-  </ul>
+<!-- Agent Loop Section -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2>智能体在做什么</h2>
+<p style="font-size: 18px; color: var(--apple-gray); margin-bottom: 32px;">可操作的技能编排闭环</p>
+</div>
+</div>
+<div class="apple-grid" style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+<div class="apple-card animate-on-scroll" style="padding: 24px;">
+<div style="font-size: 32px; margin-bottom: 16px;">🎯</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">抓取</h3>
+<p style="margin: 0;">根据工件位姿与工作空间约束，为 <b>pick_place</b> 选择抓取模板、接近高度、避碰策略。</p>
+</div>
 
-  <pre class="codeblock list-align" data-title="智能体编排伪代码"><code>// 伪代码：用智能体对认证技能做编排
+<div class="apple-card animate-on-scroll delay-1" style="padding: 24px;">
+<div style="font-size: 32px; margin-bottom: 16px;">🔌</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">插入</h3>
+<p style="margin: 0;">为 <b>connector_insert</b> 设置位姿约束、接近/后撤参数与失败恢复阈值（接触/入座/退出）。</p>
+</div>
+
+<div class="apple-card animate-on-scroll delay-2" style="padding: 24px;">
+<div style="font-size: 32px; margin-bottom: 16px;">⚙️</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">拧紧</h3>
+<p style="margin: 0;">为 <b>tighten_screw</b> 配置 torque/angle 任务，并用证据验证确定性与一致性。</p>
+</div>
+
+<div class="apple-card animate-on-scroll delay-3" style="padding: 24px;">
+<div style="font-size: 32px; margin-bottom: 16px;">📊</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">治理</h3>
+<p style="margin: 0;">每次运行都形成 trace 包；稳定性通过"验证→认证"提升，而不是靠反复改 demo 代码。</p>
+</div>
+</div>
+</section>
+
+<!-- Code Section -->
+<section class="section-hero animate-on-scroll delay-2" style="background: #1a1a2e; color: white;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="color: white; margin-bottom: 24px;">智能体编排伪代码</h2>
+<pre style="background: #2d2d44; padding: 24px; border-radius: 16px; overflow-x: auto; margin: 0;"><code style="color: #e0e0e0; font-size: 14px; line-height: 1.6;">// 伪代码：用智能体对认证技能做编排
 goal = "assemble_connector_and_tighten"
 plan = ["pick_place", "connector_insert", "tighten_screw"]
 
@@ -114,43 +176,70 @@ for step in plan:
     if not run.success:
         context = agent.recover(run, context)  # 重试 / 调参 / 换技能
         continue
-    agent.update_context_from_evidence(run.evidence)
-</code></pre>
+    agent.update_context_from_evidence(run.evidence)</code></pre>
+</div>
+</div>
 </section>
 
-<section class="section">
-  <h2 id="demo">连接器装配应用示例</h2>
-  <div class="video-card">
-    <video controls preload="metadata" src="../assets/media/ur5_rg2_demo.mp4" style="width:100%;border-radius:12px;"></video>
-    <p style="margin:10px 0 0;color:var(--vp-c-text-2);line-height:1.6;">示例流程：<b>pick_place</b> → <b>connector_insert</b> → <b>tighten_screw</b>。同一套技能通过调整约束与参数即可复用，无需重写程序。</p>
-    <ul style="margin:12px 0 0;">
-      <li><b>pick_place</b>：抓取模板 + 避碰 IK。</li>
-      <li><b>connector_insert</b>：位姿约束 + 接近/后撤 + 失败恢复 trace。</li>
-      <li><b>tighten_screw</b>：确定性拧紧，并输出 torque/angle 证据。</li>
-    </ul>
-  </div>
+<!-- Demo Section -->
+<section class="section-hero animate-on-scroll delay-3">
+<div class="content-inner">
+<div class="text">
+<h2>连接器装配应用示例</h2>
+<p>示例流程：展示技能如何在实战中复用。同一套技能通过调整约束与参数即可复用，无需重写程序。</p>
+<ul class="tight" style="margin-top: 16px;">
+<li><b>pick_place</b>：抓取模板 + 避碰 IK。</li>
+<li><b>connector_insert</b>：位姿约束 + 接近/后撤 + 失败恢复 trace。</li>
+<li><b>tighten_screw</b>：确定性拧紧，并输出 torque/angle 证据。</li>
+</ul>
+</div>
+<div class="visual">
+<div class="apple-card" style="padding: 16px; border-radius: 20px; background: #f5f5f7;">
+<video controls preload="metadata" src="../assets/media/ur5_rg2_demo.mp4" style="width:100%;border-radius:12px;"></video>
+</div>
+</div>
+</div>
 </section>
 
-<section class="section">
-  <h2 id="agent">为什么智能体编排很重要</h2>
-  <p>智能体编排不只是“建议”——它决定了应用团队能否规模化交付。智能体自动化 plan/match/execute/recover 的集成工作，而 RSS 让每个技能保持<b>模块化、证据可追溯、可治理</b>。</p>
-  <ul>
-    <li><b>更快迭代</b>：失败变成“调参 + 复盘证据”，而不是反复改流程代码。</li>
-    <li><b>更安全复用</b>：约束与成熟度门禁降低跨工位/跨项目的部署风险。</li>
-    <li><b>更可迁移</b>：同一计划可通过替换技能绑定，迁移到不同工站与设备。</li>
-  </ul>
+<!-- Why Agent Matters Section -->
+<section class="section-hero reverse animate-on-scroll delay-4">
+<div class="content-inner">
+<div class="visual">
+<div style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); border-radius: 24px; padding: 60px; text-align: center; color: white;">
+<div style="font-size: 40px; margin-bottom: 20px;">🤖</div>
+<h3 style="font-size: 24px; font-weight: 600; margin: 0 0 16px;">智能体编排</h3>
+<p style="font-size: 16px; opacity: 0.9; margin: 0;">规模化交付的关键</p>
+</div>
+</div>
+<div class="text">
+<h2>为什么智能体编排很重要</h2>
+<p>智能体编排不只是"建议"——它决定了应用团队能否规模化交付。智能体自动化 plan/match/execute/recover 的集成工作，而 RSS 让每个技能保持<b>模块化、证据可追溯、可治理</b>。</p>
+<ul class="tight" style="margin-top: 16px;">
+<li><b>更快迭代</b>：失败变成"调参 + 复盘证据"，而不是反复改流程代码。</li>
+<li><b>更安全复用</b>：约束与成熟度门禁降低跨工位/跨项目的部署风险。</li>
+<li><b>更可迁移</b>：同一计划可通过替换技能绑定，迁移到不同工站与设备。</li>
+</ul>
+</div>
+</div>
 </section>
 
-<section class="section">
-  <h2 id="next">建议路径</h2>
-  <p>从 <a href="skills.html">认证技能</a> 开始，进入 <a href="/viewer/">证据查看器</a> 查看 runs/工件；在用户侧通过参数与约束复用技能；再通过验证→认证推进成熟度。</p>
+<!-- CTA Section -->
+<section class="section-hero animate-on-scroll delay-5" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="color: white; font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">开始部署技能</h2>
+<p style="font-size: clamp(17px, 2vw, 21px); color: #a1a1a6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">浏览认证技能、查看证据、开始构建应用</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="skills.html" class="btn-apple">查看技能</a>
+<a href="/viewer/" class="btn-apple secondary">证据查看器</a>
+</div>
+</div>
+</div>
 </section>
 </main>
-<aside class="toc" aria-label="ON THIS PAGE">
-<div class="toc-title">ON THIS PAGE</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<script src="../assets/js/site.js?v=6.77.46"></script>
+
+<script src="../assets/config.js?v=6.77.54"></script>
+<script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
+<script src="../assets/js/site.js?v=6.77.54"></script>
 </body>
 </html>

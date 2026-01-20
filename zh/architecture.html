@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>架构 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.58" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,28 +13,63 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="deployment.html">用户与部署</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">首页</a>
+<a class="toplink" href="lifecycle.html">技能生命周期</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink" href="concepts.html">概念</a>
+<a class="toplink" href="skills.html">认证技能</a>
+<a class="toplink" href="deployment.html">用户与部署</a>
+<a class="toplink" href="docs/index.html">文档</a>
+<a class="toplink" href="contact.html">联系</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
-<span class="label">Appearance</span>
+<span class="label">外观</span>
 </button>
 </div>
 </div>
 </header>
 
-
-<div class="layout">
-<main class="content" id="content">
-<div class="rss-lifecycle-bar" data-stage="validate"></div>
-
-<section class="section">
+<main class="apple-main">
+<!-- Hero Section -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
 <h1>架构</h1>
-<p class="lead">以平台为中心，以协议强制为底座</p>
-<p>Robot Skill Store 的架构基于一个明确选择：<strong>平台是系统的中心</strong>。RSS 平台负责执行、评测与治理，并<strong>强制</strong>遵循共享协议（RSP），使工具、仿真器、机器人与 Agent 能在不改语义的前提下互操作。</p>
-<div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
-<div class="card-title">协议中心架构图（SVG）</div>
-<div class="note">可直接用于官网与白皮书；后续仅需替换此 SVG 即可升级为品牌版视觉。</div>
+<p class="hero-subtitle">以平台为中心，以协议强制为底座</p>
+</div>
+</section>
+
+<!-- Overview Section -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="text">
+<h2>平台中心设计</h2>
+<p>Robot Skill Store 的架构基于一个明确选择：<strong>平台是系统的中心</strong>。</p>
+<p style="margin-top: 16px;">RSS 平台负责执行、评测与治理，并<strong>强制</strong>遵循共享协议（RSP），使工具、仿真器、机器人与 Agent 能在不改语义的前提下互操作。</p>
+</div>
+<div class="visual">
+<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); padding: 40px; text-align: center; color: white;">
+<div style="font-size: 48px; font-weight: 700; margin-bottom: 20px;">RSS</div>
+<div style="font-size: 20px; opacity: 0.9;">平台为中心</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Architecture Diagram Section -->
+<section class="section-hero animate-on-scroll delay-1" style="background: #f5f5f7;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="max-width: 1000px; margin: 0 auto;">
+<h2 style="text-align: center; margin-bottom: 24px;">平台中心架构</h2>
+<div class="apple-card" style="background: white; padding: 24px; border-radius: 20px;">
 <svg aria-label="Robot Skill Store Protocol-Centered Architecture" height="auto" role="img" viewbox="0 0 1040 420" width="100%">
 <defs>
 <lineargradient id="g1" x1="0" x2="1" y1="0" y2="1">
@@ -47,14 +81,14 @@
 <stop offset="1" stop-color="rgba(34,197,94,.06)"></stop>
 </lineargradient>
 <style>
-        .box{fill:url(#g1);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
-        .boxG{fill:url(#g2);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
-        .pill{fill:rgba(59,130,246,.10);stroke:rgba(27,31,36,.20);stroke-width:1.5;rx:999;ry:999}
-        .t{font:700 18px ui-sans-serif,system-ui; fill: currentColor}
-        .s{font:14px ui-sans-serif,system-ui; fill: currentColor; opacity:.82}
-        .xs{font:12px ui-sans-serif,system-ui; fill: currentColor; opacity:.72}
-        .a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
-      </style>
+.box{fill:url(#g1);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
+.boxG{fill:url(#g2);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
+.pill{fill:rgba(59,130,246,.10);stroke:rgba(27,31,36,.20);stroke-width:1.5;rx:999;ry:999}
+.t{font:700 18px ui-sans-serif,system-ui; fill: currentColor}
+.s{font:14px ui-sans-serif,system-ui; fill: currentColor; opacity:.82}
+.xs{font:12px ui-sans-serif,system-ui; fill: currentColor; opacity:.72}
+.a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
+</style>
 <marker id="m" markerheight="8" markerwidth="8" orient="auto" refx="9" refy="5" viewbox="0 0 10 10">
 <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
 </marker>
@@ -93,45 +127,104 @@
 <text class="xs" x="380" y="410">仿真↔真实闭环：定义 → 验证 → 部署 → 反馈（同一语义与约束）</text>
 </svg>
 </div>
+</div>
+</div>
 </section>
-<section class="section">
-<h2 id="rsp-backbone">RSP：架构主干</h2>
+
+<!-- RSP Backbone Section -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner">
+<div class="text">
+<h2>RSP：架构主干</h2>
 <p>Robot Skill Protocol（RSP）标准化技能描述、发现/选择、约束强制与结果上报。正因为这些交互被统一：</p>
-<ul>
+<ul style="margin-top: 16px;">
 <li>技能可以跨系统迁移</li>
 <li>Agent 可脱离实现细节进行推理</li>
 <li>执行环境可自由替换（仿真器/真实机器人/不同栈）</li>
 </ul>
-<p>RSP 不是内部 API，而是支撑生态协作的<strong>架构主干</strong>。</p>
-</section>
-<section class="section">
-<h2 id="decoupling">能力与实现的解耦</h2>
-<p>Robot Skill Store 明确分离：<strong>技能语义（做什么）</strong>、<strong>实现方式（如何做）</strong>与<strong>执行环境（在哪里做）</strong>。这使得技能与硬件可以独立演进，行为在部署前即可被验证，系统规模化时也能保持一致性。</p>
-</section>
-<section class="section">
-<h2 id="sim2real-loop">仿真与现实：同一闭环</h2>
-<p>仿真不是“测试之后的附加步骤”，而是执行语义的一部分。同一技能规范贯穿仿真验证、测试执行与真实部署：</p>
-<div class="card">
-<div class="card-title">闭环</div>
-<p class="tight"><strong>定义 → 仿真 → 验证 → 执行 → 反馈</strong></p>
-<p class="muted tight">在仿真中不可靠的技能，不应被信任于真实世界。</p>
+<p style="margin-top: 16px;">RSP 不是内部 API，而是支撑生态协作的<strong>架构主干</strong>。</p>
+</div>
+<div class="visual">
+<div class="apple-card" style="background: #f5f5f7; padding: 40px; text-align: center;">
+<div style="font-size: 48px; margin-bottom: 16px;">🔗</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">RSP 协议</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">共享契约主干</p>
+</div>
+</div>
 </div>
 </section>
-<section class="section">
-<h2 id="safety-position">安全在架构中的位置</h2>
-<p>安全不是外部附加层，而是被嵌入技能定义、执行约束与运行时强制机制中。将安全前移到<strong>技能契约</strong>与<strong>运行时策略门禁</strong>（协议强制），可显著减少对临时补丁与人工兜底的依赖。</p>
+
+<!-- Decoupling Section -->
+<section class="section-hero animate-on-scroll delay-3 reverse">
+<div class="content-inner">
+<div class="visual">
+<div class="apple-grid" style="grid-template-columns: 1fr 1fr; gap: 16px;">
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 12px;">📋</div>
+<h4 style="margin: 0 0 8px;">做什么</h4>
+<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">技能语义</p>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 12px;">⚙️</div>
+<h4 style="margin: 0 0 8px;">怎么做</h4>
+<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">实现方式</p>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 12px;">📍</div>
+<h4 style="margin: 0 0 8px;">在哪做</h4>
+<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">执行环境</p>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: center; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+<div style="font-size: 32px; margin-bottom: 12px;">✓</div>
+<h4 style="margin: 0 0 8px;">解耦</h4>
+<p style="font-size: 14px; margin: 0;">独立演进</p>
+</div>
+</div>
+</div>
+<div class="text">
+<h2>能力与实现的解耦</h2>
+<p>Robot Skill Store 明确分离：<strong>技能语义（做什么）</strong>、<strong>实现方式（如何做）</strong>与<strong>执行环境（在哪里做）</strong>。</p>
+<p style="margin-top: 16px;">这使得技能与硬件可以独立演进，行为在部署前即可被验证，系统规模化时也能保持一致性。</p>
+</div>
+</div>
 </section>
-<section class="section">
-<h2 id="extensible">为扩展而生</h2>
-<p>由于 RSS 平台以 RSP 作为稳定底座并强制执行，新机器人/新仿真器/新 Agent 都可以在不重构系统的前提下接入。这正是 Robot Skill Store 能成为长期生态基础的原因。</p>
+
+<!-- Sim2Real Section -->
+<section class="section-hero animate-on-scroll delay-4">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="max-width: 700px; margin: 0 auto;">
+<h2 style="text-align: center; margin-bottom: 24px;">仿真与现实：同一闭环</h2>
+<p style="text-align: center; color: var(--apple-gray); margin-bottom: 32px;">仿真不是"测试之后的附加步骤"，而是执行语义的一部分。</p>
+<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); color: white; padding: 32px; text-align: center;">
+<div style="font-size: 14px; opacity: 0.9; margin-bottom: 12px;">闭环</div>
+<div style="font-size: clamp(20px, 4vw, 28px); font-weight: 700;">定义 → 仿真 → 验证 → 执行 → 反馈</div>
+<div style="font-size: 14px; opacity: 0.85; margin-top: 12px;">同一技能规范贯穿所有阶段。</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Safety & Extensible Section -->
+<section class="section-hero animate-on-scroll delay-5">
+<div class="content-inner">
+<div class="apple-grid">
+<div class="apple-card animate-on-scroll" style="padding: 32px;">
+<div style="font-size: 40px; margin-bottom: 16px;">🛡️</div>
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">安全优先设计</h3>
+<p>安全被嵌入技能定义、执行约束与运行时强制机制中。协议强制门禁减少对临时补丁与人工兜底的依赖。</p>
+</div>
+
+<div class="apple-card animate-on-scroll delay-1" style="padding: 32px;">
+<div style="font-size: 40px; margin-bottom: 16px;">🔌</div>
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">为扩展而生</h3>
+<p>新机器人/新仿真器/新 Agent 都可以在不重构系统的前提下接入。RSP 提供稳定协议底座，支撑长期生态增长。</p>
+</div>
+</div>
+</div>
 </section>
 </main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">本页导航</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<script src="../assets/config.js?v=6.77.46"></script>
 
+<script src="../assets/config.js?v=6.77.58"></script>
+<script src="../assets/js/site.js?v=6.77.58"></script>
 </body>
 </html>

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Platform · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<title>Skill ≠ Task ≠ Program · Robot Skill Store</title>
+<link href="../assets/css/style.css?v=6.77.60" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,9 +13,23 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
-
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">Home</a>
+<a class="toplink" href="lifecycle.html">Lifecycle</a>
+<a class="toplink" href="platform.html">Platform</a>
+<a class="toplink" href="concepts.html">Concepts</a>
+<a class="toplink" href="skills.html">Skills</a>
+<a class="toplink" href="deployment.html">Deployment</a>
+<a class="toplink" href="docs/index.html">Docs</a>
+<a class="toplink" href="contact.html">Contact</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
 <span class="label">Appearance</span>
@@ -25,29 +38,79 @@
 </div>
 </header>
 
-<div class="layout">
-  <main class="content">
-    
-    <section class="section">
-      <h1>Skill ≠ Task ≠ Program</h1>
-    </section>
-    
-<section class="section">
-  <h2 id="layers">Abstraction layers</h2>
-  <ul>
-    <li><strong>Program</strong>: implementation code (many variants)</li>
-    <li><strong>Task</strong>: a goal in a scenario (context-dependent)</li>
-    <li><strong>Skill</strong>: reusable capability with explicit interface + constraints</li>
-  </ul>
-  <p>RSS focuses on <strong>skills</strong> because they can be validated and reused across scenarios once certified.</p>
+<main class="apple-main">
+<!-- Hero Section -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
+<h1>Skill ≠ Task ≠ Program</h1>
+<p class="hero-subtitle">Understanding abstraction layers in robotic capabilities</p>
+</div>
 </section>
 
-  </main>
-  <aside class="toc" aria-label="ON THIS PAGE">
-    <div class="toc-title">ON THIS PAGE</div>
-    <nav class="toc-nav" id="tocNav"><a class="toc-link" href="#layers">Layers</a></nav>
-  </aside>
+<!-- Layers Section -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="max-width: 700px; margin: 0 auto;">
+<h2 style="text-align: center; margin-bottom: 32px;">Three Abstraction Layers</h2>
 </div>
+</div>
+<div class="apple-grid" style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+<div class="apple-card animate-on-scroll" style="padding: 32px;">
+<div style="font-size: 40px; margin-bottom: 16px;">⚙️</div>
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 12px;">Program</h3>
+<p style="margin: 0 0 12px;">Implementation code</p>
+<p style="font-size: 14px; color: var(--apple-gray); margin: 0;">Many variants possible</p>
+</div>
+
+<div class="apple-card animate-on-scroll delay-1" style="padding: 32px;">
+<div style="font-size: 40px; margin-bottom: 16px;">🎯</div>
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 12px;">Task</h3>
+<p style="margin: 0 0 12px;">Goal in a scenario</p>
+<p style="font-size: 14px; color: var(--apple-gray); margin: 0;">Context-dependent</p>
+</div>
+
+<div class="apple-card animate-on-scroll delay-2" style="padding: 32px; background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); color: white;">
+<div style="font-size: 40px; margin-bottom: 16px;">🤖</div>
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 12px;">Skill</h3>
+<p style="margin: 0 0 12px;">Reusable capability</p>
+<p style="font-size: 14px; opacity: 0.9; margin: 0;">Explicit interface + constraints</p>
+</div>
+</div>
+</section>
+
+<!-- Why Skills Section -->
+<section class="section-hero animate-on-scroll delay-1 reverse">
+<div class="content-inner">
+<div class="visual">
+<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); padding: 40px; text-align: center; color: white;">
+<div style="font-size: 48px; font-weight: 700; margin-bottom: 20px;">RSS</div>
+<div style="font-size: 20px; opacity: 0.9;">Focuses on Skills</div>
+</div>
+</div>
+<div class="text">
+<h2>Why Skills Matter</h2>
+<p>RSS focuses on <strong>skills</strong> because they can be validated and reused across scenarios once certified.</p>
+<p style="margin-top: 16px;">Skills provide the right abstraction level for <strong>safety</strong>, <strong>governance</strong>, and <strong>scalability</strong> in production robotics.</p>
+</div>
+</div>
+</section>
+
+<!-- CTA Section -->
+<section class="section-hero animate-on-scroll delay-2" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="color: white; font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">Explore More</h2>
+<p style="font-size: clamp(17px, 2vw, 21px); color: #a1a1a6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Discover other core concepts</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="concepts.html" class="btn-apple">All Concepts</a>
+<a href="skills.html" class="btn-apple secondary">View Skills</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<script src="../assets/config.js?v=6.77.60"></script>
+<script src="../assets/js/site.js?v=6.77.60"></script>
 </body>
 </html>
-

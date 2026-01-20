@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Platform · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.53" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,8 +13,23 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">Home</a>
+<a class="toplink" href="lifecycle.html">Lifecycle</a>
+<a class="toplink" href="platform.html">Platform</a>
+<a class="toplink" href="concepts.html">Concepts</a>
+<a class="toplink" href="skills.html">Skills</a>
+<a class="toplink" href="deployment.html">Deployment</a>
+<a class="toplink" href="docs/index.html">Docs</a>
+<a class="toplink" href="contact.html">Contact</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
 <span class="label">Appearance</span>
@@ -23,202 +37,212 @@
 </div>
 </div>
 </header>
-<div class="layout">
-<main class="content" id="content">
 
-<section class="section-plain">
-  <h1>Platform</h1>
-  <div class="onboarding">
-    <p><strong>Purpose</strong>RSS defines how robot skills are supplied, governed, and consumed across organizations.</p>
-    <p><strong>What this page covers</strong>How suppliers register skills, how validation &amp; certification produce trust, and how users consume evidence-backed skills on the platform.</p>
-    <div class="onboarding-line onboarding-anchor">
-      <div class="onboarding-label"><strong>Lifecycle Anchor</strong></div>
-      <div class="rss-lifecycle-bar compact" data-stage="register,validate,certify" data-compact="1"></div>
-    </div>
-  </div>
+<main class="apple-main">
+<!-- Apple 风格全宽英雄区 -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
+<h1>Platform</h1>
+<p class="hero-subtitle">The infrastructure for trusted, evidence-backed robot skills</p>
+</div>
 </section>
 
-<p class="lead">What the RSS Platform Provides</p>
-
-
-
-<section class="section">
-  <h2 id="runtime-pipeline">Platform runtime pipeline</h2>
-  <p class="tight">This pipeline is taken from the current RSS Platform stack (v1.0.4.12). Validation produces <em>Runs</em> + <em>Evidence</em>; certification computes governance state from those immutable records.</p>
-  <div class="pipeline" aria-label="Platform runtime pipeline">
-    <div class="pipe-row top">
-      <div class="pipe-step"><div class="pipe-title">1) Register</div><div class="pipe-body">POST <code>/skills</code><br/>JSONSchema validation (<code>validation.py</code>)</div></div>
-      <div class="pipe-arrow">➜</div>
-      <div class="pipe-step"><div class="pipe-title">2) Execute / Validate</div><div class="pipe-body">POST <code>/runs</code> or <code>/runs/submit</code><br/>Run record + context</div></div>
-      <div class="pipe-arrow">➜</div>
-      <div class="pipe-step"><div class="pipe-title">3) Capture Evidence</div><div class="pipe-body">POST <code>/runs/{run_id}/artifacts</code><br/>GET <code>/runs/{run_id}/events</code></div></div>
-    </div>
-
-    <!-- Connector: 3) Capture Evidence -> 4) Evaluate (bottom row, right) -->
-    <div class="pipe-connector" aria-hidden="true">
-      <div class="pipe-spacer"></div>
-      <div class="pipe-arrow-spacer"></div>
-      <div class="pipe-spacer"></div>
-      <div class="pipe-arrow-spacer"></div>
-      <div class="pipe-connector-cell">
-        <div class="pipe-arrow down" aria-hidden="true">⬇</div>
-      </div>
-    </div>
-
-    <div class="pipe-row bottom rtl" style="margin-top:10px;">
-      <div class="pipe-step publish"><div class="pipe-title">6) Publish (Public)</div><div class="pipe-body">GET <code>/public/v1/skills</code><br/>GET <code>/public/v1/skills/{skill_id}</code></div></div>
-      <div class="pipe-arrow reverse">➜</div>
-      <div class="pipe-step certify"><div class="pipe-title">5) Certify / Govern</div><div class="pipe-body">GET <code>/skills/{skill}/{ver}/governance</code><br/><code>governance.py</code> rules + CI</div></div>
-      <div class="pipe-arrow reverse">➜</div>
-      <div class="pipe-step eval"><div class="pipe-title">4) Evaluate</div><div class="pipe-body">GET <code>/runs/{run_id}</code><br/>Outcome + constraints + metrics</div></div>
-    </div>
-  </div>
-  <p class="muted" style="margin-top:10px;">UI entrypoints (via Gateway): <code>/viewer/</code> for evidence browsing, and <code>/public/v1/*</code> for website embedding.</p>
+<!-- Purpose & Overview -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="text">
+<h2>What the Platform Provides</h2>
+<p>RSS defines how robot skills are supplied, governed, and consumed across organizations.</p>
+<p style="margin-top: 16px;">This page covers how suppliers register skills, how validation & certification produce trust, and how users consume evidence-backed skills on the platform.</p>
+<div style="margin-top: 24px;">
+<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">Register</span>
+<span style="color: var(--apple-gray);">→</span>
+<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">Validate</span>
+<span style="color: var(--apple-gray);">→</span>
+<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">Certify</span>
+</div>
+</div>
+</div>
+<div class="visual">
+<div style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); border-radius: 24px; padding: 60px; text-align: center; color: white;">
+<div style="font-size: 48px; font-weight: 700; margin-bottom: 20px;">RSS</div>
+<div style="font-size: 20px; opacity: 0.9;">Platform Infrastructure</div>
+</div>
+</div>
+</div>
 </section>
 
-<section class="section">
-  <h2 id="validation">Validation: real modules, real data</h2>
-  <p>In RSS Platform, <strong>validation</strong> means every execution becomes a platform-managed <em>Run</em> with immutable context and evidence.</p>
-  <ul class="tight" style="margin-top:10px;">
-    <li><strong>Run creation</strong>: <code>POST /runs</code> (or <code>POST /runs/submit</code>) creates a Run record bound to <code>(skill_id, version)</code> + profile + parameters.</li>
-    <li><strong>Evidence ingestion</strong>: <code>POST /runs/{run_id}/artifacts</code> attaches artifacts (logs, mp4, traces). Storage backend is <code>LocalArtifactStore</code> or <code>S3ArtifactStore</code> (<code>storage.py</code>).</li>
-    <li><strong>Trace & events</strong>: <code>GET /runs/{run_id}/events</code> returns structured events; trace indexing is queued (see <code>queueing.py</code>).</li>
-    <li><strong>Read model</strong>: <code>GET /runs/{run_id}</code> is the source of truth for outcome + primary constraint + reason fields that drive certification.</li>
-  </ul>
-  <pre class="codeblock list-align" data-title="Core API routes (validation)">
-Core API routes (validation)
-- POST /skills
-- POST /runs
-- POST /runs/submit
-- GET  /runs/{run_id}
-- POST /runs/{run_id}/artifacts
-- GET  /runs/{run_id}/artifacts
-- GET  /runs/{run_id}/events
-  </pre>
+<!-- Runtime Pipeline -->
+<section class="section-hero reverse animate-on-scroll delay-1">
+<div class="content-inner">
+<div class="visual">
+<div class="pipeline apple-card" aria-label="Platform runtime pipeline" style="background: #f5f5f7; padding: 32px; border-radius: 20px;">
+<div class="pipe-row top">
+<div class="pipe-step"><div class="pipe-title">1) Register</div><div class="pipe-body">POST <code>/skills</code><br/>JSONSchema validation (<code>validation.py</code>)</div></div>
+<div class="pipe-arrow">➜</div>
+<div class="pipe-step"><div class="pipe-title">2) Execute / Validate</div><div class="pipe-body">POST <code>/runs</code> or <code>/runs/submit</code><br/>Run record + context</div></div>
+<div class="pipe-arrow">➜</div>
+<div class="pipe-step"><div class="pipe-title">3) Capture Evidence</div><div class="pipe-body">POST <code>/runs/{run_id}/artifacts</code><br/>GET <code>/runs/{run_id}/events</code></div></div>
+</div>
+
+<div class="pipe-connector" aria-hidden="true">
+<div class="pipe-spacer"></div>
+<div class="pipe-arrow-spacer"></div>
+<div class="pipe-spacer"></div>
+<div class="pipe-arrow-spacer"></div>
+<div class="pipe-connector-cell">
+<div class="pipe-arrow down" aria-hidden="true">⬇</div>
+</div>
+</div>
+
+<div class="pipe-row bottom rtl" style="margin-top:10px;">
+<div class="pipe-step publish"><div class="pipe-title">6) Publish (Public)</div><div class="pipe-body">GET <code>/public/v1/skills</code><br/>GET <code>/public/v1/skills/{skill_id}</code></div></div>
+<div class="pipe-arrow reverse">➜</div>
+<div class="pipe-step certify"><div class="pipe-title">5) Certify / Govern</div><div class="pipe-body">GET <code>/skills/{skill}/{ver}/governance</code><br/><code>governance.py</code> rules + CI</div></div>
+<div class="pipe-arrow reverse">➜</div>
+<div class="pipe-step eval"><div class="pipe-title">4) Evaluate</div><div class="pipe-body">GET <code>/runs/{run_id}</code><br/>Outcome + constraints + metrics</div></div>
+</div>
+</div>
+</div>
+<div class="text">
+<h2>Platform Runtime Pipeline</h2>
+<p>This pipeline is taken from the current RSS Platform stack (v1.0.4.12). Validation produces <em>Runs</em> + <em>Evidence</em>; certification computes governance state from those immutable records.</p>
+<p class="muted" style="margin-top:16px;">UI entrypoints (via Gateway): <code>/viewer/</code> for evidence browsing, and <code>/public/v1/*</code> for website embedding.</p>
+</div>
+</div>
 </section>
 
-<section class="section">
-  <h2 id="certification-details">Certification & governance: computed from evidence</h2>
-  <p>Certification in RSS Platform is <strong>evidence-driven</strong>. Governance state is computed from historical Run windows using explicit rules (success rate, violations, regressions).</p>
-  <ul class="tight" style="margin-top:10px;">
-    <li><strong>Governance snapshot</strong>: <code>GET /skills/{skill_id}/{version}/governance</code> runs <code>compute_governance()</code> to produce state (<code>ACTIVE / DEGRADED / QUARANTINED</code>) + reasons + recommendations.</li>
-    <li><strong>Policy evaluation</strong>: <code>POST /governance/policies/eval</code> evaluates a window against a policy (min_n, success threshold, violation cap, regression drop).</li>
-    <li><strong>Public rollups</strong>: <code>POST /admin/public/v1/rollup</code> refreshes cached public stats; websites consume <code>/public/v1/skills*</code> with stable ETag + cache headers.</li>
-  </ul>
-  <pre class="codeblock list-align" data-title="Core API routes (certification)">
-Core API routes (certification)
-- GET  /skills/{skill_id}/{version}/governance
-- POST /governance/policies/eval
-- POST /admin/public/v1/rollup
-- GET  /public/v1/skills
-- GET  /public/v1/skills/{skill_id}
-  </pre>
+<!-- Core Components Grid -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="text-align: center; max-width: 700px; margin: 0 auto;">
+<h2>Core Platform Components</h2>
+<p style="font-size: 18px; color: var(--apple-gray);">Building blocks for trusted robot skills</p>
+</div>
+</div>
+<div class="apple-grid" style="max-width: 1000px; margin: 40px auto 0; padding: 0 20px;">
+<div class="apple-card animate-on-scroll" style="padding: 32px;">
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">Skill Registry</h3>
+<p class="muted" style="margin: 0;">Publish skills as stable capability contracts (schema, constraints, versioning). Specs are schema-validated before acceptance.</p>
+<ul class="tight" style="margin-top: 16px;">
+<li><strong>Validate spec on ingest</strong>: JSON Schema (Draft 2020-12) via <code>validate_skill_spec()</code></li>
+<li><strong>Create / list skills</strong>: <code>POST /skills</code>, <code>GET /skills</code>, <code>GET /skills/{skill_id}</code></li>
+<li><strong>Taxonomy binding</strong>: <code>GET /skills/{skill_id}/{version}/taxonomy</code></li>
+</ul>
+</div>
+
+<div class="apple-card animate-on-scroll delay-1" style="padding: 32px;">
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">Validation Engine</h3>
+<p class="muted" style="margin: 0;">Every execution becomes a platform-managed <em>Run</em> with immutable context and evidence.</p>
+<ul class="tight" style="margin-top: 16px;">
+<li><strong>Run creation</strong>: <code>POST /runs</code> (or <code>POST /runs/submit</code>)</li>
+<li><strong>Evidence ingestion</strong>: <code>POST /runs/{run_id}/artifacts</code></li>
+<li><strong>Trace & events</strong>: <code>GET /runs/{run_id}/events</code></li>
+<li><strong>Read model</strong>: <code>GET /runs/{run_id}</code> is source of truth</li>
+</ul>
+</div>
+
+<div class="apple-card animate-on-scroll delay-2" style="padding: 32px;">
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">Evidence & Artifact Store</h3>
+<p class="muted" style="margin: 0;">Artifacts stored on local filesystem or S3/MinIO. Every artifact linked to a Run for auditability.</p>
+<ul class="tight" style="margin-top: 16px;">
+<li><strong>Upload artifacts</strong>: <code>POST /runs/{run_id}/artifacts</code></li>
+<li><strong>List artifacts</strong>: <code>GET /runs/{run_id}/artifacts</code></li>
+<li><strong>Fetch / download</strong>: <code>GET /artifacts/{artifact_id}</code></li>
+<li><strong>Presigned URLs</strong>: <code>GET /artifacts/{artifact_id}/url</code></li>
+</ul>
+</div>
+
+<div class="apple-card animate-on-scroll delay-3" style="padding: 32px;">
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">Certification & Governance</h3>
+<p class="muted" style="margin: 0;">Evidence-driven governance state computed from historical Run windows using explicit rules.</p>
+<ul class="tight" style="margin-top: 16px;">
+<li><strong>Governance snapshot</strong>: <code>GET /skills/{skill_id}/{version}/governance</code></li>
+<li><strong>Policy evaluation</strong>: <code>POST /governance/policies/eval</code></li>
+<li><strong>Public rollups</strong>: <code>GET /public/v1/skills</code></li>
+<li><strong>Admin refresh</strong>: <code>POST /admin/public/v1/rollup</code></li>
+</ul>
+</div>
+</div>
 </section>
 
-<section class="section">
-  <h2 id="skill-registry">Skill Registry</h2>
-  <p>Publish skills as stable capability contracts (schema, constraints, versioning). In the API service, a Skill Spec is schema-validated before it is accepted.</p>
-  <ul class="tight" style="margin-top:10px;">
-    <li><strong>Validate spec on ingest</strong>: JSON Schema (Draft 2020-12) via <code>validate_skill_spec()</code>.</li>
-    <li><strong>Create / list skills</strong>: <code>POST /skills</code>, <code>GET /skills</code>, <code>GET /skills/{skill_id}</code>, <code>GET /skills/{skill_id}/{version}</code>.</li>
-    <li><strong>Bind governance taxonomy</strong>: <code>GET /skills/{skill_id}/{version}/taxonomy</code>.</li>
-  </ul>
+<!-- Authentication Section -->
+<section class="section-hero animate-on-scroll delay-3" style="background: #f5f5f7;">
+<div class="content-inner">
+<div class="text">
+<h2>Auth, Anon-Read, and API Keys</h2>
+<p>RSS Platform separates <strong>public read</strong> (for websites and sharing) from <strong>authenticated operations</strong> (write, execution, admin). The switch is controlled by <code>RSP_AUTH_ALLOW_ANON_READ</code>.</p>
+<ul class="tight" style="margin-top: 16px;">
+<li><strong>Public read path</strong>: when enabled, websites can read aggregated skill metadata via <code>/public/v1/*</code></li>
+<li><strong>Authenticated path</strong>: non-public endpoints require <code>X-API-Key: &lt;key&gt;</code> header</li>
+<li><strong>Default posture</strong>: keep anon-read off in production unless intentionally exposing public stats</li>
+</ul>
+<div class="apple-card" style="background: white; padding: 24px; margin-top: 24px; border-radius: 16px;">
+<h4 style="margin: 0 0 16px; font-size: 16px;">Environment flags</h4>
+<pre style="margin: 0; font-size: 14px; color: var(--apple-gray);">RSP_AUTH_ALLOW_ANON_READ=1    # allow GET /public/v1/* without credentials
+X-API-Key: &lt;key&gt;                 # required for non-public routes</pre>
+</div>
+<p class="muted" style="margin-top: 16px;">Rule of thumb: <code>/public/v1</code> is for reading curated summaries; everything that mutates state stays behind auth.</p>
+</div>
+<div class="visual">
+<div style="background: white; border-radius: 24px; padding: 40px; text-align: center;">
+<div style="font-size: 40px; margin-bottom: 16px;">🔐</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Secure by Design</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">Public read vs authenticated operations</p>
+</div>
+</div>
+</div>
 </section>
 
-<section class="section">
-  <h2 id="execution-engine">Validation execution (Runs)</h2>
-  <p>Validation is executed as platform-managed <strong>Runs</strong>. A Run binds: Skill Version + profile (robot/TCP/environment) + parameters, then produces immutable records and events.</p>
-  <ul class="tight" style="margin-top:10px;">
-    <li><strong>Create a run</strong>: <code>POST /runs</code> (stores request, enforces quotas).</li>
-    <li><strong>Submit for execution</strong>: <code>POST /runs/submit</code> (enqueue worker execution; indexes traces).</li>
-    <li><strong>Read run state</strong>: <code>GET /runs/{run_id}</code> and per-skill listing <code>GET /skills/{skill_id}/{version}/runs</code>.</li>
-    <li><strong>Trace / events</strong>: <code>GET /runs/{run_id}/events</code> (used to reconstruct what happened, step-by-step).</li>
-  </ul>
-  <p class="muted" style="margin-top:10px;">Outcome parsing (SUCCESS/FAIL + primary constraint + reason) is normalized from evidence so governance can compute comparable metrics.</p>
+<!-- Artifact Backends -->
+<section class="section-hero reverse animate-on-scroll delay-4">
+<div class="content-inner">
+<div class="visual">
+<div style="background: #f5f5f7; border-radius: 24px; padding: 40px;">
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 20px;">Storage Options</h3>
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<div style="background: white; padding: 20px; border-radius: 16px;">
+<div style="font-weight: 600; margin-bottom: 8px;">Local Filesystem</div>
+<div style="font-size: 14px; color: var(--apple-gray);">Artifacts stored on API/worker host</div>
+</div>
+<div style="background: white; padding: 20px; border-radius: 16px;">
+<div style="font-weight: 600; margin-bottom: 8px;">S3 / MinIO</div>
+<div style="font-size: 14px; color: var(--apple-gray);">Object storage with presigned URLs</div>
+</div>
+</div>
+</div>
+</div>
+<div class="text">
+<h2>Artifact Store Backends</h2>
+<p>The artifact store is pluggable. The platform selects a backend with <code>RSP_ARTIFACT_STORE</code> and serves downloads either directly (local) or via <strong>presigned URLs</strong> (S3/MinIO).</p>
+<ul class="tight" style="margin-top: 16px;">
+<li><strong>Local filesystem</strong>: artifacts stored on the API/worker host; <code>GET /artifacts/{artifact_id}</code> streams bytes through the platform</li>
+<li><strong>S3/MinIO</strong>: artifacts stored as objects; platform issues time-limited presigned URLs for upload/download</li>
+<li><strong>Presign flow</strong>: UI requests URL → platform signs → browser/worker transfers bytes directly to storage</li>
+</ul>
+<p class="muted" style="margin-top: 16px;">Why presign: artifact traffic can be GB-scale. Presigned URLs keep the control plane lightweight while preserving traceability.</p>
+</div>
+</div>
 </section>
 
-<section class="section">
-  <h2 id="evidence-store">Evidence &amp; Artifact Store</h2>
-  <p>Artifacts are stored either on local filesystem or S3/MinIO (configurable). Every artifact is linked to a Run, so validation results are auditable and reproducible.</p>
-  <ul class="tight" style="margin-top:10px;">
-    <li><strong>Upload artifacts</strong>: <code>POST /runs/{run_id}/artifacts</code> (logs, videos, reports, telemetry dumps).</li>
-    <li><strong>List artifacts</strong>: <code>GET /runs/{run_id}/artifacts</code>.</li>
-    <li><strong>Fetch / download</strong>: <code>GET /artifacts/{artifact_id}</code> and presigned links via <code>GET /artifacts/{artifact_id}/url</code>.</li>
-    <li><strong>Jobs</strong>: <code>GET /runs/{run_id}/jobs</code> (background processing / indexing status).</li>
-  </ul>
-</section>
-
-<section class="section">
-  <h2 id="auth-anon-read">Auth, anon-read, and X-API-Key</h2>
-  <p>RSS Platform separates <strong>public read</strong> (for websites and sharing) from <strong>authenticated operations</strong> (write, execution, admin). The switch is controlled by <code>RSP_AUTH_ALLOW_ANON_READ</code>.</p>
-  <ul class="tight" style="margin-top:10px;">
-    <li><strong>Public read path</strong>: when <code>RSP_AUTH_ALLOW_ANON_READ=1</code>, the website can read aggregated skill metadata without credentials via <code>/public/v1/*</code>.</li>
-    <li><strong>Authenticated path</strong>: for non-public endpoints (create runs, upload artifacts, policy/admin actions), clients must provide an API key header: <code>X-API-Key: &lt;key&gt;</code>.</li>
-    <li><strong>Default posture</strong>: keep anon-read off in production unless you intentionally expose public stats; the platform can still publish curated rollups while keeping raw runs private.</li>
-  </ul>
-  <pre class="codeblock list-align" data-title="Auth / anon-read / X-API-Key">
-Environment flags
-- RSP_AUTH_ALLOW_ANON_READ=1            # allow GET /public/v1/* without credentials
-- X-API-Key: &lt;key&gt;                     # required for non-public routes
-
-Public read routes (no key if anon-read enabled)
-- GET  /public/v1/skills
-- GET  /public/v1/skills/{skill_id}
-
-Authenticated examples (key required)
-- POST /runs
-- POST /runs/submit
-- POST /runs/{run_id}/artifacts
-- POST /admin/public/v1/rollup
-  </pre>
-  <p class="muted" style="margin-top:10px;">Rule of thumb: <code>/public/v1</code> is for reading curated, cacheable summaries; everything that mutates state or accesses raw evidence stays behind auth.</p>
-</section>
-
-<section class="section">
-  <h2 id="artifact-backends">Artifact store backends: local vs S3/MinIO</h2>
-  <p>The artifact store is pluggable. The platform selects a backend with <code>RSP_ARTIFACT_STORE</code> and serves downloads either directly (local) or via <strong>presigned URLs</strong> (S3/MinIO) so large files do not overload the API service.</p>
-  <ul class="tight" style="margin-top:10px;">
-    <li><strong>Local filesystem</strong>: artifacts are stored on the API/worker host; <code>GET /artifacts/{artifact_id}</code> streams bytes through the platform.</li>
-    <li><strong>S3/MinIO</strong>: artifacts are stored as objects; the platform issues time-limited presigned URLs for upload/download.</li>
-    <li><strong>Presign flow</strong>: UI requests a URL → platform signs → browser/worker transfers bytes directly to storage → platform keeps immutable links in the Run record.</li>
-  </ul>
-  <pre class="codeblock list-align" data-title="Artifact store: local vs S3/MinIO">
-Backend selection
-- RSP_ARTIFACT_STORE=local             # store on local disk
-- RSP_ARTIFACT_STORE=s3                # store on S3/MinIO (object storage)
-
-Presigned URL flow (S3/MinIO)
-1) List artifacts:        GET  /runs/{run_id}/artifacts
-2) Request download URL:  GET  /artifacts/{artifact_id}/url
-3) Platform returns:      { url, expires_at }
-4) Client downloads:      GET  &lt;presigned-url&gt;  (directly from MinIO/S3)
-
-Optional upload flow
-1) Request upload URL:    POST /artifacts/presign (or POST /runs/{run_id}/artifacts with "presign")
-2) Client uploads:        PUT  &lt;presigned-url&gt;
-3) Platform records:      artifact metadata linked to Run
-  </pre>
-  <p class="muted" style="margin-top:10px;">Why presign: artifact traffic can be GB-scale (videos, telemetry). Presigned URLs keep the control plane (API) lightweight while preserving traceability.</p>
-</section>
-
-<section class="section">
-  <h2 id="certification">Certification &amp; Governance</h2>
-  <p>Certification is computed from evidence windows. The platform aggregates Run outcomes, constraint violations, and regression signals, then produces a <em>governance snapshot</em> (ACTIVE / DEGRADED / QUARANTINED).</p>
-  <ul class="tight" style="margin-top:10px;">
-    <li><strong>Per-skill governance snapshot</strong>: <code>GET /skills/{skill_id}/{version}/governance</code>.</li>
-    <li><strong>Policy evaluation (what-if)</strong>: <code>POST /governance/policies/eval</code> (test thresholds and blocklists).</li>
-    <li><strong>Public rollups for website</strong>: <code>GET /public/v1/skills</code>, <code>GET /public/v1/skills/{skill_id}</code>.</li>
-    <li><strong>Admin refresh</strong>: <code>POST /admin/public/v1/rollup</code> (recompute cached public stats).</li>
-  </ul>
-  <p class="muted" style="margin-top:10px;">Typical certification rules include: minimum run count, minimum success rate, maximum violation rate, and recent regression detection.</p>
+<!-- CTA Section -->
+<section class="section-hero animate-on-scroll delay-5" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="color: white; font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">Explore the Platform</h2>
+<p style="font-size: clamp(17px, 2vw, 21px); color: #a1a1a6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Learn more about certified skills or dive into the documentation</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="skills.html" class="btn-apple">View Skills</a>
+<a href="docs/index.html" class="btn-apple secondary">Read Docs</a>
+</div>
+</div>
+</div>
 </section>
 </main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">On this page</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<script src="../assets/config.js?v=6.77.46"></script>
+
+<script src="../assets/config.js?v=6.77.53"></script>
 <script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
-<script src="../assets/js/site.js?v=6.77.46"></script></body>
+<script src="../assets/js/site.js?v=6.77.53"></script>
+</body>
 </html>

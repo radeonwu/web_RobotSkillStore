@@ -1,90 +1,188 @@
 <!DOCTYPE html>
-
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>首页 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<title>Robot Skill Store - 可信、可复用机器人技能的平台</title>
+<link href="../assets/css/style.css?v=6.77.50" rel="stylesheet"/>
 </head>
 <body>
+<!-- Apple 风格导航栏 -->
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="deployment.html">用户与部署</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<!-- 移动端汉堡菜单按钮 -->
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">首页</a>
+<a class="toplink" href="lifecycle.html">生命周期</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink" href="skills.html">技能</a>
+<a class="toplink" href="docs/index.html">文档</a>
+<a class="toplink" href="contact.html">联系</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
-<span class="label">Appearance</span>
+<span class="label">外观</span>
 </button>
 </div>
 </div>
 </header>
-<div class="layout">
-<main class="content">
-<section class="section-plain">
-<div class="hero">
-<div class="hero-title">
-<h1 class="hero-h1 hero-h1-flex"><span>机器人技能商店</span><span class="hero-subtag">– 可信、可复用机器人技能的平台</span>
-  <img alt="RSS logo" class="hero-logo-inline hero-logo-right" src="../assets/media/rss_logo.png"/>
-</h1>
+
+<main class="apple-main">
+<!-- Apple 风格全宽英雄区 -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
+<h1>机器人技能商店</h1>
+<p class="hero-subtitle">可信、可复用机器人技能的平台</p>
+<div class="cta-row">
+<a href="lifecycle.html" class="btn-apple">探索生命周期</a>
+<a href="skills.html" class="btn-apple secondary">浏览技能</a>
 </div>
-<div class="onboarding"><p><strong>Purpose</strong>本网站介绍 Robot Skill Store (RSS)：一个用于验证并部署可复用机器人技能的平台。</p><p><strong>What you will see here</strong>你将了解 RSS 如何连接技能供应方与技能使用方，以及机器人技能如何沿着结构化生命周期从注册走到部署。</p><div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div></div>
-
-<section class="section" style="margin-top:14px;">
-  <h2 id="what-is-rss" style="margin:0 0 8px 0;">什么是 RSS</h2>
-  <p class="lead" style="margin:0 0 6px 0;">面向机器人技能的验证与交付平台</p>
-  <p style="margin:0;color:var(--vp-c-text-2);line-height:1.7;">RSS 提供一套标准化流水线，将机器人行为抽象为可复用的 Skill，并完成 注册 → 验证 → 认证 → 部署复用，把一次性项目能力沉淀为可持续复利的能力资产。</p>
-</section>
-
-<section class="section" style="margin-top:14px;">
-<h2 id="what-is-rss-for" style="margin:0 0 8px 0;">RSS 面向谁？</h2>
-<p style="margin:0 0 10px 0;">Robot Skill Store 面向构建下一代机器人的团队：</p>
-<ul style="margin:0 0 0 18px;line-height:1.9;">
-<li>中小型机器人团队</li>
-<li>工业自动化开发者</li>
-<li>具身智能与 Agent 研究者</li>
-<li>探索机器人生态的平台构建者</li>
-</ul>
-</section>
 </div>
 </section>
-<section class="section">
+
+<!-- 什么是 RSS - 左图右文 -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="visual">
+<img src="../assets/media/rss_skill_lifecycle_overview.png" alt="机器人技能生命周期" class="apple-card"/>
+</div>
+<div class="text">
+<h2>什么是 RSS</h2>
+<p>Robot Skill Store 是一个用于验证和部署可复用机器人技能的平台 —— 将项目特定的机器人行为转化为长期的能力资产。</p>
+<p style="margin-top: 16px;">它提供了一套标准化流水线，用于注册、验证、认证和部署机器人技能。</p>
+<div style="margin-top: 24px;">
+<a href="platform.html" class="btn-apple">了解更多</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 生态系统 - 右图左文 -->
+<section class="section-hero reverse animate-on-scroll delay-1">
+<div class="content-inner">
+<div class="text">
+<h2>RSS 在生态中的位置</h2>
+<p>供应方发布技能。RSS 负责验证与认证。用户可以有信心地部署可复用技能。</p>
+<p style="margin-top: 16px;">它定义了机器人技能如何在组织之间进行供给、治理和消费。</p>
+<div style="display: flex; align-items: center; gap: 10px; margin-top: 24px; flex-wrap: wrap;">
+<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">供应方</span>
+<span style="color: var(--apple-gray);">→</span>
+<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">RSS</span>
+<span style="color: var(--apple-gray);">→</span>
+<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">用户</span>
+</div>
+</div>
+<div class="visual">
+<div style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); border-radius: 24px; padding: 60px; text-align: center; color: white;">
+<div style="font-size: 64px; font-weight: 700; margin-bottom: 20px;">→</div>
+<div style="font-size: 24px; font-weight: 600;">技能流动</div>
+<div style="font-size: 16px; opacity: 0.8; margin-top: 12px;">从供应方到用户</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 为什么需要 RSS - 左图右文 -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner">
+<div class="visual">
+<div style="background: #f5f5f7; border-radius: 24px; padding: 60px; text-align: center;">
+<div style="font-size: 56px; font-weight: 700; color: var(--rss-blue); margin-bottom: 16px;">规模化</div>
+<div style="font-size: 20px; color: var(--apple-gray);">RSS 通过复利式积累已验证技能实现规模化</div>
+</div>
+</div>
+<div class="text">
+<h2>为什么需要 RSS</h2>
+<p>当今的机器人能力高度碎片化。"技能"往往深埋在代码中，与特定机器人和环境紧密耦合，难以复用。</p>
+<p style="margin-top: 16px;">这种碎片化导致：能力难以共享、安全约束无法结构化表达、仿真到真实迁移难以规模化。</p>
+<p style="margin-top: 16px;"><strong>Robot Skill Store</strong> 正是为解决这一根本问题而设计。</p>
+<div style="margin-top: 24px;">
+<a href="concepts.html" class="btn-apple">探索概念</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- RSS 面向谁 - 卡片网格 -->
+<section class="section-hero animate-on-scroll delay-3">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="text-align: center; max-width: 700px; margin: 0 auto;">
+<h2>RSS 面向谁</h2>
+<p style="font-size: 18px; color: var(--apple-gray);">Robot Skill Store 面向构建下一代机器人的团队</p>
+</div>
+</div>
+<div class="apple-grid apple-grid-4" style="max-width: 1200px; margin: 40px auto 0; padding: 0 20px;">
+<div class="apple-card animate-on-scroll" style="padding: 32px; text-align: center;">
+<div style="font-size: 40px; margin-bottom: 16px;">🤖</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">机器人团队</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">开发机器人能力的中小型团队</p>
+</div>
+<div class="apple-card animate-on-scroll delay-1" style="padding: 32px; text-align: center;">
+<div style="font-size: 40px; margin-bottom: 16px;">🏭</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">工业自动化</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">工业自动化开发者和集成商</p>
+</div>
+<div class="apple-card animate-on-scroll delay-2" style="padding: 32px; text-align: center;">
+<div style="font-size: 40px; margin-bottom: 16px;">🧠</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">AI 研究者</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">具身智能与 Agent 研究者</p>
+</div>
+<div class="apple-card animate-on-scroll delay-3" style="padding: 32px; text-align: center;">
+<div style="font-size: 40px; margin-bottom: 16px;">🛠️</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">平台构建者</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">探索机器人生态的平台团队</p>
+</div>
+</div>
+</section>
+
+<!-- 生命周期 Section -->
+<section class="section-hero animate-on-scroll delay-4" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="text-align: center; max-width: 800px; margin: 0 auto;">
+<h2 style="color: white; font-size: clamp(36px, 6vw, 64px); margin-bottom: 24px;">技能生命周期</h2>
+<p style="font-size: clamp(18px, 2.5vw, 24px); color: #a1a1a6; margin-bottom: 40px;">从注册到部署</p>
+<div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+<div style="background: rgba(0, 113, 227, 0.8); padding: 16px 32px; border-radius: 50px; font-weight: 600; font-size: 18px;">注册</div>
+<div style="color: #86868b; font-size: 24px; display: flex; align-items: center;">→</div>
+<div style="background: rgba(0, 113, 227, 0.8); padding: 16px 32px; border-radius: 50px; font-weight: 600; font-size: 18px;">验证</div>
+<div style="color: #86868b; font-size: 24px; display: flex; align-items: center;">→</div>
+<div style="background: rgba(0, 113, 227, 0.8); padding: 16px 32px; border-radius: 50px; font-weight: 600; font-size: 18px;">认证</div>
+<div style="color: #86868b; font-size: 24px; display: flex; align-items: center;">→</div>
+<div style="background: rgba(0, 113, 227, 0.8); padding: 16px 32px; border-radius: 50px; font-weight: 600; font-size: 18px;">部署</div>
+</div>
+<div style="margin-top: 48px;">
+<a href="lifecycle.html" class="btn-apple">了解更多</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 开始使用 CTA -->
+<section class="section-hero animate-on-scroll delay-5" style="background: #f5f5f7; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
 <div>
-<h2 id="ecosystem">RSS 在生态中的位置</h2>
-<p style="margin-top:8px;">供应方发布技能；RSS 负责验证与认证；用户部署并复用技能。</p>
-<p style="margin:10px 0 0;color:var(--vp-c-text-2);line-height:1.7;">RSS 定义了机器人技能在组织之间的供给、治理与消费方式。<br/>
-技能供应方聚焦能力开发，RSS 负责验证与可信治理，用户则可以有信心地部署技能。</p>
-<div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px;flex-wrap:wrap;">
-<span class="badge">Supplier</span><span style="opacity:.6;">→</span>
-<span class="badge">RSS</span><span style="opacity:.6;">→</span>
-<span class="badge">User</span>
+<h2 style="font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">开始使用</h2>
+<p style="font-size: clamp(17px, 2vw, 21px); color: var(--apple-gray); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">探索平台、浏览认证技能，或深入阅读文档</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="docs/index.html" class="btn-apple">阅读文档</a>
+<a href="contact.html" class="btn-apple secondary" style="color: #1d1d1f; border-color: var(--rss-blue);">联系我们</a>
 </div>
 </div>
-</section>
-<section class="section">
-<div>
-<h2 id="why">为什么需要 Robot Skill Store</h2>
-<p class="quote" style="margin-top:10px;">RSS 通过复利式积累已验证技能实现规模化。</p>
-<div class="prose">
-<p>当今的机器人能力高度碎片化：技能往往深埋在代码里，与特定机器人/环境强耦合，为单一场景定制，难以在团队或系统之间复用。</p>
-<p>我们口中的“技能”，很多时候只是一个函数调用、一个 ROS 节点，或一个只能跑一次的 demo 脚本。</p>
-<p>这种碎片化直接导致：</p>
-<ul>
-<li>能力难以跨机器人、跨团队共享</li>
-<li>安全与约束缺少结构化表达，难以系统性推理</li>
-<li>仿真到真实部署难以规模化迁移</li>
-<li>行为编排依赖硬编码拼接，Agent 难以组合与决策</li>
-</ul>
-<p><strong>Robot Skill Store</strong> 正是为解决这一根本性问题而设计。</p>
-</div>
-
 </div>
 </section>
 </main>
-<aside class="toc"><div class="toc-title">ON THIS PAGE</div><nav id="tocNav"></nav></aside></div>
-<script src="../assets/js/site.js?v=6.77.46"></script></body>
+
+<script src="../assets/js/site.js?v=6.77.50"></script>
+</body>
 </html>

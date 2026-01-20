@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Architecture · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.58" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,8 +13,23 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">Home</a>
+<a class="toplink" href="lifecycle.html">Lifecycle</a>
+<a class="toplink" href="platform.html">Platform</a>
+<a class="toplink" href="concepts.html">Concepts</a>
+<a class="toplink" href="skills.html">Skills</a>
+<a class="toplink" href="deployment.html">Deployment</a>
+<a class="toplink" href="docs/index.html">Docs</a>
+<a class="toplink" href="contact.html">Contact</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
 <span class="label">Appearance</span>
@@ -24,17 +38,38 @@
 </div>
 </header>
 
-
-<div class="layout">
-<main class="content" id="content">
-<div class="rss-lifecycle-bar" data-stage="validate"></div>
-
-<section class="section">
+<main class="apple-main">
+<!-- Hero Section -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
 <h1>Architecture</h1>
-<p class="lead">Platform-Centered, Protocol-Enforced</p>
-<div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
-<div class="card-title">Platform-centered Architecture (SVG)</div>
-<div class="note">A production-ready placeholder: replace this SVG later with a branded diagram without changing the page layout.</div>
+<p class="hero-subtitle">Platform-Centered, Protocol-Enforced</p>
+</div>
+</section>
+
+<!-- Overview Section -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="text">
+<h2>Platform-Centered Design</h2>
+<p>Robot Skill Store is built around a deliberate choice: <strong>the platform is the center of the system</strong>.</p>
+<p style="margin-top: 16px;">RSS provides execution, evaluation, and governance — and it <strong>enforces</strong> a shared protocol (RSP) so tools, simulators, robots, and agents can interoperate without redefining semantics.</p>
+</div>
+<div class="visual">
+<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); padding: 40px; text-align: center; color: white;">
+<div style="font-size: 48px; font-weight: 700; margin-bottom: 20px;">RSS</div>
+<div style="font-size: 20px; opacity: 0.9;">Platform as the Center</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Architecture Diagram Section -->
+<section class="section-hero animate-on-scroll delay-1" style="background: #f5f5f7;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="max-width: 1000px; margin: 0 auto;">
+<h2 style="text-align: center; margin-bottom: 24px;">Platform-Centered Architecture</h2>
+<div class="apple-card" style="background: white; padding: 24px; border-radius: 20px;">
 <svg aria-label="Robot Skill Store Platform-centered, Protocol-enforced Architecture" height="auto" role="img" viewbox="0 0 1040 420" width="100%">
 <defs>
 <lineargradient id="g1" x1="0" x2="1" y1="0" y2="1">
@@ -46,14 +81,14 @@
 <stop offset="1" stop-color="rgba(34,197,94,.06)"></stop>
 </lineargradient>
 <style>
-        .box{fill:url(#g1);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
-        .boxG{fill:url(#g2);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
-        .pill{fill:rgba(59,130,246,.10);stroke:rgba(27,31,36,.20);stroke-width:1.5;rx:999;ry:999}
-        .t{font:700 18px ui-sans-serif,system-ui; fill: currentColor}
-        .s{font:14px ui-sans-serif,system-ui; fill: currentColor; opacity:.82}
-        .xs{font:12px ui-sans-serif,system-ui; fill: currentColor; opacity:.72}
-        .a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
-      </style>
+.box{fill:url(#g1);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
+.boxG{fill:url(#g2);stroke:rgba(27,31,36,.25);stroke-width:2;rx:18;ry:18}
+.pill{fill:rgba(59,130,246,.10);stroke:rgba(27,31,36,.20);stroke-width:1.5;rx:999;ry:999}
+.t{font:700 18px ui-sans-serif,system-ui; fill: currentColor}
+.s{font:14px ui-sans-serif,system-ui; fill: currentColor; opacity:.82}
+.xs{font:12px ui-sans-serif,system-ui; fill: currentColor; opacity:.72}
+.a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
+</style>
 <marker id="m" markerheight="8" markerwidth="8" orient="auto" refx="9" refy="5" viewbox="0 0 10 10">
 <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
 </marker>
@@ -89,86 +124,107 @@
 <line class="a" x1="740" x2="640" y1="270" y2="236"></line>
 <path class="a" d="M 560 390 C 640 410, 820 410, 900 390"></path>
 <path class="a" d="M 480 390 C 400 410, 220 410, 140 390"></path>
-<text class="xs" x="360" y="410">Sim↔Real loop: define → validate → deploy → feedback (same semantics &amp; constraints)</text>
+<text class="xs" x="360" y="410">Sim↔Real loop: define → validate → deploy → feedback (same semantics & constraints)</text>
 </svg>
 </div>
-<p>
-    Robot Skill Store is built around a deliberate choice: <strong>the platform is the center of the system</strong>.
-    RSS provides execution, evaluation, and governance — and it <strong>enforces</strong> a shared protocol (RSP) so tools,
-    simulators, robots, and agents can interoperate without redefining semantics.
-  </p>
+</div>
+</div>
 </section>
-<section class="section">
-<h2 id="rsp-as-the-architectural-backbone">RSP as the Architectural Backbone</h2>
-<p>
-    The Robot Skill Protocol (RSP) defines how skills are described, discovered, constrained during execution,
-    and how outcomes are reported. Because these interactions are standardized:
-  </p>
-<ul class="checklist">
+
+<!-- RSP Backbone Section -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner">
+<div class="text">
+<h2>RSP as the Architectural Backbone</h2>
+<p>The Robot Skill Protocol (RSP) defines how skills are described, discovered, constrained during execution, and how outcomes are reported. Because these interactions are standardized:</p>
+<ul style="margin-top: 16px;">
 <li>skills can move across systems</li>
 <li>agents can reason independently of implementation</li>
 <li>execution environments remain interchangeable</li>
 </ul>
-<p>
-    RSP is not an internal API. It is the shared contract that enables coordination across the ecosystem.
-  </p>
-</section>
-<section class="section">
-<h2 id="decoupling">Decoupling Capability from Implementation</h2>
-<p>
-    Traditional architectures tightly bind behavior logic, hardware configuration, and environment assumptions.
-    Robot Skill Store explicitly separates:
-  </p>
-<ul>
-<li><em>what a skill means</em></li>
-<li><em>how it is implemented</em></li>
-<li><em>where it is executed</em></li>
-</ul>
-<p>
-    This separation allows independent evolution of skills and hardware, consistent behavior across environments,
-    and validation before deployment.
-  </p>
-</section>
-<section class="section">
-<h2 id="simulation-and-reality-as-a-single-loop">Simulation and Reality as a Single Loop</h2>
-<p>
-    Simulation is not a testing afterthought. In Robot Skill Store, simulation is part of execution semantics.
-    A skill must declare its environmental assumptions; results are comparable across simulation and real robots.
-  </p>
-<div class="card">
-<div class="card-title">Closed Loop</div>
-<p class="tight"><strong>define → simulate → validate → execute → feedback</strong></p>
-<p class="muted tight">The same skill specification governs all stages.</p>
+<p style="margin-top: 16px;">RSP is not an internal API. It is the shared contract that enables coordination across the ecosystem.</p>
+</div>
+<div class="visual">
+<div class="apple-card" style="background: #f5f5f7; padding: 40px; text-align: center;">
+<div style="font-size: 48px; margin-bottom: 16px;">🔗</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">RSP Protocol</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">Shared Contract Backbone</p>
+</div>
+</div>
 </div>
 </section>
-<section class="section">
-<h2 id="where-safety-fits">Where Safety Fits in the Architecture</h2>
-<p>
-    Safety is not an external layer. It is embedded in skill definitions, execution constraints,
-    and runtime enforcement. Placing safety in <strong>skill contracts</strong> and <strong>runtime policy gates</strong> (protocol-enforced) reduces reliance on ad-hoc checks
-    and makes behavior more predictable across environments.
-  </p>
-</section>
-<section class="section">
-<h2 id="extensible">Extensible by Design</h2>
-<p>
-    Because RSS enforces a stable protocol backbone (RSP), new simulators, robots, and agents can be added without redefining
-    the entire system. This extensibility is what makes Robot Skill Store a foundation for long-term ecosystem growth.
-  </p>
-</section>
-<footer class="footer">
-<div class="footer-inner">
-<div>Robot Skill Store · build v6.76</div>
-<div class="muted">UI: VitePress-like (no search, no version selector)</div>
-</div>
-</footer>
-</main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">On this page</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<script src="../assets/config.js?v=6.77.46"></script>
 
+<!-- Decoupling Section -->
+<section class="section-hero animate-on-scroll delay-3 reverse">
+<div class="content-inner">
+<div class="visual">
+<div class="apple-grid" style="grid-template-columns: 1fr 1fr; gap: 16px;">
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 12px;">📋</div>
+<h4 style="margin: 0 0 8px;">What</h4>
+<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">Skill semantics</p>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 12px;">⚙️</div>
+<h4 style="margin: 0 0 8px;">How</h4>
+<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">Implementation</p>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 12px;">📍</div>
+<h4 style="margin: 0 0 8px;">Where</h4>
+<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">Execution env</p>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: center; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+<div style="font-size: 32px; margin-bottom: 12px;">✓</div>
+<h4 style="margin: 0 0 8px;">Decoupled</h4>
+<p style="font-size: 14px; margin: 0;">Independent evolution</p>
+</div>
+</div>
+</div>
+<div class="text">
+<h2>Decoupling Capability from Implementation</h2>
+<p>Traditional architectures tightly bind behavior logic, hardware configuration, and environment assumptions. Robot Skill Store explicitly separates <em>what a skill means</em>, <em>how it is implemented</em>, and <em>where it is executed</em>.</p>
+<p style="margin-top: 16px;">This separation allows independent evolution of skills and hardware, consistent behavior across environments, and validation before deployment.</p>
+</div>
+</div>
+</section>
+
+<!-- Sim2Real Section -->
+<section class="section-hero animate-on-scroll delay-4">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="max-width: 700px; margin: 0 auto;">
+<h2 style="text-align: center; margin-bottom: 24px;">Simulation and Reality as a Single Loop</h2>
+<p style="text-align: center; color: var(--apple-gray); margin-bottom: 32px;">Simulation is not a testing afterthought. It's part of execution semantics.</p>
+<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); color: white; padding: 32px; text-align: center;">
+<div style="font-size: 14px; opacity: 0.9; margin-bottom: 12px;">Closed Loop</div>
+<div style="font-size: clamp(20px, 4vw, 28px); font-weight: 700;">define → simulate → validate → execute → feedback</div>
+<div style="font-size: 14px; opacity: 0.85; margin-top: 12px;">The same skill specification governs all stages.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Safety & Extensible Section -->
+<section class="section-hero animate-on-scroll delay-5">
+<div class="content-inner">
+<div class="apple-grid">
+<div class="apple-card animate-on-scroll" style="padding: 32px;">
+<div style="font-size: 40px; margin-bottom: 16px;">🛡️</div>
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">Safety by Design</h3>
+<p>Safety is embedded in skill definitions, execution constraints, and runtime enforcement. Protocol-enforced gates reduce reliance on ad-hoc checks.</p>
+</div>
+
+<div class="apple-card animate-on-scroll delay-1" style="padding: 32px;">
+<div style="font-size: 40px; margin-bottom: 16px;">🔌</div>
+<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">Extensible</h3>
+<p>New simulators, robots, and agents can be added without redefining the entire system. RSP provides a stable protocol backbone for long-term growth.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<script src="../assets/config.js?v=6.77.58"></script>
+<script src="../assets/js/site.js?v=6.77.58"></script>
 </body>
 </html>

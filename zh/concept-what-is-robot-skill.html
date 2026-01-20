@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>平台 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<title>什么是机器人技能 · Robot Skill Store</title>
+<link href="../assets/css/style.css?v=6.77.59" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,43 +13,108 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="deployment.html">用户与部署</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
-
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">首页</a>
+<a class="toplink" href="lifecycle.html">技能生命周期</a>
+<a class="toplink" href="platform.html">平台</a>
+<a class="toplink" href="concepts.html">概念</a>
+<a class="toplink" href="skills.html">认证技能</a>
+<a class="toplink" href="deployment.html">用户与部署</a>
+<a class="toplink" href="docs/index.html">文档</a>
+<a class="toplink" href="contact.html">联系</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
-<span class="label">Appearance</span>
+<span class="label">外观</span>
 </button>
 </div>
 </div>
 </header>
 
-<div class="layout">
-  <main class="content">
-    
-    <section class="section">
-      <h1>What is a Robot Skill?</h1>
-    </section>
-    
-<section class="section">
-  <h2 id="definition">定义</h2>
-  <p>RSS 中的 <strong>Robot Skill</strong> 是一种<strong>可确定执行</strong>的机器人能力单元，在明确约束下控制真实机器人，并能够被<strong>验证</strong>、<strong>认证</strong>与<strong>复用</strong>。</p>
-
-  <h2 id="properties">关键特性</h2>
-  <ul>
-    <li>可在真实机器人上执行</li>
-    <li>确定性行为（可重复）</li>
-    <li>明确的前置条件/约束/输入输出规范</li>
-    <li>证据驱动验证（runs、指标、工件）</li>
-  </ul>
+<main class="apple-main">
+<!-- Hero Section -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
+<h1>什么是机器人技能？</h1>
+<p class="hero-subtitle">一种可确定执行的机器人能力单元</p>
+</div>
 </section>
 
-  </main>
-  <aside class="toc" aria-label="本页导航">
-    <div class="toc-title">本页导航</div>
-    <nav class="toc-nav" id="tocNav"><a class="toc-link" href="#definition">定义</a><a class="toc-link" href="#properties">关键特性</a></nav>
-  </aside>
+<!-- Definition Section -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="text">
+<h2>定义</h2>
+<p>RSS 中的 <strong>Robot Skill</strong> 是一种<strong>可确定执行</strong>的机器人能力单元，在明确约束下控制真实机器人。</p>
+<p style="margin-top: 16px;">它能够被<strong>验证</strong>、<strong>认证</strong>与<strong>复用</strong>，跨部署场景传递价值。</p>
 </div>
+<div class="visual">
+<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); padding: 40px; text-align: center; color: white;">
+<div style="font-size: 48px; margin-bottom: 16px;">🤖</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">机器人技能</h3>
+<p style="font-size: 15px; opacity: 0.9; margin: 0;">可执行能力单元</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Key Properties Section -->
+<section class="section-hero animate-on-scroll delay-1">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="max-width: 800px; margin: 0 auto;">
+<h2 style="text-align: center; margin-bottom: 32px;">关键特性</h2>
+</div>
+</div>
+<div class="apple-grid" style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+<div class="apple-card animate-on-scroll" style="padding: 32px;">
+<div style="font-size: 40px; margin-bottom: 16px;">⚡</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">可执行</h3>
+<p style="margin: 0;">可在真实机器人上运行，结果可验证</p>
+</div>
+
+<div class="apple-card animate-on-scroll delay-1" style="padding: 32px;">
+<div style="font-size: 40px; margin-bottom: 16px;">🔄</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">确定性</h3>
+<p style="margin: 0;">相同条件下行为可重复</p>
+</div>
+
+<div class="apple-card animate-on-scroll delay-2" style="padding: 32px;">
+<div style="font-size: 40px; margin-bottom: 16px;">📋</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">显式契约</h3>
+<p style="margin: 0;">明确前置条件、约束与输入输出规范</p>
+</div>
+
+<div class="apple-card animate-on-scroll delay-3" style="padding: 32px;">
+<div style="font-size: 40px; margin-bottom: 16px;">📊</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">证据驱动</h3>
+<p style="margin: 0;">通过运行记录、指标与工件验证</p>
+</div>
+</div>
+</section>
+
+<!-- CTA Section -->
+<section class="section-hero animate-on-scroll delay-2" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div>
+<h2 style="color: white; font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">探索技能</h2>
+<p style="font-size: clamp(17px, 2vw, 21px); color: #a1a1a6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">查看认证技能的实际应用</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="skills.html" class="btn-apple">查看技能</a>
+<a href="concepts.html" class="btn-apple secondary">更多概念</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<script src="../assets/config.js?v=6.77.59"></script>
+<script src="../assets/js/site.js?v=6.77.59"></script>
 </body>
 </html>
-

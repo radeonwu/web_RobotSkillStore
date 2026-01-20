@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Safety · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.77.65" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,8 +13,23 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+<nav aria-label="Primary" class="topnav">
+<a class="toplink" href="index.html">Home</a>
+<a class="toplink" href="lifecycle.html">Skill Lifecycle</a>
+<a class="toplink" href="platform.html">Platform</a>
+<a class="toplink" href="concepts.html">Concepts</a>
+<a class="toplink" href="skills.html">Certified Skills</a>
+<a class="toplink" href="deployment.html">Deployment</a>
+<a class="toplink" href="docs/index.html">Docs</a>
+<a class="toplink" href="contact.html">Contact</a>
+</nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
 <span class="label">Appearance</span>
@@ -24,88 +38,165 @@
 </div>
 </header>
 
-
-<div class="layout">
-<main class="content" id="content">
-<div class="rss-lifecycle-bar" data-stage="validate"></div>
-
-<section class="section">
+<main class="apple-main">
+<!-- Hero Section -->
+<section class="apple-hero animate-on-scroll">
+<div class="hero-content">
 <h1>Safety</h1>
-<p class="lead">Skill-Level Safety as a First-Class Concept</p>
-<p>
-    Robot Skill Store takes a clear position:
-    <strong>Safety must be enforced at the skill level.</strong>
-</p>
-</section>
-<section class="section">
-<h2 id="why-skill-safety">Why Skill-Level Safety Matters</h2>
-<p>
-    Safety mechanisms often focus on motion control, hardware limits, or model behavior. While necessary,
-    these layers are insufficient on their own. Many failures occur because a skill is used outside its intended context,
-    assumptions are violated silently, or constraints are implicit rather than explicit.
-  </p>
-<p>Skill-level safety addresses this gap.</p>
-</section>
-<section class="section">
-<h2 id="boundaries">Skills Define Their Own Boundaries</h2>
-<p>
-    In Robot Skill Store, each skill explicitly declares operational constraints, environmental assumptions,
-    and safety limits — as part of the executable specification (not just documentation).
-  </p>
-<p>This allows the system to:</p>
-<ul class="checklist">
-<li>reject invalid executions early</li>
-<li>adapt behavior under constraints</li>
-<li>reason about risk before action</li>
-</ul>
-</section>
-<section class="section">
-<h2 id="policies-verification">Policies and Verification</h2>
-<p>Safety is enforced through:</p>
-<ul>
-<li><strong>constraints</strong> defined in skill metadata</li>
-<li><strong>policies</strong> applied during selection and execution</li>
-<li><strong>verification</strong> as part of the lifecycle</li>
-</ul>
-<p>
-    Before a skill is executed, its constraints are evaluated, its context is checked, and compatibility is verified.
-    Safety becomes proactive rather than reactive.
-  </p>
-</section>
-<section class="section">
-<h2 id="sim-real-safety">Safety Across Simulation and Reality</h2>
-<p>
-    The same constraints apply in simulation, during testing, and in real-world deployment.
-    This consistency enables predictable behavior, reduces deployment risk, and accelerates safe iteration cycles.
-  </p>
-</section>
-<section class="section">
-<h2 id="safety-enables">Safety as an Enabler</h2>
-<p>
-    By making safety explicit and structured, skills become more reusable, agents can make informed decisions,
-    and systems become more trustworthy. Safety becomes a foundation for scale.
-  </p>
-<div class="callout">
-<div class="callout-title">Closing perspective</div>
-<p class="tight">
-      Robot Skill Store introduces a missing layer: a shared, safe, and protocol-defined skill abstraction — enabling
-      robots to scale beyond isolated systems toward a true skill ecosystem.
-    </p>
+<p class="hero-subtitle">Skill-Level Safety as a First-Class Concept</p>
 </div>
 </section>
-<footer class="footer">
-<div class="footer-inner">
-<div>Robot Skill Store · build v6.76</div>
-<div class="muted">UI: VitePress-like (no search, no version selector)</div>
-</div>
-</footer>
-</main>
-<aside aria-label="On this page" class="toc">
-<div class="toc-title">On this page</div>
-<nav class="toc-nav" id="tocNav"></nav>
-</aside>
-</div>
-<script src="../assets/config.js?v=6.77.46"></script>
 
+<!-- Position Section -->
+<section class="section-hero animate-on-scroll">
+<div class="content-inner">
+<div class="text">
+<h2>RSS Position on Safety</h2>
+<p>Robot Skill Store takes a clear position: <strong>Safety must be enforced at the skill level.</strong></p>
+</div>
+<div class="visual">
+<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); padding: 40px; text-align: center; color: white;">
+<div style="font-size: 48px; margin-bottom: 16px;">🛡️</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Safety First</h3>
+<p style="font-size: 15px; opacity: 0.9; margin: 0;">Built into every skill</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Why Skill-Level Safety Section -->
+<section class="section-hero animate-on-scroll delay-1 reverse">
+<div class="content-inner">
+<div class="visual">
+<div class="apple-card" style="background: #f5f5f7; padding: 40px; text-align: center;">
+<div style="font-size: 48px; margin-bottom: 16px;">⚠️</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">The Gap</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">Context violations cause failures</p>
+</div>
+</div>
+<div class="text">
+<h2>Why Skill-Level Safety Matters</h2>
+<p>Safety mechanisms often focus on motion control, hardware limits, or model behavior. While necessary, these layers are insufficient on their own. Many failures occur because a skill is used outside its intended context, assumptions are violated silently, or constraints are implicit rather than explicit.</p>
+<p style="margin-top: 16px;"><strong>Skill-level safety addresses this gap.</strong></p>
+</div>
+</div>
+</section>
+
+<!-- Boundaries Section -->
+<section class="section-hero animate-on-scroll delay-2">
+<div class="content-inner">
+<div class="text">
+<h2>Skills Define Their Own Boundaries</h2>
+<p>In Robot Skill Store, each skill explicitly declares operational constraints, environmental assumptions, and safety limits — as part of the executable specification (not just documentation).</p>
+<p style="margin-top: 16px;">This allows the system to:</p>
+<ul style="margin-top: 12px;">
+<li>Reject invalid executions early</li>
+<li>Adapt behavior under constraints</li>
+<li>Reason about risk before action</li>
+</ul>
+</div>
+<div class="visual">
+<div class="apple-grid" style="grid-template-columns: 1fr; gap: 16px;">
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 12px;">🚫</div>
+<h4 style="margin: 0 0 8px;">Reject</h4>
+<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">Invalid executions</p>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 12px;">🔄</div>
+<h4 style="margin: 0 0 8px;">Adapt</h4>
+<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">Under constraints</p>
+</div>
+<div class="apple-card" style="padding: 24px; text-align: center;">
+<div style="font-size: 32px; margin-bottom: 12px;">🧠</div>
+<h4 style="margin: 0 0 8px;">Reason</h4>
+<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">About risk before action</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Policies Section -->
+<section class="section-hero animate-on-scroll delay-3" style="background: #f5f5f7;">
+<div class="content-inner">
+<div class="text">
+<h2>Policies and Verification</h2>
+<p>Safety is enforced through:</p>
+<ul style="margin-top: 12px;">
+<li><strong>Constraints</strong> defined in skill metadata</li>
+<li><strong>Policies</strong> applied during selection and execution</li>
+<li><strong>Verification</strong> as part of the lifecycle</li>
+</ul>
+<p style="margin-top: 16px;">Before a skill is executed, its constraints are evaluated, its context is checked, and compatibility is verified. <strong>Safety becomes proactive rather than reactive.</strong></p>
+</div>
+<div class="visual">
+<div class="apple-card" style="background: white; padding: 32px;">
+<div style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">Safety Enforcement Flow</div>
+<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+<div style="background: #0071e3; color: white; padding: 8px 16px; border-radius: 8px; font-size: 14px;">Constraints</div>
+<div style="color: var(--apple-gray);">→</div>
+<div style="background: #0071e3; color: white; padding: 8px 16px; border-radius: 8px; font-size: 14px;">Policies</div>
+<div style="color: var(--apple-gray);">→</div>
+<div style="background: #0071e3; color: white; padding: 8px 16px; border-radius: 8px; font-size: 14px;">Verification</div>
+</div>
+<p style="font-size: 14px; color: var(--apple-gray); margin: 0;">Proactive safety checks at every step</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Sim2Real Safety Section -->
+<section class="section-hero animate-on-scroll delay-4 reverse">
+<div class="content-inner">
+<div class="visual">
+<div class="apple-card" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); padding: 40px; text-align: center;">
+<div style="font-size: 48px; margin-bottom: 16px;">🔁</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Same Constraints</h3>
+<p style="font-size: 15px; margin: 0;">Simulation ↔ Reality</p>
+</div>
+</div>
+<div class="text">
+<h2>Safety Across Simulation and Reality</h2>
+<p>The same constraints apply in simulation, during testing, and in real-world deployment. This consistency enables predictable behavior, reduces deployment risk, and accelerates safe iteration cycles.</p>
+</div>
+</div>
+</section>
+
+<!-- Safety as Enabler Section -->
+<section class="section-hero animate-on-scroll delay-5">
+<div class="content-inner">
+<div class="text">
+<h2>Safety as an Enabler</h2>
+<p>By making safety explicit and structured, skills become more reusable, agents can make informed decisions, and systems become more trustworthy. <strong>Safety becomes a foundation for scale.</strong></p>
+</div>
+<div class="visual">
+<div class="apple-card" style="background: #f5f5f7; padding: 40px; text-align: center;">
+<div style="font-size: 48px; margin-bottom: 16px;">🚀</div>
+<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Foundation for Scale</h3>
+<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">Safety enables growth</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Closing Section -->
+<section class="section-hero animate-on-scroll delay-6" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white;">
+<div class="content-inner" style="grid-template-columns: 1fr;">
+<div style="text-align: center;">
+<div style="font-size: 14px; opacity: 0.8; margin-bottom: 12px;">CLOSING PERSPECTIVE</div>
+<h2 style="color: white; font-size: clamp(24px, 4vw, 32px); margin-bottom: 24px;">A Missing Layer</h2>
+<p style="font-size: clamp(16px, 2vw, 20px); opacity: 0.9; max-width: 700px; margin: 0 auto 32px;">Robot Skill Store introduces a shared, safe, and protocol-defined skill abstraction — enabling robots to scale beyond isolated systems toward a true skill ecosystem.</p>
+<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+<a href="concepts.html" class="btn-apple">All Concepts</a>
+<a href="contact.html" class="btn-apple secondary">Contact Us</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<script src="../assets/config.js?v=6.77.65"></script>
+<script src="../assets/js/site.js?v=6.77.65"></script>
 </body>
 </html>
