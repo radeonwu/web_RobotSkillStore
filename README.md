@@ -2,7 +2,7 @@
 
 # Robot Skill Store (RSS)
 
-## Web v6.77.49 — **Freeze Release Notes**
+## Web v6.77.49 — Freeze Release Notes
 
 **Status:** ✅ FROZEN
 **Scope:** Concept, Information Architecture, UX, and Visual Semantics
