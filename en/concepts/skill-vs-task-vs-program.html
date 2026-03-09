@@ -3,8 +3,41 @@
 <head>
 <meta charset="utf-8"/>
 <title>Skill vs Task vs Program</title>
-<link rel="stylesheet" href="../../assets/css/style.css?v=6.77.46"/>
-<script src="../../assets/config.js?v=6.77.46"></script>
+<link rel="stylesheet" href="../../assets/css/style.css?v=6.79"/>
+<script src="../../assets/config.js?v=6.79"></script>
+
+<script>
+(function(){
+  function apply(mode){
+    var root = document.documentElement;
+    if(mode === 'dark') root.setAttribute('data-theme','dark');
+    else root.removeAttribute('data-theme');
+  }
+
+  // First paint: URL ?theme=dark|light takes priority.
+  try{
+    var sp = new URLSearchParams(window.location.search);
+    var t = sp.get('theme');
+    if(t === 'dark' || t === 'light'){
+      apply(t);
+    }else{
+      // Fallback: read saved preference (may not work under some file:// settings).
+      try{
+        var saved = localStorage.getItem('rss_theme');
+        if(saved === 'dark' || saved === 'light') apply(saved);
+      }catch(e){}
+    }
+  }catch(e){}
+
+  // Live updates from parent.
+  window.addEventListener('message', function(ev){
+    var d = ev && ev.data;
+    if(!d || d.type !== 'rss-theme') return;
+    var mode = d.mode || d.theme;
+    if(mode === 'dark' || mode === 'light') apply(mode);
+  });
+})();
+</script>
 
 </head>
 <body>

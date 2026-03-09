@@ -1,100 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>技能应用示例</title>
-<link href="../assets/css/style.css?v=6.77.63" rel="stylesheet"/>
-<style>
-/* Demo page specific styles */
-.demo-video-card {
-  background: white;
-  border-radius: 24px;
-  padding: 24px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-}
-
-.video-container {
-  position: relative;
-  width: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #000;
-}
-
-.video-container video {
-  width: 100%;
-  display: block;
-}
-
-.demo-controls-card {
-  background: white;
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-}
-
-.btn-run {
-  background: var(--rss-blue);
-  color: white;
-  border: none;
-  padding: 14px 32px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-run:hover {
-  background: #0051a8;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 113, 227, 0.3);
-}
-
-.btn-download {
-  background: transparent;
-  color: var(--rss-blue);
-  border: 1px solid var(--rss-blue);
-  padding: 14px 24px;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.btn-download:hover {
-  background: rgba(0, 113, 227, 0.08);
-}
-
-.timeline {
-  background: #f5f5f7;
-  border-radius: 12px;
-  padding: 16px;
-}
-
-#rsp-demo-evidence {
-  background: #1a1a2e;
-  color: #e8e8ed;
-  padding: 16px;
-  border-radius: 12px;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
-.is-not-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-@media (max-width: 768px) {
-  .is-not-grid {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
+<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -103,89 +14,47 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">首页</a>
-<a class="toplink" href="lifecycle.html">技能生命周期</a>
-<a class="toplink" href="platform.html">平台</a>
-<a class="toplink" href="concepts.html">概念</a>
-<a class="toplink" href="skills.html">认证技能</a>
-<a class="toplink" href="deployment.html">用户与部署</a>
-<a class="toplink" href="docs/index.html">文档</a>
-<a class="toplink" href="contact.html">联系</a>
-</nav>
-<div class="top-actions">
-<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">技能目录</a><a class="toplink" href="developers.html">技能供应商</a><a class="toplink" href="deployment.html">用户指南</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
-<span class="label">外观</span>
+<span class="label">Appearance</span>
 </button>
 </div>
 </div>
 </header>
 
-<main class="apple-main">
-<!-- Hero Section -->
-<section class="apple-hero animate-on-scroll">
-<div class="hero-content">
-<h1>技能应用示例</h1>
-<p class="hero-subtitle">UR5 参考执行模型</p>
-</div>
-</section>
 
-<!-- Video Section -->
-<section class="section-hero animate-on-scroll">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="max-width: 900px; margin: 0 auto;">
-<div class="demo-video-card">
-<div class="video-container">
-<video controls="" playsinline="" preload="metadata">
+<div class="layout">
+<main class="content" id="content">
+<div class="rss-lifecycle-bar" data-stage="overview"></div>
+
+<section class="section">
+
+<h1 id="demo">技能应用示例</h1>
+<div class="card">
+<video controls="" playsinline="" preload="metadata" style="width:100%;border-radius:16px;border:1px solid var(--vp-c-divider);background:#000;">
 <source src="../assets/media/demo.mp4" type="video/mp4"/>
-Your browser does not support the video tag.
-</video>
-</div>
-</div>
-</div>
+      Your browser does not support the video tag.
+    </video>
 </div>
 </section>
-
-<!-- Reference Model Section -->
-<section class="section-hero animate-on-scroll delay-1">
-<div class="content-inner">
-<div class="text">
-<h2>参考执行模型</h2>
-<p>Robot Skill Store 的 demo 优化目标：<strong>正确性、可复现性、可信任</strong> —— 而非仅展示视觉效果。</p>
-<p style="margin-top: 16px;">此 UR5 示例展示基于 RSP 的技能如何在仿真与真实之间一致执行：可复现绑定、约束强制、可审计结果。</p>
-</div>
-<div class="visual">
-<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); padding: 40px; text-align: center; color: white;">
-<div style="font-size: 48px; margin-bottom: 16px;">🎯</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">规格优先执行</h3>
-<p style="font-size: 15px; opacity: 0.9; margin: 0;">显式语义 · 可审计证据</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Swimlane Diagram Section -->
-<section class="section-hero animate-on-scroll delay-2" style="background: #f5f5f7;">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="max-width: 1100px; margin: 0 auto;">
-<h2 style="text-align: center; margin-bottom: 24px;">执行流程（泳道图）</h2>
-<div class="apple-card" style="background: white; padding: 24px; border-radius: 20px;">
+<section class="section">
+<h1>示例</h1>
+<p class="lead">UR5 参考执行模型</p>
+<p>Robot Skill Store 的 demo 不是展示效果，而是<strong>参考执行模型</strong>：强调正确性、可复现性与可扩展性，展示基于 RSP 的技能如何在仿真与真实之间一致执行。</p>
+<div class="card" style="margin-top:12px; background: var(--vp-c-bg);">
+<div class="card-title">参考执行模型（泳道式流程 SVG）</div>
+<div class="note">强调：显式规格 + 运行时绑定 + 约束强制 + 可审计结果（仿真/真实一致）。</div>
 <svg aria-label="Reference Execution Model Swimlane" height="auto" role="img" viewbox="0 0 1040 360" width="100%">
 <defs>
 <style>
-.lane{fill:rgba(59,130,246,.06);stroke:rgba(27,31,36,.18);stroke-width:1.8;rx:16;ry:16}
-.step{fill:rgba(255,255,255,.06);stroke:rgba(27,31,36,.25);stroke-width:2;rx:16;ry:16}
-.t{font:700 14px ui-sans-serif,system-ui; fill: currentColor}
-.s{font:13px ui-sans-serif,system-ui; fill: currentColor; opacity:.82}
-.a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
-</style>
+        .lane{fill:rgba(59,130,246,.06);stroke:rgba(27,31,36,.18);stroke-width:1.8;rx:16;ry:16}
+        .step{fill:rgba(255,255,255,.06);stroke:rgba(27,31,36,.25);stroke-width:2;rx:16;ry:16}
+        .t{font:700 14px ui-sans-serif,system-ui; fill: currentColor}
+        .s{font:13px ui-sans-serif,system-ui; fill: currentColor; opacity:.82}
+        .a{stroke:rgba(27,31,36,.35);stroke-width:2.2;marker-end:url(#m)}
+      </style>
 <marker id="m" markerheight="8" markerwidth="8" orient="auto" refx="9" refy="5" viewbox="0 0 10 10">
 <path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(27,31,36,.45)"></path>
 </marker>
@@ -216,92 +85,75 @@ Your browser does not support the video tag.
 <text class="s" x="180" y="320">输出：结果（success/fail）+ 证据（日志/轨迹/指标）+ 可复现实验配置</text>
 </svg>
 </div>
-</div>
-</div>
 </section>
-
-<!-- Key Features Grid -->
-<section class="section-hero animate-on-scroll delay-3">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="text-align: center; max-width: 700px; margin: 0 auto;">
-<h2>关键特性</h2>
-<p style="font-size: 18px; color: var(--apple-gray);">规格优先、可审计、可复现</p>
-</div>
-</div>
-<div class="apple-grid" style="max-width: 1200px; margin: 40px auto 0; padding: 0 20px;">
-<div class="apple-card animate-on-scroll" style="padding: 32px;">
-<div style="font-size: 32px; margin-bottom: 16px;">📋</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">规格优先</h3>
-<p class="muted" style="margin: 0;">由 Skill Spec + Binding 驱动执行</p>
-</div>
-<div class="apple-card animate-on-scroll delay-1" style="padding: 32px;">
-<div style="font-size: 32px; margin-bottom: 16px;">⚡</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">快速失败</h3>
-<p class="muted" style="margin: 0;">约束违规会立即输出证据</p>
-</div>
-<div class="apple-card animate-on-scroll delay-2" style="padding: 32px;">
-<div style="font-size: 32px; margin-bottom: 16px;">📊</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">可审计</h3>
-<p class="muted" style="margin: 0;">每次运行都有完整证据包</p>
-</div>
-<div class="apple-card animate-on-scroll delay-3" style="padding: 32px;">
-<div style="font-size: 32px; margin-bottom: 16px;">🔄</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">可比较</h3>
-<p class="muted" style="margin: 0;">支持回归对比与版本管理</p>
-</div>
-</div>
+<section class="section">
+<h2 id="what-it-shows">UR5 示例展示了什么</h2>
+<ul class="checklist">
+<li>技能如何被规格化定义（意图/约束/上下文/结果）</li>
+<li>执行上下文如何绑定（Base/TCP/环境）</li>
+<li>约束如何在运行时被强制</li>
+<li>结果如何被记录、评估并反馈复用</li>
+</ul>
 </section>
-
-<!-- Interactive Demo Section -->
-<section class="section-hero animate-on-scroll delay-4" style="background: #f5f5f7;">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="max-width: 800px; margin: 0 auto;">
-<h2 style="text-align: center; margin-bottom: 24px;">实操：参考执行 + 证据</h2>
-<p style="text-align: center; color: var(--apple-gray); margin-bottom: 32px;">运行一次参考 Demo（当前为 mock）。展示规格优先执行、运行时绑定、可审计证据。</p>
-<div class="demo-controls-card">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px;">
+<section class="section">
+<h2 id="binding">运行时参数绑定</h2>
+<p>执行时，运行时会把技能规格绑定到具体系统：机器人基座位姿、TCP 定义、环境参数等。参数变化不应改变技能语义，而应由运行时做一致性处理。</p>
+</section>
+<section class="section">
+<h2 id="flow">执行流程</h2>
+<ol class="steps">
+<li>Agent 发现并选择技能</li>
+<li>运行时验证上下文与约束（执行前）</li>
+<li>绑定 Base/TCP/环境参数</li>
+<li>在 UR5（或仿真）上执行并监控</li>
+<li>记录可审计结果与反馈，回传系统</li>
+</ol>
+</section>
+<section class="section">
+<h2 id="sim2real">仿真与现实的一致性</h2>
+<p>同一技能规范贯穿仿真、测试与真实部署。通过一致的绑定、约束强制与结果采集，降低部署风险，加速迭代。</p>
+</section>
+<section class="section">
+<h2 id="hands-on">实操：参考执行 + 证据（D2）</h2>
+<p>运行一次参考 Demo（当前为 mock）。重点展示 <strong>规格优先执行</strong>、<strong>运行时绑定</strong>、<strong>可审计证据</strong> —— 不是机器人控制代码教学。</p>
+<div class="card">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
 <div>
-<div style="font-size: 18px; font-weight: 600; margin-bottom: 4px;">运行参考 Demo</div>
-<div style="font-size: 14px; color: var(--apple-gray);">UR5 · reach_target_pose · base/tcp/env 绑定</div>
+<div class="card-title">运行参考 Demo</div>
+<div class="note">UR5 · reach_target_pose · base/tcp/env 绑定 · 约束强制 · 证据输出</div>
 </div>
-<div style="display: flex; gap: 12px; flex-wrap: wrap;">
-<button class="btn-run" onclick="rspRunDemo('zh');">▶ 运行</button>
-<button class="btn-download" onclick="rspDownloadLastDemoEvidence();">下载证据</button>
+<div style="display:flex;gap:10px;flex-wrap:wrap;">
+<button class="btn" onclick="rspRunDemo('zh');">▶ 运行</button>
+<button class="btn btn-ghost" onclick="rspDownloadLastDemoEvidence();">下载证据</button>
 </div>
 </div>
-<div id="rsp-demo-status" style="display: none; margin-bottom: 16px; padding: 12px; border-radius: 8px;"></div>
-<div style="margin-bottom: 20px;">
-<div style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">执行时间轴</div>
+<div class="note" id="rsp-demo-status" style="margin-top:10px;display:none;"></div>
+<div style="margin-top:14px;">
+<div class="card-title" style="margin-bottom:8px;">执行时间轴</div>
 <div class="timeline" id="rsp-demo-timeline"></div>
 </div>
-<div>
-<div style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">证据包</div>
-<div style="font-size: 14px; color: var(--apple-gray); margin-bottom: 12px;">每次运行都会生成。可直接查看或下载 JSON。</div>
-<pre id="rsp-demo-evidence" style="max-height: 360px; overflow: auto; margin: 0;"><code class="language-json">{}</code></pre>
-</div>
-</div>
+<div style="margin-top:14px;">
+<div class="card-title" style="margin-bottom:8px;">证据包</div>
+<div class="note">每次运行都会生成。可直接查看或下载 JSON。</div>
+<pre id="rsp-demo-evidence" style="max-height:360px;overflow:auto;"><code class="language-json">{}</code></pre>
 </div>
 </div>
 </section>
-
-<!-- Is / Is Not Section -->
-<section class="section-hero animate-on-scroll delay-5">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="max-width: 900px; margin: 0 auto;">
-<h2 style="text-align: center; margin-bottom: 32px;">这个 Demo 是什么 / 不是什么</h2>
-<div class="is-not-grid">
-<div class="apple-card" style="padding: 32px; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 20px;">这是</h3>
-<ul style="margin: 0; padding-left: 20px;">
+<section class="section">
+<h2 id="is-not">这个 Demo 是什么 / 不是什么</h2>
+<div class="grid2">
+<div class="card">
+<div class="card-title">这是</div>
+<ul class="checklist">
 <li><strong>规格优先</strong>：由 Skill Spec + Binding 驱动</li>
 <li><strong>快速失败</strong>：约束违规会输出证据</li>
 <li><strong>可审计</strong>：每次运行都有证据包</li>
 <li><strong>可比较</strong>：支持回归对比</li>
 </ul>
 </div>
-<div class="apple-card" style="padding: 32px; background: #fef3c7;">
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 20px;">不是</h3>
-<ul style="margin: 0; padding-left: 20px;">
+<div class="card">
+<div class="card-title">不是</div>
+<ul class="checklist">
 <li>ROS / URScript 教程</li>
 <li>控制器实现细节</li>
 <li>硬件 bring-up 指南</li>
@@ -309,37 +161,29 @@ Your browser does not support the video tag.
 </ul>
 </div>
 </div>
-</div>
-</div>
 </section>
-
-<!-- Future Interface Section -->
-<section class="section-hero animate-on-scroll delay-6" style="background: #f5f5f7;">
-<div class="content-inner">
-<div class="text">
-<h2>面向真实执行的接口（预留）</h2>
+<section class="section">
+<h2 id="future-interface">面向真实执行的接口（预留）</h2>
 <p>未来可接入仿真器或真实机器人 Runtime，保持相同输入输出形态：</p>
-</div>
-<div class="visual">
-<div class="apple-card" style="background: #1a1a2e; color: #e8e8ed; padding: 32px; border-radius: 20px;">
-<div style="font-size: 14px; margin-bottom: 16px; color: #a1a1a6;">服务端端点（规划中）</div>
-<pre style="margin: 0; font-size: 13px; line-height: 1.6;"><code style="color: #a5d6ff;">POST</code> /api/execute-skill
-
+<div class="card">
+<div class="card-title">服务端端点（规划中）</div>
+<pre><code class="language-text">POST /api/execute-skill
 输入：
   - skill_spec.json
   - binding.json（base/tcp/env）
-
 输出：
   - evidence/（证据包）
-  - outcome.json</pre>
-<div style="font-size: 13px; margin-top: 16px; color: #a1a1a6;">今天：浏览器内 mock。明天：对接仿真 / UR5 Runtime / CI 回归执行。</div>
-</div>
-</div>
+  - outcome.json</code></pre>
+<p class="note">今天：浏览器内 mock。明天：对接仿真 / UR5 Runtime / CI 回归执行。</p>
 </div>
 </section>
 </main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/config.js?v=6.79"></script>
 
-<script src="../assets/config.js?v=6.77.63"></script>
-<script src="../assets/js/site.js?v=6.77.63"></script>
 </body>
 </html>

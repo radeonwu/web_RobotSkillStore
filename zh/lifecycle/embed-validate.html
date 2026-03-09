@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>验证 · 技能生命周期 · RobotSkillStore</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=6.79"/>
+  <style>
+    html,body{height:auto!important;min-height:0!important;}
+    body{margin:0;padding:0;display:inline-block;width:100%;}
+    .content{max-width:920px;margin:0 auto;padding:18px 18px 24px;}
+    .section{margin-top:14px;}
+    .stage-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;}
+    .stage-num{width:28px;height:28px;border-radius:50%;background:var(--vp-c-brand);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .stage-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--vp-c-text-2);}
+  </style>
+  <script>
+  (function(){
+    function apply(mode){
+      var root=document.documentElement;
+      if(mode==='dark') root.setAttribute('data-theme','dark');
+      else root.removeAttribute('data-theme');
+    }
+    try{
+      var sp=new URLSearchParams(window.location.search);
+      var t=sp.get('theme');
+      if(t==='dark'||t==='light'){apply(t);}
+      else{try{var s=localStorage.getItem('rss_theme');if(s==='dark'||s==='light')apply(s);}catch(e){}}
+    }catch(e){}
+    window.addEventListener('message',function(ev){
+      var d=ev&&ev.data;
+      if(!d||d.type!=='rss-theme')return;
+      var m=d.mode||d.theme;
+      if(m==='dark'||m==='light')apply(m);
+    });
+  })();
+  </script>
+</head>
+<body>
+<main class="content">
+
+<section class="section-plain">
+  <div class="stage-badge">
+    <div class="stage-num">2</div>
+    <span class="stage-label">第 2 阶段，共 4 阶段 · 生命周期</span>
+  </div>
+  <h1>验证</h1>
+  <p class="lead">在真实硬件、HIL 或仿真环境中运行技能，建立证据库——每次执行均被记录并不可篡改地存储。</p>
+</section>
+
+<section class="section">
+  <h2 id="what-happens">发生了什么</h2>
+  <ul>
+    <li><strong>提交运行记录</strong>，通过 <code>POST /runs</code>——每次执行记录结果、约束违规与原因。</li>
+    <li><strong>挂载制品</strong>——日志、视频片段、遥测数据不可篡改地与对应 Run 绑定；上传后不可修改。</li>
+    <li><strong>证据持续积累</strong>——RSS 在滚动窗口中追踪所有已提交 Run 的成功率与违规率。</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2 id="what-the-platform-does">平台做了什么</h2>
+  <ul>
+    <li>索引每条运行记录——可按结果、机器人、日期与约束状态检索。</li>
+    <li>将制品存储于本地磁盘或 S3/MinIO——与 Run 绑定并标记为不可变。</li>
+    <li>开始计算治理指标——每次 Run 提交后更新成功率、违规率与回归信号。</li>
+  </ul>
+</section>
+
+</main>
+<script>
+(function(){
+  function calc(){
+    var b=document.body,e=document.documentElement;
+    return Math.max(b?b.scrollHeight:0,e?e.scrollHeight:0,b?b.offsetHeight:0,e?e.offsetHeight:0);
+  }
+  var last=0;
+  function send(){
+    var h=calc();
+    if(!h)return;
+    if(Math.abs(h-last)<2)return;
+    last=h;
+    try{parent.postMessage({type:'rss-embed-height',height:h},'*');}catch(e){}
+  }
+  window.addEventListener('message',function(ev){var d=ev.data||{};if(d.type==='rss-embed-ping')send();});
+  if('ResizeObserver' in window){try{new ResizeObserver(function(){send();}).observe(document.documentElement);}catch(e){}}
+  if('MutationObserver' in window){try{new MutationObserver(function(){send();}).observe(document.documentElement,{subtree:true,childList:true,attributes:true,characterData:true});}catch(e){}}
+  window.addEventListener('load',function(){send();setTimeout(send,100);setTimeout(send,400);});
+  setInterval(send,2000);
+})();
+</script>
+</body>
+</html>

@@ -1,85 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>概念与边界 · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.53" rel="stylesheet"/>
-<style>
-/* Concepts page specific styles */
-.concepts-tabs-wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.concepts-tabs-wrap h2 {
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 700;
-  margin-bottom: 24px;
-  text-align: center;
-}
-
-.concept-tabs {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-}
-
-.tab-btn {
-  background: #f5f5f7;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 20px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: var(--apple-gray);
-}
-
-.tab-btn:hover {
-  background: #e8e8ed;
-  transform: translateY(-2px);
-}
-
-.tab-btn.active {
-  background: var(--rss-blue);
-  color: white;
-  font-weight: 600;
-}
-
-.tab-panel {
-  background: #f5f5f7;
-  border-radius: 24px;
-  overflow: hidden;
-  min-height: 400px;
-}
-
-.concept-frame {
-  width: 100%;
-  min-height: 500px;
-  border: none;
-  background: white;
-}
-
-@media (max-width: 768px) {
-  .concept-tabs {
-    flex-direction: column;
-  }
-
-  .tab-btn {
-    width: 100%;
-    text-align: center;
-  }
-
-  .concept-frame {
-    min-height: 600px;
-  }
-}
-</style>
+<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -88,23 +14,8 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">首页</a>
-<a class="toplink" href="lifecycle.html">技能生命周期</a>
-<a class="toplink" href="platform.html">平台</a>
-<a class="toplink" href="concepts.html">概念</a>
-<a class="toplink" href="skills.html">认证技能</a>
-<a class="toplink" href="deployment.html">用户与部署</a>
-<a class="toplink" href="docs/index.html">文档</a>
-<a class="toplink" href="contact.html">联系</a>
-</nav>
-<div class="top-actions">
-<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">技能目录</a><a class="toplink" href="developers.html">技能供应商</a><a class="toplink" href="deployment.html">用户指南</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
 <span class="label">Appearance</span>
@@ -112,125 +23,40 @@
 </div>
 </div>
 </header>
+<div class="layout">
+<main class="content">
 
-<main class="apple-main">
-<!-- Apple 风格全宽英雄区 -->
-<section class="apple-hero animate-on-scroll">
-<div class="hero-content">
+
+
+
+
+<section class="section-plain">
 <h1>概念与边界</h1>
-<p class="hero-subtitle">让"技能"成为可迁移、可治理、可认证的资产</p>
-</div>
+<div class="onboarding">
+  <p><strong>目的</strong>RSS 是平台，而不是单个项目或工具包。</p>
+  <p><strong>本页内容</strong>定义与边界：让“技能”成为可迁移、可治理、可认证的资产，从而跨组织复用。</p>
+  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期锚点</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div>
+  </div>
 </section>
 
-<!-- Purpose Section -->
-<section class="section-hero animate-on-scroll">
-<div class="content-inner">
-<div class="text">
-<h2>RSS 是什么</h2>
-<p><strong>RSS 是平台，而不是单个项目或工具包。</strong></p>
-<p style="margin-top: 16px;">本页内容：定义与边界，让"技能"成为可迁移、可治理、可认证的资产，从而跨组织复用。</p>
-<div style="margin-top: 24px;">
-<a href="lifecycle.html" class="btn-apple">查看生命周期</a>
-<a href="platform.html" class="btn-apple secondary">探索平台</a>
-</div>
-</div>
-<div class="visual">
-<div style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); border-radius: 24px; padding: 60px; text-align: center; color: white;">
-<div style="font-size: 48px; font-weight: 700; margin-bottom: 20px;">RSS</div>
-<div style="font-size: 20px; opacity: 0.9;">平台</div>
-<div style="font-size: 16px; opacity: 0.8; margin-top: 12px;">不是项目，不是工具包</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Concepts Tabs Section -->
-<section class="section-hero animate-on-scroll delay-1" style="background: #f5f5f7;">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="max-width: 900px; margin: 0 auto;">
-<h2 style="text-align: center; margin-bottom: 32px;">探索核心概念</h2>
+<p class="lead">Robot Skill Store（RSS）的核心定义与边界说明。</p>
 <div class="concepts-tabs-wrap">
-<div class="concept-tabs" role="tablist" aria-label="概念页面">
-<button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab="robot-skill" data-src="concepts/embed-what-is-robot-skill.html">什么是 Robot Skill</button>
-<button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="vs-llm" data-src="concepts/embed-robot-skill-vs-llm-skill.html">Robot Skill vs LLM Skill</button>
-<button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="determinism" data-src="concepts/embed-why-determinism-matters.html">确定性为何重要</button>
-<button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="skill-task" data-src="concepts/embed-skill-task-program.html">Skill ≠ Task ≠ Program</button>
+  <h2 id="pages">页面</h2>
+  <div class="concept-tabs" role="tablist" aria-label="概念页面">
+    <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab="robot-skill" data-src="concepts/embed-what-is-robot-skill.html">什么是 Robot Skill</button>
+    <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="vs-llm" data-src="concepts/embed-robot-skill-vs-llm-skill.html">Robot Skill vs LLM Skill</button>
+    <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="determinism" data-src="concepts/embed-why-determinism-matters.html">确定性为何重要</button>
+    <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="skill-task" data-src="concepts/embed-skill-task-program.html">Skill ≠ Task ≠ Program</button>
+  </div>
+  <div class="tab-panel" role="tabpanel" aria-label="概念内容">
+    <iframe id="conceptFrame" class="concept-frame" scrolling="no" src="concepts/embed-what-is-robot-skill.html" loading="lazy"></iframe>
+  </div>
 </div>
-<div class="tab-panel" role="tabpanel" aria-label="概念内容">
-<iframe id="conceptFrame" class="concept-frame" scrolling="no" src="concepts/embed-what-is-robot-skill.html" loading="lazy"></iframe>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Key Principles -->
-<section class="section-hero animate-on-scroll delay-2">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="text-align: center; max-width: 700px; margin: 0 auto;">
-<h2>核心原则</h2>
-<p style="font-size: 18px; color: var(--apple-gray);">让 RSS 运作的基础</p>
-</div>
-</div>
-<div class="apple-grid" style="max-width: 1000px; margin: 40px auto 0; padding: 0 20px;">
-<div class="apple-card animate-on-scroll" style="padding: 32px; text-align: center;">
-<div style="font-size: 40px; margin-bottom: 16px;">📦</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">可迁移</h3>
-<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">技能可跨机器人和组织流动</p>
-</div>
-<div class="apple-card animate-on-scroll delay-1" style="padding: 32px; text-align: center;">
-<div style="font-size: 40px; margin-bottom: 16px;">🔒</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">可治理</h3>
-<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">基于证据的认证与监管</p>
-</div>
-<div class="apple-card animate-on-scroll delay-2" style="padding: 32px; text-align: center;">
-<div style="font-size: 40px; margin-bottom: 16px;">✅</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">可认证</h3>
-<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">针对显式约束进行验证</p>
-</div>
-</div>
-</section>
-
-<!-- CTA Section -->
-<section class="section-hero animate-on-scroll delay-3" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div>
-<h2 style="color: white; font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">深入了解？</h2>
-<p style="font-size: clamp(17px, 2vw, 21px); color: #a1a1a6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">探索平台能力，或浏览认证技能</p>
-<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-<a href="platform.html" class="btn-apple">平台</a>
-<a href="skills.html" class="btn-apple secondary">查看技能</a>
-</div>
-</div>
-</div>
-</section>
 </main>
-
-<script src="../assets/config.js?v=6.77.53"></script>
-<script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
-<script src="../assets/js/site.js?v=6.77.53"></script>
-<script>
-// Tab switching functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const tabs = document.querySelectorAll('.tab-btn');
-  const frame = document.getElementById('conceptFrame');
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', function() {
-      // Remove active class from all tabs
-      tabs.forEach(t => t.classList.remove('active'));
-      tabs.forEach(t => t.setAttribute('aria-selected', 'false'));
-
-      // Add active class to clicked tab
-      this.classList.add('active');
-      this.setAttribute('aria-selected', 'true');
-
-      // Update iframe src
-      const src = this.getAttribute('data-src');
-      frame.src = src;
-    });
-  });
-});
-</script>
-</body>
+<aside aria-label="本页导航" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/js/site.js?v=6.79"></script></body>
 </html>

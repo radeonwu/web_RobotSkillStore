@@ -3,169 +3,458 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>认证技能 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.77.52" rel="stylesheet"/>
+<title>技能目录 · RobotSkillStore</title>
+<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
+<style>
+/* ── Skill catalog styles ── */
+.catalog-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.catalog-controls input[type="text"] {
+  padding: 7px 12px;
+  border: 1px solid var(--vp-c-divider, #ddd);
+  border-radius: 8px;
+  font-size: 13px;
+  background: var(--vp-c-bg, #fff);
+  color: var(--vp-c-text-1, #222);
+  min-width: 220px;
+  outline: none;
+}
+.catalog-controls input[type="text"]:focus {
+  border-color: var(--vp-c-brand, #409eff);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--vp-c-brand, #409eff) 15%, transparent);
+}
+.cat-filter {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.cat-btn {
+  padding: 5px 12px;
+  border: 1px solid var(--vp-c-divider, #ddd);
+  border-radius: 20px;
+  font-size: 12px;
+  background: var(--vp-c-bg, #fff);
+  color: var(--vp-c-text-2, #555);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.cat-btn:hover { background: var(--vp-c-bg-soft, #f6f6f6); }
+.cat-btn.active {
+  background: var(--vp-c-brand, #409eff);
+  border-color: var(--vp-c-brand, #409eff);
+  color: #fff;
+}
+.catalog-summary {
+  font-size: 12px;
+  color: var(--vp-c-text-2, #888);
+  margin-bottom: 14px;
+}
+.catalog-summary b { color: var(--vp-c-text-1, #222); }
+
+.cat-group { margin-bottom: 28px; }
+.cat-group-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vp-c-text-2, #555);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 12px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--vp-c-divider, #eee);
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.sk-card {
+  border: 1px solid var(--vp-c-divider, #e8e8e8);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: var(--vp-c-bg, #fff);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+.sk-card:hover {
+  box-shadow: 0 2px 12px color-mix(in srgb, #000 8%, transparent);
+  border-color: var(--vp-c-brand, #409eff);
+}
+.sk-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 6px;
+}
+.sk-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vp-c-text-1, #1a1a1a);
+  line-height: 1.3;
+}
+.sk-id {
+  font-size: 11px;
+  color: var(--vp-c-text-3, #999);
+  font-family: monospace;
+  margin-top: 2px;
+}
+.sk-badges { display: flex; gap: 5px; flex-wrap: wrap; flex-shrink: 0; }
+.sk-badge {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 99px;
+  border: 1px solid;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.sk-badge-stable  { border-color: #2da44e; color: #2da44e; background: color-mix(in srgb, #2da44e 8%, transparent); }
+.sk-badge-beta    { border-color: #bf8700; color: #bf8700; background: color-mix(in srgb, #bf8700 8%, transparent); }
+.sk-badge-alpha   { border-color: #9a6700; color: #9a6700; background: color-mix(in srgb, #9a6700 6%, transparent); }
+.sk-badge-default { border-color: #888; color: #888; background: transparent; }
+
+.sk-sub {
+  font-size: 11px;
+  color: var(--vp-c-text-3, #aaa);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.sk-desc {
+  font-size: 12px;
+  color: var(--vp-c-text-2, #555);
+  line-height: 1.55;
+  flex: 1;
+}
+.sk-robots {
+  font-size: 11px;
+  color: var(--vp-c-text-3, #aaa);
+  margin-top: 2px;
+}
+.sk-robots span {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid var(--vp-c-divider, #ddd);
+  border-radius: 6px;
+  margin: 1px 2px 1px 0;
+  font-family: monospace;
+  font-size: 10.5px;
+  color: var(--vp-c-text-2, #555);
+}
+.sk-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+.sk-link {
+  font-size: 12px;
+  color: var(--vp-c-brand, #409eff);
+  text-decoration: none;
+  padding: 3px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.12s;
+}
+.sk-link:hover { border-bottom-color: var(--vp-c-brand, #409eff); }
+
+#catalog-loading { color: var(--vp-c-text-3, #aaa); font-size: 13px; padding: 12px 0; }
+#catalog-empty   { color: var(--vp-c-text-3, #aaa); font-size: 13px; padding: 12px 0; display: none; }
+#catalog-source  { font-size: 11px; color: var(--vp-c-text-3, #aaa); margin-bottom: 6px; }
+</style>
 </head>
 <body>
-<!-- Apple 风格导航栏 -->
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<!-- 移动端汉堡菜单按钮 -->
-<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">首页</a>
-<a class="toplink" href="lifecycle.html">生命周期</a>
-<a class="toplink" href="platform.html">平台</a>
-<a class="toplink" href="skills.html">技能</a>
-<a class="toplink" href="docs/index.html">文档</a>
-<a class="toplink" href="contact.html">联系</a>
-</nav>
-<div class="top-actions">
-<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink active" href="skills.html">技能目录</a><a class="toplink" href="developers.html">技能供应商</a><a class="toplink" href="deployment.html">用户指南</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
-<span class="label">外观</span>
+<span class="label">Appearance</span>
 </button>
 </div>
 </div>
 </header>
+<div class="layout">
+<main class="content">
 
-<main class="apple-main">
-<!-- Apple 风格全宽英雄区 -->
-<section class="apple-hero animate-on-scroll">
-<div class="hero-content">
-<h1>认证技能</h1>
-<p class="hero-subtitle">让用户可以放心选择与复用技能</p>
-<div class="cta-row">
-<a href="lifecycle.html" class="btn-apple">了解生命周期</a>
-<a href="platform.html" class="btn-apple secondary">查看平台</a>
+<section class="section-plain">
+<h1>技能目录</h1>
+<div class="onboarding">
+  <p><strong>目的</strong>浏览并复用 RSS 平台上已验证的工业机器人技能。</p>
+  <p><strong>本页内容</strong>平台注册的完整技能目录——每个技能包含成熟度等级、兼容机器人型号，以及平台记录和证据运行的直达链接。</p>
+  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期锚点</strong></div><div class="rss-lifecycle-bar compact" data-stage="deploy" data-compact="1"></div></div>
 </div>
-</div>
+<p class="lead">30 个工业机器人技能，覆盖 7 大类别。每个技能均经过注册、验证并在 RSS 平台进行治理。</p>
 </section>
 
-<!-- 技能列表 -->
-<section class="section-hero animate-on-scroll">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="text-align: center; max-width: 700px; margin: 0 auto;">
-<h2>技能列表</h2>
-<p style="font-size: 18px; color: var(--apple-gray);">认证技能清单：证据等级、兼容性摘要、以及"Latest Run"直达平台</p>
-</div>
-</div>
-<div class="apple-grid" style="max-width: 1200px; margin: 40px auto 0; padding: 0 20px;">
-<!-- tighten_screw -->
-<div class="apple-card animate-on-scroll" style="padding: 0; overflow: hidden;">
-<div style="padding: 24px;">
-<div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
-<h3 style="font-size: 22px; font-weight: 600; margin: 0;">tighten_screw</h3>
-<span style="background: var(--rss-blue); color: white; padding: 6px 14px; border-radius: 16px; font-size: 13px; font-weight: 600;">证据：E2</span>
-</div>
-<p style="color: var(--apple-gray); font-size: 15px; margin: 0 0 16px;">可确定执行的拧螺丝技能，沉淀扭矩/角度等可追溯证据。</p>
-<div style="color: var(--apple-gray); font-size: 14px; margin-bottom: 20px;">UR5 + RG2 · RSP v0.3 · 支持 Sim→Real</div>
-<div style="display: flex; gap: 10px; flex-wrap: wrap;">
-<a href="/viewer/" class="btn-apple" style="font-size: 14px; padding: 10px 20px;">Latest Run</a>
-<a href="/public/v1/skills/tighten_screw" class="btn-apple secondary" style="font-size: 14px; padding: 10px 20px; color: #1d1d1f; border-color: var(--rss-blue);">平台入口</a>
-</div>
-</div>
+<section class="section">
+<h2 id="catalog">技能列表</h2>
+
+<div id="catalog-source"></div>
+
+<div class="catalog-controls">
+  <input id="sk-search" placeholder="搜索技能名称、类别、机器人型号…" type="text"/>
+  <div class="cat-filter" id="cat-filter">
+    <button class="cat-btn active" data-cat="">全部</button>
+  </div>
 </div>
 
-<!-- connector_insert -->
-<div class="apple-card animate-on-scroll delay-1" style="padding: 0; overflow: hidden;">
-<div style="padding: 24px;">
-<div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
-<h3 style="font-size: 22px; font-weight: 600; margin: 0;">connector_insert</h3>
-<span style="background: var(--rss-blue); color: white; padding: 6px 14px; border-radius: 16px; font-size: 13px; font-weight: 600;">证据：E1</span>
-</div>
-<p style="color: var(--apple-gray); font-size: 15px; margin: 0 0 16px;">插入技能：姿态约束、进退路径、失败恢复与运行证据。</p>
-<div style="color: var(--apple-gray); font-size: 14px; margin-bottom: 20px;">UR5 + RG2 · Socket A/B · 仿真验证</div>
-<div style="display: flex; gap: 10px; flex-wrap: wrap;">
-<a href="/viewer/" class="btn-apple" style="font-size: 14px; padding: 10px 20px;">Latest Run</a>
-<a href="/public/v1/skills/connector_insert" class="btn-apple secondary" style="font-size: 14px; padding: 10px 20px; color: #1d1d1f; border-color: var(--rss-blue);">平台入口</a>
-</div>
-</div>
-</div>
+<div class="catalog-summary" id="catalog-summary"></div>
+<div id="catalog-loading">加载技能目录中…</div>
+<div id="catalog-empty">没有匹配的技能。</div>
+<div id="catalog-body"></div>
 
-<!-- pick_place -->
-<div class="apple-card animate-on-scroll delay-2" style="padding: 0; overflow: hidden;">
-<div style="padding: 24px;">
-<div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
-<h3 style="font-size: 22px; font-weight: 600; margin: 0;">pick_place</h3>
-<span style="background: var(--rss-blue); color: white; padding: 6px 14px; border-radius: 16px; font-size: 13px; font-weight: 600;">证据：E1</span>
-</div>
-<p style="color: var(--apple-gray); font-size: 15px; margin: 0 0 16px;">Pick&Place：抓取模板 + 避障 IK。</p>
-<div style="color: var(--apple-gray); font-size: 14px; margin-bottom: 20px;">UR5 + RG2 · Workspace A · 仿真</div>
-<div style="display: flex; gap: 10px; flex-wrap: wrap;">
-<a href="/viewer/" class="btn-apple" style="font-size: 14px; padding: 10px 20px;">Latest Run</a>
-<a href="/public/v1/skills/pick_place" class="btn-apple secondary" style="font-size: 14px; padding: 10px 20px; color: #1d1d1f; border-color: var(--rss-blue);">平台入口</a>
-</div>
-</div>
-</div>
-
-<!-- inspect_aoi -->
-<div class="apple-card animate-on-scroll delay-3" style="padding: 0; overflow: hidden;">
-<div style="padding: 24px;">
-<div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
-<h3 style="font-size: 22px; font-weight: 600; margin: 0;">inspect_aoi</h3>
-<span style="background: #8e8e93; color: white; padding: 6px 14px; border-radius: 16px; font-size: 13px; font-weight: 600;">证据：E0</span>
-</div>
-<p style="color: var(--apple-gray); font-size: 15px; margin: 0 0 16px;">AOI 质检能力占位（Schema + 执行框架），证据待补齐。</p>
-<div style="color: var(--apple-gray); font-size: 14px; margin-bottom: 20px;">仅相机 · 证据待补齐</div>
-<div style="display: flex; gap: 10px; flex-wrap: wrap;">
-<a href="/viewer/" class="btn-apple" style="font-size: 14px; padding: 10px 20px;">Latest Run</a>
-<a href="/public/v1/skills/inspect_aoi" class="btn-apple secondary" style="font-size: 14px; padding: 10px 20px; color: #1d1d1f; border-color: var(--rss-blue);">平台入口</a>
-</div>
-</div>
-</div>
-</div>
 </section>
 
-<!-- 证据等级说明 -->
-<section class="section-hero animate-on-scroll delay-4" style="background: #f5f5f7;">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="max-width: 800px; margin: 0 auto;">
-<h2 style="text-align: center; margin-bottom: 32px;">证据等级</h2>
-<div class="apple-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-<div class="apple-card" style="padding: 24px; text-align: center;">
-<div style="font-size: 32px; font-weight: 700; color: var(--rss-blue); margin-bottom: 8px;">E2</div>
-<div style="font-size: 14px; color: var(--apple-gray);">完整证据 + 真实硬件验证</div>
-</div>
-<div class="apple-card" style="padding: 24px; text-align: center;">
-<div style="font-size: 32px; font-weight: 700; color: var(--rss-blue); margin-bottom: 8px;">E1</div>
-<div style="font-size: 14px; color: var(--apple-gray);">仿真验证 + 结构化追踪</div>
-</div>
-<div class="apple-card" style="padding: 24px; text-align: center;">
-<div style="font-size: 32px; font-weight: 700; color: #8e8e93; margin-bottom: 8px;">E0</div>
-<div style="font-size: 14px; color: var(--apple-gray);">Schema 已定义，证据待补充</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- 准备部署 CTA -->
-<section class="section-hero animate-on-scroll delay-5" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div>
-<h2 style="font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px; color: white;">准备部署？</h2>
-<p style="font-size: clamp(17px, 2vw, 21px); color: #a1a1a6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">探索平台或联系我们，了解如何部署认证技能</p>
-<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-<a href="platform.html" class="btn-apple">平台详情</a>
-<a href="contact.html" class="btn-apple secondary">联系我们</a>
-</div>
-</div>
-</div>
-</section>
 </main>
+<aside aria-label="本页导航" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
 
-<script src="../assets/config.js?v=6.77.52"></script>
-<script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
-<script src="../assets/js/site.js?v=6.77.52"></script>
+<script src="../assets/config.js?v=6.79"></script>
+<script src="../assets/data/public_skills.js?v=6.79"></script>
+<script>
+(function () {
+  var PLATFORM_BASE = (window.RSS_PLATFORM_BASE_URL || window.RSS_PUBLIC_BASE_URL || '').replace(/\/$/, '');
+  var STATIC_JSON   = '../assets/data/public_skills.json';
+
+  var MATURITY_ORDER = { stable: 0, beta: 1, alpha: 2 };
+
+  var allSkills = [];
+  var activeCat = '';
+
+  function escHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  function badgeClass(m) {
+    if (m === 'stable') return 'sk-badge-stable';
+    if (m === 'beta')   return 'sk-badge-beta';
+    if (m === 'alpha')  return 'sk-badge-alpha';
+    return 'sk-badge-default';
+  }
+
+  function robotBadges(robots) {
+    if (!Array.isArray(robots) || !robots.length) return '';
+    return robots.map(function(r){ return '<span>' + escHtml(r) + '</span>'; }).join('');
+  }
+
+  function platformLink(sid) {
+    if (!PLATFORM_BASE) return '';
+    return PLATFORM_BASE + '/public/v1/skills/' + encodeURIComponent(sid);
+  }
+
+  function viewerLink() {
+    if (!PLATFORM_BASE) return '';
+    return PLATFORM_BASE + '/viewer/';
+  }
+
+  function renderSkill(sk) {
+    var plLink  = platformLink(sk.skill_id);
+    var vwLink  = viewerLink();
+    var mat     = (sk.maturity || 'alpha').toLowerCase();
+    var robots  = sk.robots || [];
+    var actions = '';
+    if (vwLink)  actions += '<a class="sk-link" href="' + escHtml(vwLink)  + '" target="_blank" rel="noopener">证据运行</a>';
+    if (plLink)  actions += (actions ? '<span style="color:var(--vp-c-divider,#ddd)"> · </span>' : '') + '<a class="sk-link" href="' + escHtml(plLink) + '" target="_blank" rel="noopener">平台记录</a>';
+
+    return [
+      '<div class="sk-card">',
+        '<div class="sk-card-head">',
+          '<div>',
+            '<div class="sk-name">' + escHtml(sk.name || sk.skill_id) + '</div>',
+            '<div class="sk-id">' + escHtml(sk.skill_id) + '</div>',
+          '</div>',
+          '<div class="sk-badges">',
+            '<span class="sk-badge ' + badgeClass(mat) + '">' + escHtml(mat) + '</span>',
+          '</div>',
+        '</div>',
+        sk.subcategory ? '<div class="sk-sub">' + escHtml(sk.subcategory) + '</div>' : '',
+        sk.description ? '<div class="sk-desc">' + escHtml(sk.description) + '</div>' : '',
+        robots.length  ? '<div class="sk-robots">' + robotBadges(robots) + '</div>' : '',
+        actions        ? '<div class="sk-actions">' + actions + '</div>' : '',
+      '</div>'
+    ].join('');
+  }
+
+  function groupByCategory(skills) {
+    var map = {};
+    skills.forEach(function(sk) {
+      var cat = sk.category || 'Other';
+      if (!map[cat]) map[cat] = [];
+      map[cat].push(sk);
+    });
+    return map;
+  }
+
+  function render() {
+    var q = (document.getElementById('sk-search').value || '').trim().toLowerCase();
+    var filtered = allSkills.filter(function(sk) {
+      if (activeCat && sk.category !== activeCat) return false;
+      if (!q) return true;
+      var haystack = [sk.skill_id, sk.name, sk.category, sk.subcategory, sk.maturity, sk.description,
+                      (sk.robots||[]).join(' ')].join(' ').toLowerCase();
+      return haystack.indexOf(q) >= 0;
+    });
+
+    var empty = document.getElementById('catalog-empty');
+    var body  = document.getElementById('catalog-body');
+    var sumEl = document.getElementById('catalog-summary');
+
+    if (!filtered.length) {
+      body.innerHTML  = '';
+      empty.style.display = 'block';
+      sumEl.innerHTML = '';
+      return;
+    }
+    empty.style.display = 'none';
+
+    var stable = filtered.filter(function(s){ return (s.maturity||'').toLowerCase() === 'stable'; }).length;
+    var beta   = filtered.filter(function(s){ return (s.maturity||'').toLowerCase() === 'beta'; }).length;
+    var alpha  = filtered.filter(function(s){ return (s.maturity||'').toLowerCase() === 'alpha'; }).length;
+    sumEl.innerHTML = '<b>' + filtered.length + '</b> 个技能' +
+      (stable ? ' · <b>' + stable + '</b> stable' : '') +
+      (beta   ? ' · <b>' + beta   + '</b> beta'   : '') +
+      (alpha  ? ' · <b>' + alpha  + '</b> alpha'  : '');
+
+    var groups = groupByCategory(filtered);
+    var cats   = Object.keys(groups).sort();
+    var html   = '';
+    cats.forEach(function(cat) {
+      var items = groups[cat].slice().sort(function(a, b) {
+        var ao = MATURITY_ORDER[a.maturity] != null ? MATURITY_ORDER[a.maturity] : 99;
+        var bo = MATURITY_ORDER[b.maturity] != null ? MATURITY_ORDER[b.maturity] : 99;
+        if (ao !== bo) return ao - bo;
+        return (a.name||'').localeCompare(b.name||'');
+      });
+      html += '<div class="cat-group">';
+      html += '<div class="cat-group-title">' + escHtml(cat) + ' <span style="font-weight:400;opacity:0.6">(' + items.length + ')</span></div>';
+      html += '<div class="skill-grid">';
+      items.forEach(function(sk){ html += renderSkill(sk); });
+      html += '</div></div>';
+    });
+    body.innerHTML = html;
+  }
+
+  function buildCategoryFilters(skills) {
+    var cats = {};
+    skills.forEach(function(sk){ if (sk.category) cats[sk.category] = (cats[sk.category]||0)+1; });
+    var bar = document.getElementById('cat-filter');
+    var sorted = Object.keys(cats).sort();
+    sorted.forEach(function(cat) {
+      var btn = document.createElement('button');
+      btn.className   = 'cat-btn';
+      btn.dataset.cat = cat;
+      btn.textContent = cat + ' (' + cats[cat] + ')';
+      bar.appendChild(btn);
+    });
+    bar.addEventListener('click', function(e) {
+      var btn = e.target.closest('.cat-btn');
+      if (!btn) return;
+      activeCat = btn.dataset.cat || '';
+      Array.from(bar.querySelectorAll('.cat-btn')).forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      render();
+    });
+  }
+
+  function normalizeFromPlatform(items) {
+    return (items || []).map(function(it) {
+      return {
+        skill_id:       it.skill_id,
+        name:           it.name || it.skill_id,
+        category:       it.category || 'Other',
+        subcategory:    it.subcategory || '',
+        maturity:       (it.maturity || 'alpha').toLowerCase(),
+        latest_version: it.latest_version,
+        description:    it.description || it.intent || '',
+        robots_supported: it.robots_supported || 0,
+        robots:         Array.isArray(it.robots) ? it.robots : []
+      };
+    });
+  }
+
+  function setSourceLabel(src) {
+    var el = document.getElementById('catalog-source');
+    if (!el) return;
+    el.innerHTML = '<span style="font-size:11px;color:var(--vp-c-text-3,#aaa)">来源：' + escHtml(src) + '</span>';
+  }
+
+  function loadDone(skills, src) {
+    document.getElementById('catalog-loading').style.display = 'none';
+    allSkills = skills;
+    setSourceLabel(src);
+    buildCategoryFilters(skills);
+    render();
+    applyUrlCat();
+  }
+
+  function loadStatic() {
+    if (window.RSS_STATIC_SKILLS && window.RSS_STATIC_SKILLS.length) {
+      loadDone(normalizeFromPlatform(window.RSS_STATIC_SKILLS), '静态技能目录（内置）');
+      return;
+    }
+    fetch('../assets/data/public_skills.json')
+      .then(function(r){ return r.json(); })
+      .then(function(data) {
+        loadDone(normalizeFromPlatform(data), '静态技能目录 (public_skills.json)');
+      })
+      .catch(function() {
+        document.getElementById('catalog-loading').textContent = '无法加载技能目录。';
+      });
+  }
+
+  function loadFromPlatform() {
+    fetch(PLATFORM_BASE + '/public/v1/skills')
+      .then(function(r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function(obj) {
+        var items = (obj && obj.items) ? obj.items : (Array.isArray(obj) ? obj : []);
+        if (!items.length) throw new Error('empty');
+        loadDone(normalizeFromPlatform(items), '实时平台数据 (' + PLATFORM_BASE + ')');
+      })
+      .catch(function() {
+        loadStatic();
+      });
+  }
+
+  function applyUrlCat() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var cat = params.get('cat');
+      if (!cat) return;
+      var bar = document.getElementById('cat-filter');
+      var btns = Array.from(bar.querySelectorAll('.cat-btn'));
+      var match = btns.find(function(b){ return b.dataset.cat === cat; });
+      if (match) match.click();
+    } catch(e) {}
+  }
+
+  document.getElementById('sk-search').addEventListener('input', render);
+
+  if (PLATFORM_BASE) {
+    loadFromPlatform();
+  } else {
+    loadStatic();
+  }
+})();
+</script>
+<script src="../assets/js/site.js?v=6.79"></script>
 </body>
 </html>

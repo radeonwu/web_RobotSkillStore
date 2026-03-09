@@ -3,175 +3,236 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>开发者 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.77.64" rel="stylesheet"/>
+<title>技能供应商 · RobotSkillStore</title>
+<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
-<img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
-<span></span>
-<span></span>
-<span></span>
-</button>
 <nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">首页</a>
-<a class="toplink" href="lifecycle.html">技能生命周期</a>
-<a class="toplink" href="platform.html">平台</a>
-<a class="toplink" href="concepts.html">概念</a>
-<a class="toplink" href="skills.html">认证技能</a>
-<a class="toplink" href="deployment.html">用户与部署</a>
-<a class="toplink" href="docs/index.html">文档</a>
-<a class="toplink" href="contact.html">联系</a>
+  <a class="toplink" href="index.html">首页</a>
+  <a class="toplink" href="lifecycle.html">技能生命周期</a>
+  <a class="toplink" href="platform.html">平台</a>
+  <a class="toplink" href="concepts.html">概念</a>
+  <a class="toplink" href="skills.html">技能目录</a>
+  <a class="toplink active" href="developers.html">技能供应商</a>
+  <a class="toplink" href="deployment.html">用户指南</a>
+  <a class="toplink" href="docs/index.html">文档</a>
+  <a class="toplink" href="contact.html">联系</a>
 </nav>
 <div class="top-actions">
-<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
-<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
-<span class="icon">☾</span>
-<span class="label">外观</span>
-</button>
+  <button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+  <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
 </div>
 </div>
 </header>
 
-<main class="apple-main">
-<!-- Hero Section -->
-<section class="apple-hero animate-on-scroll">
-<div class="hero-content">
-<h1>开发者</h1>
-<p class="hero-subtitle">渐进式引入 Robot Skill Store</p>
-</div>
+<div class="layout">
+<main class="content">
+
+<section class="section-plain">
+  <h1>技能供应商</h1>
+  <div class="onboarding">
+    <p>将你的机器人技能发布到 RSS，经过验证与认证，让任何团队都能发现和复用它。</p>
+    <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期</strong></div><div class="rss-lifecycle-bar compact" data-stage="register,validate,certify" data-compact="1"></div></div>
+  </div>
 </section>
 
-<!-- Overview Section -->
-<section class="section-hero animate-on-scroll">
-<div class="content-inner">
-<div class="text">
-<h2>快速开始</h2>
-<p>本页刻意保持精简：开发者侧的注册与治理流程已整合到 <a href="platform.html">平台</a> 页面。本页作为快速入口与导航。</p>
-<p style="margin-top: 16px;">Robot Skill Store 设计为<strong>渐进式引入</strong>：无需替换现有控制栈，只需在能力层引入 RSP 的规范与运行时绑定。</p>
-</div>
-<div class="visual">
-<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); padding: 40px; text-align: center; color: white;">
-<div style="font-size: 48px; margin-bottom: 16px;">🚀</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">渐进式引入</h3>
-<p style="font-size: 15px; opacity: 0.9; margin: 0;">无需全栈替换</p>
-</div>
-</div>
-</div>
+<!-- ── 为什么选择 RSS ── -->
+<section class="section">
+  <h2 id="why-supply">为什么选择 RSS 发布技能？</h2>
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="value-icon">&#128269;</div>
+      <p class="value-title">可被发现</p>
+      <p class="value-body">可被任何团队检索和复用——跨机器人型号、跨环境、跨行业。</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">&#9989;</div>
+      <p class="value-title">认证与信任</p>
+      <p class="value-body">基于真实执行证据的治理背书认证——用户放心部署，无需"信任我"。</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">&#128200;</div>
+      <p class="value-title">持续治理</p>
+      <p class="value-body">ACTIVE / DEGRADED / QUARANTINED 由滚动证据窗口自动计算，质量持续监控。</p>
+    </div>
+  </div>
 </section>
 
-<!-- What You Need Section -->
-<section class="section-hero animate-on-scroll delay-1">
-<div class="content-inner">
-<div class="text">
-<h2>你需要准备什么</h2>
-<p>Robot Skill Store 不会强制特定的控制栈。它可以与你现有的系统无缝集成。</p>
-<ul style="margin-top: 16px;">
-<li>机器人或仿真器（UR5 / Gazebo / Isaac Sim 等）</li>
-<li>基础运行环境（ROS / Python 等）</li>
-<li>一个遵循 RSP 的技能定义</li>
-</ul>
-</div>
-<div class="visual">
-<div class="apple-grid" style="grid-template-columns: 1fr; gap: 16px;">
-<div class="apple-card" style="padding: 24px; text-align: center;">
-<div style="font-size: 32px; margin-bottom: 12px;">🤖</div>
-<h4 style="margin: 0 0 8px;">机器人</h4>
-<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">硬件或仿真器</p>
-</div>
-<div class="apple-card" style="padding: 24px; text-align: center;">
-<div style="font-size: 32px; margin-bottom: 12px;">⚙️</div>
-<h4 style="margin: 0 0 8px;">运行时</h4>
-<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">ROS、Python 或等价环境</p>
-</div>
-<div class="apple-card" style="padding: 24px; text-align: center;">
-<div style="font-size: 32px; margin-bottom: 12px;">📋</div>
-<h4 style="margin: 0 0 8px;">技能定义</h4>
-<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">遵循 RSP 协议</p>
-</div>
-</div>
-</div>
-</div>
+<!-- ── 四步提交流程 ── -->
+<section class="section">
+  <h2 id="how-to-submit">如何提交技能</h2>
+  <p style="margin:0 0 6px 0;color:var(--vp-c-text-2);font-size:14px;">从你的机器人能力到平台认证技能，共四步。</p>
+  <div class="steps-numbered">
+    <div class="step-row">
+      <div class="step-num">1</div>
+      <div>
+        <p class="step-body-title">定义技能规格（Skill Spec）</p>
+        <p class="step-body-desc">JSON 文档：声明意图、接口（输入/输出）、前/后置条件、安全约束与错误模式。规格即合约，后续流程均以此为基础。</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">2</div>
+      <div>
+        <p class="step-body-title">在平台注册技能</p>
+        <p class="step-body-desc"><code>POST /skills</code> — RSS 校验 Schema，分配 <code>skill_id</code>，状态设为 <code>REGISTERED</code>，技能立即在目录中可被检索。</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">3</div>
+      <div>
+        <p class="step-body-title">提交验证执行记录</p>
+        <p class="step-body-desc">每次执行调用 <code>POST /runs</code>（结果、约束、原因）。制品通过 <code>POST /runs/{run_id}/artifacts</code> 挂载，不可篡改存储。</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">4</div>
+      <div>
+        <p class="step-body-title">认证与治理</p>
+        <p class="step-body-desc"><code>GET /skills/{skill_id}/{version}/governance</code> 计算快照——成功率、违规率、回归。通过后状态晋升为 <code>CERTIFIED</code>，技能公开发布。</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Minimal Workflow Section -->
-<section class="section-hero animate-on-scroll delay-2" style="background: #f5f5f7;">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="max-width: 800px; margin: 0 auto;">
-<h2 style="text-align: center; margin-bottom: 24px;">最小工作流</h2>
-<p style="text-align: center; color: var(--apple-gray); margin-bottom: 32px;">使用 Robot Skill Store 的工作流程分为四步：</p>
-<div class="apple-grid">
-<div class="apple-card" style="padding: 32px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">1️⃣</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">定义技能</h3>
-<p class="muted">明确意图、约束、上下文与可观测结果</p>
-</div>
-<div class="apple-card" style="padding: 32px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">2️⃣</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">注册技能</h3>
-<p class="muted">发布到技能注册表（Skill Store）</p>
-</div>
-<div class="apple-card" style="padding: 32px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">3️⃣</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">选择技能</h3>
-<p class="muted">Agent 基于目标、上下文与策略做决策</p>
-</div>
-<div class="apple-card" style="padding: 32px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">4️⃣</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">执行技能</h3>
-<p class="muted">运行时绑定参数并强制约束</p>
-</div>
-</div>
-<p style="text-align: center; margin-top: 32px; color: var(--apple-gray);">每一步都是显式且可观测的。</p>
-</div>
-</div>
+<!-- ── RSS 验证什么 ── -->
+<section class="section">
+  <h2 id="what-rss-validates">RSS 验证什么</h2>
+  <ul class="checklist" style="margin-bottom:14px;">
+    <li><strong>规格合规性</strong>——接口、约束与错误模式在注册时 Schema 校验。</li>
+    <li><strong>执行结果</strong>——每次运行记录结果、违约约束与原因。</li>
+    <li><strong>制品完整性</strong>——日志、视频、遥测与对应 Run 绑定，上传后不可修改。</li>
+    <li><strong>滚动成功率</strong>——在窗口（如最近 30 次）上评估，而非单次结果。</li>
+    <li><strong>违规率</strong>——安全硬限制触发与软失败分别追踪。</li>
+    <li><strong>回归检测</strong>——已认证技能成功率骤降时自动触发 DEGRADED。</li>
+  </ul>
+  <div class="callout">
+    <strong>证据等级</strong>：随 Run 数增加，解锁更广泛的部署许可与更高信任信号。
+  </div>
 </section>
 
-<!-- Execution and Feedback Section -->
-<section class="section-hero animate-on-scroll delay-3">
-<div class="content-inner">
-<div class="text">
-<h2>执行与反馈</h2>
-<p>执行过程中，参数被动态绑定、约束被持续强制、结果被结构化记录。反馈不是日志附属物，而是生命周期的一部分，可用于后续选择与改进。</p>
-</div>
-<div class="visual">
-<div class="apple-card" style="background: #f5f5f7; padding: 40px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">🔄</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">持续循环</h3>
-<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">反馈驱动改进</p>
-</div>
-</div>
-</div>
+<!-- ── RSS-KIT ── -->
+<section class="section">
+  <h2 id="rss-kit">RSS-kit：开发者工具包</h2>
+  <p style="margin:0 0 12px 0;color:var(--vp-c-text-2);font-size:14px;">RSS-kit 是一个 Python 包，将平台 API 封装为 CLI 和代码生成器——让你专注于技能逻辑，而非 HTTP 调用细节。它可以脚手架规格文件、本地校验，并一条命令提交运行记录。</p>
+  <div class="kit-block">
+    <div class="kit-block-header">rss-kit · 三步工作流</div>
+    <div class="kit-step">
+      <div class="kit-step-num">1</div>
+      <div>
+        <div class="kit-step-label">安装并脚手架新技能</div>
+        <div class="kit-step-code">pip install rss-kit
+rss-kit new peg_in_hole --template assembly --robot UR10e</div>
+      </div>
+    </div>
+    <div class="kit-step">
+      <div class="kit-step-num">2</div>
+      <div>
+        <div class="kit-step-label">在提交前本地校验规格</div>
+        <div class="kit-step-code">rss-kit validate peg_in_hole_manifest.json</div>
+      </div>
+    </div>
+    <div class="kit-step">
+      <div class="kit-step-num">3</div>
+      <div>
+        <div class="kit-step-label">向平台提交执行记录</div>
+        <div class="kit-step-code">rss-kit submit --skill peg_in_hole --version 1.0.0 \
+  --outcome SUCCESS --env real_robot \
+  --platform-url http://localhost:8080</div>
+      </div>
+    </div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13px;color:var(--vp-c-text-2);">
+    RSS-kit 还可从技能规格脚手架 ROS 2 包，并支持从平台拉取已有规格用于本地开发。
+    &nbsp;<a href="docs/index.html" class="link-pill">RSS-kit 文档</a>
+  </p>
 </section>
 
-<!-- Next Steps Section -->
-<section class="section-hero animate-on-scroll delay-4" style="background: #f5f5f7;">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="max-width: 700px; margin: 0 auto;">
-<h2 style="text-align: center; margin-bottom: 32px;">下一步</h2>
-<div class="apple-grid" style="grid-template-columns: 1fr;">
-<a class="apple-card link-card" href="demo.html" style="padding: 32px; text-decoration: none; color: inherit; display: block;">
-<div style="font-size: 40px; margin-bottom: 16px;">▶️</div>
-<h3 style="font-size: 18px; font-weight: 600; margin: 0 0 12px;">跑起来：UR5 Demo</h3>
-<p class="muted">参考执行模型：绑定、约束强制与审计反馈。</p>
-</a>
-<a class="apple-card link-card" href="architecture.html" style="padding: 32px; text-decoration: none; color: inherit; display: block;">
-<div style="font-size: 40px; margin-bottom: 16px;">🏗️</div>
-<h3 style="font-size: 18px; font-weight: 600; margin: 0 0 12px;">理解：协议中心架构</h3>
-<p class="muted">RSP 如何把工具/仿真/真实/Agent 串成闭环。</p>
-</a>
-</div>
-</div>
-</div>
+<!-- ── 技能规格格式 ── -->
+<section class="section">
+  <h2 id="skill-spec">技能规格格式</h2>
+  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">最小可行结构示例——完整参考见文档。</p>
+  <div class="spec-block">
+    <div class="spec-block-title">技能规格 — 最小结构（JSON）</div>
+    <pre>{
+  "skill_id": "peg_in_hole",
+  "version": "1.0.0",
+  "name": "孔轴插入",
+  "category": "Assembly",
+  "maturity": "beta",
+  "intent": "使用柔顺运动将销轴以紧公差插入孔中。",
+  "interface": {
+    "inputs": {
+      "hole_pose":   { "type": "pose",  "frame": "world" },
+      "peg_length":  { "type": "float", "unit": "mm" },
+      "max_force_n": { "type": "float", "unit": "N", "robot_relative": true }
+    },
+    "outputs": {
+      "outcome":         { "type": "string", "enum": ["SUCCESS", "FAILURE"] },
+      "insertion_depth": { "type": "float",  "unit": "mm" }
+    }
+  },
+  "conditions": {
+    "pre":  [{ "id": "peg_grasped",    "check": "gripper.closed == true" }],
+    "post": [{ "id": "fully_inserted", "check": "insertion_depth >= peg_length * 0.95" }]
+  },
+  "error_schema": {
+    "FORCE_EXCEEDED":   { "severity": "CRITICAL", "recoverable": false },
+    "SEARCH_EXHAUSTED": { "severity": "HIGH",     "recoverable": true  }
+  },
+  "deployment": {
+    "requires_capabilities": {
+      "min_dof": 6,
+      "requires_force_torque_sensor": true
+    }
+  }
+}</pre>
+  </div>
+  <p style="margin:12px 0 0 0;font-size:13px;color:var(--vp-c-text-2);">
+    完整规格参考：<a href="docs/skill-spec.html" class="link-pill">技能规格文档</a>
+    &nbsp; 平台 API：<a href="platform.html" class="link-pill">平台参考</a>
+  </p>
 </section>
+
+<!-- ── 机器人兼容性 ── -->
+<section class="section">
+  <h2 id="robot-support">机器人兼容性</h2>
+  <p style="margin:0 0 8px 0;color:var(--vp-c-text-2);font-size:14px;">技能声明能力需求（自由度、负载、力矩传感器、末端执行器类型）与逐机型参数配置，平台运行时完成匹配。</p>
+  <p style="margin:0 0 8px 0;color:var(--vp-c-text-2);font-size:14px;"><strong>UR5e, UR10e, UR16e, UR20 · KUKA iiwa7, KR10, KR20, KR200 · ABB IRB1200, IRB2400 · Fanuc LRMate200iD, M10iA, M20iA, R2000iB, ARC Mate 100iD, P250</strong></p>
+  <p style="margin:0;font-size:13px;color:var(--vp-c-text-2);">新机型？在技能规格中添加 <code>robot_profiles</code> 字段，声明该机型的参数边界即可。</p>
+</section>
+
+<!-- ── 下一步 ── -->
+<section class="section">
+  <h2 id="next-steps">下一步</h2>
+  <div class="grid grid-3">
+    <a class="card link-card" href="docs/skill-spec.html">
+      <div class="card-title">技能规格参考</div>
+      <div class="card-desc">完整 Schema 文档：接口、条件、错误模式与部署需求。</div>
+    </a>
+    <a class="card link-card" href="platform.html">
+      <div class="card-title">平台 API</div>
+      <div class="card-desc">技能注册、Run 提交、制品上传与治理查询的 REST API 参考。</div>
+    </a>
+    <a class="card link-card" href="lifecycle.html">
+      <div class="card-title">技能生命周期</div>
+      <div class="card-desc">了解注册 → 验证 → 认证 → 部署各阶段及状态跃迁条件。</div>
+    </a>
+  </div>
+</section>
+
 </main>
-
-<script src="../assets/config.js?v=6.77.64"></script>
-<script src="../assets/js/site.js?v=6.77.64"></script>
+<aside aria-label="本页导航" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/config.js?v=6.79"></script>
+<script src="../assets/js/site.js?v=6.79"></script>
 </body>
 </html>

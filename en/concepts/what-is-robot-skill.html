@@ -5,7 +5,40 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>What is a Robot Skill? · Robot Skill Store</title>
-<link href="../../assets/css/style.css?v=6.77.46" rel="stylesheet"/>
+<link href="../../assets/css/style.css?v=6.79" rel="stylesheet"/>
+<script>
+(function(){
+  function apply(mode){
+    var root = document.documentElement;
+    if(mode === 'dark') root.setAttribute('data-theme','dark');
+    else root.removeAttribute('data-theme');
+  }
+
+  // First paint: URL ?theme=dark|light takes priority.
+  try{
+    var sp = new URLSearchParams(window.location.search);
+    var t = sp.get('theme');
+    if(t === 'dark' || t === 'light'){
+      apply(t);
+    }else{
+      // Fallback: read saved preference (may not work under some file:// settings).
+      try{
+        var saved = localStorage.getItem('rss_theme');
+        if(saved === 'dark' || saved === 'light') apply(saved);
+      }catch(e){}
+    }
+  }catch(e){}
+
+  // Live updates from parent.
+  window.addEventListener('message', function(ev){
+    var d = ev && ev.data;
+    if(!d || d.type !== 'rss-theme') return;
+    var mode = d.mode || d.theme;
+    if(mode === 'dark' || mode === 'light') apply(mode);
+  });
+})();
+</script>
+
 </head>
 <body>
 <header class="topbar">
@@ -46,5 +79,5 @@
 <nav class="toc-nav" id="tocNav"><a class="toc-link" href="#what-is-a-robot-skill">What is a Robot Skill?</a><a class="toc-link" href="#robot-skill-vs-llm-skill">Robot Skill vs LLM Skill</a><a class="toc-link" href="#why-determinism-matters">Why Determinism Matters</a><a class="toc-link" href="#skill-task-program">Skill ≠ Task ≠ Program</a></nav>
 </aside>
 </div>
-<script src="../../assets/js/site.js?v=6.77.46"></script></body>
+<script src="../../assets/js/site.js?v=6.79"></script></body>
 </html>

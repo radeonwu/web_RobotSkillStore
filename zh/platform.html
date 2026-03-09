@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>平台 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.77.53" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -13,236 +14,209 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
-<span></span>
-<span></span>
-<span></span>
-</button>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">首页</a>
-<a class="toplink" href="lifecycle.html">技能生命周期</a>
-<a class="toplink" href="platform.html">平台</a>
-<a class="toplink" href="concepts.html">概念</a>
-<a class="toplink" href="skills.html">认证技能</a>
-<a class="toplink" href="deployment.html">用户与部署</a>
-<a class="toplink" href="docs/index.html">文档</a>
-<a class="toplink" href="contact.html">联系</a>
-</nav>
-<div class="top-actions">
-<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
-<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
-<span class="icon">☾</span>
-<span class="label">Appearance</span>
-</button>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink active" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">技能目录</a><a class="toplink" href="developers.html">技能供应商</a><a class="toplink" href="deployment.html">用户指南</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
+<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
 </div>
 </div>
 </header>
+<div class="layout">
+<main class="content" id="content">
 
-<main class="apple-main">
-<!-- Apple 风格全宽英雄区 -->
-<section class="apple-hero animate-on-scroll">
-<div class="hero-content">
-<h1>平台能力</h1>
-<p class="hero-subtitle">值得信赖的机器人技能平台基础设施</p>
-</div>
+<section class="section-plain">
+  <h1>平台</h1>
+  <div class="onboarding">
+    <p>RSS 平台是技能验证、认证与治理的核心引擎——连接发布技能的供应方与部署技能的用户方。</p>
+    <div class="onboarding-line onboarding-anchor">
+      <div class="onboarding-label"><strong>生命周期</strong></div>
+      <div class="rss-lifecycle-bar compact" data-stage="register,validate,certify" data-compact="1"></div>
+    </div>
+  </div>
 </section>
 
-<!-- Purpose & Overview -->
-<section class="section-hero animate-on-scroll">
-<div class="content-inner">
-<div class="text">
-<h2>RSS 平台能做什么</h2>
-<p>RSS 定义"技能如何在组织间被供应、被治理、被消费"。</p>
-<p style="margin-top: 16px;">供应方注册技能，平台完成验证与认证形成信任，用户端消费证据完备的技能并部署到现场。</p>
-<div style="margin-top: 24px;">
-<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">注册</span>
-<span style="color: var(--apple-gray);">→</span>
-<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">验证</span>
-<span style="color: var(--apple-gray);">→</span>
-<span style="background: var(--rss-blue); color: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 14px;">认证</span>
-</div>
-</div>
-</div>
-<div class="visual">
-<div style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); border-radius: 24px; padding: 60px; text-align: center; color: white;">
-<div style="font-size: 48px; font-weight: 700; margin-bottom: 20px;">RSS</div>
-<div style="font-size: 20px; opacity: 0.9;">平台基础设施</div>
-</div>
-</div>
-</div>
+<!-- ── 平台能力 ── -->
+<section class="section">
+  <h2 id="capabilities">平台能力</h2>
+  <div class="plat-cap-grid">
+    <div class="plat-cap-card">
+      <div class="plat-cap-icon">&#128269;</div>
+      <div class="plat-cap-title">技能注册表</div>
+      <div class="plat-cap-body">接受经 JSON Schema 校验的结构化技能规格，分配稳定 ID，技能立即在公开目录中可被检索。</div>
+    </div>
+    <div class="plat-cap-card">
+      <div class="plat-cap-icon">&#9654;</div>
+      <div class="plat-cap-title">运行管理</div>
+      <div class="plat-cap-body">每次执行创建一条不可篡改的 Run 记录——与技能版本、机器人配置、参数集绑定。结果、约束与原因全部索引。</div>
+    </div>
+    <div class="plat-cap-card">
+      <div class="plat-cap-icon">&#128230;</div>
+      <div class="plat-cap-title">制品存储</div>
+      <div class="plat-cap-body">日志、视频、遥测数据存储（本地磁盘或 S3/MinIO）并与对应 Run 绑定，上传后不可修改，可通过证据查看器访问。</div>
+    </div>
+    <div class="plat-cap-card">
+      <div class="plat-cap-icon">&#9881;</div>
+      <div class="plat-cap-title">治理引擎</div>
+      <div class="plat-cap-body">从滚动证据窗口计算 ACTIVE / DEGRADED / QUARANTINED——成功率、违规率、回归信号。无人工指派。</div>
+    </div>
+    <div class="plat-cap-card">
+      <div class="plat-cap-icon">&#127942;</div>
+      <div class="plat-cap-title">认证</div>
+      <div class="plat-cap-body">证据满足策略阈值后颁发治理快照，技能状态晋升为 CERTIFIED，连同证据链路一起公开发布。</div>
+    </div>
+    <div class="plat-cap-card">
+      <div class="plat-cap-icon">&#128274;</div>
+      <div class="plat-cap-title">认证与访问控制</div>
+      <div class="plat-cap-body">公开读取路径（<code>/public/v1/skills</code>）无需凭据。写入与管理操作需要 API Key。匿名读取模式可按部署配置。</div>
+    </div>
+  </div>
 </section>
 
-<!-- Runtime Pipeline -->
-<section class="section-hero reverse animate-on-scroll delay-1">
-<div class="content-inner">
-<div class="visual">
-<div class="pipeline apple-card" aria-label="Platform runtime pipeline" style="background: #f5f5f7; padding: 32px; border-radius: 20px;">
-<div class="pipe-row top">
-<div class="pipe-step"><div class="pipe-title">1) 注册</div><div class="pipe-body">POST <code>/skills</code><br/>JSONSchema 校验（<code>validation.py</code>）</div></div>
-<div class="pipe-arrow">➜</div>
-<div class="pipe-step"><div class="pipe-title">2) 执行/验证</div><div class="pipe-body">POST <code>/runs</code> 或 <code>/runs/submit</code><br/>Run 记录 + 上下文</div></div>
-<div class="pipe-arrow">➜</div>
-<div class="pipe-step"><div class="pipe-title">3) 证据采集</div><div class="pipe-body">POST <code>/runs/{run_id}/artifacts</code><br/>GET <code>/runs/{run_id}/events</code></div></div>
-</div>
-
-<div class="pipe-connector" aria-hidden="true">
-<div class="pipe-spacer"></div>
-<div class="pipe-arrow-spacer"></div>
-<div class="pipe-spacer"></div>
-<div class="pipe-arrow-spacer"></div>
-<div class="pipe-connector-cell">
-<div class="pipe-arrow down" aria-hidden="true">⬇</div>
-</div>
-</div>
-
-<div class="pipe-row bottom rtl" style="margin-top:10px;">
-<div class="pipe-step publish"><div class="pipe-title">6) 对外发布（Public）</div><div class="pipe-body">GET <code>/public/v1/skills</code><br/>GET <code>/public/v1/skills/{skill_id}</code></div></div>
-<div class="pipe-arrow reverse">➜</div>
-<div class="pipe-step certify"><div class="pipe-title">5) 认证/治理</div><div class="pipe-body">GET <code>/skills/{skill}/{ver}/governance</code><br/><code>governance.py</code> 规则 + 置信区间</div></div>
-<div class="pipe-arrow reverse">➜</div>
-<div class="pipe-step eval"><div class="pipe-title">4) 评估</div><div class="pipe-body">GET <code>/runs/{run_id}</code><br/>Outcome + 约束 + 指标</div></div>
-</div>
-</div>
-</div>
-<div class="text">
-<h2>平台运行时流水线</h2>
-<p>以下流水线来自当前 RSS Platform 栈（v1.0.4.12）。验证会产出 <em>Run</em> + <em>Evidence</em>；认证/治理在不可变记录之上计算治理状态。</p>
-<p class="muted" style="margin-top:16px;">UI 入口（由 Gateway 暴露）：<code>/viewer/</code>（证据浏览），<code>/public/v1/*</code>（官网嵌入）。</p>
-</div>
-</div>
+<!-- ── 运行流程 ── -->
+<section class="section">
+  <h2 id="runtime-pipeline">流程总览</h2>
+  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">从技能注册到公开认证——六个阶段，全部有证据门控。</p>
+  <div class="pipeline" aria-label="平台运行流程">
+    <div class="pipe-row top">
+      <div class="pipe-step"><div class="pipe-title">1) 注册</div><div class="pipe-body">提交技能规格 · Schema 校验 · 分配技能 ID</div></div>
+      <div class="pipe-arrow">➜</div>
+      <div class="pipe-step"><div class="pipe-title">2) 执行</div><div class="pipe-body">提交运行记录（仿真 / HIL / 真实机器人）· 记录结果与约束</div></div>
+      <div class="pipe-arrow">➜</div>
+      <div class="pipe-step"><div class="pipe-title">3) 采集证据</div><div class="pipe-body">挂载制品（日志、视频、遥测）· 不可篡改存储</div></div>
+    </div>
+    <div class="pipe-connector" aria-hidden="true">
+      <div class="pipe-spacer"></div><div class="pipe-arrow-spacer"></div>
+      <div class="pipe-spacer"></div><div class="pipe-arrow-spacer"></div>
+      <div class="pipe-connector-cell"><div class="pipe-arrow v" aria-hidden="true">➜</div></div>
+    </div>
+    <div class="pipe-row bottom rtl" style="margin-top:10px;">
+      <div class="pipe-step publish"><div class="pipe-title">6) 发布</div><div class="pipe-body">已认证技能在公开目录可见 · 网站嵌入实时数据</div></div>
+      <div class="pipe-arrow reverse">➜</div>
+      <div class="pipe-step certify"><div class="pipe-title">5) 认证</div><div class="pipe-body">颁发治理快照 · 生命周期晋升为 CERTIFIED</div></div>
+      <div class="pipe-arrow reverse">➜</div>
+      <div class="pipe-step eval"><div class="pipe-title">4) 评估</div><div class="pipe-body">滚动窗口 · 成功率、违规率、回归信号</div></div>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:12px;" id="platform-live-links">
+    <strong>实时平台</strong> — <span style="font-size:13px;">在 <code>config.js</code> 中配置 <code>RSS_PLATFORM_BASE_URL</code> 后将显示实时链接。</span>
+  </div>
 </section>
 
-<!-- Core Components Grid -->
-<section class="section-hero animate-on-scroll delay-2">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="text-align: center; max-width: 700px; margin: 0 auto;">
-<h2>平台核心组件</h2>
-<p style="font-size: 18px; color: var(--apple-gray);">构建值得信赖的机器人技能的基础模块</p>
-</div>
-</div>
-<div class="apple-grid" style="max-width: 1000px; margin: 40px auto 0; padding: 0 20px;">
-<div class="apple-card animate-on-scroll" style="padding: 32px;">
-<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">Skill Registry（技能注册）</h3>
-<p class="muted" style="margin: 0;">以稳定的能力契约发布技能（Schema、约束、版本）。在 API 服务中，Skill Spec 在入库前会做 Schema 校验。</p>
-<ul class="tight" style="margin-top: 16px;">
-<li><strong>入库校验</strong>：JSON Schema（Draft 2020-12）通过 <code>validate_skill_spec()</code></li>
-<li><strong>创建/查询</strong>：<code>POST /skills</code>、<code>GET /skills</code>、<code>GET /skills/{skill_id}</code></li>
-<li><strong>治理分类</strong>：<code>GET /skills/{skill_id}/{version}/taxonomy</code></li>
-</ul>
-</div>
-
-<div class="apple-card animate-on-scroll delay-1" style="padding: 32px;">
-<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">验证引擎</h3>
-<p class="muted" style="margin: 0;">每一次执行都成为平台管理的 <em>Run</em>，并绑定不可变的上下文与证据。</p>
-<ul class="tight" style="margin-top: 16px;">
-<li><strong>创建 Run</strong>：<code>POST /runs</code>（或 <code>POST /runs/submit</code>）</li>
-<li><strong>证据入库</strong>：<code>POST /runs/{run_id}/artifacts</code></li>
-<li><strong>事件/追踪</strong>：<code>GET /runs/{run_id}/events</code></li>
-<li><strong>读取真相</strong>：<code>GET /runs/{run_id}</code> 是唯一真相来源</li>
-</ul>
-</div>
-
-<div class="apple-card animate-on-scroll delay-2" style="padding: 32px;">
-<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">Evidence & Artifact Store（证据与工件库）</h3>
-<p class="muted" style="margin: 0;">工件可以存本地文件系统或 S3/MinIO（可配置）。每个工件都与 Run 绑定，从而让验证结果可审计、可复现。</p>
-<ul class="tight" style="margin-top: 16px;">
-<li><strong>上传工件</strong>：<code>POST /runs/{run_id}/artifacts</code></li>
-<li><strong>列举工件</strong>：<code>GET /runs/{run_id}/artifacts</code></li>
-<li><strong>下载/链接</strong>：<code>GET /artifacts/{artifact_id}</code></li>
-<li><strong>预签名 URL</strong>：<code>GET /artifacts/{artifact_id}/url</code></li>
-</ul>
-</div>
-
-<div class="apple-card animate-on-scroll delay-3" style="padding: 32px;">
-<h3 style="font-size: 22px; font-weight: 600; margin: 0 0 16px;">认证与治理</h3>
-<p class="muted" style="margin: 0;">认证由证据窗口计算得到。平台聚合 Run outcome、约束违规、回归信号，并生成"治理快照"。</p>
-<ul class="tight" style="margin-top: 16px;">
-<li><strong>技能治理快照</strong>：<code>GET /skills/{skill_id}/{version}/governance</code></li>
-<li><strong>策略评估（what-if）</strong>：<code>POST /governance/policies/eval</code></li>
-<li><strong>官网对外汇总</strong>：<code>GET /public/v1/skills</code></li>
-<li><strong>管理员刷新</strong>：<code>POST /admin/public/v1/rollup</code></li>
-</ul>
-</div>
-</div>
+<!-- ── 网站 ↔ 平台联动 ── -->
+<section class="section">
+  <h2 id="integration">网站 ↔ 平台联动</h2>
+  <p style="margin:0 0 16px 0;color:var(--vp-c-text-2);font-size:14px;">RSS 网站可连接到实时平台实例，显示实时技能数量、治理状态与证据链路——无需用户登录。</p>
+  <div style="overflow-x:auto;margin-bottom:14px;">
+  <div style="border:1px solid var(--vp-c-border);border-radius:10px;overflow:hidden;min-width:480px;">
+  <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
+  <thead>
+  <tr>
+  <th style="width:36%;padding:10px 16px;background:var(--vp-c-bg-soft);border-bottom:1px solid var(--vp-c-border);text-align:left;">🌐 RSS 网站</th>
+  <th style="width:28%;padding:10px 8px;background:var(--vp-c-bg-soft);border-bottom:1px solid var(--vp-c-border);border-left:1px solid var(--vp-c-border);border-right:1px solid var(--vp-c-border);text-align:center;font-size:12px;font-weight:500;color:var(--vp-c-text-2);">数据流向</th>
+  <th style="width:36%;padding:10px 16px;background:var(--vp-c-bg-soft);border-bottom:1px solid var(--vp-c-border);text-align:left;">⚙ RSS 平台</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td style="padding:11px 16px;border-bottom:1px solid var(--vp-c-border);">
+    <strong>技能目录</strong>
+    <div style="font-size:12px;color:var(--vp-c-text-2);margin-top:3px;">包含治理状态的实时技能列表</div>
+  </td>
+  <td style="padding:10px 8px;border-bottom:1px solid var(--vp-c-border);border-left:1px solid var(--vp-c-border);border-right:1px solid var(--vp-c-border);text-align:center;">
+    <div style="font-size:18px;color:var(--vp-c-brand);line-height:1;">◀</div>
+    <div style="font-size:11px;color:var(--vp-c-text-2);margin-top:4px;line-height:1.5;">实时技能<br>+ 治理状态</div>
+  </td>
+  <td style="padding:11px 16px;border-bottom:1px solid var(--vp-c-border);">
+    <code>/public/v1/skills</code>
+    <div style="font-size:12px;color:var(--vp-c-text-2);margin-top:3px;">失败时回退到内置静态目录</div>
+  </td>
+  </tr>
+  <tr>
+  <td style="padding:11px 16px;border-bottom:1px solid var(--vp-c-border);">
+    <strong>首页统计</strong>
+    <div style="font-size:12px;color:var(--vp-c-text-2);margin-top:3px;">技能数量与类别总数</div>
+  </td>
+  <td style="padding:10px 8px;border-bottom:1px solid var(--vp-c-border);border-left:1px solid var(--vp-c-border);border-right:1px solid var(--vp-c-border);text-align:center;">
+    <div style="font-size:18px;color:var(--vp-c-brand);line-height:1;">◀</div>
+    <div style="font-size:11px;color:var(--vp-c-text-2);margin-top:4px;line-height:1.5;">汇总数量</div>
+  </td>
+  <td style="padding:11px 16px;border-bottom:1px solid var(--vp-c-border);">
+    <code>/public/v1/skills</code>
+    <div style="font-size:12px;color:var(--vp-c-text-2);margin-top:3px;">数量与类别元数据</div>
+  </td>
+  </tr>
+  <tr>
+  <td style="padding:11px 16px;border-bottom:1px solid var(--vp-c-border);">
+    <strong>证据查看器</strong>
+    <div style="font-size:12px;color:var(--vp-c-text-2);margin-top:3px;">技能卡片深度链接至运行记录浏览</div>
+  </td>
+  <td style="padding:10px 8px;border-bottom:1px solid var(--vp-c-border);border-left:1px solid var(--vp-c-border);border-right:1px solid var(--vp-c-border);text-align:center;">
+    <div style="font-size:18px;color:var(--vp-c-brand);line-height:1;">▶</div>
+    <div style="font-size:11px;color:var(--vp-c-text-2);margin-top:4px;line-height:1.5;">跳转至查看器</div>
+  </td>
+  <td style="padding:11px 16px;border-bottom:1px solid var(--vp-c-border);">
+    <code>/viewer/</code>
+    <div style="font-size:12px;color:var(--vp-c-text-2);margin-top:3px;">运行记录与制品</div>
+  </td>
+  </tr>
+  <tr>
+  <td style="padding:11px 16px;">
+    <strong>平台状态标识</strong>
+    <div style="font-size:12px;color:var(--vp-c-text-2);margin-top:3px;">首页显示"实时数据"标识</div>
+  </td>
+  <td style="padding:10px 8px;border-left:1px solid var(--vp-c-border);border-right:1px solid var(--vp-c-border);text-align:center;">
+    <div style="font-size:18px;color:var(--vp-c-brand);line-height:1;">◀</div>
+    <div style="font-size:11px;color:var(--vp-c-text-2);margin-top:4px;line-height:1.5;">可达性响应</div>
+  </td>
+  <td style="padding:11px 16px;">
+    <code>RSS_PLATFORM_BASE_URL</code>
+    <div style="font-size:12px;color:var(--vp-c-text-2);margin-top:3px;">在 config.js 中配置</div>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  <div class="callout">
+    连接方式：编辑 <code>assets/config.js</code>，设置 <code>window.RSS_PLATFORM_BASE_URL = "http://your-gateway:8080"</code>。
+  </div>
 </section>
 
-<!-- Authentication Section -->
-<section class="section-hero animate-on-scroll delay-3" style="background: #f5f5f7;">
-<div class="content-inner">
-<div class="text">
-<h2>认证与公开读取：Anon-read / X-API-Key</h2>
-<p>RSS Platform 将<strong>官网可嵌入的公开读取</strong>与<strong>平台运维操作</strong>分离：前者用于展示与分享，后者用于执行、上传、管理刷新。</p>
-<ul class="tight" style="margin-top: 16px;">
-<li><strong>Public 读路径</strong>：<code>/public/v1/*</code> 设计为只读汇总（适合缓存与嵌入）</li>
-<li><strong>Anon-read 开关</strong>：当 <code>RSP_AUTH_ALLOW_ANON_READ=1</code> 时，网站可在不带凭据的情况下读取选定的 public 路由</li>
-<li><strong>X-API-Key</strong>：当 anon-read 关闭（或访问非 public 路由）时，客户端需携带 <code>X-API-Key: &lt;key&gt;</code></li>
-</ul>
-<div class="apple-card" style="background: white; padding: 24px; margin-top: 24px; border-radius: 16px;">
-<h4 style="margin: 0 0 16px; font-size: 16px;">环境变量与 Header</h4>
-<pre style="margin: 0; font-size: 14px; color: var(--apple-gray);">RSP_AUTH_ALLOW_ANON_READ=1
-X-API-Key: &lt;your-key&gt;</pre>
-</div>
-<p class="muted" style="margin-top: 16px;">经验法则：<code>/public/v1</code> 用于"可缓存的公开汇总"；所有会改变状态或访问原始证据的接口都要走认证。</p>
-</div>
-<div class="visual">
-<div style="background: white; border-radius: 24px; padding: 40px; text-align: center;">
-<div style="font-size: 40px; margin-bottom: 16px;">🔐</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">安全设计</h3>
-<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">公开读取 vs 认证操作</p>
-</div>
-</div>
-</div>
+<!-- ── 证据查看器 ── -->
+<section class="section">
+  <h2 id="viewer">证据查看器</h2>
+  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">内置证据查看器让任何人都能浏览运行记录、检查制品、审阅治理快照——无需任何代码。</p>
+  <ul class="checklist">
+    <li>浏览任意技能版本的所有运行——按结果、机器人、日期筛选。</li>
+    <li>查看附属制品：视频回放、日志检查、遥测图表。</li>
+    <li>检查治理快照：通过什么、什么触发了 DEGRADED，以及原因。</li>
+  </ul>
+  <p style="margin:10px 0 0;font-size:13px;color:var(--vp-c-text-2);">
+    通过平台网关的 <code>/viewer/</code> 路径访问。
+    &nbsp;<a href="docs/index.html" class="link-pill">完整平台文档</a>
+  </p>
 </section>
 
-<!-- Artifact Backends -->
-<section class="section-hero reverse animate-on-scroll delay-4">
-<div class="content-inner">
-<div class="visual">
-<div style="background: #f5f5f7; border-radius: 24px; padding: 40px;">
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 20px;">存储选项</h3>
-<div style="display: flex; flex-direction: column; gap: 16px;">
-<div style="background: white; padding: 20px; border-radius: 16px;">
-<div style="font-weight: 600; margin-bottom: 8px;">本地文件系统</div>
-<div style="font-size: 14px; color: var(--apple-gray);">工件写入平台卷</div>
-</div>
-<div style="background: white; padding: 20px; border-radius: 16px;">
-<div style="font-weight: 600; margin-bottom: 8px;">S3 / MinIO</div>
-<div style="font-size: 14px; color: var(--apple-gray);">对象存储，支持预签名 URL</div>
-</div>
-</div>
-</div>
-</div>
-<div class="text">
-<h2>工件存储后端切换</h2>
-<p>工件（视频、日志、遥测）可存本地或对象存储。平台通过 <code>RSP_ARTIFACT_STORE</code> 选择后端，并在 S3/MinIO 模式下通过<strong>预签名 URL</strong>让大文件直连传输。</p>
-<ul class="tight" style="margin-top: 16px;">
-<li><strong>后端选择</strong>：<code>RSP_ARTIFACT_STORE=local</code> 或 <code>RSP_ARTIFACT_STORE=s3</code></li>
-<li><strong>Local</strong>：工件写入平台卷；<code>GET /artifacts/{artifact_id}</code> 由平台直接回传</li>
-<li><strong>S3/MinIO</strong>：工件存为对象；平台下发带过期时间的 presigned URL</li>
-</ul>
-<p class="muted" style="margin-top: 16px;">好处：Run 记录仍由平台统一治理，但大体量工件传输走对象存储直连，更适合团队规模化部署。</p>
-</div>
-</div>
-</section>
-
-<!-- CTA Section -->
-<section class="section-hero animate-on-scroll delay-5" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; text-align: center;">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div>
-<h2 style="color: white; font-size: clamp(36px, 6vw, 56px); margin-bottom: 20px;">探索平台</h2>
-<p style="font-size: clamp(17px, 2vw, 21px); color: #a1a1a6; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">了解更多认证技能，或深入阅读文档</p>
-<div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-<a href="skills.html" class="btn-apple">查看技能</a>
-<a href="docs/index.html" class="btn-apple secondary">阅读文档</a>
-</div>
-</div>
-</div>
-</section>
 </main>
-
-<script src="../assets/config.js?v=6.77.53"></script>
-<script>/*RSS_PLATFORM_BAR_FIX*/try{if(window.__rss_renderLifecycleBar){document.querySelectorAll(".rss-lifecycle-bar").forEach(b=>window.__rss_renderLifecycleBar(b));}}catch(e){}</script>
-<script src="../assets/js/site.js?v=6.77.53"></script>
+<aside aria-label="本页导航" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/config.js?v=6.79"></script>
+<script>
+(function(){
+  var base = (window.RSS_PLATFORM_BASE_URL || '').replace(/\/$/,'');
+  var el = document.getElementById('platform-live-links');
+  if (!el) return;
+  if (base) {
+    el.innerHTML = '<strong>实时平台</strong> &nbsp;'
+      + '<a href="' + base + '/viewer/" target="_blank" rel="noopener">证据查看器</a> · '
+      + '<a href="' + base + '/public/v1/skills" target="_blank" rel="noopener">技能 JSON</a> · '
+      + '<a href="' + base + '/openapi.json" target="_blank" rel="noopener">OpenAPI</a>'
+      + ' &nbsp;<span style="font-size:12px;color:var(--vp-c-text-3)">(' + base + ')</span>';
+  }
+})();
+</script>
+<script src="../assets/js/site.js?v=6.79"></script>
 </body>
 </html>

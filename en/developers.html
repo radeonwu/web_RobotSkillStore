@@ -3,222 +3,236 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Developers · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77.64" rel="stylesheet"/>
+<title>For Suppliers · Robot Skill Store</title>
+<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
 <div class="topbar-inner">
 <a class="brand" href="index.html">
-<img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<button aria-label="Toggle menu" class="mobile-menu-btn" type="button">
-<span></span>
-<span></span>
-<span></span>
-</button>
 <nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">Home</a>
-<a class="toplink" href="lifecycle.html">Skill Lifecycle</a>
-<a class="toplink" href="platform.html">Platform</a>
-<a class="toplink" href="concepts.html">Concepts</a>
-<a class="toplink" href="skills.html">Certified Skills</a>
-<a class="toplink" href="deployment.html">Deployment</a>
-<a class="toplink" href="docs/index.html">Docs</a>
-<a class="toplink" href="contact.html">Contact</a>
+  <a class="toplink" href="index.html">Home</a>
+  <a class="toplink" href="lifecycle.html">Skill Lifecycle</a>
+  <a class="toplink" href="platform.html">Platform</a>
+  <a class="toplink" href="concepts.html">Concepts</a>
+  <a class="toplink" href="skills.html">Skill Catalog</a>
+  <a class="toplink active" href="developers.html">For Suppliers</a>
+  <a class="toplink" href="deployment.html">For Users</a>
+  <a class="toplink" href="docs/index.html">Docs</a>
+  <a class="toplink" href="contact.html">Contact</a>
 </nav>
 <div class="top-actions">
-<button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
-<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
-<span class="icon">☾</span>
-<span class="label">Appearance</span>
-</button>
+  <button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+  <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
 </div>
 </div>
 </header>
 
-<main class="apple-main">
-<!-- Hero Section -->
-<section class="apple-hero animate-on-scroll">
-<div class="hero-content">
-<h1>Developers</h1>
-<p class="hero-subtitle">Get started with Robot Skill Store incrementally</p>
-</div>
+<div class="layout">
+<main class="content">
+
+<section class="section-plain">
+  <h1>For Skill Suppliers</h1>
+  <div class="onboarding">
+    <p>Publish your robot skill to make it validated, certified, and reusable across robots and teams.</p>
+    <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle</strong></div><div class="rss-lifecycle-bar compact" data-stage="register,validate,certify" data-compact="1"></div></div>
+  </div>
 </section>
 
-<!-- Overview Section -->
-<section class="section-hero animate-on-scroll">
-<div class="content-inner">
-<div class="text">
-<h2>Quick Start</h2>
-<p>This page is intentionally concise: developer onboarding (registration &amp; governance) is covered in <a href="platform.html">Platform</a>. Use this page as a quick entry point.</p>
-<p style="margin-top: 16px;">Robot Skill Store is designed to be adopted incrementally. You do not need to replace your existing robotics stack. This page describes where to start and how to run your first skill using the Robot Skill Protocol (RSP).</p>
-</div>
-<div class="visual">
-<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); padding: 40px; text-align: center; color: white;">
-<div style="font-size: 48px; margin-bottom: 16px;">🚀</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Incremental Adoption</h3>
-<p style="font-size: 15px; opacity: 0.9; margin: 0;">No full stack replacement required</p>
-</div>
-</div>
-</div>
+<!-- ── WHY SUPPLY TO RSS ── -->
+<section class="section">
+  <h2 id="why-supply">Why Publish Your Skill on RSS?</h2>
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="value-icon">&#128269;</div>
+      <p class="value-title">Discoverability</p>
+      <p class="value-body">Searchable and reusable by any team — across robot models, environments, and industries.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">&#9989;</div>
+      <p class="value-title">Certification &amp; Trust</p>
+      <p class="value-body">Governance-backed certification from real execution evidence. Users deploy with confidence.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">&#128200;</div>
+      <p class="value-title">Continuous Governance</p>
+      <p class="value-body">ACTIVE / DEGRADED / QUARANTINED computed from rolling evidence — quality monitored, not assumed.</p>
+    </div>
+  </div>
 </section>
 
-<!-- What You Need Section -->
-<section class="section-hero animate-on-scroll delay-1">
-<div class="content-inner">
-<div class="text">
-<h2>What You Need</h2>
-<p>Robot Skill Store does not impose a specific control stack. It integrates with what you already use.</p>
-<ul style="margin-top: 16px;">
-<li>A robot or simulator (e.g., UR5, Gazebo, Isaac Sim)</li>
-<li>A basic runtime environment (ROS, Python, or equivalent)</li>
-<li>A skill definition that follows RSP</li>
-</ul>
-</div>
-<div class="visual">
-<div class="apple-grid" style="grid-template-columns: 1fr; gap: 16px;">
-<div class="apple-card" style="padding: 24px; text-align: center;">
-<div style="font-size: 32px; margin-bottom: 12px;">🤖</div>
-<h4 style="margin: 0 0 8px;">Robot</h4>
-<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">Hardware or simulator</p>
-</div>
-<div class="apple-card" style="padding: 24px; text-align: center;">
-<div style="font-size: 32px; margin-bottom: 12px;">⚙️</div>
-<h4 style="margin: 0 0 8px;">Runtime</h4>
-<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">ROS, Python, or equivalent</p>
-</div>
-<div class="apple-card" style="padding: 24px; text-align: center;">
-<div style="font-size: 32px; margin-bottom: 12px;">📋</div>
-<h4 style="margin: 0 0 8px;">Skill Definition</h4>
-<p style="font-size: 14px; margin: 0; color: var(--apple-gray);">Follows RSP protocol</p>
-</div>
-</div>
-</div>
-</div>
+<!-- ── 4-STEP FLOW ── -->
+<section class="section">
+  <h2 id="how-to-submit">How to Submit a Skill</h2>
+  <p style="margin:0 0 6px 0;color:var(--vp-c-text-2);font-size:14px;">Four steps from your robot capability to a platform-certified skill.</p>
+  <div class="steps-numbered">
+    <div class="step-row">
+      <div class="step-num">1</div>
+      <div>
+        <p class="step-body-title">Define the Skill Spec</p>
+        <p class="step-body-desc">A JSON document declaring intent, interface (inputs/outputs), pre/postconditions, safety constraints, and error schema. The spec is the contract everything else builds on.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">2</div>
+      <div>
+        <p class="step-body-title">Register on the Platform</p>
+        <p class="step-body-desc"><code>POST /skills</code> — RSS validates schema, assigns a <code>skill_id</code>, and sets state to <code>REGISTERED</code>. Discoverable in the catalog immediately.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">3</div>
+      <div>
+        <p class="step-body-title">Run Validation Executions</p>
+        <p class="step-body-desc"><code>POST /runs</code> per execution (outcome, constraint, reason). Attach artifacts via <code>POST /runs/{run_id}/artifacts</code>. All records stored immutably.</p>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">4</div>
+      <div>
+        <p class="step-body-title">Certification &amp; Governance</p>
+        <p class="step-body-desc"><code>GET /skills/{skill_id}/{version}/governance</code> computes a snapshot — success rate, violations, regression. Passing advances state to <code>CERTIFIED</code> and publishes the skill.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Minimal Workflow Section -->
-<section class="section-hero animate-on-scroll delay-2" style="background: #f5f5f7;">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="max-width: 800px; margin: 0 auto;">
-<h2 style="text-align: center; margin-bottom: 24px;">The Minimal Workflow</h2>
-<p style="text-align: center; color: var(--apple-gray); margin-bottom: 32px;">At a high level, working with Robot Skill Store follows four steps:</p>
-<div class="apple-grid">
-<div class="apple-card" style="padding: 32px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">1️⃣</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Define a Skill</h3>
-<p class="muted">Describe intent, constraints, and outcomes</p>
-</div>
-<div class="apple-card" style="padding: 32px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">2️⃣</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Register the Skill</h3>
-<p class="muted">Publish it so agents can discover it</p>
-</div>
-<div class="apple-card" style="padding: 32px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">3️⃣</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Select the Skill</h3>
-<p class="muted">Agent evaluates candidates based on goal &amp; context</p>
-</div>
-<div class="apple-card" style="padding: 32px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">4️⃣</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Execute the Skill</h3>
-<p class="muted">Runtime binds parameters and enforces constraints</p>
-</div>
-</div>
-<p style="text-align: center; margin-top: 32px; color: var(--apple-gray);">Each step is explicit and observable.</p>
-</div>
-</div>
+<!-- ── WHAT RSS VALIDATES ── -->
+<section class="section">
+  <h2 id="what-rss-validates">What RSS Validates</h2>
+  <ul class="checklist" style="margin-bottom:14px;">
+    <li><strong>Spec compliance</strong> — interface, constraints, and error schema validated on ingest.</li>
+    <li><strong>Execution outcomes</strong> — every run records outcome, constraint violated, and reason.</li>
+    <li><strong>Artifact integrity</strong> — logs, videos, telemetry linked to their run; immutable after upload.</li>
+    <li><strong>Rolling success rate</strong> — evaluated over a window (e.g. last 30 runs), not single shots.</li>
+    <li><strong>Violation rate</strong> — hard safety violations tracked separately from soft failures.</li>
+    <li><strong>Regression detection</strong> — success rate drops on certified skills trigger DEGRADED automatically.</li>
+  </ul>
+  <div class="callout">
+    <strong>Evidence levels</strong>: as runs accumulate, skills unlock broader deployment permissions and higher trust signals in the catalog.
+  </div>
 </section>
 
-<!-- Defining a Skill Section -->
-<section class="section-hero animate-on-scroll delay-3">
-<div class="content-inner">
-<div class="text">
-<h2>Defining a Skill</h2>
-<p>A skill definition captures more than executable logic. At minimum, a skill specifies:</p>
-<ul style="margin-top: 16px;">
-<li>Intent and parameters</li>
-<li>Constraints and safety boundaries</li>
-<li>Required execution context</li>
-<li>Observable success criteria</li>
-</ul>
-<p style="margin-top: 16px;">This information allows the system to reason about the skill before it is executed.</p>
-</div>
-<div class="visual">
-<div class="apple-card" style="background: #f5f5f7; padding: 40px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">📝</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Skill Specification</h3>
-<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">More than just executable code</p>
-</div>
-</div>
-</div>
+<!-- ── RSS-KIT ── -->
+<section class="section">
+  <h2 id="rss-kit">RSS-kit: Developer Toolkit</h2>
+  <p style="margin:0 0 12px 0;color:var(--vp-c-text-2);font-size:14px;">RSS-kit is a Python package that wraps the platform API with a CLI and code generator — so you focus on skill logic, not HTTP boilerplate. It scaffolds spec files, validates them locally, and submits runs in one command.</p>
+  <div class="kit-block">
+    <div class="kit-block-header">rss-kit · 3-step workflow</div>
+    <div class="kit-step">
+      <div class="kit-step-num">1</div>
+      <div>
+        <div class="kit-step-label">Install and scaffold a new skill</div>
+        <div class="kit-step-code">pip install rss-kit
+rss-kit new peg_in_hole --template assembly --robot UR10e</div>
+      </div>
+    </div>
+    <div class="kit-step">
+      <div class="kit-step-num">2</div>
+      <div>
+        <div class="kit-step-label">Validate the spec locally before submitting</div>
+        <div class="kit-step-code">rss-kit validate peg_in_hole_manifest.json</div>
+      </div>
+    </div>
+    <div class="kit-step">
+      <div class="kit-step-num">3</div>
+      <div>
+        <div class="kit-step-label">Submit an execution run to the platform</div>
+        <div class="kit-step-code">rss-kit submit --skill peg_in_hole --version 1.0.0 \
+  --outcome SUCCESS --env real_robot \
+  --platform-url http://localhost:8080</div>
+      </div>
+    </div>
+  </div>
+  <p style="margin:10px 0 0;font-size:13px;color:var(--vp-c-text-2);">
+    RSS-kit also scaffolds ROS 2 packages from your spec and can pull existing skill specs from the platform for local development.
+    &nbsp;<a href="docs/index.html" class="link-pill">RSS-kit Docs</a>
+  </p>
 </section>
 
-<!-- Register and Discover Section -->
-<section class="section-hero animate-on-scroll delay-4 reverse">
-<div class="content-inner">
-<div class="visual">
-<div class="apple-card" style="background: linear-gradient(135deg, #0071e3 0%, #0051a8 100%); color: white; padding: 40px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">🔍</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Registry</h3>
-<p style="font-size: 15px; opacity: 0.9; margin: 0;">Discoverable skills for agents</p>
-</div>
-</div>
-<div class="text">
-<h2>Registering and Discovering Skills</h2>
-<p>Once defined, a skill is registered through RSP. Registration makes the skill discoverable by agents, comparable to other skills, and traceable across executions.</p>
-<p style="margin-top: 16px;">Agents query the skill registry to identify candidates that match their goals.</p>
-</div>
-</div>
+<!-- ── SKILL SPEC OVERVIEW ── -->
+<section class="section">
+  <h2 id="skill-spec">Skill Spec Format</h2>
+  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">Minimum viable structure — full reference in the docs.</p>
+  <div class="spec-block">
+    <div class="spec-block-title">Skill Spec — minimum structure (JSON)</div>
+    <pre>{
+  "skill_id": "peg_in_hole",
+  "version": "1.0.0",
+  "name": "Peg-in-Hole Insertion",
+  "category": "Assembly",
+  "maturity": "beta",
+  "intent": "Insert a peg into a hole with tight tolerance using compliant motion.",
+  "interface": {
+    "inputs": {
+      "hole_pose":   { "type": "pose",  "frame": "world" },
+      "peg_length":  { "type": "float", "unit": "mm" },
+      "max_force_n": { "type": "float", "unit": "N", "robot_relative": true }
+    },
+    "outputs": {
+      "outcome":          { "type": "string", "enum": ["SUCCESS", "FAILURE"] },
+      "insertion_depth":  { "type": "float",  "unit": "mm" }
+    }
+  },
+  "conditions": {
+    "pre":  [{ "id": "peg_grasped",   "check": "gripper.closed == true" }],
+    "post": [{ "id": "fully_inserted","check": "insertion_depth >= peg_length * 0.95" }]
+  },
+  "error_schema": {
+    "FORCE_EXCEEDED":   { "severity": "CRITICAL", "recoverable": false },
+    "SEARCH_EXHAUSTED": { "severity": "HIGH",     "recoverable": true  }
+  },
+  "deployment": {
+    "requires_capabilities": {
+      "min_dof": 6,
+      "requires_force_torque_sensor": true
+    }
+  }
+}</pre>
+  </div>
+  <p style="margin:12px 0 0 0;font-size:13px;color:var(--vp-c-text-2);">
+    Full spec reference: <a href="docs/skill-spec.html" class="link-pill">Skill Spec Docs</a>
+    &nbsp; Platform API: <a href="platform.html" class="link-pill">Platform Reference</a>
+  </p>
 </section>
 
-<!-- Execution and Feedback Section -->
-<section class="section-hero animate-on-scroll delay-5">
-<div class="content-inner">
-<div class="text">
-<h2>Execution and Feedback</h2>
-<p>When a skill is executed, runtime parameters are bound, constraints are enforced, and execution outcomes are recorded. Feedback is part of the lifecycle — enabling safer iteration, better agent decisions, and continuous improvement.</p>
-</div>
-<div class="visual">
-<div class="apple-card" style="background: #f5f5f7; padding: 40px; text-align: center;">
-<div style="font-size: 48px; margin-bottom: 16px;">🔄</div>
-<h3 style="font-size: 20px; font-weight: 600; margin: 0 0 12px;">Continuous Loop</h3>
-<p style="font-size: 15px; color: var(--apple-gray); margin: 0;">Feedback drives improvement</p>
-</div>
-</div>
-</div>
+<!-- ── ROBOT COMPATIBILITY ── -->
+<section class="section">
+  <h2 id="robot-support">Robot Compatibility</h2>
+  <p style="margin:0 0 8px 0;color:var(--vp-c-text-2);font-size:14px;">Skills declare capability requirements (DoF, payload, FT sensor, end-effector type) and per-robot parameter profiles. Compatibility is resolved at runtime.</p>
+  <p style="margin:0 0 8px 0;color:var(--vp-c-text-2);font-size:14px;"><strong>UR5e, UR10e, UR16e, UR20 · KUKA iiwa7, KR10, KR20, KR200 · ABB IRB1200, IRB2400 · Fanuc LRMate200iD, M10iA, M20iA, R2000iB, ARC Mate 100iD, P250</strong></p>
+  <p style="margin:0;font-size:13px;color:var(--vp-c-text-2);">New model? Add a <code>robot_profiles</code> block with model-specific parameter bounds.</p>
 </section>
 
-<!-- Next Steps Section -->
-<section class="section-hero animate-on-scroll delay-6" style="background: #f5f5f7;">
-<div class="content-inner" style="grid-template-columns: 1fr;">
-<div style="max-width: 900px; margin: 0 auto;">
-<h2 style="text-align: center; margin-bottom: 32px;">Next Steps</h2>
-<div class="apple-grid">
-<a class="apple-card link-card" href="demo.html" style="padding: 32px; text-decoration: none; color: inherit; display: block;">
-<div style="font-size: 40px; margin-bottom: 16px;">▶️</div>
-<h3 style="font-size: 18px; font-weight: 600; margin: 0 0 12px;">Run the UR5 Reference Demo</h3>
-<p class="muted">See runtime binding, constraint enforcement, and feedback reporting.</p>
-</a>
-<a class="apple-card link-card" href="platform.html#lifecycle" style="padding: 32px; text-decoration: none; color: inherit; display: block;">
-<div style="font-size: 40px; margin-bottom: 16px;">📊</div>
-<h3 style="font-size: 18px; font-weight: 600; margin: 0 0 12px;">Understand the Lifecycle</h3>
-<p class="muted">Register → Discover → Match → Execute → Feedback</p>
-</a>
-<a class="apple-card link-card" href="safety.html" style="padding: 32px; text-decoration: none; color: inherit; display: block;">
-<div style="font-size: 40px; margin-bottom: 16px;">🛡️</div>
-<h3 style="font-size: 18px; font-weight: 600; margin: 0 0 12px;">Review Safety Principles</h3>
-<p class="muted">Skill-level constraints, policies, and verification.</p>
-</a>
-</div>
-</div>
-</div>
+<!-- ── NEXT STEPS ── -->
+<section class="section">
+  <h2 id="next-steps">Next Steps</h2>
+  <div class="grid grid-3">
+    <a class="card link-card" href="docs/skill-spec.html">
+      <div class="card-title">Skill Spec Reference</div>
+      <div class="card-desc">Full schema documentation: interface, conditions, error schema, deployment requirements.</div>
+    </a>
+    <a class="card link-card" href="platform.html">
+      <div class="card-title">Platform API</div>
+      <div class="card-desc">REST API for skill registration, run submission, artifact upload, and governance queries.</div>
+    </a>
+    <a class="card link-card" href="lifecycle.html">
+      <div class="card-title">Skill Lifecycle</div>
+      <div class="card-desc">Understand Register → Validate → Certify → Deploy and what each transition requires.</div>
+    </a>
+  </div>
 </section>
+
 </main>
-
-<script src="../assets/config.js?v=6.77.64"></script>
-<script src="../assets/js/site.js?v=6.77.64"></script>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">ON THIS PAGE</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../assets/config.js?v=6.79"></script>
+<script src="../assets/js/site.js?v=6.79"></script>
 </body>
 </html>
