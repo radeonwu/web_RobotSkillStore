@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Register · Skill Lifecycle · Robot Skill Store</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=6.79"/>
+  <style>
+    html,body{height:auto!important;min-height:0!important;}
+    body{margin:0;padding:0;display:inline-block;width:100%;}
+    .content{max-width:920px;margin:0 auto;padding:18px 18px 24px;}
+    .section{margin-top:14px;}
+    .stage-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;}
+    .stage-num{width:28px;height:28px;border-radius:50%;background:var(--vp-c-brand);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .stage-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--vp-c-text-2);}
+  </style>
+  <script>
+  (function(){
+    function apply(mode){
+      var root=document.documentElement;
+      if(mode==='dark') root.setAttribute('data-theme','dark');
+      else root.removeAttribute('data-theme');
+    }
+    try{
+      var sp=new URLSearchParams(window.location.search);
+      var t=sp.get('theme');
+      if(t==='dark'||t==='light'){apply(t);}
+      else{try{var s=localStorage.getItem('rss_theme');if(s==='dark'||s==='light')apply(s);}catch(e){}}
+    }catch(e){}
+    window.addEventListener('message',function(ev){
+      var d=ev&&ev.data;
+      if(!d||d.type!=='rss-theme')return;
+      var m=d.mode||d.theme;
+      if(m==='dark'||m==='light')apply(m);
+    });
+  })();
+  </script>
+</head>
+<body>
+<main class="content">
+
+<section class="section-plain">
+  <div class="stage-badge">
+    <div class="stage-num">1</div>
+    <span class="stage-label">Stage 1 of 4 · Lifecycle</span>
+  </div>
+  <h1>Register</h1>
+  <p class="lead">Publish a structured skill spec — the formal contract that declares what a skill does, what it requires, and how it can fail.</p>
+</section>
+
+<section class="section">
+  <h2 id="what-happens">What happens</h2>
+  <ul>
+    <li><strong>Submit a skill spec</strong> via <code>POST /skills</code> — package, metadata, interface contract, and error schema in one JSON document.</li>
+    <li><strong>Declare constraints</strong> — preconditions, safety limits, and IO schema are validated against the RSS JSON Schema on ingest.</li>
+    <li><strong>Receive a stable skill ID</strong> — the skill is immediately discoverable in the public catalog with status <code>REGISTERED</code>.</li>
+  </ul>
+</section>
+
+<section class="section">
+  <h2 id="what-the-platform-does">What the platform does</h2>
+  <ul>
+    <li>Runs schema validation — rejects malformed or incomplete specs before storage.</li>
+    <li>Assigns an immutable <code>skill_id</code> tied to the skill name and version.</li>
+    <li>Makes the skill searchable by category, capability, and robot compatibility.</li>
+  </ul>
+</section>
+
+</main>
+<script>
+(function(){
+  function calc(){
+    var b=document.body,e=document.documentElement;
+    return Math.max(b?b.scrollHeight:0,e?e.scrollHeight:0,b?b.offsetHeight:0,e?e.offsetHeight:0);
+  }
+  var last=0;
+  function send(){
+    var h=calc();
+    if(!h)return;
+    if(Math.abs(h-last)<2)return;
+    last=h;
+    try{parent.postMessage({type:'rss-embed-height',height:h},'*');}catch(e){}
+  }
+  window.addEventListener('message',function(ev){var d=ev.data||{};if(d.type==='rss-embed-ping')send();});
+  if('ResizeObserver' in window){try{new ResizeObserver(function(){send();}).observe(document.documentElement);}catch(e){}}
+  if('MutationObserver' in window){try{new MutationObserver(function(){send();}).observe(document.documentElement,{subtree:true,childList:true,attributes:true,characterData:true});}catch(e){}}
+  window.addEventListener('load',function(){send();setTimeout(send,100);setTimeout(send,400);});
+  setInterval(send,2000);
+})();
+</script>
+</body>
+</html>

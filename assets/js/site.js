@@ -3,6 +3,38 @@
   function qs(sel, root){ return (root||document).querySelector(sel); }
   function qsa(sel, root){ return Array.from((root||document).querySelectorAll(sel)); }
 
+  var ROOT = document.documentElement;
+
+  function currentTheme(){
+    return ROOT.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  }
+
+  function applyThemeToIframes(mode){
+  // 1) Broadcast to iframes via postMessage (works even when direct DOM access is blocked, e.g., file://).
+  qsa('iframe').forEach(function(fr){
+    try{
+      if(fr && fr.contentWindow){
+        fr.contentWindow.postMessage({type:'rss-theme', mode: mode}, '*');
+      }
+    }catch(e){}
+  });
+
+  // 2) Ensure concept iframes carry a theme query param for first paint.
+  // This may reload the iframe once (only when needed).
+  qsa('iframe.concept-frame').forEach(function(fr){
+    try{
+      var src = fr.getAttribute('src');
+      if(!src) return;
+      var u = new URL(src, window.location.href);
+      var cur = u.searchParams.get('theme');
+      if(cur === mode) return;
+      u.searchParams.set('theme', mode);
+      var next = u.toString();
+      if(next !== src) fr.setAttribute('src', next);
+    }catch(e){}
+  });
+}
+
   // ---- topbar height -> CSS var ----
   function measureTopbar(){
     var topbar = qs('.topbar');
@@ -12,18 +44,40 @@
 
   // ---- theme toggle ----
   function initTheme(){
-    var root = document.documentElement;
+    // CSS uses [data-theme="dark"] to switch variables.
+    // We keep light mode as the default (no attribute) for backward compatibility.
+    function apply(mode){
+      if(mode === 'dark') ROOT.setAttribute('data-theme','dark');
+      else ROOT.removeAttribute('data-theme');
+      // Update icon if present.
+      var icon = qs('#themeToggle .icon');
+      if(icon) icon.textContent = (mode === 'dark') ? '☀' : '☾';
+      applyThemeToIframes(mode);
+    }
+
     var saved = null;
     try{ saved = localStorage.getItem('rss_theme'); }catch(e){}
-    if(saved === 'dark') root.classList.add('theme-dark');
-    if(saved === 'light') root.classList.remove('theme-dark');
+
+    if(saved === 'dark' || saved === 'light'){
+      apply(saved);
+    }else{
+      // If user has no saved preference, follow OS preference.
+      try{
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        apply(prefersDark ? 'dark' : 'light');
+      }catch(e){
+        apply('light');
+      }
+    }
 
     var btn = qs('#themeToggle');
     if(!btn) return;
+
     btn.addEventListener('click', function(){
-      var dark = !root.classList.contains('theme-dark');
-      root.classList.toggle('theme-dark', dark);
-      try{ localStorage.setItem('rss_theme', dark ? 'dark' : 'light'); }catch(e){}
+      var isDark = ROOT.getAttribute('data-theme') === 'dark';
+      var next = isDark ? 'light' : 'dark';
+      apply(next);
+      try{ localStorage.setItem('rss_theme', next); }catch(e){}
     });
   }
 
@@ -205,6 +259,7 @@
   function bindLangToggle(){
     var btn = qs('#langToggle');
     if(!btn) return;
+
     btn.addEventListener('click', function(){
       var path = (location.pathname || '');
       var norm = path.replace(/\\/g, '/');
@@ -275,6 +330,7 @@
       buttons.forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-tab')===id); });
       var btn = buttons.find(function(b){ return b.getAttribute('data-tab')===id; });
       if(!btn) return;
+
       var src = btn.getAttribute('data-src');
       if(src){
         iframe.style.height = '200px';
@@ -349,6 +405,8 @@
     });
 
     iframe.addEventListener('load', function(){
+      // Ensure iframe theme matches current theme (Concepts embed pages)
+      applyThemeToIframes(currentTheme());
       poll();
       // rapid polls during initial layout
       var n = 0;

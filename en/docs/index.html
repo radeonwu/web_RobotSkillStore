@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Docs · Robot Skill Store</title>
-<link href="../../assets/css/style.css?v=6.77" rel="stylesheet"/>
+<link href="../../assets/css/style.css?v=6.79" rel="stylesheet"/>
 </head>
 <body class="docs">
 <header class="topbar">
@@ -71,19 +71,7 @@
 </section>
 <section class="section" data-toggle-scope="rss" id="rss-summaries">
 <h2 class="section-head-row" id="rss-summaries-h"><span>Robot Skill Store (RSS) Whitepaper</span><a class="btn primary" href="rss_whitepaper.html" rel="noopener" target="_blank">RSS Whitepaper (HTML)</a></h2>
-<div class="keypoints-block" style="margin-top:12px;">
-<div class="card-title">Key Points</div>
-<div class="status-muted" style="margin-top:8px;">
-      What you get: a platform view of robot skills as deployable system assets—versioned, evaluated, and governed.
-    </div>
-<ul class="checklist" style="margin-top:12px;">
-<li><strong>Platform-first</strong>: skills are deployable system assets, not demo code.</li>
-<li><strong>Versioned execution</strong>: every run binds to an immutable skill version.</li>
-<li><strong>Objective evaluation</strong>: benchmarks define success, not subjective demos.</li>
-<li><strong>Governance at runtime</strong>: policy gates enforce safety/approval/authorization.</li>
-<li><strong>Evidence &amp; auditability</strong>: every run produces traceable artifacts.</li>
-</ul>
-<div class="inline-toggle-block" id="rss-inline-nav" style="margin-top:14px;">
+<div class="inline-toggle-block" id="rss-inline-nav" style="margin-top:12px;">
 <div class="muted" style="margin:10px 0 8px;font-weight:700;">Summary</div>
 <div aria-label="RSS summaries navigation" class="concept-tabs" data-toggle-group="rss" role="tablist">
   <button class="tab-btn active" data-toggle-group="rss" data-toggle-target="rss-panel-platform" role="tab">Platform</button>
@@ -95,6 +83,14 @@
 <div class="inline-panels" style="margin-top:12px;">
 <div class="card inline-panel active" data-panel="rss" id="rss-panel-platform" role="tabpanel">
 <div class="card-title">Platform summary</div>
+<div class="status-muted" style="margin:4px 0 10px;">What you get: a platform view of robot skills as deployable system assets—versioned, evaluated, and governed.</div>
+<ul class="checklist" style="margin-bottom:12px;">
+<li><strong>Platform-first</strong>: skills are deployable system assets, not demo code.</li>
+<li><strong>Versioned execution</strong>: every run binds to an immutable skill version.</li>
+<li><strong>Objective evaluation</strong>: benchmarks define success, not subjective demos.</li>
+<li><strong>Governance at runtime</strong>: policy gates enforce safety/approval/authorization.</li>
+<li><strong>Evidence &amp; auditability</strong>: every run produces traceable artifacts.</li>
+</ul>
 <p class="tight">RSS is the product platform for deploying and operating skills at scale. It makes execution, evaluation, and governance platform-managed—not human-managed.</p>
 <ul class="tight" style="margin-top:10px;">
 <li><strong>Registry</strong>: manage Skill / Version / Profile / Artifacts as first-class assets.</li>
@@ -153,19 +149,7 @@
 </section>
 <section class="section" data-toggle-scope="rsp" id="rsp-summaries">
 <h2 class="section-head-row" id="rsp-summaries-h"><span>Robot Skill Protocol (RSP) Whitepaper</span><a class="btn primary" href="rsp_whitepaper.html" rel="noopener" target="_blank">RSP Whitepaper (HTML)</a></h2>
-<div class="keypoints-block" style="margin-top:12px;">
-<div class="card-title">Key Points</div>
-<div class="status-muted" style="margin-top:8px;">
-      Why RSP exists: RSS needs non-negotiable invariants so execution truth and governance never depend on UI, operators, or environment drift.
-    </div>
-<ul class="checklist" style="margin-top:12px;">
-<li><strong>Canonical objects</strong>: Skill / Run / Profile / Policy / Evidence with stable semantics.</li>
-<li><strong>Versioned contracts</strong>: skill specs are immutable and comparable across time.</li>
-<li><strong>Runtime enforcement</strong>: all actions become platform-managed Runs; policies gate what can happen.</li>
-<li><strong>Immutable evidence</strong>: every Run produces traceable artifacts (logs, metrics, trajectories, outcomes).</li>
-<li><strong>Auditability</strong>: evaluation and governance are evidence-driven, not “trust me” demos.</li>
-</ul>
-<div class="inline-toggle-block" id="rsp-inline-nav" style="margin-top:14px;">
+<div class=”inline-toggle-block” id=”rsp-inline-nav” style=”margin-top:12px;”>
 <div class="muted" style="margin:10px 0 8px;font-weight:700;">Summary</div>
 <div aria-label="RSP summaries navigation" class="concept-tabs" data-toggle-group="rsp" role="tablist">
   <button class="tab-btn active" data-toggle-group="rsp" data-toggle-target="rsp-panel-overview" role="tab">Overview</button>
@@ -179,6 +163,14 @@
 <div class="inline-panels" style="margin-top:12px;">
 <div class="card inline-panel active" data-panel="rsp" id="rsp-panel-overview" role="tabpanel">
 <div class="card-title">RSP overview</div>
+<div class="status-muted" style="margin:4px 0 10px;">Why RSP exists: RSS needs non-negotiable invariants so execution truth and governance never depend on UI, operators, or environment drift.</div>
+<ul class="checklist" style="margin-bottom:12px;">
+<li><strong>Canonical objects</strong>: Skill / Run / Profile / Policy / Evidence with stable semantics.</li>
+<li><strong>Versioned contracts</strong>: skill specs are immutable and comparable across time.</li>
+<li><strong>Runtime enforcement</strong>: all actions become platform-managed Runs; policies gate what can happen.</li>
+<li><strong>Immutable evidence</strong>: every Run produces traceable artifacts (logs, metrics, trajectories, outcomes).</li>
+<li><strong>Auditability</strong>: evaluation and governance are evidence-driven, not "trust me" demos.</li>
+</ul>
 <p class="tight">RSP is the enforced protocol layer inside RSS. It standardizes canonical objects and invariants so execution truth, evaluation, and governance never depend on UI, operators, or environment drift.</p>
 <ul class="tight" style="margin-top:10px;">
 <li><strong>Why</strong>: robotics fails at scale when “skills” are demos without stable contracts and evidence.</li>
@@ -261,6 +253,6 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../../assets/js/site.js?v=6.77"></script>
+<script src="../../assets/js/site.js?v=6.79"></script>
 <script>try{ if(window.initInlineToggleNav) window.initInlineToggleNav(); }catch(e){};</script></body>
 </html>

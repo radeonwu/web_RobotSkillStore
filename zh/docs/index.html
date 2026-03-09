@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>文档 · Robot Skill Store</title>
-<link href="../../assets/css/style.css?v=6.77" rel="stylesheet"/>
+<link href="../../assets/css/style.css?v=6.79" rel="stylesheet"/>
 </head>
 <body class="docs">
 <header class="topbar">
@@ -80,28 +80,7 @@
 </section>
 <section class="section" data-toggle-scope="rss" id="rss-summaries">
 <h2 class="section-head-row" id="rss-summaries-h"><span>Robot Skill Store (RSS) Whitepaper</span><a class="btn primary" data-missing-ok="1" href="rss_whitepaper.html" rel="noopener" target="_blank">RSS Whitepaper (HTML)</a></h2>
-<div class="card" id="rss-whitepaper">
-<div class="card-title">要点</div>
-<div class="status-muted" style="margin-top:8px;">
-        你将获得：把机器人技能当作可部署系统资产来管理的“平台视角”——版本绑定、可评测、可治理。
-      </div>
-<ul class="checklist" style="margin-top:10px;">
-<li><strong>平台优先</strong>：技能是可部署系统资产，而不是演示代码。</li>
-<li><strong>版本化执行</strong>：每次 Run 都绑定不可变的 Skill Version。</li>
-<li><strong>客观评测</strong>：以 Benchmark 判定成功，而非主观 Demo。</li>
-<li><strong>运行时治理</strong>：策略门禁强制安全/授权/审批。</li>
-<li><strong>证据与可审计</strong>：每次 Run 生成可追溯制品与记录。</li>
-</ul>
-<div style="margin-top:12px;">
-<div class="card-title" style="font-size:13px; opacity:.8;">推荐阅读顺序（RSS）</div>
-<ol class="steps" style="margin-top:8px;">
-<li><a data-tab-jump="rss:platform" href="rss_whitepaper.html#rss-summaries">平台摘要</a>：RSS 提供哪些能力（注册、运行、评测、治理）</li>
-<li><a data-tab-jump="rss:architecture" href="#rss-summaries">架构摘要</a>：平台为中心、协议强制</li>
-<li><a data-tab-jump="rss:safety" href="#rss-summaries">安全摘要</a>：策略门禁与生产级护栏</li>
-</ol>
-</div>
-</div>
-<div class="inline-toggle-block" id="rss-inline-nav">
+<div class=”inline-toggle-block” id=”rss-inline-nav” style=”margin-top:12px;”>
 <div class="muted" style="margin:10px 0 8px;font-weight:700;">概述</div>
 <div aria-label="RSS 摘要导航" class="concept-tabs" data-toggle-group="rss" role="tablist">
   <button class="tab-btn active" data-toggle-group="rss" data-toggle-target="rss-panel-platform" role="tab" type="button">平台</button>
@@ -113,6 +92,14 @@
 <div class="inline-panels">
 <div class="card inline-panel active" data-panel="rss" id="rss-panel-platform">
 <div class="card-title">平台摘要</div>
+<div class="status-muted" style="margin:4px 0 10px;">你将获得：把机器人技能当作可部署系统资产来管理的"平台视角"——版本绑定、可评测、可治理。</div>
+<ul class="checklist" style="margin-bottom:12px;">
+<li><strong>平台优先</strong>：技能是可部署系统资产，而不是演示代码。</li>
+<li><strong>版本化执行</strong>：每次 Run 都绑定不可变的 Skill Version。</li>
+<li><strong>客观评测</strong>：以 Benchmark 判定成功，而非主观 Demo。</li>
+<li><strong>运行时治理</strong>：策略门禁强制安全/授权/审批。</li>
+<li><strong>证据与可审计</strong>：每次 Run 生成可追溯制品与记录。</li>
+</ul>
 <ul class="tight">
 <li><strong>注册表</strong>：技能、版本、制品、Profile。</li>
 <li><strong>Run</strong>：原子执行请求 + 不可变证据。</li>
@@ -154,28 +141,7 @@
 </div>
 </div></section>
 <section class="section" data-toggle-scope="rsp" id="rsp-summaries"><h2 class="section-head-row" id="rsp-summaries-h"><span>Robot Skill Protocol (RSP) Whitepaper</span><a class="btn primary" data-missing-ok="1" href="rsp_whitepaper.html" rel="noopener" target="_blank">RSP Whitepaper (HTML)</a></h2>
-<div class="card" id="rsp-whitepaper">
-<div class="card-title">要点</div>
-<div class="status-muted" style="margin-top:8px;">
-            RSP 的意义：为 RSS 提供不可变的不变量，让执行真相、评测与治理不依赖 UI、操作员或环境漂移。
-          </div>
-<ul class="checklist" style="margin-top:10px;">
-<li><strong>规范对象</strong>：Skill / Run / Profile / Policy / Evidence 的标准对象与语义。</li>
-<li><strong>版本化契约</strong>：Skill 规格不可变，可跨时间可比较。</li>
-<li><strong>运行期强制</strong>：所有动作都必须变成平台管理的 Run；Policy 决定允许发生什么。</li>
-<li><strong>证据不可变</strong>：每次 Run 都产出可追溯制品（日志、指标、轨迹、结果）。</li>
-<li><strong>可审计</strong>：评测与治理以证据为准，而非“演示口径”。</li>
-</ul>
-<div class="status-muted" style="margin-top:12px;"><strong>推荐阅读顺序（RSP）</strong></div>
-<ol class="tight" style="margin-top:6px;">
-<li>概念：Skill / Agent / Runtime / Evidence</li>
-<li>Skill 规范：字段与语义</li>
-<li>执行：绑定、强制、结果、证据</li>
-<li>安全：技能级立场与机制</li>
-<li>Demo 映射：UR5 参考执行模型</li>
-</ol>
-</div>
-<div class="inline-toggle-block" id="rsp-inline-nav">
+<div class=”inline-toggle-block” id=”rsp-inline-nav”>
 <div class="muted" style="margin:10px 0 8px;font-weight:700;">概述</div>
 <div aria-label="RSP 摘要导航" class="concept-tabs" data-toggle-group="rsp" role="tablist">
   <button class="tab-btn active" data-toggle-group="rsp" data-toggle-target="rsp-panel-overview" role="tab" type="button">概览</button>
@@ -189,6 +155,14 @@
 <div class="inline-panels">
 <div class="card inline-panel active" data-panel="rsp" id="rsp-panel-overview">
 <div class="card-title">RSP 概览</div>
+<div class="status-muted" style="margin:4px 0 10px;">RSP 的意义：为 RSS 提供不可变的不变量，让执行真相、评测与治理不依赖 UI、操作员或环境漂移。</div>
+<ul class="checklist" style="margin-bottom:12px;">
+<li><strong>规范对象</strong>：Skill / Run / Profile / Policy / Evidence 的标准对象与语义。</li>
+<li><strong>版本化契约</strong>：Skill 规格不可变，可跨时间可比较。</li>
+<li><strong>运行期强制</strong>：所有动作都必须变成平台管理的 Run；Policy 决定允许发生什么。</li>
+<li><strong>证据不可变</strong>：每次 Run 都产出可追溯制品（日志、指标、轨迹、结果）。</li>
+<li><strong>可审计</strong>：评测与治理以证据为准，而非"演示口径"。</li>
+</ul>
 <p class="tight"><strong>RSP</strong> 是 RSS 内部被强制执行的协议层。它标准化对象与不变量，确保执行真相、评测与治理不依赖 UI、操作员或环境漂移。</p>
 <ul class="tight" style="margin-top:10px;">
 <li><strong>为什么</strong>：技能若只是 demo，很难规模化复用与治理。</li>
@@ -268,6 +242,6 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../../assets/js/site.js?v=6.77"></script>
+<script src="../../assets/js/site.js?v=6.79"></script>
 <script>try{ if(window.initInlineToggleNav) window.initInlineToggleNav(); }catch(e){};</script></body>
 </html>

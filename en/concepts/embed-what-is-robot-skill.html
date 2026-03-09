@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>What is a Robot Skill? · Robot Skill Store</title>
-  <link rel="stylesheet" href="../../assets/css/style.css?v=6.77"/>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=6.79"/>
   <style>
     /* Embed mode: remove extra margins and keep content tight */
     html,body{height:auto!important;min-height:0!important;}
@@ -12,6 +12,39 @@
     .content{max-width:920px;margin:0 auto;padding:18px 18px 24px;}
     .section{margin-top:14px;}
   </style>
+<script>
+(function(){
+  function apply(mode){
+    var root = document.documentElement;
+    if(mode === 'dark') root.setAttribute('data-theme','dark');
+    else root.removeAttribute('data-theme');
+  }
+
+  // First paint: URL ?theme=dark|light takes priority.
+  try{
+    var sp = new URLSearchParams(window.location.search);
+    var t = sp.get('theme');
+    if(t === 'dark' || t === 'light'){
+      apply(t);
+    }else{
+      // Fallback: read saved preference (may not work under some file:// settings).
+      try{
+        var saved = localStorage.getItem('rss_theme');
+        if(saved === 'dark' || saved === 'light') apply(saved);
+      }catch(e){}
+    }
+  }catch(e){}
+
+  // Live updates from parent.
+  window.addEventListener('message', function(ev){
+    var d = ev && ev.data;
+    if(!d || d.type !== 'rss-theme') return;
+    var mode = d.mode || d.theme;
+    if(mode === 'dark' || mode === 'light') apply(mode);
+  });
+})();
+</script>
+
 </head>
 <body>
   <main class="content">

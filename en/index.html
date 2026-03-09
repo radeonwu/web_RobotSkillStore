@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.77" rel="stylesheet"/>
+<title>Robot Skill Store — The Platform for Trusted Industrial Robot Skills</title>
+<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,86 +13,270 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="concepts.html">Concepts</a><a class="toplink" href="skills.html">Certified Skills</a><a class="toplink" href="deployment.html">Deployment</a><a class="toplink" href="docs/index.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
-<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
-<span class="icon">☾</span>
-<span class="label">Appearance</span>
-</button>
+<nav aria-label="Primary" class="topnav">
+  <a class="toplink" href="index.html">Home</a>
+  <a class="toplink" href="lifecycle.html">Skill Lifecycle</a>
+  <a class="toplink" href="platform.html">Platform</a>
+  <a class="toplink" href="concepts.html">Concepts</a>
+  <a class="toplink" href="skills.html">Skill Catalog</a>
+  <a class="toplink" href="developers.html">For Suppliers</a>
+  <a class="toplink" href="deployment.html">For Users</a>
+  <a class="toplink" href="docs/index.html">Docs</a>
+  <a class="toplink" href="contact.html">Contact</a>
+</nav>
+<div class="top-actions">
+  <button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+  <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
 </div>
 </div>
 </header>
+
 <div class="layout">
 <main class="content">
-<section class="section-plain">
-<div class="hero">
-<div class="hero-title">
-<h1 class="hero-h1 hero-h1-flex"><span>Robot Skill Store</span><span class="hero-subtag">– The Platform for Trusted, Reusable Robot Skills</span><img alt="RSS logo" class="hero-logo-inline hero-logo-right" src="../assets/media/rss_logo.png"/></h1>
+
+<!-- ── HERO ── -->
+<div class="hero-gradient">
+  <p style="font-size:12px;font-weight:600;color:var(--vp-c-brand);letter-spacing:0.08em;text-transform:uppercase;margin:0 0 10px 0;">Robot Skill Store</p>
+  <h1 class="hero-headline">The Platform for<br>Trusted Industrial Robot Skills</h1>
+  <p class="hero-tagline">Register, validate, certify, and deploy reusable robot skills — turning one-off automation into long-term capability assets.</p>
+
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-n" id="stat-skills">30</span><span class="stat-l">Skills</span></div>
+    <div class="stat-item"><span class="stat-n" id="stat-cats">7</span><span class="stat-l">Categories</span></div>
+    <div class="stat-item"><span class="stat-n">10+</span><span class="stat-l">Robot Models</span></div>
+    <div class="stat-item"><span class="stat-n">Evidence</span><span class="stat-l">Governance</span></div>
+  </div>
+  <div id="platform-status"></div>
+
+  <div class="dual-path">
+    <div class="path-card path-user">
+      <div class="path-icon">&#8594;</div>
+      <h3>Browse &amp; Deploy Skills</h3>
+      <p>Evidence-backed, lifecycle-governed skills compatible with multiple robot platforms.</p>
+      <a class="path-cta cta-primary" href="skills.html">Browse Skill Catalog</a>
+    </div>
+    <div class="path-card path-supplier">
+      <div class="path-icon">+</div>
+      <h3>Publish Your Skill</h3>
+      <p>Submit for validation and certification. Make your skill discoverable and reusable across robots and teams.</p>
+      <a class="path-cta cta-secondary" href="developers.html">For Suppliers &rarr;</a>
+    </div>
+  </div>
 </div>
-<div class="onboarding"><p><strong>Purpose</strong>This site introduces Robot Skill Store (RSS), a platform for validating and deploying reusable robot skills.</p><p><strong>What you will see here</strong>You will learn how RSS sits between skill suppliers and skill users, and how robot skills move through a structured lifecycle from registration to deployment.</p><div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div></div>
 
-<section class="section" style="margin-top:14px;">
-  <h2 id="what-is-rss" style="margin:0 0 8px 0;">What is RSS</h2>
-  <p class="keypoint" style="margin:0 0 10px 0;">A Platform for Validating and Deploying Robot Skills</p>
-  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);line-height:1.7;">RSS provides a structured pipeline to register, validate, certify, and deploy reusable robot skills — turning project-specific robot behaviors into long-term capability assets.</p>
-
-  <p class="keypoint" style="margin:0 0 10px 0;"><strong>Core vision:</strong> As the <strong>App Store</strong> is to mobile devices, Robot Skill Store (RSS) aims to build a skill platform for robots in the physical world.</p>
-  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);line-height:1.7;">It enables robot capabilities to be standardized, productized, and traded — and reused and composed across different robots and scenarios.</p>
-
-
-  
-</section>
-
-<section class="section" style="margin-top:14px;">
-<h2 id="what-is-rss-for" style="margin:0 0 8px 0;">Whom RSS aims to serve?</h2>
-<p class="keypoint" style="margin:0 0 10px 0;">Robot Skill Store is designed for teams building the next generation of robots:</p>
-<ul>
-<li>small and mid-sized robotics teams</li>
-<li>industrial automation developers</li>
-<li>embodied AI and agent researchers</li>
-<li>platform builders exploring robot ecosystems</li>
-</ul>
-</section>
-</div>
-</section>
+<!-- ── SKILL CATEGORIES ── -->
 <section class="section">
-<div>
-<h2 id="ecosystem">Where RSS sits in the ecosystem</h2>
-<p class="quote">RSS defines how robot skills are supplied, governed, and consumed across organizations.</p>
-<ul>
-  <li>Skill suppliers focus on capability development and publish skills.</li>
-  <li>RSS ensures validation and trust governance.</li>
-  <li>Users can deploy and reuse skills with confidence.</li>
-</ul>
-<div class="flowline">
-  <div class="flow-node"><div class="flow-title">Supplier</div><div class="flow-sub">Capability development</div><div class="flow-sub">Publish skills</div></div>
-  <div class="flow-edge"><div class="flow-label">Skill Proposal</div><div class="flow-arrow">→</div></div>
-  <div class="flow-node"><div class="flow-title">RSS</div><div class="flow-sub">Skill validation</div><div class="flow-sub">&amp; trust governance</div></div>
-  <div class="flow-edge"><div class="flow-label">Certified Skill</div><div class="flow-arrow">→</div></div>
-  <div class="flow-node"><div class="flow-title">User</div><div class="flow-sub">Deploy skills</div><div class="flow-sub">&amp; reuse skills</div></div>
-</div>
-</div>
+  <h2 id="categories">Skill Categories</h2>
+  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">30 industrial skills across 7 manufacturing domains. Click a category to browse.</p>
+  <div class="cat-grid">
+    <a class="cat-card" href="skills.html?cat=Assembly">
+      <div class="cat-icon" style="background:hsl(215,80%,93%);color:hsl(215,60%,38%)">A</div>
+      <div class="cat-info"><div class="cat-name">Assembly</div><div class="cat-count">7 skills</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Manipulation">
+      <div class="cat-icon" style="background:hsl(175,70%,90%);color:hsl(175,55%,30%)">M</div>
+      <div class="cat-info"><div class="cat-name">Manipulation</div><div class="cat-count">6 skills</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Inspection">
+      <div class="cat-icon" style="background:hsl(45,85%,90%);color:hsl(38,70%,30%)">I</div>
+      <div class="cat-info"><div class="cat-name">Inspection</div><div class="cat-count">5 skills</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Machine+Tending">
+      <div class="cat-icon" style="background:hsl(200,60%,91%);color:hsl(200,55%,30%)">MT</div>
+      <div class="cat-info"><div class="cat-name">Machine Tending</div><div class="cat-count">4 skills</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Dispensing">
+      <div class="cat-icon" style="background:hsl(145,65%,90%);color:hsl(145,55%,28%)">D</div>
+      <div class="cat-info"><div class="cat-name">Dispensing</div><div class="cat-count">4 skills</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Welding">
+      <div class="cat-icon" style="background:hsl(15,80%,91%);color:hsl(15,65%,35%)">W</div>
+      <div class="cat-info"><div class="cat-name">Welding</div><div class="cat-count">2 skills</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Finishing">
+      <div class="cat-icon" style="background:hsl(270,65%,92%);color:hsl(270,50%,38%)">F</div>
+      <div class="cat-info"><div class="cat-name">Finishing</div><div class="cat-count">2 skills</div></div>
+    </a>
+  </div>
 </section>
-<section class="section">
-<div>
-<h2 id="why">Why RSS matters</h2>
-<p class="quote">RSS scales by compounding validated skills.</p>
-<div class="prose">
-<p>Today, robot capabilities are highly fragmented: “skills” are often buried in code, tightly coupled to a specific robot and environment, customized for a single scenario, and hard to reuse across teams or systems.</p>
-<p>What we call a “skill” is frequently just a function call, a ROS node, or a one-off demo script.</p>
-<p>This fragmentation leads to:</p>
-<ul>
-<li>Poor sharing across robots and teams</li>
-<li>Safety constraints not expressed structurally (hard to reason about systematically)</li>
-<li>Sim-to-real transfer that does not scale</li>
-<li>Orchestration that relies on hard-coded glue, limiting what agents can compose and decide</li>
-</ul>
-<p><strong>Robot Skill Store</strong> is designed to solve this root problem.</p>
-</div>
 
-</div>
+<!-- ── FEATURED STABLE SKILLS ── -->
+<section class="section">
+  <h2 id="featured">Featured Skills</h2>
+  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">Production-ready skills validated across multiple robot platforms.</p>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-card-head">
+        <div><div class="feat-name">Peg-in-Hole Insertion</div><div class="feat-id">peg_in_hole</div></div>
+        <span class="feat-stable">stable</span>
+      </div>
+      <div class="feat-cat">Assembly · Fine Assembly</div>
+      <div class="feat-desc">Insert a peg or cylindrical component into a hole with tight tolerance using compliant motion and spiral search.</div>
+      <div class="feat-robots"><span>UR5e</span><span>UR10e</span><span>KUKA_iiwa7</span><span>ABB_IRB1200</span></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-head">
+        <div><div class="feat-name">Vision-Guided Pick</div><div class="feat-id">pick_with_vision</div></div>
+        <span class="feat-stable">stable</span>
+      </div>
+      <div class="feat-cat">Manipulation · Pick and Place</div>
+      <div class="feat-desc">Pick a known object from a semi-structured environment using 2.5D vision-guided grasping with antipodal grasp selection.</div>
+      <div class="feat-robots"><span>UR5e</span><span>UR10e</span><span>ABB_IRB1200</span><span>Fanuc_LRMate200iD</span></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-head">
+        <div><div class="feat-name">2D Surface Defect Inspection</div><div class="feat-id">surface_inspect_2d</div></div>
+        <span class="feat-stable">stable</span>
+      </div>
+      <div class="feat-cat">Inspection · Visual Inspection</div>
+      <div class="feat-desc">Inspect a surface for visible defects (scratches, dents, contamination) using a 2D camera with structured illumination.</div>
+      <div class="feat-robots"><span>UR5e</span><span>UR10e</span><span>ABB_IRB1200</span></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-head">
+        <div><div class="feat-name">CNC Machine Part Loading</div><div class="feat-id">load_cnc_part</div></div>
+        <span class="feat-stable">stable</span>
+      </div>
+      <div class="feat-cat">Machine Tending · CNC Tending</div>
+      <div class="feat-desc">Load a raw part into a CNC machine chuck or fixture, open/close the machine door, and confirm secure clamping.</div>
+      <div class="feat-robots"><span>UR10e</span><span>UR16e</span><span>Fanuc_LRMate200iD</span></div>
+    </div>
+  </div>
+  <p style="margin:14px 0 0 0;font-size:13px;color:var(--vp-c-text-2);">
+    <a href="skills.html" style="color:var(--vp-c-brand);font-weight:600;">View all 30 skills in the catalog &rarr;</a>
+  </p>
 </section>
+
+<!-- ── APPLICATION EXAMPLES ── -->
+<section class="section">
+  <h2 id="applications">Applications in the Field</h2>
+  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">Real-world workflows built from certified RSS skills — reused across line variants by changing parameters, not rewriting code.</p>
+  <div class="app-grid">
+    <div class="app-card">
+      <div class="app-card-icon">&#128295;</div>
+      <div class="app-card-industry">Automotive</div>
+      <div class="app-card-title">Connector Harness Assembly</div>
+      <div class="app-card-desc">UR10e picks harness connectors, inserts with force control, and torque-tightens each fastener. Reused across 4 line variants — only parameters change.</div>
+      <div class="app-card-skills"><span>pick_place</span><span>connector_insert</span><span>tighten_screw</span></div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-icon">&#128300;</div>
+      <div class="app-card-industry">Electronics</div>
+      <div class="app-card-title">PCB Pick, Place &amp; Inspect</div>
+      <div class="app-card-desc">ABB IRB1200 picks surface-mount components with 2.5D vision guidance and places with sub-millimeter accuracy. 2D inspection confirms placement before reflow.</div>
+      <div class="app-card-skills"><span>pick_with_vision</span><span>surface_inspect_2d</span></div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-icon">&#9881;</div>
+      <div class="app-card-industry">Machine Tending</div>
+      <div class="app-card-title">Unmanned CNC Cell</div>
+      <div class="app-card-desc">Fanuc LRMate loads blanks into CNC fixtures, confirms clamp signals, retrieves finished parts, and routes to inline inspection — running unmanned for full shifts.</div>
+      <div class="app-card-skills"><span>load_cnc_part</span><span>pick_place</span><span>surface_inspect_2d</span></div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-icon">&#128167;</div>
+      <div class="app-card-industry">Dispensing</div>
+      <div class="app-card-title">Precision Sealing &amp; Potting</div>
+      <div class="app-card-desc">KUKA KR10 traces bead paths on gasket seals and fills potting cavities on PCBs. Weight and vision checks confirm coverage without manual inspection steps.</div>
+      <div class="app-card-skills"><span>bead_dispense</span><span>surface_inspect_2d</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST / EVIDENCE ── -->
+<section class="section">
+  <h2 id="trust">Built on Evidence, Not Promises</h2>
+  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">Every RSS skill is backed by immutable execution records, not just a README. Governance state is computed continuously from real data.</p>
+  <div class="trust-grid">
+    <div class="trust-card">
+      <div class="trust-card-icon">&#128221;</div>
+      <p class="trust-card-title">Immutable Run Records</p>
+      <p class="trust-card-body">Every execution creates a Run bound to skill version, robot profile, and parameter set — immutable after creation.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">&#9881;</div>
+      <p class="trust-card-title">Computed Governance</p>
+      <p class="trust-card-body">ACTIVE / DEGRADED / QUARANTINED is computed from rolling evidence windows — success rate, violations, regression — not assigned by hand.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">&#128270;</div>
+      <p class="trust-card-title">Full Audit Trail</p>
+      <p class="trust-card-body">Logs, videos, telemetry, and certification snapshots are linked to each Run — fully auditable and reproducible.</p>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:14px;">
+    <strong>Lifecycle states</strong>: Skills progress from <code>REGISTERED</code> &rarr; <code>VALIDATED</code> &rarr; <code>CERTIFIED</code> &rarr; <code>DEPLOYED</code>. Each transition is evidence-gated. <a href="lifecycle.html" style="color:var(--vp-c-brand);font-weight:600;">Learn about the lifecycle &rarr;</a>
+  </div>
+</section>
+
+<!-- ── ECOSYSTEM FLOW ── -->
+<section class="section">
+  <h2 id="ecosystem">Where RSS Sits</h2>
+  <div class="flowline">
+    <div class="flow-node">
+      <div class="flow-title">Supplier</div>
+      <div class="flow-sub">Capability development</div>
+      <div class="flow-sub" style="margin-top:4px;"><a href="developers.html" style="color:var(--vp-c-brand);font-size:12px;font-weight:600;">Publish a skill &rarr;</a></div>
+    </div>
+    <div class="flow-edge"><div class="flow-label">Skill Proposal</div><div class="flow-arrow">&#8594;</div></div>
+    <div class="flow-node" style="background:color-mix(in srgb,var(--vp-c-brand) 5%,var(--vp-c-bg));">
+      <div class="flow-title">RSS</div>
+      <div class="flow-sub">Validation &amp; certification</div>
+      <div class="flow-sub" style="margin-top:4px;font-size:12px;">Trust governance</div>
+    </div>
+    <div class="flow-edge"><div class="flow-label">Certified Skill</div><div class="flow-arrow">&#8594;</div></div>
+    <div class="flow-node">
+      <div class="flow-title">User</div>
+      <div class="flow-sub">Deploy &amp; reuse skills</div>
+      <div class="flow-sub" style="margin-top:4px;"><a href="deployment.html" style="color:#2da44e;font-size:12px;font-weight:600;">How to deploy &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY RSS ── -->
+<section class="section">
+  <h2 id="why">Why RSS</h2>
+  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">Robot capabilities are buried in project-specific code — coupled to one robot, one environment, one team. They can't be reused, audited, or trusted at scale.</p>
+  <ul class="checklist" style="margin-bottom:14px;">
+    <li><strong>No reusability</strong> — skills don't transfer across robots or teams.</li>
+    <li><strong>No structure</strong> — safety constraints live in comments, not contracts.</li>
+    <li><strong>No evidence</strong> — a README is not a guarantee.</li>
+    <li><strong>RSS</strong> makes skills first-class: evidence-backed, certified, composable.</li>
+  </ul>
+  <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+    <a class="path-cta cta-primary" href="skills.html">Explore Skill Catalog</a>
+    <a class="path-cta cta-secondary" href="lifecycle.html">How the Lifecycle Works</a>
+  </div>
+</section>
+
 </main>
-<aside class="toc"><div class="toc-title">ON THIS PAGE</div><nav id="tocNav"></nav></aside></div>
-<script src="../assets/js/site.js?v=6.77"></script></body>
+<aside class="toc"><div class="toc-title">ON THIS PAGE</div><nav id="tocNav"></nav></aside>
+</div>
+<script src="../assets/config.js?v=6.79"></script>
+<script>
+(function(){
+  var base = (window.RSS_PLATFORM_BASE_URL || '').replace(/\/$/,'');
+  if (!base) return;
+  var status = document.getElementById('platform-status');
+  fetch(base + '/public/v1/skills', {cache:'no-cache'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(obj){
+      if (!obj) return;
+      var items = (obj && obj.items) ? obj.items : (Array.isArray(obj) ? obj : []);
+      if (!items.length) return;
+      // Update stat counts
+      var el = document.getElementById('stat-skills');
+      if (el) el.textContent = items.length;
+      var cats = {};
+      items.forEach(function(s){ if(s.category) cats[s.category]=1; });
+      var ec = document.getElementById('stat-cats');
+      if (ec) ec.textContent = Object.keys(cats).length;
+      // Show live badge
+      if (status) status.innerHTML = '<span class="live-badge"><span class="live-dot"></span>Live data from platform</span>';
+    })
+    .catch(function(){});
+})();
+</script>
+<script src="../assets/js/site.js?v=6.79"></script>
+</body>
 </html>

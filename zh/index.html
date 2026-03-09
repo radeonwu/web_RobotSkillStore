@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="zh">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>首页 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.77" rel="stylesheet"/>
+<title>机器人技能商店 — 可信工业机器人技能平台</title>
+<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,88 +13,268 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">认证技能</a><a class="toplink" href="deployment.html">用户与部署</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
-<div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
-<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
-<span class="icon">☾</span>
-<span class="label">Appearance</span>
-</button>
+<nav aria-label="Primary" class="topnav">
+  <a class="toplink" href="index.html">首页</a>
+  <a class="toplink" href="lifecycle.html">技能生命周期</a>
+  <a class="toplink" href="platform.html">平台</a>
+  <a class="toplink" href="concepts.html">概念</a>
+  <a class="toplink" href="skills.html">技能目录</a>
+  <a class="toplink" href="developers.html">技能供应商</a>
+  <a class="toplink" href="deployment.html">用户指南</a>
+  <a class="toplink" href="docs/index.html">文档</a>
+  <a class="toplink" href="contact.html">联系</a>
+</nav>
+<div class="top-actions">
+  <button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+  <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
 </div>
 </div>
 </header>
+
 <div class="layout">
 <main class="content">
-<section class="section-plain">
-<div class="hero">
-<div class="hero-title">
-<h1 class="hero-h1 hero-h1-flex"><span>机器人技能商店</span><span class="hero-subtag">– 可信、可复用机器人技能的平台</span>
-  <img alt="RSS logo" class="hero-logo-inline hero-logo-right" src="../assets/media/rss_logo.png"/>
-</h1>
+
+<!-- ── 首屏 Hero ── -->
+<div class="hero-gradient">
+  <p style="font-size:12px;font-weight:600;color:var(--vp-c-brand);letter-spacing:0.08em;text-transform:uppercase;margin:0 0 10px 0;">Robot Skill Store</p>
+  <h1 class="hero-headline">可信工业机器人技能的<br>标准化平台</h1>
+  <p class="hero-tagline">注册、验证、认证、部署——将一次性自动化能力沉淀为可持续复用的机器人技能资产。</p>
+
+  <div class="stats-bar">
+    <div class="stat-item"><span class="stat-n" id="stat-skills">30</span><span class="stat-l">技能</span></div>
+    <div class="stat-item"><span class="stat-n" id="stat-cats">7</span><span class="stat-l">技能类别</span></div>
+    <div class="stat-item"><span class="stat-n">10+</span><span class="stat-l">机器人型号</span></div>
+    <div class="stat-item"><span class="stat-n">证据</span><span class="stat-l">驱动治理</span></div>
+  </div>
+  <div id="platform-status"></div>
+
+  <div class="dual-path">
+    <div class="path-card path-user">
+      <div class="path-icon">&#8594;</div>
+      <h3>浏览 &amp; 部署技能</h3>
+      <p>有证据背书、生命周期治理，兼容多款主流机器人平台。</p>
+      <a class="path-cta cta-primary" href="skills.html">浏览技能目录</a>
+    </div>
+    <div class="path-card path-supplier">
+      <div class="path-icon">+</div>
+      <h3>发布你的技能</h3>
+      <p>提交验证与认证，让技能在跨团队、跨机器人的场景中可被发现与复用。</p>
+      <a class="path-cta cta-secondary" href="developers.html">技能供应商 &rarr;</a>
+    </div>
+  </div>
 </div>
-<div class="onboarding"><p><strong>Purpose</strong>本网站介绍 Robot Skill Store (RSS)：一个用于验证并部署可复用机器人技能的平台。</p><p><strong>What you will see here</strong>你将了解 RSS 如何连接技能供应方与技能使用方，以及机器人技能如何沿着结构化生命周期从注册走到部署。</p><div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div></div>
 
-<section class="section" style="margin-top:14px;">
-  <h2 id="what-is-rss" style="margin:0 0 8px 0;">什么是 RSS</h2>
-  <p class="lead">面向机器人技能的验证与交付平台</p>
-  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);line-height:1.7;">RSS 提供一套标准化流水线，将机器人行为抽象为可复用的 Skill，并完成 注册 → 验证 → 认证 → 部署复用，把一次性项目能力沉淀为可持续复利的能力资产。</p>
-
-  <p class="lead"><strong>核心愿景：</strong>正如 <strong>App Store</strong> 之于移动设备，Robot Skill Store（RSS）致力于为机器人构建一个面向物理世界的技能平台</p>
-  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);line-height:1.7;">使机器人能力得以标准化封装、商品化流通，并可在不同机器人与场景中复用与组合。</p>
-
-
-  
-</section>
-
-<section class="section" style="margin-top:14px;">
-<h2 id="what-is-rss-for" style="margin:0 0 8px 0;">RSS 面向谁？</h2>
-	<p class="quote">关键点：Robot Skill Store 面向构建下一代机器人的团队。</p>
-<ul>
-<li>中小型机器人团队</li>
-<li>工业自动化开发者</li>
-<li>具身智能与 Agent 研究者</li>
-<li>探索机器人生态的平台构建者</li>
-</ul>
-</section>
-</div>
-</section>
+<!-- ── 技能类别 ── -->
 <section class="section">
-<div>
-<h2 id="ecosystem">RSS 在生态中的位置</h2>
-	<p class="quote">RSS 定义了机器人技能在组织之间的供给、治理与消费方式。</p>
-	<ul>
-	  <li>技能供应方聚焦能力开发，并发布技能。</li>
-	  <li>RSS 负责验证与可信治理。</li>
-	  <li>用户可以有信心地部署并复用技能。</li>
-	</ul>
-<div class="flowline">
-  <div class="flow-node"><div class="flow-title">Supplier</div><div class="flow-sub">能力开发</div><div class="flow-sub">发布技能</div></div>
-  <div class="flow-edge"><div class="flow-label">技能提案</div><div class="flow-arrow">→</div></div>
-  <div class="flow-node"><div class="flow-title">RSS</div><div class="flow-sub">技能验证</div><div class="flow-sub">与可信治理</div></div>
-  <div class="flow-edge"><div class="flow-label">已认证技能</div><div class="flow-arrow">→</div></div>
-  <div class="flow-node"><div class="flow-title">User</div><div class="flow-sub">部署技能</div><div class="flow-sub">并复用技能</div></div>
-</div>
-</div>
+  <h2 id="categories">技能类别</h2>
+  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">30 个工业机器人技能，覆盖 7 大制造领域。点击类别直达技能目录。</p>
+  <div class="cat-grid">
+    <a class="cat-card" href="skills.html?cat=Assembly">
+      <div class="cat-icon" style="background:hsl(215,80%,93%);color:hsl(215,60%,38%)">A</div>
+      <div class="cat-info"><div class="cat-name">装配</div><div class="cat-count">7 个技能</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Manipulation">
+      <div class="cat-icon" style="background:hsl(175,70%,90%);color:hsl(175,55%,30%)">M</div>
+      <div class="cat-info"><div class="cat-name">操作</div><div class="cat-count">6 个技能</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Inspection">
+      <div class="cat-icon" style="background:hsl(45,85%,90%);color:hsl(38,70%,30%)">I</div>
+      <div class="cat-info"><div class="cat-name">检测</div><div class="cat-count">5 个技能</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Machine+Tending">
+      <div class="cat-icon" style="background:hsl(200,60%,91%);color:hsl(200,55%,30%)">MT</div>
+      <div class="cat-info"><div class="cat-name">机床上下料</div><div class="cat-count">4 个技能</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Dispensing">
+      <div class="cat-icon" style="background:hsl(145,65%,90%);color:hsl(145,55%,28%)">D</div>
+      <div class="cat-info"><div class="cat-name">点胶涂覆</div><div class="cat-count">4 个技能</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Welding">
+      <div class="cat-icon" style="background:hsl(15,80%,91%);color:hsl(15,65%,35%)">W</div>
+      <div class="cat-info"><div class="cat-name">焊接</div><div class="cat-count">2 个技能</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Finishing">
+      <div class="cat-icon" style="background:hsl(270,65%,92%);color:hsl(270,50%,38%)">F</div>
+      <div class="cat-info"><div class="cat-name">精整处理</div><div class="cat-count">2 个技能</div></div>
+    </a>
+  </div>
 </section>
-<section class="section">
-<div>
-<h2 id="why">为什么需要 Robot Skill Store</h2>
-<p class="quote">RSS 通过复利式积累已验证技能实现规模化。</p>
-<div class="prose">
-<p>当今的机器人能力高度碎片化：技能往往深埋在代码里，与特定机器人/环境强耦合，为单一场景定制，难以在团队或系统之间复用。</p>
-<p>我们口中的“技能”，很多时候只是一个函数调用、一个 ROS 节点，或一个只能跑一次的 demo 脚本。</p>
-<p>这种碎片化直接导致：</p>
-<ul>
-<li>能力难以跨机器人、跨团队共享</li>
-<li>安全与约束缺少结构化表达，难以系统性推理</li>
-<li>仿真到真实部署难以规模化迁移</li>
-<li>行为编排依赖硬编码拼接，Agent 难以组合与决策</li>
-</ul>
-<p><strong>Robot Skill Store</strong> 正是为解决这一根本性问题而设计。</p>
-</div>
 
-</div>
+<!-- ── 精选技能 ── -->
+<section class="section">
+  <h2 id="featured">精选技能</h2>
+  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">已在多款机器人平台完成验证的生产级技能。</p>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-card-head">
+        <div><div class="feat-name">孔轴插入（Peg-in-Hole）</div><div class="feat-id">peg_in_hole</div></div>
+        <span class="feat-stable">stable</span>
+      </div>
+      <div class="feat-cat">装配 · 精密装配</div>
+      <div class="feat-desc">使用柔顺运动与螺旋搜索策略，以紧公差将销轴插入孔中，适用于 0.01–0.1 mm 间隙配合。</div>
+      <div class="feat-robots"><span>UR5e</span><span>UR10e</span><span>KUKA_iiwa7</span><span>ABB_IRB1200</span></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-head">
+        <div><div class="feat-name">视觉引导抓取</div><div class="feat-id">pick_with_vision</div></div>
+        <span class="feat-stable">stable</span>
+      </div>
+      <div class="feat-cat">操作 · 拾取放置</div>
+      <div class="feat-desc">利用 2.5D 视觉感知在半结构化环境中识别目标物体并执行精确抓取，支持对偶抓取点选取。</div>
+      <div class="feat-robots"><span>UR5e</span><span>UR10e</span><span>ABB_IRB1200</span><span>Fanuc_LRMate200iD</span></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-head">
+        <div><div class="feat-name">2D 表面缺陷检测</div><div class="feat-id">surface_inspect_2d</div></div>
+        <span class="feat-stable">stable</span>
+      </div>
+      <div class="feat-cat">检测 · 视觉检测</div>
+      <div class="feat-desc">使用 2D 相机与结构光照明对零件表面进行划痕、凹坑、污染等缺陷的自动化视觉检测。</div>
+      <div class="feat-robots"><span>UR5e</span><span>UR10e</span><span>ABB_IRB1200</span></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-card-head">
+        <div><div class="feat-name">CNC 机床上料</div><div class="feat-id">load_cnc_part</div></div>
+        <span class="feat-stable">stable</span>
+      </div>
+      <div class="feat-cat">机床上下料 · CNC 上下料</div>
+      <div class="feat-desc">自动开门、将毛坯件装夹到 CNC 机床卡盘或夹具中，并确认夹紧到位，支持机床信号握手。</div>
+      <div class="feat-robots"><span>UR10e</span><span>UR16e</span><span>Fanuc_LRMate200iD</span></div>
+    </div>
+  </div>
+  <p style="margin:14px 0 0 0;font-size:13px;color:var(--vp-c-text-2);">
+    <a href="skills.html" style="color:var(--vp-c-brand);font-weight:600;">查看全部 30 个技能 &rarr;</a>
+  </p>
 </section>
+
+<!-- ── 应用场景 ── -->
+<section class="section">
+  <h2 id="applications">实际应用场景</h2>
+  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">以下真实工作流均由 RSS 认证技能构建——跨产线复用时只需修改参数，无需重写程序。</p>
+  <div class="app-grid">
+    <div class="app-card">
+      <div class="app-card-icon">&#128295;</div>
+      <div class="app-card-industry">汽车制造</div>
+      <div class="app-card-title">连接器线束装配</div>
+      <div class="app-card-desc">UR10e 抓取线束连接器，以力控制插入，并对每个紧固件进行扭矩拧紧。同一套技能在 4 条产线变体中复用——只改参数，不改程序。</div>
+      <div class="app-card-skills"><span>pick_place</span><span>connector_insert</span><span>tighten_screw</span></div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-icon">&#128300;</div>
+      <div class="app-card-industry">电子制造</div>
+      <div class="app-card-title">PCB 贴装与检测</div>
+      <div class="app-card-desc">ABB IRB1200 通过 2.5D 视觉引导拾取贴片元件并精确放置。2D 检测在回流焊前自动确认贴装质量，零人工验证步骤。</div>
+      <div class="app-card-skills"><span>pick_with_vision</span><span>surface_inspect_2d</span></div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-icon">&#9881;</div>
+      <div class="app-card-industry">机床上下料</div>
+      <div class="app-card-title">无人值守 CNC 单元</div>
+      <div class="app-card-desc">Fanuc LRMate 完成上料、夹紧确认、成品取出与在线检测——跨两台 CNC 机床无人运行整班次。</div>
+      <div class="app-card-skills"><span>load_cnc_part</span><span>pick_place</span><span>surface_inspect_2d</span></div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-icon">&#128167;</div>
+      <div class="app-card-industry">点胶涂覆</div>
+      <div class="app-card-title">密封胶涂覆与灌封</div>
+      <div class="app-card-desc">KUKA KR10 沿密封条轨迹涂胶并对 PCB 空腔灌封。称重与视觉检测取代人工抽检——通过参数收紧公差降低废品率。</div>
+      <div class="app-card-skills"><span>bead_dispense</span><span>surface_inspect_2d</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 证据驱动的信任 ── -->
+<section class="section">
+  <h2 id="trust">以证据为基础，而非承诺</h2>
+  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">RSS 上的每个技能都有不可篡改的执行记录支撑——不只是 README。治理状态由真实数据持续计算得出。</p>
+  <div class="trust-grid">
+    <div class="trust-card">
+      <div class="trust-card-icon">&#128221;</div>
+      <p class="trust-card-title">不可篡改的运行记录</p>
+      <p class="trust-card-body">每次执行生成一条与技能版本、机器人配置、参数集绑定的 Run 记录——上传后不可修改。</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">&#9881;</div>
+      <p class="trust-card-title">计算得出的治理状态</p>
+      <p class="trust-card-body">ACTIVE / DEGRADED / QUARANTINED 由滚动证据窗口自动计算——非人工指派。</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">&#128270;</div>
+      <p class="trust-card-title">完整审计链路</p>
+      <p class="trust-card-body">日志、视频、遥测与认证快照均与 Run 绑定——可追溯，可复现。</p>
+    </div>
+  </div>
+  <div class="callout" style="margin-top:14px;">
+    <strong>生命周期状态</strong>：技能依次经历 <code>REGISTERED</code> &rarr; <code>VALIDATED</code> &rarr; <code>CERTIFIED</code> &rarr; <code>DEPLOYED</code>，每次状态跃迁均需证据门控。<a href="lifecycle.html" style="color:var(--vp-c-brand);font-weight:600;">了解技能生命周期 &rarr;</a>
+  </div>
+</section>
+
+<!-- ── 生态位置 ── -->
+<section class="section">
+  <h2 id="ecosystem">RSS 的生态位置</h2>
+  <div class="flowline">
+    <div class="flow-node">
+      <div class="flow-title">供应方</div>
+      <div class="flow-sub">能力开发，发布技能</div>
+      <div class="flow-sub" style="margin-top:4px;"><a href="developers.html" style="color:var(--vp-c-brand);font-size:12px;font-weight:600;">发布技能 &rarr;</a></div>
+    </div>
+    <div class="flow-edge"><div class="flow-label">技能提案</div><div class="flow-arrow">&#8594;</div></div>
+    <div class="flow-node" style="background:color-mix(in srgb,var(--vp-c-brand) 5%,var(--vp-c-bg));">
+      <div class="flow-title">RSS</div>
+      <div class="flow-sub">验证、认证</div>
+      <div class="flow-sub" style="margin-top:4px;font-size:12px;">可信治理</div>
+    </div>
+    <div class="flow-edge"><div class="flow-label">已认证技能</div><div class="flow-arrow">&#8594;</div></div>
+    <div class="flow-node">
+      <div class="flow-title">用户</div>
+      <div class="flow-sub">部署与复用技能</div>
+      <div class="flow-sub" style="margin-top:4px;"><a href="deployment.html" style="color:#2da44e;font-size:12px;font-weight:600;">如何部署 &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 为什么需要 RSS ── -->
+<section class="section">
+  <h2 id="why">为什么需要 RSS</h2>
+  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">机器人能力深埋在项目代码里——与单一机器人、单一环境强耦合，无法跨团队复用、审计或规模化部署。</p>
+  <ul class="checklist" style="margin-bottom:14px;">
+    <li><strong>无法复用</strong>——技能无法跨机器人或团队迁移。</li>
+    <li><strong>缺乏结构</strong>——安全约束存在于注释里，而非契约中。</li>
+    <li><strong>没有证据</strong>——README 不等于保障。</li>
+    <li><strong>RSS</strong> 让技能成为一等公民：有证据背书、可认证、可组合。</li>
+  </ul>
+  <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+    <a class="path-cta cta-primary" href="skills.html">探索技能目录</a>
+    <a class="path-cta cta-secondary" href="lifecycle.html">了解技能生命周期</a>
+  </div>
+</section>
+
 </main>
-<aside class="toc"><div class="toc-title">ON THIS PAGE</div><nav id="tocNav"></nav></aside></div>
-<script src="../assets/js/site.js?v=6.77"></script></body>
+<aside class="toc"><div class="toc-title">本页导航</div><nav id="tocNav"></nav></aside>
+</div>
+<script src="../assets/config.js?v=6.79"></script>
+<script>
+(function(){
+  var base = (window.RSS_PLATFORM_BASE_URL || '').replace(/\/$/,'');
+  if (!base) return;
+  var status = document.getElementById('platform-status');
+  fetch(base + '/public/v1/skills', {cache:'no-cache'})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(obj){
+      if (!obj) return;
+      var items = (obj && obj.items) ? obj.items : (Array.isArray(obj) ? obj : []);
+      if (!items.length) return;
+      var el = document.getElementById('stat-skills');
+      if (el) el.textContent = items.length;
+      var cats = {};
+      items.forEach(function(s){ if(s.category) cats[s.category]=1; });
+      var ec = document.getElementById('stat-cats');
+      if (ec) ec.textContent = Object.keys(cats).length;
+      if (status) status.innerHTML = '<span class="live-badge"><span class="live-dot"></span>实时平台数据</span>';
+    })
+    .catch(function(){});
+})();
+</script>
+<script src="../assets/js/site.js?v=6.79"></script>
+</body>
 </html>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Deployment · Robot Skill Store</title>
-<link rel="stylesheet" href="../assets/css/style.css?v=6.77"/>
+<title>For Users · Robot Skill Store</title>
+<link rel="stylesheet" href="../assets/css/style.css?v=6.79"/>
 </head>
 <body>
 <header class="topbar">
@@ -18,8 +18,9 @@
 <a class="toplink" href="lifecycle.html">Skill Lifecycle</a>
 <a class="toplink" href="platform.html">Platform</a>
 <a class="toplink" href="concepts.html">Concepts</a>
-<a class="toplink" href="skills.html">Certified Skills</a>
-<a class="toplink" href="deployment.html">Deployment</a>
+<a class="toplink" href="skills.html">Skill Catalog</a>
+<a class="toplink" href="developers.html">For Suppliers</a>
+<a class="toplink active" href="deployment.html">For Users</a>
 <a class="toplink" href="docs/index.html">Docs</a>
 <a class="toplink" href="contact.html">Contact</a>
 </nav>
@@ -31,132 +32,124 @@
 </header>
 <div class="layout">
 <main class="content">
+
 <section class="section-plain">
-<h1>Users &amp; Deployment</h1>
+<h1>For Users</h1>
 <div class="onboarding">
-  <p><strong>Purpose</strong>Turn certified skills into real applications.</p>
-  <p><strong>What this page covers</strong>How users reuse skills (UR5/RG2 example) and how agent orchestration improves efficiency: plan → match → execute → recover.</p>
-  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle Anchor</strong></div><div class="rss-lifecycle-bar compact" data-stage="deploy" data-compact="1"></div></div>
+  <p>Certified RSS skills are reusable building blocks — deploy them across robots, workcells, and variants by changing parameters, not rewriting programs.</p>
+  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle</strong></div><div class="rss-lifecycle-bar compact" data-stage="deploy" data-compact="1"></div></div>
 </div>
 </section>
-<p class="lead">RSS outputs skills to the user side as reusable application building blocks — not one-off demo code.</p>
 
+<!-- ── INDUSTRY SCENARIOS ── -->
 <section class="section">
-  <h2 id="agent-example">Agent-based Skill Deployment Flow</h2>
-  <p>An application team typically starts with a user task (for example, to assemble connector and tighten screw using UR5 robotic arm and RG2 gripper) and lets an agent orchestrate certified skills as building blocks.</p>
-
-  <div class="deploy-flow" aria-label="Agent-based skill deployment flow">
-    <!-- Row 1 (1-3): Task → Plan → Match -->
-    <div class="deploy-row top">
-      <div class="deploy-step">
-        <h4>Task</h4>
-        <p>Pick → insert → tighten</p>
-      </div>
-      <div class="deploy-arrow">➜</div>
-      <div class="deploy-step">
-        <h4>Plan</h4>
-        <p>Decompose into subtasks: pick → insert → tighten</p>
-      </div>
-      <div class="deploy-arrow">➜</div>
-      <div class="deploy-step">
-        <h4>Match</h4>
-        <p>Retrieve skills: <b>pick_place</b>, <b>connector_insert</b>, <b>tighten_screw</b></p>
-      </div>
+  <h2 id="scenarios">Real-World Scenarios</h2>
+  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">Skills from the RSS catalog have been deployed in production across these workflows — reused with only parameter changes between sites.</p>
+  <div class="app-grid">
+    <div class="app-card">
+      <div class="app-card-icon">&#128295;</div>
+      <div class="app-card-industry">Automotive</div>
+      <div class="app-card-title">Connector Harness Assembly</div>
+      <div class="app-card-desc">UR10e picks harness connectors, inserts with compliance force control, and torque-tightens each fastener. Same skills reused across 4 line variants — parameters change, programs don't.</div>
+      <div class="app-card-skills"><span>pick_place</span><span>connector_insert</span><span>tighten_screw</span></div>
     </div>
-
-    <!-- Connector: Match (row 1, col 3) ↓ Execute (row 2, col 3) -->
-    <div class="deploy-connector-down" aria-hidden="true" style="margin-top:2px;margin-bottom:8px;">
-      <div class="deploy-spacer"></div>
-      <div class="deploy-arrow-spacer"></div>
-      <div class="deploy-spacer"></div>
-      <div class="deploy-arrow-spacer"></div>
-      <div class="deploy-connector-cell">
-        <div class="deploy-arrow v" aria-hidden="true">➜</div>
-      </div>
+    <div class="app-card">
+      <div class="app-card-icon">&#128300;</div>
+      <div class="app-card-industry">Electronics</div>
+      <div class="app-card-title">PCB Assembly &amp; Inspection</div>
+      <div class="app-card-desc">ABB IRB1200 places surface-mount components with 2.5D vision guidance. Inline 2D inspection confirms placement before handoff to reflow — zero manual verification steps.</div>
+      <div class="app-card-skills"><span>pick_with_vision</span><span>surface_inspect_2d</span></div>
     </div>
-
-    <!-- Row 2 (4-6, right-to-left): Execute → Recover → Evidence -->
-    <div class="deploy-row bottom" style="margin-top:0;">
-      <div class="deploy-step evidence">
-        <h4>Evidence</h4>
-        <p>Attach traces (video/logs/metrics) and review in viewer</p>
-      </div>
-      <div class="deploy-arrow reverse">➜</div>
-      <div class="deploy-step recover">
-        <h4>Recover</h4>
-        <p>On failure: retry, adjust parameters, or switch candidate skill</p>
-      </div>
-      <div class="deploy-arrow reverse">➜</div>
-      <div class="deploy-step">
-        <h4>Execute</h4>
-        <p>Run each skill with constraints + parameters (sim/HIL/real)</p>
-      </div>
+    <div class="app-card">
+      <div class="app-card-icon">&#9881;</div>
+      <div class="app-card-industry">Machine Tending</div>
+      <div class="app-card-title">Lights-Out CNC Cell</div>
+      <div class="app-card-desc">Fanuc LRMate loads blanks, confirms clamp signals, retrieves finished parts, and routes to inspection — running unmanned for full shifts across two CNC machines.</div>
+      <div class="app-card-skills"><span>load_cnc_part</span><span>pick_place</span><span>surface_inspect_2d</span></div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-icon">&#128167;</div>
+      <div class="app-card-industry">Dispensing</div>
+      <div class="app-card-title">Gasket Sealing &amp; Potting</div>
+      <div class="app-card-desc">KUKA KR10 traces bead paths on gasket seals and fills potting cavities. Post-dispense weight and vision checks replace manual inspection — reducing scrap by parameterized tolerance tightening.</div>
+      <div class="app-card-skills"><span>bead_dispense</span><span>surface_inspect_2d</span></div>
     </div>
   </div>
-
-  <h3 style="margin-top:14px;" id="agent-loop">What the agent does (practical loop)</h3>
-  <ul>
-    <li><b>Task orchestration</b>: breaks a high-level goal into an executable plan (a sequence of skills) and attaches the required context &amp; constraints for each step.</li>
-    <li><b>Skill matching</b>: searches RSS for candidate skills/versions and selects the best one based on evidence maturity, applicability bounds, and constraint fit (replaceable, rollbackable).</li>
-    <li><b>Execution (example: connector assembly)</b>:
-      <ul>
-        <li><b>pick</b>: choose a grasp template and approach/avoidance strategy so the grasp pose remains compatible with downstream insertion constraints.</li>
-        <li><b>insert</b>: set pose/contact thresholds; control approach/seat/retract; trigger recovery when failures occur.</li>
-        <li><b>tighten</b>: configure torque/angle targets and stop conditions; run deterministically and produce auditable evidence.</li>
-      </ul>
-    </li>
-    <li><b>Governance</b>: every run produces a trace/evidence bundle; stability improves via validate → certify → policy gates, not by repeatedly editing demo code.</li>
-  </ul>
-
-  <pre class="codeblock list-align" data-title="Agent orchestration pseudocode"><code>// Pseudocode: agent orchestration over certified skills
-goal = "assemble_connector_and_tighten"
-plan = ["pick_place", "connector_insert", "tighten_screw"]
-
-for step in plan:
-    candidates = rss.search(skill_name=step, evidence_min="E1")
-    skill = agent.select_best(candidates, context)
-    params = agent.configure(skill, context, constraints)
-    run = rss.execute(skill, params)
-    if not run.success:
-        context = agent.recover(run, context)  # retry / reparam / alternate skill
-        continue
-    agent.update_context_from_evidence(run.evidence)
-</code></pre>
 </section>
 
+<!-- ── HOW DEPLOYMENT WORKS ── -->
 <section class="section">
-  <h2 id="demo">Skill deployment example: connector assembly</h2>
+  <h2 id="how-it-works">How Skill Deployment Works</h2>
+  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">An application team selects certified skills from the catalog, configures them with task-specific parameters and constraints, and orchestrates them in sequence. RSS handles the evidence and governance automatically.</p>
+  <div class="deploy-flow" aria-label="Skill deployment flow">
+    <div class="deploy-row top">
+      <div class="deploy-step"><h4>Task</h4><p>High-level goal (e.g. "assemble connector")</p></div>
+      <div class="deploy-arrow">➜</div>
+      <div class="deploy-step"><h4>Select Skills</h4><p>Choose certified skills from catalog by capability &amp; evidence level</p></div>
+      <div class="deploy-arrow">➜</div>
+      <div class="deploy-step"><h4>Configure</h4><p>Set constraints, force limits, tolerance parameters per robot profile</p></div>
+    </div>
+    <div class="deploy-connector-down" aria-hidden="true" style="margin-top:2px;margin-bottom:8px;">
+      <div class="deploy-spacer"></div><div class="deploy-arrow-spacer"></div>
+      <div class="deploy-spacer"></div><div class="deploy-arrow-spacer"></div>
+      <div class="deploy-connector-cell"><div class="deploy-arrow v" aria-hidden="true">➜</div></div>
+    </div>
+    <div class="deploy-row bottom" style="margin-top:0;">
+      <div class="deploy-step evidence"><h4>Evidence</h4><p>Runs logged automatically — browse in Evidence Viewer</p></div>
+      <div class="deploy-arrow reverse">➜</div>
+      <div class="deploy-step recover"><h4>Recover</h4><p>On failure: adjust parameters or switch to alternate skill</p></div>
+      <div class="deploy-arrow reverse">➜</div>
+      <div class="deploy-step"><h4>Execute</h4><p>Run skills on real robot (or HIL/sim) — outcomes captured automatically</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DEMO VIDEO ── -->
+<section class="section">
+  <h2 id="demo">Example: Connector Assembly on UR5 + RG2</h2>
   <div class="video-card">
     <video controls preload="metadata" src="../assets/media/ur5_rg2_demo.mp4" style="width:100%;border-radius:12px;"></video>
-    <p style="margin:10px 0 0;color:var(--vp-c-text-2);line-height:1.6;">Example workflow: <b>pick_place</b> → <b>connector_insert</b> → <b>tighten_screw</b>. The same skills can be reused by changing constraints and parameters, not by rewriting programs.</p>
-    <ul>
-      <li><b>pick_place</b>: grasp templates + collision-aware IK.</li>
-      <li><b>connector_insert</b>: pose constraints + approach/retract + recovery traces.</li>
-      <li><b>tighten_screw</b>: deterministic tightening with traceable torque/angle evidence.</li>
-    </ul>
+    <p style="margin:10px 0 4px;color:var(--vp-c-text-2);">Workflow: <strong>pick_place</strong> → <strong>connector_insert</strong> → <strong>tighten_screw</strong>. The same three skills run on a different workcell by changing robot profile and force parameters — no code changes.</p>
   </div>
 </section>
 
+<!-- ── WHY IT MATTERS ── -->
 <section class="section">
-  <h2 id="agent">Why agent orchestration matters</h2>
-  <p>Agent orchestration is not just a recommendation — it is how application teams scale delivery. The agent automates the integration work (plan/match/execute/recover) while RSS keeps each skill <b>modular, evidence-backed, and governable</b>.</p>
-  <ul>
-    <li><b>Faster iteration</b>: failures become parameter updates with evidence, not weeks of re-coding.</li>
-    <li><b>Safer reuse</b>: constraints and maturity gates reduce deployment risk across variants.</li>
-    <li><b>Portable delivery</b>: the same plan can run on different workcells by swapping skill bindings.</li>
+  <h2 id="why">Why This Approach Scales</h2>
+  <ul class="checklist">
+    <li><strong>Faster iteration</strong> — failures become parameter updates with evidence, not weeks of re-coding.</li>
+    <li><strong>Safer reuse</strong> — constraint declarations and maturity gates reduce deployment risk across robot variants.</li>
+    <li><strong>Portable delivery</strong> — the same task plan runs on different workcells by swapping robot profiles.</li>
+    <li><strong>Continuous quality</strong> — governance state updates automatically as more runs accumulate; degradation is caught before it becomes a production incident.</li>
   </ul>
 </section>
 
+<!-- ── NEXT STEPS ── -->
 <section class="section">
-  <h2 id="next">Next steps</h2>
-  <p>Start from <a href="skills.html">Certified Skills</a>, open the <a href="/viewer/">Evidence Viewer</a>, and reuse skills via parameters and constraints. When ready, standardize the contract via RSP and promote maturity through validation → certification.</p>
+  <h2 id="next">Get Started</h2>
+  <div class="grid grid-3">
+    <a class="card link-card" href="skills.html">
+      <div class="card-title">Browse Skill Catalog</div>
+      <div class="card-desc">Find certified skills by category, robot, or keyword. Filter by maturity and evidence level.</div>
+    </a>
+    <a class="card link-card" href="lifecycle.html">
+      <div class="card-title">Understand the Lifecycle</div>
+      <div class="card-desc">How skills go from registered to certified — and what governance means for deployment reliability.</div>
+    </a>
+    <a class="card link-card" href="platform.html">
+      <div class="card-title">Platform &amp; Evidence Viewer</div>
+      <div class="card-desc">Browse run records, inspect artifacts, and review governance snapshots for any certified skill.</div>
+    </a>
+  </div>
 </section>
+
 </main>
-<aside class="toc" aria-label="ON THIS PAGE">
+<aside class="toc" aria-label="On this page">
 <div class="toc-title">ON THIS PAGE</div>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.77"></script>
+<script src="../assets/config.js?v=6.79"></script>
+<script src="../assets/js/site.js?v=6.79"></script>
 </body>
 </html>
