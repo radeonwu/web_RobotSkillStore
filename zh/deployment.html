@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>用户指南 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -13,17 +13,7 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">首页</a>
-<a class="toplink" href="lifecycle.html">技能生命周期</a>
-<a class="toplink" href="platform.html">平台</a>
-<a class="toplink" href="concepts.html">概念</a>
-<a class="toplink" href="skills.html">技能目录</a>
-<a class="toplink" href="developers.html">技能供应商</a>
-<a class="toplink active" href="deployment.html">用户指南</a>
-<a class="toplink" href="docs/index.html">文档</a>
-<a class="toplink" href="contact.html">联系</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="skills.html">技能目录</a><a class="toplink active" href="deployment.html">用户指南</a><a class="toplink" href="developers.html">技能供应商</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="concepts.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
 <div class="top-actions">
 <button type="button" class="iconbtn" id="langToggle" title="Language" aria-label="Switch language" data-current="zh"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button type="button" class="iconbtn" id="themeToggle" title="Appearance" aria-label="Toggle theme"><span class="icon">☾</span><span class="label">Appearance</span></button>
@@ -32,14 +22,6 @@
 </header>
 <div class="layout">
 <main class="content">
-
-<section class="section-plain">
-<h1>用户指南</h1>
-<div class="onboarding">
-  <p>已认证的 RSS 技能是可复用的构建模块——通过修改参数跨机器人、跨工位、跨变体部署，无需重写程序。</p>
-  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期</strong></div><div class="rss-lifecycle-bar compact" data-stage="deploy" data-compact="1"></div></div>
-</div>
-</section>
 
 <!-- ── 行业应用场景 ── -->
 <section class="section">
@@ -104,12 +86,118 @@
   </div>
 </section>
 
-<!-- ── 演示视频 ── -->
+<!-- ── 演示完整流程 ── -->
 <section class="section">
   <h2 id="demo">示例：UR5 + RG2 连接器装配</h2>
-  <div class="video-card">
-    <video controls preload="metadata" src="../assets/media/ur5_rg2_demo.mp4" style="width:100%;border-radius:12px;"></video>
-    <p style="margin:10px 0 4px;color:var(--vp-c-text-2);">工作流：<strong>pick_place</strong> → <strong>connector_insert</strong> → <strong>tighten_screw</strong>。同一套技能在不同工位通过切换机器人配置文件与力参数运行——无需修改代码。</p>
+  <p style="margin:0 0 22px;color:var(--vp-c-text-2);font-size:14px;">完整部署流程演练——从任务目标到证据记录，对应上方流程图的每个步骤。</p>
+
+  <div style="display:flex;flex-direction:column;gap:0;">
+
+    <!-- 1 任务 -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">1</div>
+        <div style="width:2px;flex:1;background:var(--vp-c-divider);margin:4px 0;min-height:28px;"></div>
+      </div>
+      <div style="padding:4px 0 22px;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">任务</div>
+        <div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:12px 16px;font-size:14px;">
+          <strong>目标：</strong>在 UR5 2 号工位完成线束连接器装配<br>
+          <span style="color:var(--vp-c-text-2);font-size:13px;">3 步序列——定位连接器、柔顺插入、扭矩紧固</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 选取技能 -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">2</div>
+        <div style="width:2px;flex:1;background:var(--vp-c-divider);margin:4px 0;min-height:28px;"></div>
+      </div>
+      <div style="padding:4px 0 22px;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">选取技能</div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:9px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <code style="flex-shrink:0;">pick_place</code>
+            <span style="color:var(--vp-c-text-2);font-size:13px;flex:1;">v1.2.0 — 2.5D 视觉引导从托盘抓取连接器</span>
+            <span style="font-size:11px;background:#22c55e22;color:#16a34a;border-radius:4px;padding:2px 8px;font-weight:600;flex-shrink:0;">已认证</span>
+          </div>
+          <div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:9px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <code style="flex-shrink:0;">connector_insert</code>
+            <span style="color:var(--vp-c-text-2);font-size:13px;flex:1;">v2.1.0 — 带深度反馈的柔顺力控插入</span>
+            <span style="font-size:11px;background:#22c55e22;color:#16a34a;border-radius:4px;padding:2px 8px;font-weight:600;flex-shrink:0;">已认证</span>
+          </div>
+          <div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:9px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <code style="flex-shrink:0;">tighten_screw</code>
+            <span style="color:var(--vp-c-text-2);font-size:13px;flex:1;">v1.0.3 — 带圈数确认的扭矩控制紧固</span>
+            <span style="font-size:11px;background:#22c55e22;color:#16a34a;border-radius:4px;padding:2px 8px;font-weight:600;flex-shrink:0;">已认证</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 配置 -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">3</div>
+        <div style="width:2px;flex:1;background:var(--vp-c-divider);margin:4px 0;min-height:28px;"></div>
+      </div>
+      <div style="padding:4px 0 22px;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">配置</div>
+        <pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.75;margin:0;overflow-x:auto;white-space:pre;">robot_profile:  ur5_rg2_workcell2
+gripper:        OnRobot RG2
+force_limit:    18 N          # connector_insert 约束
+torque_target:  0.45 N·m     # tighten_screw 目标值
+position_tol:   ±0.4 mm
+vision_mode:    2.5D          # pick_place 深度辅助抓取
+on_failure:     retry(2) → alert</pre>
+        <p style="margin:7px 0 0;color:var(--vp-c-text-2);font-size:13px;">参数将已认证技能绑定至具体机器人与工位——技能代码本身不做任何修改。</p>
+      </div>
+    </div>
+
+    <!-- 4 执行 -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">4</div>
+        <div style="width:2px;flex:1;background:var(--vp-c-divider);margin:4px 0;min-height:28px;"></div>
+      </div>
+      <div style="padding:4px 0 22px;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">执行</div>
+        <video controls preload="metadata" src="../assets/media/ur5_rg2_demo.mp4" style="width:100%;border-radius:8px;display:block;"></video>
+        <p style="margin:8px 0 0;color:var(--vp-c-text-2);font-size:13px;">技能按序执行：<strong>pick_place</strong> → <strong>connector_insert</strong> → <strong>tighten_screw</strong>。每个技能在其声明的约束范围内运行，运行结果自动捕获。</p>
+      </div>
+    </div>
+
+    <!-- 5 恢复（可选） -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-bg-soft);border:2px solid var(--vp-c-divider);color:var(--vp-c-text-2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">↺</div>
+        <div style="width:2px;flex:1;background:var(--vp-c-divider);margin:4px 0;min-height:28px;"></div>
+      </div>
+      <div style="padding:4px 0 22px;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">恢复 <span style="font-weight:400;text-transform:none;letter-spacing:0;">（如需要）</span></div>
+        <div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--vp-c-text-2);">
+          若 <code>connector_insert</code> 超出力限制：RSS 标记该次运行，以放宽后的 <code>force_limit</code> 重试，或提议切换至备选已认证技能（如 <code>connector_insert_compliant_v2</code>）。无需修改代码——仅调整参数即可。
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 证据 -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">5</div>
+      </div>
+      <div style="padding:4px 0 0;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">证据</div>
+        <pre style="background:#0d0d0d;color:#d4d4d4;border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.8;margin:0;overflow-x:auto;white-space:pre;border:1px solid #2a2a2a;">[08:32:11]  pick_place@1.2.0        <span style="color:#4ade80;">通过</span>  force=12.1 N    grasp_conf=0.94
+[08:32:18]  connector_insert@2.1.0  <span style="color:#4ade80;">通过</span>  peak_force=16.8 N  depth_err=0.2 mm
+[08:32:27]  tighten_screw@1.0.3     <span style="color:#4ade80;">通过</span>  torque=0.44 N·m   turns=3
+
+3/3 技能通过 · 运行记录已归档 · 治理快照已更新</pre>
+        <p style="margin:8px 0 0;color:var(--vp-c-text-2);font-size:13px;">所有运行记录自动存储，可在<a href="platform.html">证据查看器</a>中访问。治理状态随运行记录增加自动更新——同一技能在第二个工位复用时，其证据基础同步扩充，无需额外操作。</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -143,13 +231,19 @@
   </div>
 </section>
 
+<footer class="footer">
+<div class="footer-inner">
+<div>Robot Skill Store · build v6.80</div>
+<div class="muted">UI: VitePress-like (no search, no version selector)</div>
+</div>
+</footer>
 </main>
 <aside class="toc" aria-label="本页导航">
 <div class="toc-title">本页导航</div>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/config.js?v=6.79"></script>
-<script src="../assets/js/site.js?v=6.79"></script>
+<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

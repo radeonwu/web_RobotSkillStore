@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>For Suppliers · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -13,17 +13,7 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-  <a class="toplink" href="index.html">Home</a>
-  <a class="toplink" href="lifecycle.html">Skill Lifecycle</a>
-  <a class="toplink" href="platform.html">Platform</a>
-  <a class="toplink" href="concepts.html">Concepts</a>
-  <a class="toplink" href="skills.html">Skill Catalog</a>
-  <a class="toplink active" href="developers.html">For Suppliers</a>
-  <a class="toplink" href="deployment.html">For Users</a>
-  <a class="toplink" href="docs/index.html">Docs</a>
-  <a class="toplink" href="contact.html">Contact</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skill Catalog</a><a class="toplink" href="deployment.html">For Users</a><a class="toplink active" href="developers.html">For Suppliers</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
 <div class="top-actions">
   <button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
   <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
@@ -33,14 +23,6 @@
 
 <div class="layout">
 <main class="content">
-
-<section class="section-plain">
-  <h1>For Skill Suppliers</h1>
-  <div class="onboarding">
-    <p>Publish your robot skill to make it validated, certified, and reusable across robots and teams.</p>
-    <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle</strong></div><div class="rss-lifecycle-bar compact" data-stage="register,validate,certify" data-compact="1"></div></div>
-  </div>
-</section>
 
 <!-- ── WHY SUPPLY TO RSS ── -->
 <section class="section">
@@ -103,16 +85,23 @@
 <!-- ── WHAT RSS VALIDATES ── -->
 <section class="section">
   <h2 id="what-rss-validates">What RSS Validates</h2>
-  <ul class="checklist" style="margin-bottom:14px;">
-    <li><strong>Spec compliance</strong> — interface, constraints, and error schema validated on ingest.</li>
-    <li><strong>Execution outcomes</strong> — every run records outcome, constraint violated, and reason.</li>
-    <li><strong>Artifact integrity</strong> — logs, videos, telemetry linked to their run; immutable after upload.</li>
-    <li><strong>Rolling success rate</strong> — evaluated over a window (e.g. last 30 runs), not single shots.</li>
-    <li><strong>Violation rate</strong> — hard safety violations tracked separately from soft failures.</li>
-    <li><strong>Regression detection</strong> — success rate drops on certified skills trigger DEGRADED automatically.</li>
-  </ul>
-  <div class="callout">
-    <strong>Evidence levels</strong>: as runs accumulate, skills unlock broader deployment permissions and higher trust signals in the catalog.
+  <div class="spec-block">
+    <details>
+      <summary class="spec-block-title">Validation criteria — 6 items <span class="spec-chevron">▾</span></summary>
+      <div style="padding:14px 16px;">
+        <ul class="checklist" style="margin-bottom:14px;">
+          <li><strong>Spec compliance</strong> — interface, constraints, and error schema validated on ingest.</li>
+          <li><strong>Execution outcomes</strong> — every run records outcome, constraint violated, and reason.</li>
+          <li><strong>Artifact integrity</strong> — logs, videos, telemetry linked to their run; immutable after upload.</li>
+          <li><strong>Rolling success rate</strong> — evaluated over a window (e.g. last 30 runs), not single shots.</li>
+          <li><strong>Violation rate</strong> — hard safety violations tracked separately from soft failures.</li>
+          <li><strong>Regression detection</strong> — success rate drops on certified skills trigger DEGRADED automatically.</li>
+        </ul>
+        <div class="callout">
+          <strong>Evidence levels</strong>: as runs accumulate, skills unlock broader deployment permissions and higher trust signals in the catalog.
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -149,7 +138,7 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
   </div>
   <p style="margin:10px 0 0;font-size:13px;color:var(--vp-c-text-2);">
     RSS-kit also scaffolds ROS 2 packages from your spec and can pull existing skill specs from the platform for local development.
-    &nbsp;<a href="docs/index.html" class="link-pill">RSS-kit Docs</a>
+    &nbsp;<a href="docs/rss-kit.html" class="link-pill">RSS-kit Docs</a>
   </p>
 </section>
 
@@ -158,7 +147,8 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
   <h2 id="skill-spec">Skill Spec Format</h2>
   <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">Minimum viable structure — full reference in the docs.</p>
   <div class="spec-block">
-    <div class="spec-block-title">Skill Spec — minimum structure (JSON)</div>
+    <details>
+    <summary class="spec-block-title">Skill Spec — minimum structure (JSON) <span class="spec-chevron">▾</span></summary>
     <pre>{
   "skill_id": "peg_in_hole",
   "version": "1.0.0",
@@ -192,6 +182,7 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
     }
   }
 }</pre>
+    </details>
   </div>
   <p style="margin:12px 0 0 0;font-size:13px;color:var(--vp-c-text-2);">
     Full spec reference: <a href="docs/skill-spec.html" class="link-pill">Skill Spec Docs</a>
@@ -202,9 +193,84 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
 <!-- ── ROBOT COMPATIBILITY ── -->
 <section class="section">
   <h2 id="robot-support">Robot Compatibility</h2>
-  <p style="margin:0 0 8px 0;color:var(--vp-c-text-2);font-size:14px;">Skills declare capability requirements (DoF, payload, FT sensor, end-effector type) and per-robot parameter profiles. Compatibility is resolved at runtime.</p>
-  <p style="margin:0 0 8px 0;color:var(--vp-c-text-2);font-size:14px;"><strong>UR5e, UR10e, UR16e, UR20 · KUKA iiwa7, KR10, KR20, KR200 · ABB IRB1200, IRB2400 · Fanuc LRMate200iD, M10iA, M20iA, R2000iB, ARC Mate 100iD, P250</strong></p>
-  <p style="margin:0;font-size:13px;color:var(--vp-c-text-2);">New model? Add a <code>robot_profiles</code> block with model-specific parameter bounds.</p>
+  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">Skills declare capability requirements (DoF, payload, FT sensor, end-effector type) and per-robot parameter profiles. Compatibility is resolved at runtime.</p>
+
+  <div class="compat-grid">
+
+    <!-- Universal Robots -->
+    <div class="compat-brand-card">
+      <div class="compat-brand-header">
+        <div class="compat-brand-logo ur">UR</div>
+        <div class="compat-brand-name">Universal Robots</div>
+        <div class="compat-brand-count">4 models</div>
+      </div>
+      <table class="compat-table">
+        <thead><tr><th>Model</th><th>DoF</th><th>Payload</th><th>FT Sensor</th></tr></thead>
+        <tbody>
+          <tr><td class="compat-model">UR5e</td>  <td class="compat-dof">6</td><td class="compat-pay">5 kg</td>   <td><span class="compat-ft-yes">✓ built-in</span></td></tr>
+          <tr><td class="compat-model">UR10e</td> <td class="compat-dof">6</td><td class="compat-pay">12.5 kg</td><td><span class="compat-ft-yes">✓ built-in</span></td></tr>
+          <tr><td class="compat-model">UR16e</td> <td class="compat-dof">6</td><td class="compat-pay">16 kg</td>  <td><span class="compat-ft-yes">✓ built-in</span></td></tr>
+          <tr><td class="compat-model">UR20</td>  <td class="compat-dof">6</td><td class="compat-pay">20 kg</td>  <td><span class="compat-ft-yes">✓ built-in</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- KUKA -->
+    <div class="compat-brand-card">
+      <div class="compat-brand-header">
+        <div class="compat-brand-logo kuka">K</div>
+        <div class="compat-brand-name">KUKA</div>
+        <div class="compat-brand-count">4 models</div>
+      </div>
+      <table class="compat-table">
+        <thead><tr><th>Model</th><th>DoF</th><th>Payload</th><th>FT Sensor</th></tr></thead>
+        <tbody>
+          <tr><td class="compat-model">iiwa7</td> <td class="compat-dof">7</td><td class="compat-pay">7 kg</td>   <td><span class="compat-ft-yes">✓ joint torque</span></td></tr>
+          <tr><td class="compat-model">KR10</td>  <td class="compat-dof">6</td><td class="compat-pay">10 kg</td>  <td><span class="compat-ft-opt">optional</span></td></tr>
+          <tr><td class="compat-model">KR20</td>  <td class="compat-dof">6</td><td class="compat-pay">20 kg</td>  <td><span class="compat-ft-opt">optional</span></td></tr>
+          <tr><td class="compat-model">KR200</td> <td class="compat-dof">6</td><td class="compat-pay">200 kg</td> <td><span class="compat-ft-opt">optional</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ABB -->
+    <div class="compat-brand-card">
+      <div class="compat-brand-header">
+        <div class="compat-brand-logo abb">A</div>
+        <div class="compat-brand-name">ABB</div>
+        <div class="compat-brand-count">2 models</div>
+      </div>
+      <table class="compat-table">
+        <thead><tr><th>Model</th><th>DoF</th><th>Payload</th><th>FT Sensor</th></tr></thead>
+        <tbody>
+          <tr><td class="compat-model">IRB1200</td><td class="compat-dof">6</td><td class="compat-pay">7 kg</td> <td><span class="compat-ft-opt">optional</span></td></tr>
+          <tr><td class="compat-model">IRB2400</td><td class="compat-dof">6</td><td class="compat-pay">20 kg</td><td><span class="compat-ft-opt">optional</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fanuc -->
+    <div class="compat-brand-card">
+      <div class="compat-brand-header">
+        <div class="compat-brand-logo fanuc">F</div>
+        <div class="compat-brand-name">Fanuc</div>
+        <div class="compat-brand-count">6 models</div>
+      </div>
+      <table class="compat-table">
+        <thead><tr><th>Model</th><th>DoF</th><th>Payload</th><th>FT Sensor</th></tr></thead>
+        <tbody>
+          <tr><td class="compat-model">LRMate200iD</td>   <td class="compat-dof">6</td><td class="compat-pay">7 kg</td>   <td><span class="compat-ft-opt">optional</span></td></tr>
+          <tr><td class="compat-model">M10iA</td>         <td class="compat-dof">6</td><td class="compat-pay">10 kg</td>  <td><span class="compat-ft-opt">optional</span></td></tr>
+          <tr><td class="compat-model">M20iA</td>         <td class="compat-dof">6</td><td class="compat-pay">20 kg</td>  <td><span class="compat-ft-opt">optional</span></td></tr>
+          <tr><td class="compat-model">R2000iB</td>       <td class="compat-dof">6</td><td class="compat-pay">165 kg</td> <td><span class="compat-ft-opt">optional</span></td></tr>
+          <tr><td class="compat-model">ARC Mate 100iD</td><td class="compat-dof">6</td><td class="compat-pay">12 kg</td>  <td><span class="compat-ft-opt">optional</span></td></tr>
+          <tr><td class="compat-model">P250</td>          <td class="compat-dof">6</td><td class="compat-pay">15 kg</td>  <td><span class="compat-ft-none">—</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  <p class="compat-note">New model? Add a <code>robot_profiles</code> block with model-specific parameter bounds — DoF, payload limit, reach envelope, and FT sensor availability.</p>
 </section>
 
 <!-- ── NEXT STEPS ── -->
@@ -226,13 +292,19 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
   </div>
 </section>
 
+<footer class="footer">
+<div class="footer-inner">
+<div>Robot Skill Store · build v6.80</div>
+<div class="muted">UI: VitePress-like (no search, no version selector)</div>
+</div>
+</footer>
 </main>
 <aside aria-label="On this page" class="toc">
 <div class="toc-title">ON THIS PAGE</div>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/config.js?v=6.79"></script>
-<script src="../assets/js/site.js?v=6.79"></script>
+<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

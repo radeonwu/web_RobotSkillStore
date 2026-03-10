@@ -1,16 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>确定性为何重要 · Robot Skill Store</title>
-  <link rel="stylesheet" href="../../assets/css/style.css?v=6.79"/>
+  <title>确定性为何重要 · RobotSkillStore</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=6.81"/>
   <style>
     /* Embed mode: remove extra margins and keep content tight */
     html,body{height:auto!important;min-height:0!important;}
     body{margin:0;padding:0;display:inline-block;width:100%;}
     .content{max-width:920px;margin:0 auto;padding:18px 18px 24px;}
-    .section{margin-top:14px;}
+    .section{margin-top:6px;padding:8px 0;margin-bottom:4px;}
+    .chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:500;background:var(--vp-c-bg-alt);border:1px solid var(--vp-c-border);color:var(--vp-c-text-2);}
+    .prop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0;}
+    .prop-card{background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-radius:10px;padding:12px 14px;}
+    .prop-card--highlight{border-color:rgba(37,99,235,0.4);background:rgba(37,99,235,0.05);}
+    .prop-title{font-size:13px;font-weight:700;color:var(--vp-c-text-1);margin-bottom:4px;}
+    .prop-body{font-size:13px;color:var(--vp-c-text-2);line-height:1.5;}
   </style>
 <script>
 (function(){
@@ -49,18 +55,23 @@
 <body>
   <main class="content">
 <section class="section-plain">
-<h1>确定性为何重要</h1>
-<p class="lead">在物理世界中，不确定性非常昂贵。确定性是安全与规模化复用的前提。</p>
-</section><section class="section">
-<h2 id="cost">物理失败成本高</h2>
-<p>机器人动作可能损坏硬件、带来安全风险或造成停线。RSS 将确定性视为认证与交付的基本要求。</p>
-</section><section class="section">
-<h2 id="governance">确定性让治理成为可能</h2>
-<p>显式约束 + 证据 + 可复现运行，使得版本对比、门禁阈值、兼容性声明具备工程可操作性。</p>
-</section><section class="section">
-<h2 id="agents">Agent 需要可靠的执行基元</h2>
-<p>Agent 可以决定“做什么”，但执行需要稳定可靠的物理基元。RSS 的技能正是这类可治理的执行基元。</p>
-</section></main>
+<p style="font-size:14px;color:var(--vp-c-text-2);margin:0 0 14px;">确定性不是偏好，而是机器人技能安全认证与生产部署的前提条件。</p>
+<div class="prop-grid" style="grid-template-columns:repeat(3,1fr);">
+  <div class="prop-card">
+    <div class="prop-title">失败代价高</div>
+    <div class="prop-body">机器人动作可能损坏硬件、伤害人员或中断生产线。RSS 将确定性作为认证与部署的前提。</div>
+  </div>
+  <div class="prop-card">
+    <div class="prop-title">支撑治理</div>
+    <div class="prop-body">约束、证据与可重复运行，使版本比较、执行认证门控和兼容性声明成为可能。</div>
+  </div>
+  <div class="prop-card">
+    <div class="prop-title">稳定的 Agent 原语</div>
+    <div class="prop-body">Agent 可决定<em>做什么</em>，但需要稳定可靠的原语来安全执行。RSS 技能提供这些原语。</div>
+  </div>
+</div>
+</section>
+  </main>
 
 <script>
 (function(){

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>RSS-kit · RSS 文档</title>
+<link href="../../assets/css/style.css?v=6.81" rel="stylesheet"/>
+</head>
+<body class="docs">
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="../index.html">
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../../assets/media/rss_logo.png"/>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">首页</a><a class="toplink" href="../skills.html">技能目录</a><a class="toplink" href="../deployment.html">用户指南</a><a class="toplink" href="../developers.html">技能供应商</a><a class="toplink" href="../platform.html">平台</a><a class="toplink" href="../lifecycle.html">技能生命周期</a><a class="toplink active" href="../concepts.html">文档</a><a class="toplink" href="../contact.html">联系</a></nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
+</div>
+</div>
+</header>
+<nav class="docs-subnav" aria-label="Docs sections"><div class="docs-subnav-inner"><a class="docs-subnav-link" href="../concepts.html">概念</a><a class="docs-subnav-link" href="rss_whitepaper.html">RSS</a><a class="docs-subnav-link" href="rsp_whitepaper.html">RSP</a><a class="docs-subnav-link active" href="rss-kit.html">RSS-Kit</a><a class="docs-subnav-link" href="index.html">其他文档</a></div></nav>
+<div class="layout">
+<main class="content" id="content">
+
+<section class="section">
+<h2 id="overview">概述</h2>
+<p>RSS-kit 是一个 Python 包，将 RSS 平台 REST API 封装为命令行界面与代码生成器。它处理认证、请求格式化与响应解析——让你的工作流保持在终端中，无需打开浏览器。</p>
+<ul class="checklist">
+  <li><strong>脚手架</strong>——从模板生成完整的技能规范骨架与可选 ROS 2 包。</li>
+  <li><strong>本地校验</strong>——在接触平台之前在本地运行 Schema 与约束检查。</li>
+  <li><strong>提交运行记录</strong>——一条命令发送执行结果、附上制品、触发治理状态更新。</li>
+  <li><strong>拉取规范</strong>——从平台获取任意已注册技能规范，用于本地开发或二次开发。</li>
+</ul>
+</section>
+
+<section class="section">
+<h2 id="install">安装</h2>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:13px;line-height:1.7;overflow-x:auto;">pip install rss-kit</pre>
+<p style="color:var(--vp-c-text-2);font-size:13px;margin-top:8px;">需要 Python 3.9+。所有平台命令需要可访问的 RSS 平台实例（自托管或云端）。</p>
+</section>
+
+<section class="section">
+<h2 id="quickstart">三步快速上手</h2>
+<div class="kit-block">
+  <div class="kit-block-header">rss-kit · 三步工作流</div>
+  <div class="kit-step">
+    <div class="kit-step-num">1</div>
+    <div>
+      <div class="kit-step-label">创建技能脚手架</div>
+      <div class="kit-step-code">rss-kit new peg_in_hole --template assembly --robot UR10e</div>
+      <p style="margin:6px 0 0;font-size:13px;color:var(--vp-c-text-2);">生成 <code>peg_in_hole/</code>，包含预填写的 <code>manifest.json</code>、参数默认值及 ROS 2 包骨架。</p>
+    </div>
+  </div>
+  <div class="kit-step">
+    <div class="kit-step-num">2</div>
+    <div>
+      <div class="kit-step-label">提交前本地校验规范</div>
+      <div class="kit-step-code">rss-kit validate peg_in_hole/manifest.json</div>
+      <p style="margin:6px 0 0;font-size:13px;color:var(--vp-c-text-2);">在本地运行完整的 RSS Schema 检查——在发起网络请求之前发现接口不匹配、缺失约束和错误 Schema 缺口。</p>
+    </div>
+  </div>
+  <div class="kit-step">
+    <div class="kit-step-num">3</div>
+    <div>
+      <div class="kit-step-label">提交执行运行记录</div>
+      <div class="kit-step-code">rss-kit submit --skill peg_in_hole --version 1.0.0 \
+  --outcome SUCCESS --env real_robot \
+  --platform-url http://localhost:8080</div>
+      <p style="margin:6px 0 0;font-size:13px;color:var(--vp-c-text-2);">向平台发送运行记录。提交后治理快照自动重新计算。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<h2 id="commands">命令参考</h2>
+
+<h3 id="cmd-new" style="margin-top:20px;font-size:16px;"><code>rss-kit new</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">从内置模板创建新技能目录。</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit new &lt;skill_id&gt; [OPTIONS]
+
+Options:
+  --template   assembly | manipulation | inspection | dispensing | welding
+  --robot      UR5e | UR10e | KR10 | IRB1200 | LRMate200iD | ...
+  --ros2       同时生成 ROS 2 包骨架（默认：启用）
+  --out        输出目录（默认：./<skill_id>）</pre>
+
+<h3 id="cmd-validate" style="margin-top:24px;font-size:16px;"><code>rss-kit validate</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">本地对清单进行 RSS 技能规范 Schema 检查，不访问平台。</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit validate &lt;manifest.json&gt; [OPTIONS]
+
+Options:
+  --strict     将警告视为错误
+  --verbose    显示完整字段级校验报告</pre>
+
+<h3 id="cmd-register" style="margin-top:24px;font-size:16px;"><code>rss-kit register</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">在平台注册已校验的技能规范（<code>POST /skills</code>），状态设置为 <code>REGISTERED</code>。</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit register &lt;manifest.json&gt; --platform-url &lt;url&gt;</pre>
+
+<h3 id="cmd-submit" style="margin-top:24px;font-size:16px;"><code>rss-kit submit</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">提交执行运行记录（<code>POST /runs</code>），可选附上制品文件。</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit submit [OPTIONS]
+
+必填参数：
+  --skill          skill_id
+  --version        语义化版本号（如 1.0.0）
+  --outcome        SUCCESS | FAILURE
+  --platform-url   RSS 平台基础 URL
+
+可选参数：
+  --env            执行环境标签（如 real_robot, simulation, hil）
+  --constraint     违反的约束 id（outcome 为 FAILURE 时必填）
+  --reason         人类可读的失败说明
+  --artifact       制品文件路径（可重复，上传至运行记录）</pre>
+
+<h3 id="cmd-pull" style="margin-top:24px;font-size:16px;"><code>rss-kit pull</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">从平台获取已有技能规范，用于本地开发或二次开发。</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit pull &lt;skill_id&gt; [--version &lt;semver&gt;] --platform-url &lt;url&gt;</pre>
+
+<h3 id="cmd-status" style="margin-top:24px;font-size:16px;"><code>rss-kit status</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">打印技能版本的当前生命周期状态与治理快照。</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit status &lt;skill_id&gt; --version &lt;semver&gt; --platform-url &lt;url&gt;</pre>
+</section>
+
+<section class="section">
+<h2 id="config">配置文件</h2>
+<p style="color:var(--vp-c-text-2);font-size:14px;">将平台 URL 和凭证保存至 <code>~/.rss-kit/config.toml</code>，避免每次都传入 <code>--platform-url</code>。</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">[platform]
+url     = "http://localhost:8080"
+api_key = ""          # 本地无认证实例留空</pre>
+<p style="color:var(--vp-c-text-2);font-size:13px;margin-top:8px;">命令行参数始终覆盖配置文件中的值。</p>
+</section>
+
+<section class="section">
+<h2 id="lifecycle-integration">与生命周期的对应关系</h2>
+<p style="color:var(--vp-c-text-2);font-size:14px;">RSS-kit 命令直接映射到 RSS 技能生命周期的各个状态转换：</p>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:13px;">
+  <thead>
+    <tr style="border-bottom:2px solid var(--vp-c-divider);">
+      <th style="text-align:left;padding:8px 12px;color:var(--vp-c-text-2);font-weight:600;">命令</th>
+      <th style="text-align:left;padding:8px 12px;color:var(--vp-c-text-2);font-weight:600;">平台接口</th>
+      <th style="text-align:left;padding:8px 12px;color:var(--vp-c-text-2);font-weight:600;">目标状态</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--vp-c-divider);">
+      <td style="padding:8px 12px;"><code>rss-kit register</code></td>
+      <td style="padding:8px 12px;color:var(--vp-c-text-2);"><code>POST /skills</code></td>
+      <td style="padding:8px 12px;">REGISTERED</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--vp-c-divider);">
+      <td style="padding:8px 12px;"><code>rss-kit submit</code>（多次运行）</td>
+      <td style="padding:8px 12px;color:var(--vp-c-text-2);"><code>POST /runs</code></td>
+      <td style="padding:8px 12px;">VALIDATED → CERTIFIED（达到阈值）</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--vp-c-divider);">
+      <td style="padding:8px 12px;"><code>rss-kit submit</code>（失败运行）</td>
+      <td style="padding:8px 12px;color:var(--vp-c-text-2);"><code>POST /runs</code></td>
+      <td style="padding:8px 12px;">DEGRADED（成功率低于阈值时）</td>
+    </tr>
+    <tr>
+      <td style="padding:8px 12px;"><code>rss-kit status</code></td>
+      <td style="padding:8px 12px;color:var(--vp-c-text-2);"><code>GET /skills/{id}/{ver}/governance</code></td>
+      <td style="padding:8px 12px;">只读</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+
+<section class="section">
+<h2 id="example">完整示例：peg-in-hole 提交流程</h2>
+<pre style="background:#0d0d0d;color:#d4d4d4;border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.8;overflow-x:auto;border:1px solid #2a2a2a;"># 1 创建脚手架
+rss-kit new peg_in_hole --template assembly --robot UR10e
+
+# 2 编辑 manifest.json 后本地校验
+rss-kit validate peg_in_hole/manifest.json
+
+# 3 在平台注册
+rss-kit register peg_in_hole/manifest.json --platform-url http://localhost:8080
+
+# 4 提交成功运行记录（每次执行后重复）
+rss-kit submit --skill peg_in_hole --version 1.0.0 \
+  --outcome SUCCESS --env real_robot \
+  --artifact peg_in_hole/run_001_telemetry.json \
+  --platform-url http://localhost:8080
+
+# 5 查看治理快照
+rss-kit status peg_in_hole --version 1.0.0 --platform-url http://localhost:8080</pre>
+</section>
+
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">本页导航</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../../assets/config.js?v=6.81"></script>
+<script src="../../assets/js/site.js?v=6.81"></script>
+</body>
+</html>

@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>技能生命周期 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,7 +14,7 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink active" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">技能目录</a><a class="toplink" href="developers.html">技能供应商</a><a class="toplink" href="deployment.html">用户指南</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="skills.html">技能目录</a><a class="toplink" href="deployment.html">用户指南</a><a class="toplink" href="developers.html">技能供应商</a><a class="toplink" href="platform.html">平台</a><a class="toplink active" href="lifecycle.html">技能生命周期</a><a class="toplink" href="concepts.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -26,30 +26,9 @@
 <div class="layout">
 <main class="content">
 
-<section class="section-plain">
-<h1>技能生命周期</h1>
-<div class="onboarding">
-  <p>RSS 将机器人能力转化为可信、可复用的平台资产：<strong>注册 → 验证 → 认证 → 部署</strong>。</p>
-  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div>
+<div style="padding:18px 0 4px;">
+  <img alt="RSS 技能生命周期总览" class="hero-figure-full" src="../assets/media/rss_skill_lifecycle_v2.svg" style="border:none;border-radius:0;"/>
 </div>
-</section>
-
-<section class="section-plain">
-<h2 id="overview">总览</h2>
-<div class="grid-2" style="align-items:center;">
-<div>
-<ul>
-<li><strong>注册</strong>：发布技能规格——接口、约束、错误模式。</li>
-<li><strong>验证</strong>：提交执行记录（runs），RSS 索引结果与制品。</li>
-<li><strong>认证</strong>：治理快照基于证据颁发认证。</li>
-<li><strong>部署</strong>：用户复用已认证技能，行为可预测、可审计。</li>
-</ul>
-</div>
-<div>
-  <img alt="RSS 技能生命周期总览" class="hero-figure-full" src="../assets/media/rss_skill_lifecycle_overview.png"/>
-</div>
-</div>
-</section>
 
 <div class="concepts-tabs-wrap">
   <h2 id="stages">各阶段详解</h2>
@@ -64,15 +43,21 @@
   </div>
 </div>
 
+<footer class="footer">
+<div class="footer-inner">
+<div>Robot Skill Store · build v6.80</div>
+<div class="muted">UI: VitePress-like (no search, no version selector)</div>
+</div>
+</footer>
 </main>
 <aside aria-label="本页导航" class="toc">
 <div class="toc-title">本页导航</div>
 <nav class="toc-nav" id="tocNav">
-<a class="toc-link" href="#overview">总览</a><a class="toc-link" href="#stages">各阶段详解</a>
+<a class="toc-link" href="#stages">各阶段详解</a>
 </nav>
 </aside>
 </div>
-<script src="../assets/config.js?v=6.79"></script>
-<script src="../assets/js/site.js?v=6.79"></script>
+<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

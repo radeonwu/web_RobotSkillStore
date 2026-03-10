@@ -4,13 +4,19 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Why Determinism Matters · Robot Skill Store</title>
-  <link rel="stylesheet" href="../../assets/css/style.css?v=6.79"/>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=6.81"/>
   <style>
     /* Embed mode: remove extra margins and keep content tight */
     html,body{height:auto!important;min-height:0!important;}
     body{margin:0;padding:0;display:inline-block;width:100%;}
     .content{max-width:920px;margin:0 auto;padding:18px 18px 24px;}
-    .section{margin-top:14px;}
+    .section{margin-top:6px;padding:8px 0;margin-bottom:4px;}
+    .chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:500;background:var(--vp-c-bg-alt);border:1px solid var(--vp-c-border);color:var(--vp-c-text-2);}
+    .prop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0;}
+    .prop-card{background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-radius:10px;padding:12px 14px;}
+    .prop-card--highlight{border-color:rgba(37,99,235,0.4);background:rgba(37,99,235,0.05);}
+    .prop-title{font-size:13px;font-weight:700;color:var(--vp-c-text-1);margin-bottom:4px;}
+    .prop-body{font-size:13px;color:var(--vp-c-text-2);line-height:1.5;}
   </style>
 <script>
 (function(){
@@ -49,18 +55,23 @@
 <body>
   <main class="content">
 <section class="section-plain">
-<h1>Why Determinism Matters</h1>
-<p class="lead">In the physical world, uncertainty is expensive. Determinism is a safety and scalability requirement.</p>
-</section><section class="section">
-<h2 id="cost">Physical failure cost is high</h2>
-<p>Robot actions can damage hardware, harm people, or stop production. RSS treats determinism as a prerequisite for certification and deployment.</p>
-</section><section class="section">
-<h2 id="governance">Determinism enables governance</h2>
-<p>Constraints, evidence, and repeatable runs make it possible to compare versions, enforce gates, and provide compatibility statements.</p>
-</section><section class="section">
-<h2 id="agents">Agents need reliable primitives</h2>
-<p>Agents can decide <em>what</em> to do, but they need stable primitives to execute safely. RSS skills provide those primitives.</p>
-</section></main>
+<p style="font-size:14px;color:var(--vp-c-text-2);margin:0 0 14px;">Determinism is not a preference — it is a prerequisite for safe certification and production deployment of robot skills.</p>
+<div class="prop-grid" style="grid-template-columns:repeat(3,1fr);">
+  <div class="prop-card">
+    <div class="prop-title">High failure cost</div>
+    <div class="prop-body">Robot actions can damage hardware, harm people, or stop production. RSS treats determinism as a prerequisite for certification and deployment.</div>
+  </div>
+  <div class="prop-card">
+    <div class="prop-title">Enables governance</div>
+    <div class="prop-body">Constraints, evidence, and repeatable runs make it possible to compare versions, enforce certification gates, and provide compatibility statements.</div>
+  </div>
+  <div class="prop-card">
+    <div class="prop-title">Stable agent primitives</div>
+    <div class="prop-body">Agents can decide <em>what</em> to do, but they need stable, reliable primitives to execute safely. RSS skills provide those primitives.</div>
+  </div>
+</div>
+</section>
+  </main>
 
 <script>
 (function(){

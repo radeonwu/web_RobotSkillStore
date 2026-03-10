@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>What is a Robot Skill? · Robot Skill Store</title>
+  <title>Why RSS · Robot Skill Store</title>
   <link rel="stylesheet" href="../../assets/css/style.css?v=6.81"/>
   <style>
     /* Embed mode: remove extra margins and keep content tight */
@@ -55,67 +55,34 @@
 <body>
   <main class="content">
 <section class="section-plain">
-
-<div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-left:4px solid var(--vp-c-brand);border-radius:10px;padding:14px 16px;margin-bottom:12px;">
-  <p style="font-size:15px;font-weight:600;color:var(--vp-c-text-1);margin:0 0 5px;">A Robot Skill is an execution primitive that can be validated, certified, and reused across deployments.</p>
-  <p style="font-size:13px;color:var(--vp-c-text-2);margin:0;">Executable on real robots · Deterministic behavior (within declared constraints) · Explicit preconditions, safety limits, and I/O schema · Verifiable through evidence artifacts and metrics</p>
-</div>
-
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;">
-  <div style="background:rgba(220,38,38,0.05);border:1px solid rgba(220,38,38,0.2);border-radius:10px;padding:12px 14px;">
-    <p style="font-size:11px;font-weight:700;color:#dc2626;margin:0 0 8px;text-transform:uppercase;letter-spacing:0.06em;">&#10005; Not just a&hellip;</p>
-    <ul style="margin:0 0 0 14px;padding:0;font-size:13px;color:var(--vp-c-text-2);line-height:1.65;">
-      <li>Action script or trajectory</li>
-      <li>One-off demo or prototype</li>
-      <li>Hardcoded, non-transferable program</li>
-    </ul>
-  </div>
-  <div style="background:rgba(37,99,235,0.05);border:1px solid rgba(37,99,235,0.25);border-radius:10px;padding:12px 14px;">
-    <p style="font-size:11px;font-weight:700;color:#2563eb;margin:0 0 8px;text-transform:uppercase;letter-spacing:0.06em;">&#10003; A Skill is&hellip;</p>
-    <ul style="margin:0 0 0 14px;padding:0;font-size:13px;color:var(--vp-c-text-2);line-height:1.65;">
-      <li>Callable, evaluable, transferable</li>
-      <li>Constrained by explicit contracts</li>
-      <li>Certified by evidence, not reputation</li>
-    </ul>
-  </div>
-</div>
-
-</section>
-<section class="section">
+<p style="font-size:14px;color:var(--vp-c-text-2);margin:0 0 14px;">Without a shared standard, robot skills remain locked to projects, teams, and specific hardware. RSS addresses the four core gaps:</p>
 <div class="prop-grid">
   <div class="prop-card">
-    <div class="prop-title">I/O Semantics</div>
-    <div class="prop-body">Clear input/output schema and constraints define the skill's interface and make it composable across systems.</div>
+    <div class="prop-title">No reusability</div>
+    <div class="prop-body">Skills don't transfer across robots or teams. Every deployment rebuilds from scratch, with no shared contract to rely on.</div>
   </div>
   <div class="prop-card">
-    <div class="prop-title">Implementation freedom</div>
-    <div class="prop-body">The implementation may use rules, RL, VLA, world models, or hybrids — the interface contract stays fixed.</div>
+    <div class="prop-title">No structure</div>
+    <div class="prop-body">Safety constraints live in comments and tribal knowledge, not in enforceable, machine-readable contracts.</div>
   </div>
   <div class="prop-card">
-    <div class="prop-title">Measurable quality</div>
-    <div class="prop-body">Success rate, applicability domain, and risk boundaries are first-class properties, not afterthoughts.</div>
+    <div class="prop-title">No evidence</div>
+    <div class="prop-body">A README is not a guarantee. Certification requires measurable, repeatable evidence from real runs.</div>
   </div>
-  <div class="prop-card">
-    <div class="prop-title">Agent-ready orchestration</div>
-    <div class="prop-body">Skills are schedulable, composable, and replaceable — enabling safe agent-driven workflows.</div>
+  <div class="prop-card prop-card--highlight">
+    <div class="prop-title">RSS fixes this</div>
+    <div class="prop-body">Skills become first-class assets: evidence-backed, certified, and composable across organizations.</div>
   </div>
 </div>
 </section>
-<section class="section">
-<p style="font-size:13px;color:var(--vp-c-text-2);margin:0;">When execution cost and risk are high, validation and governance become non-negotiable. RSS exists to make robot skills portable and trustworthy.</p>
-</section>
   </main>
-
 <script>
 (function(){
   function calc(){
-    var b = document.body;
-    var e = document.documentElement;
     return Math.max(
-      b ? (b.scrollHeight||0) : 0,
-      e ? (e.scrollHeight||0) : 0,
-      b ? (b.offsetHeight||0) : 0,
-      e ? (e.offsetHeight||0) : 0
+      document.documentElement.scrollHeight||0,
+      document.body ? (document.body.scrollHeight||0) : 0,
+      document.body ? (document.body.offsetHeight||0) : 0
     );
   }
 

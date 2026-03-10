@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>概念与边界 · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
+<title>概念与边界 · RobotSkillStore</title>
+<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,7 +14,7 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="concepts.html">概念</a><a class="toplink" href="skills.html">技能目录</a><a class="toplink" href="developers.html">技能供应商</a><a class="toplink" href="deployment.html">用户指南</a><a class="toplink" href="docs/index.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="skills.html">技能目录</a><a class="toplink" href="deployment.html">用户指南</a><a class="toplink" href="developers.html">技能供应商</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="concepts.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -23,6 +23,7 @@
 </div>
 </div>
 </header>
+<nav class="docs-subnav" aria-label="Docs sections"><div class="docs-subnav-inner"><a class="docs-subnav-link active" href="concepts.html">概念</a><a class="docs-subnav-link" href="docs/rss_whitepaper.html">RSS</a><a class="docs-subnav-link" href="docs/rsp_whitepaper.html">RSP</a><a class="docs-subnav-link" href="docs/rss-kit.html">RSS-Kit</a><a class="docs-subnav-link" href="docs/index.html">其他文档</a></div></nav>
 <div class="layout">
 <main class="content">
 
@@ -30,20 +31,11 @@
 
 
 
-<section class="section-plain">
-<h1>概念与边界</h1>
-<div class="onboarding">
-  <p><strong>目的</strong>RSS 是平台，而不是单个项目或工具包。</p>
-  <p><strong>本页内容</strong>定义与边界：让“技能”成为可迁移、可治理、可认证的资产，从而跨组织复用。</p>
-  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期锚点</strong></div><div class="rss-lifecycle-bar compact" data-stage="all" data-compact="1"></div></div>
-  </div>
-</section>
-
-<p class="lead">Robot Skill Store（RSS）的核心定义与边界说明。</p>
 <div class="concepts-tabs-wrap">
-  <h2 id="pages">页面</h2>
+  <p style="font-size:14px;color:var(--vp-c-text-2);margin:0 0 14px;">使机器人技能在组织间可移植、可治理、可认证的核心定义与边界。</p>
   <div class="concept-tabs" role="tablist" aria-label="概念页面">
     <button class="tab-btn active" type="button" role="tab" aria-selected="true" data-tab="robot-skill" data-src="concepts/embed-what-is-robot-skill.html">什么是 Robot Skill</button>
+    <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="why-rss" data-src="concepts/embed-why-rss.html">为什么需要 RSS</button>
     <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="vs-llm" data-src="concepts/embed-robot-skill-vs-llm-skill.html">Robot Skill vs LLM Skill</button>
     <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="determinism" data-src="concepts/embed-why-determinism-matters.html">确定性为何重要</button>
     <button class="tab-btn" type="button" role="tab" aria-selected="false" data-tab="skill-task" data-src="concepts/embed-skill-task-program.html">Skill ≠ Task ≠ Program</button>
@@ -58,5 +50,6 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/js/site.js?v=6.79"></script></body>
+<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.81"></script></body>
 </html>

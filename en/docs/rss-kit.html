@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>RSS-kit · RSS Docs</title>
+<link href="../../assets/css/style.css?v=6.81" rel="stylesheet"/>
+</head>
+<body class="docs">
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="../index.html">
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../../assets/media/rss_logo.png"/>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">Home</a><a class="toplink" href="../skills.html">Skill Catalog</a><a class="toplink" href="../deployment.html">For Users</a><a class="toplink" href="../developers.html">For Suppliers</a><a class="toplink" href="../platform.html">Platform</a><a class="toplink" href="../lifecycle.html">Skill Lifecycle</a><a class="toplink active" href="../concepts.html">Docs</a><a class="toplink" href="../contact.html">Contact</a></nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
+</div>
+</div>
+</header>
+<nav class="docs-subnav" aria-label="Docs sections"><div class="docs-subnav-inner"><a class="docs-subnav-link" href="../concepts.html">Concepts</a><a class="docs-subnav-link" href="rss_whitepaper.html">RSS</a><a class="docs-subnav-link" href="rsp_whitepaper.html">RSP</a><a class="docs-subnav-link active" href="rss-kit.html">RSS-Kit</a><a class="docs-subnav-link" href="index.html">Legacy Docs</a></div></nav>
+<div class="layout">
+<main class="content" id="content">
+
+<section class="section">
+<h2 id="overview">Overview</h2>
+<p>RSS-kit is a Python package that wraps the RSS Platform REST API with a command-line interface and a code generator. It handles authentication, request formatting, and response parsing — so your workflow stays in the terminal, not a browser.</p>
+<ul class="checklist">
+  <li><strong>Scaffold</strong> — generate a complete skill spec skeleton and optional ROS 2 package from a template.</li>
+  <li><strong>Validate locally</strong> — run schema and constraint checks before touching the platform.</li>
+  <li><strong>Submit runs</strong> — post execution outcomes, attach artifacts, and trigger governance recomputation in one command.</li>
+  <li><strong>Pull specs</strong> — fetch any registered skill spec from the platform for local development or forking.</li>
+</ul>
+</section>
+
+<section class="section">
+<h2 id="install">Installation</h2>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:13px;line-height:1.7;overflow-x:auto;">pip install rss-kit</pre>
+<p style="color:var(--vp-c-text-2);font-size:13px;margin-top:8px;">Requires Python 3.9+. All platform commands require a reachable RSS Platform instance (self-hosted or cloud).</p>
+</section>
+
+<section class="section">
+<h2 id="quickstart">3-Step Quickstart</h2>
+<div class="kit-block">
+  <div class="kit-block-header">rss-kit · 3-step workflow</div>
+  <div class="kit-step">
+    <div class="kit-step-num">1</div>
+    <div>
+      <div class="kit-step-label">Scaffold a new skill</div>
+      <div class="kit-step-code">rss-kit new peg_in_hole --template assembly --robot UR10e</div>
+      <p style="margin:6px 0 0;font-size:13px;color:var(--vp-c-text-2);">Creates <code>peg_in_hole/</code> with a pre-filled <code>manifest.json</code>, parameter defaults, and a ROS 2 package skeleton.</p>
+    </div>
+  </div>
+  <div class="kit-step">
+    <div class="kit-step-num">2</div>
+    <div>
+      <div class="kit-step-label">Validate the spec before submitting</div>
+      <div class="kit-step-code">rss-kit validate peg_in_hole/manifest.json</div>
+      <p style="margin:6px 0 0;font-size:13px;color:var(--vp-c-text-2);">Runs the full RSS schema check locally — catches interface mismatches, missing constraints, and error schema gaps before any network call.</p>
+    </div>
+  </div>
+  <div class="kit-step">
+    <div class="kit-step-num">3</div>
+    <div>
+      <div class="kit-step-label">Submit an execution run</div>
+      <div class="kit-step-code">rss-kit submit --skill peg_in_hole --version 1.0.0 \
+  --outcome SUCCESS --env real_robot \
+  --platform-url http://localhost:8080</div>
+      <p style="margin:6px 0 0;font-size:13px;color:var(--vp-c-text-2);">Posts a run record to the platform. Governance snapshot is recomputed automatically after submission.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<h2 id="commands">Command Reference</h2>
+
+<h3 id="cmd-new" style="margin-top:20px;font-size:16px;"><code>rss-kit new</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">Scaffold a new skill directory from a built-in template.</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit new &lt;skill_id&gt; [OPTIONS]
+
+Options:
+  --template   assembly | manipulation | inspection | dispensing | welding
+  --robot      UR5e | UR10e | KR10 | IRB1200 | LRMate200iD | ...
+  --ros2       also generate a ROS 2 package skeleton (default: true)
+  --out        output directory (default: ./<skill_id>)</pre>
+
+<h3 id="cmd-validate" style="margin-top:24px;font-size:16px;"><code>rss-kit validate</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">Check a manifest against the RSS skill spec schema without contacting the platform.</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit validate &lt;manifest.json&gt; [OPTIONS]
+
+Options:
+  --strict     treat warnings as errors
+  --verbose    show full field-level validation report</pre>
+
+<h3 id="cmd-register" style="margin-top:24px;font-size:16px;"><code>rss-kit register</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">Register a validated skill spec on the platform (<code>POST /skills</code>). Sets state to <code>REGISTERED</code>.</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit register &lt;manifest.json&gt; --platform-url &lt;url&gt;</pre>
+
+<h3 id="cmd-submit" style="margin-top:24px;font-size:16px;"><code>rss-kit submit</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">Submit an execution run record (<code>POST /runs</code>). Optionally attach artifact files.</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit submit [OPTIONS]
+
+Required:
+  --skill          skill_id
+  --version        semver string (e.g. 1.0.0)
+  --outcome        SUCCESS | FAILURE
+  --platform-url   base URL of the RSS Platform
+
+Optional:
+  --env            execution environment tag (e.g. real_robot, simulation, hil)
+  --constraint     violated constraint id (required if outcome is FAILURE)
+  --reason         human-readable failure note
+  --artifact       path to artifact file (repeatable; uploads to run record)</pre>
+
+<h3 id="cmd-pull" style="margin-top:24px;font-size:16px;"><code>rss-kit pull</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">Fetch an existing skill spec from the platform for local development or forking.</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit pull &lt;skill_id&gt; [--version &lt;semver&gt;] --platform-url &lt;url&gt;</pre>
+
+<h3 id="cmd-status" style="margin-top:24px;font-size:16px;"><code>rss-kit status</code></h3>
+<p style="color:var(--vp-c-text-2);font-size:14px;">Print the current lifecycle state and governance snapshot for a skill version.</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">rss-kit status &lt;skill_id&gt; --version &lt;semver&gt; --platform-url &lt;url&gt;</pre>
+</section>
+
+<section class="section">
+<h2 id="config">Configuration</h2>
+<p style="color:var(--vp-c-text-2);font-size:14px;">Store your platform URL and credentials in <code>~/.rss-kit/config.toml</code> to avoid passing <code>--platform-url</code> on every command.</p>
+<pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.7;overflow-x:auto;">[platform]
+url     = "http://localhost:8080"
+api_key = ""          # leave empty for unauthenticated local instances</pre>
+<p style="color:var(--vp-c-text-2);font-size:13px;margin-top:8px;">Command-line flags always override the config file.</p>
+</section>
+
+<section class="section">
+<h2 id="lifecycle-integration">Lifecycle Integration</h2>
+<p style="color:var(--vp-c-text-2);font-size:14px;">RSS-kit maps directly onto the RSS skill lifecycle. Each command targets a specific state transition:</p>
+<div style="overflow-x:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:13px;">
+  <thead>
+    <tr style="border-bottom:2px solid var(--vp-c-divider);">
+      <th style="text-align:left;padding:8px 12px;color:var(--vp-c-text-2);font-weight:600;">Command</th>
+      <th style="text-align:left;padding:8px 12px;color:var(--vp-c-text-2);font-weight:600;">Platform call</th>
+      <th style="text-align:left;padding:8px 12px;color:var(--vp-c-text-2);font-weight:600;">Resulting state</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--vp-c-divider);">
+      <td style="padding:8px 12px;"><code>rss-kit register</code></td>
+      <td style="padding:8px 12px;color:var(--vp-c-text-2);"><code>POST /skills</code></td>
+      <td style="padding:8px 12px;">REGISTERED</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--vp-c-divider);">
+      <td style="padding:8px 12px;"><code>rss-kit submit</code> (×N runs)</td>
+      <td style="padding:8px 12px;color:var(--vp-c-text-2);"><code>POST /runs</code></td>
+      <td style="padding:8px 12px;">VALIDATED → CERTIFIED (threshold met)</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--vp-c-divider);">
+      <td style="padding:8px 12px;"><code>rss-kit submit</code> (failure run)</td>
+      <td style="padding:8px 12px;color:var(--vp-c-text-2);"><code>POST /runs</code></td>
+      <td style="padding:8px 12px;">DEGRADED (if success rate drops below threshold)</td>
+    </tr>
+    <tr>
+      <td style="padding:8px 12px;"><code>rss-kit status</code></td>
+      <td style="padding:8px 12px;color:var(--vp-c-text-2);"><code>GET /skills/{id}/{ver}/governance</code></td>
+      <td style="padding:8px 12px;">read-only</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</section>
+
+<section class="section">
+<h2 id="example">Full Example: peg-in-hole submission</h2>
+<pre style="background:#0d0d0d;color:#d4d4d4;border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.8;overflow-x:auto;border:1px solid #2a2a2a;"># 1 scaffold
+rss-kit new peg_in_hole --template assembly --robot UR10e
+
+# 2 edit manifest.json, then validate
+rss-kit validate peg_in_hole/manifest.json
+
+# 3 register on platform
+rss-kit register peg_in_hole/manifest.json --platform-url http://localhost:8080
+
+# 4 submit successful runs (repeat after each execution)
+rss-kit submit --skill peg_in_hole --version 1.0.0 \
+  --outcome SUCCESS --env real_robot \
+  --artifact peg_in_hole/run_001_telemetry.json \
+  --platform-url http://localhost:8080
+
+# 5 check governance snapshot
+rss-kit status peg_in_hole --version 1.0.0 --platform-url http://localhost:8080</pre>
+</section>
+
+</main>
+<aside aria-label="On this page" class="toc">
+<div class="toc-title">ON THIS PAGE</div>
+<nav class="toc-nav" id="tocNav"></nav>
+</aside>
+</div>
+<script src="../../assets/config.js?v=6.81"></script>
+<script src="../../assets/js/site.js?v=6.81"></script>
+</body>
+</html>

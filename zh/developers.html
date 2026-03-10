@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>技能供应商 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.79" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -13,17 +13,7 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-  <a class="toplink" href="index.html">首页</a>
-  <a class="toplink" href="lifecycle.html">技能生命周期</a>
-  <a class="toplink" href="platform.html">平台</a>
-  <a class="toplink" href="concepts.html">概念</a>
-  <a class="toplink" href="skills.html">技能目录</a>
-  <a class="toplink active" href="developers.html">技能供应商</a>
-  <a class="toplink" href="deployment.html">用户指南</a>
-  <a class="toplink" href="docs/index.html">文档</a>
-  <a class="toplink" href="contact.html">联系</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">首页</a><a class="toplink" href="skills.html">技能目录</a><a class="toplink" href="deployment.html">用户指南</a><a class="toplink active" href="developers.html">技能供应商</a><a class="toplink" href="platform.html">平台</a><a class="toplink" href="lifecycle.html">技能生命周期</a><a class="toplink" href="concepts.html">文档</a><a class="toplink" href="contact.html">联系</a></nav>
 <div class="top-actions">
   <button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
   <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
@@ -33,14 +23,6 @@
 
 <div class="layout">
 <main class="content">
-
-<section class="section-plain">
-  <h1>技能供应商</h1>
-  <div class="onboarding">
-    <p>将你的机器人技能发布到 RSS，经过验证与认证，让任何团队都能发现和复用它。</p>
-    <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>生命周期</strong></div><div class="rss-lifecycle-bar compact" data-stage="register,validate,certify" data-compact="1"></div></div>
-  </div>
-</section>
 
 <!-- ── 为什么选择 RSS ── -->
 <section class="section">
@@ -103,16 +85,23 @@
 <!-- ── RSS 验证什么 ── -->
 <section class="section">
   <h2 id="what-rss-validates">RSS 验证什么</h2>
-  <ul class="checklist" style="margin-bottom:14px;">
-    <li><strong>规格合规性</strong>——接口、约束与错误模式在注册时 Schema 校验。</li>
-    <li><strong>执行结果</strong>——每次运行记录结果、违约约束与原因。</li>
-    <li><strong>制品完整性</strong>——日志、视频、遥测与对应 Run 绑定，上传后不可修改。</li>
-    <li><strong>滚动成功率</strong>——在窗口（如最近 30 次）上评估，而非单次结果。</li>
-    <li><strong>违规率</strong>——安全硬限制触发与软失败分别追踪。</li>
-    <li><strong>回归检测</strong>——已认证技能成功率骤降时自动触发 DEGRADED。</li>
-  </ul>
-  <div class="callout">
-    <strong>证据等级</strong>：随 Run 数增加，解锁更广泛的部署许可与更高信任信号。
+  <div class="spec-block">
+    <details>
+      <summary class="spec-block-title">验证详情 — 6 项 <span class="spec-chevron">▾</span></summary>
+      <div style="padding:14px 16px;">
+        <ul class="checklist" style="margin-bottom:14px;">
+          <li><strong>规格合规性</strong>——接口、约束与错误模式在注册时 Schema 校验。</li>
+          <li><strong>执行结果</strong>——每次运行记录结果、违约约束与原因。</li>
+          <li><strong>制品完整性</strong>——日志、视频、遥测与对应 Run 绑定，上传后不可修改。</li>
+          <li><strong>滚动成功率</strong>——在窗口（如最近 30 次）上评估，而非单次结果。</li>
+          <li><strong>违规率</strong>——安全硬限制触发与软失败分别追踪。</li>
+          <li><strong>回归检测</strong>——已认证技能成功率骤降时自动触发 DEGRADED。</li>
+        </ul>
+        <div class="callout">
+          <strong>证据等级</strong>：随 Run 数增加，解锁更广泛的部署许可与更高信任信号。
+        </div>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -149,7 +138,7 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
   </div>
   <p style="margin:10px 0 0;font-size:13px;color:var(--vp-c-text-2);">
     RSS-kit 还可从技能规格脚手架 ROS 2 包，并支持从平台拉取已有规格用于本地开发。
-    &nbsp;<a href="docs/index.html" class="link-pill">RSS-kit 文档</a>
+    &nbsp;<a href="docs/rss-kit.html" class="link-pill">RSS-kit 文档</a>
   </p>
 </section>
 
@@ -158,7 +147,8 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
   <h2 id="skill-spec">技能规格格式</h2>
   <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">最小可行结构示例——完整参考见文档。</p>
   <div class="spec-block">
-    <div class="spec-block-title">技能规格 — 最小结构（JSON）</div>
+    <details>
+    <summary class="spec-block-title">技能规格 — 最小结构（JSON）<span class="spec-chevron">▾</span></summary>
     <pre>{
   "skill_id": "peg_in_hole",
   "version": "1.0.0",
@@ -192,6 +182,7 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
     }
   }
 }</pre>
+    </details>
   </div>
   <p style="margin:12px 0 0 0;font-size:13px;color:var(--vp-c-text-2);">
     完整规格参考：<a href="docs/skill-spec.html" class="link-pill">技能规格文档</a>
@@ -202,9 +193,84 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
 <!-- ── 机器人兼容性 ── -->
 <section class="section">
   <h2 id="robot-support">机器人兼容性</h2>
-  <p style="margin:0 0 8px 0;color:var(--vp-c-text-2);font-size:14px;">技能声明能力需求（自由度、负载、力矩传感器、末端执行器类型）与逐机型参数配置，平台运行时完成匹配。</p>
-  <p style="margin:0 0 8px 0;color:var(--vp-c-text-2);font-size:14px;"><strong>UR5e, UR10e, UR16e, UR20 · KUKA iiwa7, KR10, KR20, KR200 · ABB IRB1200, IRB2400 · Fanuc LRMate200iD, M10iA, M20iA, R2000iB, ARC Mate 100iD, P250</strong></p>
-  <p style="margin:0;font-size:13px;color:var(--vp-c-text-2);">新机型？在技能规格中添加 <code>robot_profiles</code> 字段，声明该机型的参数边界即可。</p>
+  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">技能声明能力需求（自由度、负载、力矩传感器、末端执行器类型）与逐机型参数配置，平台运行时完成匹配。</p>
+
+  <div class="compat-grid">
+
+    <!-- Universal Robots -->
+    <div class="compat-brand-card">
+      <div class="compat-brand-header">
+        <div class="compat-brand-logo ur">UR</div>
+        <div class="compat-brand-name">Universal Robots</div>
+        <div class="compat-brand-count">4 款型号</div>
+      </div>
+      <table class="compat-table">
+        <thead><tr><th>型号</th><th>自由度</th><th>负载</th><th>力矩传感器</th></tr></thead>
+        <tbody>
+          <tr><td class="compat-model">UR5e</td>  <td class="compat-dof">6</td><td class="compat-pay">5 kg</td>   <td><span class="compat-ft-yes">✓ 内置</span></td></tr>
+          <tr><td class="compat-model">UR10e</td> <td class="compat-dof">6</td><td class="compat-pay">12.5 kg</td><td><span class="compat-ft-yes">✓ 内置</span></td></tr>
+          <tr><td class="compat-model">UR16e</td> <td class="compat-dof">6</td><td class="compat-pay">16 kg</td>  <td><span class="compat-ft-yes">✓ 内置</span></td></tr>
+          <tr><td class="compat-model">UR20</td>  <td class="compat-dof">6</td><td class="compat-pay">20 kg</td>  <td><span class="compat-ft-yes">✓ 内置</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- KUKA -->
+    <div class="compat-brand-card">
+      <div class="compat-brand-header">
+        <div class="compat-brand-logo kuka">K</div>
+        <div class="compat-brand-name">KUKA</div>
+        <div class="compat-brand-count">4 款型号</div>
+      </div>
+      <table class="compat-table">
+        <thead><tr><th>型号</th><th>自由度</th><th>负载</th><th>力矩传感器</th></tr></thead>
+        <tbody>
+          <tr><td class="compat-model">iiwa7</td> <td class="compat-dof">7</td><td class="compat-pay">7 kg</td>   <td><span class="compat-ft-yes">✓ 关节力矩</span></td></tr>
+          <tr><td class="compat-model">KR10</td>  <td class="compat-dof">6</td><td class="compat-pay">10 kg</td>  <td><span class="compat-ft-opt">可选</span></td></tr>
+          <tr><td class="compat-model">KR20</td>  <td class="compat-dof">6</td><td class="compat-pay">20 kg</td>  <td><span class="compat-ft-opt">可选</span></td></tr>
+          <tr><td class="compat-model">KR200</td> <td class="compat-dof">6</td><td class="compat-pay">200 kg</td> <td><span class="compat-ft-opt">可选</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ABB -->
+    <div class="compat-brand-card">
+      <div class="compat-brand-header">
+        <div class="compat-brand-logo abb">A</div>
+        <div class="compat-brand-name">ABB</div>
+        <div class="compat-brand-count">2 款型号</div>
+      </div>
+      <table class="compat-table">
+        <thead><tr><th>型号</th><th>自由度</th><th>负载</th><th>力矩传感器</th></tr></thead>
+        <tbody>
+          <tr><td class="compat-model">IRB1200</td><td class="compat-dof">6</td><td class="compat-pay">7 kg</td> <td><span class="compat-ft-opt">可选</span></td></tr>
+          <tr><td class="compat-model">IRB2400</td><td class="compat-dof">6</td><td class="compat-pay">20 kg</td><td><span class="compat-ft-opt">可选</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Fanuc -->
+    <div class="compat-brand-card">
+      <div class="compat-brand-header">
+        <div class="compat-brand-logo fanuc">F</div>
+        <div class="compat-brand-name">Fanuc</div>
+        <div class="compat-brand-count">6 款型号</div>
+      </div>
+      <table class="compat-table">
+        <thead><tr><th>型号</th><th>自由度</th><th>负载</th><th>力矩传感器</th></tr></thead>
+        <tbody>
+          <tr><td class="compat-model">LRMate200iD</td>   <td class="compat-dof">6</td><td class="compat-pay">7 kg</td>   <td><span class="compat-ft-opt">可选</span></td></tr>
+          <tr><td class="compat-model">M10iA</td>         <td class="compat-dof">6</td><td class="compat-pay">10 kg</td>  <td><span class="compat-ft-opt">可选</span></td></tr>
+          <tr><td class="compat-model">M20iA</td>         <td class="compat-dof">6</td><td class="compat-pay">20 kg</td>  <td><span class="compat-ft-opt">可选</span></td></tr>
+          <tr><td class="compat-model">R2000iB</td>       <td class="compat-dof">6</td><td class="compat-pay">165 kg</td> <td><span class="compat-ft-opt">可选</span></td></tr>
+          <tr><td class="compat-model">ARC Mate 100iD</td><td class="compat-dof">6</td><td class="compat-pay">12 kg</td>  <td><span class="compat-ft-opt">可选</span></td></tr>
+          <tr><td class="compat-model">P250</td>          <td class="compat-dof">6</td><td class="compat-pay">15 kg</td>  <td><span class="compat-ft-none">—</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  <p class="compat-note">新机型？在技能规格中添加 <code>robot_profiles</code> 字段，声明该机型的参数边界（自由度、负载上限、工作半径、力矩传感器支持情况）即可。</p>
 </section>
 
 <!-- ── 下一步 ── -->
@@ -226,13 +292,19 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
   </div>
 </section>
 
+<footer class="footer">
+<div class="footer-inner">
+<div>Robot Skill Store · build v6.80</div>
+<div class="muted">UI: VitePress-like (no search, no version selector)</div>
+</div>
+</footer>
 </main>
 <aside aria-label="本页导航" class="toc">
 <div class="toc-title">本页导航</div>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/config.js?v=6.79"></script>
-<script src="../assets/js/site.js?v=6.79"></script>
+<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

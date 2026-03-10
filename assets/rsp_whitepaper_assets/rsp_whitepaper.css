@@ -13,14 +13,45 @@ li { margin: 6px 0; }
 ul.lvl1, ol.lvl1 { margin-left: 32px; }
 ul.lvl2, ol.lvl2 { margin-left: 42px; }
 ul.lvl3, ol.lvl3 { margin-left: 52px; }
-.docx-img { max-width: 100%; height: auto; display:block; margin: 12px auto; }
+/* Images: consistent size cap, rounded corners, shadow, breathing room */
+.docx-img {
+  max-width: 86%;
+  height: auto;
+  display: block;
+  margin: 24px auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 18px rgba(0,0,0,0.09), 0 1px 4px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.07);
+}
+/* Small/narrow images should not stretch — let them be natural width */
+.docx-img[src$="img_0001.png"],
+.docx-img[src$="img_0011.jpeg"],
+.docx-img[src$="img_0012.png"],
+.docx-img[src$="img_0013.png"],
+.docx-img[src$="img_0014.jpeg"],
+.docx-img[src$="img_0032.png"],
+.docx-img[src$="img_0043.png"],
+.docx-img[src$="img_0052.jpeg"],
+.docx-img[src$="img_0057.png"],
+.docx-img[src$="img_0070.png"],
+.docx-img[src$="img_0076.png"] { max-width: 60%; }
+/* Very wide diagrams (flow/architecture charts) benefit from tighter cap */
+.docx-img[src$="img_0017.png"],
+.docx-img[src$="img_0053.png"],
+.docx-img[src$="img_0075.png"] { max-width: 80%; }
+/* Dark-mode: lighten border */
+[data-theme="dark"] .docx-img {
+  border-color: rgba(255,255,255,0.10);
+  box-shadow: 0 2px 18px rgba(0,0,0,0.35);
+}
+/* Paragraphs containing only an image get extra vertical breathing room */
+p:has(> .docx-img:only-child) { margin: 4px 0; }
 a { color: inherit; text-decoration: underline; }
 
 /* --- Top header bar (match RSS whitepaper style) --- */
 .wp-header{position:sticky;top:0;z-index:50;background:#fff;backdrop-filter:none;border-bottom:1px solid #e6e8eb;}
 .wp-header-inner{max-width:1240px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:12px;}
 .wp-header-logo{width:26px;height:26px;border-radius:6px;object-fit:cover;display:inline-block;}
-.wp-header-logo{width:26px;height:26px;border-radius:6px;display:inline-block;object-fit:cover;}
 .wp-header-title{font-weight:750;font-size:16px;letter-spacing:.2px;}
 .wp-header-badge{font-size:12px;padding:3px 8px;border:1px solid #e6e8eb;border-radius:999px;color:#57606a;background:#fff;}
 .wp-header-spacer{flex:1}

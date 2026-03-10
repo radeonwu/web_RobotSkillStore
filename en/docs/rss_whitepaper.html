@@ -6,14 +6,16 @@
   <title>Robot Skill Store (RSS) Whitepaper</title>
   <style>
 :root{
-  --bg:#0b0f14; --panel:#0f1620; --text:#e6edf3; --muted:#9aa4ad;
-  --link:#7cc0ff; --border:rgba(255,255,255,.10); --code:#0a0f18;
+  --bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280;
+  --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa; --anchor-fudge:-8px;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
-@media (prefers-color-scheme: light){
-  :root{--bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa; --anchor-fudge:-8px;}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#0b0f14; --panel:#0f1620; --text:#e6edf3; --muted:#9aa4ad; --link:#7cc0ff; --border:rgba(255,255,255,.10); --code:#0a0f18; --anchor-fudge:0px;}
 }
+[data-theme="dark"]{--bg:#0b0f14; --panel:#0f1620; --text:#e6edf3; --muted:#9aa4ad; --link:#7cc0ff; --border:rgba(255,255,255,.10); --code:#0a0f18; --anchor-fudge:0px;}
+[data-theme="light"]{--bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa; --anchor-fudge:-8px;}
 *{box-sizing:border-box}
 body{margin:0; font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.65;}
 a{color:var(--link); text-decoration:none}
@@ -31,15 +33,6 @@ a:hover{text-decoration:underline}
 .badge{font-size:12px; padding:3px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted);}
 .title{font-weight:700; font-size:16px}
 .spacer{flex:1}
-.lang-toggle{display:flex; gap:8px; align-items:center}
-.btn{
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.02);
-  color:var(--text);
-  padding:6px 10px; border-radius:10px; cursor:pointer;
-  font-size:13px;
-}
-.btn[aria-pressed="true"]{background:var(--panel); border-color:rgba(125,211,252,.35);}
 .main{max-width:1200px; margin:0 auto; padding:16px; display:grid; grid-template-columns: 290px 1fr; gap:16px;}
 @media (max-width: 980px){ .main{grid-template-columns: 1fr;} .toc{position:relative; top:auto; max-height:none;} }
 .toc{
@@ -82,23 +75,28 @@ a:hover{text-decoration:underline}
 /* Anchor offset so headings are not hidden under sticky header */
 h1,h2,h3,h4,h5,h6{scroll-margin-top:calc(var(--anchor-offset,72px) + var(--anchor-fudge,0px));}
 </style>
+<link href="../../assets/css/style.css?v=6.81" rel="stylesheet"/>
 </head>
-<body class="docs" class="rss-whitepaper">
-  <header class="header">
-    <div class="header-inner">
-      <img class="topbar-logo" src="../../assets/media/rss_logo.png" alt="Robot Skill Store logo" />
-      <div class="title">Robot Skill Store (RSS) Whitepaper</div>
-      <span class="badge">RSS Whitepaper</span>
-      <div class="spacer"></div>
-      
-    </div>
-  </header>
+<body class="docs rss-whitepaper">
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="../index.html">
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../../assets/media/rss_logo.png"/>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">Home</a><a class="toplink" href="../skills.html">Skill Catalog</a><a class="toplink" href="../deployment.html">For Users</a><a class="toplink" href="../developers.html">For Suppliers</a><a class="toplink" href="../platform.html">Platform</a><a class="toplink" href="../lifecycle.html">Skill Lifecycle</a><a class="toplink active" href="../concepts.html">Docs</a><a class="toplink" href="../contact.html">Contact</a></nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
+</div>
+</div>
+</header>
+<nav class="docs-subnav" aria-label="Docs sections"><div class="docs-subnav-inner"><a class="docs-subnav-link" href="../concepts.html">Concepts</a><a class="docs-subnav-link active" href="rss_whitepaper.html">RSS</a><a class="docs-subnav-link" href="rsp_whitepaper.html">RSP</a><a class="docs-subnav-link" href="rss-kit.html">RSS-Kit</a><a class="docs-subnav-link" href="index.html">Legacy Docs</a></div></nav>
 <main class="main">
     <aside class="toc" aria-label="Table of Contents">
       <div id="toc-en">
         <h2>Contents</h2>
         <ul>
-  <li><a href="#table-of-contents">Table of Contents</a></li>
   <li><a href="#how-to-read-this-whitepaper">How to Read This Whitepaper</a></li>
   <li><a href="#key-takeaways">Key Takeaways</a></li>
   <li><a href="#chapter-1-executive-summary"><strong>Chapter 1 -</strong> Executive Summary</a></li>
@@ -2091,5 +2089,7 @@ introducing new algorithms, but by introducing <strong>system discipline</strong
   setLang(init === 'cn' ? 'cn' : 'en', true);
 })();
 </script>
+<script src="../../assets/config.js?v=6.81"></script>
+<script src="../../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

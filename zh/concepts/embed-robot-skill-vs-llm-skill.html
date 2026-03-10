@@ -1,16 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Robot Skill vs LLM Skill · Robot Skill Store</title>
-  <link rel="stylesheet" href="../../assets/css/style.css?v=6.79"/>
+  <title>Robot Skill vs LLM Skill · RobotSkillStore</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=6.81"/>
   <style>
     /* Embed mode: remove extra margins and keep content tight */
     html,body{height:auto!important;min-height:0!important;}
     body{margin:0;padding:0;display:inline-block;width:100%;}
     .content{max-width:920px;margin:0 auto;padding:18px 18px 24px;}
-    .section{margin-top:14px;}
+    .section{margin-top:6px;padding:8px 0;margin-bottom:4px;}
+    .chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:500;background:var(--vp-c-bg-alt);border:1px solid var(--vp-c-border);color:var(--vp-c-text-2);}
+    .prop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0;}
+    .prop-card{background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-radius:10px;padding:12px 14px;}
+    .prop-card--highlight{border-color:rgba(37,99,235,0.4);background:rgba(37,99,235,0.05);}
+    .prop-title{font-size:13px;font-weight:700;color:var(--vp-c-text-1);margin-bottom:4px;}
+    .prop-body{font-size:13px;color:var(--vp-c-text-2);line-height:1.5;}
+    /* Match other concept pages: scale down headings and body text */
+    .section-plain h1,.section h1{display:none;}
+    .section h2{font-size:14px;font-weight:700;margin:0 0 5px;letter-spacing:0;}
+    .section p{font-size:13px;color:var(--vp-c-text-2);margin:0 0 8px;line-height:1.55;}
+    .section ul{font-size:13px;color:var(--vp-c-text-2);margin:4px 0 8px 18px;line-height:1.55;}
+    .section li{margin:3px 0;}
+    .section{margin-top:10px;padding-top:0;}
+    .section-plain{padding-bottom:0;}
   </style>
 <script>
 (function(){
@@ -49,49 +63,53 @@
 <body>
   <main class="content">
 <section class="section-plain">
-<h1>Robot Skill vs LLM Skill（RSS 官方 FAQ）</h1>
-
-
-<p class="lead">LLM Skill 负责“决策与编排”，Robot Skill 负责“安全、稳定的物理执行”。</p>
+<h1>机器人技能 vs LLM 技能（RSS 官方 FAQ）</h1>
 </section><section class="section">
-<h2 id="q1">Q1. RSS 中的 Robot Skill 是什么？</h2>
-<p>RSS 中的 Robot Skill 是一种可确定执行的机器人能力单元，在明确约束下控制真实机器人，并能够被验证、认证与复用。</p>
+<h2 id="q1">Q1. RSS 中的机器人技能是什么？</h2>
+<p>RSS 中的机器人技能是一种确定性的、可执行的能力，在显式约束下控制物理机器人。它被设计为可验证、可认证，并可在不同部署场景中复用。</p>
+<ul>
+<li>可在真实机器人上执行</li>
+<li>确定性行为</li>
+<li>显式前置条件与约束</li>
+<li>可通过证据验证</li>
+</ul>
 </section><section class="section">
-<h2 id="q2">Q2. Robot Skill 等同于 LLM Skill 吗？</h2>
-<p><strong>不等同。</strong> LLM Skill 主要作用于认知与工具调用层，而 RSS 的 Robot Skill 直接作用于物理世界中的机器人执行层。</p>
+<h2 id="q2">Q2. 机器人技能与 LLM 技能是同一回事吗？</h2>
+<p><strong>不是。</strong> LLM 技能工作于认知或工具调用层，而 RSS 机器人技能工作于物理执行层。两者解决的是本质不同的问题空间。</p>
 </section><section class="section">
-<h2 id="q3">Q3. 关键差异是什么？</h2>
+<h2 id="q3">Q3. 两者的关键区别是什么？</h2>
 <div class="table-wrap">
 <table class="matrix">
-<thead><tr><th>维度</th><th>LLM Skill</th><th>RSS Robot Skill</th></tr></thead>
+<thead><tr><th>维度</th><th>LLM 技能</th><th>RSS 机器人技能</th></tr></thead>
 <tbody>
 <tr><td>执行域</td><td>语言 / 工具 / API</td><td>物理机器人</td></tr>
 <tr><td>确定性</td><td>概率性</td><td>确定性</td></tr>
-<tr><td>失败成本</td><td>低</td><td>高（安全/硬件/生产）</td></tr>
-<tr><td>评估方式</td><td>语义 / 奖励</td><td>证据驱动的物理指标</td></tr>
-<tr><td>复用门槛</td><td>低</td><td>高（核心护城河）</td></tr>
+<tr><td>失败代价</td><td>低</td><td>高（安全、硬件、生产）</td></tr>
+<tr><td>评估方式</td><td>语义 / 基于奖励</td><td>基于证据的物理指标</td></tr>
+<tr><td>复用壁垒</td><td>低</td><td>高（核心护城河）</td></tr>
 </tbody>
 </table>
 </div>
-<p><em>解释：</em>执行成本与风险越高，验证与治理越关键。</p>
+<p><em>解读：</em>执行成本与风险越高，验证与治理就越关键。</p>
 </section><section class="section">
-<h2 id="q4">Q4. 两者有什么关系？</h2>
-<p>相关但分层：LLM Skill 决定“做什么”，Robot Skill 保证“怎么做才安全可靠”。</p>
+<h2 id="q4">Q4. 机器人技能与 LLM 技能有关联吗？</h2>
+<p>有，但它们工作于不同的层次。</p>
+<p><strong>LLM 技能决定做什么。</strong> <strong>机器人技能保障如何安全可靠地执行。</strong></p>
 </section><section class="section">
-<h2 id="q5">Q5. RSS 能与 Agent/LLM 系统集成吗？</h2>
-<p>可以。RSS 的 Robot Skill 可作为 Agent 系统调用的物理执行基元，但执行过程必须保持可观测、可验证与可治理。</p>
+<h2 id="q5">Q5. RSS 能与基于 Agent 或 LLM 的系统集成吗？</h2>
+<p>可以。RSS 机器人技能可作为基于 Agent 系统的物理执行原语。Agent 可编排技能，但执行必须保持确定性、可观测性和可认证性——这正是 RSS 所提供的。</p>
 </section><section class="section">
 <h2 id="q6">Q6. 为什么不让 LLM 直接控制机器人？</h2>
-<p>探索阶段很有价值，但生产环境风险过高：物理执行有真实后果，安全、可重复与认证都很重要，工业部署需要确定性保障。</p>
+<p>LLM 直接控制机器人在探索阶段可能很强大，但用于生产存在风险。物理执行有真实世界的后果；安全性、可重复性和认证至关重要；工业部署需要确定性保证。</p>
 </section><section class="section">
-<h2 id="q7">Q7. RSS 在 AI/机器人技术栈中定位在哪里？</h2>
-<p>RSS 是连接智能决策系统与物理机器人之间的“技能验证 / 认证 / 交付层”。它不是替代模型或 Agent，而是让它们“落地到真实世界”。</p>
-<p><strong>RSS 不是替代大模型或 Agent，而是为它们提供可信、可落地的物理执行层。</strong></p>
+<h2 id="q7">Q7. RSS 在 AI / 机器人技术栈中的定位是什么？</h2>
+<p>RSS 是智能决策系统与物理机器人之间的技能验证、认证与交付层。它不取代 Agent 或模型——而是将它们锚定于现实。</p>
 </section><section class="section">
-<h2 id="q8">Q8. 为什么强调把 Robot Skill 当作资产？</h2>
-<p>机器人技能构建成本高、验证困难，一旦证明可靠就具备长期价值。RSS 将技能从一次性项目代码，转成可长期复用、可积累的能力资产。</p>
-<p><strong>RSS 将机器人技能视为可认证、可复用的基础设施级能力资产，而非一次性 Demo。</strong></p>
-</section></main>
+<h2 id="q8">Q8. 为什么将机器人技能视为资产？</h2>
+<p>机器人技能构建成本高、验证困难，但一旦经过验证则极具价值。RSS 将机器人技能从项目特定代码转变为可长期积累的能力资产。</p>
+<p><strong>RSS 将机器人技能视为可认证、可复用的基础设施资产，而非演示程序。</strong></p>
+</section>
+  </main>
 
 <script>
 (function(){

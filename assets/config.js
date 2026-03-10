@@ -17,8 +17,14 @@
 window.RSS_API_BASE = window.RSS_API_BASE || "";
 
 // Preferred base URL
-window.RSS_PLATFORM_BASE_URL = window.RSS_PLATFORM_BASE_URL || window.RSS_API_BASE || "";
+window.RSS_PLATFORM_BASE_URL = window.RSS_PLATFORM_BASE_URL || window.RSS_API_BASE || "http://localhost:8080";
 
 // Optional overrides (defaults to platform base)
 window.RSS_VIEWER_BASE_URL = window.RSS_VIEWER_BASE_URL || window.RSS_PLATFORM_BASE_URL || "";
 window.RSS_PUBLIC_BASE_URL = window.RSS_PUBLIC_BASE_URL || window.RSS_PLATFORM_BASE_URL || "";
+
+// Access passkeys — change these before deploying.
+// End-user passkey (skill consumers): grants skill catalog and deployment guide access.
+window.RSS_USER_PASSKEY = window.RSS_USER_PASSKEY || "rss-user-2026";
+// Developer / supplier passkey: grants platform and developer tool access.
+window.RSS_DEV_PASSKEY = window.RSS_DEV_PASSKEY || "rss-dev-2026";

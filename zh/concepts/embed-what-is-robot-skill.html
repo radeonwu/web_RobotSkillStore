@@ -1,16 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>什么是 Robot Skill · Robot Skill Store</title>
-  <link rel="stylesheet" href="../../assets/css/style.css?v=6.79"/>
+  <title>什么是 Robot Skill · RobotSkillStore</title>
+  <link rel="stylesheet" href="../../assets/css/style.css?v=6.81"/>
   <style>
     /* Embed mode: remove extra margins and keep content tight */
     html,body{height:auto!important;min-height:0!important;}
     body{margin:0;padding:0;display:inline-block;width:100%;}
     .content{max-width:920px;margin:0 auto;padding:18px 18px 24px;}
-    .section{margin-top:14px;}
+    .section{margin-top:6px;padding:8px 0;margin-bottom:4px;}
+    .chip{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:500;background:var(--vp-c-bg-alt);border:1px solid var(--vp-c-border);color:var(--vp-c-text-2);}
+    .prop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0;}
+    .prop-card{background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-radius:10px;padding:12px 14px;}
+    .prop-card--highlight{border-color:rgba(37,99,235,0.4);background:rgba(37,99,235,0.05);}
+    .prop-title{font-size:13px;font-weight:700;color:var(--vp-c-text-1);margin-bottom:4px;}
+    .prop-body{font-size:13px;color:var(--vp-c-text-2);line-height:1.5;}
   </style>
 <script>
 (function(){
@@ -49,34 +55,56 @@
 <body>
   <main class="content">
 <section class="section-plain">
-<h1>什么是 Robot Skill？</h1>
-<p class="lead">RSS 中的 Robot Skill 是一种可确定执行的机器人能力单元，在明确约束下控制真实机器人，并能够被验证、认证与复用。</p>
-</section><section class="section">
-<h2 id="definition">定义</h2>
-<p>Robot Skill 是物理执行层的能力基元，具备可验证、可认证、可复用的工程属性。</p>
-<ul>
-<li>可在真实机器人上执行</li>
-<li>确定性行为（在已声明约束内）</li>
-<li>显式前置条件 / 安全边界 / I/O Schema</li>
-<li>可通过证据与指标进行验证</li>
-</ul>
-<h3 id="what" style="margin:12px 0 6px 0;">核心思想（What）- Robot Skill 的重新定义</h3>
-<ul>
-  <li>Skill ≠ 动作脚本 / Trajectory / Demo</li>
-  <li>Skill = <strong>可调用、可评估、可迁移</strong>的能力单元</li>
-</ul>
 
-<h3 id="must-have" style="margin:12px 0 6px 0;">Skill 必须具备</h3>
-<ul>
-  <li><strong>明确的输入 / 输出语义</strong>（I/O schema 与约束）</li>
-  <li><strong>内部实现可多样</strong>：规则 / RL / VLA / World Model / 混合</li>
-  <li><strong>可量化的质量属性</strong>：成功率、适用域、风险边界</li>
-  <li><strong>可被 Agent 调度</strong>：可组合、可替换、可编排</li>
-</ul>
-</section><section class="section">
-<h2 id="why">为什么 RSS 要强调 Skill</h2>
-<p>物理执行的成本与风险远高于软件调用，因此必须引入验证、证据与治理机制。RSS 的目标是让技能可迁移、可信、可规模化复用。</p>
-</section></main>
+<div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-border);border-left:4px solid var(--vp-c-brand);border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+  <p style="font-size:15px;font-weight:600;color:var(--vp-c-text-1);margin:0 0 5px;">机器人技能是一种可被验证、认证并在不同部署场景中复用的执行原语。</p>
+  <p style="font-size:13px;color:var(--vp-c-text-2);margin:0;">可在真实机器人上执行 · 确定性行为（在声明约束范围内）· 显式前置条件、安全限制与 I/O Schema · 可通过证据产物和指标验证</p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;">
+  <div style="background:rgba(220,38,38,0.05);border:1px solid rgba(220,38,38,0.2);border-radius:10px;padding:12px 14px;">
+    <p style="font-size:11px;font-weight:700;color:#dc2626;margin:0 0 8px;text-transform:uppercase;letter-spacing:0.06em;">&#10005; 不只是&hellip;</p>
+    <ul style="margin:0 0 0 14px;padding:0;font-size:13px;color:var(--vp-c-text-2);line-height:1.65;">
+      <li>动作脚本或轨迹</li>
+      <li>一次性演示或原型</li>
+      <li>硬编码、不可迁移的程序</li>
+    </ul>
+  </div>
+  <div style="background:rgba(37,99,235,0.05);border:1px solid rgba(37,99,235,0.25);border-radius:10px;padding:12px 14px;">
+    <p style="font-size:11px;font-weight:700;color:#2563eb;margin:0 0 8px;text-transform:uppercase;letter-spacing:0.06em;">&#10003; 技能是&hellip;</p>
+    <ul style="margin:0 0 0 14px;padding:0;font-size:13px;color:var(--vp-c-text-2);line-height:1.65;">
+      <li>可调用、可评估、可迁移</li>
+      <li>由显式契约约束</li>
+      <li>由证据认证，而非凭声誉</li>
+    </ul>
+  </div>
+</div>
+
+</section>
+<section class="section">
+<div class="prop-grid">
+  <div class="prop-card">
+    <div class="prop-title">I/O 语义</div>
+    <div class="prop-body">明确的输入/输出 Schema 与约束定义了技能接口，使其可跨系统组合。</div>
+  </div>
+  <div class="prop-card">
+    <div class="prop-title">实现自由</div>
+    <div class="prop-body">实现可采用规则、RL、VLA、世界模型或混合方式——接口契约保持不变。</div>
+  </div>
+  <div class="prop-card">
+    <div class="prop-title">可量化质量</div>
+    <div class="prop-body">成功率、适用域与风险边界是一等属性，而非事后补充。</div>
+  </div>
+  <div class="prop-card">
+    <div class="prop-title">Agent 就绪编排</div>
+    <div class="prop-body">技能可调度、可组合、可替换，支持 Agent 驱动的安全工作流。</div>
+  </div>
+</div>
+</section>
+<section class="section">
+<p style="font-size:13px;color:var(--vp-c-text-2);margin:0;">执行成本与风险越高，验证与治理越不可缺。RSS 让机器人技能具备可移植性与可信度。</p>
+</section>
+  </main>
 
 <script>
 (function(){

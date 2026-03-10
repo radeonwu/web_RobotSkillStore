@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Skill ≠ Task ≠ Program · RobotSkillStore</title>
+  <title>为什么需要 RSS · RobotSkillStore</title>
   <link rel="stylesheet" href="../../assets/css/style.css?v=6.81"/>
   <style>
     /* Embed mode: remove extra margins and keep content tight */
@@ -26,14 +26,12 @@
     else root.removeAttribute('data-theme');
   }
 
-  // First paint: URL ?theme=dark|light takes priority.
   try{
     var sp = new URLSearchParams(window.location.search);
     var t = sp.get('theme');
     if(t === 'dark' || t === 'light'){
       apply(t);
     }else{
-      // Fallback: read saved preference (may not work under some file:// settings).
       try{
         var saved = localStorage.getItem('rss_theme');
         if(saved === 'dark' || saved === 'light') apply(saved);
@@ -41,7 +39,6 @@
     }
   }catch(e){}
 
-  // Live updates from parent.
   window.addEventListener('message', function(ev){
     var d = ev && ev.data;
     if(!d || d.type !== 'rss-theme') return;
@@ -55,35 +52,34 @@
 <body>
   <main class="content">
 <section class="section-plain">
-<p style="font-size:14px;color:var(--vp-c-text-2);margin:0 0 14px;">这三个概念经常被混淆，但它们代表机器人软件架构中不同的层次。</p>
-<div class="prop-grid" style="grid-template-columns:repeat(3,1fr);">
+<p style="font-size:14px;color:var(--vp-c-text-2);margin:0 0 14px;">没有统一标准，机器人技能将被锁定在特定项目、团队和硬件中。RSS 解决四个核心痛点：</p>
+<div class="prop-grid">
+  <div class="prop-card">
+    <div class="prop-title">缺乏复用性</div>
+    <div class="prop-body">没有共享契约，技能无法跨机器人或团队迁移，每次部署都需从头重建。</div>
+  </div>
+  <div class="prop-card">
+    <div class="prop-title">缺乏结构</div>
+    <div class="prop-body">安全约束存在于注释和口头传承中，而非可执行的机器可读契约里。</div>
+  </div>
+  <div class="prop-card">
+    <div class="prop-title">缺乏证据</div>
+    <div class="prop-body">README 不是保证，认证需要来自真实运行的可量化、可重复的证据。</div>
+  </div>
   <div class="prop-card prop-card--highlight">
-    <div class="prop-title">技能（Skill）</div>
-    <div class="prop-body">可复用的受约束执行原语，具备显式 I/O、安全限制与证据。RSS 管理与认证的对象。</div>
-  </div>
-  <div class="prop-card">
-    <div class="prop-title">任务（Task）</div>
-    <div class="prop-body">面向目标的工作流，在计划中组合一个或多个技能。任务的抽象层级高于技能。</div>
-  </div>
-  <div class="prop-card">
-    <div class="prop-title">程序（Program）</div>
-    <div class="prop-body">可能包含特定逻辑、胶水代码和环境假设的实现代码。程序本身并不天然具备可复用性或可认证性。</div>
+    <div class="prop-title">RSS 解决这些问题</div>
+    <div class="prop-body">技能成为一等资产：有证据支撑、经过认证、可跨组织组合复用。</div>
   </div>
 </div>
-<p style="font-size:13px;color:var(--vp-c-text-2);margin:12px 0 0;"><strong>启示：</strong>RSS 致力于将程序片段转化为可认证的技能，使人类或 Agent 能够可靠地组合任务。</p>
 </section>
   </main>
-
 <script>
 (function(){
   function calc(){
-    var b = document.body;
-    var e = document.documentElement;
     return Math.max(
-      b ? (b.scrollHeight||0) : 0,
-      e ? (e.scrollHeight||0) : 0,
-      b ? (b.offsetHeight||0) : 0,
-      e ? (e.offsetHeight||0) : 0
+      document.documentElement.scrollHeight||0,
+      document.body ? (document.body.scrollHeight||0) : 0,
+      document.body ? (document.body.offsetHeight||0) : 0
     );
   }
 
@@ -114,7 +110,6 @@
     setTimeout(send, 400);
   });
 
-  // Keep-alive: some browsers don't fire observers reliably under file://
   setInterval(send, 2000);
 })();
 </script>

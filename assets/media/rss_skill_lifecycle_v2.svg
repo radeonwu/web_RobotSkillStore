@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 308" width="900" height="308"
+     font-family="system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c2410c"/><stop offset="1" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1e3a8a"/><stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#92400e"/><stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#14532d"/><stop offset="1" stop-color="#16a34a"/>
+    </linearGradient>
+    <filter id="cs" x="-6%" y="-6%" width="112%" height="122%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#00000018"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="308" fill="#f1f5f9" rx="14"/>
+
+  <!-- Title -->
+  <text x="450" y="37" text-anchor="middle" font-size="21" font-weight="700"
+        fill="#0f172a" letter-spacing="-0.4">RSS: The Skill Lifecycle</text>
+  <line x1="56" y1="50" x2="844" y2="50" stroke="#cbd5e1" stroke-width="1.5"/>
+
+  <!-- Process arrows (drawn first so card edges sit cleanly on top) -->
+  <polygon points="209,158 236,158 244,166 236,174 209,174" fill="#94a3b8"/>
+  <polygon points="434,158 461,158 469,166 461,174 434,174" fill="#94a3b8"/>
+  <polygon points="659,158 686,158 694,166 686,174 659,174" fill="#94a3b8"/>
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- CARD 1 · REGISTER SKILLS                          -->
+  <!-- x=18  y=60  w=189  h=215                          -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <rect x="18" y="60" width="189" height="190" rx="10" fill="white"
+        filter="url(#cs)" stroke="#fed7aa" stroke-width="1.5"/>
+  <!-- Header (66 px, role embedded) -->
+  <rect x="18" y="60" width="189" height="50" rx="10" fill="url(#g1)"/>
+  <circle cx="43" cy="82" r="13" fill="rgba(0,0,0,0.16)"/>
+  <text x="43" y="87" text-anchor="middle" font-size="14" font-weight="800" fill="white">1</text>
+  <text x="64" y="76" font-size="11" font-weight="700" fill="white" letter-spacing="0.6">REGISTER</text>
+  <text x="64" y="90" font-size="11" font-weight="700" fill="white" letter-spacing="0.6">SKILLS</text>
+
+  <!-- Icon background circle -->
+  <circle cx="112" cy="168" r="30" fill="#fff7ed" stroke="#fdba74" stroke-width="1.2"/>
+
+  <!-- ── Robot arm (orange): reaches upper-left, holds spec document ── -->
+  <!-- Base platform -->
+  <rect x="105" y="192" width="14" height="7" rx="2" fill="#ea580c"/>
+  <!-- Arm links (thick rounded polyline = pipe appearance) -->
+  <polyline points="112,192 112,168 97,152"
+            fill="none" stroke="#ea580c" stroke-width="7"
+            stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Joint circles (overlay arm lines) -->
+  <circle cx="112" cy="184" r="5" fill="white" stroke="#ea580c" stroke-width="2.2"/>
+  <circle cx="112" cy="168" r="5" fill="white" stroke="#ea580c" stroke-width="2.2"/>
+  <circle cx="97"  cy="152" r="4" fill="white" stroke="#ea580c" stroke-width="2"/>
+  <!-- End effector: spec/schema document held at wrist -->
+  <rect x="81" y="138" width="17" height="22" rx="2"
+        fill="#fff7ed" stroke="#ea580c" stroke-width="1.6"/>
+  <polygon points="91,138 98,138 98,145" fill="#fdba74"/>
+  <polyline points="91,138 91,145 98,145" fill="none" stroke="#ea580c" stroke-width="1.3"/>
+  <line x1="85" y1="151" x2="96" y2="151" stroke="#ea580c" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="85" y1="155" x2="96" y2="155" stroke="#ea580c" stroke-width="1.3" stroke-linecap="round"/>
+  <line x1="85" y1="159" x2="91" y2="159" stroke="#ea580c" stroke-width="1.3" stroke-linecap="round"/>
+
+  <!-- Description -->
+  <text x="112" y="217" text-anchor="middle" font-size="11.5" font-weight="500" fill="#431407">Define skill spec,</text>
+  <text x="112" y="229" text-anchor="middle" font-size="11.5" font-weight="500" fill="#431407">interface &amp; schema</text>
+
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- CARD 2 · VALIDATE &amp; RUN                       -->
+  <!-- x=243  y=60  w=189  h=215                         -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <rect x="243" y="60" width="189" height="190" rx="10" fill="white"
+        filter="url(#cs)" stroke="#bfdbfe" stroke-width="1.5"/>
+  <rect x="243" y="60" width="189" height="50" rx="10" fill="url(#g2)"/>
+  <circle cx="268" cy="82" r="13" fill="rgba(0,0,0,0.16)"/>
+  <text x="268" y="87" text-anchor="middle" font-size="14" font-weight="800" fill="white">2</text>
+  <text x="289" y="76" font-size="11" font-weight="700" fill="white" letter-spacing="0.6">VALIDATE</text>
+  <text x="289" y="90" font-size="11" font-weight="700" fill="white" letter-spacing="0.6">&amp; RUN</text>
+
+  <circle cx="337" cy="168" r="30" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2"/>
+
+  <!-- ── Robot arm (blue): extends right, fingertip touches test screen ── -->
+  <rect x="330" y="192" width="14" height="7" rx="2" fill="#2563eb"/>
+  <polyline points="337,192 337,168 358,154"
+            fill="none" stroke="#2563eb" stroke-width="7"
+            stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="337" cy="184" r="5" fill="white" stroke="#2563eb" stroke-width="2.2"/>
+  <circle cx="337" cy="168" r="5" fill="white" stroke="#2563eb" stroke-width="2.2"/>
+  <circle cx="358" cy="154" r="4" fill="white" stroke="#2563eb" stroke-width="2"/>
+  <!-- End effector: monitor with execution waveform -->
+  <rect x="360" y="142" width="24" height="18" rx="2"
+        fill="#eff6ff" stroke="#2563eb" stroke-width="1.6"/>
+  <polyline points="363,153 366,147 370,158 373,151 376,155 379,150 383,154"
+            fill="none" stroke="#2563eb" stroke-width="1.3"
+            stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="372" y1="160" x2="372" y2="165" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="367" y1="165" x2="377" y2="165" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round"/>
+
+  <text x="337" y="217" text-anchor="middle" font-size="11.5" font-weight="500" fill="#1e1b4b">Execute &amp; test skills</text>
+  <text x="337" y="229" text-anchor="middle" font-size="11.5" font-weight="500" fill="#1e1b4b">in controlled envs</text>
+
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- CARD 3 · CERTIFY &amp; EVIDENCE                   -->
+  <!-- x=468  y=60  w=189  h=215                         -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <rect x="468" y="60" width="189" height="190" rx="10" fill="white"
+        filter="url(#cs)" stroke="#fde68a" stroke-width="1.5"/>
+  <rect x="468" y="60" width="189" height="50" rx="10" fill="url(#g3)"/>
+  <circle cx="493" cy="82" r="13" fill="rgba(0,0,0,0.16)"/>
+  <text x="493" y="87" text-anchor="middle" font-size="14" font-weight="800" fill="white">3</text>
+  <text x="514" y="76" font-size="11" font-weight="700" fill="white" letter-spacing="0.6">CERTIFY</text>
+  <text x="514" y="90" font-size="11" font-weight="700" fill="white" letter-spacing="0.6">&amp; EVIDENCE</text>
+
+  <circle cx="562" cy="168" r="30" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.2"/>
+
+  <!-- ── Robot arm (amber): raised arm, presents certification badge ── -->
+  <rect x="555" y="192" width="14" height="7" rx="2" fill="#d97706"/>
+  <polyline points="562,192 562,168 578,150"
+            fill="none" stroke="#d97706" stroke-width="7"
+            stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="562" cy="184" r="5" fill="white" stroke="#d97706" stroke-width="2.2"/>
+  <circle cx="562" cy="168" r="5" fill="white" stroke="#d97706" stroke-width="2.2"/>
+  <circle cx="578" cy="150" r="4" fill="white" stroke="#d97706" stroke-width="2"/>
+  <!-- End effector: certification badge/shield held at wrist -->
+  <!-- Badge accent stars -->
+  <circle cx="578" cy="137" r="3.5" fill="#fcd34d"/>
+  <circle cx="565" cy="142" r="2.5" fill="#fde68a"/>
+  <circle cx="591" cy="142" r="2.5" fill="#fde68a"/>
+  <!-- Shield shape -->
+  <path d="M578,141 L588,146 L586,158 L578,163 L570,158 L568,146 Z"
+        fill="#fffbeb" stroke="#d97706" stroke-width="1.6"/>
+  <!-- Checkmark inside shield -->
+  <polyline points="572,154 576,159 585,147"
+            fill="none" stroke="#d97706" stroke-width="2.4"
+            stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="562" y="217" text-anchor="middle" font-size="11.5" font-weight="500" fill="#451a03">Analyze metrics &amp;</text>
+  <text x="562" y="229" text-anchor="middle" font-size="11.5" font-weight="500" fill="#451a03">artifacts; issue cert</text>
+
+
+  <!-- ══════════════════════════════════════════════════ -->
+  <!-- CARD 4 · DEPLOY &amp; REUSE                       -->
+  <!-- x=693  y=60  w=189  h=215                         -->
+  <!-- ══════════════════════════════════════════════════ -->
+  <rect x="693" y="60" width="189" height="190" rx="10" fill="white"
+        filter="url(#cs)" stroke="#bbf7d0" stroke-width="1.5"/>
+  <rect x="693" y="60" width="189" height="50" rx="10" fill="url(#g4)"/>
+  <circle cx="718" cy="82" r="13" fill="rgba(0,0,0,0.16)"/>
+  <text x="718" y="87" text-anchor="middle" font-size="14" font-weight="800" fill="white">4</text>
+  <text x="739" y="76" font-size="11" font-weight="700" fill="white" letter-spacing="0.6">DEPLOY &amp;</text>
+  <text x="739" y="90" font-size="11" font-weight="700" fill="white" letter-spacing="0.6">REUSE SKILLS</text>
+
+  <circle cx="787" cy="168" r="30" fill="#f0fdf4" stroke="#86efac" stroke-width="1.2"/>
+
+  <!-- ── Robot arm (green): extends forward, releases skill package ── -->
+  <rect x="780" y="192" width="14" height="7" rx="2" fill="#16a34a"/>
+  <polyline points="787,192 787,172 810,157"
+            fill="none" stroke="#16a34a" stroke-width="7"
+            stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="787" cy="184" r="5" fill="white" stroke="#16a34a" stroke-width="2.2"/>
+  <circle cx="787" cy="172" r="5" fill="white" stroke="#16a34a" stroke-width="2.2"/>
+  <circle cx="810" cy="157" r="4" fill="white" stroke="#16a34a" stroke-width="2"/>
+  <!-- End effector: skill package being deployed/released -->
+  <!-- Package box -->
+  <rect x="813" y="150" width="14" height="12" rx="2"
+        fill="#f0fdf4" stroke="#16a34a" stroke-width="1.6"/>
+  <!-- Package cross (wrapped gift / sealed skill bundle) -->
+  <line x1="820" y1="150" x2="820" y2="162" stroke="#16a34a" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="813" y1="156" x2="827" y2="156" stroke="#16a34a" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Release arrow + destination -->
+  <line x1="828" y1="156" x2="834" y2="156" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="833,153 833,159 839,156" fill="#16a34a"/>
+  <!-- Destination building (skill user site) -->
+  <rect x="840" y="151" width="12" height="10" rx="1" fill="none" stroke="#16a34a" stroke-width="1.4"/>
+  <rect x="843" y="154" width="3" height="3" rx="0.5" fill="#16a34a" opacity="0.5"/>
+  <rect x="848" y="154" width="3" height="3" rx="0.5" fill="#16a34a" opacity="0.5"/>
+  <rect x="843" y="159" width="3" height="2" rx="0.5" fill="#16a34a" opacity="0.5"/>
+  <rect x="845" y="148" width="8" height="4" rx="1" fill="none" stroke="#16a34a" stroke-width="1.2"/>
+
+  <text x="787" y="217" text-anchor="middle" font-size="11.5" font-weight="500" fill="#052e16">Deploy certified skills</text>
+  <text x="787" y="229" text-anchor="middle" font-size="11.5" font-weight="500" fill="#052e16">to any project, anywhere</text>
+
+
+  <!-- Role labels below cards (cards bottom = y=250) -->
+  <!-- SUPPLIER bracket under card 1 -->
+  <line x1="18"  y1="254" x2="207" y2="254" stroke="#ea580c" stroke-width="1.2" opacity="0.45"/>
+  <line x1="18"  y1="250" x2="18"  y2="254" stroke="#ea580c" stroke-width="1.2" opacity="0.45"/>
+  <line x1="207" y1="250" x2="207" y2="254" stroke="#ea580c" stroke-width="1.2" opacity="0.45"/>
+  <text x="112" y="267" text-anchor="middle" font-size="9.5" font-weight="700"
+        fill="#c2410c" letter-spacing="1.4">SUPPLIER</text>
+
+  <!-- RSS PLATFORM bracket under cards 2+3 -->
+  <line x1="243" y1="254" x2="657" y2="254" stroke="#475569" stroke-width="1.2" opacity="0.45"/>
+  <line x1="243" y1="250" x2="243" y2="254" stroke="#475569" stroke-width="1.2" opacity="0.45"/>
+  <line x1="657" y1="250" x2="657" y2="254" stroke="#475569" stroke-width="1.2" opacity="0.45"/>
+  <text x="450" y="267" text-anchor="middle" font-size="9.5" font-weight="700"
+        fill="#334155" letter-spacing="1.4">RSS PLATFORM</text>
+
+  <!-- USER bracket under card 4 -->
+  <line x1="693" y1="254" x2="882" y2="254" stroke="#16a34a" stroke-width="1.2" opacity="0.45"/>
+  <line x1="693" y1="250" x2="693" y2="254" stroke="#16a34a" stroke-width="1.2" opacity="0.45"/>
+  <line x1="882" y1="250" x2="882" y2="254" stroke="#16a34a" stroke-width="1.2" opacity="0.45"/>
+  <text x="787" y="267" text-anchor="middle" font-size="9.5" font-weight="700"
+        fill="#15803d" letter-spacing="1.4">USER</text>
+
+  <!-- Tagline footer -->
+  <text x="450" y="294" text-anchor="middle" font-size="12">
+    <tspan font-weight="600" fill="#ea580c">Reusable Skills</tspan>
+    <tspan fill="#94a3b8" font-weight="400">   ·   </tspan>
+    <tspan font-weight="600" fill="#1d4ed8">Evidence &amp; Certification</tspan>
+    <tspan fill="#94a3b8" font-weight="400">   ·   </tspan>
+    <tspan font-weight="600" fill="#15803d">Cross-Scenario Impact</tspan>
+  </text>
+</svg>

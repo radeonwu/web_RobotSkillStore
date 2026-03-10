@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>For Users · Robot Skill Store</title>
-<link rel="stylesheet" href="../assets/css/style.css?v=6.79"/>
+<link rel="stylesheet" href="../assets/css/style.css?v=6.81"/>
 </head>
 <body>
 <header class="topbar">
@@ -13,17 +13,7 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav">
-<a class="toplink" href="index.html">Home</a>
-<a class="toplink" href="lifecycle.html">Skill Lifecycle</a>
-<a class="toplink" href="platform.html">Platform</a>
-<a class="toplink" href="concepts.html">Concepts</a>
-<a class="toplink" href="skills.html">Skill Catalog</a>
-<a class="toplink" href="developers.html">For Suppliers</a>
-<a class="toplink active" href="deployment.html">For Users</a>
-<a class="toplink" href="docs/index.html">Docs</a>
-<a class="toplink" href="contact.html">Contact</a>
-</nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skill Catalog</a><a class="toplink active" href="deployment.html">For Users</a><a class="toplink" href="developers.html">For Suppliers</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
 <div class="top-actions">
 <button type="button" class="iconbtn" id="langToggle" title="Language" aria-label="Switch language" data-current="en"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button type="button" class="iconbtn" id="themeToggle" title="Appearance" aria-label="Toggle theme"><span class="icon">☾</span><span class="label">Appearance</span></button>
@@ -32,14 +22,6 @@
 </header>
 <div class="layout">
 <main class="content">
-
-<section class="section-plain">
-<h1>For Users</h1>
-<div class="onboarding">
-  <p>Certified RSS skills are reusable building blocks — deploy them across robots, workcells, and variants by changing parameters, not rewriting programs.</p>
-  <div class="onboarding-line onboarding-anchor"><div class="onboarding-label"><strong>Lifecycle</strong></div><div class="rss-lifecycle-bar compact" data-stage="deploy" data-compact="1"></div></div>
-</div>
-</section>
 
 <!-- ── INDUSTRY SCENARIOS ── -->
 <section class="section">
@@ -104,12 +86,118 @@
   </div>
 </section>
 
-<!-- ── DEMO VIDEO ── -->
+<!-- ── DEMO WALKTHROUGH ── -->
 <section class="section">
   <h2 id="demo">Example: Connector Assembly on UR5 + RG2</h2>
-  <div class="video-card">
-    <video controls preload="metadata" src="../assets/media/ur5_rg2_demo.mp4" style="width:100%;border-radius:12px;"></video>
-    <p style="margin:10px 0 4px;color:var(--vp-c-text-2);">Workflow: <strong>pick_place</strong> → <strong>connector_insert</strong> → <strong>tighten_screw</strong>. The same three skills run on a different workcell by changing robot profile and force parameters — no code changes.</p>
+  <p style="margin:0 0 22px;color:var(--vp-c-text-2);font-size:14px;">A complete deployment walkthrough — from task goal to evidence record — using the flow above.</p>
+
+  <div style="display:flex;flex-direction:column;gap:0;">
+
+    <!-- 1 TASK -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">1</div>
+        <div style="width:2px;flex:1;background:var(--vp-c-divider);margin:4px 0;min-height:28px;"></div>
+      </div>
+      <div style="padding:4px 0 22px;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">Task</div>
+        <div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:12px 16px;font-size:14px;">
+          <strong>Goal:</strong> Assemble harness connectors on UR5 workcell #2<br>
+          <span style="color:var(--vp-c-text-2);font-size:13px;">3-step sequence — locate connector, insert with compliance, torque-fasten</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 SELECT SKILLS -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">2</div>
+        <div style="width:2px;flex:1;background:var(--vp-c-divider);margin:4px 0;min-height:28px;"></div>
+      </div>
+      <div style="padding:4px 0 22px;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">Select Skills</div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:9px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <code style="flex-shrink:0;">pick_place</code>
+            <span style="color:var(--vp-c-text-2);font-size:13px;flex:1;">v1.2.0 — grips connector from tray using 2.5D vision guidance</span>
+            <span style="font-size:11px;background:#22c55e22;color:#16a34a;border-radius:4px;padding:2px 8px;font-weight:600;flex-shrink:0;">CERTIFIED</span>
+          </div>
+          <div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:9px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <code style="flex-shrink:0;">connector_insert</code>
+            <span style="color:var(--vp-c-text-2);font-size:13px;flex:1;">v2.1.0 — compliant force-controlled insertion with depth feedback</span>
+            <span style="font-size:11px;background:#22c55e22;color:#16a34a;border-radius:4px;padding:2px 8px;font-weight:600;flex-shrink:0;">CERTIFIED</span>
+          </div>
+          <div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:9px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <code style="flex-shrink:0;">tighten_screw</code>
+            <span style="color:var(--vp-c-text-2);font-size:13px;flex:1;">v1.0.3 — torque-controlled fastening with turn-count confirmation</span>
+            <span style="font-size:11px;background:#22c55e22;color:#16a34a;border-radius:4px;padding:2px 8px;font-weight:600;flex-shrink:0;">CERTIFIED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 CONFIGURE -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">3</div>
+        <div style="width:2px;flex:1;background:var(--vp-c-divider);margin:4px 0;min-height:28px;"></div>
+      </div>
+      <div style="padding:4px 0 22px;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">Configure</div>
+        <pre style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.75;margin:0;overflow-x:auto;white-space:pre;">robot_profile:  ur5_rg2_workcell2
+gripper:        OnRobot RG2
+force_limit:    18 N          # connector_insert constraint
+torque_target:  0.45 N·m     # tighten_screw target
+position_tol:   ±0.4 mm
+vision_mode:    2.5D          # pick_place depth-assisted grasp
+on_failure:     retry(2) → alert</pre>
+        <p style="margin:7px 0 0;color:var(--vp-c-text-2);font-size:13px;">Parameters bind the certified skill to this specific robot and workcell — the skill code itself is unchanged.</p>
+      </div>
+    </div>
+
+    <!-- 4 EXECUTE -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">4</div>
+        <div style="width:2px;flex:1;background:var(--vp-c-divider);margin:4px 0;min-height:28px;"></div>
+      </div>
+      <div style="padding:4px 0 22px;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">Execute</div>
+        <video controls preload="metadata" src="../assets/media/ur5_rg2_demo.mp4" style="width:100%;border-radius:8px;display:block;"></video>
+        <p style="margin:8px 0 0;color:var(--vp-c-text-2);font-size:13px;">Skills run in sequence: <strong>pick_place</strong> → <strong>connector_insert</strong> → <strong>tighten_screw</strong>. Each skill executes within its declared constraint envelope; outcomes are captured per-run automatically.</p>
+      </div>
+    </div>
+
+    <!-- 5 RECOVER (optional) -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-bg-soft);border:2px solid var(--vp-c-divider);color:var(--vp-c-text-2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">↺</div>
+        <div style="width:2px;flex:1;background:var(--vp-c-divider);margin:4px 0;min-height:28px;"></div>
+      </div>
+      <div style="padding:4px 0 22px;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">Recover <span style="font-weight:400;text-transform:none;letter-spacing:0;">(if needed)</span></div>
+        <div style="background:var(--vp-c-bg-soft);border:1px solid var(--vp-c-divider);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--vp-c-text-2);">
+          If <code>connector_insert</code> exceeds force limit: RSS flags the run, retries with a relaxed <code>force_limit</code>, or proposes switching to an alternate certified skill (e.g. <code>connector_insert_compliant_v2</code>). No code change — parameter adjustment only.
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 EVIDENCE -->
+    <div style="display:flex;gap:16px;align-items:flex-start;">
+      <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--vp-c-brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;">5</div>
+      </div>
+      <div style="padding:4px 0 0;flex:1;min-width:0;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--vp-c-text-2);margin-bottom:7px;">Evidence</div>
+        <pre style="background:#0d0d0d;color:#d4d4d4;border-radius:8px;padding:14px 16px;font-size:12px;line-height:1.8;margin:0;overflow-x:auto;white-space:pre;border:1px solid #2a2a2a;">[08:32:11]  pick_place@1.2.0        <span style="color:#4ade80;">PASS</span>  force=12.1 N    grasp_conf=0.94
+[08:32:18]  connector_insert@2.1.0  <span style="color:#4ade80;">PASS</span>  peak_force=16.8 N  depth_err=0.2 mm
+[08:32:27]  tighten_screw@1.0.3     <span style="color:#4ade80;">PASS</span>  torque=0.44 N·m   turns=3
+
+3/3 skills passed · run archived · governance snapshot updated</pre>
+        <p style="margin:8px 0 0;color:var(--vp-c-text-2);font-size:13px;">All run records are stored automatically and accessible from the <a href="platform.html">Evidence Viewer</a>. Governance state updates as runs accumulate — the same skill reused on a second workcell adds to its evidence base without any extra steps.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -143,13 +231,19 @@
   </div>
 </section>
 
+<footer class="footer">
+<div class="footer-inner">
+<div>Robot Skill Store · build v6.80</div>
+<div class="muted">UI: VitePress-like (no search, no version selector)</div>
+</div>
+</footer>
 </main>
 <aside class="toc" aria-label="On this page">
 <div class="toc-title">ON THIS PAGE</div>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/config.js?v=6.79"></script>
-<script src="../assets/js/site.js?v=6.79"></script>
+<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

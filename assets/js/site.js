@@ -696,9 +696,425 @@
     renderMessages();
   }
 
+  // ── Auth / Role management ───────────────────────────────────────────────
+  //
+  // Two modes depending on whether RSS_PLATFORM_BASE_URL is configured:
+  //
+  //  JWT mode    (platform URL set): credentials sent to /auth/login API,
+  //              JWT stored in localStorage. Roles from server-issued token.
+  //              Skill downloads use GET /public/v1/skills/{id}/bundle with
+  //              Authorization header. Registration supported.
+  //
+  //  Passkey mode (no platform URL): lightweight client-side passkeys in
+  //              localStorage. Works with file:// and static deployments.
+  //
+  var AUTH_TOKEN_KEY = 'rss_auth_token';   // JWT storage key
+  var AUTH_ROLE_KEY  = 'rss_user_role';    // passkey mode role storage
+  var AUTH_DEV_PAGES = ['platform.html', 'developers.html'];
+
+  // Role UI metadata (shared by both modes)
+  var ROLE_META = {
+    enduser:   { label: 'User', icon: '👤', color: '#3b82f6' },
+    developer: { label: 'Dev',  icon: '⚙',  color: '#22c55e' }
+  };
+
+  // ── Mode detection ────────────────────────────────────────────────────────
+  function authApiBase(){ return (window.RSS_PLATFORM_BASE_URL||'').replace(/\/+$/,''); }
+  function authIsJwtMode(){ return !!authApiBase(); }
+
+  // ── JWT helpers ────────────────────────────────────────────────────────────
+  function authDecodeJwt(token){
+    // Decode payload (no sig verification — server enforces that)
+    try{
+      var parts = token.split('.');
+      if(parts.length < 2) return null;
+      var pad = parts[1].replace(/-/g,'+').replace(/_/g,'/');
+      while(pad.length % 4) pad += '=';
+      return JSON.parse(atob(pad));
+    }catch(e){ return null; }
+  }
+  function authGetToken(){ try{ return localStorage.getItem(AUTH_TOKEN_KEY)||''; }catch(e){ return ''; } }
+  function authSetToken(t){ try{ localStorage.setItem(AUTH_TOKEN_KEY, t||''); }catch(e){} }
+  function authGetJwtPayload(){
+    var t = authGetToken();
+    return t ? authDecodeJwt(t) : null;
+  }
+
+  // ── Passkey helpers (fallback mode) ───────────────────────────────────────
+  function authGetPasskeyRole(){ try{ return localStorage.getItem(AUTH_ROLE_KEY)||''; }catch(e){ return ''; } }
+  function authSetPasskeyRole(r){ try{ localStorage.setItem(AUTH_ROLE_KEY, r||''); }catch(e){} }
+
+  // ── Unified role / login state ─────────────────────────────────────────────
+  function authGetRole(){
+    if(authIsJwtMode()){
+      var p = authGetJwtPayload();
+      if(!p) return '';
+      if(p.exp && p.exp < Math.floor(Date.now()/1000)) return ''; // expired
+      return p.role || '';
+    }
+    return authGetPasskeyRole();
+  }
+  function authIsLoggedIn(){ var r=authGetRole(); return r==='enduser'||r==='developer'; }
+  function authIsDev(){       return authGetRole()==='developer'; }
+  function authGetUserInfo(){
+    if(authIsJwtMode()) return authGetJwtPayload();
+    var r = authGetPasskeyRole();
+    return r ? { role:r, email:'', name:'' } : null;
+  }
+
+  // ── Nav visibility ─────────────────────────────────────────────────────────
+  function authApplyNav(){
+    var role = authGetRole();
+    qsa('.topnav .toplink').forEach(function(a){
+      var href = (a.getAttribute('href')||'').split('?')[0].split('#')[0];
+      var file = href.split('/').pop();
+      if(AUTH_DEV_PAGES.indexOf(file) >= 0){
+        a.style.display = (role==='developer') ? '' : 'none';
+      }
+    });
+  }
+
+  // ── Page guard ─────────────────────────────────────────────────────────────
+  function authGuardPage(){
+    var file = ((location.pathname||'').replace(/\\/g,'/').split('/').pop()||'');
+    if(AUTH_DEV_PAGES.indexOf(file) < 0) return;
+    if(authGetRole()==='developer') return;
+
+    var layout = qs('.layout');
+    if(layout) layout.style.visibility = 'hidden';
+
+    function buildGate(){
+      var gate = document.createElement('div');
+      gate.id = 'dev-access-gate';
+      gate.innerHTML =
+        '<div class="dev-gate-box">' +
+          '<div class="dev-gate-icon">⚙</div>' +
+          '<h2 class="dev-gate-title">Developer Access Required</h2>' +
+          '<p class="dev-gate-sub">This page is restricted to RSS skill suppliers and platform developers.</p>' +
+          '<button class="btn primary" id="devGateLoginBtn">Sign In as Developer</button>' +
+          '<a href="index.html" class="dev-gate-back">← Back to Home</a>' +
+        '</div>';
+      document.body.appendChild(gate);
+      qs('#devGateLoginBtn').addEventListener('click', function(){
+        gate.remove();
+        authShowSignInModal('developer', function(ok){
+          if(ok){ if(layout) layout.style.visibility=''; authApplyNav(); authRenderAccountBtn(); }
+          else { buildGate(); }
+        });
+      });
+    }
+    buildGate();
+  }
+
+  // ── Account button ─────────────────────────────────────────────────────────
+  function authInjectAccountBtn(){
+    var actions = qs('.top-actions');
+    if(!actions || qs('#authAccountBtn')) return;
+    var btn = document.createElement('button');
+    btn.type='button'; btn.id='authAccountBtn';
+    btn.className='iconbtn auth-account-btn';
+    btn.setAttribute('aria-label','Account');
+    authRenderAccountBtn(btn);
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(authIsLoggedIn()){ authToggleAccountMenu(btn); }
+      else { authShowSignInModal(null, function(ok){ if(ok){ authApplyNav(); authRenderAccountBtn(); } }); }
+    });
+    actions.insertBefore(btn, actions.firstChild);
+  }
+
+  function authRenderAccountBtn(btn){
+    btn = btn || qs('#authAccountBtn');
+    if(!btn) return;
+    var role = authGetRole();
+    var meta = ROLE_META[role];
+    btn.className = 'iconbtn auth-account-btn' + (meta ? ' auth-active auth-role-'+role : '');
+    if(meta){
+      var info = authGetUserInfo();
+      btn.title = (info && info.email ? info.email+' · ' : '') + meta.label;
+      btn.innerHTML = '<span class="icon">'+meta.icon+'</span><span class="label">'+meta.label+'</span>';
+    } else {
+      btn.title = 'Sign In / Register';
+      btn.innerHTML = '<span class="icon">👤</span><span class="label">Sign In</span>';
+    }
+  }
+
+  // ── Signed-in dropdown ─────────────────────────────────────────────────────
+  function authToggleAccountMenu(btn){
+    var existing = qs('#authAccountMenu');
+    if(existing){ existing.remove(); return; }
+    var role = authGetRole();
+    var meta = ROLE_META[role] || {};
+    var info = authGetUserInfo() || {};
+    var menu = document.createElement('div');
+    menu.id='authAccountMenu'; menu.className='auth-menu';
+    menu.innerHTML =
+      '<div class="auth-menu-role">' +
+        '<span class="auth-menu-dot" style="background:'+(meta.color||'#888')+'"></span>' +
+        '<span>'+(meta.label||'')+'</span>' +
+      '</div>' +
+      (info.email ? '<div class="auth-menu-note">'+info.email+'</div>' : '') +
+      '<div class="auth-menu-note">' +
+        (role==='developer' ? 'Full platform access active.' : 'Skill catalog and downloads unlocked.') +
+      '</div>' +
+      '<button class="auth-menu-logout" id="authSignOutBtn">Sign Out</button>';
+    btn.style.position='relative';
+    btn.appendChild(menu);
+    qs('#authSignOutBtn').addEventListener('click', function(e){ e.stopPropagation(); authLogout(); });
+    function onOutside(e){ if(!btn.contains(e.target)){ menu.remove(); document.removeEventListener('click',onOutside); } }
+    setTimeout(function(){ document.addEventListener('click',onOutside); }, 0);
+  }
+
+  // ── Sign-in / Register modal ───────────────────────────────────────────────
+  // preferredRole — pre-selects role tab (null = no preference)
+  // onDone(ok)    — called with true after successful login/register
+  function authShowSignInModal(preferredRole, onDone){
+    var overlay = document.createElement('div');
+    overlay.id = 'authModalOverlay';
+
+    function closeModal(){ overlay.remove(); }
+
+    function renderLogin(selectedRole){
+      var jwtMode = authIsJwtMode();
+      var roleOpts =
+        '<div class="auth-role-cards" id="authRoleCards">' +
+          '<button class="auth-role-card'+(selectedRole==='enduser'?' selected':'')+'" data-role="enduser">' +
+            '<span class="auth-role-card-icon">👤</span>' +
+            '<strong>End User</strong>' +
+            '<span class="auth-role-card-desc">Browse and download certified robot skills</span>' +
+          '</button>' +
+          '<button class="auth-role-card'+(selectedRole==='developer'?' selected':'')+'" data-role="developer">' +
+            '<span class="auth-role-card-icon">⚙</span>' +
+            '<strong>Developer</strong>' +
+            '<span class="auth-role-card-desc">Publish skills and access platform tools</span>' +
+          '</button>' +
+        '</div>';
+      overlay.innerHTML =
+        '<div class="auth-modal-box" role="dialog" aria-modal="true">' +
+          '<div class="auth-modal-title" style="margin-bottom:4px;">Sign In</div>' +
+          '<div class="auth-modal-sub" style="margin-bottom:16px;">Sign in to your RobotSkillStore account.</div>' +
+          (jwtMode ? roleOpts : '') +
+          '<input type="email" id="authEmailInput" class="auth-modal-input" placeholder="Email address" autocomplete="email"/>' +
+          '<input type="password" id="authPwInput" class="auth-modal-input" placeholder="Password" autocomplete="current-password"/>' +
+          '<div class="auth-modal-err" id="authModalErr"></div>' +
+          '<div class="auth-modal-actions">' +
+            '<button class="btn primary" id="authSubmitBtn">Sign In</button>' +
+            '<button class="auth-modal-cancel" id="authSwitchRegBtn">New here? Register</button>' +
+          '</div>' +
+          '<button class="auth-modal-cancel" id="authCancelBtn" style="margin-top:14px;">Continue as Visitor</button>' +
+        '</div>';
+      document.body.contains(overlay) || document.body.appendChild(overlay);
+
+      // Role card selection
+      qsa('.auth-role-card', overlay).forEach(function(card){
+        card.addEventListener('click', function(){
+          qsa('.auth-role-card', overlay).forEach(function(c){ c.classList.remove('selected'); });
+          card.classList.add('selected');
+        });
+      });
+
+      var emailEl = qs('#authEmailInput');
+      var pwEl    = qs('#authPwInput');
+      var errEl   = qs('#authModalErr');
+      setTimeout(function(){ if(emailEl) emailEl.focus(); }, 50);
+
+      function getSelectedRole(){
+        var sel = qs('.auth-role-card.selected', overlay);
+        return sel ? sel.dataset.role : (selectedRole || 'enduser');
+      }
+
+      function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; }
+      function clearErr(){ errEl.style.display='none'; }
+
+      function doLogin(){
+        clearErr();
+        var email = (emailEl && emailEl.value||'').trim();
+        var pw    = (pwEl && pwEl.value||'').trim();
+        if(!email || !pw){ showErr('Please enter your email and password.'); return; }
+
+        if(authIsJwtMode()){
+          var role = getSelectedRole();
+          // JWT login via API
+          var btn = qs('#authSubmitBtn'); if(btn) btn.disabled=true;
+          fetch(authApiBase()+'/auth/login', {
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({email:email, password:pw})
+          })
+          .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, data:d}; }); })
+          .then(function(res){
+            if(btn) btn.disabled=false;
+            if(!res.ok){ showErr(res.data.detail||'Sign in failed. Please check your credentials.'); return; }
+            authSetToken(res.data.token);
+            closeModal();
+            if(onDone) onDone(true);
+          })
+          .catch(function(){ if(btn) btn.disabled=false; showErr('Could not reach the platform. Check your connection.'); });
+        } else {
+          // Passkey mode: compare against configured passkeys
+          var role = getSelectedRole();
+          var expected = role==='developer'
+            ? (window.RSS_DEV_PASSKEY||'rss-dev-2026')
+            : (window.RSS_USER_PASSKEY||'rss-user-2026');
+          if(pw===expected){
+            authSetPasskeyRole(role);
+            closeModal();
+            if(onDone) onDone(true);
+          } else { showErr('Incorrect access code. Please try again.'); pwEl.value=''; pwEl.focus(); }
+        }
+      }
+
+      qs('#authSubmitBtn').addEventListener('click', doLogin);
+      if(pwEl) pwEl.addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+      qs('#authCancelBtn').addEventListener('click', closeModal);
+      if(qs('#authSwitchRegBtn')) qs('#authSwitchRegBtn').addEventListener('click', function(){
+        if(authIsJwtMode()){ renderRegister(getSelectedRole()); }
+        else { renderNoplatformNotice(); }
+      });
+      overlay.addEventListener('click', function(e){ if(e.target===overlay) closeModal(); });
+    }
+
+    function renderNoplatformNotice(){
+      overlay.innerHTML =
+        '<div class="auth-modal-box" role="dialog" aria-modal="true">' +
+          '<div class="auth-modal-title" style="margin-bottom:4px;">Create Account</div>' +
+          '<div class="auth-modal-sub" style="margin-bottom:20px;">' +
+            'Account registration requires a connected RSS Platform instance.' +
+          '</div>' +
+          '<div style="background:var(--vp-c-bg-soft);border-radius:10px;padding:14px 16px;font-size:13px;color:var(--vp-c-text-2);line-height:1.6;">' +
+            'To create an account, contact your administrator or connect this site to a live platform by setting <code style="font-family:var(--vp-mono);font-size:12px;">RSS_PLATFORM_BASE_URL</code> in <code style="font-family:var(--vp-mono);font-size:12px;">assets/config.js</code>.' +
+          '</div>' +
+          '<div style="margin-top:20px;display:flex;gap:12px;">' +
+            '<button class="auth-modal-cancel" id="authBackToLoginBtn">← Back to Sign In</button>' +
+            '<button class="auth-modal-cancel" id="authCancelBtn">Close</button>' +
+          '</div>' +
+        '</div>';
+      document.body.contains(overlay) || document.body.appendChild(overlay);
+      qs('#authBackToLoginBtn').addEventListener('click', function(){ renderLogin(null); });
+      qs('#authCancelBtn').addEventListener('click', closeModal);
+      overlay.addEventListener('click', function(e){ if(e.target===overlay) closeModal(); });
+    }
+
+    function renderRegister(selectedRole){
+      overlay.innerHTML =
+        '<div class="auth-modal-box" role="dialog" aria-modal="true">' +
+          '<div class="auth-modal-title" style="margin-bottom:4px;">Create Account</div>' +
+          '<div class="auth-modal-sub" style="margin-bottom:16px;">Join RobotSkillStore to access skills and downloads.</div>' +
+          '<input type="text"     id="authNameInput"   class="auth-modal-input" placeholder="Your name (optional)" autocomplete="name"/>' +
+          '<input type="email"    id="authEmailInput"  class="auth-modal-input" placeholder="Email address" autocomplete="email"/>' +
+          '<input type="password" id="authPwInput"     class="auth-modal-input" placeholder="Password (min 8 chars)" autocomplete="new-password"/>' +
+          '<select id="authRoleSelect" class="auth-modal-input" style="cursor:pointer;">' +
+            '<option value="enduser"'   +(selectedRole==='enduser'   ?' selected':'')+'>End User — browse and deploy skills</option>' +
+            '<option value="developer"' +(selectedRole==='developer' ?' selected':'')+'>Developer / Supplier — publish and manage skills</option>' +
+          '</select>' +
+          '<input type="text" id="authInviteInput" class="auth-modal-input" placeholder="Developer invite code" style="display:none;"/>' +
+          '<div class="auth-modal-err" id="authModalErr"></div>' +
+          '<div class="auth-modal-actions">' +
+            '<button class="btn primary" id="authSubmitBtn">Create Account</button>' +
+            '<button class="auth-modal-cancel" id="authSwitchLoginBtn">Already have an account?</button>' +
+          '</div>' +
+          '<button class="auth-modal-cancel" id="authCancelBtn" style="margin-top:14px;">Continue as Visitor</button>' +
+        '</div>';
+      document.body.contains(overlay) || document.body.appendChild(overlay);
+
+      var nameEl   = qs('#authNameInput');
+      var emailEl  = qs('#authEmailInput');
+      var pwEl     = qs('#authPwInput');
+      var roleEl   = qs('#authRoleSelect');
+      var inviteEl = qs('#authInviteInput');
+      var errEl    = qs('#authModalErr');
+      setTimeout(function(){ if(nameEl) nameEl.focus(); }, 50);
+
+      function showErr(msg){ errEl.textContent=msg; errEl.style.display='block'; }
+      function clearErr(){ errEl.style.display='none'; }
+
+      function updateInviteVisibility(){
+        inviteEl.style.display = (roleEl.value==='developer') ? '' : 'none';
+      }
+      roleEl.addEventListener('change', updateInviteVisibility);
+      updateInviteVisibility();
+
+      function doRegister(){
+        clearErr();
+        var email  = (emailEl&&emailEl.value||'').trim();
+        var pw     = (pwEl&&pwEl.value||'').trim();
+        var name   = (nameEl&&nameEl.value||'').trim();
+        var role   = roleEl.value;
+        var invite = (inviteEl&&inviteEl.value||'').trim();
+        if(!email||!pw){ showErr('Email and password are required.'); return; }
+        if(pw.length<8){ showErr('Password must be at least 8 characters.'); return; }
+
+        var body = {email:email, password:pw, name:name, role:role};
+        if(role==='developer') body.invite_code = invite;
+
+        var btn = qs('#authSubmitBtn'); if(btn) btn.disabled=true;
+        fetch(authApiBase()+'/auth/register', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(body)
+        })
+        .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, data:d}; }); })
+        .then(function(res){
+          if(btn) btn.disabled=false;
+          if(!res.ok){ showErr(res.data.detail||'Registration failed. Please try again.'); return; }
+          authSetToken(res.data.token);
+          closeModal();
+          if(onDone) onDone(true);
+        })
+        .catch(function(){ if(btn) btn.disabled=false; showErr('Could not reach the platform. Check your connection.'); });
+      }
+
+      qs('#authSubmitBtn').addEventListener('click', doRegister);
+      if(pwEl) pwEl.addEventListener('keydown', function(e){ if(e.key==='Enter') doRegister(); });
+      qs('#authSwitchLoginBtn').addEventListener('click', function(){ renderLogin(roleEl.value); });
+      qs('#authCancelBtn').addEventListener('click', closeModal);
+      overlay.addEventListener('click', function(e){ if(e.target===overlay) closeModal(); });
+    }
+
+    renderLogin(preferredRole);
+    document.body.appendChild(overlay);
+  }
+
+  // ── Sign out ───────────────────────────────────────────────────────────────
+  function authLogout(){
+    authSetToken('');
+    authSetPasskeyRole('');
+    authRenderAccountBtn();
+    authApplyNav();
+    var menu = qs('#authAccountMenu');
+    if(menu) menu.remove();
+    var file = ((location.pathname||'').replace(/\\/g,'/').split('/').pop()||'');
+    if(AUTH_DEV_PAGES.indexOf(file)>=0){
+      location.href = (location.pathname||'').replace(/[^/]*$/,'index.html');
+    }
+  }
+
+  // ── Public auth API (used by page-level scripts) ───────────────────────────
+  window.RSSAuth = {
+    isLoggedIn:  authIsLoggedIn,
+    isDev:       authIsDev,
+    isJwtMode:   authIsJwtMode,
+    getToken:    authGetToken,
+    // Call fn() immediately if logged in, else show sign-in modal first
+    requireLogin: function(fn){
+      if(authIsLoggedIn()){ fn(); return; }
+      authShowSignInModal(null, function(ok){
+        if(ok){ authApplyNav(); authRenderAccountBtn(); fn(); }
+      });
+    }
+  };
+
+  function initAuth(){
+    authInjectAccountBtn();
+    authApplyNav();
+    authGuardPage();
+  }
+  // ── End Auth ──────────────────────────────────────────────────────────────
+
   function init(){
     measureTopbar();
     initTheme();
+    initAuth();
     setActiveTopNav();
     inlineLifecycleInOnboarding();
     renderLifecycleBar();

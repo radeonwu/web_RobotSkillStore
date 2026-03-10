@@ -6,14 +6,16 @@
   <title>Robot Skill Store（RSS）白皮书</title>
   <style>
 :root{
-  --bg:#0b0f14; --panel:#0f1620; --text:#e6edf3; --muted:#9aa4ad;
-  --link:#7cc0ff; --border:rgba(255,255,255,.10); --code:#0a0f18;
+  --bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280;
+  --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa; --anchor-fudge:-8px;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
 }
-@media (prefers-color-scheme: light){
-  :root{--bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa; --anchor-fudge:-8px;}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#0b0f14; --panel:#0f1620; --text:#e6edf3; --muted:#9aa4ad; --link:#7cc0ff; --border:rgba(255,255,255,.10); --code:#0a0f18; --anchor-fudge:0px;}
 }
+[data-theme="dark"]{--bg:#0b0f14; --panel:#0f1620; --text:#e6edf3; --muted:#9aa4ad; --link:#7cc0ff; --border:rgba(255,255,255,.10); --code:#0a0f18; --anchor-fudge:0px;}
+[data-theme="light"]{--bg:#ffffff; --panel:#f6f8fa; --text:#111827; --muted:#6b7280; --link:#0969da; --border:rgba(0,0,0,.10); --code:#f6f8fa; --anchor-fudge:-8px;}
 *{box-sizing:border-box}
 body{margin:0; font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.65;}
 a{color:var(--link); text-decoration:none}
@@ -31,15 +33,6 @@ a:hover{text-decoration:underline}
 .badge{font-size:12px; padding:3px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted);}
 .title{font-weight:700; font-size:16px}
 .spacer{flex:1}
-.lang-toggle{display:flex; gap:8px; align-items:center}
-.btn{
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.02);
-  color:var(--text);
-  padding:6px 10px; border-radius:10px; cursor:pointer;
-  font-size:13px;
-}
-.btn[aria-pressed="true"]{background:var(--panel); border-color:rgba(125,211,252,.35);}
 .main{max-width:1200px; margin:0 auto; padding:16px; display:grid; grid-template-columns: 290px 1fr; gap:16px;}
 @media (max-width: 980px){ .main{grid-template-columns: 1fr;} .toc{position:relative; top:auto; max-height:none;} }
 .toc{
@@ -87,17 +80,23 @@ body{font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "Hiragino Sa
 /* Anchor offset so headings are not hidden under sticky header */
 h1,h2,h3,h4,h5,h6{scroll-margin-top:calc(var(--anchor-offset,72px) + var(--anchor-fudge,0px));}
 </style>
+<link href="../../assets/css/style.css?v=6.81" rel="stylesheet"/>
 </head>
-<body class="docs" class="rss-whitepaper">
-  <header class="header">
-    <div class="header-inner">
-      <img class="topbar-logo" src="../../assets/media/rss_logo.png" alt="Robot Skill Store logo" />
-      <div class="title">Robot Skill Store（RSS）白皮书</div>
-      <span class="badge">RSS Whitepaper</span>
-      <div class="spacer"></div>
-      <span class="badge">CN</span>
-    </div>
-  </header>
+<body class="docs rss-whitepaper">
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="../index.html">
+<img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../../assets/media/rss_logo.png"/>
+<span class="brand-name">RobotSkillStore</span>
+</a>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="../index.html">首页</a><a class="toplink" href="../skills.html">技能目录</a><a class="toplink" href="../deployment.html">用户指南</a><a class="toplink" href="../developers.html">技能供应商</a><a class="toplink" href="../platform.html">平台</a><a class="toplink" href="../lifecycle.html">技能生命周期</a><a class="toplink active" href="../concepts.html">文档</a><a class="toplink" href="../contact.html">联系</a></nav>
+<div class="top-actions">
+<button aria-label="Switch language" class="iconbtn" data-current="zh" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">English</span></button>
+<button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
+</div>
+</div>
+</header>
+<nav class="docs-subnav" aria-label="Docs sections"><div class="docs-subnav-inner"><a class="docs-subnav-link" href="../concepts.html">概念</a><a class="docs-subnav-link active" href="rss_whitepaper.html">RSS</a><a class="docs-subnav-link" href="rsp_whitepaper.html">RSP</a><a class="docs-subnav-link" href="rss-kit.html">RSS-Kit</a><a class="docs-subnav-link" href="index.html">其他文档</a></div></nav>
 <main class="main">
     <aside class="toc" aria-label="目录">
       <h2>目录</h2>
@@ -1972,5 +1971,7 @@ Benchmark 提供数据支撑的性能信号。</p></li>
   </footer>
 
   <script src="../../assets/js/anchor_fix.js"></script>
+<script src="../../assets/config.js?v=6.81"></script>
+<script src="../../assets/js/site.js?v=6.81"></script>
 </body>
 </html>
