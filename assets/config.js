@@ -14,10 +14,10 @@
 // Leave empty to always use the bundled static catalog.
 //
 // Compatibility alias (older builds used RSS_API_BASE)
-window.RSS_API_BASE = window.RSS_API_BASE || "https://supreme-optimization-ancient-trance.trycloudflare.com";
+window.RSS_API_BASE = window.RSS_API_BASE || "";
 
 // Preferred base URL
-window.RSS_PLATFORM_BASE_URL = window.RSS_PLATFORM_BASE_URL || window.RSS_API_BASE || "http://localhost:8080";
+window.RSS_PLATFORM_BASE_URL = window.RSS_PLATFORM_BASE_URL || window.RSS_API_BASE || "http://localhost:8080" || "https://supreme-optimization-ancient-trance.trycloudflare.com";
 
 // Optional overrides (defaults to platform base)
 window.RSS_VIEWER_BASE_URL = window.RSS_VIEWER_BASE_URL || window.RSS_PLATFORM_BASE_URL || "";
