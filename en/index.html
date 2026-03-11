@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Robot Skill Store — The Platform for Trusted Industrial Robot Skills</title>
-<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.80" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -31,8 +31,8 @@
   <p class="hero-tagline">Register, validate, certify, and deploy reusable robot skills — turning one-off automation into long-term capability assets.</p>
 
   <div class="stats-bar">
-    <div class="stat-item"><span class="stat-n" id="stat-skills">30</span><span class="stat-l">Skills</span></div>
-    <div class="stat-item"><span class="stat-n" id="stat-cats">7</span><span class="stat-l">Categories</span></div>
+    <div class="stat-item"><span class="stat-n" id="stat-skills">68/span><span class="stat-l">Skills</span></div>
+    <div class="stat-item"><span class="stat-n" id="stat-cats">9/span><span class="stat-l">Categories</span></div>
     <div class="stat-item"><span class="stat-n">10+</span><span class="stat-l">Robot Models</span></div>
     <div class="stat-item"><span class="stat-n">Evidence</span><span class="stat-l">Governance</span></div>
   </div>
@@ -57,8 +57,8 @@
 <!-- ── SKILL CATEGORIES ── -->
 <section class="section">
   <h2 id="categories">Skill Categories</h2>
-  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">30 industrial skills across 7 manufacturing domains. Click a category to browse.</p>
-  <div class="cat-grid">
+  <p id="cat-subtitle" style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">68 industrial skills across 9 manufacturing domains. Click a category to browse.</p>
+  <div class="cat-grid" id="cat-grid">
     <a class="cat-card" href="skills.html?cat=Assembly">
       <div class="cat-icon" style="background:hsl(215,80%,93%);color:hsl(215,60%,38%)">A</div>
       <div class="cat-info"><div class="cat-name">Assembly</div><div class="cat-count">7 skills</div></div>
@@ -133,7 +133,7 @@
     </div>
   </div>
   <p style="margin:14px 0 0 0;font-size:13px;color:var(--vp-c-text-2);">
-    <a href="skills.html" style="color:var(--vp-c-brand);font-weight:600;">View all 30 skills in the catalog &rarr;</a>
+    <a href="skills.html" id="view-all-link" style="color:var(--vp-c-brand);font-weight:600;">View all 68 skills in the catalog &rarr;</a>
   </p>
 </section>
 
@@ -226,9 +226,30 @@
 </main>
 <aside class="toc"><div class="toc-title">ON THIS PAGE</div><nav id="tocNav"></nav></aside>
 </div>
-<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/config.js?v=6.80"></script>
 <script>
 (function(){
+  var CAT_STYLE = {
+    'Assembly':       { bg:'hsl(215,80%,93%)', fg:'hsl(215,60%,38%)', abbr:'A'  },
+    'Manipulation':   { bg:'hsl(175,70%,90%)', fg:'hsl(175,55%,30%)', abbr:'M'  },
+    'Inspection':     { bg:'hsl(45,85%,90%)',  fg:'hsl(38,70%,30%)',  abbr:'I'  },
+    'Machine Tending':{ bg:'hsl(200,60%,91%)', fg:'hsl(200,55%,30%)', abbr:'MT' },
+    'Dispensing':     { bg:'hsl(145,65%,90%)', fg:'hsl(145,55%,28%)', abbr:'D'  },
+    'Welding':        { bg:'hsl(15,80%,91%)',  fg:'hsl(15,65%,35%)',  abbr:'W'  },
+    'Finishing':      { bg:'hsl(270,65%,92%)', fg:'hsl(270,50%,38%)', abbr:'F'  },
+    'Packaging':      { bg:'hsl(330,65%,92%)', fg:'hsl(330,50%,38%)', abbr:'P'  },
+    'Handling':       { bg:'hsl(60,70%,90%)',  fg:'hsl(55,55%,30%)',  abbr:'H'  }
+  };
+  var FALLBACK = { bg:'hsl(0,0%,92%)', fg:'hsl(0,0%,35%)' };
+
+  function abbr(name) {
+    var s = CAT_STYLE[name];
+    if (s) return s.abbr;
+    return name.split(/\s+/).map(function(w){ return w[0]; }).join('').toUpperCase().slice(0,2);
+  }
+  function style(name) { return CAT_STYLE[name] || FALLBACK; }
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
   var base = (window.RSS_PLATFORM_BASE_URL || '').replace(/\/$/,'');
   if (!base) return;
   var status = document.getElementById('platform-status');
@@ -238,19 +259,45 @@
       if (!obj) return;
       var items = (obj && obj.items) ? obj.items : (Array.isArray(obj) ? obj : []);
       if (!items.length) return;
-      // Update stat counts
+
+      // Update hero stat counts
       var el = document.getElementById('stat-skills');
       if (el) el.textContent = items.length;
-      var cats = {};
-      items.forEach(function(s){ if(s.category) cats[s.category]=1; });
+      var catCounts = {};
+      items.forEach(function(s){ if(s.category) catCounts[s.category] = (catCounts[s.category]||0)+1; });
+      var catNames = Object.keys(catCounts).sort();
       var ec = document.getElementById('stat-cats');
-      if (ec) ec.textContent = Object.keys(cats).length;
+      if (ec) ec.textContent = catNames.length;
+
+      // Rebuild category grid
+      var grid = document.getElementById('cat-grid');
+      if (grid) {
+        grid.innerHTML = catNames.map(function(cat) {
+          var count = catCounts[cat];
+          var st = style(cat);
+          var ab = abbr(cat);
+          return '<a class="cat-card" href="skills.html?cat=' + encodeURIComponent(cat) + '">' +
+            '<div class="cat-icon" style="background:' + st.bg + ';color:' + st.fg + '">' + esc(ab) + '</div>' +
+            '<div class="cat-info"><div class="cat-name">' + esc(cat) + '</div>' +
+            '<div class="cat-count">' + count + ' skill' + (count!==1?'s':'') + '</div></div>' +
+            '</a>';
+        }).join('');
+      }
+
+      // Update subtitle
+      var sub = document.getElementById('cat-subtitle');
+      if (sub) sub.textContent = items.length + ' industrial skills across ' + catNames.length + ' manufacturing domains. Click a category to browse.';
+
+      // Update "View all" link
+      var viewAll = document.getElementById('view-all-link');
+      if (viewAll) viewAll.textContent = 'View all ' + items.length + ' skills in the catalog \u2192';
+
       // Show live badge
       if (status) status.innerHTML = '<span class="live-badge"><span class="live-dot"></span>Live data from platform</span>';
     })
     .catch(function(){});
 })();
 </script>
-<script src="../assets/js/site.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.80"></script>
 </body>
 </html>
