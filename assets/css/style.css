@@ -245,15 +245,16 @@ a:hover{color: var(--vp-c-brand)}
   padding: 12px 0;
   margin-bottom: 8px;
 }
-.section h1{margin:0 0 8px; font-size: 34px; letter-spacing:-.02em;}
+.section h1{margin:0 0 8px; font-size: 28px; letter-spacing:-.02em; line-height: 1.15;}
 .section h2{margin: 0 0 10px; font-size: 22px; letter-spacing:-.01em;}
 .section h3{margin: 18px 0 8px; font-size: 16px;}
 .section p{margin: 10px 0; color: var(--vp-c-text-1); line-height: 1.7;}
+.storefront-note{margin:0; color: var(--vp-c-text-2); font-size: 14px; line-height: 1.7;}
 .section ul, .section ol{margin: 10px 0 10px 22px; color: var(--vp-c-text-1); line-height: 1.7;}
 .section li{margin: 6px 0;}
 .section a{color:var(--vp-c-brand);text-decoration:none}
 .section a:hover{text-decoration:underline}
-.lead{font-size: 18px; color: var(--vp-c-text-2); margin-top: 4px;}
+.lead{font-size: 15px; color: var(--vp-c-text-2); margin-top: 4px; line-height: 1.7;}
 .note{color: var(--vp-c-text-2); font-size: 14px;}
 .tight{margin-top: 6px; margin-bottom: 6px;}
 
@@ -281,8 +282,8 @@ a:hover{color: var(--vp-c-brand)}
   font-size: 12px;
   margin-bottom: 10px;
 }
-.hero h1{font-size: 44px; margin: 6px 0 6px; letter-spacing:-.03em;}
-.hero .lead{font-size: 20px; color: var(--vp-c-text-2); margin: 0 0 10px;}
+.hero h1{font-size: 38px; margin: 6px 0 6px; letter-spacing:-.03em;}
+.hero .lead{font-size: 17px; color: var(--vp-c-text-2); margin: 0 0 10px;}
 .sublead{font-size: 15px; color: var(--vp-c-text-1);}
 .cta-row{display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px;}
 .btn{
@@ -439,7 +440,7 @@ svg{max-width:100%; height:auto;}
 /* v6.10 graphics polish */
 svg text{paint-order: stroke;}
 
-/* v6.80 docs section subnav */
+/* v6.81 docs section subnav */
 .docs-subnav{background:var(--vp-c-bg-soft);border-bottom:1px solid var(--vp-c-divider);padding:0 24px}
 .docs-subnav-inner{display:flex;gap:4px;max-width:1200px;margin:0 auto;padding:6px 0}
 .docs-subnav-link{display:inline-flex;align-items:center;padding:5px 14px;border-radius:6px;text-decoration:none;font-size:13px;font-weight:500;color:var(--vp-c-text-2);transition:background .15s,color .15s}
@@ -952,8 +953,7 @@ table.matrix th+th,table.matrix td+td{border-left:1px solid var(--vp-c-border);}
 }
 
 /* Keypoint highlight: promote across site (used by Home already; apply to .lead too) */
-.keypoint,
-p.lead{
+.keypoint{
   display:block;
   padding:10px 12px;
   border-left:4px solid rgba(46,108,255,.80);
@@ -1007,8 +1007,8 @@ p.lead{
 /* right toc: one item per line */
 .toc-nav a{display:block;white-space:normal;line-height:1.4;margin:6px 0;}
 
-/* keypoint highlight for lead lines across site */
-p.lead{background:rgba(37,99,235,0.08);border-left:4px solid #2563eb;padding:10px 12px;border-radius:10px;color:var(--vp-c-text-1);}
+/* keep lead text plain, not highlighted */
+p.lead{background:none;border-left:0;padding:0;border-radius:0;color:var(--vp-c-text-2);}
 
 /* Concepts: square tabs like classic UI */
 .concepts-tabs-wrap{margin-top:16px;}
@@ -1269,13 +1269,13 @@ pre.codeblock.list-align{
 
 /* Lead text: consistent rhythm across pages */
 p.lead{
-  font-size: 18px;
+  font-size: 15px;
   line-height: 1.65;
   color: var(--vp-c-text-2);
   margin: 8px 0 12px;
 }
 .hero .lead{
-  font-size: 20px;
+  font-size: 17px;
   margin: 0 0 12px;
 }
 
@@ -1472,22 +1472,55 @@ details.card > summary.card-summary:hover{color: var(--vp-c-brand);}
   padding: 32px 0 28px;
   margin-bottom: 18px;
 }
+.section-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vp-c-brand);
+  margin: 0 0 10px 0;
+}
 .hero-headline {
-  font-size: 38px;
+  font-size: 32px;
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin: 0 0 8px 0;
   color: var(--vp-c-text-1);
 }
-@media (max-width: 680px) { .hero-headline { font-size: 28px; } }
+@media (max-width: 680px) { .hero-headline { font-size: 26px; } }
 .hero-tagline {
-  font-size: 17px;
+  font-size: 15px;
   color: var(--vp-c-text-2);
   margin: 0 0 22px 0;
   line-height: 1.5;
   max-width: 560px;
 }
+.hero-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+  margin: 0 0 22px 0;
+}
+.hero-summary-card {
+  border: 1px solid var(--vp-c-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--vp-c-bg) 88%, transparent);
+}
+.hero-summary-card b {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+.hero-summary-card span {
+  display: block;
+  font-size: 12px;
+  color: var(--vp-c-text-2);
+  line-height: 1.55;
+}
+@media (max-width: 860px) { .hero-summary { grid-template-columns: 1fr; } }
 
 /* ── Stats bar ── */
 .stats-bar {
@@ -1942,7 +1975,7 @@ iframe{background:transparent;}
 [data-theme="dark"] .kit-step-code { background: var(--vp-c-bg-alt); }
 
 /* ═══════════════════════════════════════════════════════════════
-   v6.80 — Robotics-domain design system
+   v6.81 — Robotics-domain design system
    Typography, governance status badges, heading scale, precision feel
    ═══════════════════════════════════════════════════════════════ */
 
@@ -2431,4 +2464,3 @@ h5, h6 { font-size: var(--rss-text-sm); font-weight: 600; letter-spacing: 0.01em
 .dev-gate-back:hover {
   color: var(--vp-c-brand);
 }
-

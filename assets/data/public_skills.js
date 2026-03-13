@@ -1,66 +1,14 @@
 // Auto-generated from public_skills.json — do not edit manually
-// RSS Platform v1.0.10 — 68 skills across 9 categories
-// Generated: 2026-03-11
+// RSS Platform v1.0.10 — 74 skills across 8 categories
+// Generated: 2026-03-13
 window.RSS_STATIC_SKILLS = [
-  {
-    "skill_id": "tighten_screw",
-    "name": "Tighten Screw",
-    "category": "Assembly",
-    "subcategory": "",
-    "maturity": "beta",
-    "description": "Reference skill for pick\u2192insert\u2192tighten demo. Validates axis alignment, contact gating, and tightening policy execution.",
-    "latest_version": "0.1.0",
-    "robots": [
-      "UR5"
-    ],
-    "robots_supported": 1
-  },
-  {
-    "skill_id": "pick",
-    "name": "Pick",
-    "category": "Handling",
-    "subcategory": "",
-    "maturity": "beta",
-    "description": "Composable skill for demo pipeline: pick \u2192 insert \u2192 tighten.",
-    "latest_version": "0.1.0",
-    "robots": [
-      "UR5"
-    ],
-    "robots_supported": 1
-  },
-  {
-    "skill_id": "insert",
-    "name": "Insert",
-    "category": "Assembly",
-    "subcategory": "",
-    "maturity": "beta",
-    "description": "Composable skill for demo pipeline: pick \u2192 insert \u2192 tighten.",
-    "latest_version": "0.1.0",
-    "robots": [
-      "UR5"
-    ],
-    "robots_supported": 1
-  },
-  {
-    "skill_id": "screw_tighten",
-    "name": "Screw Tighten",
-    "category": "Assembly",
-    "subcategory": "",
-    "maturity": "beta",
-    "description": "Public-facing alias of tighten_screw used by website examples.",
-    "latest_version": "0.1.0",
-    "robots": [
-      "UR5"
-    ],
-    "robots_supported": 1
-  },
   {
     "skill_id": "press_fit_bearing",
     "name": "Press-Fit Bearing",
     "category": "Assembly",
     "subcategory": "",
     "maturity": "beta",
-    "description": "Uses force-controlled linear insertion to press a bearing into a housing. Monitors insertion force profile for correct seating. Supports H7/p6 and H7/r6 fits on shafts 8\u201380 mm. Compatible with UR e-Series and KUKA iiwa via FT sensor.",
+    "description": "Uses force-controlled linear insertion to press a bearing into a housing. Monitors insertion force profile for correct seating. Supports H7/p6 and H7/r6 fits on shafts 8–80 mm. Compatible with UR e-Series and KUKA iiwa via FT sensor.",
     "latest_version": "1.0.0",
     "robots": [
       "UR10e",
@@ -75,7 +23,7 @@ window.RSS_STATIC_SKILLS = [
     "category": "Assembly",
     "subcategory": "",
     "maturity": "stable",
-    "description": "Classic peg-in-hole task with active compliance. Uses spiral search or RRT-based contact strategy to handle positional uncertainty up to \u00b12 mm. Suitable for clearance fits 0.01\u20130.1 mm. Widely used in connector and shaft assembly.",
+    "description": "Classic peg-in-hole task with active compliance. Uses spiral search or RRT-based contact strategy to handle positional uncertainty up to ±2 mm. Suitable for clearance fits 0.01–0.1 mm. Widely used in connector and shaft assembly.",
     "latest_version": "1.0.0",
     "robots": [
       "UR5e",
@@ -106,7 +54,7 @@ window.RSS_STATIC_SKILLS = [
     "category": "Assembly",
     "subcategory": "",
     "maturity": "stable",
-    "description": "Runs a nut down a bolt thread using a nut-runner end effector. Applies a two-stage strategy: fast rundown at low torque, then final tightening to target torque. Verifies final torque against min/max band. Suitable for M4\u2013M20 fasteners.",
+    "description": "Runs a nut down a bolt thread using a nut-runner end effector. Applies a two-stage strategy: fast rundown at low torque, then final tightening to target torque. Verifies final torque against min/max band. Suitable for M4–M20 fasteners.",
     "latest_version": "1.0.0",
     "robots": [
       "UR10e",
@@ -121,7 +69,7 @@ window.RSS_STATIC_SKILLS = [
     "category": "Assembly",
     "subcategory": "",
     "maturity": "stable",
-    "description": "Non-destructive torque audit using FT-sensor-equipped robot. Applies a small incremental angle and measures breakaway torque to confirm it is \u2265 target. Used as a quality gate after nut_run or tighten_screw.",
+    "description": "Non-destructive torque audit using FT-sensor-equipped robot. Applies a small incremental angle and measures breakaway torque to confirm it is ≥ target. Used as a quality gate after nut_run or tighten_screw.",
     "latest_version": "1.0.0",
     "robots": [
       "UR5e",
@@ -165,7 +113,7 @@ window.RSS_STATIC_SKILLS = [
     "category": "Manipulation",
     "subcategory": "",
     "maturity": "stable",
-    "description": "Detects object pose via 2.5D depth camera or structured light, selects an antipodal grasp candidate, and executes a pick approach. Handles pose uncertainty \u00b15 mm / \u00b15\u00b0. Uses MoveIt2 task constructor or similar for collision-aware reach planning.",
+    "description": "Detects object pose via 2.5D depth camera or structured light, selects an antipodal grasp candidate, and executes a pick approach. Handles pose uncertainty ±5 mm / ±5°. Uses MoveIt2 task constructor or similar for collision-aware reach planning.",
     "latest_version": "1.0.0",
     "robots": [
       "UR5e",
@@ -212,7 +160,7 @@ window.RSS_STATIC_SKILLS = [
     "category": "Manipulation",
     "subcategory": "",
     "maturity": "stable",
-    "description": "Executes a palletizing pattern from a layout specification (row \u00d7 col \u00d7 layers). Computes each stack position from pallet origin, part dimensions, and layer offset. Handles slip-sheet insertion between layers when configured.",
+    "description": "Executes a palletizing pattern from a layout specification (row × col × layers). Computes each stack position from pallet origin, part dimensions, and layer offset. Handles slip-sheet insertion between layers when configured.",
     "latest_version": "1.0.0",
     "robots": [
       "UR16e",
@@ -330,7 +278,7 @@ window.RSS_STATIC_SKILLS = [
     "category": "Machine Tending",
     "subcategory": "",
     "maturity": "stable",
-    "description": "Opens CNC machine door, presents part to chuck/fixture, triggers clamping, confirms clamp signal, and closes door. Interfaces with CNC controller via FOCAS2 or MTConnect protocol. Validates clamp confirmation before door close. Part of a typical load\u2192machine\u2192unload\u2192inspect cycle.",
+    "description": "Opens CNC machine door, presents part to chuck/fixture, triggers clamping, confirms clamp signal, and closes door. Interfaces with CNC controller via FOCAS2 or MTConnect protocol. Validates clamp confirmation before door close. Part of a typical load→machine→unload→inspect cycle.",
     "latest_version": "1.0.0",
     "robots": [
       "UR10e",
@@ -360,7 +308,7 @@ window.RSS_STATIC_SKILLS = [
     "category": "Machine Tending",
     "subcategory": "",
     "maturity": "stable",
-    "description": "Executes programmed door-open trajectory (slide, rotate, or push). Monitors door-open sensor for confirmation within timeout. Respects safety interlocks \u2014 only opens when machine is in safe state (spindle off, axis park).",
+    "description": "Executes programmed door-open trajectory (slide, rotate, or push). Monitors door-open sensor for confirmation within timeout. Respects safety interlocks — only opens when machine is in safe state (spindle off, axis park).",
     "latest_version": "1.0.0",
     "robots": [
       "UR5e",
@@ -475,7 +423,7 @@ window.RSS_STATIC_SKILLS = [
     "category": "Finishing",
     "subcategory": "",
     "maturity": "beta",
-    "description": "Follows edge path with a pneumatic or electric deburring spindle (ATI Compliant Deburring Tool, Cogsdill). Uses force-controlled compliance to maintain consistent contact along irregular edges. Removes ISO grade N8\u2013N12 burrs. Programmable chamfer depth via force set-point.",
+    "description": "Follows edge path with a pneumatic or electric deburring spindle (ATI Compliant Deburring Tool, Cogsdill). Uses force-controlled compliance to maintain consistent contact along irregular edges. Removes ISO grade N8–N12 burrs. Programmable chamfer depth via force set-point.",
     "latest_version": "1.0.0",
     "robots": [
       "UR10e",
@@ -490,7 +438,7 @@ window.RSS_STATIC_SKILLS = [
     "category": "Finishing",
     "subcategory": "",
     "maturity": "alpha",
-    "description": "Performs multi-pass raster or contour polishing with constant contact force. Supports dry and wet polishing, abrasive pad and felt bob media. Monitors contact force via FT sensor to maintain consistent material removal rate. Compliance frame absorbs surface waviness \u00b13 mm. Used in aerospace and mould finishing.",
+    "description": "Performs multi-pass raster or contour polishing with constant contact force. Supports dry and wet polishing, abrasive pad and felt bob media. Monitors contact force via FT sensor to maintain consistent material removal rate. Compliance frame absorbs surface waviness ±3 mm. Used in aerospace and mould finishing.",
     "latest_version": "1.0.0",
     "robots": [
       "UR10e",
@@ -850,7 +798,7 @@ window.RSS_STATIC_SKILLS = [
     "category": "Welding",
     "subcategory": "",
     "maturity": "stable",
-    "description": "Performs arc welding with programmable transverse oscillation (weave) patterns \u2014 triangular, sinusoidal, trapezoidal, or spiral \u2014 with configurable amplitude, frequency, and edge dwell time. Used for wide-bead gap-bridging, thick-plate joints, and fillet welds requiring greater fusion width than a straight `seam_weld_arc` pass.",
+    "description": "Performs arc welding with programmable transverse oscillation (weave) patterns — triangular, sinusoidal, trapezoidal, or spiral — with configurable amplitude, frequency, and edge dwell time. Used for wide-bead gap-bridging, thick-plate joints, and fillet welds requiring greater fusion width than a straight `seam_weld_arc` pass.",
     "latest_version": "1.0.0",
     "robots": [
       "Dobot_CR5",
@@ -932,7 +880,7 @@ window.RSS_STATIC_SKILLS = [
     "category": "Dispensing",
     "subcategory": "",
     "maturity": "stable",
-    "description": "Applies decorative or protective paint to vehicle panels, consumer products, or appliances using a robot-mounted spray gun following programmed path patterns. Distinct from `spray_coat_surface` (industrial functional coatings): this skill targets aesthetic finish quality \u2014 gloss, color consistency, and overspray minimization.",
+    "description": "Applies decorative or protective paint to vehicle panels, consumer products, or appliances using a robot-mounted spray gun following programmed path patterns. Distinct from `spray_coat_surface` (industrial functional coatings): this skill targets aesthetic finish quality — gloss, color consistency, and overspray minimization.",
     "latest_version": "1.0.0",
     "robots": [
       "Dobot_CR5",
@@ -1036,5 +984,159 @@ window.RSS_STATIC_SKILLS = [
       "ABB_IRB460"
     ],
     "robots_supported": 3
+  },
+  {
+    "skill_id": "act_bimanual_cube_transfer",
+    "name": "Bimanual Cube Transfer (ACT)",
+    "category": "Manipulation",
+    "subcategory": "Bimanual",
+    "maturity": "beta",
+    "description": "Bimanual manipulation skill trained via imitation learning on the ALOHA platform. ACT (Action Chunking with Transformers) policy trained on 50 human demonstrations achieves 83% success rate in simulation. Uses 4 cameras (2 wrist, 2 overhead) and 14-DOF joint control. Deployed from HuggingFace Hub: lerobot/act_aloha_sim_transfer_cube_human.",
+    "latest_version": "1.0.0",
+    "robots": [
+      "ALOHA_v1",
+      "ALOHA_v2"
+    ],
+    "robots_supported": 2
+  },
+  {
+    "skill_id": "act_bimanual_peg_insertion",
+    "name": "Bimanual Peg Insertion (ACT)",
+    "category": "Assembly",
+    "subcategory": "Fine Assembly",
+    "maturity": "beta",
+    "description": "Contact-rich bimanual insertion trained with ACT on 50 human demonstrations. Harder than cube transfer due to tight tolerances; trained for 100k steps to achieve 20.6% success in simulation. Uses same 4-camera, 14-DOF ALOHA setup. Deployed from HuggingFace Hub: lerobot/act_aloha_sim_insertion_human.",
+    "latest_version": "1.0.0",
+    "robots": [
+      "ALOHA_v1",
+      "ALOHA_v2"
+    ],
+    "robots_supported": 2
+  },
+  {
+    "skill_id": "diffusion_push_object_to_target",
+    "name": "Push Object to Target (Diffusion Policy)",
+    "category": "Manipulation",
+    "subcategory": "Non-Prehensile",
+    "maturity": "beta",
+    "description": "Non-prehensile manipulation skill using Diffusion Policy (DDPM U-Net) trained on human teleoperation data. Pushes a T-block to a goal pose on a planar surface. Achieves 65.4% success rate. End-effector operates in 2D (x, y, angle). Deployed from HuggingFace Hub: lerobot/diffusion_pusht.",
+    "latest_version": "1.0.0",
+    "robots": [
+      "UR5e",
+      "UR3e",
+      "Franka_FR3"
+    ],
+    "robots_supported": 3
+  },
+  {
+    "skill_id": "act_battery_slot_insertion",
+    "name": "Battery Slot Insertion (ACT, Real Robot)",
+    "category": "Assembly",
+    "subcategory": "Electronic Assembly",
+    "maturity": "beta",
+    "description": "Real-robot battery insertion skill using ACT policy. Trained on 49 episodes of human demonstrations on physical ALOHA hardware, achieving 84% success rate. Demonstrates sim-to-real quality for tight-tolerance electronic assembly. Deployed from HuggingFace Hub: lerobot/aloha_static_battery.",
+    "latest_version": "1.0.0",
+    "robots": [
+      "ALOHA_v1",
+      "ALOHA_v2"
+    ],
+    "robots_supported": 2
+  },
+  {
+    "skill_id": "mtc_pick_and_place",
+    "name": "MTC Pick-and-Place",
+    "category": "Manipulation",
+    "subcategory": "Pick and Place",
+    "maturity": "stable",
+    "description": "Hierarchical state-machine pick-and-place using MoveIt Task Constructor (MTC). 23 states including approach, grasp candidate sampling, IK solve with fallback, lift, transfer, lower, place, and retreat. Supports grasp candidate ranking and automatic replanning on IK failure. Standard ROS-Industrial reference implementation.",
+    "latest_version": "1.0.0",
+    "robots": [
+      "UR5e",
+      "UR10e",
+      "Franka_FR3",
+      "ABB_IRB1200",
+      "KUKA_KR10"
+    ],
+    "robots_supported": 5
+  },
+  {
+    "skill_id": "ros_bin_picking_with_recovery",
+    "name": "Bin Picking with Recovery (ROS-Industrial)",
+    "category": "Manipulation",
+    "subcategory": "Bin Picking",
+    "maturity": "beta",
+    "description": "15-state ROS-Industrial bin picking skill with automated recovery. Captures 3D point cloud, ranks grasp candidates by quality score (collision clearance + approach angle), executes best grasp, falls back through ranked list on failure, and triggers rescan if all candidates exhausted. Suitable for metal stampings, castings, and injection-molded parts.",
+    "latest_version": "1.0.0",
+    "robots": [
+      "UR10e",
+      "UR16e",
+      "KUKA_KR10",
+      "Fanuc_M20iD"
+    ],
+    "robots_supported": 4
+  },
+  {
+    "skill_id": "ros_machine_tending_cnc",
+    "name": "CNC Machine Tending (ROS-Industrial)",
+    "category": "Machine Tending",
+    "subcategory": "CNC Tending",
+    "maturity": "beta",
+    "description": "18-state ROS-Industrial machine tending skill for CNC lathes and machining centers. Coordinates with CNC PLC via digital I/O signals: door open/close, chuck control, cycle start, cycle complete. Handles workpiece pick from tray, fixture alignment, load into chuck, monitor machining cycle, unload to output tray. Supports Fanuc, HAAS, and Mazak CNC interfaces.",
+    "latest_version": "1.0.0",
+    "robots": [
+      "UR10e",
+      "UR16e",
+      "Fanuc_M20iD",
+      "KUKA_KR16"
+    ],
+    "robots_supported": 4
+  },
+  {
+    "skill_id": "hybrid_vision_guided_pick_foundationpose",
+    "name": "Vision-Guided Pick (FoundationPose)",
+    "category": "Manipulation",
+    "subcategory": "Vision-Guided Pick",
+    "maturity": "beta",
+    "description": "Hybrid skill: FoundationPose neural pose estimator (NVIDIA, 2024) provides 6-DoF object pose from RGBD data without prior training on target object. Pose estimate feeds MoveIt2 Cartesian planner for collision-aware pick execution. Handles textureless industrial parts; reference pose from CAD mesh or single RGB image. Deployed as Docker Compose service with NVIDIA runtime for GPU inference.",
+    "latest_version": "1.0.0",
+    "robots": [
+      "UR5e",
+      "UR10e",
+      "Franka_FR3",
+      "ABB_IRB1200"
+    ],
+    "robots_supported": 4
+  },
+  {
+    "skill_id": "hybrid_vision_force_peg_in_hole",
+    "name": "Vision-Force Peg-in-Hole (FoundationPose + Impedance)",
+    "category": "Assembly",
+    "subcategory": "Fine Assembly",
+    "maturity": "beta",
+    "description": "Two-phase hybrid assembly: Phase 1 — FoundationPose RGBD estimates hole pose with ~1mm accuracy for coarse alignment. Phase 2 — Cartesian impedance controller executes spiral search (5mm radius, 0.5mm pitch) to handle residual ±2mm uncertainty. Force threshold triggers transition between phases. Suitable for connector, shaft, and precision component insertion where vision alone is insufficient.",
+    "latest_version": "1.0.0",
+    "robots": [
+      "UR5e",
+      "UR10e",
+      "KUKA_iiwa7",
+      "Franka_FR3"
+    ],
+    "robots_supported": 4
+  },
+  {
+    "skill_id": "hybrid_scan_and_plan_surface_finishing",
+    "name": "Scan-and-Plan Surface Finishing (Noether)",
+    "category": "Finishing",
+    "subcategory": "Surface Treatment",
+    "maturity": "beta",
+    "description": "Hybrid scan-to-finish skill using industrial_reconstruction (3D mesh from RGBD) and Noether (ROS-Industrial tool-path planner) for adaptive surface finishing. Phase 1: Robot-mounted RGBD camera scans part to reconstruct mesh. Phase 2: Noether generates raster or contour tool-path from mesh normals. Phase 3: Force-controlled Cartesian execution maintains constant contact force. Suitable for grinding, sanding, polishing, and de-burring of complex geometries.",
+    "latest_version": "1.0.0",
+    "robots": [
+      "UR10e",
+      "UR16e",
+      "ABB_IRB4400",
+      "KUKA_KR16"
+    ],
+    "robots_supported": 4
   }
 ];

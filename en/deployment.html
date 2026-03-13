@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>For Users · Robot Skill Store</title>
-<link rel="stylesheet" href="../assets/css/style.css?v=6.80"/>
+<title>Deploy · Robot Skill Store</title>
+<link rel="stylesheet" href="../assets/css/style.css?v=6.81"/>
 </head>
 <body>
 <header class="topbar">
@@ -13,7 +13,7 @@
 <img class="brand-mark logo-img" src="../assets/media/rss_logo.png" alt="Robot Skill Store logo"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skill Catalog</a><a class="toplink active" href="deployment.html">For Users</a><a class="toplink" href="developers.html">For Suppliers</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skills</a><a class="toplink active" href="deployment.html">Deploy</a><a class="toplink" href="developers.html">Publish</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Trust</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
 <div class="top-actions">
 <button type="button" class="iconbtn" id="langToggle" title="Language" aria-label="Switch language" data-current="en"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button type="button" class="iconbtn" id="themeToggle" title="Appearance" aria-label="Toggle theme"><span class="icon">☾</span><span class="label">Appearance</span></button>
@@ -23,10 +23,16 @@
 <div class="layout">
 <main class="content">
 
+<section class="section">
+  <p class="section-eyebrow">Adopter Path</p>
+  <h1>Move from skill discovery to deployment with less integration guesswork</h1>
+  <p class="lead">This page is the user journey after the storefront. Once a team finds a promising skill, the next questions are fit, configuration, evidence, recovery, and how deployment scales across cells.</p>
+</section>
+
 <!-- ── INDUSTRY SCENARIOS ── -->
 <section class="section">
   <h2 id="scenarios">Real-World Scenarios</h2>
-  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">Skills from the RSS catalog have been deployed in production across these workflows — reused with only parameter changes between sites.</p>
+  <p class="storefront-note">Skills from the catalog should feel deployable, not theoretical. These scenarios show how reusable skills support real workflows with parameter changes instead of custom rewrites.</p>
   <div class="app-grid">
     <div class="app-card">
       <div class="app-card-icon">&#128295;</div>
@@ -62,7 +68,7 @@
 <!-- ── HOW DEPLOYMENT WORKS ── -->
 <section class="section">
   <h2 id="how-it-works">How Skill Deployment Works</h2>
-  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">An application team selects certified skills from the catalog, configures them with task-specific parameters and constraints, and orchestrates them in sequence. RSS handles the evidence and governance automatically.</p>
+  <p class="storefront-note">Deployment should follow naturally from the storefront: select trusted skills, bind them to a robot profile, configure task constraints, execute, and accumulate evidence automatically.</p>
   <div class="deploy-flow" aria-label="Skill deployment flow">
     <div class="deploy-row top">
       <div class="deploy-step"><h4>Task</h4><p>High-level goal (e.g. "assemble connector")</p></div>
@@ -89,7 +95,7 @@
 <!-- ── DEMO WALKTHROUGH ── -->
 <section class="section">
   <h2 id="demo">Example: Connector Assembly on UR5 + RG2</h2>
-  <p style="margin:0 0 22px;color:var(--vp-c-text-2);font-size:14px;">A complete deployment walkthrough — from task goal to evidence record — using the flow above.</p>
+  <p class="storefront-note" style="margin-bottom:22px;">A complete deployment walkthrough, from task goal to evidence record, using the same store-to-deployment flow described above.</p>
 
   <div style="display:flex;flex-direction:column;gap:0;">
 
@@ -204,6 +210,7 @@ on_failure:     retry(2) → alert</pre>
 <!-- ── WHY IT MATTERS ── -->
 <section class="section">
   <h2 id="why">Why This Approach Scales</h2>
+  <p class="storefront-note">The value of a skill store is not one successful demo. It is repeatable adoption across cells, sites, and robot variants with controlled risk.</p>
   <ul class="checklist">
     <li><strong>Faster iteration</strong> — failures become parameter updates with evidence, not weeks of re-coding.</li>
     <li><strong>Safer reuse</strong> — constraint declarations and maturity gates reduce deployment risk across robot variants.</li>
@@ -215,6 +222,7 @@ on_failure:     retry(2) → alert</pre>
 <!-- ── NEXT STEPS ── -->
 <section class="section">
   <h2 id="next">Get Started</h2>
+  <p class="storefront-note">Use these pages as the next steps after a skill catches your attention in the catalog.</p>
   <div class="grid grid-3">
     <a class="card link-card" href="skills.html">
       <div class="card-title">Browse Skill Catalog</div>
@@ -233,7 +241,7 @@ on_failure:     retry(2) → alert</pre>
 
 <footer class="footer">
 <div class="footer-inner">
-<div>Robot Skill Store · build v6.80</div>
+<div>Robot Skill Store · build v6.81</div>
 <div class="muted">UI: VitePress-like (no search, no version selector)</div>
 </div>
 </footer>
@@ -243,7 +251,7 @@ on_failure:     retry(2) → alert</pre>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/config.js?v=6.80"></script>
-<script src="../assets/js/site.js?v=6.80"></script>
+<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

@@ -4,9 +4,50 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Skill Catalog · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.80" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
 <style>
 /* ── Skill catalog styles ── */
+.catalog-hero {
+  padding: 0;
+  margin-bottom: 18px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.catalog-hero h1 {
+  margin: 0 0 8px 0;
+  font-size: 30px;
+  line-height: 1.15;
+}
+.catalog-hero p {
+  margin: 0;
+  color: var(--vp-c-text-2, #666);
+  max-width: 72ch;
+  line-height: 1.7;
+}
+.catalog-hero-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.catalog-hero-card {
+  border: 1px solid var(--vp-c-divider, #ddd);
+  border-radius: 12px;
+  background: var(--vp-c-bg, #fff);
+  padding: 12px;
+}
+.catalog-hero-card b {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+.catalog-hero-card span {
+  display: block;
+  font-size: 12px;
+  color: var(--vp-c-text-2, #666);
+  line-height: 1.55;
+}
 .catalog-controls {
   display: flex;
   gap: 10px;
@@ -56,6 +97,10 @@
   margin-bottom: 14px;
 }
 .catalog-summary b { color: var(--vp-c-text-1, #222); }
+
+@media (max-width: 860px) {
+  .catalog-hero-grid { grid-template-columns: 1fr; }
+}
 
 .cat-group { margin-bottom: 28px; }
 .cat-group-title {
@@ -290,7 +335,7 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink active" href="skills.html">Skill Catalog</a><a class="toplink" href="deployment.html">For Users</a><a class="toplink" href="developers.html">For Suppliers</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink active" href="skills.html">Skills</a><a class="toplink" href="deployment.html">Deploy</a><a class="toplink" href="developers.html">Publish</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Trust</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button">
 <span class="icon">☾</span>
@@ -303,6 +348,25 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
 <main class="content">
 
 <section class="section">
+<div class="catalog-hero">
+  <p class="section-eyebrow">Skill Storefront</p>
+  <h1>Find installable robot skills by task, fit, and trust</h1>
+  <p>Use the catalog like a storefront, not a raw API browser. Start with the job to be done, narrow by category, inspect maturity and deployment signals, then download or validate fit when you are ready.</p>
+  <div class="catalog-hero-grid">
+    <div class="catalog-hero-card">
+      <b>Discovery first</b>
+      <span>Start from category and outcome instead of implementation detail.</span>
+    </div>
+    <div class="catalog-hero-card">
+      <b>Compatibility aware</b>
+      <span>Robot support, profiles, and deployment cues appear before deep technical review.</span>
+    </div>
+    <div class="catalog-hero-card">
+      <b>Evidence-backed</b>
+      <span>Recent validation signals and trust indicators support real adoption decisions.</span>
+    </div>
+  </div>
+</div>
 <div id="catalog-source"></div>
 
 <div class="catalog-controls">
@@ -326,8 +390,8 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
 </aside>
 </div>
 
-<script src="../assets/config.js?v=6.80"></script>
-<script src="../assets/data/public_skills.js?v=6.80"></script>
+<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/data/public_skills.js?v=6.81"></script>
 <script>
 (function () {
   var PLATFORM_BASE = (window.RSS_PLATFORM_BASE_URL || window.RSS_PUBLIC_BASE_URL || '').replace(/\/$/, '');
@@ -556,7 +620,7 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
   function triggerDownload(sk, btn) {
     var ver = btn.dataset.version || sk.latest_version || '1.0.0';
 
-    // JWT mode: fetch bundle from platform API
+    // JWT mode: fetch full v2.0 manifest from platform API
     if(window.RSSAuth && window.RSSAuth.isJwtMode && window.RSSAuth.isJwtMode()){
       var base = (window.RSS_PLATFORM_BASE_URL||'').replace(/\/+$/,'');
       var url  = base + '/public/v1/skills/' + encodeURIComponent(sk.skill_id) + '/bundle?version=' + encodeURIComponent(ver);
@@ -565,7 +629,7 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
         .then(function(blob){
           var a = document.createElement('a');
           a.href = URL.createObjectURL(blob);
-          a.download = sk.skill_id + '-bundle.json';
+          a.download = sk.skill_id + '-manifest-v2.1.json';
           document.body.appendChild(a); a.click(); document.body.removeChild(a);
           setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
         })
@@ -573,26 +637,109 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
       return;
     }
 
-    // Passkey mode (no platform URL): generate bundle client-side
-    var sel = bodyEl.querySelector('.sk-profile-select[data-skill="' + sk.skill_id + '"]');
-    var bundle = {
-      skill: { skill_id:sk.skill_id, name:sk.name, version:ver, category:sk.category,
-               maturity:sk.maturity, description:sk.description },
-      compatible_profiles: sk.robots || [],
-      sample_run_request:  { skill_id:sk.skill_id, version:ver,
-                             robot_profile: sel ? sel.value : (sk.robots[0]||'generic_profile'),
-                             parameters:{} },
-      quickstart: [
-        '1. Install:   rss-cli get ' + sk.skill_id + '@' + ver,
-        '2. Configure: set robot_profile and parameters in sample_run_request',
-        '3. Deploy:    POST /runs  (body = sample_run_request)',
-        '4. Evidence:  GET /viewer/ — browse run history and governance state'
-      ]
+    // Passkey mode (no platform URL): generate RSS Manifest v2.1 client-side
+    var robots = sk.robots && sk.robots.length ? sk.robots : ['generic_profile'];
+    var mat    = sk.maturity || 'alpha';
+    var catSlug = (sk.category || 'generic').toLowerCase().replace(/ /g, '-');
+    var catMod  = catSlug.replace(/-/g, '_');
+
+    // Category-based execution / hardware / safety defaults
+    var CAT_DEF = {
+      'Assembly':       { risk:'MEDIUM', primitives:['linear_force_control','cartesian_compliance'], ft:true,  payload:3.0  },
+      'Machine Tending':{ risk:'MEDIUM', primitives:['pick_and_place','cartesian_move'],             ft:false, payload:5.0  },
+      'Inspection':     { risk:'LOW',    primitives:['cartesian_scan','force_probe'],                ft:false, payload:1.0  },
+      'Dispensing':     { risk:'LOW',    primitives:['cartesian_path_follow','force_probe'],         ft:false, payload:2.0  },
+      'Manipulation':   { risk:'MEDIUM', primitives:['pick_and_place','regrasp'],                   ft:false, payload:5.0  },
+      'Welding':        { risk:'HIGH',   primitives:['cartesian_seam_track','weave_motion'],         ft:false, payload:8.0  },
+      'Finishing':      { risk:'MEDIUM', primitives:['force_controlled_contour','orbital_motion'],  ft:true,  payload:5.0  },
+      'Packaging':      { risk:'LOW',    primitives:['pick_and_place','cartesian_move'],             ft:false, payload:10.0 },
+      'Handling':       { risk:'LOW',    primitives:['pick_and_place','cartesian_move'],             ft:false, payload:10.0 }
     };
-    var blob = new Blob([JSON.stringify(bundle,null,2)], {type:'application/json'});
+    var d   = CAT_DEF[sk.category] || { risk:'MEDIUM', primitives:['cartesian_move'], ft:false, payload:5.0 };
+    var rp  = {};
+    robots.forEach(function(r){ rp[r] = {}; });
+
+    var _ev = { alpha:5, beta:20, stable:50 };
+    var _sr = { beta:0.85, stable:0.92 };
+    var lc  = (mat === 'stable' || mat === 'beta') ? 'VALIDATED' : 'EXPERIMENTAL';
+
+    var manifest = {
+      rss_manifest_version: '2.1',
+      skill_definition: {
+        skill_id: sk.skill_id,
+        version:  ver,
+        identity: {
+          name:        sk.name,
+          category:    sk.category,
+          subcategory: sk.subcategory || '',
+          maturity:    mat,
+          description: sk.description,
+          tags:        []
+        },
+        orchestration_interface: {
+          intent:         sk.description || sk.name,
+          parameters:     { target_pose: { type:'pose', required:true, description:'Target pose in world frame' } },
+          outputs:        { outcome: { type:'string', enum:['SUCCESS','FAILURE'] } },
+          preconditions:  [],
+          postconditions: [],
+          error_codes:    {}
+        },
+        execution: {
+          implementation_type: 'algorithm',
+          middleware:          'ROS2',
+          runtime_module:      'rss_skills.' + catMod + '.' + sk.skill_id,
+          motion_primitives:   d.primitives,
+          real_time_constraints: { control_frequency_hz:500 }
+        },
+        hardware_requirements: {
+          robot: {
+            min_dof:                      6,
+            min_payload_kg:               d.payload,
+            requires_force_torque_sensor: d.ft
+          },
+          end_effector: { types:[], feeder_required:false },
+          sensors:      []
+        },
+        safety: {
+          risk_level:              d.risk,
+          primary_constraints:     [],
+          requires_safety_stop_on: ['FORCE_EXCEEDED','COLLISION']
+        },
+        robot_profiles:    rp,
+        compatible_robots: robots,
+        composition: {
+          can_follow:    [],
+          enables:       [],
+          parallel_safe: false,
+          idempotent:    false
+        },
+        distribution: {
+          type:       'pypi',
+          package:    'rss-skills-' + catSlug,
+          version:    ver,
+          entrypoint: 'rss_skills.' + catMod + '.' + sk.skill_id + '.' +
+                      sk.skill_id.split('_').map(function(w){ return w.charAt(0).toUpperCase()+w.slice(1); }).join('') + 'Skill',
+          docs_url:   '/public/v1/skills/' + sk.skill_id + '/card'
+        }
+      },
+      skill_status: {
+        skill_id: sk.skill_id,
+        version:  ver,
+        governance: {
+          lifecycle_state:        lc,
+          evidence_runs_required: _ev[mat] || 20,
+          min_success_rate:       _sr[mat] || null,
+          platform_record:        '/viewer/?skill_id=' + sk.skill_id
+        },
+        stats_30d:    { runs:0, success_rate:null },
+        retrieved_at: new Date().toISOString(),
+        _note: 'Offline manifest — full parameters, error codes, robot profiles, composition graph, and live stats available from the RSS Platform (/public/v1/skills/' + sk.skill_id + '/bundle).'
+      }
+    };
+    var blob = new Blob([JSON.stringify(manifest,null,2)], {type:'application/json'});
     var dlUrl = URL.createObjectURL(blob);
     var a = document.createElement('a');
-    a.href = dlUrl; a.download = sk.skill_id + '-bundle.json';
+    a.href = dlUrl; a.download = sk.skill_id + '-manifest-v2.1.json';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function(){ URL.revokeObjectURL(dlUrl); }, 1000);
   }
@@ -677,6 +824,6 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
   if (PLATFORM_BASE) { loadFromPlatform(); } else { loadStatic(); }
 })();
 </script>
-<script src="../assets/js/site.js?v=6.80"></script>
+<script src="../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

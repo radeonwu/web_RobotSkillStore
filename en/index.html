@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Robot Skill Store — The Platform for Trusted Industrial Robot Skills</title>
-<link href="../assets/css/style.css?v=6.80" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -13,7 +13,7 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skill Catalog</a><a class="toplink" href="deployment.html">For Users</a><a class="toplink" href="developers.html">For Suppliers</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skills</a><a class="toplink" href="deployment.html">Deploy</a><a class="toplink" href="developers.html">Publish</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Trust</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
 <div class="top-actions">
   <button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
   <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
@@ -26,29 +26,44 @@
 
 <!-- ── HERO ── -->
 <div class="hero-gradient">
-  <p style="font-size:12px;font-weight:600;color:var(--vp-c-brand);letter-spacing:0.08em;text-transform:uppercase;margin:0 0 10px 0;">Robot Skill Store</p>
-  <h1 class="hero-headline">The Platform for<br>Trusted Industrial Robot Skills</h1>
-  <p class="hero-tagline">Register, validate, certify, and deploy reusable robot skills — turning one-off automation into long-term capability assets.</p>
+  <p class="section-eyebrow">Robot Skill Store</p>
+  <h1 class="hero-headline">Deploy robot skills like industrial apps</h1>
+  <p class="hero-tagline">Browse verified robot skills, check hardware fit, review evidence-backed trust signals, and move from discovery to deployment through one storefront.</p>
 
   <div class="stats-bar">
-    <div class="stat-item"><span class="stat-n" id="stat-skills">68/span><span class="stat-l">Skills</span></div>
-    <div class="stat-item"><span class="stat-n" id="stat-cats">9/span><span class="stat-l">Categories</span></div>
+    <div class="stat-item"><span class="stat-n" id="stat-skills">68</span><span class="stat-l">Skills</span></div>
+    <div class="stat-item"><span class="stat-n" id="stat-cats">9</span><span class="stat-l">Categories</span></div>
     <div class="stat-item"><span class="stat-n">10+</span><span class="stat-l">Robot Models</span></div>
-    <div class="stat-item"><span class="stat-n">Evidence</span><span class="stat-l">Governance</span></div>
+    <div class="stat-item"><span class="stat-n">Evidence</span><span class="stat-l">Trust Signals</span></div>
   </div>
   <div id="platform-status"></div>
+
+  <div class="hero-summary">
+    <div class="hero-summary-card">
+      <b>For robot users</b>
+      <span>Start from the job to be done, compare compatibility, and understand deployment effort before opening technical detail.</span>
+    </div>
+    <div class="hero-summary-card">
+      <b>For suppliers</b>
+      <span>Publish reusable skills, submit evidence, and move toward validation or certification instead of shipping one-off integrations.</span>
+    </div>
+    <div class="hero-summary-card">
+      <b>For operators</b>
+      <span>Use evidence, lifecycle, and platform tooling to judge readiness, monitor performance, and support production adoption.</span>
+    </div>
+  </div>
 
   <div class="dual-path">
     <div class="path-card path-user">
       <div class="path-icon">&#8594;</div>
-      <h3>Browse &amp; Deploy Skills</h3>
-      <p>Evidence-backed, lifecycle-governed skills compatible with multiple robot platforms.</p>
+      <h3>Explore Skills</h3>
+      <p>Browse the skill storefront by task, trust level, and robot fit. Compare options before committing integration time.</p>
       <a class="path-cta cta-primary" href="skills.html">Browse Skill Catalog</a>
     </div>
     <div class="path-card path-supplier">
       <div class="path-icon">+</div>
       <h3>Publish Your Skill</h3>
-      <p>Submit for validation and certification. Make your skill discoverable and reusable across robots and teams.</p>
+      <p>Submit for validation and certification, then make your capability discoverable as a reusable skill product instead of a custom project artifact.</p>
       <a class="path-cta cta-secondary" href="developers.html">For Suppliers &rarr;</a>
     </div>
   </div>
@@ -57,7 +72,7 @@
 <!-- ── SKILL CATEGORIES ── -->
 <section class="section">
   <h2 id="categories">Skill Categories</h2>
-  <p id="cat-subtitle" style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">68 industrial skills across 9 manufacturing domains. Click a category to browse.</p>
+  <p id="cat-subtitle" class="storefront-note">Browse by production task first. Each category acts like an aisle in the store, helping users narrow toward a deployable skill faster.</p>
   <div class="cat-grid" id="cat-grid">
     <a class="cat-card" href="skills.html?cat=Assembly">
       <div class="cat-icon" style="background:hsl(215,80%,93%);color:hsl(215,60%,38%)">A</div>
@@ -93,8 +108,8 @@
 <!-- ── FEATURED STABLE SKILLS ── -->
 <section class="section">
   <h2 id="featured">Featured Skills</h2>
-  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">Production-ready skills validated across multiple robot platforms.</p>
-  <div class="feat-grid">
+  <p class="storefront-note" id="featured-subtitle">A sample of skills that already read like products: clear job summary, visible maturity, and multi-robot fit.</p>
+  <div class="feat-grid" id="featured-grid">
     <div class="feat-card">
       <div class="feat-card-head">
         <div><div class="feat-name">Peg-in-Hole Insertion</div><div class="feat-id">peg_in_hole</div></div>
@@ -140,7 +155,7 @@
 <!-- ── APPLICATION EXAMPLES ── -->
 <section class="section">
   <h2 id="applications">Applications in the Field</h2>
-  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">Real-world workflows built from certified RSS skills — reused across line variants by changing parameters, not rewriting code.</p>
+  <p class="storefront-note">Real-world workflows built from reusable skills. The goal is to reuse capability across line variants by changing parameters, not rewriting automation from scratch.</p>
   <div class="app-grid">
     <div class="app-card">
       <div class="app-card-icon">&#128295;</div>
@@ -176,7 +191,7 @@
 <!-- ── TRUST / EVIDENCE ── -->
 <section class="section">
   <h2 id="trust">Built on Evidence, Not Promises</h2>
-  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">Every RSS skill is backed by immutable execution records, not just a README. Governance state is computed continuously from real data.</p>
+  <p class="storefront-note">Trust is the differentiator. Every skill should be judged by evidence, compatibility, and lifecycle state, not just a polished description.</p>
   <div class="trust-grid">
     <div class="trust-card">
       <div class="trust-card-icon">&#128221;</div>
@@ -202,6 +217,7 @@
 <!-- ── ECOSYSTEM FLOW ── -->
 <section class="section">
   <h2 id="ecosystem">Where RSS Sits</h2>
+  <p class="storefront-note">The store is the meeting point between skill suppliers and adopters. Suppliers publish and validate; users discover and deploy with clearer trust signals.</p>
   <div class="flowline">
     <div class="flow-node">
       <div class="flow-title">Supplier</div>
@@ -226,7 +242,7 @@
 </main>
 <aside class="toc"><div class="toc-title">ON THIS PAGE</div><nav id="tocNav"></nav></aside>
 </div>
-<script src="../assets/config.js?v=6.80"></script>
+<script src="../assets/config.js?v=6.81"></script>
 <script>
 (function(){
   var CAT_STYLE = {
@@ -268,6 +284,12 @@
       var catNames = Object.keys(catCounts).sort();
       var ec = document.getElementById('stat-cats');
       if (ec) ec.textContent = catNames.length;
+      var robotSet = {};
+      items.forEach(function(s){
+        (Array.isArray(s.robots) ? s.robots : []).forEach(function(r){ if(r) robotSet[r] = 1; });
+      });
+      var robotStat = document.querySelectorAll('.stat-item .stat-n')[2];
+      if (robotStat) robotStat.textContent = Object.keys(robotSet).length || '10+';
 
       // Rebuild category grid
       var grid = document.getElementById('cat-grid');
@@ -292,12 +314,40 @@
       var viewAll = document.getElementById('view-all-link');
       if (viewAll) viewAll.textContent = 'View all ' + items.length + ' skills in the catalog \u2192';
 
+      // Rebuild featured skills from live data when available.
+      var featGrid = document.getElementById('featured-grid');
+      var featSub = document.getElementById('featured-subtitle');
+      if (featGrid) {
+        var featured = items
+          .filter(function(s){ return (s.maturity || '').toLowerCase() === 'stable'; })
+          .sort(function(a,b){
+            var ar = Number(a.robots_supported || 0), br = Number(b.robots_supported || 0);
+            if (br !== ar) return br - ar;
+            return String(a.name || a.skill_id).localeCompare(String(b.name || b.skill_id));
+          })
+          .slice(0, 4);
+        if (!featured.length) featured = items.slice(0, 4);
+        featGrid.innerHTML = featured.map(function(s){
+          var robots = Array.isArray(s.robots) ? s.robots.slice(0, 4) : [];
+          return '<div class="feat-card">' +
+            '<div class="feat-card-head">' +
+              '<div><div class="feat-name">' + esc(s.name || s.skill_id) + '</div><div class="feat-id">' + esc(s.skill_id) + '</div></div>' +
+              '<span class="feat-stable">' + esc((s.maturity || 'alpha').toLowerCase()) + '</span>' +
+            '</div>' +
+            '<div class="feat-cat">' + esc((s.category || 'Other') + (s.subcategory ? ' · ' + s.subcategory : '')) + '</div>' +
+            '<div class="feat-desc">' + esc(s.description || s.intent || 'No description available.') + '</div>' +
+            '<div class="feat-robots">' + robots.map(function(r){ return '<span>' + esc(r) + '</span>'; }).join('') + '</div>' +
+          '</div>';
+        }).join('');
+        if (featSub) featSub.textContent = 'Featured directly from the live catalog, prioritizing strong maturity and broader robot support.';
+      }
+
       // Show live badge
       if (status) status.innerHTML = '<span class="live-badge"><span class="live-dot"></span>Live data from platform</span>';
     })
     .catch(function(){});
 })();
 </script>
-<script src="../assets/js/site.js?v=6.80"></script>
+<script src="../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

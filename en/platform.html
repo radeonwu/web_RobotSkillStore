@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Platform · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.80" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -14,7 +14,7 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skill Catalog</a><a class="toplink" href="deployment.html">For Users</a><a class="toplink" href="developers.html">For Suppliers</a><a class="toplink active" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skills</a><a class="toplink" href="deployment.html">Deploy</a><a class="toplink" href="developers.html">Publish</a><a class="toplink active" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Trust</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
 <div class="top-actions"><button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
 <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
 </div>
@@ -23,9 +23,16 @@
 <div class="layout">
 <main class="content" id="content">
 
+<section class="section">
+  <p class="section-eyebrow">Platform Console</p>
+  <h1>Operate the trust and evidence layer behind the store</h1>
+  <p class="lead">The platform is the operational side of Robot Skill Store. It manages runs, artifacts, lifecycle evaluation, and the public surfaces that turn raw robotics work into a credible skill marketplace.</p>
+</section>
+
 <!-- ── WHAT THE PLATFORM DOES ── -->
 <section class="section">
   <h2 id="capabilities">What the Platform Does</h2>
+  <p class="storefront-note">These are the backend capabilities that make the public skill storefront believable instead of cosmetic.</p>
   <div class="plat-cap-grid">
     <div class="plat-cap-card">
       <div class="plat-cap-icon">&#128269;</div>
@@ -63,7 +70,7 @@
 <!-- ── RUNTIME PIPELINE ── -->
 <section class="section">
   <h2 id="runtime-pipeline">How It Flows</h2>
-  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">From skill registration to public certification — six stages, all evidence-gated.</p>
+  <p class="storefront-note">From skill registration to public certification, every step is evidence-gated. The platform exists to make those steps operational, inspectable, and repeatable.</p>
   <div class="pipeline" aria-label="Platform runtime pipeline">
     <div class="pipe-row top">
       <div class="pipe-step"><div class="pipe-title">1) Register</div><div class="pipe-body">Submit skill spec · Schema validation · Assign skill ID</div></div>
@@ -93,7 +100,7 @@
 <!-- ── WEBSITE ↔ PLATFORM ── -->
 <section class="section">
   <h2 id="integration">Website ↔ Platform Integration</h2>
-  <p style="margin:0 0 16px 0;color:var(--vp-c-text-2);font-size:14px;">The RSS website connects to a live platform instance to show real-time skill counts, governance states, and evidence links — without requiring users to log in.</p>
+  <p class="storefront-note">The website is the storefront layer and the platform is the source of truth. This integration keeps the public surface authoritative instead of drifting into static brochure mode.</p>
   <div style="overflow-x:auto;margin-bottom:14px;">
   <div style="border:1px solid var(--vp-c-border);border-radius:10px;overflow:hidden;min-width:480px;">
   <table style="width:100%;border-collapse:collapse;font-size:13.5px;">
@@ -173,7 +180,7 @@
 <!-- ── EVIDENCE VIEWER ── -->
 <section class="section">
   <h2 id="viewer">Evidence Viewer</h2>
-  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">The built-in Evidence Viewer lets anyone browse run records, inspect artifacts, and review governance snapshots — no code required.</p>
+  <p class="storefront-note">The Evidence Viewer is the operator-facing console: the place users go after discovery, once they need to inspect run history, artifacts, and governance state in detail.</p>
   <ul class="checklist">
     <li>Browse all runs for any skill version — filter by outcome, robot, date.</li>
     <li>View attached artifacts: video playback, log inspection, telemetry charts.</li>
@@ -187,7 +194,7 @@
 
 <footer class="footer">
 <div class="footer-inner">
-<div>Robot Skill Store · build v6.80</div>
+<div>Robot Skill Store · build v6.81</div>
 <div class="muted">UI: VitePress-like (no search, no version selector)</div>
 </div>
 </footer>
@@ -197,7 +204,7 @@
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/config.js?v=6.80"></script>
+<script src="../assets/config.js?v=6.81"></script>
 <script>
 (function(){
   var base = (window.RSS_PLATFORM_BASE_URL || '').replace(/\/$/,'');
@@ -212,6 +219,6 @@
   }
 })();
 </script>
-<script src="../assets/js/site.js?v=6.80"></script>
+<script src="../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

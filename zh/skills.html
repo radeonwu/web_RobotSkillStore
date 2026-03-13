@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>技能目录 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.80" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
 <style>
 /* ── Skill catalog styles ── */
 .catalog-controls {
@@ -326,8 +326,8 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
 </aside>
 </div>
 
-<script src="../assets/config.js?v=6.80"></script>
-<script src="../assets/data/public_skills.js?v=6.80"></script>
+<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/data/public_skills.js?v=6.81"></script>
 <script>
 (function () {
   var PLATFORM_BASE = (window.RSS_PLATFORM_BASE_URL || window.RSS_PUBLIC_BASE_URL || '').replace(/\/$/, '');
@@ -556,7 +556,7 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
   function triggerDownload(sk, btn) {
     var ver = btn.dataset.version || sk.latest_version || '1.0.0';
 
-    // JWT 模式：从平台 API 获取下载包
+    // JWT 模式：从平台 API 获取完整 v2.0 清单
     if(window.RSSAuth && window.RSSAuth.isJwtMode && window.RSSAuth.isJwtMode()){
       var base = (window.RSS_PLATFORM_BASE_URL||'').replace(/\/+$/,'');
       var url  = base + '/public/v1/skills/' + encodeURIComponent(sk.skill_id) + '/bundle?version=' + encodeURIComponent(ver);
@@ -565,7 +565,7 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
         .then(function(blob){
           var a = document.createElement('a');
           a.href = URL.createObjectURL(blob);
-          a.download = sk.skill_id + '-bundle.json';
+          a.download = sk.skill_id + '-manifest-v2.1.json';
           document.body.appendChild(a); a.click(); document.body.removeChild(a);
           setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
         })
@@ -573,26 +573,109 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
       return;
     }
 
-    // 通行码模式（无平台 URL）：客户端本地生成下载包
-    var sel = bodyEl.querySelector('.sk-profile-select[data-skill="' + sk.skill_id + '"]');
-    var bundle = {
-      skill: { skill_id:sk.skill_id, name:sk.name, version:ver, category:sk.category,
-               maturity:sk.maturity, description:sk.description },
-      compatible_profiles: sk.robots || [],
-      sample_run_request:  { skill_id:sk.skill_id, version:ver,
-                             robot_profile: sel ? sel.value : (sk.robots[0]||'generic_profile'),
-                             parameters:{} },
-      quickstart: [
-        '1. 安装：   rss-cli get ' + sk.skill_id + '@' + ver,
-        '2. 配置：   在 sample_run_request 中设置 robot_profile 和 parameters',
-        '3. 部署：   POST /runs  (body = sample_run_request)',
-        '4. 查看证据：GET /viewer/ — 浏览运行记录与治理状态'
-      ]
+    // 通行码模式（无平台 URL）：客户端本地生成 RSS Manifest v2.1
+    var robots  = sk.robots && sk.robots.length ? sk.robots : ['generic_profile'];
+    var mat     = sk.maturity || 'alpha';
+    var catSlug = (sk.category || 'generic').toLowerCase().replace(/ /g, '-');
+    var catMod  = catSlug.replace(/-/g, '_');
+
+    // 按类别设置执行 / 硬件 / 安全默认值
+    var CAT_DEF = {
+      'Assembly':       { risk:'MEDIUM', primitives:['linear_force_control','cartesian_compliance'], ft:true,  payload:3.0  },
+      'Machine Tending':{ risk:'MEDIUM', primitives:['pick_and_place','cartesian_move'],             ft:false, payload:5.0  },
+      'Inspection':     { risk:'LOW',    primitives:['cartesian_scan','force_probe'],                ft:false, payload:1.0  },
+      'Dispensing':     { risk:'LOW',    primitives:['cartesian_path_follow','force_probe'],         ft:false, payload:2.0  },
+      'Manipulation':   { risk:'MEDIUM', primitives:['pick_and_place','regrasp'],                   ft:false, payload:5.0  },
+      'Welding':        { risk:'HIGH',   primitives:['cartesian_seam_track','weave_motion'],         ft:false, payload:8.0  },
+      'Finishing':      { risk:'MEDIUM', primitives:['force_controlled_contour','orbital_motion'],  ft:true,  payload:5.0  },
+      'Packaging':      { risk:'LOW',    primitives:['pick_and_place','cartesian_move'],             ft:false, payload:10.0 },
+      'Handling':       { risk:'LOW',    primitives:['pick_and_place','cartesian_move'],             ft:false, payload:10.0 }
     };
-    var blob = new Blob([JSON.stringify(bundle,null,2)], {type:'application/json'});
+    var d   = CAT_DEF[sk.category] || { risk:'MEDIUM', primitives:['cartesian_move'], ft:false, payload:5.0 };
+    var rp  = {};
+    robots.forEach(function(r){ rp[r] = {}; });
+
+    var _ev = { alpha:5, beta:20, stable:50 };
+    var _sr = { beta:0.85, stable:0.92 };
+    var lc  = (mat === 'stable' || mat === 'beta') ? 'VALIDATED' : 'EXPERIMENTAL';
+
+    var manifest = {
+      rss_manifest_version: '2.1',
+      skill_definition: {
+        skill_id: sk.skill_id,
+        version:  ver,
+        identity: {
+          name:        sk.name,
+          category:    sk.category,
+          subcategory: sk.subcategory || '',
+          maturity:    mat,
+          description: sk.description,
+          tags:        []
+        },
+        orchestration_interface: {
+          intent:         sk.description || sk.name,
+          parameters:     { target_pose: { type:'pose', required:true, description:'目标位姿（世界坐标系）' } },
+          outputs:        { outcome: { type:'string', enum:['SUCCESS','FAILURE'] } },
+          preconditions:  [],
+          postconditions: [],
+          error_codes:    {}
+        },
+        execution: {
+          implementation_type: 'algorithm',
+          middleware:          'ROS2',
+          runtime_module:      'rss_skills.' + catMod + '.' + sk.skill_id,
+          motion_primitives:   d.primitives,
+          real_time_constraints: { control_frequency_hz:500 }
+        },
+        hardware_requirements: {
+          robot: {
+            min_dof:                      6,
+            min_payload_kg:               d.payload,
+            requires_force_torque_sensor: d.ft
+          },
+          end_effector: { types:[], feeder_required:false },
+          sensors:      []
+        },
+        safety: {
+          risk_level:              d.risk,
+          primary_constraints:     [],
+          requires_safety_stop_on: ['FORCE_EXCEEDED','COLLISION']
+        },
+        robot_profiles:    rp,
+        compatible_robots: robots,
+        composition: {
+          can_follow:    [],
+          enables:       [],
+          parallel_safe: false,
+          idempotent:    false
+        },
+        distribution: {
+          type:       'pypi',
+          package:    'rss-skills-' + catSlug,
+          version:    ver,
+          entrypoint: 'rss_skills.' + catMod + '.' + sk.skill_id + '.' +
+                      sk.skill_id.split('_').map(function(w){ return w.charAt(0).toUpperCase()+w.slice(1); }).join('') + 'Skill',
+          docs_url:   '/public/v1/skills/' + sk.skill_id + '/card'
+        }
+      },
+      skill_status: {
+        skill_id: sk.skill_id,
+        version:  ver,
+        governance: {
+          lifecycle_state:        lc,
+          evidence_runs_required: _ev[mat] || 20,
+          min_success_rate:       _sr[mat] || null,
+          platform_record:        '/viewer/?skill_id=' + sk.skill_id
+        },
+        stats_30d:    { runs:0, success_rate:null },
+        retrieved_at: new Date().toISOString(),
+        _note: '离线清单 — 完整参数、错误码、机器人专属配置、组合图及实时统计须通过 RSS 平台获取（/public/v1/skills/' + sk.skill_id + '/bundle）。'
+      }
+    };
+    var blob = new Blob([JSON.stringify(manifest,null,2)], {type:'application/json'});
     var dlUrl = URL.createObjectURL(blob);
     var a = document.createElement('a');
-    a.href = dlUrl; a.download = sk.skill_id + '-bundle.json';
+    a.href = dlUrl; a.download = sk.skill_id + '-manifest-v2.1.json';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function(){ URL.revokeObjectURL(dlUrl); }, 1000);
   }
@@ -677,6 +760,6 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
   if (PLATFORM_BASE) { loadFromPlatform(); } else { loadStatic(); }
 })();
 </script>
-<script src="../assets/js/site.js?v=6.80"></script>
+<script src="../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

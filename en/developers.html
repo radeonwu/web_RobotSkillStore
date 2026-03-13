@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>For Suppliers · Robot Skill Store</title>
-<link href="../assets/css/style.css?v=6.80" rel="stylesheet"/>
+<title>Publish · Robot Skill Store</title>
+<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -13,7 +13,7 @@
 <img alt="Robot Skill Store logo" class="brand-mark logo-img" src="../assets/media/rss_logo.png"/>
 <span class="brand-name">RobotSkillStore</span>
 </a>
-<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skill Catalog</a><a class="toplink" href="deployment.html">For Users</a><a class="toplink active" href="developers.html">For Suppliers</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Skill Lifecycle</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
+<nav aria-label="Primary" class="topnav"><a class="toplink" href="index.html">Home</a><a class="toplink" href="skills.html">Skills</a><a class="toplink" href="deployment.html">Deploy</a><a class="toplink active" href="developers.html">Publish</a><a class="toplink" href="platform.html">Platform</a><a class="toplink" href="lifecycle.html">Trust</a><a class="toplink" href="concepts.html">Docs</a><a class="toplink" href="contact.html">Contact</a></nav>
 <div class="top-actions">
   <button aria-label="Switch language" class="iconbtn" data-current="en" id="langToggle" title="Language" type="button"><span class="icon">EN/中</span><span class="label">中文</span></button>
   <button aria-label="Toggle theme" class="iconbtn" id="themeToggle" title="Appearance" type="button"><span class="icon">☾</span><span class="label">Appearance</span></button>
@@ -23,6 +23,12 @@
 
 <div class="layout">
 <main class="content">
+
+<section class="section">
+  <p class="section-eyebrow">Publisher Path</p>
+  <h1>Publish skills that are discoverable, trusted, and reusable</h1>
+  <p class="lead">This page is the supplier journey of the store. The goal is not just to upload code, but to turn a robot capability into a reusable skill product with evidence, compatibility metadata, and lifecycle-driven trust.</p>
+</section>
 
 <!-- ── WHY SUPPLY TO RSS ── -->
 <section class="section">
@@ -49,7 +55,7 @@
 <!-- ── 4-STEP FLOW ── -->
 <section class="section">
   <h2 id="how-to-submit">How to Submit a Skill</h2>
-  <p style="margin:0 0 6px 0;color:var(--vp-c-text-2);font-size:14px;">Four steps from your robot capability to a platform-certified skill.</p>
+  <p class="storefront-note">Four steps from a robot capability to a platform-certified store listing.</p>
   <div class="steps-numbered">
     <div class="step-row">
       <div class="step-num">1</div>
@@ -85,6 +91,7 @@
 <!-- ── WHAT RSS VALIDATES ── -->
 <section class="section">
   <h2 id="what-rss-validates">What RSS Validates</h2>
+  <p class="storefront-note">Validation should strengthen the buyer decision on the storefront. That means RSS checks not just schema correctness, but evidence quality and operational behavior over time.</p>
   <div class="spec-block">
     <details>
       <summary class="spec-block-title">Validation criteria — 6 items <span class="spec-chevron">▾</span></summary>
@@ -108,7 +115,7 @@
 <!-- ── RSS-KIT ── -->
 <section class="section">
   <h2 id="rss-kit">RSS-kit: Developer Toolkit</h2>
-  <p style="margin:0 0 12px 0;color:var(--vp-c-text-2);font-size:14px;">RSS-kit is a Python package that wraps the platform API with a CLI and code generator — so you focus on skill logic, not HTTP boilerplate. It scaffolds spec files, validates them locally, and submits runs in one command.</p>
+  <p class="storefront-note">RSS-kit is the fastest path from local development to a live store listing. It reduces platform friction so suppliers can focus on capability quality instead of transport boilerplate.</p>
   <div class="kit-block">
     <div class="kit-block-header">rss-kit · 3-step workflow</div>
     <div class="kit-step">
@@ -145,7 +152,7 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
 <!-- ── SKILL SPEC OVERVIEW ── -->
 <section class="section">
   <h2 id="skill-spec">Skill Spec Format</h2>
-  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">Minimum viable structure — full reference in the docs.</p>
+  <p class="storefront-note">The spec is the contract behind every public skill page, compatibility check, and downloadable bundle.</p>
   <div class="spec-block">
     <details>
     <summary class="spec-block-title">Skill Spec — minimum structure (JSON) <span class="spec-chevron">▾</span></summary>
@@ -193,7 +200,7 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
 <!-- ── ROBOT COMPATIBILITY ── -->
 <section class="section">
   <h2 id="robot-support">Robot Compatibility</h2>
-  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">Skills declare capability requirements (DoF, payload, FT sensor, end-effector type) and per-robot parameter profiles. Compatibility is resolved at runtime.</p>
+  <p class="storefront-note">Compatibility is one of the strongest store signals. Suppliers should treat robot support as first-class product metadata, not an afterthought in the docs.</p>
 
   <div class="compat-grid">
 
@@ -294,7 +301,7 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
 
 <footer class="footer">
 <div class="footer-inner">
-<div>Robot Skill Store · build v6.80</div>
+<div>Robot Skill Store · build v6.81</div>
 <div class="muted">UI: VitePress-like (no search, no version selector)</div>
 </div>
 </footer>
@@ -304,7 +311,7 @@ rss-kit new peg_in_hole --template assembly --robot UR10e</div>
 <nav class="toc-nav" id="tocNav"></nav>
 </aside>
 </div>
-<script src="../assets/config.js?v=6.80"></script>
-<script src="../assets/js/site.js?v=6.80"></script>
+<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.81"></script>
 </body>
 </html>

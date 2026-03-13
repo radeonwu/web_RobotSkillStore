@@ -17,8 +17,7 @@
 window.RSS_API_BASE = window.RSS_API_BASE || "";
 
 // Preferred base URL
-//window.RSS_PLATFORM_BASE_URL = window.RSS_PLATFORM_BASE_URL || window.RSS_API_BASE || "http://localhost:8080";
-window.RSS_PLATFORM_BASE_URL = window.RSS_PLATFORM_BASE_URL || window.RSS_API_BASE || "https://customized-wheat-liked-bedford.trycloudflare.com";
+window.RSS_PLATFORM_BASE_URL = window.RSS_PLATFORM_BASE_URL || window.RSS_API_BASE || "https://fantasy-distribute-twenty-realty.trycloudflare.com";
 
 // Optional overrides (defaults to platform base)
 window.RSS_VIEWER_BASE_URL = window.RSS_VIEWER_BASE_URL || window.RSS_PLATFORM_BASE_URL || "";
