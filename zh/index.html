@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>机器人技能商店 — 可信工业机器人技能平台</title>
-<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
+<title>机器人技能商店 — 可信机器人技能开放平台</title>
+<link href="../assets/css/style.css?v=6.82" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -27,13 +27,13 @@
 <!-- ── 首屏 Hero ── -->
 <div class="hero-gradient">
   <p style="font-size:12px;font-weight:600;color:var(--vp-c-brand);letter-spacing:0.08em;text-transform:uppercase;margin:0 0 10px 0;">Robot Skill Store</p>
-  <h1 class="hero-headline">可信工业机器人技能的<br>标准化平台</h1>
-  <p class="hero-tagline">注册、验证、认证、部署——将一次性自动化能力沉淀为可持续复用的机器人技能资产。</p>
+  <h1 class="hero-headline">机器人技能的<br>标准化开放平台</h1>
+  <p class="hero-tagline">工业自动化、桌面陪伴，乃至更多机器人应用场景——注册、验证、认证、部署，将一次性能力沉淀为跨域可复用的机器人技能资产。</p>
 
   <div class="stats-bar">
-    <div class="stat-item"><span class="stat-n" id="stat-skills">68/span><span class="stat-l">技能</span></div>
-    <div class="stat-item"><span class="stat-n" id="stat-cats">9/span><span class="stat-l">技能类别</span></div>
-    <div class="stat-item"><span class="stat-n">10+</span><span class="stat-l">机器人型号</span></div>
+    <div class="stat-item"><span class="stat-n" id="stat-skills">80</span><span class="stat-l">技能</span></div>
+    <div class="stat-item"><span class="stat-n" id="stat-cats">10</span><span class="stat-l">技能类别</span></div>
+    <div class="stat-item"><span class="stat-n">2</span><span class="stat-l">应用领域</span></div>
     <div class="stat-item"><span class="stat-n">证据</span><span class="stat-l">驱动治理</span></div>
   </div>
   <div id="platform-status"></div>
@@ -42,13 +42,13 @@
     <div class="path-card path-user">
       <div class="path-icon">&#8594;</div>
       <h3>浏览 &amp; 部署技能</h3>
-      <p>有证据背书、生命周期治理，兼容多款主流机器人平台。</p>
+      <p>工业自动化或桌面陪伴——证据背书、生命周期治理，兼容多种机器人平台与设备。</p>
       <a class="path-cta cta-primary" href="skills.html">浏览技能目录</a>
     </div>
     <div class="path-card path-supplier">
       <div class="path-icon">+</div>
       <h3>发布你的技能</h3>
-      <p>提交验证与认证，让技能在跨团队、跨机器人的场景中可被发现与复用。</p>
+      <p>提交验证与认证，让技能在跨领域、跨机器人、跨团队的场景中可被发现与复用。</p>
       <a class="path-cta cta-secondary" href="developers.html">技能供应商 &rarr;</a>
     </div>
   </div>
@@ -57,7 +57,7 @@
 <!-- ── 技能类别 ── -->
 <section class="section">
   <h2 id="categories">技能类别</h2>
-  <p id="cat-subtitle" style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">68 个工业机器人技能，覆盖 9 大制造领域。点击类别直达技能目录。</p>
+  <p id="cat-subtitle" style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">80 个机器人技能，覆盖 10 大类别（工业自动化 · 桌面陪伴 · 更多领域持续扩展）。点击类别直达技能目录。</p>
   <div class="cat-grid" id="cat-grid">
     <a class="cat-card" href="skills.html?cat=Assembly">
       <div class="cat-icon" style="background:hsl(215,80%,93%);color:hsl(215,60%,38%)">A</div>
@@ -87,13 +87,17 @@
       <div class="cat-icon" style="background:hsl(270,65%,92%);color:hsl(270,50%,38%)">F</div>
       <div class="cat-info"><div class="cat-name">精整处理</div><div class="cat-count">2 个技能</div></div>
     </a>
+    <a class="cat-card" href="skills.html?cat=Companion">
+      <div class="cat-icon" style="background:hsl(310,60%,92%);color:hsl(310,50%,38%)">C</div>
+      <div class="cat-info"><div class="cat-name">桌面陪伴</div><div class="cat-count">6 个技能</div></div>
+    </a>
   </div>
 </section>
 
 <!-- ── 精选技能 ── -->
 <section class="section">
   <h2 id="featured">精选技能</h2>
-  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">已在多款机器人平台完成验证的生产级技能。</p>
+  <p style="margin:0 0 4px 0;color:var(--vp-c-text-2);font-size:14px;">已完成验证的精选技能——涵盖工业自动化与桌面陪伴领域。</p>
   <div class="feat-grid">
     <div class="feat-card">
       <div class="feat-card-head">
@@ -133,14 +137,14 @@
     </div>
   </div>
   <p style="margin:14px 0 0 0;font-size:13px;color:var(--vp-c-text-2);">
-    <a href="skills.html" id="view-all-link" style="color:var(--vp-c-brand);font-weight:600;">查看全部 68 个技能 &rarr;</a>
+    <a href="skills.html" id="view-all-link" style="color:var(--vp-c-brand);font-weight:600;">查看全部 80 个技能 &rarr;</a>
   </p>
 </section>
 
 <!-- ── 应用场景 ── -->
 <section class="section">
-  <h2 id="applications">实际应用场景</h2>
-  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">以下真实工作流均由 RSS 认证技能构建——跨产线复用时只需修改参数，无需重写程序。</p>
+  <h2 id="applications">跨领域应用场景</h2>
+  <p style="margin:0 0 10px 0;color:var(--vp-c-text-2);font-size:14px;">由 RSS 认证技能构建的真实工作流——从工厂产线到桌面陪伴。跨场景复用只需修改参数，无需重写程序。</p>
   <div class="app-grid">
     <div class="app-card">
       <div class="app-card-icon">&#128295;</div>
@@ -169,6 +173,13 @@
       <div class="app-card-title">密封胶涂覆与灌封</div>
       <div class="app-card-desc">KUKA KR10 沿密封条轨迹涂胶并对 PCB 空腔灌封。称重与视觉检测取代人工抽检——通过参数收紧公差降低废品率。</div>
       <div class="app-card-skills"><span>bead_dispense</span><span>surface_inspect_2d</span></div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-icon">&#129302;</div>
+      <div class="app-card-industry">桌面陪伴</div>
+      <div class="app-card-title">DESKMATE 专注与学习助理</div>
+      <div class="app-card-desc">DESKMATE ONE 通过设备端传感器监测专注状态，分心时以机械臂轻触提醒，自适应调整专注时段——全程本地推理，数据不离设备。</div>
+      <div class="app-card-skills"><span>focus_mode</span><span>study_buddy</span><span>daily_companion</span></div>
     </div>
   </div>
 </section>
@@ -226,7 +237,7 @@
 </main>
 <aside class="toc"><div class="toc-title">本页导航</div><nav id="tocNav"></nav></aside>
 </div>
-<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/config.js?v=6.82"></script>
 <script>
 (function(){
   var CAT_STYLE = {
@@ -281,7 +292,10 @@
 
       // Update subtitle
       var sub = document.getElementById('cat-subtitle');
-      if (sub) sub.textContent = items.length + ' 个工业机器人技能，覆盖 ' + catNames.length + ' 大制造领域。点击类别直达技能目录。';
+      var companion = items.filter(function(s){ return s.domain === 'companion'; }).length;
+      var industrial = items.length - companion;
+      if (sub) sub.textContent = items.length + ' 个机器人技能，覆盖 ' + catNames.length + ' 大类别' +
+        (companion ? '（工业 ' + industrial + ' · 陪伴 ' + companion + '）' : '') + '。点击类别直达技能目录。';
 
       // Update "View all" link
       var viewAll = document.getElementById('view-all-link');
@@ -292,6 +306,6 @@
     .catch(function(){});
 })();
 </script>
-<script src="../assets/js/site.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.82"></script>
 </body>
 </html>

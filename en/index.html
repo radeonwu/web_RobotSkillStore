@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Robot Skill Store — The Platform for Trusted Industrial Robot Skills</title>
-<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
+<title>Robot Skill Store — The Open Platform for Trusted Robot Skills</title>
+<link href="../assets/css/style.css?v=6.82" rel="stylesheet"/>
 </head>
 <body>
 <header class="topbar">
@@ -27,13 +27,13 @@
 <!-- ── HERO ── -->
 <div class="hero-gradient">
   <p class="section-eyebrow">Robot Skill Store</p>
-  <h1 class="hero-headline">Deploy robot skills like industrial apps</h1>
-  <p class="hero-tagline">Browse verified robot skills, check hardware fit, review evidence-backed trust signals, and move from discovery to deployment through one storefront.</p>
+  <h1 class="hero-headline">One store for every kind of robot skill</h1>
+  <p class="hero-tagline">Browse verified robot skills across industrial automation, desktop companions, and beyond. Check hardware fit, review evidence-backed trust signals, and move from discovery to deployment through one storefront.</p>
 
   <div class="stats-bar">
-    <div class="stat-item"><span class="stat-n" id="stat-skills">68</span><span class="stat-l">Skills</span></div>
-    <div class="stat-item"><span class="stat-n" id="stat-cats">9</span><span class="stat-l">Categories</span></div>
-    <div class="stat-item"><span class="stat-n">10+</span><span class="stat-l">Robot Models</span></div>
+    <div class="stat-item"><span class="stat-n" id="stat-skills">80</span><span class="stat-l">Skills</span></div>
+    <div class="stat-item"><span class="stat-n" id="stat-cats">10</span><span class="stat-l">Categories</span></div>
+    <div class="stat-item"><span class="stat-n">2</span><span class="stat-l">Domains</span></div>
     <div class="stat-item"><span class="stat-n">Evidence</span><span class="stat-l">Trust Signals</span></div>
   </div>
   <div id="platform-status"></div>
@@ -41,15 +41,15 @@
   <div class="hero-summary">
     <div class="hero-summary-card">
       <b>For robot users</b>
-      <span>Start from the job to be done, compare compatibility, and understand deployment effort before opening technical detail.</span>
+      <span>Start from the job to be done — factory automation, desktop companions, or future domains. Compare compatibility and understand deployment effort before opening technical detail.</span>
     </div>
     <div class="hero-summary-card">
       <b>For suppliers</b>
-      <span>Publish reusable skills, submit evidence, and move toward validation or certification instead of shipping one-off integrations.</span>
+      <span>Publish reusable skills across any domain, submit evidence, and move toward validation or certification instead of shipping one-off integrations.</span>
     </div>
     <div class="hero-summary-card">
       <b>For operators</b>
-      <span>Use evidence, lifecycle, and platform tooling to judge readiness, monitor performance, and support production adoption.</span>
+      <span>Use evidence, lifecycle, and platform tooling to judge readiness, monitor performance, and support deployment — industrial or companion.</span>
     </div>
   </div>
 
@@ -72,7 +72,7 @@
 <!-- ── SKILL CATEGORIES ── -->
 <section class="section">
   <h2 id="categories">Skill Categories</h2>
-  <p id="cat-subtitle" class="storefront-note">Browse by production task first. Each category acts like an aisle in the store, helping users narrow toward a deployable skill faster.</p>
+  <p id="cat-subtitle" class="storefront-note">Browse by skill domain and task type. Each category acts like an aisle in the store — from factory automation to desktop companions — helping you narrow toward a deployable skill faster.</p>
   <div class="cat-grid" id="cat-grid">
     <a class="cat-card" href="skills.html?cat=Assembly">
       <div class="cat-icon" style="background:hsl(215,80%,93%);color:hsl(215,60%,38%)">A</div>
@@ -101,6 +101,10 @@
     <a class="cat-card" href="skills.html?cat=Finishing">
       <div class="cat-icon" style="background:hsl(270,65%,92%);color:hsl(270,50%,38%)">F</div>
       <div class="cat-info"><div class="cat-name">Finishing</div><div class="cat-count">2 skills</div></div>
+    </a>
+    <a class="cat-card" href="skills.html?cat=Companion">
+      <div class="cat-icon" style="background:hsl(310,60%,92%);color:hsl(310,50%,38%)">C</div>
+      <div class="cat-info"><div class="cat-name">Companion</div><div class="cat-count">6 skills</div></div>
     </a>
   </div>
 </section>
@@ -148,14 +152,14 @@
     </div>
   </div>
   <p style="margin:14px 0 0 0;font-size:13px;color:var(--vp-c-text-2);">
-    <a href="skills.html" id="view-all-link" style="color:var(--vp-c-brand);font-weight:600;">View all 68 skills in the catalog &rarr;</a>
+    <a href="skills.html" id="view-all-link" style="color:var(--vp-c-brand);font-weight:600;">View all 80 skills in the catalog &rarr;</a>
   </p>
 </section>
 
 <!-- ── APPLICATION EXAMPLES ── -->
 <section class="section">
-  <h2 id="applications">Applications in the Field</h2>
-  <p class="storefront-note">Real-world workflows built from reusable skills. The goal is to reuse capability across line variants by changing parameters, not rewriting automation from scratch.</p>
+  <h2 id="applications">Applications Across Domains</h2>
+  <p class="storefront-note">Real-world workflows built from certified reusable skills — from factory floors to desktop companions. Reuse capability across variants and domains by changing parameters, not rewriting from scratch.</p>
   <div class="app-grid">
     <div class="app-card">
       <div class="app-card-icon">&#128295;</div>
@@ -184,6 +188,13 @@
       <div class="app-card-title">Precision Sealing &amp; Potting</div>
       <div class="app-card-desc">KUKA KR10 traces bead paths on gasket seals and fills potting cavities on PCBs. Weight and vision checks confirm coverage without manual inspection steps.</div>
       <div class="app-card-skills"><span>bead_dispense</span><span>surface_inspect_2d</span></div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-icon">&#129302;</div>
+      <div class="app-card-industry">Desktop Companion</div>
+      <div class="app-card-title">DESKMATE Focus &amp; Study Session</div>
+      <div class="app-card-desc">DESKMATE ONE monitors attention via on-device sensors, performs a gentle arm nudge when distraction is detected, and adapts study intervals — all processed locally with no data leaving the device.</div>
+      <div class="app-card-skills"><span>focus_mode</span><span>study_buddy</span><span>daily_companion</span></div>
     </div>
   </div>
 </section>
@@ -242,7 +253,7 @@
 </main>
 <aside class="toc"><div class="toc-title">ON THIS PAGE</div><nav id="tocNav"></nav></aside>
 </div>
-<script src="../assets/config.js?v=6.81"></script>
+<script src="../assets/config.js?v=6.82"></script>
 <script>
 (function(){
   var CAT_STYLE = {
@@ -308,7 +319,10 @@
 
       // Update subtitle
       var sub = document.getElementById('cat-subtitle');
-      if (sub) sub.textContent = items.length + ' industrial skills across ' + catNames.length + ' manufacturing domains. Click a category to browse.';
+      var industrial = items.filter(function(s){ return s.domain !== 'companion'; }).length;
+      var companion  = items.filter(function(s){ return s.domain === 'companion'; }).length;
+      if (sub) sub.textContent = items.length + ' skills across ' + catNames.length + ' categories' +
+        (companion ? ' (' + industrial + ' industrial · ' + companion + ' companion)' : '') + '. Click a category to browse.';
 
       // Update "View all" link
       var viewAll = document.getElementById('view-all-link');
@@ -348,6 +362,6 @@
     .catch(function(){});
 })();
 </script>
-<script src="../assets/js/site.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.82"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>技能目录 · RobotSkillStore</title>
-<link href="../assets/css/style.css?v=6.81" rel="stylesheet"/>
+<link href="../assets/css/style.css?v=6.82" rel="stylesheet"/>
 <style>
 /* ── Skill catalog styles ── */
 .catalog-controls {
@@ -306,7 +306,7 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
 <div id="catalog-source"></div>
 
 <div class="catalog-controls">
-  <input id="sk-search" placeholder="描述你的需求，或搜索技能名称、机器人型号…" title="示例：'抓取放置'、'焊接'、'表面检测'" type="text"/>
+  <input id="sk-search" placeholder="描述你的需求，或搜索技能名称、领域、机器人型号…" title="示例：'抓取放置'、'焊接'、'专注模式'、'桌面助手'" type="text"/>
   <div class="cat-filter" id="cat-filter">
     <button class="cat-btn active" data-cat="">全部</button>
   </div>
@@ -326,8 +326,8 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
 </aside>
 </div>
 
-<script src="../assets/config.js?v=6.81"></script>
-<script src="../assets/data/public_skills.js?v=6.81"></script>
+<script src="../assets/config.js?v=6.82"></script>
+<script src="../assets/data/public_skills.js?v=6.82"></script>
 <script>
 (function () {
   var PLATFORM_BASE = (window.RSS_PLATFORM_BASE_URL || window.RSS_PUBLIC_BASE_URL || '').replace(/\/$/, '');
@@ -357,6 +357,13 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
     { keys: ['点胶','涂胶','密封','胶水','dispense','adhesive','glue','seal'],               cats: ['Dispensing'] },
     { keys: ['上下料','机床','数控','cnc','load','unload','machine tending'],                cats: ['Machine Tending'] },
     { keys: ['拧紧','紧固','螺钉','螺母','扭矩','fasten','torque','screw','tighten'],         cats: ['Assembly'] },
+    { keys: ['专注','番茄钟','深度工作','编程助理','focus','pomodoro','deep work','coding'],   cats: ['Companion'] },
+    { keys: ['学习','备考','闪卡','教育','study','learn','education','flashcard'],             cats: ['Companion'] },
+    { keys: ['写作','创作','写文章','write','writing','creative','flow'],                      cats: ['Companion'] },
+    { keys: ['游戏','打游戏','成就','休息','gaming','game','play','achievement'],               cats: ['Companion'] },
+    { keys: ['陪伴','打招呼','健康','心情','ambient','companion','greet','wellbeing'],          cats: ['Companion'] },
+    { keys: ['阅读','读书','理解','词汇','reading','read','comprehension','book','vocab'],      cats: ['Companion'] },
+    { keys: ['桌面助手','机械臂','deskmate','desk mate','arm gesture'],                        cats: ['Companion'] },
   ];
   function resolveIntent(q) {
     if (!q) return null;
@@ -414,14 +421,47 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
   // ── Deploy panel (#1 #3 #7) ───────────────────────────────
   function renderDeployPanel(sk) {
     var ver    = sk.latest_version || '1.0.0';
+    var plLink = platformLink(sk.skill_id);
+    var vwLink = viewerLink();
+
+    if (sk.domain === 'companion') {
+      var runPayload = JSON.stringify({
+        skill_id: sk.skill_id, version: ver, env: 'deskmate_sim_v1',
+        outcome: 'SUCCESS', metrics: { session_score: 0.75 },
+        evidence: { privacy: { data_left_device: false } }
+      }, null, 2);
+      return [
+        '<details class="sk-deploy-panel">',
+          '<summary class="sk-deploy-summary">获取此技能</summary>',
+          '<div class="sk-deploy-body">',
+            '<div class="sk-deploy-step">',
+              '<div class="sk-step-label">① 安装技能包</div>',
+              '<code class="sk-deploy-cmd">deskmate-kit install deskmate-skills/' + escHtml(sk.skill_id) + '==' + escHtml(ver) + '</code>',
+            '</div>',
+            '<div class="sk-deploy-step">',
+              '<div class="sk-step-label">② 在设备上激活</div>',
+              '<code class="sk-deploy-cmd">deskmate-cli skill activate ' + escHtml(sk.skill_id) + ' --device my_deskmate</code>',
+            '</div>',
+            '<div class="sk-deploy-step">',
+              '<div class="sk-step-label">③ 提交运行证据</div>',
+              '<pre class="sk-deploy-payload" id="pay-' + escHtml(sk.skill_id) + '">' + escHtml(runPayload) + '</pre>',
+            '</div>',
+            '<div class="sk-deploy-actions">',
+              vwLink ? '<a class="sk-link" href="' + escHtml(vwLink) + '" target="_blank" rel="noopener">证据运行 ↗</a>' : '',
+              plLink ? '<a class="sk-link" href="' + escHtml(plLink) + '" target="_blank" rel="noopener">平台记录 ↗</a>' : '',
+              '<button class="sk-link sk-dl-btn" type="button" data-skill-id="' + escHtml(sk.skill_id) + '" data-version="' + escHtml(ver) + '">⬇ 下载清单</button>',
+            '</div>',
+          '</div>',
+        '</details>'
+      ].join('');
+    }
+
     var robots = sk.robots || [];
     var opts   = robots.length
       ? robots.map(function(r){ return '<option value="' + escHtml(r) + '">' + escHtml(r) + '</option>'; }).join('')
       : '<option value="generic_profile">generic_profile</option>';
     var payload = JSON.stringify({ skill_id: sk.skill_id, version: ver,
       robot_profile: robots[0] || 'generic_profile', parameters: {} }, null, 2);
-    var plLink = platformLink(sk.skill_id);
-    var vwLink = viewerLink();
     return [
       '<details class="sk-deploy-panel">',
         '<summary class="sk-deploy-summary">获取此技能</summary>',
@@ -469,7 +509,13 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
         sk.subcategory ? '<div class="sk-sub">' + escHtml(sk.subcategory) + '</div>' : '',
         sk.description ? '<div class="sk-desc">' + escHtml(sk.description) + '</div>' : '',
         '<div class="sk-stats"><span class="sk-stat-n">' + st.runs + ' 次运行</span> · <span class="sk-stat-r">' + st.rate + '% 成功</span></div>',
-        robots.length  ? '<div class="sk-robots">' + robotBadges(robots) + '</div>' : '',
+        (sk.domain === 'companion')
+          ? [sk.device ? '<div class="sk-robots"><span class="sk-robot-badge">📱 ' + escHtml(sk.device) + '</span>' +
+              (sk.scene ? '<span class="sk-robot-badge">🎭 ' + escHtml(sk.scene) + '</span>' : '') +
+              (sk.privacy_mode ? '<span class="sk-robot-badge">🔒 ' + escHtml(sk.privacy_mode) + '</span>' : '') + '</div>' : '',
+             (sk.context_sources||[]).length ? '<div class="sk-robots" style="font-size:11px;opacity:0.75">上下文: ' +
+              escHtml(sk.context_sources.join(', ')) + '</div>' : ''].join('')
+          : (robots.length ? '<div class="sk-robots">' + robotBadges(robots) + '</div>' : ''),
         renderDeployPanel(sk),
       '</div>'
     ].join('');
@@ -556,6 +602,49 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
   function triggerDownload(sk, btn) {
     var ver = btn.dataset.version || sk.latest_version || '1.0.0';
 
+    // 伴侣（DESKMATE）技能 — 客户端本地生成 deskmate_skill_pack 清单
+    if (sk.domain === 'companion') {
+      var mat = sk.maturity || 'alpha';
+      var lc  = (mat === 'stable' || mat === 'beta') ? 'VALIDATED' : 'EXPERIMENTAL';
+      var ctxSrc = sk.context_sources && sk.context_sources.length ? sk.context_sources : ['screen','microphone'];
+      var outCh  = sk.output_channels  && sk.output_channels.length  ? sk.output_channels  : ['arm_gesture','voice'];
+      var manifest = {
+        rss_manifest_version: '2.2',
+        schema_version: '0.2',
+        skill_definition: {
+          skill_id: sk.skill_id, version: ver,
+          domain: 'companion',
+          identity: { name: sk.name, category: sk.category,
+            subcategory: sk.subcategory || '', maturity: mat, description: sk.description, tags: [] },
+          implementation_type: 'agent',
+          agent: { model: 'claude-3-5-sonnet', skill_pack_id: 'deskmate-skills/' + sk.skill_id,
+            context_sources: ctxSrc, output_channels: outCh, temperature: 0.7, max_tokens: 512 },
+          trigger: { mode: 'reactive', cooldown_sec: 30, priority: 5 },
+          requirements: { device: sk.device || 'deskmate_one',
+            context_sources: ctxSrc, output_channels: outCh,
+            compute: 'edge_cpu_only', privacy_mode: sk.privacy_mode || 'local_only' },
+          distribution: { type: 'deskmate_skill_pack',
+            package: 'deskmate-skills/' + sk.skill_id, version: ver,
+            entrypoint: sk.skill_id + '_pack.' + sk.skill_id + '.run',
+            install_cmd: 'deskmate-kit install deskmate-skills/' + sk.skill_id + '==' + ver,
+            docs_url: '/public/v1/deskmate/skill_catalog' }
+        },
+        skill_status: { skill_id: sk.skill_id, version: ver,
+          governance: { lifecycle_state: lc, evidence_runs_required: (mat==='stable'?30:mat==='beta'?15:5),
+            min_success_rate: (mat==='stable'?0.75:mat==='beta'?0.65:null),
+            platform_record: '/viewer/?skill_id=' + sk.skill_id },
+          stats_30d: { runs:0, success_rate:null }, retrieved_at: new Date().toISOString(),
+          _note: '离线伴侣技能清单 — 完整 agentSpec、triggerSpec 及实时统计须通过 RSS 平台获取（/public/v1/deskmate/skill_catalog）。' }
+      };
+      var blob2 = new Blob([JSON.stringify(manifest,null,2)], {type:'application/json'});
+      var dlUrl2 = URL.createObjectURL(blob2);
+      var a2 = document.createElement('a');
+      a2.href = dlUrl2; a2.download = sk.skill_id + '-companion-manifest-v2.2.json';
+      document.body.appendChild(a2); a2.click(); document.body.removeChild(a2);
+      setTimeout(function(){ URL.revokeObjectURL(dlUrl2); }, 1000);
+      return;
+    }
+
     // JWT 模式：从平台 API 获取完整 v2.0 清单
     if(window.RSSAuth && window.RSSAuth.isJwtMode && window.RSSAuth.isJwtMode()){
       var base = (window.RSS_PLATFORM_BASE_URL||'').replace(/\/+$/,'');
@@ -589,7 +678,8 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
       'Welding':        { risk:'HIGH',   primitives:['cartesian_seam_track','weave_motion'],         ft:false, payload:8.0  },
       'Finishing':      { risk:'MEDIUM', primitives:['force_controlled_contour','orbital_motion'],  ft:true,  payload:5.0  },
       'Packaging':      { risk:'LOW',    primitives:['pick_and_place','cartesian_move'],             ft:false, payload:10.0 },
-      'Handling':       { risk:'LOW',    primitives:['pick_and_place','cartesian_move'],             ft:false, payload:10.0 }
+      'Handling':       { risk:'LOW',    primitives:['pick_and_place','cartesian_move'],             ft:false, payload:10.0 },
+      'Companion':      { risk:'LOW',    primitives:[],                                               ft:false, payload:0    }
     };
     var d   = CAT_DEF[sk.category] || { risk:'MEDIUM', primitives:['cartesian_move'], ft:false, payload:5.0 };
     var rp  = {};
@@ -708,7 +798,13 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
                subcategory:it.subcategory||'', maturity:(it.maturity||'alpha').toLowerCase(),
                latest_version:it.latest_version, description:it.description||it.intent||'',
                robots_supported:it.robots_supported||0,
-               robots:Array.isArray(it.robots)?it.robots:[] };
+               robots:Array.isArray(it.robots)?it.robots:[],
+               domain:it.domain||'industrial',
+               scene:it.scene||it.domain_spec&&it.domain_spec.scene||null,
+               device:it.device||it.domain_spec&&it.domain_spec.device||null,
+               context_sources:Array.isArray(it.context_sources)?it.context_sources:[],
+               output_channels:Array.isArray(it.output_channels)?it.output_channels:[],
+               privacy_mode:it.privacy_mode||null };
     });
   }
   function setSourceLabel(src) {
@@ -760,6 +856,6 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
   if (PLATFORM_BASE) { loadFromPlatform(); } else { loadStatic(); }
 })();
 </script>
-<script src="../assets/js/site.js?v=6.81"></script>
+<script src="../assets/js/site.js?v=6.82"></script>
 </body>
 </html>

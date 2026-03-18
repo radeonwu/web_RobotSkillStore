@@ -440,7 +440,7 @@ svg{max-width:100%; height:auto;}
 /* v6.10 graphics polish */
 svg text{paint-order: stroke;}
 
-/* v6.81 docs section subnav */
+/* v6.82 docs section subnav */
 .docs-subnav{background:var(--vp-c-bg-soft);border-bottom:1px solid var(--vp-c-divider);padding:0 24px}
 .docs-subnav-inner{display:flex;gap:4px;max-width:1200px;margin:0 auto;padding:6px 0}
 .docs-subnav-link{display:inline-flex;align-items:center;padding:5px 14px;border-radius:6px;text-decoration:none;font-size:13px;font-weight:500;color:var(--vp-c-text-2);transition:background .15s,color .15s}
@@ -1975,7 +1975,7 @@ iframe{background:transparent;}
 [data-theme="dark"] .kit-step-code { background: var(--vp-c-bg-alt); }
 
 /* ═══════════════════════════════════════════════════════════════
-   v6.81 — Robotics-domain design system
+   v6.82 — Robotics-domain design system
    Typography, governance status badges, heading scale, precision feel
    ═══════════════════════════════════════════════════════════════ */
 

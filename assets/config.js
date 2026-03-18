@@ -17,7 +17,7 @@
 window.RSS_API_BASE = window.RSS_API_BASE || "";
 
 // Preferred base URL
-window.RSS_PLATFORM_BASE_URL = window.RSS_PLATFORM_BASE_URL || window.RSS_API_BASE || "https://fantasy-distribute-twenty-realty.trycloudflare.com";
+window.RSS_PLATFORM_BASE_URL = window.RSS_PLATFORM_BASE_URL || window.RSS_API_BASE || "https://gamecube-integrity-sms-priority.trycloudflare.com";
 
 // Optional overrides (defaults to platform base)
 window.RSS_VIEWER_BASE_URL = window.RSS_VIEWER_BASE_URL || window.RSS_PLATFORM_BASE_URL || "";

@@ -1,6 +1,6 @@
 // Auto-generated from public_skills.json — do not edit manually
-// RSS Platform v1.0.10 — 74 skills across 8 categories
-// Generated: 2026-03-13
+// RSS Platform v1.1.0 — 74 industrial + 6 companion skills across 9 categories
+// Generated: 2026-03-18
 window.RSS_STATIC_SKILLS = [
   {
     "skill_id": "press_fit_bearing",
@@ -1138,5 +1138,108 @@ window.RSS_STATIC_SKILLS = [
       "KUKA_KR16"
     ],
     "robots_supported": 4
+  },
+
+  {
+    "skill_id": "focus_mode",
+    "name": "Focus Mode",
+    "category": "Companion",
+    "subcategory": "Productivity",
+    "domain": "companion",
+    "scene": "coding",
+    "maturity": "beta",
+    "description": "Monitors attention and posture via on-device sensors. When distraction is detected the arm performs a gentle nudge gesture and voice reminds the user of their current task. All processing runs on-device — no data leaves the machine.",
+    "latest_version": "0.1.0",
+    "device": "DESKMATE ONE",
+    "context_sources": ["screen", "posture", "attention"],
+    "output_channels": ["arm_gesture", "voice"],
+    "privacy_mode": "local_only",
+    "robots": [],
+    "robots_supported": 0
+  },
+  {
+    "skill_id": "study_buddy",
+    "name": "Study Buddy",
+    "category": "Companion",
+    "subcategory": "Education",
+    "domain": "companion",
+    "scene": "studying",
+    "maturity": "beta",
+    "description": "Watches the screen and tracks attention during study sessions. Prompts active recall at natural breakpoints, celebrates milestones with an arm gesture, and nudges the user to take Pomodoro breaks.",
+    "latest_version": "0.1.0",
+    "device": "DESKMATE ONE",
+    "context_sources": ["screen", "attention", "calendar"],
+    "output_channels": ["arm_gesture", "voice", "screen"],
+    "privacy_mode": "local_only",
+    "robots": [],
+    "robots_supported": 0
+  },
+  {
+    "skill_id": "writing_coach",
+    "name": "Writing Coach",
+    "category": "Companion",
+    "subcategory": "Creativity",
+    "domain": "companion",
+    "scene": "writing",
+    "maturity": "alpha",
+    "description": "Detects writing slowdowns by monitoring words-per-minute via screen analysis. When flow drops below threshold the arm gestures encouragingly and voice offers a brief motivational prompt or writing suggestion.",
+    "latest_version": "0.1.0",
+    "device": "DESKMATE ONE",
+    "context_sources": ["screen", "posture", "history"],
+    "output_channels": ["arm_gesture", "voice"],
+    "privacy_mode": "local_only",
+    "robots": [],
+    "robots_supported": 0
+  },
+  {
+    "skill_id": "gaming_companion",
+    "name": "Gaming Companion",
+    "category": "Companion",
+    "subcategory": "Entertainment",
+    "domain": "companion",
+    "scene": "gaming",
+    "maturity": "alpha",
+    "description": "Monitors posture and session length during gaming. Provides high-energy arm celebrations for achievements, posture nudges after long periods of slouching, and break reminders for marathon sessions.",
+    "latest_version": "0.1.0",
+    "device": "DESKMATE ONE",
+    "context_sources": ["screen", "voice"],
+    "output_channels": ["arm_gesture", "voice", "notification"],
+    "privacy_mode": "local_only",
+    "robots": [],
+    "robots_supported": 0
+  },
+  {
+    "skill_id": "daily_companion",
+    "name": "Daily Companion",
+    "category": "Companion",
+    "subcategory": "Wellbeing",
+    "domain": "companion",
+    "scene": "companion",
+    "maturity": "beta",
+    "description": "Always-on ambient companion that greets the user at their desk, tracks time-at-desk for health reminders, responds to voice interactions, and provides a warm presence through gentle arm movements and voice.",
+    "latest_version": "0.1.0",
+    "device": "DESKMATE ONE",
+    "context_sources": ["screen", "webcam", "posture"],
+    "output_channels": ["arm_gesture", "voice", "screen"],
+    "privacy_mode": "local_only",
+    "robots": [],
+    "robots_supported": 0
+  },
+  {
+    "skill_id": "reading_aide",
+    "name": "Reading Aide",
+    "category": "Companion",
+    "subcategory": "Education",
+    "domain": "companion",
+    "scene": "reading",
+    "maturity": "alpha",
+    "description": "Monitors reading attention via eye-tracking and posture sensors. When attention drops, gently nudges the user back. After each section, the arm taps the desk to prompt a brief self-test. Supports vocab lookup and summarization on demand.",
+    "latest_version": "0.1.0",
+    "device": "DESKMATE ONE",
+    "context_sources": ["screen", "posture", "attention"],
+    "output_channels": ["arm_gesture", "voice"],
+    "privacy_mode": "local_only",
+    "robots": [],
+    "robots_supported": 0
   }
 ];
