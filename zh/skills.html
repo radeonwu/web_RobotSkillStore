@@ -564,8 +564,15 @@ details[open] > .sk-deploy-summary::before { transform: rotate(90deg); }
         var bo = MATURITY_ORDER[b.maturity]!=null?MATURITY_ORDER[b.maturity]:99;
         return ao!==bo ? ao-bo : (a.name||'').localeCompare(b.name||'');
       });
+      var companionBanner = (cat === 'Companion')
+        ? '<div style="background:linear-gradient(90deg,#1a1040 0%,#2a1060 100%);border:1px solid #7c4dff44;border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:13px;display:flex;align-items:center;gap:14px;">' +
+          '<span style="font-size:22px;">🤖</span>' +
+          '<span style="color:#c4b5fd;line-height:1.6;">这些技能运行在 <strong style="color:#fff;">DESKMATE ONE</strong> 上——6自由度桌面具身AI，配备4K竖屏与端侧AI推理。' +
+          '<a href="../../../DeskMate/index.html" target="_blank" style="color:#a78bfa;font-weight:600;text-decoration:none;margin-left:6px;">了解 DESKMATE ONE ↗</a></span></div>'
+        : '';
       html += '<div class="cat-group" id="cat-' + cat.replace(/\s+/g,'-').toLowerCase() + '"><div class="cat-group-title">' + escHtml(cat) +
               ' <span style="font-weight:400;opacity:0.6">(' + items.length + ')</span></div>' +
+              companionBanner +
               '<div class="skill-grid">';
       items.forEach(function(sk){ html += renderSkill(sk); });
       html += '</div></div>';
